@@ -482,7 +482,7 @@ namespace Kassiopeia
             // initialize event
             fEvent->ParentRunId() = fRun->GetRunId();
 
-	    /*
+	    
     // project8 segment
             if (fRunInProgress)
 	      {
@@ -502,7 +502,7 @@ namespace Kassiopeia
 
             WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents());
 	    // end project8 segment
-	    */
+	    
 
 
             // update run
