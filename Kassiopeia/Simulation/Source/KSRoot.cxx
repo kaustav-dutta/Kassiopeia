@@ -1,3 +1,7 @@
+#include "LMCGlobalsDeclaration.hh"  // project8
+#include "LMCGlobalsDefinition.hh"  // project8
+
+
 #include "KSRoot.h"
 #include "KSRunMessage.h"
 #include "KSEventMessage.h"
@@ -15,6 +19,8 @@
 #include "KSRootSpaceInteraction.h"
 #include "KSRootSpaceNavigator.h"
 #include "KSRootSurfaceInteraction.h"
+#include "LMCFieldCalculator.hh"  // project8
+#include "LMCCyclotronRadiationExtractor.hh"  //project8
 #include "KSRootSurfaceNavigator.h"
 #include "KSRootTerminator.h"
 #include "KSRootWriter.h"
@@ -39,6 +45,7 @@
 
 using namespace std;
 using namespace katrin;
+using namespace locust;
 
 namespace Kassiopeia
 {
@@ -65,6 +72,8 @@ namespace Kassiopeia
             fRootSpaceNavigator( nullptr ),
             fRootSurfaceInteraction( nullptr ),
             fRootSurfaceNavigator( nullptr ),
+            fCyclotronRadiationExtractor( nullptr ),  // project8
+            fFieldCalculator( nullptr ), // project8
             fRootTerminator( nullptr ),
             fRootWriter( nullptr ),
             fRootStepModifier( nullptr ),
@@ -99,6 +108,8 @@ namespace Kassiopeia
             fRootSpaceNavigator     = fToolbox.Get<KSRootSpaceNavigator>("root_space_navigator");
             fRootSurfaceInteraction = fToolbox.Get<KSRootSurfaceInteraction>("root_surface_interaction");
             fRootSurfaceNavigator   = fToolbox.Get<KSRootSurfaceNavigator>("root_surface_navigator");
+	    fCyclotronRadiationExtractor = fToolbox.Get<locust::CyclotronRadiationExtractor>("cyclotron_radiation_extractor");  // project8
+	    fFieldCalculator = fToolbox.Get<locust::FieldCalculator>("field_calculator");  // project8
             fRootTerminator         = fToolbox.Get<KSRootTerminator>("root_terminator");
             fRootWriter             = fToolbox.Get<KSRootWriter>("root_writer");
             fRootStepModifier       = fToolbox.Get<KSRootStepModifier>("root_step_modifier");
@@ -174,6 +185,16 @@ namespace Kassiopeia
         fRootTerminator->SetStep( fStep );
         fToolbox.Add(fRootTerminator);
 
+	//project8 segment		
+        fCyclotronRadiationExtractor = new locust::CyclotronRadiationExtractor();
+        fCyclotronRadiationExtractor->SetName( "cyclotron_radiation_extractor" );
+        fToolbox.Add(fCyclotronRadiationExtractor);
+       	
+        fFieldCalculator = new locust::FieldCalculator();
+	fFieldCalculator->SetName( "field_calculator");
+	fToolbox.Add(fFieldCalculator);	
+        // end project8 segment
+
         fRootWriter = new KSRootWriter();
         fRootWriter->SetName( "root_writer" );
         fToolbox.Add(fRootWriter);
@@ -218,6 +239,8 @@ namespace Kassiopeia
             fRootSpaceNavigator( aCopy.fRootSpaceNavigator ),
             fRootSurfaceInteraction( aCopy.fRootSurfaceInteraction ),
             fRootSurfaceNavigator( aCopy.fRootSurfaceNavigator ),
+            fCyclotronRadiationExtractor( aCopy.fCyclotronRadiationExtractor ), // project8
+            fFieldCalculator( aCopy.fFieldCalculator ), // project8
             fRootTerminator( aCopy.fRootTerminator ),
             fRootWriter( aCopy.fRootWriter ),
             fRootStepModifier( aCopy.fRootStepModifier ),
@@ -249,6 +272,47 @@ namespace Kassiopeia
          * KToolbox takes care of destruction
          */
     }
+
+
+
+	
+  // project8 segment
+  void WakeAfterEvent(unsigned TotalEvents, unsigned EventsSoFar)
+  {
+    fEventInProgress = false;
+    if( TotalEvents == EventsSoFar-1 )
+      {
+	fRunInProgress = false;
+	fKassReadyCondition.notify_one();
+      }
+    fDigitizerCondition.notify_one();  // unlock
+    printf("Kass is waking after event\n");
+    return;
+  }
+
+  
+
+  bool ReceivedEventStartCondition()
+  {
+    fKassEventReady = true;
+
+    fFalseStartKassiopeia = false;
+    fDigitizerCondition.notify_one();  // unlock if still locked.
+    if( fWaitBeforeEvent )
+      {
+
+	fKassReadyCondition.notify_one();
+	std::unique_lock< std::mutex >tLock( fMutex );
+        fPreEventCondition.wait( tLock );
+        fKassEventReady = false;
+        fEventInProgress = true; // possibly redundant.
+        t_old = 0.;  // reset time on digitizer.
+        return true;
+      }
+    return true; // check this.  should return true if no wait.
+  }
+  // end project8 segment
+
 
     void KSRoot::Execute( KSSimulation* aSimulation )
     {
@@ -319,6 +383,9 @@ namespace Kassiopeia
         {
             mainmsg( eWarning ) << "Kassiopeia will not perform any tracking since the specified number of events is zero." << eom;
         }
+
+  
+
 
         ExecuteRun();
 
@@ -407,7 +474,7 @@ namespace Kassiopeia
             }
 
             //signal handler break
-            if ( fStopRunSignal )
+            if (( fStopRunSignal ) | (!fRunInProgress)) // project8 
             {
                 break;
             }
@@ -415,8 +482,28 @@ namespace Kassiopeia
             // initialize event
             fEvent->ParentRunId() = fRun->GetRunId();
 
-            // execute event
-            ExecuteEvent();
+	    /*
+    // project8 segment
+            if (fRunInProgress)
+	      {
+                printf("Kass is waiting for event trigger.\n");
+		if (ReceivedEventStartCondition())
+		  {
+		    printf("Kass got the event trigger\n");
+		  }
+
+		if (fRunInProgress) ExecuteEvent();  // check again
+	      }
+            else
+	      {
+		break;
+	      }
+	        
+
+            WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents());
+	    // end project8 segment
+	    */
+
 
             // update run
             fRun->TotalEvents() += 1;
@@ -973,6 +1060,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Initialize();
         fRootSurfaceInteraction->Initialize();
         fRootSurfaceNavigator->Initialize();
+        fCyclotronRadiationExtractor->Initialize();  // project8
+        fFieldCalculator->Initialize();  // project8
         fRootTerminator->Initialize();
         fRootWriter->Initialize();
         fRootStepModifier->Initialize();
@@ -999,6 +1088,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Deinitialize();
         fRootSurfaceInteraction->Deinitialize();
         fRootSurfaceNavigator->Deinitialize();
+        fCyclotronRadiationExtractor->Deinitialize();  // project8
+        fFieldCalculator->Deinitialize();  // project8
         fRootTerminator->Deinitialize();
         fRootWriter->Deinitialize();
         fRootStepModifier->Deinitialize();
@@ -1025,6 +1116,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Activate();
         fRootSurfaceInteraction->Activate();
         fRootSurfaceNavigator->Activate();
+        fCyclotronRadiationExtractor->Activate();  // project8
+        fFieldCalculator->Activate();  // project8
         fRootTerminator->Activate();
         fRootWriter->Activate();
         fRootStepModifier->Activate();
@@ -1051,6 +1144,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Deactivate();
         fRootSurfaceInteraction->Deactivate();
         fRootSurfaceNavigator->Deactivate();
+        fCyclotronRadiationExtractor->Deactivate();  // project8
+        fFieldCalculator->Deactivate();  // project8
         fRootTerminator->Deactivate();
         fRootWriter->Deactivate();
         fRootStepModifier->Deactivate();
