@@ -458,6 +458,7 @@ namespace Kassiopeia
         fRun->DiscreteEnergyChange() = 0.;
         fRun->DiscreteMomentumChange() = 0.;
         fRun->DiscreteSecondaries() = 0;
+        fRun->NumberOfTurns() = 0;
         fRunIndex++;
 
         // send report
@@ -516,6 +517,7 @@ namespace Kassiopeia
             fRun->DiscreteEnergyChange() += fEvent->DiscreteEnergyChange();
             fRun->DiscreteMomentumChange() += fEvent->DiscreteMomentumChange();
             fRun->DiscreteSecondaries() += fEvent->DiscreteSecondaries();
+            fRun->NumberOfTurns() += fEvent->NumberOfTurns();
 
             fRootRunModifier->ExecutePostRunModification();
         }
@@ -549,6 +551,7 @@ namespace Kassiopeia
         fEvent->DiscreteEnergyChange() = 0.;
         fEvent->DiscreteMomentumChange() = 0.;
         fEvent->DiscreteSecondaries() = 0;
+        fEvent->NumberOfTurns() = 0;
         fEventIndex++;
 
         //clear any internal trajectory state
@@ -610,6 +613,7 @@ namespace Kassiopeia
             fEvent->DiscreteEnergyChange() += fTrack->DiscreteEnergyChange();
             fEvent->DiscreteMomentumChange() += fTrack->DiscreteMomentumChange();
             fEvent->DiscreteSecondaries() += fTrack->DiscreteSecondaries();
+            fEvent->NumberOfTurns() += fTrack->NumberOfTurns();
         }
 
         fRootEventModifier->ExecutePostEventModification();
@@ -642,6 +646,8 @@ namespace Kassiopeia
         fTrack->DiscreteEnergyChange() = 0.;
         fTrack->DiscreteMomentumChange() = 0.;
         fTrack->DiscreteSecondaries() = 0;
+        fTrack->NumberOfTurns() = 0;
+
         fStopTrackSignal = false;
         fGSLErrorSignal = false;
 
@@ -705,6 +711,7 @@ namespace Kassiopeia
                 fTrack->DiscreteEnergyChange() += fStep->DiscreteEnergyChange();
                 fTrack->DiscreteMomentumChange() += fStep->DiscreteMomentumChange();
                 fTrack->DiscreteSecondaries() += fStep->DiscreteSecondaries();
+                fTrack->NumberOfTurns() += fStep->NumberOfTurns();
             }
         }
 
@@ -758,6 +765,7 @@ namespace Kassiopeia
         fStep->DiscreteSecondaries() = 0;
         fStep->DiscreteEnergyChange() = 0.;
         fStep->DiscreteMomentumChange() = 0.;
+        fStep->NumberOfTurns() = 0;
 
         fStep->TerminatorFlag() = false;
         fStep->TerminatorName().clear();
@@ -806,6 +814,10 @@ namespace Kassiopeia
         stepmsg_debug( "  initial particle electric field: <" << fStep->InitialParticle().GetElectricField().X() << "," << fStep->InitialParticle().GetElectricField().Y() << "," << fStep->InitialParticle().GetElectricField().Z() << ">" << eom )
         stepmsg_debug( "  initial particle magnetic field: <" << fStep->InitialParticle().GetMagneticField().X() << "," << fStep->InitialParticle().GetMagneticField().Y() << "," << fStep->InitialParticle().GetMagneticField().Z() << ">" << eom )
         stepmsg_debug( "  initial particle angle to magnetic field: <" << fStep->InitialParticle().GetPolarAngleToB() << ">" << eom )
+        stepmsg_debug( "  initial particle spin: " << fStep->InitialParticle().GetSpin() << eom )
+        stepmsg_debug( "  initial particle spin0: <" << fStep->InitialParticle().GetSpin0() << ">" << eom )
+        stepmsg_debug( "  initial particle aligned spin: <" << fStep->InitialParticle().GetAlignedSpin() << ">" << eom )
+        stepmsg_debug( "  initial particle spin angle: <" << fStep->InitialParticle().GetSpinAngle() << ">" << eom )
 
         //clear any abort signals in root trajectory
         KSTrajectory::ClearAbort();
@@ -998,6 +1010,14 @@ namespace Kassiopeia
             fRootTerminator->ExecuteTermination();
         }
 
+        // check if particle has turned around
+        double tInitialDotProduct = fStep->InitialParticle().GetMagneticField().Dot( fStep->InitialParticle().GetMomentum() );
+        double tFinalDotProduct = fStep->FinalParticle().GetMagneticField().Dot( fStep->FinalParticle().GetMomentum() );
+        if( tInitialDotProduct * tFinalDotProduct < 0. )
+        {
+            fStep->NumberOfTurns() += 1;
+        }
+
         // label secondaries
         for( KSParticleIt tParticleIt = fStep->ParticleQueue().begin(); tParticleIt != fStep->ParticleQueue().end(); tParticleIt++ )
         {
@@ -1020,6 +1040,10 @@ namespace Kassiopeia
         stepmsg_debug( "  final particle electric field: <" << fStep->FinalParticle().GetElectricField().X() << "," << fStep->FinalParticle().GetElectricField().Y() << "," << fStep->FinalParticle().GetElectricField().Z() << ">" << eom )
         stepmsg_debug( "  final particle magnetic field: <" << fStep->FinalParticle().GetMagneticField().X() << "," << fStep->FinalParticle().GetMagneticField().Y() << "," << fStep->FinalParticle().GetMagneticField().Z() << ">" << eom )
         stepmsg_debug( "  final particle angle to magnetic field: <" << fStep->FinalParticle().GetPolarAngleToB() << ">" << eom )
+        stepmsg_debug( "  final particle spin: " << fStep->FinalParticle().GetSpin() << eom )
+        stepmsg_debug( "  final particle spin0: <" << fStep->FinalParticle().GetSpin0() << ">" << eom )
+        stepmsg_debug( "  final particle aligned spin: <" << fStep->FinalParticle().GetAlignedSpin() << ">" << eom )
+        stepmsg_debug( "  final particle spin angle: <" << fStep->FinalParticle().GetSpinAngle() << ">" << eom )
 
         //signal handler terminate particle
         if ( fStopRunSignal || fStopEventSignal || fStopTrackSignal )
