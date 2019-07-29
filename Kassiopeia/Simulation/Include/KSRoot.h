@@ -9,11 +9,11 @@
 #include "KToolbox.h"
 
 
-namespace locust  // project8
-{
-  class CyclotronRadiationExtractor;
-  class FieldCalculator;
-}
+//namespace locust  // project8
+//{
+//  class CyclotronRadiationExtractor;
+//  class FieldCalculator;
+//}
 
 namespace Kassiopeia
 {
@@ -87,8 +87,8 @@ namespace Kassiopeia
             KSRootSurfaceInteraction* fRootSurfaceInteraction;
             KSRootSurfaceNavigator* fRootSurfaceNavigator;
             // project8 segment
-            locust::CyclotronRadiationExtractor* fCyclotronRadiationExtractor;
-            locust::FieldCalculator* fFieldCalculator;
+            //locust::CyclotronRadiationExtractor* fCyclotronRadiationExtractor;
+            //locust::FieldCalculator* fFieldCalculator;
             // end project8 segment
             KSRootTerminator* fRootTerminator;
             KSRootWriter* fRootWriter;

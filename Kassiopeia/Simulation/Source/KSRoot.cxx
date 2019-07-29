@@ -19,8 +19,8 @@
 #include "KSRootSpaceInteraction.h"
 #include "KSRootSpaceNavigator.h"
 #include "KSRootSurfaceInteraction.h"
-#include "LMCFieldCalculator.hh"  // project8
-#include "LMCCyclotronRadiationExtractor.hh"  //project8
+//#include "LMCFieldCalculator.hh"  // project8
+//#include "LMCCyclotronRadiationExtractor.hh"  //project8
 #include "KSRootSurfaceNavigator.h"
 #include "KSRootTerminator.h"
 #include "KSRootWriter.h"
@@ -72,8 +72,8 @@ namespace Kassiopeia
             fRootSpaceNavigator( nullptr ),
             fRootSurfaceInteraction( nullptr ),
             fRootSurfaceNavigator( nullptr ),
-            fCyclotronRadiationExtractor( nullptr ),  // project8
-            fFieldCalculator( nullptr ), // project8
+            //fCyclotronRadiationExtractor( nullptr ),  // project8
+            //fFieldCalculator( nullptr ), // project8
             fRootTerminator( nullptr ),
             fRootWriter( nullptr ),
             fRootStepModifier( nullptr ),
@@ -108,8 +108,8 @@ namespace Kassiopeia
             fRootSpaceNavigator     = fToolbox.Get<KSRootSpaceNavigator>("root_space_navigator");
             fRootSurfaceInteraction = fToolbox.Get<KSRootSurfaceInteraction>("root_surface_interaction");
             fRootSurfaceNavigator   = fToolbox.Get<KSRootSurfaceNavigator>("root_surface_navigator");
-	    fCyclotronRadiationExtractor = fToolbox.Get<locust::CyclotronRadiationExtractor>("cyclotron_radiation_extractor");  // project8
-	    fFieldCalculator = fToolbox.Get<locust::FieldCalculator>("field_calculator");  // project8
+	    //fCyclotronRadiationExtractor = fToolbox.Get<locust::CyclotronRadiationExtractor>("cyclotron_radiation_extractor");  // project8
+	    //fFieldCalculator = fToolbox.Get<locust::FieldCalculator>("field_calculator");  // project8
             fRootTerminator         = fToolbox.Get<KSRootTerminator>("root_terminator");
             fRootWriter             = fToolbox.Get<KSRootWriter>("root_writer");
             fRootStepModifier       = fToolbox.Get<KSRootStepModifier>("root_step_modifier");
@@ -186,13 +186,13 @@ namespace Kassiopeia
         fToolbox.Add(fRootTerminator);
 
 	//project8 segment		
-        fCyclotronRadiationExtractor = new locust::CyclotronRadiationExtractor();
-        fCyclotronRadiationExtractor->SetName( "cyclotron_radiation_extractor" );
-        fToolbox.Add(fCyclotronRadiationExtractor);
+        //fCyclotronRadiationExtractor = new locust::CyclotronRadiationExtractor();
+        //fCyclotronRadiationExtractor->SetName( "cyclotron_radiation_extractor" );
+        //fToolbox.Add(fCyclotronRadiationExtractor);
        	
-        fFieldCalculator = new locust::FieldCalculator();
-	fFieldCalculator->SetName( "field_calculator");
-	fToolbox.Add(fFieldCalculator);	
+        //fFieldCalculator = new locust::FieldCalculator();
+	//fFieldCalculator->SetName( "field_calculator");
+	//fToolbox.Add(fFieldCalculator);
         // end project8 segment
 
         fRootWriter = new KSRootWriter();
@@ -239,8 +239,8 @@ namespace Kassiopeia
             fRootSpaceNavigator( aCopy.fRootSpaceNavigator ),
             fRootSurfaceInteraction( aCopy.fRootSurfaceInteraction ),
             fRootSurfaceNavigator( aCopy.fRootSurfaceNavigator ),
-            fCyclotronRadiationExtractor( aCopy.fCyclotronRadiationExtractor ), // project8
-            fFieldCalculator( aCopy.fFieldCalculator ), // project8
+            //fCyclotronRadiationExtractor( aCopy.fCyclotronRadiationExtractor ), // project8
+            //fFieldCalculator( aCopy.fFieldCalculator ), // project8
             fRootTerminator( aCopy.fRootTerminator ),
             fRootWriter( aCopy.fRootWriter ),
             fRootStepModifier( aCopy.fRootStepModifier ),
@@ -1084,8 +1084,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Initialize();
         fRootSurfaceInteraction->Initialize();
         fRootSurfaceNavigator->Initialize();
-        fCyclotronRadiationExtractor->Initialize();  // project8
-        fFieldCalculator->Initialize();  // project8
+        //fCyclotronRadiationExtractor->Initialize();  // project8
+        //fFieldCalculator->Initialize();  // project8
         fRootTerminator->Initialize();
         fRootWriter->Initialize();
         fRootStepModifier->Initialize();
@@ -1112,8 +1112,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Deinitialize();
         fRootSurfaceInteraction->Deinitialize();
         fRootSurfaceNavigator->Deinitialize();
-        fCyclotronRadiationExtractor->Deinitialize();  // project8
-        fFieldCalculator->Deinitialize();  // project8
+        //fCyclotronRadiationExtractor->Deinitialize();  // project8
+        //fFieldCalculator->Deinitialize();  // project8
         fRootTerminator->Deinitialize();
         fRootWriter->Deinitialize();
         fRootStepModifier->Deinitialize();
@@ -1140,8 +1140,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Activate();
         fRootSurfaceInteraction->Activate();
         fRootSurfaceNavigator->Activate();
-        fCyclotronRadiationExtractor->Activate();  // project8
-        fFieldCalculator->Activate();  // project8
+        //fCyclotronRadiationExtractor->Activate();  // project8
+        //fFieldCalculator->Activate();  // project8
         fRootTerminator->Activate();
         fRootWriter->Activate();
         fRootStepModifier->Activate();
@@ -1168,8 +1168,8 @@ namespace Kassiopeia
         fRootSpaceNavigator->Deactivate();
         fRootSurfaceInteraction->Deactivate();
         fRootSurfaceNavigator->Deactivate();
-        fCyclotronRadiationExtractor->Deactivate();  // project8
-        fFieldCalculator->Deactivate();  // project8
+        //fCyclotronRadiationExtractor->Deactivate();  // project8
+        //fFieldCalculator->Deactivate();  // project8
         fRootTerminator->Deactivate();
         fRootWriter->Deactivate();
         fRootStepModifier->Deactivate();
