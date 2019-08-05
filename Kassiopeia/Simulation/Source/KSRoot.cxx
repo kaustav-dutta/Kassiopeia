@@ -1,5 +1,5 @@
-#include "LMCGlobalsDeclaration.hh"  // project8
-#include "LMCGlobalsDefinition.hh"  // project8
+//#include "LMCGlobalsDeclaration.hh"  // project8
+//#include "LMCGlobalsDefinition.hh"  // project8
 
 
 #include "KSRoot.h"
@@ -274,45 +274,45 @@ namespace Kassiopeia
     }
 
 
-
+/*
 	
-  // project8 segment
-  void WakeAfterEvent(unsigned TotalEvents, unsigned EventsSoFar)
-  {
-    fEventInProgress = false;
-    if( TotalEvents == EventsSoFar-1 )
-      {
-	fRunInProgress = false;
-	fKassReadyCondition.notify_one();
-      }
-    fDigitizerCondition.notify_one();  // unlock
-    printf("Kass is waking after event\n");
-    return;
-  }
+    // project8 segment
+    void WakeAfterEvent(unsigned TotalEvents, unsigned EventsSoFar)
+    {
+        fEventInProgress = false;
+        if( TotalEvents == EventsSoFar-1 )
+        {
+            fRunInProgress = false;
+            fKassReadyCondition.notify_one();
+        }
+        fDigitizerCondition.notify_one();  // unlock
+        printf("Kass is waking after event\n");
+        return;
+    }
 
-  
 
-  bool ReceivedEventStartCondition()
-  {
-    fKassEventReady = true;
 
-    fFalseStartKassiopeia = false;
-    fDigitizerCondition.notify_one();  // unlock if still locked.
-    if( fWaitBeforeEvent )
-      {
+    bool ReceivedEventStartCondition()
+    {
+        fKassEventReady = true;
 
-	fKassReadyCondition.notify_one();
-	std::unique_lock< std::mutex >tLock( fMutex );
-        fPreEventCondition.wait( tLock );
-        fKassEventReady = false;
-        fEventInProgress = true; // possibly redundant.
-        t_old = 0.;  // reset time on digitizer.
-        return true;
-      }
-    return true; // check this.  should return true if no wait.
-  }
-  // end project8 segment
+        fFalseStartKassiopeia = false;
+        fDigitizerCondition.notify_one();  // unlock if still locked.
+        if( fWaitBeforeEvent )
+        {
 
+            fKassReadyCondition.notify_one();
+            std::unique_lock< std::mutex >tLock( fMutex );
+            fPreEventCondition.wait( tLock );
+            fKassEventReady = false;
+            fEventInProgress = true; // possibly redundant.
+            t_old = 0.;  // reset time on digitizer.
+            return true;
+        }
+        return true; // check this.  should return true if no wait.
+    }
+    // end project8 segment
+*/
 
     void KSRoot::Execute( KSSimulation* aSimulation )
     {
@@ -475,7 +475,7 @@ namespace Kassiopeia
             }
 
             //signal handler break
-            if (( fStopRunSignal ) | (!fRunInProgress)) // project8 
+            if (StopRunSignal)
             {
                 break;
             }
@@ -483,28 +483,7 @@ namespace Kassiopeia
             // initialize event
             fEvent->ParentRunId() = fRun->GetRunId();
 
-	    
-    // project8 segment
-            if (fRunInProgress)
-	      {
-                printf("Kass is waiting for event trigger.\n");
-		if (ReceivedEventStartCondition())
-		  {
-		    printf("Kass got the event trigger\n");
-		  }
-
-		if (fRunInProgress) ExecuteEvent();  // check again
-	      }
-            else
-	      {
-		break;
-	      }
-	        
-
-            WakeAfterEvent(fRun->GetTotalEvents(), fSimulation->GetEvents());
-	    // end project8 segment
-	    
-
+            ExecuteEvent();
 
             // update run
             fRun->TotalEvents() += 1;

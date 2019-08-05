@@ -1,8 +1,10 @@
 macro(set_path var value comment)
     if(NOT DEFINED ${var})
         set(${var} "${value}")
+        message( STATUS "Set path (1) <${var}> to <${${var}}" )
     else(NOT DEFINED ${var})
         set(${var} "${${var}}" CACHE PATH ${comment})
+        message( STATUS "Set path (2) <${var}> to <${${var}}" )
     endif(NOT DEFINED ${var})
 endmacro(set_path)
 
@@ -14,8 +16,10 @@ if( ${CMAKE_SOURCE_DIR} STREQUAL ${PROJECT_SOURCE_DIR} )
 
     set(STANDALONE true)
 
+    message( STATUS "CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT: ${CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT}" )
     # use this section to modifiy initial values of builtin CMAKE variables
     if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        message( STATUS "##################" )
 
         # modify the default installation prefix
         get_filename_component(BUILD_PARENT_DIR ${CMAKE_BINARY_DIR} PATH)
@@ -46,6 +50,7 @@ if( ${CMAKE_SOURCE_DIR} STREQUAL ${PROJECT_SOURCE_DIR} )
         #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${_wflags_release}" CACHE STRING "Flags used by the compiler during release builds." FORCE)
     endif()
 
+    message( STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}" )
     set_path(INCLUDE_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/include" "Install directory for headers")
     set_path(LIB_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib" "Install directory for libraries")
     set_path(BIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/bin" "Install directory for binaries")
