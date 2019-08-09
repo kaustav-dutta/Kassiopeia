@@ -45,7 +45,6 @@
 
 using namespace std;
 using namespace katrin;
-using namespace locust;
 
 namespace Kassiopeia
 {
@@ -475,7 +474,7 @@ namespace Kassiopeia
             }
 
             //signal handler break
-            if (StopRunSignal)
+            if (fStopRunSignal)
             {
                 break;
             }
