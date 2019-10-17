@@ -497,8 +497,11 @@ namespace Kassiopeia
             fRun->DiscreteSecondaries() += fEvent->DiscreteSecondaries();
             fRun->NumberOfTurns() += fEvent->NumberOfTurns();
 
-            fRootRunModifier->ExecutePostRunModification();
+//            fRootRunModifier->ExecutePostRunModification();
         }
+
+        fRootRunModifier->ExecutePostRunModification();
+
 
         // write run
         fRun->PushUpdate();
