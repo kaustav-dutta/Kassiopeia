@@ -18,7 +18,7 @@ namespace KGeoBag
     KGElectromagnetAttributor::~KGElectromagnetAttributor()
     {
         KGElectromagnetSurface* tElectromagnetSurface;
-        for( vector< KGSurface* >::iterator tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
+        for( auto tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
         {
             tElectromagnetSurface = (*tIt)->MakeExtension< KGElectromagnet >();
             tElectromagnetSurface->SetName( GetName() );
@@ -26,7 +26,7 @@ namespace KGeoBag
             tElectromagnetSurface->SetCurrent( GetCurrent() );
         }
         KGElectromagnetSpace* tElectromagnetSpace;
-        for( vector< KGSpace* >::iterator tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
+        for( auto tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
         {
             tElectromagnetSpace = (*tIt)->MakeExtension< KGElectromagnet >();
             tElectromagnetSpace->SetName( GetName() );

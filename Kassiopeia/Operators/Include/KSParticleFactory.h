@@ -20,7 +20,7 @@ namespace Kassiopeia
 
         private:
             KSParticleFactory();
-            virtual ~KSParticleFactory();
+            ~KSParticleFactory() override;
 
         public:
             KSParticle* Create( const long long& aPID );

@@ -16,8 +16,8 @@ namespace Kassiopeia
             KSTrack();
             KSTrack( const KSTrack& aCopy );
             KSTrack& operator=( const KSTrack& aCopy );
-            KSTrack* Clone() const;
-            ~KSTrack();
+            KSTrack* Clone() const override;
+            ~KSTrack() override;
 
             //***
             //IDs

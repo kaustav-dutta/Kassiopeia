@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenLComposite();
             KSGenLComposite( const KSGenLComposite& aCopy );
-            KSGenLComposite* Clone() const;
-            virtual ~KSGenLComposite();
+            KSGenLComposite* Clone() const override;
+            ~KSGenLComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaries );
+            void Dice( KSParticleQueue* aPrimaries ) override;
 
         public:
             void SetLValue( KSGenValue* anLValue );
@@ -27,8 +27,8 @@ namespace Kassiopeia
             KSGenValue* fLValue;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
     };
 }

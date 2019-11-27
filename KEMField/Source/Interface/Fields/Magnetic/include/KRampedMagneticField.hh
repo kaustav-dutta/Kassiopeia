@@ -24,19 +24,19 @@ public:
 
 public:
     KRampedMagneticField();
-    virtual ~KRampedMagneticField();
+    ~KRampedMagneticField() override;
 
 public:
-    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint, const double& aSampleTime) const;
-    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint, const double& aSampleTime) const;
-    KGradient MagneticGradientCore( const KPosition& aSamplePoint, const double& aSampleTime) const;
+    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint, const double& aSampleTime) const override;
+    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint, const double& aSampleTime) const override;
+    KGradient MagneticGradientCore( const KPosition& aSamplePoint, const double& aSampleTime) const override;
 
 public:
     double GetModulationFactor( const double& aTime ) const;
     double GetDerivModulationFactor( const double& aTime ) const;
 
 protected:
-    void InitializeCore();
+    void InitializeCore() override;
 
 public:
     void SetMagneticField( KMagneticField* magneticField ) {

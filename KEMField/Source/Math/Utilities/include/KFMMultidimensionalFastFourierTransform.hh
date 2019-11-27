@@ -1,6 +1,7 @@
 #ifndef KFMMultidimensionalFastFourierTransform_HH__
 #define KFMMultidimensionalFastFourierTransform_HH__
 
+#include <algorithm>
 #include <cstring>
 
 #include "KFMArrayWrapper.hh"
@@ -31,9 +32,9 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
             for(unsigned int i=0; i<NDIM; i++)
             {
                 fDimensionSize[i] = 0;
-                fWorkspace[i] = NULL;
-                fWorkspaceWrapper[i] = NULL;
-                fTransformCalculator[i] = NULL;
+                fWorkspace[i] = nullptr;
+                fWorkspaceWrapper[i] = nullptr;
+                fTransformCalculator[i] = nullptr;
             }
 
             fIsValid = false;
@@ -41,7 +42,7 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
             fForward = true;
         };
 
-        virtual ~KFMMultidimensionalFastFourierTransform()
+        ~KFMMultidimensionalFastFourierTransform() override
         {
             DealocateWorkspace();
         };
@@ -49,7 +50,7 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
         virtual void SetForward(){fForward = true;}
         virtual void SetBackward(){fForward = false;};
 
-        virtual void Initialize()
+        void Initialize() override
         {
             if(DoInputOutputDimensionsMatch())
             {
@@ -70,7 +71,7 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
             }
         }
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             if(fIsValid && fInitialized)
             {
@@ -93,8 +94,12 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
                 if(this->fInput != this->fOutput)
                 {
                     //the arrays are not identical so copy the input over to the output
-                    std::memcpy( (void*) this->fOutput->GetData(), (void*) this->fInput->GetData(), total_size*sizeof(std::complex<double>) );
-                 }
+                    // use std::copy instead of memcpy!
+                    //std::memcpy( (void*) this->fOutput->GetData(), (void*) this->fInput->GetData(), total_size*sizeof(std::complex<double>) );
+                    std::copy(this->fInput->GetData(),
+                              this->fInput->GetData() + total_size,
+                              this->fOutput->GetData() );
+                }
 
                 unsigned int index[NDIM];
                 unsigned int non_active_dimension_size[NDIM-1];
@@ -178,9 +183,9 @@ class KFMMultidimensionalFastFourierTransform: public KFMUnaryArrayOperator< std
         {
             for(unsigned int i=0; i<NDIM; i++)
             {
-                delete[] fWorkspace[i]; fWorkspace[i] = NULL;
-                delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = NULL;
-                delete fTransformCalculator[i]; fTransformCalculator[i] = NULL;
+                delete[] fWorkspace[i]; fWorkspace[i] = nullptr;
+                delete fWorkspaceWrapper[i]; fWorkspaceWrapper[i] = nullptr;
+                delete fTransformCalculator[i]; fTransformCalculator[i] = nullptr;
             }
         }
 

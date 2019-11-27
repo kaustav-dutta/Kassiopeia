@@ -14,7 +14,7 @@ namespace Kassiopeia
     {
         public:
             KSStepModifier();
-            virtual ~KSStepModifier();
+            ~KSStepModifier() override;
 
         public:
 

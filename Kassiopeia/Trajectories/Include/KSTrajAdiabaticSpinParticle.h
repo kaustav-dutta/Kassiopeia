@@ -12,7 +12,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajAdiabaticSpinParticle();
-            ~KSTrajAdiabaticSpinParticle();
+            KSTrajAdiabaticSpinParticle( const KSTrajAdiabaticSpinParticle& other) = default;
+            ~KSTrajAdiabaticSpinParticle() override;
 
             //**********
             //assignment

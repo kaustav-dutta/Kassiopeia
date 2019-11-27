@@ -187,7 +187,7 @@ namespace katrin
   {
     if (anElement->GetName() == "extruded_object")
     {
-      KGExtrudedObject* object = NULL;
+      KGExtrudedObject* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr<KGExtrudedObject> smartPtr(object);
@@ -216,7 +216,7 @@ namespace katrin
   {
     if (anElement->GetName() == "extruded_object")
     {
-      KGExtrudedObject* object = NULL;
+      KGExtrudedObject* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr<KGExtrudedObject> smartPtr(object);

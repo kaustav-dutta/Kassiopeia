@@ -19,8 +19,8 @@ namespace Kassiopeia
         public:
             KSIntScattering();
             KSIntScattering( const KSIntScattering& aCopy );
-            KSIntScattering* Clone() const;
-            virtual ~KSIntScattering();
+            KSIntScattering* Clone() const override;
+            ~KSIntScattering() override;
 
         public:
             void CalculateAverageCrossSection(
@@ -41,13 +41,13 @@ namespace Kassiopeia
                     KSParticle& anInteractionParticle,
                     double& aTimeStep,
                     bool& aFlag
-            );
+            ) override;
 
             void ExecuteInteraction(
                     const KSParticle& anInteractionParticle,
                     KSParticle& aFinalParticle,
                     KSParticleQueue& aSecondaries
-            ) const;
+            ) const override;
 
             //***********
             //composition
@@ -79,12 +79,12 @@ namespace Kassiopeia
             //**************
 
         protected:
-            virtual void InitializeComponent();
-            virtual void ActivateComponent();
-            virtual void DeinitializeComponent();
-            virtual void DeactivateComponent();
-            virtual void PushUpdateComponent();
-            virtual void PushDeupdateComponent();
+            void InitializeComponent() override;
+            void ActivateComponent() override;
+            void DeinitializeComponent() override;
+            void DeactivateComponent() override;
+            void PushUpdateComponent() override;
+            void PushDeupdateComponent() override;
     };
 
 }

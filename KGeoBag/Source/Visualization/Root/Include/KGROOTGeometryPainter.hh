@@ -26,6 +26,7 @@ using katrin::KROOTPainter;
 #include "KGExtrudedPolyLineSurface.hh"
 #include "KGExtrudedCircleSurface.hh"
 #include "KGExtrudedPolyLoopSurface.hh"
+#include "KGRodSurface.hh"
 #include "KGRotatedLineSegmentSpace.hh"
 #include "KGRotatedArcSegmentSpace.hh"
 #include "KGRotatedPolyLineSpace.hh"
@@ -39,6 +40,7 @@ using katrin::KROOTPainter;
 #include "KGBeam.hh"
 #include "KGComplexAnnulus.hh"
 #include "KGComplexAnnulusSurface.hh"
+#include "KGRodSpace.hh"
 
 
 //include root stuff
@@ -86,6 +88,10 @@ namespace KGeoBag
         public KGExtrudedPolyLineSurface::Visitor,
         public KGExtrudedCircleSurface::Visitor,
         public KGExtrudedPolyLoopSurface::Visitor,
+        public KGPortHousingSurface::Visitor,
+        public KGBeamSurface::Visitor,
+        public KGComplexAnnulusSurface::Visitor,
+        public KGRodSurface::Visitor,
         public KGSpace::Visitor,
         public KGRotatedLineSegmentSpace::Visitor,
         public KGRotatedArcSegmentSpace::Visitor,
@@ -94,26 +100,24 @@ namespace KGeoBag
         public KGRotatedPolyLoopSpace::Visitor,
         public KGExtrudedCircleSpace::Visitor,
         public KGExtrudedPolyLoopSpace::Visitor,
-		public KGPortHousingSurface::Visitor,
-		public KGBeamSurface::Visitor,
-		public KGComplexAnnulusSurface::Visitor
+        public KGRodSpace::Visitor
     {
         public:
     		KGROOTGeometryPainter();
-            virtual ~KGROOTGeometryPainter();
+            ~KGROOTGeometryPainter() override;
 
         public:
-            void Render();
-            void Display();
-            void Write();
+            void Render() override;
+            void Display() override;
+            void Write() override;
 
             void AddSurface( KGSurface* aSurface );
             void AddSpace( KGSpace* aSpace );
 
-            virtual double GetXMin();
-            virtual double GetXMax();
-            virtual double GetYMin();
-            virtual double GetYMax();
+            double GetXMin() override;
+            double GetXMax() override;
+            double GetYMin() override;
+            double GetYMax() override;
 
         private:
             vector< KGSurface* > fSurfaces;
@@ -132,8 +136,8 @@ namespace KGeoBag
             ;K_GET( KThreeVector, PlaneVectorB)
 
         public:
-            virtual std::string GetXAxisLabel();
-            virtual std::string GetYAxisLabel();
+            std::string GetXAxisLabel() override;
+            std::string GetYAxisLabel() override;
         private:
             std::string GetAxisLabel( KThreeVector anAxis );
 
@@ -148,41 +152,43 @@ namespace KGeoBag
             //****************
 
         protected:
-            virtual void VisitSurface( KGSurface* aSurface );
-            virtual void VisitFlattenedClosedPathSurface( KGFlattenedCircleSurface* aFlattenedCircleSurface );
-            virtual void VisitFlattenedClosedPathSurface( KGFlattenedPolyLoopSurface* aFlattenedPolyLoopSurface );
-            virtual void VisitRotatedPathSurface( KGRotatedLineSegmentSurface* aRotatedLineSegmentSurface );
-            virtual void VisitRotatedPathSurface( KGRotatedArcSegmentSurface* aRotatedArcSegmentSurface );
-            virtual void VisitRotatedPathSurface( KGRotatedPolyLineSurface* aRotatedPolyLineSurface );
-            virtual void VisitRotatedPathSurface( KGRotatedCircleSurface* aRotatedCircleSurface );
-            virtual void VisitRotatedPathSurface( KGRotatedPolyLoopSurface* aRotatedPolyLoopSurface );
-            virtual void VisitShellPathSurface( KGShellLineSegmentSurface* aShellLineSegmentSurface );
-            virtual void VisitShellPathSurface( KGShellArcSegmentSurface* aShellArcSegmentSurface );
-            virtual void VisitShellPathSurface( KGShellPolyLineSurface* aShellPolyLineSurface );
-            virtual void VisitShellPathSurface( KGShellPolyLoopSurface* aShellPolyLoopSurface );
-            virtual void VisitShellPathSurface( KGShellCircleSurface* aShellCircleSurface );
-            virtual void VisitExtrudedPathSurface( KGExtrudedLineSegmentSurface* aExtrudedLineSegmentSurface );
-            virtual void VisitExtrudedPathSurface( KGExtrudedArcSegmentSurface* aExtrudedArcSegmentSurface );
-            virtual void VisitExtrudedPathSurface( KGExtrudedPolyLineSurface* aExtrudedPolyLineSurface );
-            virtual void VisitExtrudedPathSurface( KGExtrudedCircleSurface* aExtrudedCircleSurface );
-            virtual void VisitExtrudedPathSurface( KGExtrudedPolyLoopSurface* aExtrudedPolyLoopSurface );
-            virtual void VisitWrappedSurface( KGWrappedSurface<KGPortHousing>* aPortHousingSurface);
-            virtual void VisitWrappedSurface( KGWrappedSurface<KGBeam>* aBeamSurface);
-            virtual void VisitWrappedSurface( KGWrappedSurface<KGComplexAnnulus>* aComplexAnnulus);
+            void VisitSurface( KGSurface* aSurface ) override;
+            void VisitFlattenedClosedPathSurface( KGFlattenedCircleSurface* aFlattenedCircleSurface ) override;
+            void VisitFlattenedClosedPathSurface( KGFlattenedPolyLoopSurface* aFlattenedPolyLoopSurface ) override;
+            void VisitRotatedPathSurface( KGRotatedLineSegmentSurface* aRotatedLineSegmentSurface ) override;
+            void VisitRotatedPathSurface( KGRotatedArcSegmentSurface* aRotatedArcSegmentSurface ) override;
+            void VisitRotatedPathSurface( KGRotatedPolyLineSurface* aRotatedPolyLineSurface ) override;
+            void VisitRotatedPathSurface( KGRotatedCircleSurface* aRotatedCircleSurface ) override;
+            void VisitRotatedPathSurface( KGRotatedPolyLoopSurface* aRotatedPolyLoopSurface ) override;
+            void VisitShellPathSurface( KGShellLineSegmentSurface* aShellLineSegmentSurface ) override;
+            void VisitShellPathSurface( KGShellArcSegmentSurface* aShellArcSegmentSurface ) override;
+            void VisitShellPathSurface( KGShellPolyLineSurface* aShellPolyLineSurface ) override;
+            void VisitShellPathSurface( KGShellPolyLoopSurface* aShellPolyLoopSurface ) override;
+            void VisitShellPathSurface( KGShellCircleSurface* aShellCircleSurface ) override;
+            void VisitExtrudedPathSurface( KGExtrudedLineSegmentSurface* aExtrudedLineSegmentSurface ) override;
+            void VisitExtrudedPathSurface( KGExtrudedArcSegmentSurface* aExtrudedArcSegmentSurface ) override;
+            void VisitExtrudedPathSurface( KGExtrudedPolyLineSurface* aExtrudedPolyLineSurface ) override;
+            void VisitExtrudedPathSurface( KGExtrudedCircleSurface* aExtrudedCircleSurface ) override;
+            void VisitExtrudedPathSurface( KGExtrudedPolyLoopSurface* aExtrudedPolyLoopSurface ) override;
+            void VisitWrappedSurface( KGPortHousingSurface* aPortHousingSurface) override;
+            void VisitWrappedSurface( KGBeamSurface* aBeamSurface) override;
+            void VisitWrappedSurface( KGComplexAnnulusSurface* aComplexAnnulus) override;
+            void VisitWrappedSurface( KGRodSurface* aRodSurface) override;
 
             //**************
             //space visitors
             //**************
 
         protected:
-            virtual void VisitSpace( KGSpace* aSpace );
-            virtual void VisitRotatedOpenPathSpace( KGRotatedLineSegmentSpace* aRotatedLineSegmentSpace );
-            virtual void VisitRotatedOpenPathSpace( KGRotatedArcSegmentSpace* aRotatedArcSegmentSpace );
-            virtual void VisitRotatedOpenPathSpace( KGRotatedPolyLineSpace* aRotatedPolyLineSpace );
-            virtual void VisitRotatedClosedPathSpace( KGRotatedCircleSpace* aRotatedCircleSpace );
-            virtual void VisitRotatedClosedPathSpace( KGRotatedPolyLoopSpace* aRotatedPolyLoopSpace );
-            virtual void VisitExtrudedClosedPathSpace( KGExtrudedCircleSpace* aExtrudedCircleSpace );
-            virtual void VisitExtrudedClosedPathSpace( KGExtrudedPolyLoopSpace* aExtrudedPolyLoopSpace );
+            void VisitSpace( KGSpace* aSpace ) override;
+            void VisitRotatedOpenPathSpace( KGRotatedLineSegmentSpace* aRotatedLineSegmentSpace ) override;
+            void VisitRotatedOpenPathSpace( KGRotatedArcSegmentSpace* aRotatedArcSegmentSpace ) override;
+            void VisitRotatedOpenPathSpace( KGRotatedPolyLineSpace* aRotatedPolyLineSpace ) override;
+            void VisitRotatedClosedPathSpace( KGRotatedCircleSpace* aRotatedCircleSpace ) override;
+            void VisitRotatedClosedPathSpace( KGRotatedPolyLoopSpace* aRotatedPolyLoopSpace ) override;
+            void VisitExtrudedClosedPathSpace( KGExtrudedCircleSpace* aExtrudedCircleSpace ) override;
+            void VisitExtrudedClosedPathSpace( KGExtrudedPolyLoopSpace* aExtrudedPolyLoopSpace ) override;
+            void VisitWrappedSpace( KGRodSpace* aRodSpace) override;
 
         private:
             void LocalToGlobal( const KThreeVector& aLocal, KThreeVector& aGlobal );
@@ -375,6 +381,7 @@ namespace KGeoBag
             void PolyLineToOpenPoints( const KGPlanarPolyLine* aPolyLine, OpenPoints& aPoints );
             void CircleToClosedPoints( const KGPlanarCircle* aCircle, ClosedPoints& aPoints );
             void PolyLoopToClosedPoints( const KGPlanarPolyLoop* aPolyLoop, ClosedPoints& aPoints );
+            void RodToOpenPoints( const KGRod* aRod, OpenPoints& aPoints );
 
             //**************
             //mesh functions

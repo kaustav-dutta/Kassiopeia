@@ -46,7 +46,7 @@ namespace KEMField
   {
   public:
     KFundamentalTypeCounter() : fTypesCounter(0),fTypeCounter(Length<KEMField::FundamentalTypes>::value,0) {}
-    virtual ~KFundamentalTypeCounter() {}
+    ~KFundamentalTypeCounter() override {}
 
     template <class Streamed>
     void PreStreamInAction(Streamed&) {}
@@ -66,9 +66,9 @@ namespace KEMField
 
   protected:
 
-    void IncrementTypeCounter(unsigned int i) { fTypeCounter[i]++; }
-    void IncrementTypesCounter() { fTypesCounter++; }
-    KFundamentalTypeCounter& Self() { return *this; }
+    void IncrementTypeCounter(unsigned int i) override { fTypeCounter[i]++; }
+    void IncrementTypesCounter() override { fTypesCounter++; }
+    KFundamentalTypeCounter& Self() override { return *this; }
 
   private:
     unsigned int fTypesCounter;

@@ -25,25 +25,25 @@ class KVMLineSegment: public KVMCompactCurve, public KVMSpaceLineSegment
     public:
 
         KVMLineSegment(); 
-        virtual ~KVMLineSegment(){;};
+        ~KVMLineSegment() override{;};
 
         inline KVMLineSegment(const KVMLineSegment &copyObject);
 
         inline KVMLineSegment& operator=(const KVMSpaceLineSegment& rhs);
         
-        virtual void Initialize(); 
+        void Initialize() override; 
 
     protected:
 
         ///functions which define the curve's jacobian
-        virtual double dxdu(const double& /*u*/) const;
-        virtual double dydu(const double& /*u*/) const;
-        virtual double dzdu(const double& /*u*/) const;
+        double dxdu(const double& /*u*/) const override;
+        double dydu(const double& /*u*/) const override;
+        double dzdu(const double& /*u*/) const override;
 
         ///functions which define the curve
-        virtual double x(const double& u) const;
-        virtual double y(const double& u) const;
-        virtual double z(const double& u) const;
+        double x(const double& u) const override;
+        double y(const double& u) const override;
+        double z(const double& u) const override;
 };
 
 inline KVMLineSegment::KVMLineSegment(const KVMLineSegment &copyObject):

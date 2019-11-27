@@ -26,13 +26,13 @@ class KVMFluxIntegral: public KVMSurfaceIntegral<1>
 {
     public:
         KVMFluxIntegral();
-        virtual ~KVMFluxIntegral();
+        ~KVMFluxIntegral() override;
 
-        virtual void SetField(const KVMField* aField);
+        void SetField(const KVMField* aField) override;
 
     private:
 
-        virtual void Integrand(const double* point, double* result) const;
+        void Integrand(const double* point, double* result) const override;
 
         mutable KVMFixedArray<double, KVMSurfaceRDim> fV;
         mutable KVMFixedArray<double, KVMSurfaceRDim> fN;

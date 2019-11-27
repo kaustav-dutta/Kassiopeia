@@ -14,11 +14,20 @@ namespace Kassiopeia
         public:
             KSTrajTermDrift();
             KSTrajTermDrift( const KSTrajTermDrift& aCopy );
-            KSTrajTermDrift* Clone() const;
-            virtual ~KSTrajTermDrift();
+            KSTrajTermDrift* Clone() const override;
+            ~KSTrajTermDrift() override;
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const override;
+
+            const KThreeVector& GetDriftVelocity() const { return fDriftVelocity; }
+            const double& GetLongitudinalForce() const { return fLongitudinalForce; }
+            const double& GetTransverseForce() const { return fTransverseForce; }
+
+        private:
+            mutable KThreeVector fDriftVelocity;
+            mutable double fLongitudinalForce;
+            mutable double fTransverseForce;
     };
 
 }

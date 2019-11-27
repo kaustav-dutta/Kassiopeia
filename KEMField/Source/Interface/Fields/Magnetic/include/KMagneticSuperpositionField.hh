@@ -18,11 +18,11 @@ class KMagneticSuperpositionField : public KMagneticField
 {
 public:
     KMagneticSuperpositionField();
-    virtual ~KMagneticSuperpositionField();
+    ~KMagneticSuperpositionField() override;
 
-    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint, const double& aSampleTime ) const;
-    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint, const double& aSampleTime ) const;
-    KGradient MagneticGradientCore( const KPosition& aSamplePoint, const double& aSampleTime ) const;
+    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint, const double& aSampleTime ) const override;
+    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint, const double& aSampleTime ) const override;
+    KGradient MagneticGradientCore( const KPosition& aSamplePoint, const double& aSampleTime ) const override;
 
     void SetEnhancements( std::vector< double > aEnhancementVector );
     std::vector< double > GetEnhancements();
@@ -32,7 +32,7 @@ public:
     void SetUseCaching( bool useCaching ) {fUseCaching = useCaching;}
 
 private:
-    void InitializeCore();
+    void InitializeCore() override;
 
     KThreeVector CalculateCachedPotential( const KPosition& aSamplePoint, const double& aSampleTime ) const;
     KThreeVector CalculateCachedField( const KPosition& aSamplePoint, const double& aSampleTime ) const;

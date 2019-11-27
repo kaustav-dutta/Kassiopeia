@@ -841,7 +841,7 @@ KFMMath::I_cheb1(int l, int m, double lower_limit, double upper_limit)
     }
 
     int size = ((l+1)*(l+2))/2;
-    double* val = new double[size];
+    auto* val = new double[size];
 
     val[0] = I_secn( 2, lower_limit, upper_limit); //(0,0)
 
@@ -961,7 +961,7 @@ KFMMath::I_cheb2(int l, int m, double lower_limit, double upper_limit)
     }
 
     int size = ((l+1)*(l+2))/2;
-    double* val = new double[size];
+    auto* val = new double[size];
 
     val[0] = 0; //(0,0)
 

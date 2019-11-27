@@ -61,14 +61,14 @@ namespace KGeoBag
 
     DataSet data(x.size(),DataSubset(y.size()));
 
-    std::vector<double>::iterator y_it = y.begin();
-    std::vector<double>::iterator z_it = z.begin();
-    DataSet::iterator set_it = data.begin();
+    auto y_it = y.begin();
+    auto z_it = z.begin();
+    auto set_it = data.begin();
 
     for (;y_it!=y.end();++y_it,++set_it)
     {
-      std::vector<double>::iterator x_it = x.begin();
-      DataSubset::iterator subset_it = (*set_it).begin();
+      auto x_it = x.begin();
+      auto subset_it = (*set_it).begin();
       for (;x_it!=x.end();++x_it,++z_it,++subset_it)
       {
 	(*subset_it)[0] = *x_it;

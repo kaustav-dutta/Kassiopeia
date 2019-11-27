@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajElectricError();
-            virtual ~KSTrajElectricError();
+            KSTrajElectricError( const KSTrajElectricError& other) = default;
+            ~KSTrajElectricError() override;
 
             //**********
             //assignment

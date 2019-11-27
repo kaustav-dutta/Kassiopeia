@@ -180,7 +180,7 @@ namespace katrin
   {
     if (anElement->GetName() == "rectangular_port")
     {
-      KGPortHousing::RectangularPort* rectangularPort = NULL;
+      KGPortHousing::RectangularPort* rectangularPort = nullptr;
       anElement->ReleaseTo(rectangularPort);
       fObject->AddPort(rectangularPort);
       rectangularPort->Initialize();
@@ -188,7 +188,7 @@ namespace katrin
     }
     if (anElement->GetName() == "circular_port")
     {
-      KGPortHousing::CircularPort* circularPort = NULL;
+      KGPortHousing::CircularPort* circularPort = nullptr;
       anElement->ReleaseTo(circularPort);
       fObject->AddPort(circularPort);
       circularPort->Initialize();
@@ -215,7 +215,7 @@ namespace katrin
   {
     if (anElement->GetName() == "port_housing")
     {
-      KGPortHousing* object = NULL;
+      KGPortHousing* object = nullptr;
       anElement->ReleaseTo(object);
       std::shared_ptr< KGPortHousing > smartPtr(object);
       fObject->SetObject(smartPtr);
@@ -243,7 +243,7 @@ namespace katrin
   {
     if (anElement->GetName() == "port_housing")
     {
-      KGPortHousing* object = NULL;
+      KGPortHousing* object = nullptr;
       anElement->ReleaseTo(object);
       std::shared_ptr< KGPortHousing > smartPtr(object);
       fObject->SetObject(smartPtr);

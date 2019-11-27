@@ -6,6 +6,7 @@
 #define KASPER_KPATHRESOLVER_H
 
 #include <string>
+#include <vector>
 
 #define STRING(anArgument) #anArgument
 #define AS_STRING(anArgument) STRING(anArgument)
@@ -19,7 +20,8 @@ enum class KEDirectory
     Kasper,
     Data,
     Config,
-    Scratch
+    Scratch,
+    Output,
 };
 
 class KPathResolver
@@ -32,6 +34,8 @@ public:
     virtual std::string GetDirectory(KEDirectory directory) const;
 
     std::string ResolvePath(const std::string &filename, KEDirectory directory = KEDirectory::Undefined) const;
+    std::vector<std::string> getAllFileNames(std::string directoryPath) const;
+    std::vector<std::string> getAllFilesContaining(std::string NamePattern) const;
 };
 
 }

@@ -18,23 +18,23 @@ namespace KEMField
     typedef KVector<ValueType> Vector;
 
     KGaussSeidel();
-    ~KGaussSeidel();
+    ~KGaussSeidel() override;
 
     void Solve(const Matrix& A,Vector& x,const Vector& b);
 
-    void CoalesceData() { if (fTrait) fTrait->CoalesceData(); }
+    void CoalesceData() override { if (fTrait) fTrait->CoalesceData(); }
 
   private:
-    unsigned int Dimension() const { return (fTrait ? fTrait->Dimension() : 0); }
-    void SetResidualVector(const Vector& v) { if (fTrait) fTrait->SetResidualVector(v); }
-    void GetResidualVector(Vector& v) { if (fTrait) fTrait->GetResidualVector(v); }
+    unsigned int Dimension() const override { return (fTrait ? fTrait->Dimension() : 0); }
+    void SetResidualVector(const Vector& v) override { if (fTrait) fTrait->SetResidualVector(v); }
+    void GetResidualVector(Vector& v) override { if (fTrait) fTrait->GetResidualVector(v); }
 
     ParallelTrait<ValueType>* fTrait;
   };
 
   template <typename ValueType,template <typename> class ParallelTrait>
   KGaussSeidel<ValueType,ParallelTrait>::KGaussSeidel()
-    : fTrait(NULL)
+    : fTrait(nullptr)
   {
   }
 
@@ -79,7 +79,7 @@ namespace KEMField
 
     this->FinalizeVisitors();
 
-    fTrait = NULL;
+    fTrait = nullptr;
   }
 
 }

@@ -17,9 +17,9 @@ class KEMSimpleException : public std::exception
 {
 public:
 	KEMSimpleException(std::string information);
-	~KEMSimpleException() noexcept;
+	~KEMSimpleException() noexcept override;
 
-	const char* what() const noexcept;
+	const char* what() const noexcept override;
 
 private:
 	std::string fInformation;

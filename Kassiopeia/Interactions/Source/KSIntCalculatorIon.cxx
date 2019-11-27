@@ -6,13 +6,12 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
   KSIntCalculatorIon::KSIntCalculatorIon() :
     fGas( "H_2" ),
-    E_Binding( KConst::BindingEnergy_H2() )
+    E_Binding( katrin::KConst::BindingEnergy_H2() )
 
   {
   }
@@ -40,7 +39,7 @@ namespace Kassiopeia
     //Ionization of H_2
     if (fGas.compare("H_2") == 0) {
       
-      E_Binding = KConst::BindingEnergy_H2();
+      E_Binding = katrin::KConst::BindingEnergy_H2();
       
       //H+,D+,T+
       if (aParticleID==2212||aParticleID==99041||aParticleID==99071) {
@@ -67,7 +66,7 @@ namespace Kassiopeia
     //Ionization of H2O
     else if (fGas.compare("H2O") == 0) {
         
-        E_Binding = KConst::BindingEnergy_H2O();
+        E_Binding = katrin::KConst::BindingEnergy_H2O();
         
         //H+
         if (aParticleID == 2212) {
@@ -77,7 +76,7 @@ namespace Kassiopeia
       
     //else if (fGas.compare("He") == 0) {
 
-    //E_Binding = KConst::BindingEnergy_He;
+    //E_Binding = katrin::KConst::BindingEnergy_He;
 
     //Add cross sections for He...
     
@@ -161,7 +160,7 @@ namespace Kassiopeia
     //Functions used in total cross sections from TABATA SHIRAI (page 3)
     //
     double KSIntCalculatorIon::f1(double x,double c1,double c2) {
-        double ERyd_keV = KConst::ERyd_eV()/1000;
+        double ERyd_keV = katrin::KConst::ERyd_eV()/1000;
         double sigma0 = 1e-20; //m^2
         double value = sigma0*c1*pow((x/ERyd_keV),c2);
         return value;
@@ -230,18 +229,18 @@ namespace Kassiopeia
     double KSIntCalculatorIon::sigmatot(double aEnergy, double A, double B, double C,
                                         double D) {
         double T = aEnergy/1836;
-        double R = KConst::ERyd_eV()/1000; //put in keV
+        double R = katrin::KConst::ERyd_eV()/1000; //put in keV
         double x = T/R;
         double value = 1/(1/(sigmalow(x, C, D))+1/(sigmahigh(x, A, B)));
         return value;
     }
     double KSIntCalculatorIon::sigmalow(double x, double C, double D) {
-        double value = 4 * KConst::Pi() * KConst::BohrRadiusSquared() * (C * pow(x, D));
+        double value = 4 * katrin::KConst::Pi() * katrin::KConst::BohrRadiusSquared() * (C * pow(x, D));
         return value;
     }
     
     double KSIntCalculatorIon::sigmahigh(double x, double A, double B) {
-        double value = 4 * KConst::Pi() * KConst::BohrRadiusSquared() * (A * log(1+x) + B)/x;
+        double value = 4 * katrin::KConst::Pi() * katrin::KConst::BohrRadiusSquared() * (A * log(1+x) + B)/x;
         return value;
     }
     
@@ -271,16 +270,16 @@ namespace Kassiopeia
     tSecondaryElectron->SetKineticEnergy_eV( tSecondaryElectronEnergy );
     
     //Set angle (isotropic). Should be improved with distribution from the literature
-    //double tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) )*180/KConst::Pi();
-    //double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() )*180/KConst::Pi();
+    //double tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) )*180/katrin::KConst::Pi();
+    //double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() )*180/katrin::KConst::Pi();
     //tSecondaryElectron->SetPolarAngleToZ( tTheta );
     //tSecondaryElectron->SetAzimuthalAngleToX( tPhi );
 
       //Set angle of secondary electron used differential cross section
-    double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() ); //radians
+    double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() ); //radians
       double tTheta = 0;
       CalculateSecondaryElectronAngle(tTheta);  //use diff. cross section
-    tTheta = tTheta*KConst::Pi()/180; //convert to radians
+    tTheta = tTheta*katrin::KConst::Pi()/180; //convert to radians
       KThreeVector tSecondaryMomentum = tSecondaryElectron->GetMomentum();
       
       //Correctly apply the angle in the incoming ion reference frame (code copied from KSIntCalculatorHydrogen.cxx)
@@ -302,8 +301,8 @@ namespace Kassiopeia
     anOutgoingIon.SetKineticEnergy_eV( tIncomingIonEnergy - tSecondaryElectronEnergy - E_Binding );
 
     //Assume no deflection (this should be improved)
-    //tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) )*180/KConst::Pi();
-    //tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() )*180/KConst::Pi();
+    //tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) )*180/katrin::KConst::Pi();
+    //tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() )*180/katrin::KConst::Pi();
     //anOutgoingIon.SetPolarAngleToZ( tTheta );
     //anOutgoingIon.SetAzimuthalAngleToX( tPhi );
 
@@ -454,8 +453,8 @@ namespace Kassiopeia
         }
         double I = shell_list[s][0]; //Binding energy of target atom
         double N = shell_list[s][1]; //Occupation number of electrons in atomic subshell of target
-        double S = 4*KConst::Pi()*KConst::BohrRadiusSquared()*N*pow(KConst::ERyd_eV()/I,2);
-        double lambda = anIncomingIonMass/KConst::M_el_kg(); //ratio of incoming projectile mass and electron mass
+        double S = 4*katrin::KConst::Pi()*katrin::KConst::BohrRadiusSquared()*N*pow(katrin::KConst::ERyd_eV()/I,2);
+        double lambda = anIncomingIonMass/katrin::KConst::M_el_kg(); //ratio of incoming projectile mass and electron mass
         double T = anIncomingIonEnergy/lambda;
         double v = sqrt(T/I); //reduced initial velocity
         double w = aSecondaryElectronEnergy / I;
@@ -463,11 +462,11 @@ namespace Kassiopeia
     }
       
       // For comparing with plots in Rudd 1992 paper
-      //double lambda = anIncomingIonMass/KConst::M_el_kg(); //ratio of incoming projectile mass and electron mass
+      //double lambda = anIncomingIonMass/katrin::KConst::M_el_kg(); //ratio of incoming projectile mass and electron mass
       //double T = anIncomingIonEnergy/lambda;
       //double I_1 = shell_list[0][0];
       //double E = aSecondaryElectronEnergy + I_1;
-      //double Y = T/(4*KConst::Pi()*KConst::BohrRadiusSquared()) * pow(E/KConst::ERyd_eV(),2) * aCrossSection;
+      //double Y = T/(4*katrin::KConst::Pi()*katrin::KConst::BohrRadiusSquared()) * pow(E/katrin::KConst::ERyd_eV(),2) * aCrossSection;
       //aCrossSection = Y;
       
   }
@@ -500,7 +499,7 @@ namespace Kassiopeia
     return value;
   }
   double KSIntCalculatorIon::w_c(double v,double I) {
-    double w_2 = KConst::ERyd_eV()/(4*I);
+    double w_2 = katrin::KConst::ERyd_eV()/(4*I);
     double value = 4*pow(v,2)-2*v-w_2;
     return value;
   }
@@ -590,11 +589,11 @@ namespace Kassiopeia
             //Phys. Rev. A 33, 888 – Published 1 February 1986
             //https://doi.org/10.1103/PhysRevA.33.888
             
-            double p0 = 8.17015e-23;
-            double p1 = 5.81827e-22;
-            double p2 = 359.014;
-            double p3 = 2.14706;
-            double p4 = 166.909;
+            double p0 = 8.02532e-23;
+            double p1 = 5.81735e-22;
+            double p2 = 1.51111e+02;
+            double p3 = 2.16586e+00;
+            double p4 = 2.71416e+01;
             
             aCrossSection = p0+(p1-p0)/pow(1+pow(aSecondaryElectronAngle/p2,p3),p4); //units of m^2
 

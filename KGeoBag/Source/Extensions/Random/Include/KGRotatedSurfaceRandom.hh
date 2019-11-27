@@ -12,9 +12,9 @@ namespace KGeoBag
   {
   public:
     KGRotatedSurfaceRandom() : KGShapeRandom() {}
-    virtual ~KGRotatedSurfaceRandom() {}
+    ~KGRotatedSurfaceRandom() override {}
 
-    void VisitWrappedSurface(KGRotatedSurface* rotatedSurface);
+    void VisitWrappedSurface(KGRotatedSurface* rotatedSurface) override;
 
     using KGShapeRandom::Random;
 

@@ -8,14 +8,14 @@ namespace Kassiopeia
     KSComponent::KSComponent() :
             KSObject(),
             fState( eIdle ),
-            fParentComponent( NULL ),
+            fParentComponent( nullptr ),
             fChildComponents()
     {
     }
     KSComponent::KSComponent( const KSComponent& aCopy ) :
             KSObject( aCopy ),
             fState( aCopy.fState ),
-            fParentComponent( NULL ),
+            fParentComponent( nullptr ),
             fChildComponents()
     {
     }
@@ -36,7 +36,7 @@ namespace Kassiopeia
             InitializeComponent();
             fState = eInitialized;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->Initialize();
             }
@@ -59,7 +59,7 @@ namespace Kassiopeia
             DeinitializeComponent();
             fState = eIdle;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->Deinitialize();
             }
@@ -82,7 +82,7 @@ namespace Kassiopeia
             ActivateComponent();
             fState = eActivated;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->Activate();
             }
@@ -105,7 +105,7 @@ namespace Kassiopeia
             DeactivateComponent();
             fState = eInitialized;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->Deactivate();
             }
@@ -128,7 +128,7 @@ namespace Kassiopeia
             PushUpdateComponent();
             fState = eUpdated;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->PushUpdate();
             }
@@ -141,7 +141,7 @@ namespace Kassiopeia
             objctmsg( eError ) << "tried to push update component <" << this->GetName() << "> from state <" << this->fState << ">" << eom;
         }
 
-        for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+        for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
         {
             (*tIt)->PushUpdate();
         }
@@ -156,7 +156,7 @@ namespace Kassiopeia
             PushDeupdateComponent();
             fState = eActivated;
 
-            for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+            for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
             {
                 (*tIt)->PushDeupdate();
             }
@@ -169,7 +169,7 @@ namespace Kassiopeia
             objctmsg( eError ) << "tried to push deupdate component <" << this->GetName() << "> from state <" << this->fState << ">" << eom;
         }
 
-        for( vector< KSComponent* >::iterator tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
+        for( auto tIt = fChildComponents.begin(); tIt != fChildComponents.end(); tIt++ )
         {
             (*tIt)->PushDeupdate();
         }
@@ -180,7 +180,7 @@ namespace Kassiopeia
     {
         if( fState == eActivated )
         {
-            if( fParentComponent != NULL )
+            if( fParentComponent != nullptr )
             {
                 fParentComponent->PullUpdate();
             }
@@ -198,7 +198,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fParentComponent != NULL )
+        if( fParentComponent != nullptr )
         {
             fParentComponent->PullUpdate();
         }
@@ -209,7 +209,7 @@ namespace Kassiopeia
     {
         if( fState == eUpdated )
         {
-            if( fParentComponent != NULL )
+            if( fParentComponent != nullptr )
             {
                 fParentComponent->PullDeupdate();
             }
@@ -227,7 +227,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fParentComponent != NULL )
+        if( fParentComponent != nullptr )
         {
             fParentComponent->PullDeupdate();
         }

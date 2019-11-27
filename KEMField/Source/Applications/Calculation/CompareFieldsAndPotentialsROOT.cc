@@ -77,12 +77,12 @@ int main(int argc, char* argv[])
     "\n";
 
     static struct option longOptions[] = {
-        {"help", no_argument, 0, 'h'},
-        {"fileA", required_argument, 0, 'a'},
-        {"fileB", required_argument, 0, 'b'},
-        {"nameA", required_argument, 0, 'n'},
-        {"nameB", required_argument, 0, 'm'},
-        {"size", required_argument, 0, 's'}
+        {"help", no_argument, nullptr, 'h'},
+        {"fileA", required_argument, nullptr, 'a'},
+        {"fileB", required_argument, nullptr, 'b'},
+        {"nameA", required_argument, nullptr, 'n'},
+        {"nameB", required_argument, nullptr, 'm'},
+        {"size", required_argument, nullptr, 's'}
     };
 
     static const char *optString = "ha:b:n:m:s:";
@@ -94,9 +94,9 @@ int main(int argc, char* argv[])
     double len = 1.0;
     (void) len;
 
-    while(1)
+    while(true)
     {
-        char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+        char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
         if(optId == -1) break;
         switch(optId) {
         case('h'): // help
@@ -194,7 +194,7 @@ int main(int argc, char* argv[])
     direct_solver1->Initialize();
 #else
     KElectrostaticBoundaryIntegrator integrator1{KEBIFactory::MakeDefault()};
-    KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>* direct_solver1 = new KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>(surfaceContainer1,integrator1);
+    auto* direct_solver1 = new KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>(surfaceContainer1,integrator1);
 #endif
 
     //now create the direct solver
@@ -208,7 +208,7 @@ int main(int argc, char* argv[])
     direct_solver2->Initialize();
 #else
     KElectrostaticBoundaryIntegrator integrator2{KEBIFactory::MakeDefault()};
-    KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>* direct_solver2 = new KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>(surfaceContainer2,integrator2);
+    auto* direct_solver2 = new KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator>(surfaceContainer2,integrator2);
 #endif
 
     // Dice N points per evaluation
@@ -293,7 +293,7 @@ int main(int argc, char* argv[])
 
     // create two TH1D in one window
 
-    TApplication* fAppWindow = new TApplication("fAppWindow", 0, NULL);
+    auto* fAppWindow = new TApplication("fAppWindow", nullptr, nullptr);
 
     std::stringstream outStream;
     outStream << "Absolute potential error in inner volume;Absolute pot. error (mV);N_{field points}";
@@ -514,7 +514,7 @@ int main(int argc, char* argv[])
     double maxR = 4.67;
     double stepSize = maxR/noPoints;
 
-    TGraph* plotDiffPot = new TGraph( noPoints );
+    auto* plotDiffPot = new TGraph( noPoints );
     plotDiffPot->SetTitle( "Error of radial potential" );
     plotDiffPot->SetDrawOption( "AC" );
     plotDiffPot->SetMarkerColor( kRed );
@@ -523,7 +523,7 @@ int main(int argc, char* argv[])
     plotDiffPot->SetMarkerSize( 0.2 );
     plotDiffPot->SetMarkerStyle( 8 );
 
-    TGraph* plotDiffField = new TGraph( noPoints );
+    auto* plotDiffField = new TGraph( noPoints );
     plotDiffField->SetTitle( "Error of radial field" );
     plotDiffField->SetDrawOption( "AC" );
     plotDiffField->SetMarkerColor( kRed );

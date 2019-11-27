@@ -100,7 +100,7 @@ kg_vector_norm(const kg_vector* a)
 kg_vector*
 kg_vector_alloc(unsigned int n)
 {
-    kg_vector* v = new kg_vector();
+    auto* v = new kg_vector();
     v->size = n;
     v->data = new double[n];
     return v;
@@ -110,9 +110,9 @@ kg_vector_alloc(unsigned int n)
 kg_vector*
 kg_vector_calloc(unsigned int n)
 {
-    kg_vector* v = new kg_vector();
+    auto* v = new kg_vector();
     v->size = n;
-    double* d = new double[n];
+    auto* d = new double[n];
     for(unsigned int i=0; i<n; i++)
     {
         d[i] = 0.;

@@ -36,7 +36,7 @@ class KG2DPolygon: public KG2DArea
         KG2DPolygon(const std::vector< std::vector<double> >* ordered_vertices);
         KG2DPolygon(const std::vector< KTwoVector >* ordered_vertices);
 
-        virtual ~KG2DPolygon();
+        ~KG2DPolygon() override;
 
         ///create the polygon by setting the vertices
         ///sides are created from the vertices in a 'connect the dots' manner.
@@ -45,22 +45,22 @@ class KG2DPolygon: public KG2DArea
         ///There is no need to repeat the first vertex.
         void SetVertices(const std::vector< std::vector<double> >* ordered_vertices);
         void SetVertices(const std::vector< KTwoVector >* ordered_vertices);
-        virtual void Initialize();
+        void Initialize() override;
 
         //getters
         void GetVertices(std::vector<KTwoVector>* vertices) const;
         void GetSides( std::vector<KG2DLineSegment>* sides) const;
 
         //geometry utilities
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-        virtual KTwoVector Point( const KTwoVector& aPoint ) const;
-        virtual KTwoVector Normal( const KTwoVector& aPoint ) const;
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+        KTwoVector Point( const KTwoVector& aPoint ) const override;
+        KTwoVector Normal( const KTwoVector& aPoint ) const override;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
         ///returns true if point is inside the region enclosed by the polygon
-        virtual bool IsInside(const KTwoVector& point) const;
+        bool IsInside(const KTwoVector& point) const override;
 
-        virtual double Area() const;
+        double Area() const override;
 
         ///returns true if polygon has no self intersections
         virtual bool IsSimple() const {return fIsSimple;};

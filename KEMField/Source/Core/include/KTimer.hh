@@ -8,7 +8,7 @@
 #ifndef KTIMER_HH_
 #define KTIMER_HH_
 
-#include <time.h>
+#include <ctime>
 
 namespace KEMField {
 

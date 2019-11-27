@@ -15,7 +15,7 @@ namespace Kassiopeia
         public:
             KSObject();
             KSObject( const KSObject& aCopy );
-            virtual ~KSObject();
+            ~KSObject() override;
 
         public:
             virtual KSObject* Clone() const = 0;
@@ -54,10 +54,10 @@ namespace Kassiopeia
             {
                 public:
                     KSHolderTemplate( XType* anObject );
-                    virtual ~KSHolderTemplate();
+                    ~KSHolderTemplate() override;
 
                 public:
-                    virtual void Type();
+                    void Type() override;
 
                 private:
                     XType* fObject;
@@ -148,9 +148,9 @@ namespace Kassiopeia
         }
         catch( ... )
         {
-            return NULL;
+            return nullptr;
         }
-        return NULL;
+        return nullptr;
     }
     template< >
     inline KSObject* KSObject::As< KSObject >()
@@ -184,12 +184,12 @@ namespace Kassiopeia
     template< class XType >
     inline void KSObject::Set( XType* anObject )
     {
-        if( fHolder != NULL )
+        if( fHolder != nullptr )
         {
             delete fHolder;
-            fHolder = NULL;
+            fHolder = nullptr;
         }
-        KSHolderTemplate< XType >* tHolder = new KSHolderTemplate< XType >( anObject );
+        auto* tHolder = new KSHolderTemplate< XType >( anObject );
         fHolder = tHolder;
         return;
     }

@@ -14,7 +14,7 @@ namespace KEMField
 {
   KEMFile::KEMFile()
   {
-    time_t t = time(0);
+    time_t t = time(nullptr);
     struct tm * now = localtime(&t);
     std::stringstream s;
     s << DEFAULT_SAVED_FILE_DIR << "/KEM_"
@@ -109,9 +109,9 @@ namespace KEMField
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
       fStreamer >> key;
       hasLabeled = true;
-      for (std::vector<std::string>::iterator it = labels.begin();it!=labels.end();++it)
+      for (auto it = labels.begin();it!=labels.end();++it)
       {
-	std::vector<std::string>::iterator it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
+	auto it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
 	if (it2 == key.fLabels.end())
 	{
 	  hasLabeled = false;
@@ -143,7 +143,7 @@ namespace KEMField
     {
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
       fStreamer >> key;
-      for (std::vector<std::string>::iterator it = key.fLabels.begin();it!=key.fLabels.end();++it)
+      for (auto it = key.fLabels.begin();it!=key.fLabels.end();++it)
       {
 	    if (*it == label){
 	      value++;
@@ -177,9 +177,9 @@ namespace KEMField
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
       fStreamer >> key;
       hasLabeled = true;
-      for (std::vector<std::string>::iterator it = labels.begin();it!=labels.end();++it)
+      for (auto it = labels.begin();it!=labels.end();++it)
       {
-	std::vector<std::string>::iterator it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
+	auto it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
 	if (it2 == key.fLabels.end())
 	{
 	  hasLabeled = false;
@@ -224,7 +224,7 @@ namespace KEMField
   bool KEMFile::ElementHasLabel(std::string fileName,std::string name,std::string label) const
   {
     std::vector<std::string> labels = LabelsForElement(fileName,name);
-    for (std::vector<std::string>::iterator it=labels.begin();it!=labels.end();++it)
+    for (auto it=labels.begin();it!=labels.end();++it)
       if (*it == label)
 	return true;
     return false;
@@ -311,7 +311,7 @@ namespace KEMField
     {
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
       fStreamer >> key;
-      for (std::vector<std::string>::iterator it = key.fLabels.begin();it!=key.fLabels.end();++it)
+      for (auto it = key.fLabels.begin();it!=key.fLabels.end();++it)
 	if (*it == label)
 	{
 	  if (index != index_)

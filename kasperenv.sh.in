@@ -63,8 +63,9 @@ export PKG_CONFIG_PATH=${KASPER_INSTALL_LIB}/pkgconfig:${PKG_CONFIG_PATH//${OLD_
 export PYTHONPATH=${KASPER_INSTALL_LIB}/python:${PYTHONPATH//${OLD_PYTHONPATH}/}
 export CMAKE_PREFIX_PATH=${KASPER_INSTALL}:${CMAKE_PREFIX_PATH//${OLD_CMAKE_PREF}/}
 
-echo -e "\033[32;1mKASPER config  directory set to ${KASPERSYS}\033[0m"
-echo -e "\033[32;1mKASPER install  directory set to ${KASPER_INSTALL}\033[0m"
+echo -e "\033[32;1mThis is KASPER v@KASPER_VERSION@ (updated @KASPER_BUILD_TIMESTAMP@) [git:@KASPER_GIT_REVISION@]"
+echo -e "\033[32;1mKASPER config directory set to ${KASPERSYS}\033[0m"
+echo -e "\033[32;1mKASPER install directory set to ${KASPER_INSTALL}\033[0m"
 
 function _kafit_krypton_auto()
 {

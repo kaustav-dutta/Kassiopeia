@@ -23,7 +23,7 @@ public:
 	class Visitor;
 
 	KElectrostaticBoundaryField();
-	virtual ~KElectrostaticBoundaryField();
+	~KElectrostaticBoundaryField() override;
 	void SetChargeDensitySolver(KSmartPointer<KChargeDensitySolver> solver);
 	KSmartPointer<KChargeDensitySolver> GetChargeDensitySolver();
 	void SetFieldSolver(KSmartPointer<KElectricFieldSolver> solver);
@@ -64,11 +64,11 @@ public:
 protected:
 	void CheckSolverExistance();
 
-	virtual void InitializeCore();
+	void InitializeCore() override;
 
-	virtual double PotentialCore(const KPosition& P) const;
-	virtual KThreeVector ElectricFieldCore(const KPosition& P) const;
-    virtual std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P) const;
+	double PotentialCore(const KPosition& P) const override;
+	KThreeVector ElectricFieldCore(const KPosition& P) const override;
+    std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P) const override;
 
 private:
 	void VisitorPreprocessing();

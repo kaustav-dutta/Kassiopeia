@@ -63,7 +63,7 @@ namespace KEMField
   {
   public:
     KDataComparator() {}
-    virtual ~KDataComparator() {}
+    ~KDataComparator() override {}
 
     template <class Streamed>
     void PreStreamInAction(const Streamed&) {}
@@ -101,11 +101,11 @@ namespace KEMField
 		 double tol=1.e-10)
     { return Compare(*lhs,*rhs,tol); }
 
-    bool IsLHS() const { return fIsLHS; }
-    double Tolerance() const { return fTolerance; }
+    bool IsLHS() const override { return fIsLHS; }
+    double Tolerance() const override { return fTolerance; }
 
   protected:
-    KDataComparator& Self() { return *this; }
+    KDataComparator& Self() override { return *this; }
 
     bool fIsLHS;
     double fTolerance;

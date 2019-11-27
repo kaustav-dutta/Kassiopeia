@@ -21,15 +21,15 @@ namespace Kassiopeia
 
         public:
             KSMathRK8();
-            virtual ~KSMathRK8();
+            ~KSMathRK8() override;
 
         public:
-            virtual void Integrate( double /*aTime*/,
+            void Integrate( double /*aTime*/,
                                     const DifferentiatorType& aTerm,
                                     const ValueType& anInitialValue,
                                     const double& aStep,
                                     ValueType& aFinalValue,
-                                    ErrorType& anError ) const;
+                                    ErrorType& anError ) const override;
         private:
             enum
             {

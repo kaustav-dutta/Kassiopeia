@@ -19,7 +19,7 @@ namespace KGeoBag {
 	{
 		public:
 			KGDiscreteRotationalAreaMesher(){};
-			virtual ~KGDiscreteRotationalAreaMesher(){};
+			~KGDiscreteRotationalAreaMesher() override{};
 
 			using KGConicalWireArrayDiscreteRotationalMesher::VisitWrappedSurface;
 	};

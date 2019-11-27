@@ -12,7 +12,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajElectricParticle();
-            ~KSTrajElectricParticle();
+            KSTrajElectricParticle( const KSTrajElectricParticle& other) = default;
+            ~KSTrajElectricParticle() override;
 
             //**********
             //assignment

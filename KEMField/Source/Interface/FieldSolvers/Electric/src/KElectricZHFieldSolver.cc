@@ -41,8 +41,8 @@ namespace KEMField {
 
 KElectricZHFieldSolver::KElectricZHFieldSolver() :
 							fIntegrator(KEBIFactory::MakeDefault()),
-                    		fZHContainer( NULL ),
-							fZonalHarmonicFieldSolver( NULL )
+                    		fZHContainer( nullptr ),
+							fZonalHarmonicFieldSolver( nullptr )
 {
 	fParameters = new KZonalHarmonicParameters();
 }

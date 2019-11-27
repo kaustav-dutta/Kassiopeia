@@ -92,10 +92,10 @@ namespace katrin
     template< >
     inline bool KSWriteROOTConditionPeriodicBuilder::End()
     {
-        KSComponent* tComponent = NULL;
+        KSComponent* tComponent = nullptr;
         if( fObject->fGroupName.empty() == false )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
             {
                 KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -105,7 +105,7 @@ namespace katrin
                     break;
                 }
             }
-            if( tComponent == NULL )
+            if( tComponent == nullptr )
             {
                 objctmsg( eError ) << "write ROOT condition output builder could not find component <" << fObject->fComponentName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;
@@ -117,11 +117,11 @@ namespace katrin
         }
 
 
-        KSWriteROOTCondition* tCondition = NULL;
+        KSWriteROOTCondition* tCondition = nullptr;
 
         if( tComponent->Is< unsigned short >() == true )
         {
-        	KSWriteROOTConditionPeriodic< unsigned short >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned short >();
+        	auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned short >();
         	tWriteROOTConditionPeriodic->SetName( fObject->fName );
         	tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
         	tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -137,7 +137,7 @@ namespace katrin
 
         if( tComponent->Is< short >() == true )
         {
-            KSWriteROOTConditionPeriodic< short >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< short >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< short >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -153,7 +153,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned int >() == true )
         {
-            KSWriteROOTConditionPeriodic< unsigned int >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned int >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned int >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -169,7 +169,7 @@ namespace katrin
 
         if( tComponent->Is< int >() == true )
         {
-            KSWriteROOTConditionPeriodic< int >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< int >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< int >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -185,7 +185,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned long >() == true )
         {
-            KSWriteROOTConditionPeriodic< unsigned long >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned long >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< unsigned long >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -201,7 +201,7 @@ namespace katrin
 
         if( tComponent->Is< long >() == true )
         {
-            KSWriteROOTConditionPeriodic< long >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< long >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< long >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -217,7 +217,7 @@ namespace katrin
 
         if( tComponent->Is< float >() == true )
         {
-            KSWriteROOTConditionPeriodic< float >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< float >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< float >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );
@@ -233,7 +233,7 @@ namespace katrin
 
         if( tComponent->Is< double >() == true )
         {
-            KSWriteROOTConditionPeriodic< double >* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< double >();
+            auto* tWriteROOTConditionPeriodic = new KSWriteROOTConditionPeriodic< double >();
             tWriteROOTConditionPeriodic->SetName( fObject->fName );
             tWriteROOTConditionPeriodic->SetInitialMin( fObject->fInitialMin );
             tWriteROOTConditionPeriodic->SetInitialMax( fObject->fInitialMax );

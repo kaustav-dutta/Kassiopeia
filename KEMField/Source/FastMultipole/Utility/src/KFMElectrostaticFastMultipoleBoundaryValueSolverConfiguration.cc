@@ -11,16 +11,16 @@ namespace KEMField
 {
 KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration::~KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration()
 {
-	if(fFFTMParams != NULL)
+	if(fFFTMParams != nullptr)
 		delete fFFTMParams;
-	if(fPreconditionerFFTMParams != NULL)
+	if(fPreconditionerFFTMParams != nullptr)
 		delete fPreconditionerFFTMParams;
 }
 
 void KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration::
 		SetFFTMParams( KFMElectrostaticParameters* config)
 {
-	if(fFFTMParams != NULL) {
+	if(fFFTMParams != nullptr) {
 		kfmout << "ABORTING tried to assign more than"
 				" one set of fftm configurations to the"
 				" FastMultipoleBEMSolver " << kfmendl;
@@ -32,7 +32,7 @@ void KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration::
 void KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration::
 		SetPreconditionerFFTMParams( KFMElectrostaticParameters* config)
 {
-	if(fPreconditionerFFTMParams != NULL) {
+	if(fPreconditionerFFTMParams != nullptr) {
 		kfmout << "ABORTING tried to assign more than"
 				" one set of fftm configurations to the"
 				" FastMultipoleBEMSolver " << kfmendl;

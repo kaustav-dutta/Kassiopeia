@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
             KSGenPositionFrustrumComposite();
             KSGenPositionFrustrumComposite( const KSGenPositionFrustrumComposite& aCopy );
-            KSGenPositionFrustrumComposite* Clone() const;
-            virtual ~KSGenPositionFrustrumComposite();
+            KSGenPositionFrustrumComposite* Clone() const override;
+            ~KSGenPositionFrustrumComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaryList );
+            void Dice( KSParticleQueue* aPrimaryList ) override;
 
         public:
 
@@ -62,8 +62,8 @@ namespace Kassiopeia
 
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

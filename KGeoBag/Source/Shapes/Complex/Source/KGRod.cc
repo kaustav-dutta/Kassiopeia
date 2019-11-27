@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGRod* KGRod::Clone() const
   {
-    KGRod* r = new KGRod();
+    auto* r = new KGRod();
 
     for (unsigned int i=0;i<fCoords.size();i++)
       r->fCoords.push_back(fCoords.at(i));
@@ -97,7 +97,7 @@ namespace KGeoBag
     for (unsigned int i=0;i<3;i++)
       n[i] /= len;
 
-    if (oldNormal == NULL)
+    if (oldNormal == nullptr)
     {
       // we then start with a normal vector whose sole component lies in the
       // direction of the smallest magnitude of n

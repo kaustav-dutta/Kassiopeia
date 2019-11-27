@@ -15,7 +15,7 @@ namespace KEMField
 
     KConicSection() : fP0(0.,0.,0.),
 		      fP1(0.,0.,0.) {}
-    ~KConicSection() {}
+    ~KConicSection() override {}
 
   public:
 
@@ -29,12 +29,12 @@ namespace KEMField
     		   const double& r1,
     		   const double& z1);
 
-    double Area() const;
-    const KPosition Centroid() const { return (fP0 + fP1)*.5; }
+    double Area() const override;
+    const KPosition Centroid() const override { return (fP0 + fP1)*.5; }
 
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint);
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override;
 
-    const KDirection Normal() const;
+    const KDirection Normal() const override;
 
     void SetR0(double d)           { fP0[0] = d; }
     void SetZ0(double d)           { fP0[2] = d; }

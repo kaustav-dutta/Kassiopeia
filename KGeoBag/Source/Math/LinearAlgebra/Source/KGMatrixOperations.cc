@@ -126,7 +126,7 @@ kg_matrix_svd_solve(const kg_matrix* U, const kg_vector* S, const kg_matrix* V, 
 kg_matrix*
 kg_matrix_alloc(unsigned int nrows, unsigned int ncolumns)
 {
-    kg_matrix* m = new kg_matrix();
+    auto* m = new kg_matrix();
     m->size1 = nrows;
     m->size2 = ncolumns;
     m->data = new double[nrows*ncolumns];
@@ -135,11 +135,11 @@ kg_matrix_alloc(unsigned int nrows, unsigned int ncolumns)
 
 kg_matrix* kg_matrix_calloc(unsigned int nrows, unsigned int ncolumns)
 {
-    kg_matrix* m = new kg_matrix();
+    auto* m = new kg_matrix();
     m->size1 = nrows;
     m->size2 = ncolumns;
     unsigned int total_size = nrows*ncolumns;
-    double* d = new double[total_size];
+    auto* d = new double[total_size];
     for(unsigned int i=0; i<total_size; i++)
     {
         d[i] = 0.;
@@ -645,7 +645,7 @@ kg_matrix_svd_solve(const kg_matrix* U, const kg_vector* S, const kg_matrix* V, 
 kg_sparse_matrix*
 kg_sparse_matrix_alloc(unsigned int nrows, unsigned int ncolumns, unsigned int n_elements)
 {
-    kg_sparse_matrix* m = new kg_sparse_matrix();
+    auto* m = new kg_sparse_matrix();
     m->size1 = nrows;
     m->size2 = ncolumns;
     m->data = new double[n_elements];

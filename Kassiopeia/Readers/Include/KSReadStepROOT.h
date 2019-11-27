@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSReadStepROOT( TFile* aFile );
-            virtual ~KSReadStepROOT();
+            ~KSReadStepROOT() override;
 
         public:
             unsigned int GetStepIndex() const;

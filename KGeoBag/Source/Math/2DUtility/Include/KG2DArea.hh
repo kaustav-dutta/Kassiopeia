@@ -28,7 +28,7 @@ class KG2DArea: public KG2DShape
 {
     public:
         KG2DArea(){;};
-        virtual ~KG2DArea(){;};
+        ~KG2DArea() override{;};
 
         //geometry
         virtual bool IsInside(const KTwoVector& aPoint) const = 0;

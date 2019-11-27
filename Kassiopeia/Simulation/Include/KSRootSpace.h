@@ -16,16 +16,16 @@ namespace Kassiopeia
         public:
             KSRootSpace();
             KSRootSpace( const KSRootSpace& aCopy );
-            KSRootSpace* Clone() const;
-            virtual ~KSRootSpace();
+            KSRootSpace* Clone() const override;
+            ~KSRootSpace() override;
 
         public:
-            void Enter() const;
-            void Exit() const;
+            void Enter() const override;
+            void Exit() const override;
 
-            bool Outside( const KThreeVector& aPoint ) const;
-            KThreeVector Point( const KThreeVector& aPoint ) const;
-            KThreeVector Normal( const KThreeVector& aPoint ) const;
+            bool Outside( const KThreeVector& aPoint ) const override;
+            KThreeVector Point( const KThreeVector& aPoint ) const override;
+            KThreeVector Normal( const KThreeVector& aPoint ) const override;
 
         public:
             void AddSpace( KSSpace* aSpace );
@@ -35,8 +35,8 @@ namespace Kassiopeia
             void RemoveSurface( KSSurface* aSurface );
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

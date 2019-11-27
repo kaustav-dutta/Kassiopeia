@@ -65,9 +65,9 @@ namespace Kassiopeia
                                                                 elMFP1,
                                                                 elMFP2 );
 
-        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * KConst::N_A());
+        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * katrin::KConst::N_A());
         // Molar Volume of Silicon = 12.06 * 1E-6 m^3/mol
-        aCrossSection = 12.06 / ( MeanFreePathAngstroem * 1E-4 * KConst::N_A() );
+        aCrossSection = 12.06 / ( MeanFreePathAngstroem * 1E-4 * katrin::KConst::N_A() );
     }
 
     void KESSElasticElsepa::ExecuteInteraction( const KSParticle& anInitialParticle,
@@ -80,13 +80,13 @@ namespace Kassiopeia
         //computes the new polar angle due to scattering
         double tTheta = GetScatteringPolarAngle( tKineticEnergy_eV );
         intmsg_debug( "KESSElasticElsepa::Execute" << ret
-                      << "Elastic Calculator computed Theta =  " << 180*tTheta/KConst::Pi() <<eom );
+                      << "Elastic Calculator computed Theta =  " << 180*tTheta/katrin::KConst::Pi() <<eom );
 
         //dice an azimuthal angle
-        double tPhi = 2. * KConst::Pi() * KRandom::GetInstance().Uniform();
+        double tPhi = 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform();
 
         intmsg_debug( "KESSElasticElsepa::Execute" << ret
-                      << "Randomly chosen azimuthal angle: " << 180*tPhi/KConst::Pi() <<eom );
+                      << "Randomly chosen azimuthal angle: " << 180*tPhi/katrin::KConst::Pi() <<eom );
 
         //update the final particle
         KThreeVector tInitialDirection = anInitialParticle.GetMomentum();

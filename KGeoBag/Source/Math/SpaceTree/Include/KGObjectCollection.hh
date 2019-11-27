@@ -25,7 +25,7 @@ class KGObjectCollection: public KGGenScatterHierarchy<TypeList, KGObjectHolder 
 {
     public:
         KGObjectCollection(){};
-        virtual ~KGObjectCollection(){};
+        ~KGObjectCollection() override{};
 
     private:
 };

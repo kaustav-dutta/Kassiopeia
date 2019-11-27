@@ -32,7 +32,7 @@ class KFMExternalIdentitySetSorter: public KFMNodeActor< KFMNode<ObjectTypeList>
         virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
         {
             KFMExternalIdentitySet* set = KFMObjectRetriever<ObjectTypeList, KFMExternalIdentitySet>::GetNodeObject(node);
-            if(set != NULL)
+            if(set != nullptr)
             {
                 set->Sort();
             }

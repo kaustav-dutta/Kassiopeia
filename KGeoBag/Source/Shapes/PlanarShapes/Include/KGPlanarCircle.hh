@@ -14,9 +14,9 @@ namespace KGeoBag
             KGPlanarCircle( const KGPlanarCircle& aCopy );
             KGPlanarCircle( const KTwoVector& aCentroid, const double& aRadius, const unsigned int aCount = 32 );
             KGPlanarCircle( const double& anX, const double& aY, const double& aRadius, const unsigned int aCount = 32 );
-            virtual ~KGPlanarCircle();
+            ~KGPlanarCircle() override;
 
-            KGPlanarCircle* Clone() const;
+            KGPlanarCircle* Clone() const override;
             void CopyFrom( const KGPlanarCircle& aCopy );
 
         public:
@@ -26,20 +26,20 @@ namespace KGeoBag
             void Radius( const double& aValue );
             void MeshCount( const unsigned int& aCount );
 
-            const KTwoVector& Centroid() const;
+            const KTwoVector& Centroid() const override;
             const double& X() const;
             const double& Y() const;
             const double& Radius() const;
             const unsigned int& MeshCount() const;
 
-            const double& Length() const;
-            const KTwoVector& Anchor() const;
+            const double& Length() const override;
+            const KTwoVector& Anchor() const override;
 
         public:
-            KTwoVector At( const double& aLength ) const;
-            KTwoVector Point( const KTwoVector& aQuery ) const;
-            KTwoVector Normal( const KTwoVector& aQuery ) const;
-            bool Above( const KTwoVector& aQuery ) const;
+            KTwoVector At( const double& aLength ) const override;
+            KTwoVector Point( const KTwoVector& aQuery ) const override;
+            KTwoVector Normal( const KTwoVector& aQuery ) const override;
+            bool Above( const KTwoVector& aQuery ) const override;
 
         private:
             KTwoVector fCentroid;

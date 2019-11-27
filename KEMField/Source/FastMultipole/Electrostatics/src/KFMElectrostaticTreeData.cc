@@ -91,7 +91,7 @@ KFMElectrostaticTreeData::SetCubes(const std::vector< KFMCube<3>* >* cubes)
 void
 KFMElectrostaticTreeData::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedValuePODOutputNode< KFMElectrostaticTreeData, std::string, &KFMElectrostaticTreeData::GetTreeID >( std::string("tree_id"), this) );
         node->AddChild(new KSAAssociatedValuePODOutputNode< KFMElectrostaticTreeData, unsigned int, &KFMElectrostaticTreeData::GetNumberOfTreeNodes >( std::string("n_tree_nodes"), this) );
@@ -117,7 +117,7 @@ KFMElectrostaticTreeData::DefineOutputNode(KSAOutputNode* node) const
 void
 KFMElectrostaticTreeData::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedReferencePODInputNode< KFMElectrostaticTreeData, std::string, &KFMElectrostaticTreeData::SetTreeID >( std::string("tree_id"), this) );
         node->AddChild(new KSAAssociatedReferencePODInputNode< KFMElectrostaticTreeData, unsigned int, &KFMElectrostaticTreeData::SetNumberOfTreeNodes >( std::string("n_tree_nodes"), this) );

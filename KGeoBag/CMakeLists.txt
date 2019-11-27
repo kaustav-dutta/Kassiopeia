@@ -11,7 +11,6 @@ project( KGeoBag )
 
 include( KasperDefaults )
 
-kasper_require_cpp11()
 
 # internal dependencies
 kasper_find_module( Kommon )

@@ -13,16 +13,17 @@ namespace katrin
     {
         public:
             KIncludeProcessor();
-            virtual ~KIncludeProcessor();
+            ~KIncludeProcessor() override;
 
-            virtual void ProcessToken( KBeginElementToken* aToken );
-            virtual void ProcessToken( KBeginAttributeToken* aToken );
-            virtual void ProcessToken( KAttributeDataToken* aToken );
-            virtual void ProcessToken( KEndAttributeToken* aToken );
-            virtual void ProcessToken( KMidElementToken* aToken );
-            virtual void ProcessToken( KElementDataToken* aToken );
-            virtual void ProcessToken( KEndElementToken* aToken );
+            void ProcessToken( KBeginElementToken* aToken ) override;
+            void ProcessToken( KBeginAttributeToken* aToken ) override;
+            void ProcessToken( KAttributeDataToken* aToken ) override;
+            void ProcessToken( KEndAttributeToken* aToken ) override;
+            void ProcessToken( KMidElementToken* aToken ) override;
+            void ProcessToken( KElementDataToken* aToken ) override;
+            void ProcessToken( KEndElementToken* aToken ) override;
 
+            void SetPath(const std::string& path);
             void AddDefaultPath(const std::string& path);
 
         private:
@@ -46,7 +47,8 @@ namespace katrin
             std::vector< std::string > fPaths;
             std::vector< std::string > fBases;
 
-            std::vector< std::string > fDefaultPaths;
+            std::string fDefaultPath;
+            std::vector< std::string > fAdditionalDefaultPaths;
 
             std::vector< std::string > fIncludedPaths;
     };

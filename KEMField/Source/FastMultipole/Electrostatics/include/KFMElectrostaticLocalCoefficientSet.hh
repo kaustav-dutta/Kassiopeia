@@ -23,13 +23,15 @@ class KFMElectrostaticLocalCoefficientSet: public KFMScalarMultipoleExpansion
 {
     public:
         KFMElectrostaticLocalCoefficientSet();
-        virtual ~KFMElectrostaticLocalCoefficientSet();
+        ~KFMElectrostaticLocalCoefficientSet() override;
         KFMElectrostaticLocalCoefficientSet(const KFMElectrostaticLocalCoefficientSet &copyObject):KFMScalarMultipoleExpansion(copyObject){;};
 
-        virtual std::string ClassName() const;
+        std::string ClassName() const override;
 
-        void DefineOutputNode(KSAOutputNode* node) const;
-        void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
+        
+        KFMElectrostaticLocalCoefficientSet& operator =(const KFMElectrostaticLocalCoefficientSet& other) = default;
 
 
     private:

@@ -25,11 +25,11 @@ class KFMPointwiseArrayAdder: public KFMBinaryArrayOperator< ArrayType, NDIM>
 
         KFMPointwiseArrayAdder(){;};
 
-        virtual ~KFMPointwiseArrayAdder(){;}
+        ~KFMPointwiseArrayAdder() override{;}
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             if(IsInputOutputValid())
             {
@@ -49,7 +49,7 @@ class KFMPointwiseArrayAdder: public KFMBinaryArrayOperator< ArrayType, NDIM>
 
         virtual bool IsInputOutputValid() const
         {
-            if(this->fFirstInput != NULL && this->fSecondInput != NULL && this->fOutput != NULL )
+            if(this->fFirstInput != nullptr && this->fSecondInput != nullptr && this->fOutput != nullptr )
             {
                 //check they have the same size/num elements
                 if( this->HaveSameNumberOfElements(this->fFirstInput, this->fOutput) &&

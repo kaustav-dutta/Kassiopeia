@@ -39,12 +39,12 @@ class KSATestC: public KSATestA
             fCData = copyObject.fCData;
         }
 
-        virtual ~KSATestC()
+        ~KSATestC() override
         {
 
         };
 
-        virtual const char* GetName() const;
+        const char* GetName() const override;
 
         KSATestC& operator=(const KSATestC& rhs)
         {
@@ -59,11 +59,11 @@ class KSATestC: public KSATestA
         double GetCData() const;
         void SetCData(const double& x);
 
-        void DefineOutputNode(KSAOutputNode* node) const;
+        void DefineOutputNode(KSAOutputNode* node) const override;
 
-        void DefineInputNode(KSAInputNode* node);
+        void DefineInputNode(KSAInputNode* node) override;
 
-        virtual const char* ClassName() const { return "KSATestC"; };
+        const char* ClassName() const override { return "KSATestC"; };
 
     protected:
 

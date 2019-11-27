@@ -16,15 +16,15 @@ namespace Kassiopeia
     public:
         KSGenEnergyBetaDecay();
         KSGenEnergyBetaDecay( const KSGenEnergyBetaDecay& aCopy );
-        KSGenEnergyBetaDecay* Clone() const;
-        virtual ~KSGenEnergyBetaDecay();
+        KSGenEnergyBetaDecay* Clone() const override;
+        ~KSGenEnergyBetaDecay() override;
 
         //******
         //action
         //******
 
     public:
-        void Dice( KSParticleQueue* aPrimaries );
+        void Dice( KSParticleQueue* aPrimaries ) override;
 
         //*************
         //configuration
@@ -49,8 +49,8 @@ namespace Kassiopeia
         //**********
 
     public:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 
 }

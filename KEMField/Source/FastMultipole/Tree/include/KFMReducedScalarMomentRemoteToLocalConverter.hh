@@ -90,7 +90,7 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
             fKernelResponse->SetZeroMaskSize(fZeroMaskSize);
 
             fIsScaleInvariant = fKernelResponse->GetKernel()->IsScaleInvariant();
-            fScaleInvariantKernel = NULL;
+            fScaleInvariantKernel = nullptr;
             if(fIsScaleInvariant)
             {
                 fScaleInvariantKernel = dynamic_cast< KFMScaleInvariantKernelExpansion<SpatialNDIM>* >( fKernelResponse->GetKernel() );
@@ -114,14 +114,14 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
             fInitialized = false;
             fAllocated = false;
 
-            fPtrM2LCoeff = NULL;
-            fPtrMultipoles = NULL;
-            fPtrLocalCoeff = NULL;
-            fPtrTempOutput = NULL;
-            fPtrNormalization = NULL;
+            fPtrM2LCoeff = nullptr;
+            fPtrMultipoles = nullptr;
+            fPtrLocalCoeff = nullptr;
+            fPtrTempOutput = nullptr;
+            fPtrNormalization = nullptr;
         }
 
-        virtual ~KFMReducedScalarMomentRemoteToLocalConverter()
+        ~KFMReducedScalarMomentRemoteToLocalConverter() override
         {
             if(fAllocated){DeallocateCalculatorSpace();};
             delete fKernelResponse;
@@ -291,9 +291,9 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
             }
         }
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 if( node->HasChildren() && ChildrenHaveNonZeroMoments(node) )
                 {
@@ -421,36 +421,36 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
         void DeallocateCalculatorSpace()
         {
             //delete the raw data arrays
-            if(fPtrM2LCoeff){ delete[] fPtrM2LCoeff; fPtrM2LCoeff = NULL; };
-            if(fPtrLocalCoeff){ delete[] fPtrLocalCoeff; fPtrLocalCoeff = NULL; };
-            if(fPtrOrigLocalCoeff){ delete[] fPtrOrigLocalCoeff; fPtrOrigLocalCoeff = NULL; };
-            if(fPtrTempOutput){ delete[] fPtrTempOutput; fPtrTempOutput = NULL; };
-            if(fPtrMultipoles){ delete[] fPtrMultipoles; fPtrMultipoles = NULL; };
-            if(fPtrNormalization){delete[] fPtrNormalization; fPtrNormalization = NULL;}
+            if(fPtrM2LCoeff){ delete[] fPtrM2LCoeff; fPtrM2LCoeff = nullptr; };
+            if(fPtrLocalCoeff){ delete[] fPtrLocalCoeff; fPtrLocalCoeff = nullptr; };
+            if(fPtrOrigLocalCoeff){ delete[] fPtrOrigLocalCoeff; fPtrOrigLocalCoeff = nullptr; };
+            if(fPtrTempOutput){ delete[] fPtrTempOutput; fPtrTempOutput = nullptr; };
+            if(fPtrMultipoles){ delete[] fPtrMultipoles; fPtrMultipoles = nullptr; };
+            if(fPtrNormalization){delete[] fPtrNormalization; fPtrNormalization = nullptr;}
 
             //delete the array wrappers
-            delete fAllM2LCoeff; fAllM2LCoeff = NULL;
-            delete fAllMultipoles; fAllMultipoles = NULL;
-            delete fAllLocalCoeff; fAllLocalCoeff = NULL;
-            delete fAllOrigLocalCoeff; fAllOrigLocalCoeff = NULL;
-            delete fTempOutput; fTempOutput = NULL;
+            delete fAllM2LCoeff; fAllM2LCoeff = nullptr;
+            delete fAllMultipoles; fAllMultipoles = nullptr;
+            delete fAllLocalCoeff; fAllLocalCoeff = nullptr;
+            delete fAllOrigLocalCoeff; fAllOrigLocalCoeff = nullptr;
+            delete fTempOutput; fTempOutput = nullptr;
 
 
             //delete the sub-index array wrappers
             for(unsigned int tsi=0; tsi<fM2LCoeff.size(); tsi++)
             {
-                delete fM2LCoeff[tsi]; fM2LCoeff[tsi] = NULL;
+                delete fM2LCoeff[tsi]; fM2LCoeff[tsi] = nullptr;
             }
 
             for(unsigned int tsi=0; tsi<fMultipoles.size(); tsi++)
             {
-                delete fMultipoles[tsi]; fMultipoles[tsi] = NULL;
+                delete fMultipoles[tsi]; fMultipoles[tsi] = nullptr;
             }
 
             for(unsigned int tsi=0; tsi<fLocalCoeff.size(); tsi++)
             {
-                delete fLocalCoeff[tsi]; fLocalCoeff[tsi] = NULL;
-                delete fOrigLocalCoeff[tsi]; fOrigLocalCoeff[tsi] = NULL;
+                delete fLocalCoeff[tsi]; fLocalCoeff[tsi] = nullptr;
+                delete fOrigLocalCoeff[tsi]; fOrigLocalCoeff[tsi] = nullptr;
             }
         }
 
@@ -646,7 +646,7 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
 
             for(unsigned int n=0; n<fNeighbors.size(); n++)
             {
-                if(fNeighbors[n] != NULL)
+                if(fNeighbors[n] != nullptr)
                 {
                     //compute relative index of this neighbor and store in pn array
                     KFMArrayMath::RowMajorIndexFromOffset<SpatialNDIM>(n, fNeighborDimensionSize, szpn);
@@ -659,7 +659,7 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
                     for(unsigned int c = 0; c < fNeighbors[n]->GetNChildren(); c++)
                     {
                         fChild = fNeighbors[n]->GetChild(c);
-                        if(fChild != NULL && KFMObjectRetriever<ObjectTypeList, TargetScalarMomentType>::GetNodeObject(fChild) != NULL)
+                        if(fChild != nullptr && KFMObjectRetriever<ObjectTypeList, TargetScalarMomentType>::GetNodeObject(fChild) != nullptr)
                         {
                             KFMArrayMath::RowMajorIndexFromOffset<SpatialNDIM>(c, fChildDimensionSize, sznc);
 
@@ -711,7 +711,7 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
 
             for(unsigned int n=0; n<fNeighbors.size(); n++)
             {
-                if(fNeighbors[n] != NULL)
+                if(fNeighbors[n] != nullptr)
                 {
                     //compute relative index of this neighbor and store in pn array
                     KFMArrayMath::RowMajorIndexFromOffset<SpatialNDIM>(n, fNeighborDimensionSize, szpn);
@@ -724,7 +724,7 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
                     for(unsigned int c = 0; c < fNeighbors[n]->GetNChildren(); c++)
                     {
                         fChild = fNeighbors[n]->GetChild(c);
-                        if(fChild != NULL && KFMObjectRetriever<ObjectTypeList, TargetScalarMomentType>::GetNodeObject(fChild) != NULL)
+                        if(fChild != nullptr && KFMObjectRetriever<ObjectTypeList, TargetScalarMomentType>::GetNodeObject(fChild) != nullptr)
                         {
                             KFMArrayMath::RowMajorIndexFromOffset<SpatialNDIM>(c, fChildDimensionSize, sznc);
 
@@ -766,9 +766,9 @@ class KFMReducedScalarMomentRemoteToLocalConverter: public KFMNodeActor< KFMNode
             for(unsigned int i=0; i<n_children; i++)
             {
                 KFMNode<ObjectTypeList>* child = node->GetChild(i);
-                if(child != NULL)
+                if(child != nullptr)
                 {
-                    if( KFMObjectRetriever<ObjectTypeList, SourceScalarMomentType>::GetNodeObject(child) != NULL)
+                    if( KFMObjectRetriever<ObjectTypeList, SourceScalarMomentType>::GetNodeObject(child) != nullptr)
                     {
                         return true;
                     }

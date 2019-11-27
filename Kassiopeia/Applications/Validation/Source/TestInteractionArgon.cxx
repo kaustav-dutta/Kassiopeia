@@ -78,7 +78,7 @@ using namespace std;
 //	for(unsigned int i = 0; i < POINTS; ++i) {
 ////			energy = ENERGY_LOW + pow(10, i * ENERGY_DELTA);
 //			angle = 180.0 / static_cast<double>(POINTS) * static_cast<double>(i);
-//			sigma = GetDiffXSecAt(energy, angle / 180.0 * KConst::Pi(), phaseShifts);
+//			sigma = GetDiffXSecAt(energy, angle / 180.0 * katrin::KConst::Pi(), phaseShifts);
 //
 //			x_inter[i] = angle;
 //			y_inter[i] = sigma * 1e20 * 1e31 * (1 + (energy - 10) * 10.0 / 90.0);
@@ -196,7 +196,7 @@ using namespace std;
 //	vector<double> delta = phaseShifts->at(anEnergy);
 //
 //	complex<double> sigma(0, 0);
-//	double k = anEnergy / KConst::C() / (KConst::Hbar() * 2 * KConst::Pi());
+//	double k = anEnergy / katrin::KConst::C() / (katrin::KConst::Hbar() * 2 * katrin::KConst::Pi());
 //
 //	for(unsigned int l = 0; l < 5; ++l) {
 //		sigma += complex<double>(2 * l + 1, 0) * (exp(complex<double>(0, 2 * delta[l])) - 1.0) * P(l, cos(anAngle));
@@ -267,7 +267,7 @@ int main() {
 
 double GetDiffXSectionH(double theta, double energy) {
 	double t = energy / 27.21;
-	double c = cos(theta * KConst::Pi() / 180);
+	double c = cos(theta * katrin::KConst::Pi() / 180);
 	double k = 2 * sqrt(t * (1 - c));
 	return 4 * (8 + k * k) * (8 + k * k) / pow(4 + k * k, 4);
 }
@@ -300,7 +300,7 @@ void AddArgonDiffXGraph(KIntCalculatorArgon* calc, TMultiGraph& mg, int dataColo
 
 	double t = 300 / 27.23;
 	double anAngle = 0;
-	double c = cos(anAngle * KConst::Pi() / 180);
+	double c = cos(anAngle * katrin::KConst::Pi() / 180);
 	double k = 2 * sqrt(t * (1 - c));
 	double s = 4.0 * (8.0 + k * k) * (8.0 + k * k) / pow(4.0 + k * k, 4.0);
 
@@ -372,10 +372,10 @@ void AddArgonDiffXGraph(KIntCalculatorArgon* calc, TMultiGraph& mg, int dataColo
 	graph->Draw("TRI2");
 
 	TGraph2D* p = new TGraph2D();
-	p->SetPoint(0, 400, 5, 34.3 * KConst::BohrRadiusSquared() * SHIFT);
-	p->SetPoint(1, 400, 20, 3.4 * KConst::BohrRadiusSquared() * SHIFT);
-	p->SetPoint(2, 400, 30, 1.01 * KConst::BohrRadiusSquared() * SHIFT);
-	p->SetPoint(3, 400, 50, 0.305 * KConst::BohrRadiusSquared() * SHIFT);
+	p->SetPoint(0, 400, 5, 34.3 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	p->SetPoint(1, 400, 20, 3.4 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	p->SetPoint(2, 400, 30, 1.01 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	p->SetPoint(3, 400, 50, 0.305 * katrin::KConst::BohrRadiusSquared() * SHIFT);
 
 //	p->Draw("same p0");
 
@@ -398,40 +398,40 @@ void AddArgonDiffXGraph(KIntCalculatorArgon* calc, TMultiGraph& mg, int dataColo
 	TGraph *g2 = new TGraph();
 	g2->SetMarkerStyle(8);
 	// 400 eV
-//	g2->SetPoint(0, 5, 34.3 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(1, 20, 3.4 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(2, 30, 1.01 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(3, 50, 0.305 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(4, 10, 16.5 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(5, 15, 7.42 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(6, 25, 1.72 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(7, 35, 0.688 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(8, 40, 0.515 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(9, 45, 0.394 * KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(0, 5, 34.3 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(1, 20, 3.4 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(2, 30, 1.01 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(3, 50, 0.305 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(4, 10, 16.5 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(5, 15, 7.42 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(6, 25, 1.72 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(7, 35, 0.688 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(8, 40, 0.515 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(9, 45, 0.394 * katrin::KConst::BohrRadiusSquared() * SHIFT);
 
 	// 500 eV
-//	g2->SetPoint(0, 5, 32.8 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(1, 10, 15.3 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(2, 15, 6.59 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(3, 20, 2.94 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(4, 25, 1.48 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(5, 30, 0.881 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(6, 35, 0.605 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(7, 40, 0.446 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(8, 45, 0.327 * KConst::BohrRadiusSquared() * SHIFT);
-//	g2->SetPoint(9, 50, 0.241 * KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(0, 5, 32.8 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(1, 10, 15.3 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(2, 15, 6.59 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(3, 20, 2.94 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(4, 25, 1.48 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(5, 30, 0.881 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(6, 35, 0.605 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(7, 40, 0.446 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(8, 45, 0.327 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+//	g2->SetPoint(9, 50, 0.241 * katrin::KConst::BohrRadiusSquared() * SHIFT);
 
 	// 2000 eV
-	g2->SetPoint(0, 5, 24.6 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(1, 10, 6.31 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(2, 15, 1.86 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(3, 20, 0.781 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(4, 25, 0.407 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(5, 30, 0.226 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(6, 35, 0.136 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(7, 40, 0.0930 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(8, 45, 0.0630 * KConst::BohrRadiusSquared() * SHIFT);
-	g2->SetPoint(9, 50, 0.0416 * KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(0, 5, 24.6 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(1, 10, 6.31 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(2, 15, 1.86 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(3, 20, 0.781 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(4, 25, 0.407 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(5, 30, 0.226 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(6, 35, 0.136 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(7, 40, 0.0930 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(8, 45, 0.0630 * katrin::KConst::BohrRadiusSquared() * SHIFT);
+	g2->SetPoint(9, 50, 0.0416 * katrin::KConst::BohrRadiusSquared() * SHIFT);
 
 //	g2->Draw("same p0");
 

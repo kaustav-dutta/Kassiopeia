@@ -23,7 +23,7 @@ namespace KGeoBag
   {
   public:
 	  KGGenericSpaceRandom() : KGShapeRandom() {}
-    virtual ~KGGenericSpaceRandom() {}
+    ~KGGenericSpaceRandom() override {}
 
     /**
      * \brief Visitor function to dice the point inside
@@ -31,7 +31,7 @@ namespace KGeoBag
      *
      * \brief aVolume
      */
-    virtual void VisitVolume(KGVolume* aVolume);
+    void VisitVolume(KGVolume* aVolume) override;
   };
 }
 

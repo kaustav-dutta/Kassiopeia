@@ -68,7 +68,7 @@ int main( int anArgc, char** anArgv )
     mainmsg( eNormal ) <<"Using magentic Field with name <"<<tMagFieldName<<">"<<eom;
 
     // initialize root
-    TApplication tApplication( "Test ZonalHarmonics", 0, NULL );
+    TApplication tApplication( "Test ZonalHarmonics", nullptr, nullptr );
 
     TCanvas tConvergenceCanvas( "convergence_canvas", "convergence radius" );
     TGraph tElCentralExpansionGraph;
@@ -78,7 +78,7 @@ int main( int anArgc, char** anArgv )
 //    TGraph tMagStrengthGraph;
 
 
-    KGElectrostaticBoundaryField* tElField =
+    auto* tElField =
             KToolbox::GetInstance().Get<KGElectrostaticBoundaryField>( tElFieldName );
     tElField->Initialize();
 

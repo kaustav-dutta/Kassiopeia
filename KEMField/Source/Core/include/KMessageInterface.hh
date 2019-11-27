@@ -16,7 +16,7 @@ namespace KEMField
   public:
     KMessage_KEMField();
     KMessage_KEMField(std::streambuf*);
-    virtual ~KMessage_KEMField();
+    ~KMessage_KEMField() override;
 
     void flush() { GetStream()<<katrin::reom; }
 

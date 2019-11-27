@@ -11,7 +11,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -21,7 +20,7 @@ namespace Kassiopeia
             fminPID( 0 ),
             fmaxPID( 0 ),
             fTemperature( 300. ),
-            fDecayProductGenerator( NULL )
+            fDecayProductGenerator( nullptr )
     {
         fCalculator = new RydbergCalculator();
     }
@@ -109,7 +108,7 @@ namespace Kassiopeia
             fStepNDecays = 1;
             fStepEnergyLoss = 0.;
 
-            if(fDecayProductGenerator != NULL)
+            if(fDecayProductGenerator != nullptr)
             {
                 KSParticleQueue tDecayProducts;
 
@@ -131,7 +130,7 @@ namespace Kassiopeia
 
     void KSIntDecayCalculatorFerencIonisation::SetDecayProductGenerator( KSGenerator* aGenerator )
     {
-        if( fDecayProductGenerator == NULL )
+        if( fDecayProductGenerator == nullptr )
         {
             fDecayProductGenerator = aGenerator;
             return;

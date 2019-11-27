@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSGenerator();
-            virtual ~KSGenerator();
+            ~KSGenerator() override;
 
         public:
             virtual void ExecuteGeneration( KSParticleQueue& aPrimaries ) = 0;

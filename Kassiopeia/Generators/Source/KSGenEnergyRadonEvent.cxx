@@ -18,9 +18,9 @@ namespace Kassiopeia
         fDoShakeOff( true ),
         fDoAuger( true ),
         fIsotope( 219 ),
-        fMyRelaxation( NULL ),
-        fMyShakeOff( NULL ),
-        fMyConversion( NULL )
+        fMyRelaxation( nullptr ),
+        fMyShakeOff( nullptr ),
+        fMyConversion( nullptr )
     {
     }
     KSGenEnergyRadonEvent::KSGenEnergyRadonEvent( const KSGenEnergyRadonEvent& aCopy ) :

@@ -74,7 +74,7 @@ namespace KEMField
   {
   public:
     KBinaryDataStreamer() {}
-    virtual ~KBinaryDataStreamer() {}
+    ~KBinaryDataStreamer() override {}
 
     void open(const std::string& fileName,const std::string& action="update");
     void close() { fFile.close(); }
@@ -90,11 +90,11 @@ namespace KEMField
 
     std::string GetFileSuffix() const { return ".kbd"; }
 
-    std::fstream& Stream() { return fFile; }
+    std::fstream& Stream() override { return fFile; }
     const std::fstream& Stream() const { return fFile; }
 
   protected:
-    KBinaryDataStreamer& Self() { return *this; }
+    KBinaryDataStreamer& Self() override { return *this; }
 
     std::fstream fFile;
   };

@@ -9,17 +9,17 @@ namespace KGeoBag
   {
   public:
     KGCubicSplineInterpolator() : KGInterpolator() {}
-    virtual ~KGCubicSplineInterpolator() {}
+    ~KGCubicSplineInterpolator() override {}
 
     void Initialize(DataSet& data, double yp0, double ypn);
-    virtual void Initialize(DataSet& data)
+    void Initialize(DataSet& data) override
     { Initialize(data,1.e30,1.e30); }
 
-    virtual int OutOfRange(double x) const;
+    int OutOfRange(double x) const override;
 
-    virtual double Range(unsigned int i) const;
+    double Range(unsigned int i) const override;
 
-    virtual double operator()(double x) const;
+    double operator()(double x) const override;
 
   private:
 

@@ -349,17 +349,21 @@ int main(int /*argc*/, char** /*argv*/)
   unsigned int nPrecision = 6;
 
   std::cout<<"Value\tMean\t\tSigma\t\tMax\t\tMin"<<std::endl;
-  for (unsigned int i=0;i<3;i++)
+  for (unsigned int i=0;i<3;i++){
     std::cout<<std::setprecision(nPrecision)<<std::scientific<<"A"<<index[i]<<"\t"<<deltaA_av[i]<<"\t"<<sqrt(deltaA2_av[i] - deltaA_av[i]*deltaA_av[i])<<"\t"<<deltaA_max[i]<<"\t"<<deltaA_min[i]<<std::endl;
-  for (unsigned int i=0;i<3;i++)
+  }
+  for (unsigned int i=0;i<3;i++){
     std::cout<<std::setprecision(nPrecision)<<std::scientific<<"B"<<index[i]<<"\t"<<deltaB_av[i]<<"\t"<<sqrt(deltaB2_av[i] - deltaB_av[i]*deltaB_av[i])<<"\t"<<deltaB_max[i]<<"\t"<<deltaB_min[i]<<std::endl;
-  for (unsigned int i=0;i<3;i++)
+  }
+  for (unsigned int i=0;i<3;i++){
     std::cout<<std::setprecision(nPrecision)<<std::scientific<<"E"<<index[i]<<"\t"<<deltaE_av[i]<<"\t"<<sqrt(deltaE2_av[i] - deltaE_av[i]*deltaE_av[i])<<"\t"<<deltaE_max[i]<<"\t"<<deltaE_min[i]<<std::endl;
-    std::cout<<std::setprecision(nPrecision)<<std::scientific<<"Phi"<<"\t"<<deltaPhi_av<<"\t"<<sqrt(deltaPhi2_av - deltaPhi_av*deltaPhi_av)<<"\t"<<deltaPhi_max<<"\t"<<deltaPhi_min<<std::endl;
-  for (unsigned int i=0;i<3;i++)
-    for (unsigned int j=0;j<3;j++)
+  } //should be correct like this? added {} for the for-loops, before that the lower line was indented but NOT inside the loop (intentionally??)
+  std::cout<<std::setprecision(nPrecision)<<std::scientific<<"Phi"<<"\t"<<deltaPhi_av<<"\t"<<sqrt(deltaPhi2_av - deltaPhi_av*deltaPhi_av)<<"\t"<<deltaPhi_max<<"\t"<<deltaPhi_min<<std::endl;
+  for (unsigned int i=0;i<3;i++){
+    for (unsigned int j=0;j<3;j++){
       std::cout<<std::setprecision(nPrecision)<<std::scientific<<"Bp"<<indexx[i][j]<<"\t"<<deltaBp_av(i,j)<<"\t"<<sqrt(deltaBp2_av(i,j) - deltaBp_av(i,j)*deltaBp_av(i,j))<<"\t"<<deltaBp_max(i,j)<<"\t"<<deltaBp_min(i,j)<<std::endl;
-
+    }
+  }
   return 0;
 }
 

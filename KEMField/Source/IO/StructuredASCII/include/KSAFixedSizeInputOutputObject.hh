@@ -23,7 +23,7 @@ class KSAFixedSizeInputOutputObject: public KSAInputOutputObject
 {
     public:
         KSAFixedSizeInputOutputObject(){;};
-        virtual ~KSAFixedSizeInputOutputObject(){;};
+        ~KSAFixedSizeInputOutputObject() override{;};
 
         //we probably ought to add a function which declares the size (number of items) in this classes
 

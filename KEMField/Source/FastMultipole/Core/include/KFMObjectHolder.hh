@@ -25,7 +25,7 @@ class KFMObjectHolder
 {
     public:
 
-        KFMObjectHolder():fObject(NULL){;};
+        KFMObjectHolder():fObject(nullptr){;};
 
         virtual ~KFMObjectHolder()
         {

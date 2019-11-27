@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSRunModifier();
-            virtual ~KSRunModifier();
+            ~KSRunModifier() override;
 
         public:
 

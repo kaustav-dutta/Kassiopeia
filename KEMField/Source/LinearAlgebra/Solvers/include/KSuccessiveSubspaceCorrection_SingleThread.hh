@@ -52,10 +52,10 @@ namespace KEMField
       SubMatrix(const KSquareMatrix<ValueType>& parentMatrix,
 		const KSimpleVector<unsigned int>& subspace) :
 	fSubspace(subspace), fParentMatrix(parentMatrix) {}
-      virtual ~SubMatrix() {}
+      ~SubMatrix() override {}
 
-      unsigned int Dimension() const { return fSubspace.Dimension(); }
-      const ValueType& operator()(unsigned int,unsigned int) const;
+      unsigned int Dimension() const override { return fSubspace.Dimension(); }
+      const ValueType& operator()(unsigned int,unsigned int) const override;
 
     private:
       const KSimpleVector<unsigned int>& fSubspace;
@@ -68,12 +68,12 @@ namespace KEMField
       SubVector(KVector<ValueType>& parentVector,
 		const KSimpleVector<unsigned int>& subspace) :
 	fSubspace(subspace), fParentVector(parentVector) {}
-      virtual ~SubVector() {}
+      ~SubVector() override {}
 
-      unsigned int Dimension() const { return fSubspace.Dimension(); }
+      unsigned int Dimension() const override { return fSubspace.Dimension(); }
 
-      const ValueType& operator()(unsigned int) const;
-      ValueType& operator[](unsigned int);
+      const ValueType& operator()(unsigned int) const override;
+      ValueType& operator[](unsigned int) override;
 
     private:
       const KSimpleVector<unsigned int>& fSubspace;

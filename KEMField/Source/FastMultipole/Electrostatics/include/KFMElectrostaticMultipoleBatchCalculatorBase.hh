@@ -29,10 +29,10 @@ class KFMElectrostaticMultipoleBatchCalculatorBase: public KFMElementMomentBatch
 
         KFMElectrostaticMultipoleBatchCalculatorBase():KFMElementMomentBatchCalculator()
         {
-            fContainer = NULL;
+            fContainer = nullptr;
         }
 
-        virtual ~KFMElectrostaticMultipoleBatchCalculatorBase(){;};
+        ~KFMElectrostaticMultipoleBatchCalculatorBase() override{;};
 
         void SetElectrostaticElementContainer(const KFMElectrostaticElementContainerBase<3,1>* container)
         {

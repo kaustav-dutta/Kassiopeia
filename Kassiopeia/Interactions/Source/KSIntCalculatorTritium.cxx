@@ -32,15 +32,15 @@ void KSIntCalculatorTritiumElastic::CalculateCrossSection( const double anEnergi
     const double s[ 14 ] =
     { 9.6, 13., 15., 12., 10., 7., 5.6, 3.3, 1.1, 0.9, 0.5, 0.36, 0.23, 0.15 };
 
-    const double emass = 1. / (KConst::Alpha() * KConst::Alpha());
-    const double a02 = KConst::BohrRadiusSquared();
+    const double emass = 1. / (katrin::KConst::Alpha() * katrin::KConst::Alpha());
+    const double a02 = katrin::KConst::BohrRadiusSquared();
 
     double gam, T;
-    T = anEnergie / ( 2 * KConst::ERyd_eV() );
+    T = anEnergie / ( 2 * katrin::KConst::ERyd_eV() );
     if( anEnergie >= 400. )
     {
         gam = (emass + T) / emass;
-        aCrossSection = gam * gam * KConst::Pi() / (2. * T) * (4.2106 - 1. / T) * a02;
+        aCrossSection = gam * gam * katrin::KConst::Pi() / (2. * T) * (4.2106 - 1. / T) * a02;
     }
     else
     {
@@ -61,7 +61,7 @@ void KSIntCalculatorTritiumElastic::CalculateCrossSection( const double anEnergi
 void KSIntCalculatorTritiumElastic::CalculateEloss( const double anEnergie, const double aTheta, double& anEloss )
 {
     double H2molmass = 69.e6;
-    double emass = 1. / (KConst::Alpha() * KConst::Alpha());
+    double emass = 1. / (katrin::KConst::Alpha() * katrin::KConst::Alpha());
     double cosTheta = cos( aTheta );
 
     anEloss = 2. * emass / (T2H2Ratio * H2molmass) * (1. - cosTheta) * anEnergie;
@@ -71,31 +71,31 @@ void KSIntCalculatorTritiumElastic::CalculateEloss( const double anEnergie, cons
     if( anEnergie < 1. )
     {
         double rndNr = sqrt (-2.* log(KRandom::GetInstance().Uniform()));
-        double rndAngle = 2. * KConst::Pi() * KRandom::GetInstance().Uniform();
+        double rndAngle = 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform();
 
         //generation of molecule velocity by maxwell-boltzmann distribution
         double Gx = rndNr * cos( rndAngle );
         double Gy = rndNr * sin( rndAngle );
         double Gz = sqrt( -2. * log( KRandom::GetInstance().Uniform() ) )
-                    * cos( 2. * KConst::Pi() * KRandom::GetInstance().Uniform() );
+                    * cos( 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform() );
 
         //thermal velocity of gas molecules
         double T = 300.; //gas temperature
-        double sigmaT = sqrt( KConst::kB() * T / (2. * KConst::M_prot_kg()) );
+        double sigmaT = sqrt( katrin::KConst::kB() * T / (2. * katrin::KConst::M_prot_kg()) );
         KThreeVector MolVelocity( sigmaT * Gx, sigmaT * Gy, sigmaT * Gz );
 
         //new electron velocity vector and energy:
 
         //assume electron velocity along z
-        KThreeVector ElVelocity( 0., 0., sqrt( 2. * anEnergie * KConst::Q() / KConst::M_el_kg() ) );
+        KThreeVector ElVelocity( 0., 0., sqrt( 2. * anEnergie * katrin::KConst::Q() / katrin::KConst::M_el_kg() ) );
         //relative velocity electron-molecule
         KThreeVector RelativeVelocity = ElVelocity - MolVelocity;
         //transformation into CMS
         KThreeVector CMSVelocity = (
-            KConst::M_el_kg() / (KConst::M_el_kg()
-            + KConst::M_prot_kg()) * ElVelocity
-            + 2. * KConst::M_prot_kg() * MolVelocity
-                 / (KConst::M_el_kg() + KConst::M_prot_kg())
+            katrin::KConst::M_el_kg() / (katrin::KConst::M_el_kg()
+            + katrin::KConst::M_prot_kg()) * ElVelocity
+            + 2. * katrin::KConst::M_prot_kg() * MolVelocity
+                 / (katrin::KConst::M_el_kg() + katrin::KConst::M_prot_kg())
            );
 
         //generation of random direction
@@ -105,10 +105,10 @@ void KSIntCalculatorTritiumElastic::CalculateEloss( const double anEnergie, cons
                            );
 
         //new electron velocity
-        ElVelocity = KConst::M_prot_kg() / (KConst::M_prot_kg() + KConst::M_el_kg())
+        ElVelocity = katrin::KConst::M_prot_kg() / (katrin::KConst::M_prot_kg() + katrin::KConst::M_el_kg())
              * RelativeVelocity.Magnitude() * Random.Unit() + CMSVelocity;
 
-        anEloss = anEnergie - KConst::M_el_kg() / (2. * KConst::Q()) * ElVelocity.Magnitude() * ElVelocity.Magnitude();
+        anEloss = anEnergie - katrin::KConst::M_el_kg() / (2. * katrin::KConst::Q()) * ElVelocity.Magnitude() * ElVelocity.Magnitude();
     }
     return;
 }

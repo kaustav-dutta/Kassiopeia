@@ -64,11 +64,11 @@ namespace katrin
                             fValue( aValue )
                     {
                     }
-                    virtual ~ReferringMemberFunction()
+                    ~ReferringMemberFunction() override
                     {
                     }
 
-                    virtual double Evaluate( double anArgument )
+                    double Evaluate( double anArgument ) override
                     {
                         double tResult;
                         (fObject->*fMember)( anArgument, tResult );
@@ -93,11 +93,11 @@ namespace katrin
                             fValue( aValue )
                     {
                     }
-                    virtual ~ReferringConstMemberFunction()
+                    ~ReferringConstMemberFunction() override
                     {
                     }
 
-                    virtual double Evaluate( double anArgument )
+                    double Evaluate( double anArgument ) override
                     {
                         double tResult;
                         (fObject->*fMember)( anArgument, tResult );
@@ -122,11 +122,11 @@ namespace katrin
                             fValue( aValue )
                     {
                     }
-                    virtual ~ReturningMemberFunction()
+                    ~ReturningMemberFunction() override
                     {
                     }
 
-                    virtual double Evaluate( double anArgument )
+                    double Evaluate( double anArgument ) override
                     {
                         double tResult;
                         tResult = (fObject->*fMember)( anArgument );
@@ -151,11 +151,11 @@ namespace katrin
                             fValue( aValue )
                     {
                     }
-                    virtual ~ReturningConstMemberFunction()
+                    ~ReturningConstMemberFunction() override
                     {
                     }
 
-                    virtual double Evaluate( double anArgument )
+                    double Evaluate( double anArgument ) override
                     {
                         double tResult;
                         tResult = (fObject->*fMember)( anArgument );

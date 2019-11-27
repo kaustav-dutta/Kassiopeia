@@ -14,10 +14,10 @@ namespace Kassiopeia
         public:
             KSCommand();
             KSCommand( const KSCommand& aCopy );
-            virtual ~KSCommand();
+            ~KSCommand() override;
 
         public:
-            virtual KSCommand* Clone() const = 0;
+            KSCommand* Clone() const override = 0;
 
         public:
             typedef enum
@@ -52,8 +52,8 @@ namespace Kassiopeia
     template< >
     inline bool KSObject::Is< KSCommand >()
     {
-        KSCommand* tCommand = dynamic_cast< KSCommand* >( this );
-        if( tCommand != NULL )
+        auto* tCommand = dynamic_cast< KSCommand* >( this );
+        if( tCommand != nullptr )
         {
             return true;
         }
@@ -63,8 +63,8 @@ namespace Kassiopeia
     template< >
     inline bool KSObject::Is< KSCommand >() const
     {
-        const KSCommand* tCommand = dynamic_cast< const KSCommand* >( this );
-        if( tCommand != NULL )
+        const auto* tCommand = dynamic_cast< const KSCommand* >( this );
+        if( tCommand != nullptr )
         {
             return true;
         }
@@ -74,23 +74,23 @@ namespace Kassiopeia
     template< >
     inline KSCommand* KSObject::As< KSCommand >()
     {
-        KSCommand* tCommand = dynamic_cast< KSCommand* >( this );
-        if( tCommand != NULL )
+        auto* tCommand = dynamic_cast< KSCommand* >( this );
+        if( tCommand != nullptr )
         {
             return tCommand;
         }
-        return NULL;
+        return nullptr;
     }
 
     template< >
     inline const KSCommand* KSObject::As< KSCommand >() const
     {
-        const KSCommand* tCommand = dynamic_cast< const KSCommand* >( this );
-        if( tCommand != NULL )
+        const auto* tCommand = dynamic_cast< const KSCommand* >( this );
+        if( tCommand != nullptr )
         {
             return tCommand;
         }
-        return NULL;
+        return nullptr;
     }
 
 }

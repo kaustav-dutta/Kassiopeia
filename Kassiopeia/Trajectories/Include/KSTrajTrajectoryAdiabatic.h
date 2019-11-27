@@ -19,8 +19,8 @@ namespace Kassiopeia
         public:
             KSTrajTrajectoryAdiabatic();
             KSTrajTrajectoryAdiabatic( const KSTrajTrajectoryAdiabatic& aCopy );
-            KSTrajTrajectoryAdiabatic* Clone() const;
-            virtual ~KSTrajTrajectoryAdiabatic();
+            KSTrajTrajectoryAdiabatic* Clone() const override;
+            ~KSTrajTrajectoryAdiabatic() override;
 
         public:
             void SetIntegrator( KSTrajAdiabaticIntegrator* anIntegrator );
@@ -58,17 +58,17 @@ namespace Kassiopeia
             double GetCyclotronFraction() const {return fCyclotronFraction;};
 
         public:
-            void Reset();
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void Reset() override;
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const override;
 
             //********************
             //exact term interface
             //********************
 
         public:
-            virtual void Differentiate(double aTime, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const;
+            void Differentiate(double aTime, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const override;
 
         private:
             KSTrajAdiabaticParticle fInitialParticle;

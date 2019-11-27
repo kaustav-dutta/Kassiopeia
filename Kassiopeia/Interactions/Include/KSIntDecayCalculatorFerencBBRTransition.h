@@ -17,14 +17,14 @@ namespace Kassiopeia
     public:
         KSIntDecayCalculatorFerencBBRTransition();
         KSIntDecayCalculatorFerencBBRTransition( const KSIntDecayCalculatorFerencBBRTransition& aCopy );
-        KSIntDecayCalculatorFerencBBRTransition* Clone() const;
-        virtual ~KSIntDecayCalculatorFerencBBRTransition();
+        KSIntDecayCalculatorFerencBBRTransition* Clone() const override;
+        ~KSIntDecayCalculatorFerencBBRTransition() override;
 
     public:
-        void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime );
+        void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime ) override;
         void ExecuteInteraction( const KSParticle& anInitialParticle,
                                  KSParticle& aFinalParticle,
-                                 KSParticleQueue& aSecondaries );
+                                 KSParticleQueue& aSecondaries ) override;
 
 
     public:
@@ -34,7 +34,7 @@ namespace Kassiopeia
         K_SET_GET( double, Temperature )
 
     protected:
-        virtual void InitializeComponent();
+        void InitializeComponent() override;
 
     private:
         int fLastn;

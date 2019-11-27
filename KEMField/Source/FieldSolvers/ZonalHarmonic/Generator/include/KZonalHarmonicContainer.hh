@@ -21,7 +21,7 @@ namespace KEMField
     typedef std::vector<KZonalHarmonicContainer<Basis>*> ZonalHarmonicContainerVector;
 
     KZonalHarmonicContainer(ElementContainer& elementContainer,
-			    KZonalHarmonicParameters* parameters=NULL);
+			    KZonalHarmonicParameters* parameters=nullptr);
 
     virtual ~KZonalHarmonicContainer();
 
@@ -84,7 +84,7 @@ namespace KEMField
 	KZHLegendreCoefficients::GetInstance()->InitializeLegendrePolynomialArrays((c.fParameters->GetNCentralCoefficients() > c.fParameters->GetNRemoteCoefficients() ? c.fParameters->GetNCentralCoefficients() : c.fParameters->GetNRemoteCoefficients()));
 
 	// recreate the subcontainers with new parameters
-	for (typename ZonalHarmonicContainerVector::iterator it=c.fSubContainers.begin();it!=c.fSubContainers.end();++it)
+	for (auto it=c.fSubContainers.begin();it!=c.fSubContainers.end();++it)
 	  delete * it;
 	c.fSubContainers.clear();
 	c.ConstructSubContainers();
@@ -98,7 +98,7 @@ namespace KEMField
       c.fCentralSourcePoints.clear();
       for (unsigned int i=0;i<nElements;i++)
       {
-	KZonalHarmonicSourcePoint* sP = new KZonalHarmonicSourcePoint();
+	auto* sP = new KZonalHarmonicSourcePoint();
 	s >> *sP;
 	c.fCentralSourcePoints.push_back(sP);
       }
@@ -110,7 +110,7 @@ namespace KEMField
       c.fRemoteSourcePoints.clear();
       for (unsigned int i=0;i<nElements;i++)
       {
-	KZonalHarmonicSourcePoint* sP = new KZonalHarmonicSourcePoint();
+	auto* sP = new KZonalHarmonicSourcePoint();
 	s >> *sP;
 	c.fRemoteSourcePoints.push_back(sP);
       }
@@ -179,21 +179,21 @@ namespace KEMField
   template <class Basis>
   KZonalHarmonicContainer<Basis>::~KZonalHarmonicContainer()
   {
-    for (SourcePointVector::iterator it=fCentralSourcePoints.begin();it!=fCentralSourcePoints.end();++it)
+    for (auto it=fCentralSourcePoints.begin();it!=fCentralSourcePoints.end();++it)
       delete * it;
 
-    for (SourcePointVector::iterator it=fRemoteSourcePoints.begin();it!=fRemoteSourcePoints.end();++it)
+    for (auto it=fRemoteSourcePoints.begin();it!=fRemoteSourcePoints.end();++it)
       delete * it;
 
     if (fHead)
     {
       delete fParameters;
-      fParameters = 0;
+      fParameters = nullptr;
     }
     else
       fElementContainer.~ElementContainer();
 
-    for (typename std::vector<KZonalHarmonicContainer<Basis>*>::iterator it=fSubContainers.begin();it!=fSubContainers.end();++it)
+    for (auto it=fSubContainers.begin();it!=fSubContainers.end();++it)
       delete * it;
   }
 
@@ -254,7 +254,7 @@ namespace KEMField
 
     if (level==-1)
     {
-      for (typename ZonalHarmonicContainerVector::iterator it=fSubContainers.begin();it!=fSubContainers.end();++it)
+      for (auto it=fSubContainers.begin();it!=fSubContainers.end();++it)
 	delete * it;
       fSubContainers.clear();
       ConstructSubContainers();
@@ -314,7 +314,7 @@ namespace KEMField
     {
       KEMField::cout<<"Computing source points for "<<fSubContainers.size()<<" subcontainers at level "<<level+1<<KEMField::endl;
 
-      for (typename ZonalHarmonicContainerVector::iterator it=fSubContainers.begin();it!=fSubContainers.end();++it)
+      for (auto it=fSubContainers.begin();it!=fSubContainers.end();++it)
 	(*it)->ComputeCoefficients(level+1);
     }
   }

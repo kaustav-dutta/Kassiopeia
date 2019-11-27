@@ -48,7 +48,7 @@ class KFMObjectContainer
             }
             else
             {
-                return NULL;
+                return nullptr;
             }
         }
 
@@ -60,7 +60,7 @@ class KFMObjectContainer
             }
             else
             {
-                return NULL;
+                return nullptr;
             }
         }
 

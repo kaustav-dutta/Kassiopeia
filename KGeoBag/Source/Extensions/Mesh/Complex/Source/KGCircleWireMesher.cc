@@ -13,7 +13,7 @@ namespace KGeoBag
         const double wireDiameter = circleWireSurface->GetObject()->GetDiameter();
 
         // discretize circle: calculate angle to mesh polygon
-        const double circleAngle = 2 * KConst::Pi() / nDisc;
+        const double circleAngle = 2 * katrin::KConst::Pi() / nDisc;
         KThreeVector startPointCircle, endPointCircle;
 
         startPointCircle.SetComponents(rCircle * cos(circleAngle),
@@ -27,7 +27,7 @@ namespace KGeoBag
             // add element
             KGMeshWire singleWireCircle(startPointCircle, endPointCircle,
                     wireDiameter);
-            KGMeshWire* circle = new KGMeshWire(singleWireCircle);
+            auto* circle = new KGMeshWire(singleWireCircle);
             AddElement(circle);
 
             startPointCircle = endPointCircle;

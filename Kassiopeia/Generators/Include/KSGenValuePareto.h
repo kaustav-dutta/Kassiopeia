@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
             KSGenValuePareto();
             KSGenValuePareto( const KSGenValuePareto& aCopy );
-            KSGenValuePareto* Clone() const;
-            virtual ~KSGenValuePareto();
+            KSGenValuePareto* Clone() const override;
+            ~KSGenValuePareto() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, Slope )
@@ -29,8 +29,8 @@ namespace Kassiopeia
             K_SET_GET( double, ValueMax )
 
         public:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         protected:
             double fValueParetoMin;

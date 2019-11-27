@@ -10,8 +10,8 @@ namespace KEMField
 
 KFMElectrostaticFieldMapper_SingleThread::KFMElectrostaticFieldMapper_SingleThread()
 {
-    fTree = NULL;
-    fContainer = NULL;
+    fTree = nullptr;
+    fContainer = nullptr;
 
     fDegree = 0;
     fTopLevelDivisions = 0;

@@ -25,7 +25,7 @@ namespace KEMField
     typedef KBasisTypes AcceptedTypes;
 
     KBasisVisitor() {}
-    virtual ~KBasisVisitor() {}
+    ~KBasisVisitor() override {}
   };
 
 /**
@@ -46,7 +46,7 @@ namespace KEMField
     typedef KBoundaryTypes AcceptedTypes;
 
     KBoundaryVisitor() {}
-    virtual ~KBoundaryVisitor() {}
+    ~KBoundaryVisitor() override {}
   };
 
 /**
@@ -67,7 +67,7 @@ namespace KEMField
     typedef KShapeTypes AcceptedTypes;
 
     KShapeVisitor() {}
-    virtual ~KShapeVisitor() {}
+    ~KShapeVisitor() override {}
   };
 }
 

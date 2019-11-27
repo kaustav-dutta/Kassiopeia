@@ -53,20 +53,20 @@ class KIterativeKrylovStateReader: public KIterativeSolver<ValueType>::Visitor
                 fLabels = labels;
             };
 
-        virtual ~KIterativeKrylovStateReader(){};
+        ~KIterativeKrylovStateReader() override{};
 
         void SetVerbosity(int v){fVerbosity = v;}
 
-        virtual void Initialize(KIterativeSolver<ValueType>& solver)
+        void Initialize(KIterativeSolver<ValueType>& solver) override
         {
-            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     ParallelTraitState<ValueType> trait_state;
                     unsigned int n_states = 0;
@@ -114,8 +114,8 @@ class KIterativeKrylovStateReader: public KIterativeSolver<ValueType>::Visitor
             }
         };
 
-        virtual void Visit(KIterativeSolver<ValueType>&){};
-        virtual void Finalize(KIterativeSolver<ValueType>&){};
+        void Visit(KIterativeSolver<ValueType>&) override{};
+        void Finalize(KIterativeSolver<ValueType>&) override{};
 
     protected:
 

@@ -23,7 +23,7 @@ namespace KGeoBag
     KGWrappedSurface(XObject* anObject);
     KGWrappedSurface(const std::shared_ptr<XObject>& anObject);
     KGWrappedSurface(const KGWrappedSurface& aCopy);
-    virtual ~KGWrappedSurface();
+    ~KGWrappedSurface() override;
 
   public:
     void SetObject(std::shared_ptr<XObject> anObject);
@@ -31,11 +31,11 @@ namespace KGeoBag
     const std::shared_ptr<XObject> GetObject() const;
 
   public:
-    virtual void AreaInitialize() const;
-    virtual void AreaAccept(KGVisitor* aVisitor);
-    virtual bool AreaAbove(const KThreeVector& aPoint) const;
-    virtual KThreeVector AreaPoint(const KThreeVector& aPoint) const;
-    virtual KThreeVector AreaNormal(const KThreeVector& aPoint) const;
+    void AreaInitialize() const override;
+    void AreaAccept(KGVisitor* aVisitor) override;
+    bool AreaAbove(const KThreeVector& aPoint) const override;
+    KThreeVector AreaPoint(const KThreeVector& aPoint) const override;
+    KThreeVector AreaNormal(const KThreeVector& aPoint) const override;
 
   protected:
     mutable std::shared_ptr<XObject> fObject;
@@ -102,8 +102,8 @@ namespace KGeoBag
   template<class XObject>
   void KGWrappedSurface<XObject>::AreaAccept(KGVisitor* aVisitor)
   {
-    typename KGWrappedSurface<XObject>::Visitor* tWrappedSurfaceVisitor = dynamic_cast<typename KGWrappedSurface<XObject>::Visitor*>(aVisitor);
-    if(tWrappedSurfaceVisitor != NULL)
+    auto* tWrappedSurfaceVisitor = dynamic_cast<typename KGWrappedSurface<XObject>::Visitor*>(aVisitor);
+    if(tWrappedSurfaceVisitor != nullptr)
     {
       tWrappedSurfaceVisitor->VisitWrappedSurface(this);
       return;
@@ -135,7 +135,7 @@ namespace KGeoBag
   KThreeVector KGWrappedSurface<XObject>::AreaNormal(const KThreeVector& aQuery) const
   {
     KThreeVector tNormal;
-    fObject->DistanceTo((const double*) (aQuery), NULL, (double*) (tNormal));
+    fObject->DistanceTo((const double*) (aQuery), nullptr, (double*) (tNormal));
 
     return tNormal;
   }

@@ -275,13 +275,13 @@ namespace KEMField
     int boundaryPolicy = IndexOf<KBoundaryTypes,BoundaryPolicy>::value;
     int shapePolicy = IndexOf<KShapeTypes,ShapePolicy>::value;
     
-    for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy &&
 	    (*it)->operator[](0)->GetID().ShapeID == shapePolicy)
 	  if ((*it)->size()>i)
 	    return (*it)->at(i);
-    return NULL;
+    return nullptr;
   }
 
   template <class Policy>
@@ -292,7 +292,7 @@ namespace KEMField
     int shapePolicy = IndexOf<KShapeTypes,Policy>::value;
 
     unsigned int j = i;
-    for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
     {
       if ((*it)->size()!=0)
       {
@@ -311,7 +311,7 @@ namespace KEMField
 	}
       }
     }
-    return NULL;
+    return nullptr;
   }
 
   template <class BoundaryPolicy, class ShapePolicy>
@@ -320,7 +320,7 @@ namespace KEMField
     int boundaryPolicy = IndexOf<KBoundaryTypes,BoundaryPolicy>::value;
     int shapePolicy = IndexOf<KShapeTypes,ShapePolicy>::value;
 
-    for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy &&
 	    (*it)->operator[](0)->GetID().ShapeID == shapePolicy)
@@ -336,7 +336,7 @@ namespace KEMField
     int shapePolicy = IndexOf<KShapeTypes,Policy>::value;
 
     unsigned int i = 0;
-    for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BasisID == basisPolicy ||
 	    (*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy ||
@@ -400,14 +400,14 @@ namespace KEMField
     int boundaryPolicy = IndexOf<KBoundaryTypes,BoundaryPolicy>::value;
     int shapePolicy = IndexOf<KShapeTypes,ShapePolicy>::value;
 
-    for (KSurfaceDataIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy &&
 	    (*it)->operator[](0)->GetID().ShapeID == shapePolicy)
 	{
 	  if (fIsOwner)
 	  {
-	    for (KSurfaceArrayIt arrayIt=(*it)->begin();arrayIt!=(*it)->end();++arrayIt)
+	    for (auto arrayIt=(*it)->begin();arrayIt!=(*it)->end();++arrayIt)
 	      delete *arrayIt;
 	  }
 	  (*it)->clear();
@@ -421,7 +421,7 @@ namespace KEMField
     int boundaryPolicy = IndexOf<KBoundaryTypes,Policy>::value;
     int shapePolicy = IndexOf<KShapeTypes,Policy>::value;
 
-    for (KSurfaceDataIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BasisID == basisPolicy ||
 	    (*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy ||
@@ -429,7 +429,7 @@ namespace KEMField
 	{
 	  if (fIsOwner)
 	  {
-	    for (KSurfaceArrayIt arrayIt=(*it)->begin();arrayIt!=(*it)->end();++arrayIt)
+	    for (auto arrayIt=(*it)->begin();arrayIt!=(*it)->end();++arrayIt)
 	      delete *arrayIt;
 	  }
 	  (*it)->clear();
@@ -444,9 +444,9 @@ namespace KEMField
 
     if (fPartialSurfaceData[boundaryPolicy][shapePolicy].Null())
     {
-      typename KSurfaceContainer::KSurfaceData* data = new KSurfaceContainer::KSurfaceData();
+      auto* data = new KSurfaceContainer::KSurfaceData();
 
-      for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+      for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
 	if ((*it)->size()!=0)
 	  if ((*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy &&
 	      (*it)->operator[](0)->GetID().ShapeID == shapePolicy)
@@ -471,9 +471,9 @@ namespace KEMField
 
     if (fPartialSurfaceData[boundaryPolicy][shapePolicy].Null())
     {
-      typename KSurfaceContainer::KSurfaceData* data = new KSurfaceContainer::KSurfaceData();
+      auto* data = new KSurfaceContainer::KSurfaceData();
 
-      for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+      for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
 	if ((*it)->size()!=0)
 	  if ((*it)->operator[](0)->GetID().BasisID == basisPolicy ||
 	      (*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy ||
@@ -518,7 +518,7 @@ namespace KEMField
     s << (unsigned int)(anArray.size());
     s << anArray.at(0)->GetID();
 
-    for (typename KSurfaceContainer::KSurfaceArrayCIt it = anArray.begin();it!=anArray.end();++it)
+    for (auto it = anArray.begin();it!=anArray.end();++it)
       s << *(*it);
 
     s.PostStreamOutAction(anArray);
@@ -535,7 +535,7 @@ namespace KEMField
 
     for (unsigned int i=0;i<dataSize;i++)
     {
-      typename KSurfaceContainer::KSurfaceArray* anArray = new typename KSurfaceContainer::KSurfaceArray();
+      auto* anArray = new typename KSurfaceContainer::KSurfaceArray();
       s>>*anArray;
       aData.push_back(anArray);
     }
@@ -551,7 +551,7 @@ namespace KEMField
 
     s << (unsigned int)(aData.size());
 
-    for (typename KSurfaceContainer::KSurfaceDataCIt it = aData.begin();it!=aData.end();++it)
+    for (auto it = aData.begin();it!=aData.end();++it)
       s<<*(*it);
 
     s.PostStreamOutAction(aData);

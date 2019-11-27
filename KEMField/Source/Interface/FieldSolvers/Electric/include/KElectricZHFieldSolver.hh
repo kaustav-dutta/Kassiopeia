@@ -21,7 +21,7 @@ class KElectricZHFieldSolver : public KElectricFieldSolver
 {
 public:
 	KElectricZHFieldSolver();
-	virtual ~KElectricZHFieldSolver();
+	~KElectricZHFieldSolver() override;
 
 	bool UseCentralExpansion( const KPosition& P );
 	bool UseRemoteExpansion( const KPosition& P );
@@ -35,11 +35,11 @@ public:
 		return fParameters;
 	}
 private:
-	void InitializeCore( KSurfaceContainer& container );
+	void InitializeCore( KSurfaceContainer& container ) override;
 
-	double PotentialCore( const KPosition& P ) const;
-	KThreeVector ElectricFieldCore( const KPosition& P ) const;
-    std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P) const;
+	double PotentialCore( const KPosition& P ) const override;
+	KThreeVector ElectricFieldCore( const KPosition& P ) const override;
+    std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P) const override;
 
 	KEBIPolicy fIntegratorPolicy;
 	KElectrostaticBoundaryIntegrator fIntegrator;

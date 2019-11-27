@@ -90,11 +90,9 @@ namespace Kassiopeia
         return;
     }
 
-    void KSTrajControlLength::Calculate( const KSTrajMagneticParticle& aParticle, double& aValue )
+    void KSTrajControlLength::Calculate( const KSTrajMagneticParticle& /*aParticle*/, double& aValue )
     {
-        double tLongVelocity = aParticle.GetLongVelocity();
-        double tTransVelocity = aParticle.GetTransVelocity();
-        double tSpeed = sqrt( tLongVelocity * tLongVelocity + tTransVelocity * tTransVelocity );
+        double tSpeed = 1.;  // magnetic particles have no defined velocity
         aValue = fLength / tSpeed;
         return;
     }

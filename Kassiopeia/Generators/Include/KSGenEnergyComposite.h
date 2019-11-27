@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenEnergyComposite();
             KSGenEnergyComposite( const KSGenEnergyComposite& aCopy );
-            KSGenEnergyComposite* Clone() const;
-            virtual ~KSGenEnergyComposite();
+            KSGenEnergyComposite* Clone() const override;
+            ~KSGenEnergyComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaries );
+            void Dice( KSParticleQueue* aPrimaries ) override;
 
         public:
             void SetEnergyValue( KSGenValue* anEnergyValue );
@@ -27,8 +27,8 @@ namespace Kassiopeia
             KSGenValue* fEnergyValue;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 }
 

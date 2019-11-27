@@ -4,7 +4,7 @@ namespace KGeoBag
 {
   void KGRotatedSurfaceIntersectorInitializer::VisitRotatedSurface(const KGRotatedSurface* rotatedSurface)
   {
-    KGRotatedSurfaceIntersector* intersector =
+    auto* intersector =
       new KGRotatedSurfaceIntersector(*rotatedSurface);
 
     AssignIntersector(intersector);

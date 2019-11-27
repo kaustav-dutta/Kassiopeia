@@ -23,7 +23,7 @@ namespace katrin
         if( anAttribute->GetName() == "node" )
         {
             KGSpace* tSource = KGInterface::GetInstance()->RetrieveSpace( anAttribute->AsReference< std::string >() );
-            if( tSource == NULL )
+            if( tSource == nullptr )
             {
                 return false;
             }
@@ -40,7 +40,7 @@ namespace katrin
         if( anAttribute->GetName() == "tree" )
         {
             KGSpace* tSource = KGInterface::GetInstance()->RetrieveSpace( anAttribute->AsReference< std::string >() );
-            if( tSource == NULL )
+            if( tSource == nullptr )
             {
                 return false;
             }

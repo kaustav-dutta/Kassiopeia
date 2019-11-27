@@ -11,7 +11,7 @@ namespace KGeoBag
     {
         public:
             KGBoxSpace();
-            virtual ~KGBoxSpace();
+            ~KGBoxSpace() override;
 
         public:
             void XA( const double& aXA );
@@ -71,8 +71,8 @@ namespace KGeoBag
             };
 
         public:
-            virtual void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const;
-            virtual void VolumeAccept( KGVisitor* aVisitor );
+            void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const override;
+            void VolumeAccept( KGVisitor* aVisitor ) override;
 
     };
 

@@ -24,7 +24,7 @@ class KGElectrostaticBoundaryField :
 {
 public:
 	KGElectrostaticBoundaryField();
-	virtual ~KGElectrostaticBoundaryField();
+	~KGElectrostaticBoundaryField() override;
 	enum Symmetry { NoSymmetry , AxialSymmetry , DiscreteAxialSymmetry };
 
 	void SetMinimumElementArea( const double& aArea);
@@ -39,9 +39,9 @@ public:
 
 
 private:
-	virtual double PotentialCore(const KPosition& P) const;
-	virtual KThreeVector ElectricFieldCore(const KPosition& P) const;
-	virtual void InitializeCore();
+	double PotentialCore(const KPosition& P) const override;
+	KThreeVector ElectricFieldCore(const KPosition& P) const override;
+	void InitializeCore() override;
 
 	void ConfigureSurfaceContainer();
 

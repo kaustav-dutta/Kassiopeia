@@ -1,14 +1,14 @@
 #include "KSGenSpinComposite.h"
 #include "KSGeneratorsMessage.h"
 
-#include <math.h>
+#include <cmath>
 
 namespace Kassiopeia
 {
 
     KSGenSpinComposite::KSGenSpinComposite() :
-            fThetaValue( NULL ),
-            fPhiValue( NULL ),
+            fThetaValue( nullptr ),
+            fPhiValue( nullptr ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
             fZAxis( KThreeVector::sZUnit )
@@ -55,17 +55,17 @@ namespace Kassiopeia
 
         for( tThetaValueIt = tThetaValues.begin(); tThetaValueIt != tThetaValues.end(); tThetaValueIt++ )
         {
-            tThetaValue = (KConst::Pi() / 180.) * (*tThetaValueIt);
+            tThetaValue = (katrin::KConst::Pi() / 180.) * (*tThetaValueIt);
             for( tPhiValueIt = tPhiValues.begin(); tPhiValueIt != tPhiValues.end(); tPhiValueIt++ )
             {
-                tPhiValue = (KConst::Pi() / 180.) * (*tPhiValueIt);
+                tPhiValue = (katrin::KConst::Pi() / 180.) * (*tPhiValueIt);
                 for( tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); tParticleIt++ )
                 {
                     tParticle = new KSParticle( **tParticleIt );
                     tSpin = sin( tThetaValue ) * cos( tPhiValue ) * fXAxis + sin( tThetaValue ) * sin( tPhiValue ) * fYAxis + cos( tThetaValue ) * fZAxis;
                     tParticle->SetInitialSpin( tSpin );
                     KThreeVector LocalZ = tParticle->GetMagneticField() / tParticle->GetMagneticField().Magnitude();
-                    KThreeVector LocalX  ( LocalZ.Z() - LocalZ.Y(), LocalZ.X() - LocalZ.Z(), LocalZ.Y() - LocalZ.X() );
+                    KThreeVector LocalX  ( LocalZ.Z(), 0.,  - LocalZ.X() );
                     LocalX = LocalX / LocalX.Magnitude();
                     KThreeVector LocalY = LocalZ.Cross( LocalX );
 
@@ -81,7 +81,7 @@ namespace Kassiopeia
                         }
                         else
                         {
-                            tParticle->SetSpinAngle( KConst::Pi() + acos( tSpin.Dot( LocalX ) / tSpin.Magnitude() / sqrt( 1 - tParticle->GetAlignedSpin() * tParticle->GetAlignedSpin() ) ) );
+                            tParticle->SetSpinAngle( katrin::KConst::Pi() + acos( tSpin.Dot( LocalX ) / tSpin.Magnitude() / sqrt( 1 - tParticle->GetAlignedSpin() * tParticle->GetAlignedSpin() ) ) );
                         }
                     }
                     else
@@ -106,7 +106,7 @@ namespace Kassiopeia
 
     void KSGenSpinComposite::SetThetaValue( KSGenValue* anThetaValue )
     {
-        if( fThetaValue == NULL )
+        if( fThetaValue == nullptr )
         {
             fThetaValue = anThetaValue;
             return;
@@ -118,7 +118,7 @@ namespace Kassiopeia
     {
         if( fThetaValue == anThetaValue )
         {
-            fThetaValue = NULL;
+            fThetaValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear theta value <" << anThetaValue->GetName() << "> from composite spin creator <" << this->GetName() << ">" << eom;
@@ -127,7 +127,7 @@ namespace Kassiopeia
 
     void KSGenSpinComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        if( fPhiValue == NULL )
+        if( fPhiValue == nullptr )
         {
             fPhiValue = aPhiValue;
             return;
@@ -139,7 +139,7 @@ namespace Kassiopeia
     {
         if( fPhiValue == anPhiValue )
         {
-            fPhiValue = NULL;
+            fPhiValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear phi value <" << anPhiValue->GetName() << "> from composite spin creator <" << this->GetName() << ">" << eom;
@@ -164,11 +164,11 @@ namespace Kassiopeia
 
     void KSGenSpinComposite::InitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Initialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Initialize();
         }
@@ -176,11 +176,11 @@ namespace Kassiopeia
     }
     void KSGenSpinComposite::DeinitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Deinitialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Deinitialize();
         }

@@ -89,10 +89,10 @@ int main(int argc, char* argv[])
   }
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
-    {"name", required_argument, 0, 'n'},
-    {"masked_bits", required_argument, 0, 'm'},
-    {"omit_attribute", required_argument, 0, 'o'},
+    {"help", no_argument, nullptr, 'h'},
+    {"name", required_argument, nullptr, 'n'},
+    {"masked_bits", required_argument, nullptr, 'm'},
+    {"omit_attribute", required_argument, nullptr, 'o'},
   };
 
   static const char *optString = "hn:m:o:";
@@ -101,8 +101,8 @@ int main(int argc, char* argv[])
   KSurfaceContainer surfaceContainer;
   std::string name = KSurfaceContainer::Name();
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help

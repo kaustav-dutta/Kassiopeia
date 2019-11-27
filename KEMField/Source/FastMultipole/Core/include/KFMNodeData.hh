@@ -30,7 +30,7 @@ class KFMNodeData: public KSAFixedSizeInputOutputObject
             fID = -1;
             fChildIDs.resize(0);
         };
-        virtual ~KFMNodeData(){};
+        ~KFMNodeData() override{};
 
         unsigned int GetID() const {return fID;};
         void SetID(const unsigned int& id){fID = id;};
@@ -46,19 +46,19 @@ class KFMNodeData: public KSAFixedSizeInputOutputObject
 
         virtual std::string ClassName() const {return std::string("KFMNodeData");};
 
-        virtual void DefineOutputNode(KSAOutputNode* node) const
+        void DefineOutputNode(KSAOutputNode* node) const override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 node->AddChild(new KSAAssociatedValuePODOutputNode< KFMNodeData, unsigned int, &KFMNodeData::GetID >( std::string("id"), this) );
                 node->AddChild(new KSAAssociatedPassedPointerPODOutputNode<KFMNodeData, std::vector< unsigned int >, &KFMNodeData::GetChildIDs >(std::string("child_ids"), this) );
             }
         }
 
-        virtual void DefineInputNode(KSAInputNode* node)
+        void DefineInputNode(KSAInputNode* node) override
         {
 
-            if(node != NULL)
+            if(node != nullptr)
             {
                 node->AddChild(new KSAAssociatedReferencePODInputNode< KFMNodeData, unsigned int, &KFMNodeData::SetID >( std::string("id"), this) );
                 node->AddChild( new KSAAssociatedPointerPODInputNode< KFMNodeData, std::vector< unsigned int >, &KFMNodeData::SetChildIDs >(std::string("child_ids"), this) );

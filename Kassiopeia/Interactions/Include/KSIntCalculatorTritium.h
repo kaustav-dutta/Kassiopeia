@@ -20,7 +20,7 @@ class KSIntCalculatorTritiumElasticBase :
 {
 public:
     KSIntCalculatorTritiumElasticBase() { }
-    virtual ~KSIntCalculatorTritiumElasticBase() { }
+    ~KSIntCalculatorTritiumElasticBase() override { }
 };
 
 /////////////////////////////////
@@ -32,12 +32,12 @@ class KSIntCalculatorTritiumElastic :
 {
 public:
     KSIntCalculatorTritiumElastic() { }
-    KSIntCalculatorTritiumElastic* Clone() const { return new KSIntCalculatorTritiumElastic( *this ); }
-    virtual ~KSIntCalculatorTritiumElastic() { }
+    KSIntCalculatorTritiumElastic* Clone() const override { return new KSIntCalculatorTritiumElastic( *this ); }
+    ~KSIntCalculatorTritiumElastic() override { }
 
 public:
-    virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-    virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+    void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+    void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
 };
 
@@ -50,8 +50,8 @@ class KSIntCalculatorTritiumVib :
 {
 public:
     KSIntCalculatorTritiumVib() { }
-    KSIntCalculatorTritiumVib* Clone() const { return new KSIntCalculatorTritiumVib( *this ); }
-    virtual ~KSIntCalculatorTritiumVib() { }
+    KSIntCalculatorTritiumVib* Clone() const override { return new KSIntCalculatorTritiumVib( *this ); }
+    ~KSIntCalculatorTritiumVib() override { }
 };
 
 /////////////////////////////////
@@ -63,8 +63,8 @@ class KSIntCalculatorTritiumRot02 :
 {
 public:
     KSIntCalculatorTritiumRot02() { }
-    KSIntCalculatorTritiumRot02* Clone() const { return new KSIntCalculatorTritiumRot02( *this ); }
-    virtual ~KSIntCalculatorTritiumRot02() { }
+    KSIntCalculatorTritiumRot02* Clone() const override { return new KSIntCalculatorTritiumRot02( *this ); }
+    ~KSIntCalculatorTritiumRot02() override { }
 };
 
 /////////////////////////////////
@@ -76,8 +76,8 @@ class KSIntCalculatorTritiumRot13 :
 {
 public:
     KSIntCalculatorTritiumRot13() { }
-    KSIntCalculatorTritiumRot13* Clone() const { return new KSIntCalculatorTritiumRot13( *this ); }
-    virtual ~KSIntCalculatorTritiumRot13() { }
+    KSIntCalculatorTritiumRot13* Clone() const override { return new KSIntCalculatorTritiumRot13( *this ); }
+    ~KSIntCalculatorTritiumRot13() override { }
 };
 
 /////////////////////////////////
@@ -89,8 +89,8 @@ class KSIntCalculatorTritiumRot20 :
 {
 public:
     KSIntCalculatorTritiumRot20() { }
-    KSIntCalculatorTritiumRot20* Clone() const { return new KSIntCalculatorTritiumRot20( *this ); }
-    virtual ~KSIntCalculatorTritiumRot20() { }
+    KSIntCalculatorTritiumRot20* Clone() const override { return new KSIntCalculatorTritiumRot20( *this ); }
+    ~KSIntCalculatorTritiumRot20() override { }
 };
 
 } /* namespace Kassiopeia */

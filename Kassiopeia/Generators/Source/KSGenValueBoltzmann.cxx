@@ -4,7 +4,7 @@
 
 #include "KRandom.h"
 #include "KConst.h"
-#include <math.h>
+#include <cmath>
 //using katrin::KRandom;
 using namespace katrin;
 
@@ -38,7 +38,7 @@ namespace Kassiopeia
         double v1 = katrin::KRandom::GetInstance().Gauss( 0., fValueSigma );
         double v2 = katrin::KRandom::GetInstance().Gauss( 0., fValueSigma );
         double v3 = katrin::KRandom::GetInstance().Gauss( 0., fValueSigma );
-        tValue = 0.5 * fValueMass * ( v1 * v1 + v2 * v2 + v3 * v3 ) / KConst::Q();
+        tValue = 0.5 * fValueMass * ( v1 * v1 + v2 * v2 + v3 * v3 ) / katrin::KConst::Q();
 
         aDicedValues.push_back( tValue );
 

@@ -31,7 +31,7 @@ inline bool KRampedMagneticFieldBuilder::AddAttribute( KContainer* aContainer )
     else if( aContainer->GetName() == "root_field" )
     {
         std::string fieldName = aContainer->AsReference< std::string >();
-        KEMField::KMagneticField* field = katrin::KToolbox::GetInstance().
+        auto* field = katrin::KToolbox::GetInstance().
                 Get<KEMField::KMagneticField>(fieldName);
         fObject->SetMagneticField( field );
     }

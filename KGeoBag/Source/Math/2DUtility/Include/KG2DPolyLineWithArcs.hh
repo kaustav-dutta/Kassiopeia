@@ -36,7 +36,7 @@ class KG2DPolyLineWithArcs: public KG2DShape
 
         KG2DPolyLineWithArcs();
         KG2DPolyLineWithArcs(const std::vector< KGVertexSideDescriptor >* ordered_descriptors);
-        virtual ~KG2DPolyLineWithArcs();
+        ~KG2DPolyLineWithArcs() override;
 
         ///create the polyline with arcs by setting the 'descriptors'
         ///a descriptor consists of a vertex and a description of the side
@@ -48,7 +48,7 @@ class KG2DPolyLineWithArcs: public KG2DShape
         void SetDescriptors(const std::vector< KGVertexSideDescriptor >* ordered_descriptors);
 
 
-        virtual void Initialize();
+        void Initialize() override;
 
         //getters
         void GetVertices(std::vector<KTwoVector>* vertices) const;
@@ -58,10 +58,10 @@ class KG2DPolyLineWithArcs: public KG2DShape
         //geometric system
         //****************
 
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-  virtual KTwoVector Point( const KTwoVector& aPoint ) const;
-  virtual KTwoVector Normal( const KTwoVector& aPoint ) const;
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+  KTwoVector Point( const KTwoVector& aPoint ) const override;
+  KTwoVector Normal( const KTwoVector& aPoint ) const override;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
 
         ///returns true if polyline has no self intersections

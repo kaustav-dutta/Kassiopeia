@@ -28,18 +28,18 @@ public KSelectiveVisitor<KShapeVisitor,KTYPELIST_3(KTriangle, KRectangle, KLineS
     public:
 
         KFMElementAspectRatioExtractor(){};
-        ~KFMElementAspectRatioExtractor(){;};
+        ~KFMElementAspectRatioExtractor() override{;};
 
-        void Visit(KTriangle& t);
-        void Visit(KRectangle& r);
-        void Visit(KLineSegment& l);
-        void Visit(KConicSection& c){(void)c; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KRing& r){(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KSymmetryGroup<KTriangle>& t){(void)t; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KSymmetryGroup<KRectangle>& r){(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KSymmetryGroup<KLineSegment>& l){(void)l; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KSymmetryGroup<KConicSection>& c){(void)c; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
-        void Visit(KSymmetryGroup<KRing>& r){(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KTriangle& t) override;
+        void Visit(KRectangle& r) override;
+        void Visit(KLineSegment& l) override;
+        void Visit(KConicSection& c) override{(void)c; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KRing& r) override{(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KSymmetryGroup<KTriangle>& t) override{(void)t; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KSymmetryGroup<KRectangle>& r) override{(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KSymmetryGroup<KLineSegment>& l) override{(void)l; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KSymmetryGroup<KConicSection>& c) override{(void)c; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
+        void Visit(KSymmetryGroup<KRing>& r) override{(void)r; fIsRecognized = false; fCurrentAspectRatio = -1.0;};
 
         bool IsRecognizedType() const {return fIsRecognized;};
         double GetAspectRatio() const {return fCurrentAspectRatio;};

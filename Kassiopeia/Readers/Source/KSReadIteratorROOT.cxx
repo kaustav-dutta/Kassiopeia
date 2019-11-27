@@ -67,7 +67,7 @@ namespace Kassiopeia
         fData->GetEntry( fIndex );
         fValid = true;
 
-        for( ObjectIt tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
+        for( auto tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
         {
             (*(tIt->second)) << aValue;
         }
@@ -87,7 +87,7 @@ namespace Kassiopeia
         fData->GetEntry( fIndex );
         fValid = true;
 
-        for( ObjectIt tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
+        for( auto tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
         {
             (*(tIt->second))++;
         }
@@ -106,7 +106,7 @@ namespace Kassiopeia
         fData->GetEntry( fIndex );
         fValid = true;
 
-        for( ObjectIt tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
+        for( auto tIt = fObjects.begin(); tIt != fObjects.end(); tIt++ )
         {
             (*(tIt->second))--;
         }
@@ -149,7 +149,7 @@ namespace Kassiopeia
 
     bool KSReadIteratorROOT::HasObject( const string& aLabel )
     {
-        ObjectIt tIt = fObjects.find( aLabel );
+        auto tIt = fObjects.find( aLabel );
         if( tIt != fObjects.end() )
         {
             return true;
@@ -159,7 +159,7 @@ namespace Kassiopeia
 
     KSReadObjectROOT& KSReadIteratorROOT::GetObject( const string& aLabel )
     {
-        ObjectIt tIt = fObjects.find( aLabel );
+        auto tIt = fObjects.find( aLabel );
         if( tIt != fObjects.end() )
         {
             return (*tIt->second);
@@ -170,7 +170,7 @@ namespace Kassiopeia
 
     const KSReadObjectROOT& KSReadIteratorROOT::GetObject( const string& aLabel ) const
     {
-        ObjectCIt tIt = fObjects.find( aLabel );
+        auto tIt = fObjects.find( aLabel );
         if( tIt != fObjects.end() )
         {
             return (*tIt->second);

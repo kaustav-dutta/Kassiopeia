@@ -21,14 +21,14 @@ public:
 
 class B : public A{
 public:
-	virtual ~B() {}
-	virtual void printName() {
+	~B() override {}
+	void printName() override {
 		cout << "Class B" << endl;
 	}
 };
 
 int main(int , char**){
-	KSmartPointer<A> ptr = NULL;
+	KSmartPointer<A> ptr = nullptr;
 	ptr = new A;
 	ptr->printName();
 

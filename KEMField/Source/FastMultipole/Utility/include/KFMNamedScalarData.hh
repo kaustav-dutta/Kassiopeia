@@ -36,7 +36,7 @@ class KFMNamedScalarData: public KSAInputOutputObject
             fData = rhs.fData;
         }
 
-        virtual ~KFMNamedScalarData(){};
+        ~KFMNamedScalarData() override{};
 
         unsigned int GetSize() const {return fData.size();};
 
@@ -52,8 +52,8 @@ class KFMNamedScalarData: public KSAInputOutputObject
         void GetData(std::vector<double>* data) const {*data = fData;};
         void SetData(const std::vector<double>* data) {fData = *data;};
 
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
         virtual const char* ClassName() const { return "KFMNamedScalarData"; };
 
     private:

@@ -44,7 +44,7 @@ namespace KGeoBag
     	totalArea += surface->AsExtension<KGMetrics>()->GetArea();
     }
 
-    KGSurface* selectedSurface = 0;
+    KGSurface* selectedSurface = nullptr;
     double decision = Uniform(0, totalArea);
     for(std::vector<KGSurface*>::const_iterator s = surfaces.begin();
 			s != surfaces.end(); ++s) {
@@ -80,7 +80,7 @@ namespace KGeoBag
     	totalVolume += space->AsExtension<KGMetrics>()->GetVolume();
     }
 
-    KGSpace* selectedSpace = 0;
+    KGSpace* selectedSpace = nullptr;
     double decision = Uniform(0, totalVolume);
     for(std::vector<KGSpace*>::const_iterator v = spaces.begin();
 			v != spaces.end(); ++v) {

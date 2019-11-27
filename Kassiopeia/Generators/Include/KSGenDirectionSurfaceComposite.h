@@ -21,8 +21,8 @@ namespace Kassiopeia
     public:
         KSGenDirectionSurfaceComposite();
         KSGenDirectionSurfaceComposite( const KSGenDirectionSurfaceComposite& aCopy );
-        KSGenDirectionSurfaceComposite* Clone() const;
-        virtual ~KSGenDirectionSurfaceComposite();
+        KSGenDirectionSurfaceComposite* Clone() const override;
+        ~KSGenDirectionSurfaceComposite() override;
 
     public:
         /**
@@ -32,7 +32,7 @@ namespace Kassiopeia
         *
         * \param aPrimaries
         */
-        virtual void Dice( KSParticleQueue* aParticleList );
+        void Dice( KSParticleQueue* aParticleList ) override;
 
     public:
         /**
@@ -67,8 +67,8 @@ namespace Kassiopeia
         bool fOutside;
 
     protected:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 
 }

@@ -15,8 +15,8 @@ KGNavigableMeshTreeBuilder::KGNavigableMeshTreeBuilder():
     fUseSpatialResolution(false),
     fMaximumTreeDepth(0),
     fNAllowedElements(1),
-    fTree(NULL),
-    fContainer(NULL)
+    fTree(nullptr),
+    fContainer(nullptr)
 {
     fInfoString = "";
 };
@@ -87,7 +87,7 @@ KGNavigableMeshTreeBuilder::ConstructRootNode()
         }
     }
 
-    KGCube<KGMESH_DIM>* world_volume = new KGCube<KGMESH_DIM>();
+    auto* world_volume = new KGCube<KGMESH_DIM>();
     *world_volume = boundary_calc.GetMinimalBoundingCube();
 
     KGPoint<KGMESH_DIM> fWorldCenter = world_volume->GetCenter();
@@ -156,7 +156,7 @@ KGNavigableMeshTreeBuilder::ConstructRootNode()
     KGObjectRetriever<KGMeshNavigationNodeObjects, KGNavigableMeshElementContainer >::SetNodeObject(fContainer, root);
 
     //add the complete id set of all elements to the root node
-    KGIdentitySet* root_list = new KGIdentitySet();
+    auto* root_list = new KGIdentitySet();
     for(unsigned int i=0; i<n_elements; i++)
     {
         root_list->AddID(i);
@@ -167,7 +167,7 @@ KGNavigableMeshTreeBuilder::ConstructRootNode()
     //set basic root node properties
     root->SetID( tree_prop->RegisterNode() );
     root->SetIndex(0);
-    root->SetParent(NULL);
+    root->SetParent(nullptr);
 }
 
 void

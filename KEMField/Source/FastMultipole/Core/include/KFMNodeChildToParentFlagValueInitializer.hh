@@ -30,12 +30,12 @@ class KFMNodeChildToParentFlagValueInitializer: public KFMNodeActor< KFMNode<Obj
 {
     public:
         KFMNodeChildToParentFlagValueInitializer(){};
-        virtual ~KFMNodeChildToParentFlagValueInitializer(){};
+        ~KFMNodeChildToParentFlagValueInitializer() override{};
 
         void SetFlagIndex(unsigned int flag_index){fValueInitializer.SetFlagIndex(flag_index);};
         void SetFlagValue(char value){fValueInitializer.SetFlagValue(value);};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
             //set the flag value for this node
             fValueInitializer.ApplyAction(node);
@@ -43,7 +43,7 @@ class KFMNodeChildToParentFlagValueInitializer: public KFMNodeActor< KFMNode<Obj
             //now succesively apply the value initializer to all parents of this node
             KFMNode<ObjectTypeList>* parent = node->GetParent();
 
-            while(parent != NULL)
+            while(parent != nullptr)
             {
                 fValueInitializer.ApplyAction(parent);
                 parent = parent->GetParent();

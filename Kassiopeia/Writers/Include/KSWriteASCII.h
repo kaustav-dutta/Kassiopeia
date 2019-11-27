@@ -68,8 +68,8 @@ namespace Kassiopeia
 	public:
 		KSWriteASCII();
 		KSWriteASCII( const KSWriteASCII& aCopy );
-		KSWriteASCII* Clone() const;
-		virtual ~KSWriteASCII();
+		KSWriteASCII* Clone() const override;
+		~KSWriteASCII() override;
 
 	public:
 		void SetBase( const std::string& aBase );
@@ -89,10 +89,10 @@ namespace Kassiopeia
 		unsigned int fPrecision;
 
 	public:
-		void ExecuteRun();
-		void ExecuteEvent();
-		void ExecuteTrack();
-		void ExecuteStep();
+		void ExecuteRun() override;
+		void ExecuteEvent() override;
+		void ExecuteTrack() override;
+		void ExecuteStep() override;
 
 		void AddRunComponent( KSComponent* aComponent );
 		void RemoveRunComponent( KSComponent* aComponent );
@@ -107,8 +107,8 @@ namespace Kassiopeia
 		void RemoveStepComponent( KSComponent* aComponent );
 
 	protected:
-		virtual void InitializeComponent();
-		virtual void DeinitializeComponent();
+		void InitializeComponent() override;
+		void DeinitializeComponent() override;
 
 	private:
 

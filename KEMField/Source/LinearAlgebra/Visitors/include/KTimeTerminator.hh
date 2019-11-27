@@ -61,14 +61,14 @@ class KTimeTerminator: public KIterativeSolver<ValueType>::Visitor
             this->fInterval = interval;
         };
 
-        virtual ~KTimeTerminator(){};
+        ~KTimeTerminator() override{};
 
         void SetMaximumAllowedTime(double time_sec)
         {
             fMaxTimeAllowed = time_sec;
         };
 
-        virtual void Initialize(KIterativeSolver<ValueType>&)
+        void Initialize(KIterativeSolver<ValueType>&) override
         {
             #ifdef KEMFIELD_USE_REALTIME_CLOCK
             clock_gettime(CLOCK_REALTIME, &fStart);
@@ -82,7 +82,7 @@ class KTimeTerminator: public KIterativeSolver<ValueType>::Visitor
             #endif
         };
 
-        virtual void Visit(KIterativeSolver<ValueType>&)
+        void Visit(KIterativeSolver<ValueType>&) override
         {
             #ifdef KEMFIELD_USE_REALTIME_CLOCK
             timespec now;
@@ -111,7 +111,7 @@ class KTimeTerminator: public KIterativeSolver<ValueType>::Visitor
             #endif
         }
 
-        virtual void Finalize(KIterativeSolver<ValueType>&){};
+        void Finalize(KIterativeSolver<ValueType>&) override{};
 
     protected:
 

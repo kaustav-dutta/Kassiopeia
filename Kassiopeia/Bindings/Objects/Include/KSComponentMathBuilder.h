@@ -35,7 +35,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< unsigned short >( aComponents, tComponents, aTerm );
@@ -54,7 +54,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< short >( aComponents, tComponents, aTerm );
@@ -73,7 +73,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< unsigned int >( aComponents, tComponents, aTerm );
@@ -92,7 +92,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< int >( aComponents, tComponents, aTerm );
@@ -111,7 +111,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< unsigned long >( aComponents, tComponents, aTerm );
@@ -130,7 +130,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< long >( aComponents, tComponents, aTerm );
@@ -149,7 +149,7 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< float >( aComponents, tComponents, aTerm );
@@ -168,14 +168,14 @@ namespace katrin
                 else
                 {
                     objctmsg( eError ) << "KSComponentMath does only support same types for all parents" << eom;
-                    return NULL;
+                    return nullptr;
                 }
             }
             return new KSComponentMath< double >( aComponents, tComponents, aTerm );
         }
 
         objctmsg( eError ) << "KSComponentMathBuilder does only support int and double like types" << eom;
-        return NULL;
+        return nullptr;
     }
 
     typedef KComplexElement< KSComponentMathData > KSComponentMathBuilder;
@@ -230,10 +230,10 @@ namespace katrin
         std::vector< KSComponent* > tParentComponents;
         if( !fObject->fGroupName.empty() )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( size_t tNameIndex = 0; tNameIndex < fObject->fParents.size(); tNameIndex++ )
             {
-                KSComponent* tOneComponent = NULL;
+                KSComponent* tOneComponent = nullptr;
                 for( unsigned int tGroupIndex = 0; tGroupIndex < tComponentGroup->ComponentCount(); tGroupIndex++ )
                 {
                     KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tGroupIndex );
@@ -243,7 +243,7 @@ namespace katrin
                         break;
                     }
                 }
-                if( tOneComponent == NULL )
+                if( tOneComponent == nullptr )
                 {
                     objctmsg( eError ) << "KSComponentMathBuilder can not find component < " << fObject->fParents.at( tNameIndex ) << " > in group < " << fObject->fGroupName << " >" << eom;
                 }
@@ -254,7 +254,7 @@ namespace katrin
         {
             for( size_t tIndex = 0; tIndex < fObject->fParents.size(); tIndex++ )
             {
-                KSComponent* tOneComponent = KToolbox::GetInstance().Get< KSComponent >( fObject->fParents.at( tIndex ) );
+                auto* tOneComponent = KToolbox::GetInstance().Get< KSComponent >( fObject->fParents.at( tIndex ) );
                 tParentComponents.push_back( tOneComponent );
             }
         }

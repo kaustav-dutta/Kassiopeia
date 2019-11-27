@@ -32,7 +32,7 @@ namespace Kassiopeia
         bool tHasPhiValue = false;
         bool tHasZValue = false;
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             tHasRValue = tHasRValue | ( (*tIt).first == eRadius );
             tHasPhiValue = tHasPhiValue | ( (*tIt).first == ePhi );
@@ -75,7 +75,7 @@ namespace Kassiopeia
 
                     for( tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); tParticleIt++ )
                     {
-                        double tPhiValue = (KConst::Pi() / 180.) * tFrustrumPosition[1];
+                        double tPhiValue = (katrin::KConst::Pi() / 180.) * tFrustrumPosition[1];
                         double tZValue = tFrustrumPosition[2];
                         double tRValue = tFrustrumPosition[0] * ( r1 + ( tZValue - z1 ) / ( z2 - z1 ) * (r2 - r1) );
 
@@ -108,7 +108,7 @@ namespace Kassiopeia
     void KSGenPositionFrustrumComposite::SetRValue( KSGenValue* anRValue )
     {
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -123,7 +123,7 @@ namespace Kassiopeia
 
     void KSGenPositionFrustrumComposite::ClearRValue( KSGenValue* anRValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -140,7 +140,7 @@ namespace Kassiopeia
 
     void KSGenPositionFrustrumComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -155,7 +155,7 @@ namespace Kassiopeia
     }
     void KSGenPositionFrustrumComposite::ClearPhiValue( KSGenValue* anPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -172,7 +172,7 @@ namespace Kassiopeia
 
     void KSGenPositionFrustrumComposite::SetZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -187,7 +187,7 @@ namespace Kassiopeia
     }
     void KSGenPositionFrustrumComposite::ClearZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -257,7 +257,7 @@ namespace Kassiopeia
 
     void KSGenPositionFrustrumComposite::InitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Initialize();
         }
@@ -265,7 +265,7 @@ namespace Kassiopeia
     }
     void KSGenPositionFrustrumComposite::DeinitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Deinitialize();
         }

@@ -11,7 +11,7 @@ namespace katrin{
     public:
         KApplication();
         KApplication( const KApplication& aCopy);
-        virtual ~KApplication();
+        ~KApplication() override;
         virtual bool Execute() = 0;
 
     };

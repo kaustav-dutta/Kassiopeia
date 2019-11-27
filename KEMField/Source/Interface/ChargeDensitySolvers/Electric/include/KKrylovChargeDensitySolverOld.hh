@@ -18,13 +18,13 @@ class KFMElectrostaticFastMultipoleBoundaryValueSolver;
 class KKrylovChargeDensitySolverOld : public KChargeDensitySolver {
 public:
 	KKrylovChargeDensitySolverOld();
-	virtual ~KKrylovChargeDensitySolverOld();
+	~KKrylovChargeDensitySolverOld() override;
 
 	KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration*
 	GetSolverConfig() {return fKrylovConfig;}
 
 private:
-	virtual void InitializeCore(KSurfaceContainer& container);
+	void InitializeCore(KSurfaceContainer& container) override;
 
 	KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration*
 	fKrylovConfig;

@@ -32,7 +32,7 @@ namespace KGeoBag
             {
                 p2[ 2 ] = p3[ 2 ] = p0[ 2 ] + dz[ k ];
 
-                KGMeshRectangle* r = new KGMeshRectangle( p0, p1, p2, p3 );
+                auto* r = new KGMeshRectangle( p0, p1, p2, p3 );
                 AddElement( r );
 
                 p0[ 2 ] = p1[ 2 ] = p2[ 2 ];

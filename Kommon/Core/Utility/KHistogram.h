@@ -151,7 +151,7 @@ inline void KHistogram<XValueT, XCountingT>::Fill(XValueT value, XCountingT amou
         return;
     }
 
-    const size_t binNumber = (size_t) ((value - fMinValue) / GetBinWidth());
+    const auto binNumber = (size_t) ((value - fMinValue) / GetBinWidth());
     fData[binNumber] += amount;
 }
 

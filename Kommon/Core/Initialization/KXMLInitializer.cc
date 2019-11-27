@@ -25,7 +25,11 @@ namespace katrin {
 
 KXMLInitializer::KXMLInitializer() :
     fArguments(),
-    fConfigSerializer()
+    fConfigSerializer(),
+    fDefaultConfigFile(),
+    fDefaultIncludePaths(),
+    fAllowConfigFileFallback(false),
+    fUsingDefaultPaths(false)
 {
 }
 
@@ -56,7 +60,7 @@ void KXMLInitializer::ParseCommandLine(int argc, char **argv)
     }
 
     // adding environment variables
-    for (char** env = environ; *env != 0; env++) {
+    for (char** env = environ; *env != nullptr; env++) {
         string tEnv(*env);
         stringstream env_stream(tEnv);
         string tVariableName;
@@ -80,10 +84,13 @@ void KXMLInitializer::ParseCommandLine(int argc, char **argv)
 
 pair<string, KTextFile> KXMLInitializer::GetConfigFile()
 {
+    fUsingDefaultPaths = false;
     KTextFile configFile;
 
+    // use filename from cmdline option --config=FILE
     string configLocationHint = fArguments.GetOption("config");
 
+    // use filename from first cmdline argument
     if (configLocationHint.empty() && fArguments.Length() > 0)
         configLocationHint = fArguments.GetParameter(0).AsString();
 
@@ -93,43 +100,55 @@ pair<string, KTextFile> KXMLInitializer::GetConfigFile()
         configFile.AddToPaths( configLocationHint );
     }
 
-    if (!fDefaultConfigFile.empty())
-        configFile.SetDefaultBase( fDefaultConfigFile );
-    if (!fDefaultIncludePaths.empty())
-        configFile.SetDefaultPath( fDefaultIncludePaths.front() );
+    if (configLocationHint.empty() || fAllowConfigFileFallback) {
+        if (!fDefaultConfigFile.empty())
+            configFile.SetDefaultBase( fDefaultConfigFile );
+        if (!fDefaultIncludePaths.empty())
+            configFile.SetDefaultPath( fDefaultIncludePaths.front() );
+    }
 
     // resolve path
-    configFile.Open(KFile::eRead);
+    bool hasFile = configFile.Open(KFile::eRead);
+    if (! hasFile) {
+        initmsg(eError) << "unable to open config file <" << configLocationHint << "> (default: <" << configFile.GetDefaultBase() << ">)" << eom;
+    }
     string configFileName = configFile.GetBase();
     string configFilePath = configFile.GetName();
     string currentConfigDir = configFile.GetPath();
+    fUsingDefaultPaths = configFile.IsUsingDefaultBase() && configFile.IsUsingDefaultPath();
     configFile.Close();
 
     if (currentConfigDir.empty())
         currentConfigDir = ".";
 
-    initmsg(eNormal) << "Parsing config file '" << configFileName << "' in directory '" << currentConfigDir << "' ..." <<ret;
+    if (fUsingDefaultPaths) {
+        initmsg(eWarning) << "using default config file <" << configFilePath << ">" << eom;
+    }
+
+    initmsg(eNormal) << "Parsing config file <" << configFileName << "> in directory <" << currentConfigDir << "> ..." <<ret;
     initmsg(eNormal) << "Command line: " << fArguments.CommandLine() << eom;
 
-    return pair<string, KTextFile>(currentConfigDir,configFile);
+    return pair<string, KTextFile>(currentConfigDir, configFile);
 }
 
 KXMLTokenizer* KXMLInitializer::SetupProcessChain( const map<string, string>& tVariables,
         const string& includePath)
 {
-    KXMLTokenizer* tTokenizer = new KXMLTokenizer();
-    KVariableProcessor* tVariableProcessor = new KVariableProcessor( tVariables );
+    auto* tTokenizer = new KXMLTokenizer();
+    auto* tVariableProcessor = new KVariableProcessor( tVariables );
 
-    KIncludeProcessor* tIncludeProcessor = new KIncludeProcessor();
-    tIncludeProcessor->AddDefaultPath(includePath);
-    for (const string& path : fDefaultIncludePaths)
-        tIncludeProcessor->AddDefaultPath(path);
+    auto* tIncludeProcessor = new KIncludeProcessor();
+    tIncludeProcessor->SetPath(includePath);
+    for (const string& path : fDefaultIncludePaths) {
+        if (fUsingDefaultPaths || fAllowConfigFileFallback)
+            tIncludeProcessor->AddDefaultPath(path);
+    }
 
-    KLoopProcessor* tLoopProcessor = new KLoopProcessor();
-    KConditionProcessor* tConditionProcessor = new KConditionProcessor();
-    KPrintProcessor* tPrintProcessor = new KPrintProcessor();
-    KTagProcessor* tTagProcessor = new KTagProcessor();
-    KElementProcessor* tElementProcessor = new KElementProcessor();
+    auto* tLoopProcessor = new KLoopProcessor();
+    auto* tConditionProcessor = new KConditionProcessor();
+    auto* tPrintProcessor = new KPrintProcessor();
+    auto* tTagProcessor = new KTagProcessor();
+    auto* tElementProcessor = new KElementProcessor();
     if (!fConfigSerializer)
         fConfigSerializer.reset( new KSerializationProcessor() );
 
@@ -137,7 +156,7 @@ KXMLTokenizer* KXMLInitializer::SetupProcessChain( const map<string, string>& tV
     tIncludeProcessor->InsertAfter( tVariableProcessor );
 
 #ifdef Kommon_USE_ROOT
-    KFormulaProcessor* tFormulaProcessor = new KFormulaProcessor();
+    auto* tFormulaProcessor = new KFormulaProcessor();
     tFormulaProcessor->InsertAfter( tVariableProcessor );
     tIncludeProcessor->InsertAfter( tFormulaProcessor );
 #endif

@@ -14,12 +14,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorIon();
             KSIntCalculatorIon( const KSIntCalculatorIon& aCopy );
-            KSIntCalculatorIon* Clone() const;
-            virtual ~KSIntCalculatorIon();
+            KSIntCalculatorIon* Clone() const override;
+            ~KSIntCalculatorIon() override;
 
         public:
-            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
-            void ExecuteInteraction( const KSParticle& anIncomingIon, KSParticle& anOutgoingIon, KSParticleQueue& aSecondaries );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
+            void ExecuteInteraction( const KSParticle& anIncomingIon, KSParticle& anOutgoingIon, KSParticleQueue& aSecondaries ) override;
 	    void CalculateEnergyDifferentialCrossSection( const double anIncomingIonMass, const double anIncomingIonEnergy,const double aSecondaryElectronEnergy,double &aCrossSection);
 	    void CalculateAngleDifferentialCrossSection( const double aSecondaryElectronAngle,double &aCrossSection);
         

@@ -2,7 +2,6 @@
 #include "KSTrajectoriesMessage.h"
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <cmath>
 
@@ -18,8 +17,8 @@ namespace Kassiopeia
     //6 is transverse momentum
     //7 is phase
 
-    KSMagneticField* KSTrajAdiabaticParticle::fMagneticFieldCalculator = NULL;
-    KSElectricField* KSTrajAdiabaticParticle::fElectricFieldCalculator = NULL;
+    KSMagneticField* KSTrajAdiabaticParticle::fMagneticFieldCalculator = nullptr;
+    KSElectricField* KSTrajAdiabaticParticle::fElectricFieldCalculator = nullptr;
     double KSTrajAdiabaticParticle::fMass = 0.;
     double KSTrajAdiabaticParticle::fCharge = 0.;
 
@@ -139,8 +138,8 @@ namespace Kassiopeia
             //be different between the guiding center position and the particles true postion
             //since we have been given the particle's momentum, we have to correct the guiding center
             //momentum to account for this difference
-            double tMC2 = fMass*KConst::C()*KConst::C();
-            double tKineticEnergy = std::sqrt( fMomentum.MagnitudeSquared()*KConst::C()*KConst::C() + tMC2*tMC2 );
+            double tMC2 = fMass*katrin::KConst::C()*katrin::KConst::C();
+            double tKineticEnergy = std::sqrt( fMomentum.MagnitudeSquared()*katrin::KConst::C()*katrin::KConst::C() + tMC2*tMC2 );
             //calculate potential at particles position
             double tRPPotential;
             fElectricFieldCalculator->CalculatePotential( fPosition, fTime, tRPPotential );
@@ -152,7 +151,7 @@ namespace Kassiopeia
             //need to take absolute value of sqrt argument to prevent nan's
             //if we are in a situation where the argument goes negative this probably means that
             //the guiding center approximation is not valid in that region
-            double tMomentumMagnitude = (1.0/KConst::C())*std::sqrt( std::fabs( (tKineticEnergy - tMC2)*(tKineticEnergy + tMC2) ) );
+            double tMomentumMagnitude = (1.0/katrin::KConst::C())*std::sqrt( std::fabs( (tKineticEnergy - tMC2)*(tKineticEnergy + tMC2) ) );
 
             //TODO: Make sure we are not missing a correction term on the momentum due to difference in the magnetic
             //vector potential between the g.c and particle position
@@ -173,7 +172,7 @@ namespace Kassiopeia
 			trajmsg_debug( "  gc beta: " << fBeta << ret )
 			trajmsg_debug( "  parallel momentum: <" << GetLongMomentum() << ">" << ret )
 			trajmsg_debug( "  perpendicular momentum: <" << GetTransMomentum() << ">" << ret )
-			trajmsg_debug( "  kinetic energy is: <" << GetKineticEnergy()/ KConst::Q() << ">" << eom )
+			trajmsg_debug( "  kinetic energy is: <" << GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
         }
 
@@ -189,7 +188,7 @@ namespace Kassiopeia
 		trajmsg_debug( "  gc beta: " << fBeta << ret )
 		trajmsg_debug( "  parallel momentum: <" << GetLongMomentum() << ">" << ret )
 		trajmsg_debug( "  perpendicular momentum: <" << GetTransMomentum() << ">" << ret )
-		trajmsg_debug( "  kinetic energy is: <" << GetKineticEnergy()/ KConst::Q() << ">" << eom )
+		trajmsg_debug( "  kinetic energy is: <" << GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
         fLastTime = GetTime();
         fLastPosition = GetPosition();
@@ -202,7 +201,7 @@ namespace Kassiopeia
         {
             aParticle.SetElectricPotential( GetElectricPotentialRP() );
         }
-        fData[ 7 ] = fmod( fData[ 7 ], 2. * KConst::Pi() ); // you have to keep doing this to keep numerical precision in the angular variable
+        fData[ 7 ] = fmod( fData[ 7 ], 2. * katrin::KConst::Pi() ); // you have to keep doing this to keep numerical precision in the angular variable
 
         return;
     }
@@ -282,8 +281,8 @@ namespace Kassiopeia
         double tSigma = GetCharge() / fabs( GetCharge() );
         fMomentum = fData[ 5 ] * GetMagneticField().Unit() - fData[ 6 ] * tSigma * (-sin( tSigma * fData[ 7 ] ) * fAlpha + cos( tSigma * fData[ 7 ] ) * fBeta);
 
-        double tPM = GetMass() * KConst::C();
-        double tPPhi = (GetCharge() * tPhi) / KConst::C();
+        double tPM = GetMass() * katrin::KConst::C();
+        double tPPhi = (GetCharge() * tPhi) / katrin::KConst::C();
         double tPGC = sqrt( fData[ 5 ] * fData[ 5 ] + fData[ 6 ] * fData[ 6 ] );
 
         //need to take absolute value of sqrt argument to prevent nan's
@@ -305,7 +304,7 @@ namespace Kassiopeia
     }
     const double& KSTrajAdiabaticParticle::GetLorentzFactor() const
     {
-        fLorentzFactor = sqrt( 1. + (GetMomentum().MagnitudeSquared()) / (GetMass() * GetMass() * KConst::C() * KConst::C()) );
+        fLorentzFactor = sqrt( 1. + (GetMomentum().MagnitudeSquared()) / (GetMass() * GetMass() * katrin::KConst::C() * katrin::KConst::C()) );
         return fLorentzFactor;
     }
     const double& KSTrajAdiabaticParticle::GetKineticEnergy() const
@@ -382,7 +381,7 @@ namespace Kassiopeia
     }
     const double& KSTrajAdiabaticParticle::GetCyclotronFrequency() const
     {
-        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * KConst::Pi() * GetLorentzFactor() * GetMass());
+        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * katrin::KConst::Pi() * GetLorentzFactor() * GetMass());
         return fCyclotronFrequency;
     }
     const double& KSTrajAdiabaticParticle::GetOrbitalMagneticMoment() const

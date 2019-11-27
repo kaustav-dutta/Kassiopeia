@@ -41,7 +41,7 @@ class KFMElectrostaticTreeData: public KSAInputOutputObject
             fInsertionRatio = 0;
             fNNodes = 0;
         };
-        virtual ~KFMElectrostaticTreeData(){};
+        ~KFMElectrostaticTreeData() override{};
 
         std::string GetTreeID() const {return fTreeID;};
         void SetTreeID(const std::string& id){fTreeID = id;};
@@ -112,8 +112,8 @@ class KFMElectrostaticTreeData: public KSAInputOutputObject
         //IO
         virtual std::string ClassName() const {return std::string("KFMElectrostaticTreeData");};
         static std::string Name() { return std::string("KFMElectrostaticTreeData"); };
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
 
 
     private:
@@ -213,7 +213,7 @@ Stream& operator>>(Stream& s, KFMElectrostaticTreeData& aData)
     local_coeff->reserve(local_coeff_size);
     for(unsigned int i=0; i< local_coeff_size; i++)
     {
-        KFMElectrostaticLocalCoefficientSet* set = new KFMElectrostaticLocalCoefficientSet();
+        auto* set = new KFMElectrostaticLocalCoefficientSet();
         s >> *set;
         local_coeff->push_back(set);
     }
@@ -238,7 +238,7 @@ Stream& operator>>(Stream& s, KFMElectrostaticTreeData& aData)
     id_set->reserve(id_set_size);
     for(unsigned int i=0; i < id_set_size; i++)
     {
-        KFMIdentitySet* set = new KFMIdentitySet();
+        auto* set = new KFMIdentitySet();
         s >> *set;
         id_set->push_back(set);
     }
@@ -262,7 +262,7 @@ Stream& operator>>(Stream& s, KFMElectrostaticTreeData& aData)
     cubes->reserve(cube_size);
     for(unsigned int i=0; i < cube_size; i++)
     {
-        KFMCube<3>* cube = new KFMCube<3>();
+        auto* cube = new KFMCube<3>();
         s >> *cube;
         cubes->push_back(cube);
     }

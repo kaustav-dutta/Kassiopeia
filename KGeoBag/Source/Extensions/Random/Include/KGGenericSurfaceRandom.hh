@@ -23,7 +23,7 @@ namespace KGeoBag
   {
   public:
 	  KGGenericSurfaceRandom() : KGShapeRandom() {}
-    virtual ~KGGenericSurfaceRandom() {}
+    ~KGGenericSurfaceRandom() override {}
 
     /**
 	 * \brief Visitor function to dice the point on
@@ -31,7 +31,7 @@ namespace KGeoBag
 	 *
 	 * \brief aArea
 	 */
-    virtual void VisitArea(KGArea* aArea);
+    void VisitArea(KGArea* aArea) override;
   };
 }
 

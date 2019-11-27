@@ -22,7 +22,7 @@ KEMField::KSmartPointer<Content> ReleaseToSmartPtr(KContainer* aContainer){
 template< typename Content >
 KEMField::KSmartPointer<Content> ReleaseToSmartPtr(KContainer& aContainer)
 {
-	Content* pointer(NULL);
+	Content* pointer(nullptr);
 	aContainer.ReleaseTo(pointer);
 	if(pointer)
 		return KEMField::KSmartPointer<Content>(pointer);

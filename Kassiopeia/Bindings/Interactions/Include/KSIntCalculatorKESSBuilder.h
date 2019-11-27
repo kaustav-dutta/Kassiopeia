@@ -20,11 +20,11 @@ namespace katrin
     {
         public:
             KSIntCalculatorKESSSet();
-            virtual ~KSIntCalculatorKESSSet();
+            ~KSIntCalculatorKESSSet() override;
 
         public:
-            void AddCalculator( KSIntCalculator* aCalculator );
-            void ReleaseCalculators( KSIntScattering* aScattering );
+            void AddCalculator( KSIntCalculator* aCalculator ) override;
+            void ReleaseCalculators( KSIntScattering* aScattering ) override;
 
         private:
             K_SET_GET( std::string, Name )
@@ -88,12 +88,12 @@ namespace katrin
             aIntCalculator = new KESSInelasticBetheFano();
             if(fObject->GetPhotoAbsorbtion())
             {
-                KESSPhotoAbsorbtion* aPhotoabsorption = new KESSPhotoAbsorbtion();
+                auto* aPhotoabsorption = new KESSPhotoAbsorbtion();
                 ((KESSInelasticBetheFano*) aIntCalculator)->SetIonisationCalculator(aPhotoabsorption);
             }
             if(fObject->GetAugerRelaxation())
             {
-                KESSRelaxation* aRelaxationCalculator = new KESSRelaxation();
+                auto* aRelaxationCalculator = new KESSRelaxation();
                 ((KESSInelasticBetheFano*) aIntCalculator)->SetRelaxationCalculator( aRelaxationCalculator );
             }
 
@@ -108,12 +108,12 @@ namespace katrin
             aIntCalculator = new KESSInelasticPenn();
             if(fObject->GetPhotoAbsorbtion())
             {
-                KESSPhotoAbsorbtion* aPhotoabsorption = new KESSPhotoAbsorbtion();
+                auto* aPhotoabsorption = new KESSPhotoAbsorbtion();
                 ((KESSInelasticPenn*) aIntCalculator)->SetIonisationCalculator(aPhotoabsorption);
             }
             if(fObject->GetAugerRelaxation())
             {
-                KESSRelaxation* aRelaxationCalculator = new KESSRelaxation();
+                auto* aRelaxationCalculator = new KESSRelaxation();
                 ((KESSInelasticPenn*) aIntCalculator)->SetRelaxationCalculator( aRelaxationCalculator );
             }
 

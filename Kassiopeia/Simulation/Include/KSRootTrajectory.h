@@ -15,8 +15,8 @@ namespace Kassiopeia
         public:
             KSRootTrajectory();
             KSRootTrajectory( const KSRootTrajectory& aCopy );
-            KSRootTrajectory* Clone() const;
-            virtual ~KSRootTrajectory();
+            KSRootTrajectory* Clone() const override;
+            ~KSRootTrajectory() override;
 
             //**********
             //trajectory
@@ -24,17 +24,17 @@ namespace Kassiopeia
 
         public:
 
-            virtual void Reset()
+            void Reset() override
             {
-                if(fTrajectory != NULL){ fTrajectory->Reset(); }
+                if(fTrajectory != nullptr){ fTrajectory->Reset(); }
                 fFailureFlag = false;
             };
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
 
             bool Check() const {return fFailureFlag;};
 
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& aFinalParticle, std::vector< KSParticle >* intermediateParticleStates ) const;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& aFinalParticle, std::vector< KSParticle >* intermediateParticleStates ) const override;
             //***********
             //composition
             //***********

@@ -3,14 +3,15 @@
 
 #include <vector>
 
+#include "KGBoundary.hh"
 #include "KGCoordinateTransform.hh"
 
 namespace KGeoBag
 {
-  class KGComplexAnnulus
+  class KGComplexAnnulus : public KGBoundary
   {
   public:
-    KGComplexAnnulus() : fCoordTransform(NULL) {}
+    KGComplexAnnulus() : fCoordTransform(nullptr) {}
     KGComplexAnnulus(double rmain);
 
     virtual ~KGComplexAnnulus();
@@ -23,9 +24,10 @@ namespace KGeoBag
     virtual KGComplexAnnulus* Clone() const;
 
     virtual void Initialize() const;
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool ContainsPoint(const double* P) const;
-    double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+    double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const;
 
     void SetRMain(double r)     {fRMain = r; }
     void SetRadialMeshMain(int i) const { fRadialMeshMain = i; }
@@ -58,7 +60,7 @@ namespace KGeoBag
       virtual void ComputeLocalFrame(double *cen) const;
 
       virtual bool   ContainsPoint(const double* P) const;
-      double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+      double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const;
 
       const KGCoordinateTransform* GetCoordinateTransform() const { return const_cast<const KGCoordinateTransform*>(fCoordTransform); }
 

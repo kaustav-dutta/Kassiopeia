@@ -69,7 +69,7 @@ namespace KGeoBag
             {
             }
 
-            virtual ~KGBEMData()
+            ~KGBEMData() override
             {
             }
 

@@ -12,14 +12,14 @@ namespace Kassiopeia
         public:
             KSIntDecayCalculatorDeathConstRate();
             KSIntDecayCalculatorDeathConstRate( const KSIntDecayCalculatorDeathConstRate& aCopy );
-            KSIntDecayCalculatorDeathConstRate* Clone() const;
-            virtual ~KSIntDecayCalculatorDeathConstRate();
+            KSIntDecayCalculatorDeathConstRate* Clone() const override;
+            ~KSIntDecayCalculatorDeathConstRate() override;
 
         public:
-            void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime );
+            void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime ) override;
             void ExecuteInteraction( const KSParticle& anInitialParticle,
                                      KSParticle& aFinalParticle,
-                                     KSParticleQueue& aSecondaries );
+                                     KSParticleQueue& aSecondaries ) override;
 
 
         public:

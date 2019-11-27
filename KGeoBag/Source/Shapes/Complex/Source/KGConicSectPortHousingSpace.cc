@@ -33,7 +33,7 @@ namespace KGeoBag
     {
       const KGConicSectPortHousing::Port* p = fObject->GetPort(i);
 
-      if (const KGConicSectPortHousing::OrthogonalPort* o =
+      if (const auto* o =
 	  dynamic_cast<const KGConicSectPortHousing::OrthogonalPort*>(p))
       {
         auto disk = std::make_shared<KGDisk>();
@@ -48,7 +48,7 @@ namespace KGeoBag
         disk->SetRadius(o->GetRSub());
         aBoundaryContainer.push_back(disk);
       }
-      else if (const KGConicSectPortHousing::ParaxialPort* c =
+      else if (const auto* c =
 	       dynamic_cast<const KGConicSectPortHousing::ParaxialPort*>(p))
       {
         auto disk = std::make_shared<KGDisk>();

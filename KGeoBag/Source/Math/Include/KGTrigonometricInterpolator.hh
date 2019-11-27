@@ -9,15 +9,15 @@ namespace KGeoBag
   {
   public:
     KGTrigonometricInterpolator();
-    virtual ~KGTrigonometricInterpolator() {}
+    ~KGTrigonometricInterpolator() override {}
 
-    virtual void Initialize(DataSet&);
+    void Initialize(DataSet&) override;
 
-    virtual int OutOfRange(double x) const;
+    int OutOfRange(double x) const override;
 
-    virtual double Range(unsigned int i) const;
+    double Range(unsigned int i) const override;
 
-    virtual double operator()(double x) const;
+    double operator()(double x) const override;
 
     void SetOrder(unsigned int order) { fOrder = order; }
 

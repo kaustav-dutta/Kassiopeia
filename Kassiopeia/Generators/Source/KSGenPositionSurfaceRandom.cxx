@@ -29,7 +29,7 @@ namespace Kassiopeia
 
     bool KSGenPositionSurfaceRandom::RemoveSurface(KGeoBag::KGSurface* aSurface)
     {
-        for(std::vector<KGeoBag::KGSurface*>::iterator s = fSurfaces.begin();
+        for(auto s = fSurfaces.begin();
             s != fSurfaces.end(); ++s)
         {
             if((*s) == aSurface)
@@ -44,7 +44,7 @@ namespace Kassiopeia
 
     void KSGenPositionSurfaceRandom::Dice(KSParticleQueue* aPrimaries)
     {
-        for(KSParticleIt p = aPrimaries->begin(); p != aPrimaries->end(); ++p)
+        for(auto p = aPrimaries->begin(); p != aPrimaries->end(); ++p)
         {
             KThreeVector pos = random.Random(fSurfaces);
             genmsg_debug( "surface random position generator <" << GetName() << "> diced position <" << pos << ">" << eom );

@@ -12,7 +12,7 @@ namespace KGeoBag
     {
         public:
             KGAppearanceAttributor();
-            virtual ~KGAppearanceAttributor();
+            ~KGAppearanceAttributor() override;
 
         public:
             void AddSurface( KGSurface* aSurface );

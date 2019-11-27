@@ -21,7 +21,7 @@ void KGeoBag::KGConeSpaceRandom::VisitConeSpace(KGeoBag::KGConeSpace* aConeSpace
 	double z = 1.0 / gamma * (pow(0 + lambda * Uniform(), 1.0 / 3.0) - 0) + aConeSpace->ZA();
 
 	double r = (0 + (z - aConeSpace->ZA()) * gamma) * sqrt(Uniform());
-	double phi = Uniform(0, 2 * KConst::Pi());
+	double phi = Uniform(0, 2 * katrin::KConst::Pi());
 
 	point.SetZ(z);
 	point.SetX(cos(phi) * r);

@@ -21,7 +21,7 @@ namespace KGeoBag
   {
   public:
 	  KGConeSpaceRandom() : KGShapeRandom() {}
-    virtual ~KGConeSpaceRandom() {}
+    ~KGConeSpaceRandom() override {}
 
     /**
      * \brief Visitor function to dice a point
@@ -29,7 +29,7 @@ namespace KGeoBag
      *
      * \param aConeSpace
      */
-    virtual void VisitConeSpace(KGConeSpace* aConeSpace);
+    void VisitConeSpace(KGConeSpace* aConeSpace) override;
   };
 }
 

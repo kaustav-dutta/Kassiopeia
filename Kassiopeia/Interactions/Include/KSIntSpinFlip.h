@@ -17,8 +17,8 @@ namespace Kassiopeia
         public:
             KSIntSpinFlip();
             KSIntSpinFlip( const KSIntSpinFlip& aCopy );
-            KSIntSpinFlip* Clone() const;
-            virtual ~KSIntSpinFlip();
+            KSIntSpinFlip* Clone() const override;
+            ~KSIntSpinFlip() override;
 
         public:
             void CalculateTransitionRate(
@@ -36,13 +36,13 @@ namespace Kassiopeia
                     KSParticle& anInteractionParticle,
                     double& aTimeStep,
                     bool& aFlag
-            );
+            ) override;
 
             void ExecuteInteraction(
                     const KSParticle& anInteractionParticle,
                     KSParticle& aFinalParticle,
                     KSParticleQueue& aSecondaries
-            ) const;
+            ) const override;
 
     };
 

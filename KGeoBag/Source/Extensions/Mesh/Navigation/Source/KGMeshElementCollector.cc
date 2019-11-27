@@ -9,7 +9,7 @@ namespace KGeoBag
 
 
 KGMeshElementCollector::KGMeshElementCollector():
-    fMeshContainer( NULL ),
+    fMeshContainer( nullptr ),
     fOrigin( KThreeVector::sZero ),
     fXAxis( KThreeVector::sXUnit ),
     fYAxis( KThreeVector::sYUnit ),
@@ -56,7 +56,7 @@ KGMeshElementCollector::VisitSurface( KGSurface* aSurface )
     fCurrentYAxis = aSurface->GetYAxis();
     fCurrentZAxis = aSurface->GetZAxis();
     fCurrentSurface = aSurface;
-    fCurrentSpace = NULL;
+    fCurrentSpace = nullptr;
     Add( aSurface->AsExtension< KGMesh >() );
 }
 
@@ -68,7 +68,7 @@ KGMeshElementCollector::VisitSpace( KGSpace* aSpace )
     fCurrentYAxis = aSpace->GetYAxis();
     fCurrentZAxis = aSpace->GetZAxis();
     fCurrentSpace = aSpace;
-    fCurrentSurface = NULL;
+    fCurrentSurface = nullptr;
     Add( aSpace->AsExtension< KGMesh >() );
 }
 
@@ -91,21 +91,21 @@ KGMeshElementCollector::Add( KGMeshData* aData )
 
     PreCollectionAction(aData);
 
-    if( aData != NULL )
+    if( aData != nullptr )
     {
         if(aData->HasData())
         {
-            for( vector< KGMeshElement* >::iterator tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
+            for( auto tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
             {
                 tMeshElement = *tElementIt;
 
                 tMeshTriangle = dynamic_cast< KGMeshTriangle* >( tMeshElement );
-                if( (tMeshTriangle != NULL) )
+                if( (tMeshTriangle != nullptr) )
                 {
                     fCurrentElementType = eTriangle;
                     //transform mesh triangle into global coordinates
                     KGMeshTriangle* t = new KGMeshTriangle( LocalToInternal( tMeshTriangle->GetP0() ), LocalToInternal( tMeshTriangle->GetP1() ), LocalToInternal( tMeshTriangle->GetP2() ) );
-                    KGNavigableMeshElement* navi_mesh_element = new KGNavigableMeshElement();
+                    auto* navi_mesh_element = new KGNavigableMeshElement();
                     navi_mesh_element->SetMeshElement(t);
                     // navi_mesh_element->SetParentSurface(fCurrentSurface);
                     // navi_mesh_element->SetParentSpace(fCurrentSpace);
@@ -115,12 +115,12 @@ KGMeshElementCollector::Add( KGMeshData* aData )
                 }
 
                 tMeshRectangle = dynamic_cast< KGMeshRectangle* >( tMeshElement );
-                if( (tMeshRectangle != NULL) )
+                if( (tMeshRectangle != nullptr) )
                 {
                     fCurrentElementType = eRectangle;
                     //transform mesh rectangle into global coordinates
                     KGMeshRectangle* r = new KGMeshRectangle( LocalToInternal( tMeshRectangle->GetP0() ), LocalToInternal( tMeshRectangle->GetP1() ), LocalToInternal( tMeshRectangle->GetP2() ), LocalToInternal( tMeshRectangle->GetP3() ) );
-                    KGNavigableMeshElement* navi_mesh_element = new KGNavigableMeshElement();
+                    auto* navi_mesh_element = new KGNavigableMeshElement();
                     navi_mesh_element->SetMeshElement(r);
                     // navi_mesh_element->SetParentSurface(fCurrentSurface);
                     // navi_mesh_element->SetParentSpace(fCurrentSpace);
@@ -130,12 +130,12 @@ KGMeshElementCollector::Add( KGMeshData* aData )
                 }
 
                 tMeshWire = dynamic_cast< KGMeshWire* >( tMeshElement );
-                if( (tMeshWire != NULL) )
+                if( (tMeshWire != nullptr) )
                 {
                     fCurrentElementType = eWire;
                     //transform mesh wire into global coordinates
                     KGMeshWire* w = new KGMeshWire( LocalToInternal( tMeshWire->GetP0() ), LocalToInternal( tMeshWire->GetP1() ), tMeshWire->GetDiameter() );
-                    KGNavigableMeshElement* navi_mesh_element = new KGNavigableMeshElement();
+                    auto* navi_mesh_element = new KGNavigableMeshElement();
                     navi_mesh_element->SetMeshElement(w);
                     // navi_mesh_element->SetParentSurface(fCurrentSurface);
                     // navi_mesh_element->SetParentSpace(fCurrentSpace);

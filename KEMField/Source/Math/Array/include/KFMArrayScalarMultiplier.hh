@@ -23,16 +23,16 @@ class KFMArrayScalarMultiplier: public KFMUnaryArrayOperator< ArrayType, NDIM>
 {
     public:
         KFMArrayScalarMultiplier(){};
-        virtual ~KFMArrayScalarMultiplier(){};
+        ~KFMArrayScalarMultiplier() override{};
 
         void SetScalarMultiplicationFactor(const ArrayType& fac){fScalarFactor = fac;}
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
 
-            if(this->fInput != NULL && this->fOutput != NULL)
+            if(this->fInput != nullptr && this->fOutput != nullptr)
             {
                 if(KFMArrayOperator<ArrayType,NDIM>::HaveSameNumberOfElements(this->fInput, this->fOutput))
                 {

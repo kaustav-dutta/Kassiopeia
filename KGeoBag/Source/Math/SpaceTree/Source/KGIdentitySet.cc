@@ -23,7 +23,7 @@ KGIdentitySet::AddID(unsigned int id)
 void
 KGIdentitySet::RemoveID(unsigned int id)
 {
-    std::vector<unsigned int>::iterator IT = std::find(fIDSet.begin(), fIDSet.end(), id);
+    auto IT = std::find(fIDSet.begin(), fIDSet.end(), id);
     if(IT != fIDSet.end())
     {
         fIDSet.erase(IT);
@@ -49,8 +49,8 @@ KGIdentitySet::FindID(unsigned int id) const
 {
     if(fIsSorted)
     {
-        std::vector<unsigned int>::const_iterator a = fIDSet.begin();
-        std::vector<unsigned int>::const_iterator b = fIDSet.end();
+        auto a = fIDSet.begin();
+        auto b = fIDSet.end();
         std::vector<unsigned int>::const_iterator c;
 
         if( std::binary_search(a,b,id) )

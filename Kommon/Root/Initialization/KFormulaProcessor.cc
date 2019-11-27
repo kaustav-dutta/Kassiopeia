@@ -51,16 +51,19 @@ namespace katrin
         string tValue;
         string tBuffer;
         stack< string > tBufferStack;
+        unsigned int tBracketcount;
 
         stringstream tResultConverter;
 
         tValue = aToken->GetValue();
 
         tBufferStack.push( "" );
+        tBracketcount = 0;
         for( size_t Index = 0; Index < tValue.size(); Index++ )
         {
             if( tValue[Index] == fStartBracket[0] )
             {
+                tBracketcount += 1;
                 tBufferStack.top() += tBuffer;
                 tBufferStack.push( "" );
                 tBuffer.clear();
@@ -69,6 +72,7 @@ namespace katrin
 
             if( tValue[Index] == fEndBracket[0] )
             {
+                tBracketcount -= 1;
                 tBufferStack.top() += tBuffer;
                 tBuffer = tBufferStack.top();
                 tBufferStack.pop();
@@ -79,43 +83,54 @@ namespace katrin
                     return;
                 }
 
-                //conversions for logical operations
-                while ( tBuffer.find( fGreaterEqual ) != string::npos )
+                if( tBracketcount != 0 )
                 {
-                	tBuffer.replace( tBuffer.find( fGreaterEqual ), fGreaterEqual.length(), string(">=") );
+                    tBufferStack.top() += "(";
+                    tBufferStack.top() += tBuffer;
+                    tBufferStack.top() += ")";
                 }
-                while ( tBuffer.find( fLessEqual ) != string::npos )
+                else
                 {
-                	tBuffer.replace( tBuffer.find( fLessEqual ), fLessEqual.length(), string("<=") );
-                }
-                while ( tBuffer.find( fNonEqual ) != string::npos )
-                {
-                	tBuffer.replace( tBuffer.find( fNonEqual ), fNonEqual.length(), string("!=") );
-                }
-                while ( tBuffer.find( fEqual ) != string::npos )
-                {
-                	tBuffer.replace( tBuffer.find( fEqual ), fEqual.length(), string("==") );
-                }
-                while ( tBuffer.find( fGreater ) != string::npos )
-                {
-                	tBuffer.replace( tBuffer.find( fGreater ), fGreater.length(), string(">") );
-                }
-                while ( tBuffer.find( fLess ) != string::npos )
-                {
-                	tBuffer.replace( tBuffer.find( fLess ), fLess.length(), string("<") );
-                }
+                    //conversions for logical operations
+                    while ( tBuffer.find( fGreaterEqual ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fGreaterEqual ), fGreaterEqual.length(), string(">=") );
+                    }
+                    while ( tBuffer.find( fLessEqual ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fLessEqual ), fLessEqual.length(), string("<=") );
+                    }
+                    while ( tBuffer.find( fNonEqual ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fNonEqual ), fNonEqual.length(), string("!=") );
+                    }
+                    while ( tBuffer.find( fEqual ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fEqual ), fEqual.length(), string("==") );
+                    }
+                    while ( tBuffer.find( fGreater ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fGreater ), fGreater.length(), string(">") );
+                    }
+                    while ( tBuffer.find( fLess ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fLess ), fLess.length(), string("<") );
+                    }
 
-                while ( tBuffer.find( fModulo ) != string::npos )
-                {
-                	tBuffer.replace( tBuffer.find( fModulo ), fModulo.length(), string("%") );
+                    while ( tBuffer.find( fModulo ) != string::npos )
+                    {
+                        tBuffer.replace( tBuffer.find( fModulo ), fModulo.length(), string("%") );
+                    }
+                    
+                    TFormula formulaParser("(anonymous)", tBuffer.c_str());
+                    tResultConverter.str("");
+                    tResultConverter << std::setprecision( 15 ) << formulaParser.Eval( 0.0 );
+                    tBuffer = tResultConverter.str();
+
+
+
+                    tBufferStack.top() += tBuffer;
                 }
-
-                TFormula formulaParser("(anonymous)", tBuffer.c_str());
-                tResultConverter.str("");
-                tResultConverter << std::setprecision( 15 ) << formulaParser.Eval( 0.0 );
-                tBuffer = tResultConverter.str();
-
-                tBufferStack.top() += tBuffer;
                 tBuffer.clear();
                 continue;
             }

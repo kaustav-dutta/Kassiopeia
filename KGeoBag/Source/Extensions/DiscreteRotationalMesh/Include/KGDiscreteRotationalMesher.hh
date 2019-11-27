@@ -20,12 +20,12 @@ namespace KGeoBag
 
     {
         public:
-    	virtual void VisitSurface( KGSurface* aSurface );
-        virtual void VisitSpace( KGSpace* aSpace );
+    	void VisitSurface( KGSurface* aSurface ) override;
+        void VisitSpace( KGSpace* aSpace ) override;
 
         public:
             KGDiscreteRotationalMesher();
-            virtual ~KGDiscreteRotationalMesher();
+            ~KGDiscreteRotationalMesher() override;
 
       void SetAxialAngle(double d) { fAxialAngle = d; }
       void SetAxialCount(unsigned int i) { fAxialCount = i; }

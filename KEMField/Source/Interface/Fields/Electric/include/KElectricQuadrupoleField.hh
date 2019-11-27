@@ -15,7 +15,7 @@ namespace KEMField {
 class KElectricQuadrupoleField: public KElectrostaticField {
 public:
 	KElectricQuadrupoleField();
-	virtual ~KElectricQuadrupoleField();
+	~KElectricQuadrupoleField() override;
 
 	void SetLocation( const KPosition& aLocation );
 	void SetStrength( const double& aStrength );
@@ -23,8 +23,8 @@ public:
 	void SetRadius( const double& aRadius );
 
 private:
-	double PotentialCore( const KPosition& aSamplePoint) const;
-	KThreeVector ElectricFieldCore( const KPosition& aSamplePoint) const;
+	double PotentialCore( const KPosition& aSamplePoint) const override;
+	KThreeVector ElectricFieldCore( const KPosition& aSamplePoint) const override;
 
 	KPosition fLocation;
 	double fStrength;

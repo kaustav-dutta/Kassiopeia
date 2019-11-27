@@ -197,7 +197,7 @@ namespace KGeoBag
         const unsigned int tModBase = 13;
         unsigned int tMod = 0;
 
-        double tDeltaPhi = 2. * KConst::Pi() / (double) (fArcCount);
+        double tDeltaPhi = 2. * katrin::KConst::Pi() / (double) (fArcCount);
         double tThisPhi;
         double tNextPhi;
         KThreeVector tThisThisPoint;

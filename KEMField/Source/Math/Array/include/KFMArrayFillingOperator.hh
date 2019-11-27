@@ -24,8 +24,8 @@ template<typename T, unsigned int NDIM>
 class KFMArrayFillingOperator: public KFMArrayOperator<T,NDIM>
 {
     public:
-        KFMArrayFillingOperator():fOutput(NULL){;};
-        virtual ~KFMArrayFillingOperator(){;};
+        KFMArrayFillingOperator():fOutput(nullptr){;};
+        ~KFMArrayFillingOperator() override{;};
 
         virtual void SetOutput(KFMArrayWrapper<T,NDIM>* out)
         {
@@ -36,9 +36,9 @@ class KFMArrayFillingOperator: public KFMArrayOperator<T,NDIM>
 
         virtual KFMArrayWrapper<T,NDIM>* GetOutput(){return fOutput;};
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
-        virtual void ExecuteOperation() = 0;
+        void ExecuteOperation() override = 0;
 
     protected:
 

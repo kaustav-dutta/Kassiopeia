@@ -156,43 +156,43 @@ namespace katrin
     {
         if( anElement->GetName() == "start_point" )
         {
-            KGPlanarPolyLoop::StartPointArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::StartPointArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::StartPointArguments >();
             fObject->StartPoint( tArgs->fPoint );
             return true;
         }
         if( anElement->GetName() == "next_line" )
         {
-            KGPlanarPolyLoop::LineArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LineArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LineArguments >();
             fObject->NextLine( tArgs->fVertex, tArgs->fMeshCount, tArgs->fMeshPower );
             return true;
         }
         if( anElement->GetName() == "next_arc" )
         {
-            KGPlanarPolyLoop::ArcArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::ArcArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::ArcArguments >();
             fObject->NextArc( tArgs->fVertex, tArgs->fRadius, tArgs->fRight, tArgs->fShort, tArgs->fMeshCount );
             return true;
         }
         if( anElement->GetName() == "previous_line" )
         {
-            KGPlanarPolyLoop::LineArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LineArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LineArguments >();
             fObject->PreviousLine( tArgs->fVertex, tArgs->fMeshCount, tArgs->fMeshPower );
             return true;
         }
         if( anElement->GetName() == "previous_arc" )
         {
-            KGPlanarPolyLoop::ArcArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::ArcArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::ArcArguments >();
             fObject->PreviousArc( tArgs->fVertex, tArgs->fRadius, tArgs->fRight, tArgs->fShort, tArgs->fMeshCount );
             return true;
         }
         if( anElement->GetName() == "last_line" )
         {
-            KGPlanarPolyLoop::LastLineArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LastLineArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LastLineArguments >();
             fObject->LastLine( tArgs->fMeshCount, tArgs->fMeshPower );
             return true;
         }
         if( anElement->GetName() == "last_arc" )
         {
-            KGPlanarPolyLoop::LastArcArguments* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LastArcArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLoop::LastArcArguments >();
             fObject->LastArc( tArgs->fRadius, tArgs->fRight, tArgs->fShort, tArgs->fMeshCount );
             return true;
         }

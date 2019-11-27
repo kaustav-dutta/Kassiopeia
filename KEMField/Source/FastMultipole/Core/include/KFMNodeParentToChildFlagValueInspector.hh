@@ -33,7 +33,7 @@ class KFMNodeParentToChildFlagValueInspector: public KFMInspectingActor< KFMNode
             fAndOr = true;
         };
 
-        virtual ~KFMNodeParentToChildFlagValueInspector(){};
+        ~KFMNodeParentToChildFlagValueInspector() override{};
 
         void UseAndCondition(){fAndOr = true;};
         void UseOrCondition(){fAndOr = false;};
@@ -42,9 +42,9 @@ class KFMNodeParentToChildFlagValueInspector: public KFMInspectingActor< KFMNode
         void SetFlagValue(char value){fValueInspector.SetFlagValue(value);};
 
         //needs to answer this question about whether this node statisfies a condition
-        virtual bool ConditionIsSatisfied( KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 if(node->HasChildren())
                 {

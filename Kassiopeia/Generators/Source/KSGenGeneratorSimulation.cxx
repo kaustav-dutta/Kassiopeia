@@ -31,15 +31,15 @@ namespace Kassiopeia
             fDefaultEnergy( 1. ),
             fDefaultTime( 0. ),
             fDefaultPID( 11 ),  // electron
-            fRootFile( NULL ),
-            fFormulaPositionX( NULL ),
-            fFormulaPositionY( NULL ),
-            fFormulaPositionZ( NULL ),
-            fFormulaDirectionX( NULL ),
-            fFormulaDirectionY( NULL ),
-            fFormulaDirectionZ( NULL ),
-            fFormulaEnergy( NULL ),
-            fFormulaTime( NULL )
+            fRootFile( nullptr ),
+            fFormulaPositionX( nullptr ),
+            fFormulaPositionY( nullptr ),
+            fFormulaPositionZ( nullptr ),
+            fFormulaDirectionX( nullptr ),
+            fFormulaDirectionY( nullptr ),
+            fFormulaDirectionZ( nullptr ),
+            fFormulaEnergy( nullptr ),
+            fFormulaTime( nullptr )
     {
     }
     KSGenGeneratorSimulation::KSGenGeneratorSimulation( const KSGenGeneratorSimulation& aCopy ) :
@@ -64,15 +64,15 @@ namespace Kassiopeia
             fKineticEnergyName( aCopy.fKineticEnergyName ),
             fTimeName( aCopy.fTimeName ),
             fPIDName( aCopy.fPIDName ),
-            fRootFile( NULL ),
-            fFormulaPositionX( NULL ),
-            fFormulaPositionY( NULL ),
-            fFormulaPositionZ( NULL ),
-            fFormulaDirectionX( NULL ),
-            fFormulaDirectionY( NULL ),
-            fFormulaDirectionZ( NULL ),
-            fFormulaEnergy( NULL ),
-            fFormulaTime( NULL )
+            fRootFile( nullptr ),
+            fFormulaPositionX( nullptr ),
+            fFormulaPositionY( nullptr ),
+            fFormulaPositionZ( nullptr ),
+            fFormulaDirectionX( nullptr ),
+            fFormulaDirectionY( nullptr ),
+            fFormulaDirectionZ( nullptr ),
+            fFormulaEnergy( nullptr ),
+            fFormulaTime( nullptr )
     {
     }
     KSGenGeneratorSimulation* KSGenGeneratorSimulation::Clone() const
@@ -94,7 +94,7 @@ namespace Kassiopeia
         KSParticleIt tParticleIt;
         for( tParticleIt = aPrimaries.begin(); tParticleIt != aPrimaries.end(); tParticleIt++ )
         {
-            KSParticle* tParticle = new KSParticle( **tParticleIt );
+            auto* tParticle = new KSParticle( **tParticleIt );
             if ( ! tParticle->IsValid() )
             {
                 tParticle->Print();
@@ -170,37 +170,37 @@ namespace Kassiopeia
     }
     void KSGenGeneratorSimulation::DeinitializeComponent()
     {
-        if ( fRootFile != NULL )
+        if ( fRootFile != nullptr )
             delete fRootFile;
-        fRootFile = NULL;
+        fRootFile = nullptr;
 
-        if ( fFormulaPositionX != NULL )
+        if ( fFormulaPositionX != nullptr )
             delete fFormulaPositionX;
-        if ( fFormulaPositionY != NULL )
+        if ( fFormulaPositionY != nullptr )
             delete fFormulaPositionY;
-        if ( fFormulaPositionZ != NULL )
+        if ( fFormulaPositionZ != nullptr )
             delete fFormulaPositionZ;
 
-        if ( fFormulaDirectionX != NULL )
+        if ( fFormulaDirectionX != nullptr )
             delete fFormulaDirectionX;
-        if ( fFormulaDirectionY != NULL )
+        if ( fFormulaDirectionY != nullptr )
             delete fFormulaDirectionY;
-        if ( fFormulaDirectionZ != NULL )
+        if ( fFormulaDirectionZ != nullptr )
             delete fFormulaDirectionZ;
 
-        if ( fFormulaEnergy != NULL )
+        if ( fFormulaEnergy != nullptr )
             delete fFormulaEnergy;
-        if ( fFormulaTime != NULL )
+        if ( fFormulaTime != nullptr )
             delete fFormulaTime;
 
-        fFormulaPositionX  = NULL;
-        fFormulaPositionY  = NULL;
-        fFormulaPositionZ  = NULL;
-        fFormulaDirectionX = NULL;
-        fFormulaDirectionY = NULL;
-        fFormulaDirectionZ = NULL;
-        fFormulaEnergy     = NULL;
-        fFormulaTime       = NULL;
+        fFormulaPositionX  = nullptr;
+        fFormulaPositionY  = nullptr;
+        fFormulaPositionZ  = nullptr;
+        fFormulaDirectionX = nullptr;
+        fFormulaDirectionY = nullptr;
+        fFormulaDirectionZ = nullptr;
+        fFormulaEnergy     = nullptr;
+        fFormulaTime       = nullptr;
 
         return;
     }
@@ -266,21 +266,21 @@ namespace Kassiopeia
                         tPID = tTrackGroup.Get< KSInt >( fPIDName ).Value();
                     }
 
-                    if ( fFormulaPositionX != NULL )
+                    if ( fFormulaPositionX != nullptr )
                         tPosition.SetX( fFormulaPositionX->Eval( tPosition.X() ) );
-                    if ( fFormulaPositionY != NULL )
+                    if ( fFormulaPositionY != nullptr )
                         tPosition.SetY( fFormulaPositionY->Eval( tPosition.Y() ) );
-                    if ( fFormulaPositionZ != NULL )
+                    if ( fFormulaPositionZ != nullptr )
                         tPosition.SetZ( fFormulaPositionZ->Eval( tPosition.Z() ) );
-                    if ( fFormulaDirectionX != NULL )
+                    if ( fFormulaDirectionX != nullptr )
                         tDirection.SetX( fFormulaDirectionX->Eval( tDirection.X() ) );
-                    if ( fFormulaDirectionY != NULL )
+                    if ( fFormulaDirectionY != nullptr )
                         tDirection.SetY( fFormulaDirectionY->Eval( tDirection.Y() ) );
-                    if ( fFormulaDirectionZ != NULL )
+                    if ( fFormulaDirectionZ != nullptr )
                         tDirection.SetZ( fFormulaDirectionZ->Eval( tDirection.Z() ) );
-                    if ( fFormulaEnergy != NULL )
+                    if ( fFormulaEnergy != nullptr )
                         tEnergy = fFormulaEnergy->Eval( tEnergy );
-                    if ( fFormulaTime != NULL )
+                    if ( fFormulaTime != nullptr )
                         tTime = fFormulaTime->Eval( tTime );
 
                     KSParticle* tParticle = KSParticleFactory::GetInstance().Create( tPID );

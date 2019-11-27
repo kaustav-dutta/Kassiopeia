@@ -24,17 +24,17 @@ public:
 
 public:
     KRampedElectricField();
-    virtual ~KRampedElectricField();
+    ~KRampedElectricField() override;
 
 private:
-    virtual double PotentialCore( const KPosition& aSamplePoint, const double& aSampleTime ) const;
-    virtual KThreeVector ElectricFieldCore( const KPosition& aSamplePoint, const double& aSampleTime) const;
+    double PotentialCore( const KPosition& aSamplePoint, const double& aSampleTime ) const override;
+    KThreeVector ElectricFieldCore( const KPosition& aSamplePoint, const double& aSampleTime) const override;
 
 public:
     double GetModulationFactor( const double& aTime ) const;
 
 private:
-    virtual void InitializeCore();
+    void InitializeCore() override;
 
 public:
     ;K_SET_GET_PTR( KElectricField, RootElectricField )

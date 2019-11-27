@@ -11,8 +11,8 @@
 namespace KEMField {
 
 KIntegratingElectrostaticFieldSolver::KIntegratingElectrostaticFieldSolver() :
-            		fIntegrator( NULL ),
-					fIntegratingFieldSolver( NULL ),
+            		fIntegrator( nullptr ),
+					fIntegratingFieldSolver( nullptr ),
 #ifdef KEMFIELD_USE_OPENCL
 					fOCLIntegrator( NULL ),
 					fOCLIntegratingFieldSolver( NULL ),

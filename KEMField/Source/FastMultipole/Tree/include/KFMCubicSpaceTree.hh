@@ -46,7 +46,7 @@ class KFMCubicSpaceTree: public KFMTree<ObjectTypeList>
 
         }
 
-        virtual ~KFMCubicSpaceTree()
+        ~KFMCubicSpaceTree() override
         {
             delete fTreeProperties;
             //reset the space tree properties pointer to null for all nodes

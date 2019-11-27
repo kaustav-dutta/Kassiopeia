@@ -17,16 +17,17 @@ namespace KGeoBag
 			   double zB,
 			   double rB);
 
-    virtual ~KGConicSectPortHousing();
+    ~KGConicSectPortHousing() override;
 
     static std::string Name() { return "conic_section_port_housing"; }
 
     virtual KGConicSectPortHousing* Clone() const;
 
     virtual void Initialize() const;
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool   ContainsPoint(const double* P) const;
-    double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+    double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const;
 
     void AddParaxialPort(double asub[3],
 			 double rsub);
@@ -126,14 +127,14 @@ namespace KGeoBag
 		     double asub[3],
 		     double rsub);
 
-      virtual ~OrthogonalPort();
+      ~OrthogonalPort() override;
 
-      virtual OrthogonalPort* Clone(KGConicSectPortHousing*) const;
+      OrthogonalPort* Clone(KGConicSectPortHousing*) const override;
 
-      virtual void Initialize();
+      void Initialize() override;
 
-      bool   ContainsPoint(const double* P) const;
-      double DistanceTo(const double* P,double* P_in,double* P_norm) const;
+      bool   ContainsPoint(const double* P) const override;
+      double DistanceTo(const double* P,double* P_in,double* P_norm) const override;
 
       void     SetXDisc(int i)        const { fXDisc = i; }
       void     SetCylDisc(int i)      const { fCylDisc = i; }
@@ -201,14 +202,14 @@ namespace KGeoBag
 		   double asub[3],
 		   double rsub);
 
-      virtual ~ParaxialPort();
+      ~ParaxialPort() override;
 
-      virtual ParaxialPort* Clone(KGConicSectPortHousing*) const;
+      ParaxialPort* Clone(KGConicSectPortHousing*) const override;
 
-      virtual void Initialize();
+      void Initialize() override;
 
-      bool   ContainsPoint(const double* P) const;
-      double DistanceTo(const double* P,double* P_in,double* P_norm) const;
+      bool   ContainsPoint(const double* P) const override;
+      double DistanceTo(const double* P,double* P_in,double* P_norm) const override;
 
       void     SetXDisc(int i)        const { fXDisc = i; }
       void     SetCylDisc(int i)      const { fCylDisc = i; }

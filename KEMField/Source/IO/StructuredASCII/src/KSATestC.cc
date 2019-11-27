@@ -17,7 +17,7 @@ void KSATestC::DefineOutputNode(KSAOutputNode* node) const
 
 void KSATestC::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         KSATestA::DefineInputNode(node);
         node->AddChild(new KSAAssociatedReferencePODInputNode< KSATestC, double, &KSATestC::SetCData >(std::string("CData"), this) );

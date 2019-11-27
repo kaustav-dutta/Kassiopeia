@@ -32,7 +32,7 @@ namespace katrin
     int KInitializer< XType >::fCount = 0;
 
     template< class XType >
-    XType* KInitializer< XType >::fInstance = NULL;
+    XType* KInitializer< XType >::fInstance = nullptr;
 
     template< class XType >
     KInitializer< XType >::KInitializer()

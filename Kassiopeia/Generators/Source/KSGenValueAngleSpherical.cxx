@@ -6,7 +6,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -32,11 +31,15 @@ namespace Kassiopeia
 
     void KSGenValueAngleSpherical::DiceValue( vector< double >& aDicedValues )
     {
-        double tCosThetaMin = cos( (KConst::Pi() / 180.) * fAngleMax );
-        double tCosThetaMax = cos( (KConst::Pi() / 180.) * fAngleMin );
-        double tAngle = acos( KRandom::GetInstance().Uniform( tCosThetaMin, tCosThetaMax ) );
+        genmsg_assert(fAngleMax, >=0);
+        genmsg_assert(fAngleMin, >=0);
+        genmsg_assert(fAngleMax, <=180);
+        genmsg_assert(fAngleMin, <=180);
+        double tCosThetaMin = std::cos( (katrin::KConst::Pi() / 180.) * fAngleMax );
+        double tCosThetaMax = std::cos( (katrin::KConst::Pi() / 180.) * fAngleMin );
+        double tAngle = std::acos( KRandom::GetInstance().Uniform( tCosThetaMin, tCosThetaMax ) );
 
-        aDicedValues.push_back( (180.0 / KConst::Pi()) * tAngle );
+        aDicedValues.push_back( (180.0 / katrin::KConst::Pi()) * tAngle );
 
         return;
     }

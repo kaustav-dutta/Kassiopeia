@@ -14,11 +14,16 @@ namespace Kassiopeia
         public:
             KSTrajTermGyration();
             KSTrajTermGyration( const KSTrajTermGyration& aCopy );
-            KSTrajTermGyration* Clone() const;
-            virtual ~KSTrajTermGyration();
+            KSTrajTermGyration* Clone() const override;
+            ~KSTrajTermGyration() override;
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const override;
+
+            const double& GetPhaseVelocity() const { return fPhaseVelocity; }
+
+        private:
+            mutable double fPhaseVelocity;
     };
 
 }

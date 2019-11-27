@@ -27,7 +27,7 @@ namespace Kassiopeia
     }
 
     bool KSGenPositionSpaceRandom::RemoveSpace(KGeoBag::KGSpace* aSpace) {
-        for(std::vector<KGeoBag::KGSpace*>::iterator s = fSpaces.begin();
+        for(auto s = fSpaces.begin();
                         s != fSpaces.end(); ++s) {
                 if((*s) == aSpace) {
                         fSpaces.erase(s);
@@ -39,7 +39,7 @@ namespace Kassiopeia
     }
 
     void KSGenPositionSpaceRandom::Dice(KSParticleQueue* aPrimaries) {
-        for(KSParticleIt p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
+        for(auto p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
                 (*p)->SetPosition(random.Random(fSpaces));
         }
     }

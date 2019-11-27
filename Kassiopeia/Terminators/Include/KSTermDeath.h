@@ -12,12 +12,12 @@ namespace Kassiopeia
 		public:
 		    KSTermDeath();
 		    KSTermDeath( const KSTermDeath& aCopy );
-		    KSTermDeath* Clone() const;
-			virtual ~KSTermDeath();
+		    KSTermDeath* Clone() const override;
+			~KSTermDeath() override;
 
 		public:
-			void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-			void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+			void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+			void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
 	};
 

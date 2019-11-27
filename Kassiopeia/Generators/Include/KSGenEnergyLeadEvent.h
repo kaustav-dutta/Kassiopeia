@@ -14,15 +14,15 @@ namespace Kassiopeia
         public:
             KSGenEnergyLeadEvent();
             KSGenEnergyLeadEvent( const KSGenEnergyLeadEvent& aCopy );
-            KSGenEnergyLeadEvent* Clone() const;
-            virtual ~KSGenEnergyLeadEvent();
+            KSGenEnergyLeadEvent* Clone() const override;
+            ~KSGenEnergyLeadEvent() override;
 
             //******
             //action
             //******
 
         public:
-            void Dice( KSParticleQueue* aPrimaries );
+            void Dice( KSParticleQueue* aPrimaries ) override;
 
             //*************
             //configuration
@@ -52,8 +52,8 @@ namespace Kassiopeia
             //**********
 
         public:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         private:
             KSGenRelaxation* fBismuthRelaxation;

@@ -54,7 +54,7 @@ class KFMSubdivisionConditionBalanced: public KFMSubdivisionCondition<NDIM, Obje
             fSparseMatrixMemoryUse = 0;
         };
 
-        virtual ~KFMSubdivisionConditionBalanced(){};
+        ~KFMSubdivisionConditionBalanced() override{};
 
         void SetDegree(unsigned int degree){fDegree = degree;};
         void SetZeroMaskSize(unsigned int z_mask){fZeroMaskSize = z_mask;};
@@ -75,7 +75,7 @@ class KFMSubdivisionConditionBalanced: public KFMSubdivisionCondition<NDIM, Obje
 
         double GetBiasDegree() const {return fBiasDegree;};
 
-        virtual bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) override
         {
             //first get the tree properties associated with this node
             KFMCubicSpaceTreeProperties<NDIM>* tree_prop = KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<NDIM> >::GetNodeObject(node);
@@ -99,10 +99,10 @@ class KFMSubdivisionConditionBalanced: public KFMSubdivisionCondition<NDIM, Obje
                 unsigned int n_nearby_elements = 0;
                 for(unsigned int i=0; i<neighbors.size(); i++)
                 {
-                    if(neighbors[i] != NULL)
+                    if(neighbors[i] != nullptr)
                     {
                         KFMIdentitySet* bball_list = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet >::GetNodeObject(neighbors[i]);
-                        if( bball_list != NULL)
+                        if( bball_list != nullptr)
                         {
                             n_nearby_elements += bball_list->GetSize();
                         }
@@ -248,7 +248,7 @@ class KFMSubdivisionConditionBalanced: public KFMSubdivisionCondition<NDIM, Obje
 
         }
 
-        virtual std::string Name() {return std::string("balanced");};
+        std::string Name() override {return std::string("balanced");};
 
 
     protected:

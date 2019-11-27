@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
             KSGenValueGeneralizedGauss();
             KSGenValueGeneralizedGauss( const KSGenValueGeneralizedGauss& aCopy );
-            KSGenValueGeneralizedGauss* Clone() const;
-            virtual ~KSGenValueGeneralizedGauss();
+            KSGenValueGeneralizedGauss* Clone() const override;
+            ~KSGenValueGeneralizedGauss() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, ValueMin )

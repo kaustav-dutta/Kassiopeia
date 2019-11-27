@@ -32,7 +32,7 @@ namespace Kassiopeia
                 this->SetParent( aCopy.fParentComponent );
                 aCopy.fParentComponent->AddChild( this );
             }
-            virtual ~KSComponentMaximumAt()
+            ~KSComponentMaximumAt() override
             {
             }
 
@@ -41,15 +41,15 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Clone() const
+            KSComponent* Clone() const override
             {
                 return new KSComponentMaximumAt< XValueType, XValueTypeSource >( *this );
             }
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "component maximum_at <" << this->GetName() << "> building component named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XValueType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "component maximum_at <" << this->GetName() << "> has no output named <" << aField << ">" << eom;
                 }
@@ -59,18 +59,18 @@ namespace Kassiopeia
                 }
                 return tComponent;
             }
-            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ )
+            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ ) override
             {
-                return NULL;
+                return nullptr;
             }
 
         public:
-            void InitializeComponent()
+            void InitializeComponent() override
             {
                 fMaximum.Reset();
             }
 
-            void PushUpdateComponent()
+            void PushUpdateComponent() override
             {
                 objctmsg_debug( "component maximum_at <" << this->GetName() << "> pushing update" << eom );
                 if ( fMaximum.Update() == true )
@@ -79,7 +79,7 @@ namespace Kassiopeia
                 }
             }
 
-            void PullDeupdateComponent()
+            void PullDeupdateComponent() override
             {
                 objctmsg_debug( "component maximum_at <" << this->GetName() << "> pulling deupdate" << eom );
                 fMaximum.Reset();

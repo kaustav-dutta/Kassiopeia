@@ -26,12 +26,12 @@ template< typename NodeType >
 class KGRecursiveActor: public KGNodeActor<NodeType>
 {
     public:
-       KGRecursiveActor():fOperationalActor(NULL),fVisitingOrderForward(true){};
-       virtual ~KGRecursiveActor(){};
+       KGRecursiveActor():fOperationalActor(nullptr),fVisitingOrderForward(true){};
+       ~KGRecursiveActor() override{};
 
         void SetOperationalActor(KGNodeActor<NodeType>* opActor)
         {
-            if(opActor != this && opActor != NULL)//avoid a disaster
+            if(opActor != this && opActor != nullptr)//avoid a disaster
             {
                 fOperationalActor = opActor;
             }
@@ -40,9 +40,9 @@ class KGRecursiveActor: public KGNodeActor<NodeType>
         void VisitParentBeforeChildren(){fVisitingOrderForward = true;};
         void VisitChildrenBeforeParent(){fVisitingOrderForward = false;};
 
-        void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
 
                 //make sure the stacks are empty

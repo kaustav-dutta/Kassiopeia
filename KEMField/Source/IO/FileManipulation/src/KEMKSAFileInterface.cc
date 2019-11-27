@@ -12,7 +12,7 @@ KEMKSAFileInterface::ReadKSAFile(KSAInputNode* node, string file_name, bool& res
     set<string> fileList = KEMFileInterface::GetInstance()->CompleteFileList();
 
     std::string full_file_name = KEMFileInterface::GetInstance()->ActiveDirectory() + "/" + file_name;
-    for(set<string>::iterator it=fileList.begin(); it!=fileList.end(); ++it)
+    for(auto it=fileList.begin(); it!=fileList.end(); ++it)
     {
         if( *it == full_file_name )
         {
@@ -45,7 +45,7 @@ KEMKSAFileInterface::SaveKSAFile(KSAOutputNode* node, string file_name, bool& re
         set<string> fileList = KEMFileInterface::GetInstance()->CompleteFileList();
         std::string full_file_name = KEMFileInterface::GetInstance()->ActiveDirectory() + "/" + file_name;
 
-        for(set<string>::iterator it=fileList.begin(); it!=fileList.end(); ++it)
+        for(auto it=fileList.begin(); it!=fileList.end(); ++it)
         {
             if( *it == full_file_name )
             {

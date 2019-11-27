@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajAdiabaticError();
-            virtual ~KSTrajAdiabaticError();
+            KSTrajAdiabaticError( const KSTrajAdiabaticError& other ) = default;
+            ~KSTrajAdiabaticError() override;
 
             //**********
             //assignment

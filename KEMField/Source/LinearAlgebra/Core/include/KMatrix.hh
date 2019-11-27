@@ -22,15 +22,15 @@ namespace KEMField
       friend class KMatrix;
       KMatrixRow(KMatrix& m,unsigned int row=0) :
 	KVector<ValueType>(), fParent(m), i(row) {}
-      virtual ~KMatrixRow() {}
+      ~KMatrixRow() override {}
 
-      const ValueType& operator()(unsigned int j) const { return fParent(i,j); }
+      const ValueType& operator()(unsigned int j) const override { return fParent(i,j); }
 
-      unsigned int Dimension() const { return fParent.Dimension(1); }
+      unsigned int Dimension() const override { return fParent.Dimension(1); }
 
     private:
       // We disable this method by making it private.
-      virtual ValueType& operator[](unsigned int)
+      ValueType& operator[](unsigned int) override
       { static ValueType dummy; return dummy; }
 
       KMatrix& fParent;

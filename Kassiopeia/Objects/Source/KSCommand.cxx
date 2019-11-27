@@ -6,8 +6,8 @@ namespace Kassiopeia
     KSCommand::KSCommand() :
             KSObject(),
             fState( eIdle ),
-            fParentComponent( NULL ),
-            fChildComponent( NULL )
+            fParentComponent( nullptr ),
+            fChildComponent( nullptr )
     {
     }
     KSCommand::KSCommand( const KSCommand& aCopy ) :

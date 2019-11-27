@@ -251,7 +251,7 @@ int AnalyzeFile( KRootFile *aRootFile, po::variables_map aOptions )
                         double tTotalEnergy     = READ_DOUBLE( tStepWorld,      "total_energy",
                                                     tKinEnergy - tEPotential );
                         double tLongKinEnergy   = READ_DOUBLE( tStepWorld,      "longitudinal_kinetic_energy",
-                                                    tKinEnergy * cos(tPolarAngle*KConst::Pi()/180.) * cos(tPolarAngle*KConst::Pi()/180.) );
+                                                    tKinEnergy * cos(tPolarAngle*katrin::KConst::Pi()/180.) * cos(tPolarAngle*katrin::KConst::Pi()/180.) );
                         double tDirection       = READ_VECTOR_DOTP( tStepWorld, "magnetic_field", "momentum",   0.) ;
 
                         if ( tPolarAngle > 90. )
@@ -357,7 +357,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    TObjArray *tOutputArray = new TObjArray();
+    auto *tOutputArray = new TObjArray();
 
     PREP_MULTIGRAPH( ZPosition,                 "Axial Position" );
     PREP_MULTIGRAPH( Radius,                    "Radial Position" );
@@ -380,7 +380,7 @@ int main(int argc, char **argv)
 
     KRootFile* tRootFile;
     vector< string > tInputFiles = vm["file"].as< vector< string > >();
-    for( vector< string >::iterator it = tInputFiles.begin(); it != tInputFiles.end(); ++it )
+    for( auto it = tInputFiles.begin(); it != tInputFiles.end(); ++it )
     {
         string tFilename = (*it);
         mainmsg(eNormal) << "Reading from ROOT file <" << tFilename << "> ..." << eom;
@@ -389,7 +389,7 @@ int main(int argc, char **argv)
         delete tRootFile;
     }
 
-    TCanvas *tCanvas = new TCanvas( "canvas", "", 1500, 3000 );
+    auto *tCanvas = new TCanvas( "canvas", "", 1500, 3000 );
     tCanvas->Divide( 3, 6 );
 
     tCanvas->cd( 1 );   DRAW_MULTIGRAPH( ZPosition,             "AL", "s [m]", "z [m]" );

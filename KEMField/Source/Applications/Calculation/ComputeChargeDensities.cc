@@ -121,23 +121,23 @@ int main(int argc, char* argv[])
   std::string outfile = "partialConvergence";
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
-    {"verbose", required_argument, 0, 'v'},
-    {"infile", required_argument, 0, 'f'},
-    {"triangle-infile", required_argument, 0, 't'},
-    {"rectangle-infile", required_argument, 0, 'r'},
-    {"wire-infile", required_argument, 0, 'w'},
-    {"accuracy", required_argument, 0, 'a'},
-    {"increment", required_argument, 0, 'i'},
-    {"save_increment", required_argument, 0, 'j'},
-    {"outfile", required_argument, 0, 'k'},
-    {"method", required_argument, 0, 'm'},
+    {"help", no_argument, nullptr, 'h'},
+    {"verbose", required_argument, nullptr, 'v'},
+    {"infile", required_argument, nullptr, 'f'},
+    {"triangle-infile", required_argument, nullptr, 't'},
+    {"rectangle-infile", required_argument, nullptr, 'r'},
+    {"wire-infile", required_argument, nullptr, 'w'},
+    {"accuracy", required_argument, nullptr, 'a'},
+    {"increment", required_argument, nullptr, 'i'},
+    {"save_increment", required_argument, nullptr, 'j'},
+    {"outfile", required_argument, nullptr, 'k'},
+    {"method", required_argument, nullptr, 'm'},
   };
 
   static const char *optString = "hv:f:t:r:w:a:g:i:j:k:m:";
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help
@@ -368,7 +368,7 @@ int main(int argc, char* argv[])
 
       outfile = outfile.substr(0,outfile.find_last_of("."));
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       robinHood.AddVisitor(stateReader);
 
       MPI_SINGLE_PROCESS
@@ -376,7 +376,7 @@ int main(int argc, char* argv[])
 	robinHood.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       stateWriter->SaveNameRoot(outfile);
       robinHood.AddVisitor(stateWriter);
@@ -482,7 +482,7 @@ void ReadInTriangles(std::string fileName,KSurfaceContainer& surfaceContainer)
 	if (fabs(d[13]/d[12])<1.e-10)
 	{
 
-	  KDirichletTriangle* t = new KDirichletTriangle();
+	  auto* t = new KDirichletTriangle();
 
 	  t->SetA(d[9]);
 	  t->SetB(d[10]);
@@ -496,7 +496,7 @@ void ReadInTriangles(std::string fileName,KSurfaceContainer& surfaceContainer)
 	else
 	{
 
-	  KNeumannTriangle* t = new KNeumannTriangle();
+	  auto* t = new KNeumannTriangle();
 
 	  t->SetA(d[9]);
 	  t->SetB(d[10]);
@@ -564,7 +564,7 @@ void ReadInRectangles(std::string fileName,KSurfaceContainer& surfaceContainer)
 	if (fabs(d[13]/d[12])<1.e-10)
 	{
 
-	  KDirichletRectangle* t = new KDirichletRectangle();
+	  auto* t = new KDirichletRectangle();
 
 	  t->SetA(d[9]);
 	  t->SetB(d[10]);
@@ -578,7 +578,7 @@ void ReadInRectangles(std::string fileName,KSurfaceContainer& surfaceContainer)
 	else
 	{
 
-	  KNeumannRectangle* t = new KNeumannRectangle();
+	  auto* t = new KNeumannRectangle();
 
 	  t->SetA(d[9]);
 	  t->SetB(d[10]);
@@ -645,7 +645,7 @@ void ReadInWires(std::string fileName,KSurfaceContainer& surfaceContainer)
 	if (fabs(d[13]/d[12])<1.e-10)
 	{
 
-	  KDirichletWire* t = new KDirichletWire();
+	  auto* t = new KDirichletWire();
 
 	  t->SetP0(KPosition(d[0],d[1],d[2]));
 	  t->SetP1(KPosition(d[3],d[4],d[5]));

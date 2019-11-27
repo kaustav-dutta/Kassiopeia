@@ -35,9 +35,9 @@ class KSAAssociatedPointerPODArrayInputNode: public KSAPODInputNode< std::vector
             fCallPtr = call_ptr;
         };
 
-        virtual ~KSAAssociatedPointerPODArrayInputNode(){;};
+        ~KSAAssociatedPointerPODArrayInputNode() override{;};
 
-        void FinalizeObject()
+        void FinalizeObject() override
         {
             fArray = new SetType[fArraySize];
             for(unsigned int i=0; i<fArraySize; i++)

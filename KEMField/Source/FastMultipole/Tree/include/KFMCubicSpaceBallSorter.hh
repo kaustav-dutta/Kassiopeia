@@ -33,14 +33,14 @@ class KFMCubicSpaceBallSorter: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMCubicSpaceBallSorter(){};
-        virtual ~KFMCubicSpaceBallSorter(){};
+        ~KFMCubicSpaceBallSorter() override{};
 
         void SetInsertionCondition(const KFMInsertionCondition<NDIM>* cond){fCondition = cond;};
         const KFMInsertionCondition<NDIM>* GetInsertionCondition(){return fCondition;};
 
         void SetBoundingBallContainer(const KFMObjectContainer< KFMBall<NDIM > >* ball_container){fBallContainer = ball_container;};
 
-        virtual void ApplyAction( KFMNode< ObjectTypeList >* node)
+        void ApplyAction( KFMNode< ObjectTypeList >* node) override
         {
 
             //in this function we distribute the bounding balls owned by a node

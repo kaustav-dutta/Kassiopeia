@@ -18,7 +18,7 @@ namespace KGeoBag
         KGMesher tMesher;
 
         KGMeshSurface* tMeshSurface;
-        for( vector< KGSurface* >::iterator tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
+        for( auto tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
         {
             tMeshSurface = (*tIt)->MakeExtension< KGMesh >();
             (*tIt)->AcceptNode( &tMesher );
@@ -26,7 +26,7 @@ namespace KGeoBag
             tMeshSurface->SetTags( GetTags() );
         }
         KGMeshSpace* tMeshSpace;
-        for( vector< KGSpace* >::iterator tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
+        for( auto tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
         {
             tMeshSpace = (*tIt)->MakeExtension< KGMesh >();
             (*tIt)->AcceptNode( &tMesher );

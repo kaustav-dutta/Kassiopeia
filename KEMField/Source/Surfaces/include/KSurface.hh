@@ -43,17 +43,17 @@ namespace KEMField
     KSurface() : KSurfacePrimitive(),Basis(),Boundary(),Shape() {}
     KSurface(const Basis& basis,const Boundary& boundary,const Shape& shape) :
       KSurfacePrimitive(),Basis(basis), Boundary(boundary), Shape(shape) {}
-    ~KSurface() {}
+    ~KSurface() override {}
 
-    KSurface<BasisPolicy,BoundaryPolicy,ShapePolicy>* Clone() const
+    KSurface<BasisPolicy,BoundaryPolicy,ShapePolicy>* Clone() const override
     { return new KSurface<BasisPolicy,BoundaryPolicy,ShapePolicy>(*this); }
 
-    Basis* GetBasis() { return this; }
-    Boundary* GetBoundary() { return this; }
-    Shape* GetShape() { return this; }
+    Basis* GetBasis() override { return this; }
+    Boundary* GetBoundary() override { return this; }
+    Shape* GetShape() override { return this; }
 
-    std::string GetName() const { return Name(); }
-    KSurfaceID& GetID() const { return ID(); }
+    std::string GetName() const override { return Name(); }
+    KSurfaceID& GetID() const override { return ID(); }
 
     static std::string Name()
     {
@@ -64,9 +64,9 @@ namespace KEMField
 
     static KSurfaceID& ID() { return fID; }
 
-    void Accept(KBasisVisitor& visitor) { visitor.Visit(*this); }
-    void Accept(KBoundaryVisitor& visitor) { visitor.Visit(*this); }
-    void Accept(KShapeVisitor& visitor) { visitor.Visit(*this); }
+    void Accept(KBasisVisitor& visitor) override { visitor.Visit(*this); }
+    void Accept(KBoundaryVisitor& visitor) override { visitor.Visit(*this); }
+    void Accept(KShapeVisitor& visitor) override { visitor.Visit(*this); }
 
   private:
     static KSurfaceID fID;

@@ -19,11 +19,11 @@ KGElectrostaticBoundaryField::KGElectrostaticBoundaryField() :
 					KElectrostaticBoundaryField(),
 					fMinimumElementArea(0.0),
 					fMaximumElementAspectRatio(1e100),
-					fSystem( NULL ),
+					fSystem( nullptr ),
 					fSurfaces(),
 					fSpaces(),
 					fSymmetry( NoSymmetry ),
-					fConverter( NULL )
+					fConverter( nullptr )
 {
 }
 
@@ -93,8 +93,8 @@ void KGElectrostaticBoundaryField::InitializeCore()
 }
 
 void KGElectrostaticBoundaryField::ConfigureSurfaceContainer() {
-	KSurfaceContainer* container = new KSurfaceContainer();
-	fConverter = NULL;
+	auto* container = new KSurfaceContainer();
+	fConverter = nullptr;
 
         switch( fSymmetry )
         {
@@ -119,17 +119,17 @@ void KGElectrostaticBoundaryField::ConfigureSurfaceContainer() {
 
         fConverter->SetSurfaceContainer( container );
 
-        if( fSystem != NULL )
+        if( fSystem != nullptr )
         {
             fConverter->SetSystem( fSystem->GetOrigin(), fSystem->GetXAxis(), fSystem->GetYAxis(), fSystem->GetZAxis() );
         }
 
-        for( vector< KGSurface* >::iterator tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
+        for( auto tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
         {
             (*tSurfaceIt)->AcceptNode( &(*fConverter) );
         }
 
-        for( vector< KGSpace* >::iterator tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
+        for( auto tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
         {
             (*tSpaceIt)->AcceptNode( &(*fConverter) );
         }

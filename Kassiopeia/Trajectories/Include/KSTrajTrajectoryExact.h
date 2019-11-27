@@ -19,8 +19,8 @@ namespace Kassiopeia
         public:
             KSTrajTrajectoryExact();
             KSTrajTrajectoryExact( const KSTrajTrajectoryExact& aCopy );
-            KSTrajTrajectoryExact* Clone() const;
-            virtual ~KSTrajTrajectoryExact();
+            KSTrajTrajectoryExact* Clone() const override;
+            ~KSTrajTrajectoryExact() override;
 
         public:
             void SetIntegrator( KSTrajExactIntegrator* anIntegrator );
@@ -53,17 +53,17 @@ namespace Kassiopeia
 
         public:
 
-            void Reset();
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void Reset() override;
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const override;
 
             //********************
             //exact term interface
             //********************
 
         public:
-            virtual void Differentiate(double aTime, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const;
+            void Differentiate(double aTime, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const override;
 
         private:
 

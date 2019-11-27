@@ -16,11 +16,11 @@ namespace katrin
     {
         public:
             KSIntCalculatorHydrogenSet();
-            virtual ~KSIntCalculatorHydrogenSet();
+            ~KSIntCalculatorHydrogenSet() override;
 
         public:
-            void AddCalculator( KSIntCalculator* aCalculator );
-            void ReleaseCalculators( KSIntScattering* aScattering );
+            void AddCalculator( KSIntCalculator* aCalculator ) override;
+            void ReleaseCalculators( KSIntScattering* aScattering ) override;
 
         private:
             K_SET_GET( std::string, Name )

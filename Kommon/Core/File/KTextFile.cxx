@@ -7,7 +7,7 @@ namespace katrin
 {
 
     KTextFile::KTextFile() :
-        fFile( NULL )
+        fFile( nullptr )
     {
     }
     KTextFile::~KTextFile()
@@ -32,7 +32,7 @@ namespace katrin
         if( fFile->fail() == true )
         {
             delete fFile;
-            fFile = NULL;
+            fFile = nullptr;
             return false;
         }
 
@@ -40,11 +40,11 @@ namespace katrin
     }
     bool KTextFile::CloseFileSubclass()
     {
-        if( fFile != NULL )
+        if( fFile != nullptr )
         {
             fFile->close();
             delete fFile;
-            fFile = NULL;
+            fFile = nullptr;
 
             return true;
         }
@@ -58,7 +58,7 @@ namespace katrin
             return fFile;
         }
         filemsg( eError ) << "attempting to access file pointer of unopened file " << eom;
-        return NULL;
+        return nullptr;
     }
 
 }

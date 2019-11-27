@@ -17,17 +17,17 @@ namespace Kassiopeia
     public:
         KSIntDecayCalculatorFerencSpontaneous();
         KSIntDecayCalculatorFerencSpontaneous( const KSIntDecayCalculatorFerencSpontaneous& aCopy );
-        KSIntDecayCalculatorFerencSpontaneous* Clone() const;
-        virtual ~KSIntDecayCalculatorFerencSpontaneous();
+        KSIntDecayCalculatorFerencSpontaneous* Clone() const override;
+        ~KSIntDecayCalculatorFerencSpontaneous() override;
 
     public:
-        void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime );
+        void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime ) override;
         void ExecuteInteraction( const KSParticle& anInitialParticle,
                                  KSParticle& aFinalParticle,
-                                 KSParticleQueue& aSecondaries );
+                                 KSParticleQueue& aSecondaries ) override;
 
     protected:
-        virtual void InitializeComponent();
+        void InitializeComponent() override;
 
     public:
         K_SET_GET( long long, TargetPID )

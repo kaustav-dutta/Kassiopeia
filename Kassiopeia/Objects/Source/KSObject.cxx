@@ -5,12 +5,12 @@ namespace Kassiopeia
 
     KSObject::KSObject() :
             KTagged(),
-            fHolder( NULL )
+            fHolder( nullptr )
     {
     }
     KSObject::KSObject( const KSObject& aCopy ) :
             KTagged( aCopy ),
-            fHolder( NULL )
+            fHolder( nullptr )
     {
     }
     KSObject::~KSObject()

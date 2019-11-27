@@ -50,7 +50,7 @@ namespace KGeoBag
   {
   public:
     KGRandomPointGenerator() {}
-    virtual ~KGRandomPointGenerator() {}
+    ~KGRandomPointGenerator() override {}
   };
 }
 

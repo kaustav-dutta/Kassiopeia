@@ -2,7 +2,7 @@
 
 #include "KSTrajectoriesMessage.h"
 
-#include <math.h>
+#include <cmath>
 
 namespace Kassiopeia
 {

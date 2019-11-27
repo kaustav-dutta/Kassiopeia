@@ -334,7 +334,7 @@ std::pair<KThreeVector, double> KElectrostaticQuadratureLineSegmentIntegrator::E
 double KElectrostaticQuadratureLineSegmentIntegrator::Potential(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const
 {
 	double potential = 0.;
-	for (KSymmetryGroup<KLineSegment>::ShapeCIt it=source->begin();it!=source->end();++it)
+	for (auto it=source->begin();it!=source->end();++it)
 		potential += Potential(*it,P);
 	return potential;
 }
@@ -342,7 +342,7 @@ double KElectrostaticQuadratureLineSegmentIntegrator::Potential(const KSymmetryG
 KThreeVector KElectrostaticQuadratureLineSegmentIntegrator::ElectricField(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const
 {
 	KThreeVector electricField(0.,0.,0.);
-	for (KSymmetryGroup<KLineSegment>::ShapeCIt it=source->begin();it!=source->end();++it)
+	for (auto it=source->begin();it!=source->end();++it)
 		electricField += ElectricField(*it,P);
 	return electricField;
 }
@@ -353,7 +353,7 @@ std::pair<KThreeVector, double> KElectrostaticQuadratureLineSegmentIntegrator::E
     double potential( 0. );
     KThreeVector electricField( 0., 0., 0. );
 
-    for( KSymmetryGroup<KLineSegment>::ShapeCIt it=source->begin(); it!=source->end(); ++it ) {
+    for( auto it=source->begin(); it!=source->end(); ++it ) {
     	fieldAndPotential = ElectricFieldAndPotential( *it, P );
         electricField += fieldAndPotential.first;
     	potential += fieldAndPotential.second;

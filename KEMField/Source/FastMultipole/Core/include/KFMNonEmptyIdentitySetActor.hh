@@ -27,14 +27,14 @@ class KFMNonEmptyIdentitySetActor: public KFMInspectingActor< KFMNode<ObjectType
 {
     public:
         KFMNonEmptyIdentitySetActor(){};
-        virtual ~KFMNonEmptyIdentitySetActor(){};
+        ~KFMNonEmptyIdentitySetActor() override{};
 
-        virtual bool ConditionIsSatisfied( KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 KFMIdentitySet* set = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject(node);
-                if(set != NULL)
+                if(set != nullptr)
                 {
                     if(set->GetSize() != 0)
                     {

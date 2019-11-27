@@ -12,8 +12,8 @@ namespace Kassiopeia
         fForceConversion( false ),
         fDoConversion( true ),
         fDoAuger( true ),
-        fMyRelaxation( NULL ),
-        fMyConversion( NULL )
+        fMyRelaxation( nullptr ),
+        fMyConversion( nullptr )
     {
     }
     KSGenEnergyKryptonEvent::KSGenEnergyKryptonEvent( const KSGenEnergyKryptonEvent& aCopy ) :

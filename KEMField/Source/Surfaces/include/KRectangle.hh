@@ -18,7 +18,7 @@ namespace KEMField
 		   fN1(0.,0.,0.),
 		   fN2(0.,0.,0.),
 		   fN3(0.,0.,0.) {}
-    virtual ~KRectangle() {}
+    ~KRectangle() override {}
 
   public:
 
@@ -35,12 +35,12 @@ namespace KEMField
 		   const KPosition& /*p2*/,
 		   const KPosition& p3);
 
-    double Area() const { return fA*fB; }
-    const KPosition Centroid() const { return fP0 + fA*fN1*.5 + fB*fN2*.5; }
+    double Area() const override { return fA*fB; }
+    const KPosition Centroid() const override { return fP0 + fA*fN1*.5 + fB*fN2*.5; }
 
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint);
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override;
 
-    const KDirection Normal() const { return fN3; }
+    const KDirection Normal() const override { return fN3; }
 
     void              SetA(double d)             { fA = d; }
     void              SetB(double d)             { fB = d; }

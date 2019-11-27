@@ -69,7 +69,7 @@ namespace katrin
   {
     if (anElement->GetName() == "ring")
     {
-      KGComplexAnnulus::Ring* Ring = NULL;
+      KGComplexAnnulus::Ring* Ring = nullptr;
       anElement->ReleaseTo(Ring);
       fObject->AddRing(Ring);
       Ring->Initialize();
@@ -97,7 +97,7 @@ namespace katrin
   {
     if (anElement->GetName() == "complex_annulus")
     {
-      KGComplexAnnulus* object = NULL;
+      KGComplexAnnulus* object = nullptr;
       anElement->ReleaseTo(object);
       std::shared_ptr< KGComplexAnnulus > smartPtr(object);
       fObject->SetObject(smartPtr);

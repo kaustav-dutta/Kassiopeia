@@ -56,7 +56,7 @@ class KSATestB: public KSAInputOutputObject
             return *this;
         }
 
-        virtual ~KSATestB()
+        ~KSATestB() override
         {
 
         };
@@ -74,9 +74,9 @@ class KSATestB: public KSAInputOutputObject
 
         void GetArray(double* arr) const {arr[0] = fArr[0]; arr[1] = fArr[1]; arr[2] = fArr[2];};
 
-        void DefineOutputNode(KSAOutputNode* node) const;
+        void DefineOutputNode(KSAOutputNode* node) const override;
 
-        void DefineInputNode(KSAInputNode* node);
+        void DefineInputNode(KSAInputNode* node) override;
 
         virtual const char* ClassName() const { return "KSATestB"; };
 

@@ -5,7 +5,7 @@ namespace Kassiopeia
 
     KSMutex::KSMutex()
     {
-        pthread_mutex_init( &fMutex, NULL );
+        pthread_mutex_init( &fMutex, nullptr );
     }
     KSMutex::~KSMutex()
     {

@@ -22,7 +22,6 @@ project( Kassiopeia )
 include( KasperDefaults )
 
 # require c++11
-kasper_require_cpp11()
 
 # module options
 # build in boost functionality [utilities]

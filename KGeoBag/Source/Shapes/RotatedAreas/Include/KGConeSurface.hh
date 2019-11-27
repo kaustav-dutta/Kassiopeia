@@ -11,7 +11,7 @@ namespace KGeoBag
     {
         public:
             KGConeSurface();
-            virtual ~KGConeSurface();
+            ~KGConeSurface() override;
 
         public:
             void ZA( const double& aZA );
@@ -47,8 +47,8 @@ namespace KGeoBag
             };
 
         public:
-            virtual void AreaInitialize() const;
-            virtual void AreaAccept( KGVisitor* aVisitor );
+            void AreaInitialize() const override;
+            void AreaAccept( KGVisitor* aVisitor ) override;
     };
 
 }

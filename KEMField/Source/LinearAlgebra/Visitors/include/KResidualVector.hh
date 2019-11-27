@@ -10,7 +10,7 @@ namespace KEMField
   {
   public:
     KResidualVector() : KSimpleVector<ValueType>() {}
-    virtual ~KResidualVector() {}
+    ~KResidualVector() override {}
 
     static std::string Name() { return std::string("ResidualVector"); }
 

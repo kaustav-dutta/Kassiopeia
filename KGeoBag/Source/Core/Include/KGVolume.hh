@@ -29,7 +29,7 @@ namespace KGeoBag
         public:
             KGVolume();
             KGVolume( const KGVolume& aVolume );
-            virtual ~KGVolume();
+            ~KGVolume() override;
 
         public:
             const BoundaryContainer& Boundaries() const;

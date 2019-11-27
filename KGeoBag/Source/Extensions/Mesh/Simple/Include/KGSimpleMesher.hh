@@ -24,7 +24,7 @@ namespace KGeoBag
 
         public:
             KGSimpleMesher();
-            virtual ~KGSimpleMesher();
+            ~KGSimpleMesher() override;
 
             //**********
             //data types

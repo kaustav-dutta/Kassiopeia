@@ -23,7 +23,7 @@ namespace katrin
         if( aContainer->GetName() == "PhotoAbsorption" )
         {
             if ( aContainer->AsReference< bool >()){
-                KESSPhotoAbsorbtion* aPhotoabsorption = new KESSPhotoAbsorbtion();
+                auto* aPhotoabsorption = new KESSPhotoAbsorbtion();
                 fObject->SetIonisationCalculator( aPhotoabsorption );
                 intmsg_debug( "KESSInelasticBetheFanoBuilder::AddAttribute: added a PhotoAbsorption calculator to KESSInelasticBetheFano" << eom );
             }
@@ -36,7 +36,7 @@ namespace katrin
         if( aContainer->GetName() == "AugerRelaxation" )
         {
             if ( aContainer->AsReference< bool >()){
-                KESSRelaxation* aRelaxation = new KESSRelaxation;
+                auto* aRelaxation = new KESSRelaxation;
                 fObject->SetRelaxationCalculator( aRelaxation );
                 intmsg_debug( "KESSInelasticBetheFanoBuilder::AddAttribute: added an AugerRelaxation calculator to KESSInelasticBetheFano" << eom );
             }

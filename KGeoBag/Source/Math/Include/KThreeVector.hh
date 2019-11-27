@@ -4,7 +4,6 @@
 #include "KTwoVector.hh"
 
 #include "KConst.h"
-using katrin::KConst;
 #include "KHash.h"
 
 #include <istream>
@@ -221,11 +220,11 @@ inline void KThreeVector::SetPolarAngle( const double &anAngle )
 }
 inline void KThreeVector::SetAzimuthalAngleInDegrees( const double &anAngle )
 {
-    SetAzimuthalAngle( KConst::Pi() / 180. * anAngle );
+    SetAzimuthalAngle( katrin::KConst::Pi() / 180. * anAngle );
 }
 inline void KThreeVector::SetPolarAngleInDegrees( const double &anAngle )
 {
-    SetPolarAngle( KConst::Pi() / 180. * anAngle );
+    SetPolarAngle( katrin::KConst::Pi() / 180. * anAngle );
 }
 inline KThreeVector::operator double *()
 {
@@ -324,11 +323,11 @@ inline double KThreeVector::AzimuthalAngle() const
 }
 inline double KThreeVector::PolarAngleInDegrees() const
 {
-    return PolarAngle() * 180. / KConst::Pi();
+    return PolarAngle() * 180. / katrin::KConst::Pi();
 }
 inline double KThreeVector::AzimuthalAngleInDegrees() const
 {
-    return AzimuthalAngle() * 180. / KConst::Pi();
+    return AzimuthalAngle() * 180. / katrin::KConst::Pi();
 }
 
 inline KThreeVector KThreeVector::Abs() const

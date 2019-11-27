@@ -47,7 +47,7 @@ namespace KGeoBag
                     fRotatedMeshCount( 64 )
             {
             }
-            virtual ~KGRotatedPathSurface()
+            ~KGRotatedPathSurface() override
             {
             }
 
@@ -86,22 +86,22 @@ namespace KGeoBag
             mutable unsigned int fRotatedMeshCount;
 
         public:
-            virtual void AreaInitialize() const
+            void AreaInitialize() const override
             {
                 return;
             }
-            virtual void AreaAccept( KGVisitor* aVisitor )
+            void AreaAccept( KGVisitor* aVisitor ) override
             {
                 shapemsg_debug( "rotated path area named <" << GetName() << "> is receiving a visitor" << eom );
-                typename KGRotatedPathSurface< XPathType >::Visitor* tRotatedPathSurfaceVisitor = dynamic_cast< typename KGRotatedPathSurface< XPathType >::Visitor* >( aVisitor );
-                if( tRotatedPathSurfaceVisitor != NULL )
+                auto* tRotatedPathSurfaceVisitor = dynamic_cast< typename KGRotatedPathSurface< XPathType >::Visitor* >( aVisitor );
+                if( tRotatedPathSurfaceVisitor != nullptr )
                 {
                     shapemsg_debug( "rotated path area named <" << GetName() << "> is accepting a visitor" << eom );
                     tRotatedPathSurfaceVisitor->VisitRotatedPathSurface( this );
                 }
                 return;
             }
-            virtual bool AreaAbove( const KThreeVector& aPoint ) const
+            bool AreaAbove( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 bool tZRAbove = fPath->Above( tZRPoint );
@@ -114,14 +114,14 @@ namespace KGeoBag
                     return false;
                 }
             }
-            virtual KThreeVector AreaPoint( const KThreeVector& aPoint ) const
+            KThreeVector AreaPoint( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 KTwoVector tZRNearest = fPath->Point( tZRPoint );
                 double tAngle = aPoint.AzimuthalAngle();
                 return KThreeVector( cos( tAngle ) * tZRNearest.R(), sin( tAngle ) * tZRNearest.R(), tZRNearest.Z() );
             }
-            virtual KThreeVector AreaNormal( const KThreeVector& aPoint ) const
+            KThreeVector AreaNormal( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 KTwoVector tZRNormal = fPath->Normal( tZRPoint );
@@ -132,7 +132,7 @@ namespace KGeoBag
         private:
             static KGPlanarPath* CompilerCheck()
             {
-                XPathType* tPath = NULL;
+                XPathType* tPath = nullptr;
                 return tPath;
             }
     };

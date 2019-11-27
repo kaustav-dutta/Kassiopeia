@@ -21,7 +21,7 @@ namespace KEMField
     KCurrentLoop() : KElectromagnet(),
 		     fP(0.,0.,0.),
 		     fCurrent(0.) {}
-    virtual ~KCurrentLoop() {}
+    ~KCurrentLoop() override {}
 
     static std::string Name() { return "CurrentLoop"; }
 
@@ -42,7 +42,7 @@ namespace KEMField
     double           GetZ()       const { return fP[2]; }
     const KPosition& GetP()       const { return fP; }
 
-    void Accept(KElectromagnetVisitor& visitor);
+    void Accept(KElectromagnetVisitor& visitor) override;
 
   protected:
     KPosition fP;

@@ -35,7 +35,7 @@ public:
 
 protected:
     KToolbox();
-    virtual ~KToolbox();
+    ~KToolbox() override;
 
     typedef std::map<std::string,std::shared_ptr<KContainer> > ContainerMap;
     typedef std::set< std::shared_ptr<KContainer> > ContainerSet;
@@ -52,7 +52,7 @@ protected:
 template< class Object>
 inline void KToolbox::Add(Object* ptr, const std::string& tName)
 {
-    KContainer* tContainer = new KContainer();
+    auto* tContainer = new KContainer();
     tContainer->Set(ptr);
 
     CheckKeyIsFree(tName);

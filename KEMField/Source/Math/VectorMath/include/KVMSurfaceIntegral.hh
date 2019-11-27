@@ -34,8 +34,8 @@ class KVMSurfaceIntegral
             //adaptive integrator is fastest is most low dimensional cases
             fNumInt = new KVMNumericalIntegrator<KVMSurfaceDDim, FieldNDIM>();
             fIntegrandWrapper = new KVMFieldWrapper<KVMSurfaceIntegral, &KVMSurfaceIntegral::Integrand>(this, KVMSurfaceDDim, FieldNDIM);
-            fSurface = NULL;
-            fField = NULL;
+            fSurface = nullptr;
+            fField = nullptr;
         }
 
         virtual ~KVMSurfaceIntegral()
@@ -54,7 +54,7 @@ class KVMSurfaceIntegral
             }
             else
             {
-                fField = NULL;
+                fField = nullptr;
             }
         }
 

@@ -14,10 +14,10 @@ namespace katrin
      {
          public:
              KFormulaProcessor();
-             virtual ~KFormulaProcessor();
+             ~KFormulaProcessor() override;
 
-             virtual void ProcessToken( KAttributeDataToken* aToken );
-             virtual void ProcessToken( KElementDataToken* aToken );
+             void ProcessToken( KAttributeDataToken* aToken ) override;
+             void ProcessToken( KElementDataToken* aToken ) override;
 
          private:
              void Evaluate( KToken* aToken );

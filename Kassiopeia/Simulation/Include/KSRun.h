@@ -14,8 +14,8 @@ namespace Kassiopeia
             KSRun();
             KSRun( const KSRun& aCopy );
             KSRun& operator=( const KSRun& aCopy );
-            KSRun* Clone() const;
-            ~KSRun();
+            KSRun* Clone() const override;
+            ~KSRun() override;
 
             //***
             //IDs

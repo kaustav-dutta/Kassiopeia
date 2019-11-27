@@ -19,7 +19,7 @@ namespace Kassiopeia
 
         public:
             KSSide();
-            virtual ~KSSide();
+            ~KSSide() override;
 
         public:
             virtual void On() const = 0;

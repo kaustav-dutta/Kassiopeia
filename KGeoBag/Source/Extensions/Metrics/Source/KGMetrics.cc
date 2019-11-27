@@ -15,18 +15,18 @@ namespace KGeoBag {
 	}
 
 	void KGMetricsVolumeData::VisitCylinderSpace(KGCylinderSpace* aVolume) {
-		fVolume = KConst::Pi() * aVolume->R() * aVolume->R() * fabs(aVolume->Z1() - aVolume->Z2());
+		fVolume = katrin::KConst::Pi() * aVolume->R() * aVolume->R() * fabs(aVolume->Z1() - aVolume->Z2());
 	}
 
 	void KGMetricsVolumeData::VisitConeSpace(KGConeSpace* aVolume) {
-		fVolume = 1./3. * KConst::Pi() * aVolume->RB() * aVolume->RB() * fabs(aVolume->ZA() - aVolume->ZB());
+		fVolume = 1./3. * katrin::KConst::Pi() * aVolume->RB() * aVolume->RB() * fabs(aVolume->ZA() - aVolume->ZB());
 	}
 
 	void KGMetricsVolumeData::VisitCutConeSpace(KGCutConeSpace* aVolume) {
 		double R = aVolume->R1();
 		double r = aVolume->R2();
 
-		fVolume = fabs(aVolume->Z1() - aVolume->Z2()) / 3. * KConst::Pi() * (R * R + R * r + r * r);
+		fVolume = fabs(aVolume->Z1() - aVolume->Z2()) / 3. * katrin::KConst::Pi() * (R * R + R * r + r * r);
 	}
 
 	void KGMetricsVolumeData::VisitCutConeTubeSpace(KGCutConeTubeSpace* aVolume)
@@ -40,7 +40,7 @@ namespace KGeoBag {
 
 		const double Z = aVolume->Z2() - aVolume->Z1();
 
-		const double factor = KConst::Pi()*Z/3.;
+		const double factor = katrin::KConst::Pi()*Z/3.;
 		const double volIn = (Rin1*Rin1) + (Rin1*Rin2) + (Rin2*Rin2);
 		const double volOut = (Rout1*Rout1) + (Rout1*Rout2) + (Rout2*Rout2);
 
@@ -61,12 +61,12 @@ namespace KGeoBag {
 	}
 
 	void KGMetricsAreaData::VisitCylinderSurface(KGCylinderSurface* aArea) {
-		fArea = 2 * KConst::Pi() * aArea->R() * (aArea->R() + fabs(aArea->Z1() - aArea->Z2()));
+		fArea = 2 * katrin::KConst::Pi() * aArea->R() * (aArea->R() + fabs(aArea->Z1() - aArea->Z2()));
 	}
 
 	void KGMetricsAreaData::VisitConeSurface(KGConeSurface* aArea) {
 		double h = fabs(aArea->ZA() - aArea->ZB());
-		fArea = KConst::Pi() * aArea->RB() * (aArea->RB() + sqrt(aArea->RB() * aArea->RB() + h * h));
+		fArea = katrin::KConst::Pi() * aArea->RB() * (aArea->RB() + sqrt(aArea->RB() * aArea->RB() + h * h));
 	}
 
 	void KGMetricsAreaData::VisitCutConeSurface(KGCutConeSurface* aArea) {
@@ -75,7 +75,7 @@ namespace KGeoBag {
 		double r = aArea->R2();
 		double m = sqrt((R - r) * (R - r) + h * h);
 
-		fArea = KConst::Pi() * (R * R + r * r + (R + r) * m);
+		fArea = katrin::KConst::Pi() * (R * R + r * r + (R + r) * m);
 	}
 
 	/////////////////////////////////////////////

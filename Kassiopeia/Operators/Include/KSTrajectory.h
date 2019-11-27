@@ -14,7 +14,7 @@ namespace Kassiopeia
     {
         public:
             KSTrajectory();
-            virtual ~KSTrajectory();
+            ~KSTrajectory() override;
 
         public:
 

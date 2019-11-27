@@ -43,7 +43,7 @@ class KG2DArc: public KG2DShape
                 const KTwoVector& point1,
                 const double& angle); //angle must be in [-2pi, +2pi]
 
-        virtual ~KG2DArc(){;};
+        ~KG2DArc() override{;};
 
         //setters
 
@@ -77,7 +77,7 @@ class KG2DArc: public KG2DShape
                                       const double& angle);
 
         //initialization
-        void Initialize();
+        void Initialize() override;
 
         //getters
         double GetRadius() const {return fRadius;};
@@ -90,11 +90,11 @@ class KG2DArc: public KG2DShape
         bool IsCCW() const {return fIsCCW;};
 
         //geometry utilities
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-  virtual KTwoVector Point( const KTwoVector& aPoint ) const;
-  virtual KTwoVector Normal( const KTwoVector& aPoint ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+  KTwoVector Point( const KTwoVector& aPoint ) const override;
+  KTwoVector Normal( const KTwoVector& aPoint ) const override;
 
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
         ///computes the intersection with another arc
         ///flag indicates the various possibilities

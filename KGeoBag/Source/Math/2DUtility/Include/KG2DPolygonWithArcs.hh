@@ -36,7 +36,7 @@ class KG2DPolygonWithArcs: public KG2DArea
         KG2DPolygonWithArcs();
         KG2DPolygonWithArcs(const KG2DPolygonWithArcs& copyObject);
         KG2DPolygonWithArcs(const std::vector< KGVertexSideDescriptor >* ordered_descriptors);
-        virtual ~KG2DPolygonWithArcs();
+        ~KG2DPolygonWithArcs() override;
 
         ///create the polygon with arcs by setting the 'descriptors'
         ///a descriptor consists of a vertex and a description of the side
@@ -48,7 +48,7 @@ class KG2DPolygonWithArcs: public KG2DArea
         void SetDescriptors(const std::vector< KGVertexSideDescriptor >* ordered_descriptors);
 
 
-        virtual void Initialize();
+        void Initialize() override;
 
         //getters
         void GetVertices(std::vector<KTwoVector>* vertices) const;
@@ -58,15 +58,15 @@ class KG2DPolygonWithArcs: public KG2DArea
         //geometric system
         //****************
 
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-        virtual KTwoVector Point( const KTwoVector& aPoint ) const;
-        virtual KTwoVector Normal( const KTwoVector& aPoint  ) const;
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+        KTwoVector Point( const KTwoVector& aPoint ) const override;
+        KTwoVector Normal( const KTwoVector& aPoint  ) const override;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
         ///returns true if point is inside the region enclosed by the polygon
-        virtual bool IsInside(const KTwoVector& point) const;
+        bool IsInside(const KTwoVector& point) const override;
 
-        virtual double Area() const { return 0.; }; //not yet implemented
+        double Area() const override { return 0.; }; //not yet implemented
 
         ///returns true if polygon has no self intersections
         virtual bool IsSimple() const {return fIsSimple;};

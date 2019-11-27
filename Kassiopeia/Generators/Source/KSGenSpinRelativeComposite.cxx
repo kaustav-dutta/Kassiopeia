@@ -1,14 +1,14 @@
 #include "KSGenSpinRelativeComposite.h"
 #include "KSGeneratorsMessage.h"
 
-#include <math.h>
+#include <cmath>
 
 namespace Kassiopeia
 {
 
     KSGenSpinRelativeComposite::KSGenSpinRelativeComposite() :
-            fThetaValue( NULL ),
-            fPhiValue( NULL )
+            fThetaValue( nullptr ),
+            fPhiValue( nullptr )
     {
     }
     KSGenSpinRelativeComposite::KSGenSpinRelativeComposite( const KSGenSpinRelativeComposite& aCopy ) :
@@ -49,10 +49,10 @@ namespace Kassiopeia
 
         for( tThetaValueIt = tThetaValues.begin(); tThetaValueIt != tThetaValues.end(); tThetaValueIt++ )
         {
-            tThetaValue = (KConst::Pi() / 180.) * (*tThetaValueIt);
+            tThetaValue = (katrin::KConst::Pi() / 180.) * (*tThetaValueIt);
             for( tPhiValueIt = tPhiValues.begin(); tPhiValueIt != tPhiValues.end(); tPhiValueIt++ )
             {
-                tPhiValue = (KConst::Pi() / 180.) * (*tPhiValueIt);
+                tPhiValue = (katrin::KConst::Pi() / 180.) * (*tPhiValueIt);
                 for( tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); tParticleIt++ )
                 {
                     tParticle = new KSParticle( **tParticleIt );
@@ -88,7 +88,7 @@ namespace Kassiopeia
 
     void KSGenSpinRelativeComposite::SetThetaValue( KSGenValue* anThetaValue )
     {
-        if( fThetaValue == NULL )
+        if( fThetaValue == nullptr )
         {
             fThetaValue = anThetaValue;
             return;
@@ -100,7 +100,7 @@ namespace Kassiopeia
     {
         if( fThetaValue == anThetaValue )
         {
-            fThetaValue = NULL;
+            fThetaValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear theta value <" << anThetaValue->GetName() << "> from composite spin creator <" << this->GetName() << ">" << eom;
@@ -109,7 +109,7 @@ namespace Kassiopeia
 
     void KSGenSpinRelativeComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        if( fPhiValue == NULL )
+        if( fPhiValue == nullptr )
         {
             fPhiValue = aPhiValue;
             return;
@@ -121,7 +121,7 @@ namespace Kassiopeia
     {
         if( fPhiValue == anPhiValue )
         {
-            fPhiValue = NULL;
+            fPhiValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear phi value <" << anPhiValue->GetName() << "> from composite spin creator <" << this->GetName() << ">" << eom;
@@ -130,11 +130,11 @@ namespace Kassiopeia
 
     void KSGenSpinRelativeComposite::InitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Initialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Initialize();
         }
@@ -142,11 +142,11 @@ namespace Kassiopeia
     }
     void KSGenSpinRelativeComposite::DeinitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Deinitialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Deinitialize();
         }

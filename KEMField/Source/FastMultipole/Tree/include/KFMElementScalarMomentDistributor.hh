@@ -39,14 +39,14 @@ class KFMElementScalarMomentDistributor
 
         KFMElementScalarMomentDistributor()
         {
-            fBatchCalc = NULL;
+            fBatchCalc = nullptr;
 
-            fElementIDList = NULL;
-            fNodeList = NULL;
-            fOriginList = NULL;
+            fElementIDList = nullptr;
+            fNodeList = nullptr;
+            fOriginList = nullptr;
 
-            fElementIDs = NULL;
-            fOrigins = NULL;
+            fElementIDs = nullptr;
+            fOrigins = nullptr;
         }
 
         virtual ~KFMElementScalarMomentDistributor(){;};
@@ -61,7 +61,7 @@ class KFMElementScalarMomentDistributor
 
         void ProcessAndDistributeMoments()
         {
-            if(fBatchCalc != NULL && SpatialNDIM == fBatchCalc->GetDimension() )
+            if(fBatchCalc != nullptr && SpatialNDIM == fBatchCalc->GetDimension() )
             {
                 fDegree = fBatchCalc->GetDegree();
                 fNTerms = (fDegree+1)*(fDegree + 1);
@@ -160,9 +160,9 @@ class KFMElementScalarMomentDistributor
                 //find the associated node
                 KFMNode<ObjectTypeList>* node = fNodeList->at(i + fCurrentElementIndex);
 
-                if(node != NULL)
+                if(node != nullptr)
                 {
-                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) == NULL)
+                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) == nullptr)
                     {
                         fMomentInitializer.ApplyAction(node);
                     }

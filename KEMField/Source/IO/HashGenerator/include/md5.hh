@@ -39,7 +39,7 @@ documentation and/or software.
 
 */
 
-#include <stdio.h>
+#include <cstdio>
 #include <fstream>
 #include <iostream>
 

@@ -27,6 +27,7 @@ using katrin::KVTKPainter;
 #include "KGExtrudedCircleSurface.hh"
 #include "KGExtrudedPolyLoopSurface.hh"
 #include "KGConicalWireArraySurface.hh"
+#include "KGRodSurface.hh"
 #include "KGRotatedLineSegmentSpace.hh"
 #include "KGRotatedArcSegmentSpace.hh"
 #include "KGRotatedPolyLineSpace.hh"
@@ -72,6 +73,7 @@ namespace KGeoBag
     public KGExtrudedCircleSurface::Visitor,
     public KGExtrudedPolyLoopSurface::Visitor,
     public KGConicalWireArraySurface::Visitor,
+    public KGRodSurface::Visitor,
     public KGSpace::Visitor,
     public KGRotatedLineSegmentSpace::Visitor,
     public KGRotatedArcSegmentSpace::Visitor,
@@ -139,6 +141,7 @@ namespace KGeoBag
         virtual void VisitExtrudedPathSurface( KGExtrudedCircleSurface* aExtrudedCircleSurface );
         virtual void VisitExtrudedPathSurface( KGExtrudedPolyLoopSurface* aExtrudedPolyLoopSurface );
         virtual void VisitWrappedSurface( KGConicalWireArraySurface* aConicalWireArraySurface );
+        virtual void VisitWrappedSurface( KGRodSurface* aRodSurface );
 
             //**************
             //space visitors
@@ -252,6 +255,7 @@ namespace KGeoBag
         void CircleToClosedPoints( const KGPlanarCircle* aCircle, ClosedPoints& aPoints );
         void PolyLoopToClosedPoints( const KGPlanarPolyLoop* aPolyLoop, ClosedPoints& aPoints );
         void RodsToThreePoints( const KGRodSpace* aRodSpace, ThreePoints& aThreePoints );
+        void RodsToThreePoints( const KGRodSurface* aRodSurface, ThreePoints& aThreePoints );
         void WireArrayToThreePoints( const KGConicalWireArraySurface* aConicalWireArraySurface, ThreePoints& aThreePoints );
 
             //**************

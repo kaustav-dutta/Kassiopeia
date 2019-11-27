@@ -6,7 +6,7 @@
  */
 
 #include "KRampedMagneticField.hh"
-#include <assert.h>
+#include <cassert>
 #include "KEMCout.hh"
 
 namespace KEMField {
@@ -15,7 +15,7 @@ namespace KEMField {
 
 
 KRampedMagneticField::KRampedMagneticField()  :
-                fRootMagneticField( NULL ),
+                fRootMagneticField( nullptr ),
                 fRampingType( rtExponential ),
                 fNumCycles( 1 ),
                 fRampUpDelay( 0. ),
@@ -57,7 +57,7 @@ double KRampedMagneticField::GetModulationFactor(
     double tLength = fRampUpDelay + fRampUpTime + fRampDownDelay + fRampDownTime;
 
     double tTime = aTime;
-    int tCycle = (int)floor( tTime / tLength );
+    auto tCycle = (int)floor( tTime / tLength );
     if ( tCycle < fNumCycles )
         tTime -= tCycle * tLength;
     tTime *= fTimeScalingFactor;
@@ -154,7 +154,7 @@ double KRampedMagneticField::GetDerivModulationFactor(
     double tLength = fRampUpDelay + fRampUpTime + fRampDownDelay + fRampDownTime;
 
             double tTime = aTime;
-            int tCycle = (int)floor( tTime / tLength );
+            auto tCycle = (int)floor( tTime / tLength );
             if ( tCycle < fNumCycles )
                 tTime -= tCycle * tLength;
             tTime *= fTimeScalingFactor;

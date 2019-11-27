@@ -21,11 +21,11 @@ namespace Kassiopeia
         public:
             KSModEventReport();
             KSModEventReport( const KSModEventReport& /*aCopy*/);
-            KSModEventReport* Clone() const;
-            virtual ~KSModEventReport();
+            KSModEventReport* Clone() const override;
+            ~KSModEventReport() override;
 
-            virtual bool ExecutePreEventModification( KSEvent& /*anEvent*/ );
-            virtual bool ExecutePostEventModification( KSEvent& /*anEvent*/ );
+            bool ExecutePreEventModification( KSEvent& /*anEvent*/ ) override;
+            bool ExecutePostEventModification( KSEvent& /*anEvent*/ ) override;
 
         private:
     };

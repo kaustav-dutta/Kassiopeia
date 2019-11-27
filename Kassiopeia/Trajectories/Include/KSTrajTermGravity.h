@@ -24,14 +24,14 @@ namespace Kassiopeia
         public:
             KSTrajTermGravity();
             KSTrajTermGravity( const KSTrajTermGravity& aCopy );
-            KSTrajTermGravity* Clone() const;
-            virtual ~KSTrajTermGravity();
+            KSTrajTermGravity* Clone() const override;
+            ~KSTrajTermGravity() override;
 
         public:
-          virtual void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const;
-          virtual void Differentiate(double /*aTime*/, const KSTrajExactSpinParticle& aValue, KSTrajExactSpinDerivative& aDerivative ) const;
+          void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const override;
+          void Differentiate(double /*aTime*/, const KSTrajExactSpinParticle& aValue, KSTrajExactSpinDerivative& aDerivative ) const override;
           // virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const;
-          virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticSpinParticle& aValue, KSTrajAdiabaticSpinDerivative& aDerivative ) const;
+          void Differentiate(double /*aTime*/, const KSTrajAdiabaticSpinParticle& aValue, KSTrajAdiabaticSpinDerivative& aDerivative ) const override;
           // virtual void Differentiate(double /*aTime*/, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const;
           // virtual void Differentiate(double /*aTime*/, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const;
 

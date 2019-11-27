@@ -180,7 +180,7 @@ KFMDenseBlockSparseMatrixStructure::Initialize()
 void
 KFMDenseBlockSparseMatrixStructure::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedValuePODOutputNode< KFMDenseBlockSparseMatrixStructure, std::string, &KFMDenseBlockSparseMatrixStructure::GetUniqueID >( std::string("UniqueID"), this) );
 
@@ -201,7 +201,7 @@ KFMDenseBlockSparseMatrixStructure::DefineOutputNode(KSAOutputNode* node) const
 void
 KFMDenseBlockSparseMatrixStructure::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedReferencePODInputNode< KFMDenseBlockSparseMatrixStructure, std::string, &KFMDenseBlockSparseMatrixStructure::SetUniqueID >( std::string("UniqueID"), this) );
 

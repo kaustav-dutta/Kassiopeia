@@ -9,12 +9,12 @@ namespace Kassiopeia
 {
 
     KSRootSurfaceNavigator::KSRootSurfaceNavigator() :
-            fSurfaceNavigator( NULL ),
-            fStep( NULL ),
-            fTerminatorParticle( NULL ),
-            fInteractionParticle( NULL ),
-            fFinalParticle( NULL ),
-            fParticleQueue( NULL )
+            fSurfaceNavigator( nullptr ),
+            fStep( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fInteractionParticle( nullptr ),
+            fFinalParticle( nullptr ),
+            fParticleQueue( nullptr )
     {
     }
     KSRootSurfaceNavigator::KSRootSurfaceNavigator( const KSRootSurfaceNavigator& aCopy ) :
@@ -37,7 +37,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceNavigator::ExecuteNavigation( const KSParticle& anInitialParticle, const KSParticle& aNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const
     {
-        if( fSurfaceNavigator == NULL )
+        if( fSurfaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot execute navigation with no surface navigation set" << eom;
         }
@@ -47,7 +47,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceNavigator::FinalizeNavigation( KSParticle& aFinalParticle ) const
     {
-        if( fSurfaceNavigator == NULL )
+        if( fSurfaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot finalize navigation with no surface navigation set" << eom;
         }
@@ -57,7 +57,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceNavigator::SetSurfaceNavigator( KSSurfaceNavigator* aSurfaceNavigator )
     {
-        if( fSurfaceNavigator != NULL )
+        if( fSurfaceNavigator != nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> tried to set surface navigator <" << aSurfaceNavigator->GetName() << "> with surface navigator <" << fSurfaceNavigator->GetName() << "> already set" << eom;
             return;
@@ -74,7 +74,7 @@ namespace Kassiopeia
             return;
         }
         navmsg_debug( "<" << GetName() << "> clearing surface navigator <" << aSurfaceNavigator->GetName() << ">" << eom );
-        fSurfaceNavigator = NULL;
+        fSurfaceNavigator = nullptr;
         return;
     }
 

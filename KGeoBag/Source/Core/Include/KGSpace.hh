@@ -23,7 +23,7 @@ namespace KGeoBag
         public:
             KGSpace();
             KGSpace( KGVolume* aVolume );
-            virtual ~KGSpace();
+            ~KGSpace() override;
 
             //**********
             //extensible

@@ -34,42 +34,42 @@ class KSAPODInputNode: public KSAInputNode
             fChildren.clear();
         };
 
-        virtual ~KSAPODInputNode()
+        ~KSAPODInputNode() override
         {
             delete fConverter;
         }
 
-        virtual bool TagsAreSuppressed(){return true;};
+        bool TagsAreSuppressed() override{return true;};
 
-        virtual bool IsComposite(){return false;};
+        bool IsComposite() override{return false;};
 
-        virtual void AddChild(KSAInputNode* /*child*/)
+        void AddChild(KSAInputNode* /*child*/) override
         {
             //no children allowed
         };
 
         //next node will be set to NULL if the visitor traversing the tree
         //needs to move back to the parent, or stay on the current node
-        virtual int GetNextNode(KSAInputNode*& next_node)
+        int GetNextNode(KSAInputNode*& next_node) override
         {
             next_node = fNextNode;
             return fStatus;
         }
 
-        virtual bool HasChildren() const
+        bool HasChildren() const override
         {
             return false;
         };
 
-        void FinalizeObject(){;};
+        void FinalizeObject() override{;};
 
-        void AddLine(const std::string& line)
+        void AddLine(const std::string& line) override
         {
             //assumes the line has been trimmed of uncessary whitespace!!
             if( LineIsStopTag(line) )
             {
                 fStatus = KSANODE_MOVE_UPWARD;
-                fNextNode = NULL;
+                fNextNode = nullptr;
                 FinalizeObject();
             }
             else
@@ -77,7 +77,7 @@ class KSAPODInputNode: public KSAInputNode
                 //must be the string equivalent of the parameter
                 fConverter->ConvertStringToParameter(line, fValue);
                 fStatus = KSANODE_STAY; //wait for stop tag
-                fNextNode = NULL;
+                fNextNode = nullptr;
             }
         }
 

@@ -42,13 +42,13 @@ namespace Kassiopeia
         {
             DeltaPhi = 0.;
             fPositionBefore = anInitialParticle.GetPosition();
-            fPhiFirstStep = KConst::Pi() + atan2( anInitialParticle.GetPosition().Y(), anInitialParticle.GetPosition().X() );
+            fPhiFirstStep = katrin::KConst::Pi() + atan2( anInitialParticle.GetPosition().Y(), anInitialParticle.GetPosition().X() );
             fFirstStep = false;
         }
         else
         {
-            phiLastStep = KConst::Pi() + atan2( fPositionBefore.Y(), fPositionBefore.X() );
-            phiThisStep = KConst::Pi() + atan2( anInitialParticle.GetPosition().Y(), anInitialParticle.GetPosition().X() );
+            phiLastStep = katrin::KConst::Pi() + atan2( fPositionBefore.Y(), fPositionBefore.X() );
+            phiThisStep = katrin::KConst::Pi() + atan2( anInitialParticle.GetPosition().Y(), anInitialParticle.GetPosition().X() );
             
             if( fAtanJump == false )
             {
@@ -57,32 +57,32 @@ namespace Kassiopeia
             
             if( fAtanJump == true && fJumpDirection == 1 )
             {
-                DeltaPhi = 2 * KConst::Pi() + phiThisStep - fPhiFirstStep;
+                DeltaPhi = 2 * katrin::KConst::Pi() + phiThisStep - fPhiFirstStep;
             }
             
             if( fAtanJump == true && fJumpDirection == 2 )
             {
-                DeltaPhi = 2 * KConst::Pi() - phiThisStep + fPhiFirstStep;
+                DeltaPhi = 2 * katrin::KConst::Pi() - phiThisStep + fPhiFirstStep;
             }
             
-            if( phiLastStep - phiThisStep >= KConst::Pi() )
+            if( phiLastStep - phiThisStep >= katrin::KConst::Pi() )
             {
                 fAtanJump = true;
                 fJumpDirection = 1;
-                DeltaPhi = 2 * KConst::Pi() + phiThisStep - fPhiFirstStep;
+                DeltaPhi = 2 * katrin::KConst::Pi() + phiThisStep - fPhiFirstStep;
             }
             
-            if( phiLastStep - phiThisStep <= -KConst::Pi() )
+            if( phiLastStep - phiThisStep <= -katrin::KConst::Pi() )
             {
                 fAtanJump = true;
                 fJumpDirection = 2;
-                DeltaPhi = 2 * KConst::Pi() - phiThisStep + fPhiFirstStep;
+                DeltaPhi = 2 * katrin::KConst::Pi() - phiThisStep + fPhiFirstStep;
             }
             
             fPositionBefore = anInitialParticle.GetPosition();
         }
         
-        if( DeltaPhi > fMaxPhi * KConst::Pi() / 180.)
+        if( DeltaPhi > fMaxPhi * katrin::KConst::Pi() / 180.)
         {
             fAtanJump = false;
             fJumpDirection = 0;

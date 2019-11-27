@@ -20,15 +20,15 @@ namespace katrin
 
         public:
             KLoopProcessor();
-            virtual ~KLoopProcessor();
+            ~KLoopProcessor() override;
 
-            virtual void ProcessToken( KBeginElementToken* aToken );
-            virtual void ProcessToken( KBeginAttributeToken* aToken );
-            virtual void ProcessToken( KAttributeDataToken* aToken );
-            virtual void ProcessToken( KEndAttributeToken* aToken );
-            virtual void ProcessToken( KMidElementToken* aToken );
-            virtual void ProcessToken( KElementDataToken* aToken );
-            virtual void ProcessToken( KEndElementToken* aToken );
+            void ProcessToken( KBeginElementToken* aToken ) override;
+            void ProcessToken( KBeginAttributeToken* aToken ) override;
+            void ProcessToken( KAttributeDataToken* aToken ) override;
+            void ProcessToken( KEndAttributeToken* aToken ) override;
+            void ProcessToken( KMidElementToken* aToken ) override;
+            void ProcessToken( KElementDataToken* aToken ) override;
+            void ProcessToken( KEndElementToken* aToken ) override;
 
         private:
             void Reset();

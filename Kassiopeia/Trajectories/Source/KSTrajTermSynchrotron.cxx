@@ -30,7 +30,7 @@ namespace Kassiopeia
         double M = aParticle.GetMass();
         double P = aParticle.GetMomentum().Magnitude();
         double Gamma = aParticle.GetLorentzFactor();
-        double C = KConst::C();
+        double C = katrin::KConst::C();
         if ( !fOldMethode )
         {
             //New Methode: Equations from abraham lorentz force
@@ -39,7 +39,7 @@ namespace Kassiopeia
             KThreeVector tLorentzForce = Q * (aParticle.GetElectricField() + tVelocity.Cross( aParticle.GetMagneticField() ));
 
             KThreeVector tAcceleration = tLorentzForce / (M * Gamma ) - 1.0 / ( M * M * C * C * Gamma * Gamma) * tVelocity * aParticle.GetMomentum().Dot( tLorentzForce );
-            double tTau = Q * Q / ( 6.0 * KConst::Pi() * KConst::EpsNull() * M * C * C * C);
+            double tTau = Q * Q / ( 6.0 * katrin::KConst::Pi() * katrin::KConst::EpsNull() * M * C * C * C);
 
             KThreeMatrix tElectricFieldGradient = aParticle.GetElectricGradient();
             KThreeVector tMagneticField = aParticle.GetMagneticField();
@@ -52,13 +52,13 @@ namespace Kassiopeia
             KThreeVector tForce = fEnhancement * tTau * ( Gamma * Q * tFirstTerm - tSecondTerm );
 
             aDerivative.AddToForce( tForce );
-
+            fTotalForce = tForce.Magnitude();
         }
         else
         {
             //Old Methode: Equations from Dans derivations
             //correct energy loss, but the total energy is reduced, not the orthogonal component
-            double Factor = (KConst::MuNull() / (6. * KConst::Pi() * KConst::C())) * ((Q * Q * Q * Q) / (M * P * P));
+            double Factor = (katrin::KConst::MuNull() / (6. * katrin::KConst::Pi() * katrin::KConst::C())) * ((Q * Q * Q * Q) / (M * P * P));
 
             KThreeVector tTUnit = aParticle.GetMomentum().Unit();
             KThreeVector tUUnit = aParticle.GetMomentum().Cross( aParticle.GetMagneticField() ).Unit();
@@ -75,8 +75,8 @@ namespace Kassiopeia
             KThreeVector tForce = -fEnhancement * Factor * (Gamma * tXi1 + Gamma * Gamma * tXi2 + Gamma * Gamma * Gamma * tXi3) * aParticle.GetMomentum();
 
             aDerivative.AddToForce( tForce );
+            fTotalForce = tForce.Magnitude();
         }
-
 
         return;
     }
@@ -84,11 +84,12 @@ namespace Kassiopeia
     {
         double Q = aParticle.GetCharge();
         double M = aParticle.GetMass();
-        double Factor = (KConst::MuNull() / (6. * KConst::Pi() * KConst::C())) * ((Q * Q * Q * Q) / (M * M * M));
+        double Factor = (katrin::KConst::MuNull() / (6. * katrin::KConst::Pi() * katrin::KConst::C())) * ((Q * Q * Q * Q) / (M * M * M));
 
         double tForce = -fEnhancement * Factor * aParticle.GetLorentzFactor() * aParticle.GetMagneticField().MagnitudeSquared() * aParticle.GetTransMomentum();
 
         aDerivative.AddToTransverseForce( tForce );
+        fTotalForce = tForce;
 
         return;
     }
@@ -100,7 +101,7 @@ namespace Kassiopeia
         double M = aParticle.GetMass();
         double P = aParticle.GetMomentum().Magnitude();
         double Gamma = aParticle.GetLorentzFactor();
-        double C = KConst::C();
+        double C = katrin::KConst::C();
         if ( !fOldMethode )
         {
             //New Methode: Equations from abraham lorentz force
@@ -109,7 +110,7 @@ namespace Kassiopeia
             KThreeVector tLorentzForce = Q * (aParticle.GetElectricField() + tVelocity.Cross( aParticle.GetMagneticField() ));
 
             KThreeVector tAcceleration = tLorentzForce / (M * Gamma ) - 1.0 / ( M * M * C * C * Gamma * Gamma) * tVelocity * aParticle.GetMomentum().Dot( tLorentzForce );
-            double tTau = Q * Q / ( 6.0 * KConst::Pi() * KConst::EpsNull() * M * C * C * C);
+            double tTau = Q * Q / ( 6.0 * katrin::KConst::Pi() * katrin::KConst::EpsNull() * M * C * C * C);
 
             KThreeMatrix tElectricFieldGradient = aParticle.GetElectricGradient();
             KThreeVector tMagneticField = aParticle.GetMagneticField();
@@ -122,13 +123,14 @@ namespace Kassiopeia
             KThreeVector tForce = fEnhancement * tTau * ( Gamma * Q * tFirstTerm - tSecondTerm );
 
             aDerivative.AddToForce( tForce );
+            fTotalForce = tForce.Magnitude();
 
         }
         else
         {
             //Old Methode: Equations from Dans derivations
             //correct energy loss, but the total energy is reduced, not the orthogonal component
-            double Factor = (KConst::MuNull() / (6. * KConst::Pi() * KConst::C())) * ((Q * Q * Q * Q) / (M * P * P));
+            double Factor = (katrin::KConst::MuNull() / (6. * katrin::KConst::Pi() * katrin::KConst::C())) * ((Q * Q * Q * Q) / (M * P * P));
 
             KThreeVector tTUnit = aParticle.GetMomentum().Unit();
             KThreeVector tUUnit = aParticle.GetMomentum().Cross( aParticle.GetMagneticField() ).Unit();
@@ -145,8 +147,8 @@ namespace Kassiopeia
             KThreeVector tForce = -fEnhancement * Factor * (Gamma * tXi1 + Gamma * Gamma * tXi2 + Gamma * Gamma * Gamma * tXi3) * aParticle.GetMomentum();
 
             aDerivative.AddToForce( tForce );
+            fTotalForce = tForce.Magnitude();
         }
-
 
         return;
     }
@@ -163,4 +165,6 @@ namespace Kassiopeia
         return;
     }
 
+    STATICINT sKSTrajTermSynchrotronDict =
+            KSDictionary< KSTrajTermSynchrotron >::AddComponent( &KSTrajTermSynchrotron::GetTotalForce, "total_force" );
 }

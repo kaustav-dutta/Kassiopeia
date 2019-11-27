@@ -162,11 +162,11 @@ bool KChargeDensitySolver::FindSolution( double aThreshold, KSurfaceContainer& a
             {
                 //fieldmsg_debug( "adding solution <" << tResidualThreshold.fGeometryHash << "> with threshold <" << tResidualThreshold.fResidualThreshold << ">" << eom )
 
-                KSurfaceContainer* tNewContainer = new KSurfaceContainer();
+                auto* tNewContainer = new KSurfaceContainer();
                 KEMFileInterface::GetInstance()->FindByHash( *tNewContainer, tResidualThreshold.fGeometryHash );
 
-                KBoundaryIntegralVector< KElectrostaticBoundaryIntegrator >* tNewVector = new KBoundaryIntegralVector< KElectrostaticBoundaryIntegrator >( *tNewContainer, tIntegrator );
-                KBoundaryIntegralSolutionVector< KElectrostaticBoundaryIntegrator >* tNewSolutionVector = new KBoundaryIntegralSolutionVector< KElectrostaticBoundaryIntegrator >( *tNewContainer, tIntegrator );
+                auto* tNewVector = new KBoundaryIntegralVector< KElectrostaticBoundaryIntegrator >( *tNewContainer, tIntegrator );
+                auto* tNewSolutionVector = new KBoundaryIntegralSolutionVector< KElectrostaticBoundaryIntegrator >( *tNewContainer, tIntegrator );
 
                 tContainers.push_back( tNewContainer );
                 tVectors.push_back( tNewVector );

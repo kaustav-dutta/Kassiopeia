@@ -224,7 +224,7 @@ namespace KEMField
 
     key.fObjectHash = fHashGenerator.GenerateHash(writable);
 
-    for (vector<string>::iterator it = labels.begin();it!=labels.end();++it)
+    for (auto it = labels.begin();it!=labels.end();++it)
       key.fLabels.push_back(*it);
 
     // Write the incomplete key into the stream
@@ -388,7 +388,7 @@ namespace KEMField
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
 
       fStreamer >> key;
-      for (vector<string>::iterator it = key.fLabels.begin();it!=key.fLabels.end();++it)
+      for (auto it = key.fLabels.begin();it!=key.fLabels.end();++it)
       {
 	if (*it == label)
 	{
@@ -449,9 +449,9 @@ namespace KEMField
       fStreamer.Stream().seekg(readPoint, fStreamer.Stream().beg);
       fStreamer >> key;
       found = true;
-      for (std::vector<std::string>::iterator it = labels.begin();it!=labels.end();++it)
+      for (auto it = labels.begin();it!=labels.end();++it)
       {
-	std::vector<std::string>::iterator it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
+	auto it2 = std::find(key.fLabels.begin(),key.fLabels.end(),*it);
 	if (it2 == key.fLabels.end())
 	{
 	  found = false;

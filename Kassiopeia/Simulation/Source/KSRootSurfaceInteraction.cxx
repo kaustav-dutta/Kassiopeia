@@ -9,11 +9,11 @@ namespace Kassiopeia
 {
 
     KSRootSurfaceInteraction::KSRootSurfaceInteraction() :
-            fSurfaceInteraction( NULL ),
-            fStep( NULL ),
-            fTerminatorParticle( NULL ),
-            fInteractionParticle( NULL ),
-            fParticleQueue( NULL )
+            fSurfaceInteraction( nullptr ),
+            fStep( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fInteractionParticle( nullptr ),
+            fParticleQueue( nullptr )
     {
     }
     KSRootSurfaceInteraction::KSRootSurfaceInteraction( const KSRootSurfaceInteraction& aCopy ) :
@@ -35,7 +35,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceInteraction::ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries )
     {
-        if( fSurfaceInteraction == NULL )
+        if( fSurfaceInteraction == nullptr )
         {
             intmsg( eError ) << "<" << GetName() << "> cannot execute interaction with no surface interaction set" << eom;
         }
@@ -45,7 +45,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceInteraction::SetSurfaceInteraction( KSSurfaceInteraction* aSurfaceInteraction )
     {
-        if( fSurfaceInteraction != NULL )
+        if( fSurfaceInteraction != nullptr )
         {
             intmsg( eError ) << "<" << GetName() << "> tried to set surface interaction <" << aSurfaceInteraction->GetName() << "> with surface interaction <" << fSurfaceInteraction->GetName() << "> already set" << eom;
             return;
@@ -62,7 +62,7 @@ namespace Kassiopeia
             return;
         }
         intmsg_debug( "<" << GetName() << "> clearing surface interaction <" << aSurfaceInteraction->GetName() << ">" << eom );
-        fSurfaceInteraction = NULL;
+        fSurfaceInteraction = nullptr;
         return;
     }
 
@@ -77,7 +77,7 @@ namespace Kassiopeia
 
     void KSRootSurfaceInteraction::ExecuteInteraction()
     {
-        if( fSurfaceInteraction == NULL )
+        if( fSurfaceInteraction == nullptr )
         {
             *fInteractionParticle = *fTerminatorParticle;
             fStep->SurfaceNavigationFlag() = false;

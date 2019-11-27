@@ -22,7 +22,7 @@ namespace KGeoBag
   {
   public:
 	  KGCutConeSurfaceRandom() : KGShapeRandom() {}
-    virtual ~KGCutConeSurfaceRandom() {}
+    ~KGCutConeSurfaceRandom() override {}
 
     /**
      * \brief Visitor function to dice a point
@@ -30,7 +30,7 @@ namespace KGeoBag
      *
      * \param aCutConeSurface
      */
-    virtual void VisitCutConeSurface(KGCutConeSurface* aCutConeSurface);
+    void VisitCutConeSurface(KGCutConeSurface* aCutConeSurface) override;
   };
 }
 

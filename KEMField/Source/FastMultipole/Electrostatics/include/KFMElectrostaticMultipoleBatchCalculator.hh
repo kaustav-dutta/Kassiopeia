@@ -43,16 +43,16 @@ class KFMElectrostaticMultipoleBatchCalculator: public KFMElectrostaticMultipole
 {
     public:
         KFMElectrostaticMultipoleBatchCalculator();
-        virtual ~KFMElectrostaticMultipoleBatchCalculator();
+        ~KFMElectrostaticMultipoleBatchCalculator() override;
 
         //set the degree of the expansion
-        virtual void SetDegree(int l_max);
+        void SetDegree(int l_max) override;
 
         //initalize the object
-        virtual void Initialize();
+        void Initialize() override;
 
         //execute the operation to fill the multipole buffer
-        virtual void ComputeMoments();
+        void ComputeMoments() override;
 
     protected:
 

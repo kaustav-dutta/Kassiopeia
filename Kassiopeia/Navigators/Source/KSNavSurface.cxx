@@ -52,7 +52,7 @@ namespace Kassiopeia
         KSSurface* tCurrentSurface = aNavigationParticle.GetCurrentSurface();
         KSSpace* tCurrentSpace = aNavigationParticle.GetCurrentSpace();
 
-        if( tCurrentSurface != NULL )
+        if( tCurrentSurface != nullptr )
         {
             KThreeVector tInitialMomentum = anInitialParticle.GetMomentum();
             KThreeVector tFinalMomentum = aNavigationParticle.GetMomentum();
@@ -70,8 +70,8 @@ namespace Kassiopeia
 
                 if( fTransmissionSplit == true )
                 {
-                    KSParticle* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
-                    tTransmissionSplitParticle->SetCurrentSurface( NULL );
+                    auto* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
+                    tTransmissionSplitParticle->SetCurrentSurface( nullptr );
                     tTransmissionSplitParticle->SetLastStepSurface( tCurrentSurface );
                     tTransmissionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tTransmissionSplitParticle );
@@ -91,8 +91,8 @@ namespace Kassiopeia
 
                 if( fReflectionSplit == true )
                 {
-                    KSParticle* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
-                    tTransmissionSplitParticle->SetCurrentSurface( NULL );
+                    auto* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
+                    tTransmissionSplitParticle->SetCurrentSurface( nullptr );
                     tTransmissionSplitParticle->SetLastStepSurface( tCurrentSurface );
                     tTransmissionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tTransmissionSplitParticle );
@@ -119,8 +119,8 @@ namespace Kassiopeia
 
                 if( fTransmissionSplit == true )
                 {
-                    KSParticle* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
-                    tTransmissionSplitParticle->SetCurrentSide( NULL );
+                    auto* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
+                    tTransmissionSplitParticle->SetCurrentSide( nullptr );
                     tTransmissionSplitParticle->SetCurrentSpace( tCurrentSide->GetOutsideParent() );
                     tTransmissionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tTransmissionSplitParticle );
@@ -141,8 +141,8 @@ namespace Kassiopeia
 
                 if( fReflectionSplit == true )
                 {
-                    KSParticle* tReflectionSplitParticle = new KSParticle( aFinalParticle );
-                    tReflectionSplitParticle->SetCurrentSide( NULL );
+                    auto* tReflectionSplitParticle = new KSParticle( aFinalParticle );
+                    tReflectionSplitParticle->SetCurrentSide( nullptr );
                     tReflectionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tReflectionSplitParticle );
                     aFinalParticle.SetActive( false );
@@ -166,8 +166,8 @@ namespace Kassiopeia
 
                 if( fTransmissionSplit == true )
                 {
-                    KSParticle* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
-                    tTransmissionSplitParticle->SetCurrentSide( NULL );
+                    auto* tTransmissionSplitParticle = new KSParticle( aFinalParticle );
+                    tTransmissionSplitParticle->SetCurrentSide( nullptr );
                     tTransmissionSplitParticle->SetCurrentSpace( tCurrentSide->GetInsideParent() );
                     tTransmissionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tTransmissionSplitParticle );
@@ -188,8 +188,8 @@ namespace Kassiopeia
 
                 if( fReflectionSplit == true )
                 {
-                    KSParticle* tReflectionSplitParticle = new KSParticle( aFinalParticle );
-                    tReflectionSplitParticle->SetCurrentSide( NULL );
+                    auto* tReflectionSplitParticle = new KSParticle( aFinalParticle );
+                    tReflectionSplitParticle->SetCurrentSide( nullptr );
                     tReflectionSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tReflectionSplitParticle );
                     aFinalParticle.SetActive( false );
@@ -212,10 +212,10 @@ namespace Kassiopeia
         KSSurface* tCurrentSurface = aFinalParticle.GetCurrentSurface();
         KSSpace* tCurrentSpace = aFinalParticle.GetCurrentSpace();
 
-        if( tCurrentSurface != NULL )
+        if( tCurrentSurface != nullptr )
         {
             navmsg_debug( "  finalizing child surface <" << tCurrentSurface->GetName() << ">" << eom );
-            aFinalParticle.SetCurrentSurface( NULL );
+            aFinalParticle.SetCurrentSurface( nullptr );
             aFinalParticle.ResetFieldCaching();
             tCurrentSurface->Off();
             return;
@@ -230,7 +230,7 @@ namespace Kassiopeia
             {
                 navmsg_debug( "  finalizing transmission on boundary <" << tCurrentSide->GetName() << "> of parent space <" << tCurrentSide->GetInsideParent()->GetName() << ">" << eom );
 
-                aFinalParticle.SetCurrentSide( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
                 aFinalParticle.SetCurrentSpace( tCurrentSide->GetOutsideParent() );
                 aFinalParticle.ResetFieldCaching();
                 tCurrentSide->Off();
@@ -241,7 +241,7 @@ namespace Kassiopeia
             {
                 navmsg_debug( "  finalizing reflection on boundary <" << tCurrentSide->GetName() << "> of parent space <" << tCurrentSide->GetInsideParent()->GetName() << ">" << eom );
 
-                aFinalParticle.SetCurrentSide( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
                 aFinalParticle.ResetFieldCaching();
                 tCurrentSide->Off();
                 return;
@@ -254,7 +254,7 @@ namespace Kassiopeia
             {
                 navmsg_debug( "  finalizing transmission on boundary <" << tCurrentSide->GetName() << "> of child space <" << tCurrentSide->GetInsideParent()->GetName() << ">" << eom );
 
-                aFinalParticle.SetCurrentSide( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
                 aFinalParticle.SetCurrentSpace( tCurrentSide->GetInsideParent() );
                 aFinalParticle.ResetFieldCaching();
                 tCurrentSide->Off();
@@ -265,7 +265,7 @@ namespace Kassiopeia
             {
                 navmsg_debug( "  finalizing reflection on boundary <" << tCurrentSide->GetName() << "> of child space <" << tCurrentSide->GetInsideParent()->GetName() << ">" << eom );
 
-                aFinalParticle.SetCurrentSide( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
                 aFinalParticle.ResetFieldCaching();
                 tCurrentSide->Off();
                 return;

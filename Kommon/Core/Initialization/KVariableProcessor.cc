@@ -291,13 +291,13 @@ namespace katrin
         {
             if( toolbox.Get(fName) == nullptr )
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt == fExternalMap->end() )
                 {
-                    VariableIt GlobalIt = fGlobalMap->find( fName );
+                    auto GlobalIt = fGlobalMap->find( fName );
                     if( GlobalIt == fGlobalMap->end() )
                     {
-                        VariableIt FileIt = fLocalMap->find( fName );
+                        auto FileIt = fLocalMap->find( fName );
                         if( FileIt == fLocalMap->end() )
                         {
                             initmsg_debug( "creation of local variable  <" << fName << "> with new value <" << fValue << ">" << eom );
@@ -339,13 +339,13 @@ namespace katrin
         {
             if( toolbox.Get(fName) == nullptr )
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt == fExternalMap->end() )
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt == fLocalMap->end() )
                     {
-                        VariableIt GlobalIt = fGlobalMap->find( fName );
+                        auto GlobalIt = fGlobalMap->find( fName );
                         if( GlobalIt == fGlobalMap->end() )
                         {
                             initmsg_debug( "creation of global variable  <" << fName << "> with new value <" << fValue << ">" << eom );
@@ -386,13 +386,13 @@ namespace katrin
         {
             if( toolbox.Get(fName) == nullptr )
             {
-                VariableIt GlobalIt = fGlobalMap->find( fName );
+                auto GlobalIt = fGlobalMap->find( fName );
                 if( GlobalIt == fGlobalMap->end() )
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt == fLocalMap->end() )
                     {
-                        VariableIt ExternalIt = fExternalMap->find( fName );
+                        auto ExternalIt = fExternalMap->find( fName );
                         if( ExternalIt == fExternalMap->end() )
                         {
                             initmsg_debug( "creation of external variable  <" << fName << "> with new value <" << fValue << ">" << eom );
@@ -432,7 +432,7 @@ namespace katrin
 
         if( fElementState == eActiveLocalRedefine )
         {
-            VariableIt LocalIt = fLocalMap->find( fName );
+            auto LocalIt = fLocalMap->find( fName );
             if( LocalIt != fLocalMap->end() )
             {
                 initmsg_debug( "redefinition of local variable  <" << fName << "> with new value <" << fValue << ">, old value was <" << LocalIt->second << ">" << eom );
@@ -440,7 +440,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to locally redefine external variable with name <" << fName << ">" << ret;
@@ -448,7 +448,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt GlobalIt = fGlobalMap->find( fName );
+                    auto GlobalIt = fGlobalMap->find( fName );
                     if( GlobalIt != fGlobalMap->end() )
                     {
                         initmsg( eError ) << "tried to locally redefine global variable with name <" << fName << ">" << ret;
@@ -470,7 +470,7 @@ namespace katrin
 
         if( fElementState == eActiveGlobalRedefine )
         {
-            VariableIt GlobalIt = fGlobalMap->find( fName );
+            auto GlobalIt = fGlobalMap->find( fName );
             if( GlobalIt != fGlobalMap->end() )
             {
                 initmsg_debug( "redefinition of global variable  <" << fName << "> with new value <" << fValue << ">, old value was <" << GlobalIt->second << ">" << eom );
@@ -478,7 +478,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to globally redefine external variable with name <" << fName << ">" << ret;
@@ -486,7 +486,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to globally redefine local variable with name <" << fName << ">" << ret;
@@ -508,7 +508,7 @@ namespace katrin
 
         if( fElementState == eActiveExternalRedefine )
         {
-            VariableIt ExternalIt = fExternalMap->find( fName );
+            auto ExternalIt = fExternalMap->find( fName );
             if( ExternalIt != fExternalMap->end() )
             {
                 initmsg_debug( "redefinition of external variable  <" << fName << "> with new value <" << fValue << ">, old value was <" << ExternalIt->second << ">" << eom );
@@ -516,7 +516,7 @@ namespace katrin
             }
             else
             {
-                VariableIt GlobalIt = fGlobalMap->find( fName );
+                auto GlobalIt = fGlobalMap->find( fName );
                 if( GlobalIt != fGlobalMap->end() )
                 {
                     initmsg( eError ) << "tried to externally redefine global variable with name <" << fName << ">" << ret;
@@ -524,7 +524,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to externally redefine local variable with name <" << fName << ">" << ret;
@@ -548,7 +548,7 @@ namespace katrin
 
         if( fElementState == eActiveLocalUndefine )
         {
-            VariableIt LocalIt = fLocalMap->find( fName );
+            auto LocalIt = fLocalMap->find( fName );
             if( LocalIt != fLocalMap->end() )
             {
                 initmsg_debug( "deletion of local variable  <" << fName << "> with current value <" << LocalIt->second << ">" << eom );
@@ -556,7 +556,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to locally undefine external variable with name <" << fName << ">" << ret;
@@ -564,7 +564,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt GlobalIt = fGlobalMap->find( fName );
+                    auto GlobalIt = fGlobalMap->find( fName );
                     if( GlobalIt != fGlobalMap->end() )
                     {
                         initmsg( eError ) << "tried to locally undefine global variable with name <" << fName << ">" << ret;
@@ -586,7 +586,7 @@ namespace katrin
 
         if( fElementState == eActiveGlobalUndefine )
         {
-            VariableIt GlobalIt = fGlobalMap->find( fName );
+            auto GlobalIt = fGlobalMap->find( fName );
             if( GlobalIt != fGlobalMap->end() )
             {
                 initmsg_debug( "deletion of global variable  <" << fName << "> with current value <" << GlobalIt->second << ">" << eom );
@@ -594,7 +594,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to globally undefine external variable with name <" << fName << ">" << ret;
@@ -602,7 +602,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to globally undefine local variable with name <" << fName << ">" << ret;
@@ -624,7 +624,7 @@ namespace katrin
 
         if( fElementState == eActiveExternalUndefine )
         {
-            VariableIt ExternalIt = fExternalMap->find( fName );
+            auto ExternalIt = fExternalMap->find( fName );
             if( ExternalIt != fExternalMap->end() )
             {
                 initmsg_debug( "deletion of external variable  <" << fName << "> with current value <" << ExternalIt->second << ">" << eom );
@@ -632,7 +632,7 @@ namespace katrin
             }
             else
             {
-                VariableIt GlobalIt = fGlobalMap->find( fName );
+                auto GlobalIt = fGlobalMap->find( fName );
                 if( GlobalIt != fGlobalMap->end() )
                 {
                     initmsg( eError ) << "tried to externally undefine global variable with name <" << fName << ">" << ret;
@@ -640,7 +640,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to externally undefine local variable with name <" << fName << ">" << ret;
@@ -664,7 +664,7 @@ namespace katrin
 
         if( fElementState == eActiveLocalAppend )
         {
-            VariableIt LocalIt = fLocalMap->find( fName );
+            auto LocalIt = fLocalMap->find( fName );
             if( LocalIt != fLocalMap->end() )
             {
                 initmsg_debug( "redefinition of local variable  <" << fName << "> by appending value <" << fValue << ">, old value was <" << LocalIt->second << ">" << eom );
@@ -672,7 +672,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to locally append to external variable with name <" << fName << ">" << ret;
@@ -680,7 +680,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt GlobalIt = fGlobalMap->find( fName );
+                    auto GlobalIt = fGlobalMap->find( fName );
                     if( GlobalIt != fGlobalMap->end() )
                     {
                         initmsg( eError ) << "tried to locally append to global variable with name <" << fName << ">" << ret;
@@ -702,7 +702,7 @@ namespace katrin
 
         if( fElementState == eActiveGlobalAppend )
         {
-            VariableIt GlobalIt = fGlobalMap->find( fName );
+            auto GlobalIt = fGlobalMap->find( fName );
             if( GlobalIt != fGlobalMap->end() )
             {
                 initmsg_debug( "redefinition of global variable  <" << fName << "> by appending value <" << fValue << ">, old value was <" << GlobalIt->second << ">" << eom );
@@ -710,7 +710,7 @@ namespace katrin
             }
             else
             {
-                VariableIt ExternalIt = fExternalMap->find( fName );
+                auto ExternalIt = fExternalMap->find( fName );
                 if( ExternalIt != fExternalMap->end() )
                 {
                     initmsg( eError ) << "tried to globally append to external variable with name <" << fName << ">" << ret;
@@ -718,7 +718,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to globally append to local variable with name <" << fName << ">" << ret;
@@ -740,7 +740,7 @@ namespace katrin
 
         if( fElementState == eActiveExternalAppend )
         {
-            VariableIt ExternalIt = fExternalMap->find( fName );
+            auto ExternalIt = fExternalMap->find( fName );
             if( ExternalIt != fExternalMap->end() )
             {
                 initmsg_debug( "redefinition of external variable  <" << fName << "> by appending value <" << fValue << ">, old value was <" << ExternalIt->second << ">" << eom );
@@ -748,7 +748,7 @@ namespace katrin
             }
             else
             {
-                VariableIt GlobalIt = fGlobalMap->find( fName );
+                auto GlobalIt = fGlobalMap->find( fName );
                 if( GlobalIt != fGlobalMap->end() )
                 {
                     initmsg( eError ) << "tried to externally append to global variable with name <" << fName << ">" << ret;
@@ -756,7 +756,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt LocalIt = fLocalMap->find( fName );
+                    auto LocalIt = fLocalMap->find( fName );
                     if( LocalIt != fLocalMap->end() )
                     {
                         initmsg( eError ) << "tried to externally append to local variable with name <" << fName << ">" << ret;
@@ -884,7 +884,7 @@ namespace katrin
                 }
                 else
                 {
-                    VariableIt ExternalVariable = fExternalMap->find( tVarName );
+                    auto ExternalVariable = fExternalMap->find( tVarName );
                     if( ExternalVariable != fExternalMap->end() )
                     {
                         fRefCountMap[tVarName]++;
@@ -892,7 +892,7 @@ namespace katrin
                     }
                     else
                     {
-                        VariableIt GlobalVariable = fGlobalMap->find( tVarName );
+                        auto GlobalVariable = fGlobalMap->find( tVarName );
                         if( GlobalVariable != fGlobalMap->end() )
                         {
                             fRefCountMap[tVarName]++;
@@ -900,7 +900,7 @@ namespace katrin
                         }
                         else
                         {
-                            VariableIt LocalVariable = fLocalMap->find( tVarName );
+                            auto LocalVariable = fLocalMap->find( tVarName );
                             if( LocalVariable != fLocalMap->end() )
                             {
                                 //fRefCountMap[tVarName]++;

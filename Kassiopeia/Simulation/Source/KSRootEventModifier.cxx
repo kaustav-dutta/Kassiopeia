@@ -5,8 +5,8 @@ namespace Kassiopeia
 {
     KSRootEventModifier::KSRootEventModifier() :
         fModifiers(128),
-        fModifier( NULL ),
-        fEvent(NULL)
+        fModifier( nullptr ),
+        fEvent(nullptr)
     {
     }
 

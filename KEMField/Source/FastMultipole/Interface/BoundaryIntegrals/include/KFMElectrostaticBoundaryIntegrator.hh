@@ -73,13 +73,13 @@ class KFMElectrostaticBoundaryIntegrator: public KElectrostaticBoundaryIntegrato
         fSurfaceContainer(surfaceContainer)
         {
             fUniqueID = "INVALID_ID";
-            fTree = NULL;
-            fElementContainer = NULL;
+            fTree = nullptr;
+            fElementContainer = nullptr;
             fTreeIsOwned = true;
-            fSubdivisionCondition = NULL;
+            fSubdivisionCondition = nullptr;
         };
 
-        virtual ~KFMElectrostaticBoundaryIntegrator()
+        ~KFMElectrostaticBoundaryIntegrator() override
         {
             if(fTreeIsOwned)
             {
@@ -366,7 +366,7 @@ class KFMElectrostaticBoundaryIntegrator: public KElectrostaticBoundaryIntegrato
             //construct the subdivision condition
             if(fParameters.strategy == KFMSubdivisionStrategy::Balanced )
             {
-                KFMSubdivisionConditionBalanced<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>* balancedSubdivision = new KFMSubdivisionConditionBalanced<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>();
+                auto* balancedSubdivision = new KFMSubdivisionConditionBalanced<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>();
 
                 //determine how to weight the work load contributions
                 fTrait.EvaluateWorkLoads(fParameters.divisions, fParameters.zeromask);
@@ -381,7 +381,7 @@ class KFMElectrostaticBoundaryIntegrator: public KElectrostaticBoundaryIntegrato
             }
             else if( fParameters.strategy == KFMSubdivisionStrategy::Guided )
             {
-                KFMSubdivisionConditionGuided<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>* guidedSubdivision = new KFMSubdivisionConditionGuided<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>();
+                auto* guidedSubdivision = new KFMSubdivisionConditionGuided<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>();
                 guidedSubdivision->SetFractionForDivision(fParameters.allowed_fraction);
                 guidedSubdivision->SetAllowedNumberOfElements(fParameters.allowed_number);
                 fSubdivisionCondition = guidedSubdivision;
@@ -404,7 +404,7 @@ class KFMElectrostaticBoundaryIntegrator: public KElectrostaticBoundaryIntegrato
             //loop over all elements of surface container
             for(unsigned int i=0; i<n_elem; i++)
             {
-                fNodes[i] = NULL;
+                fNodes[i] = nullptr;
                 navigator.SetPoint( fElementContainer->GetCentroid(i) );
                 navigator.ApplyAction(fTree->GetRootNode());
 
@@ -414,7 +414,7 @@ class KFMElectrostaticBoundaryIntegrator: public KElectrostaticBoundaryIntegrato
                 }
                 else
                 {
-                    fNodes[i] = NULL;
+                    fNodes[i] = nullptr;
                     kfmout<<"KFMElectrostaticBoundaryIntegrator::ConstructElementNodeAssociation: Error, element centroid not found in region."<<kfmendl;
                     kfmexit(1);
                 }

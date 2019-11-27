@@ -23,9 +23,9 @@ public:
 
 
 private:
-    double PotentialCore( const KPosition& P,const double& time) const;
-    KThreeVector ElectricFieldCore( const KPosition& P, const double& time) const;
-    virtual void InitializeCore();
+    double PotentialCore( const KPosition& P,const double& time) const override;
+    KThreeVector ElectricFieldCore( const KPosition& P, const double& time) const override;
+    void InitializeCore() override;
 
     void CheckMagneticField() const;
 

@@ -31,13 +31,13 @@ class KGNodeObjectNullifier: public KGNodeActor< KGNode<ObjectTypeList> >
 {
     public:
         KGNodeObjectNullifier(){};
-        virtual ~KGNodeObjectNullifier(){};
+        ~KGNodeObjectNullifier() override{};
 
-        virtual void ApplyAction( KGNode<ObjectTypeList>* node)
+        void ApplyAction( KGNode<ObjectTypeList>* node) override
         {
             //does not delete the object, just sets the pointer to null, this is useful
             //when many nodes point to the same object, which has just been deleted
-            KGObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(NULL, node);
+            KGObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(nullptr, node);
         }
 
     private:

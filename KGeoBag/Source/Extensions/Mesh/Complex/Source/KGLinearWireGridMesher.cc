@@ -51,7 +51,7 @@ namespace KGeoBag
 
             // add element
             KGMeshWire singleWire( startPoint, endPoint, wireDiameter);
-            KGMeshWire* w = new KGMeshWire(singleWire);
+            auto* w = new KGMeshWire(singleWire);
             AddElement(w);
             if (segments[i] < minimumSegment) minimumSegment = segments[i];
             startPoint = endPoint;
@@ -95,7 +95,7 @@ namespace KGeoBag
 
                 // add element
                 KGMeshWire singleWireYP( startPointYP, endPointYP, linearWireGridSurface->GetObject()->GetDiameter());
-                KGMeshWire* wYP = new KGMeshWire(singleWireYP);
+                auto* wYP = new KGMeshWire(singleWireYP);
                 if( height > (linearWireGridSurface->GetObject()->GetPitch()/2.) ) AddElement(wYP);
                 startPointYP = endPointYP;
 
@@ -105,7 +105,7 @@ namespace KGeoBag
 
                 // add element
                 KGMeshWire singleWireYN( startPointYN, endPointYN, linearWireGridSurface->GetObject()->GetDiameter());
-                KGMeshWire* wYN = new KGMeshWire(singleWireYN);
+                auto* wYN = new KGMeshWire(singleWireYN);
                 if( height > (linearWireGridSurface->GetObject()->GetPitch()/2.) ) AddElement(wYN);
 
                 startPointYN = endPointYN;
@@ -118,11 +118,11 @@ namespace KGeoBag
 
         if (OuterCircle)
         {
-            unsigned int circleDiscIt = static_cast<unsigned int>(2*KConst::Pi()*rCircle/minimumSegment);
+            auto circleDiscIt = static_cast<unsigned int>(2*katrin::KConst::Pi()*rCircle/minimumSegment);
             std::vector<double> circleSegmentsIt( circleDiscIt, 0. );
-            KGComplexMesher::DiscretizeInterval( 2*KConst::Pi()*rCircle, circleDiscIt, nDiscPower, circleSegmentsIt );
+            KGComplexMesher::DiscretizeInterval( 2*katrin::KConst::Pi()*rCircle, circleDiscIt, nDiscPower, circleSegmentsIt );
             KThreeVector startPointCircle, endPointCircle;
-            const double circleAngle = 2*KConst::Pi()/circleDiscIt;
+            const double circleAngle = 2*katrin::KConst::Pi()/circleDiscIt;
 
             startPointCircle.SetComponents( rCircle*cos(circleAngle), rCircle*sin(circleAngle), 0.);
 
@@ -130,7 +130,7 @@ namespace KGeoBag
             {
                 endPointCircle.SetComponents( rCircle*cos((circleIt + 2)* circleAngle), rCircle*sin((circleIt + 2)* circleAngle), 0.);
                 KGMeshWire singleWireCircle( startPointCircle, endPointCircle, wireDiameter);
-                KGMeshWire* circle = new KGMeshWire(singleWireCircle);
+                auto* circle = new KGMeshWire(singleWireCircle);
                 AddElement(circle);
                 startPointCircle = endPointCircle;
             } /* for loop circle segments */

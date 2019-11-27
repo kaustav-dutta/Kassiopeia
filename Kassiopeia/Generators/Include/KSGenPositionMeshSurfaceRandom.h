@@ -30,8 +30,8 @@ namespace Kassiopeia
     public:
         KSGenPositionMeshSurfaceRandom();
         KSGenPositionMeshSurfaceRandom(const KSGenPositionMeshSurfaceRandom&);
-        KSGenPositionMeshSurfaceRandom* Clone() const;
-        virtual ~KSGenPositionMeshSurfaceRandom();
+        KSGenPositionMeshSurfaceRandom* Clone() const override;
+        ~KSGenPositionMeshSurfaceRandom() override;
 
     public:
         /**
@@ -41,21 +41,21 @@ namespace Kassiopeia
         *
         * @param aPrimaries
         */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
     public:
         /**
          * @brief Obtains the coordinate system of a surface and stores it
          * @param aSurface
          */
-        void VisitSurface( KGeoBag::KGSurface* aSurface );
+        void VisitSurface( KGeoBag::KGSurface* aSurface ) override;
 
         /**
          * @brief Visits a (non-axial) Mesh of a Surface, retrieves all the mesh elements
          *  and stores them locally
          * @param aSurface
          */
-        void VisitExtendedSurface( KGeoBag::KGExtendedSurface< KGeoBag::KGMesh >* aSurface );
+        void VisitExtendedSurface( KGeoBag::KGExtendedSurface< KGeoBag::KGMesh >* aSurface ) override;
 
     private:
         /**
@@ -89,8 +89,8 @@ namespace Kassiopeia
 
 
     protected:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

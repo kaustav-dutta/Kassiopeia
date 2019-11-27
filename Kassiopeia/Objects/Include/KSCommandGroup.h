@@ -12,10 +12,10 @@ namespace Kassiopeia
         public:
             KSCommandGroup();
             KSCommandGroup( const KSCommandGroup& aCopy );
-            virtual ~KSCommandGroup();
+            ~KSCommandGroup() override;
 
         public:
-            KSCommandGroup* Clone() const;
+            KSCommandGroup* Clone() const override;
 
         public:
             void AddCommand( KSCommand* anCommand );

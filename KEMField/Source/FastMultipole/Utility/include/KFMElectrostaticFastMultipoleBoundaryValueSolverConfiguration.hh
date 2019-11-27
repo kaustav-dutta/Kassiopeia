@@ -2,7 +2,7 @@
 #define KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration_HH__
 
 #include <string>
-#include <limits.h>
+#include <climits>
 #include "KSAStructuredASCIIHeaders.hh"
 #include "KFMElectrostaticParameters.hh"
 #include "KKrylovSolverConfiguration.hh"
@@ -28,7 +28,7 @@ class KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration: public KSAI
     public:
 
         KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration()
-    :fFFTMParams(NULL),fPreconditionerFFTMParams(NULL)
+    :fFFTMParams(nullptr),fPreconditionerFFTMParams(nullptr)
         {
             fPreconditionerName = "none";
 
@@ -37,7 +37,7 @@ class KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration: public KSAI
             fPreconditionerDegree = 0;
         }
 
-        virtual ~KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration();
+        ~KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration() override;
 
         std::string GetSolverName() const {return fSolverParams.GetSolverName();};
         void SetSolverName(const std::string& name){fSolverParams.SetSolverName(name);};
@@ -92,7 +92,7 @@ class KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration: public KSAI
         void SetPreconditionerFFTMParams(KFMElectrostaticParameters* config);
 
 
-        void DefineOutputNode(KSAOutputNode* node) const
+        void DefineOutputNode(KSAOutputNode* node) const override
         {
             AddKSAOutputFor(KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration,SolverName,std::string);
             AddKSAOutputFor(KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration,PreconditionerName,std::string);
@@ -111,7 +111,7 @@ class KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration: public KSAI
             AddKSAOutputFor(KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration,TimeCheckFrequency,int);
         }
 
-        void DefineInputNode(KSAInputNode* node)
+        void DefineInputNode(KSAInputNode* node) override
         {
             AddKSAInputFor(KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration,SolverName,std::string);
             AddKSAInputFor(KFMElectrostaticFastMultipoleBoundaryValueSolverConfiguration,PreconditionerName,std::string);

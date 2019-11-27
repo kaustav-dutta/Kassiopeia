@@ -26,7 +26,7 @@ namespace Kassiopeia
 
         public:
             KSReadFileROOT();
-            ~KSReadFileROOT();
+            ~KSReadFileROOT() override;
 
             bool TryFile( KRootFile* aFile );
             void OpenFile( KRootFile* aFile );

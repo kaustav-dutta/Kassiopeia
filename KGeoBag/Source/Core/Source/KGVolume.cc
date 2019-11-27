@@ -56,8 +56,8 @@ namespace KGeoBag
     }
 
     void KGVolume::VolumeAccept(KGVisitor* aVisitor) {
-		KGVolume::Visitor* tVolumeVisitor = dynamic_cast< KGVolume::Visitor* >(aVisitor);
-		if(tVolumeVisitor != NULL) {
+		auto* tVolumeVisitor = dynamic_cast< KGVolume::Visitor* >(aVisitor);
+		if(tVolumeVisitor != nullptr) {
 			tVolumeVisitor->VisitVolume(this);
 		}
     }

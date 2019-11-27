@@ -18,7 +18,7 @@ namespace KEMField
 		  fN1(0.,0.,0.),
 		  fN2(0.,0.,0.),
 		  fN3(0.,0.,0.) {}
-    ~KTriangle() {}
+    ~KTriangle() override {}
 
   public:
 
@@ -34,12 +34,12 @@ namespace KEMField
 		   const KPosition& p1,
 		   const KPosition& p2);
 
-    double Area() const { return .5*fA*fB*fN1.Cross(fN2).Magnitude(); }
-    const KPosition Centroid() const { return fP0 + (fA*fN1 + fB*fN2)/3.; }
+    double Area() const override { return .5*fA*fB*fN1.Cross(fN2).Magnitude(); }
+    const KPosition Centroid() const override { return fP0 + (fA*fN1 + fB*fN2)/3.; }
 
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint);
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override;
 
-    const KDirection Normal() const { return fN3; }
+    const KDirection Normal() const override { return fN3; }
 
     void              SetA(double d)             { fA = d; }
     void              SetB(double d)             { fB = d; }

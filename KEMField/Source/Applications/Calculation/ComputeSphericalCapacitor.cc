@@ -206,22 +206,22 @@ int main(int argc, char* argv[])
   bool cache = false;
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
-    {"verbose", required_argument, 0, 'v'},
-    {"accuracy", required_argument, 0, 'a'},
-    {"save_increment", required_argument, 0, 'j'},
-    {"time", no_argument, 0, 't'},
-    {"draw", no_argument, 0, 'd'},
+    {"help", no_argument, nullptr, 'h'},
+    {"verbose", required_argument, nullptr, 'v'},
+    {"accuracy", required_argument, nullptr, 'a'},
+    {"save_increment", required_argument, nullptr, 'j'},
+    {"time", no_argument, nullptr, 't'},
+    {"draw", no_argument, nullptr, 'd'},
 #ifdef KEMFIELD_USE_KGEOBAG
-    {"generator", required_argument, 0, 'g'},
+    {"generator", required_argument, nullptr, 'g'},
 #endif
-    {"cache", no_argument, 0, 'c'},
-    {"scale", required_argument, 0, 's'},
-    {"method", required_argument, 0, 'm'},
-    {"rh_increment", required_argument, 0, 'i'},
-    {"rh_dimension", required_argument, 0, 'n'},
-    {"plot_matrix", required_argument, 0, 'p'},
-    {"residual_graph", required_argument, 0, 'r'},
+    {"cache", no_argument, nullptr, 'c'},
+    {"scale", required_argument, nullptr, 's'},
+    {"method", required_argument, nullptr, 'm'},
+    {"rh_increment", required_argument, nullptr, 'i'},
+    {"rh_dimension", required_argument, nullptr, 'n'},
+    {"plot_matrix", required_argument, nullptr, 'p'},
+    {"residual_graph", required_argument, nullptr, 'r'},
   };
 
 #ifdef KEMFIELD_USE_KGEOBAG
@@ -230,8 +230,8 @@ int main(int argc, char* argv[])
   static const char *optString = "hv:a:j:tdcs:m:i:n:pr";
 #endif
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help
@@ -361,78 +361,78 @@ int main(int argc, char* argv[])
     double p1[2],p2[2];
     double radius = radius1;
 
-    KGRotatedObject* innerhemi1 = new KGRotatedObject(scale*10,10);
+    auto* innerhemi1 = new KGRotatedObject(scale*10,10);
     p1[0] = -radius; p1[1] = 0.;
     p2[0] = 0.; p2[1] = radius;
     innerhemi1->AddArc(p2,p1,radius,true);
 
-    KGRotatedObject* innerhemi2 = new KGRotatedObject(scale*10,10);
+    auto* innerhemi2 = new KGRotatedObject(scale*10,10);
     p2[0] = radius; p2[1] = 0.;
     p1[0] = 0.; p1[1] = radius;
     innerhemi2->AddArc(p1,p2,radius,false);
 
     radius = radius2;
 
-    KGRotatedObject* middlehemi1 = new KGRotatedObject(20*scale,10);
+    auto* middlehemi1 = new KGRotatedObject(20*scale,10);
     p1[0] = -radius; p1[1] = 0.;
     p2[0] = 0.; p2[1] = radius;
     middlehemi1->AddArc(p2,p1,radius,true);
 
-    KGRotatedObject* middlehemi2 = new KGRotatedObject(20*scale,10);
+    auto* middlehemi2 = new KGRotatedObject(20*scale,10);
     p2[0] = radius; p2[1] = 0.;
     p1[0] = 0.; p1[1] = radius;
     middlehemi2->AddArc(p1,p2,radius,false);
 
     radius = radius3;
 
-    KGRotatedObject* outerhemi1 = new KGRotatedObject(30*scale,10);
+    auto* outerhemi1 = new KGRotatedObject(30*scale,10);
     p1[0] = -radius; p1[1] = 0.;
     p2[0] = 0.; p2[1] = radius;
     outerhemi1->AddArc(p2,p1,radius,true);
 
-    KGRotatedObject* outerhemi2 = new KGRotatedObject(30*scale,10);
+    auto* outerhemi2 = new KGRotatedObject(30*scale,10);
     p2[0] = radius; p2[1] = 0.;
     p1[0] = 0.; p1[1] = radius;
     outerhemi2->AddArc(p1,p2,radius,false);
 
     // Construct shape placement
-    KGRotatedSurface* ih1 = new KGRotatedSurface(innerhemi1);
-    KGSurface* innerhemisphere1 = new KGSurface(ih1);
+    auto* ih1 = new KGRotatedSurface(innerhemi1);
+    auto* innerhemisphere1 = new KGSurface(ih1);
     innerhemisphere1->SetName( "innerhemisphere1" );
     innerhemisphere1->MakeExtension<KGMesh>();
     innerhemisphere1->MakeExtension<KGElectrostaticDirichlet>()->SetBoundaryValue(potential1);
 
-    KGRotatedSurface* ih2 = new KGRotatedSurface(innerhemi2);
-    KGSurface* innerhemisphere2 = new KGSurface(ih2);
+    auto* ih2 = new KGRotatedSurface(innerhemi2);
+    auto* innerhemisphere2 = new KGSurface(ih2);
     innerhemisphere2->SetName( "innerhemisphere2" );
     innerhemisphere2->MakeExtension<KGMesh>();
     innerhemisphere2->MakeExtension<KGElectrostaticDirichlet>()->SetBoundaryValue(potential1);
 
-    KGRotatedSurface* mh1 = new KGRotatedSurface(middlehemi1);
-    KGSurface* middlehemisphere1 = new KGSurface(mh1);
+    auto* mh1 = new KGRotatedSurface(middlehemi1);
+    auto* middlehemisphere1 = new KGSurface(mh1);
     middlehemisphere1->SetName( "middlehemisphere1" );
     middlehemisphere1->MakeExtension<KGMesh>();
     middlehemisphere1->MakeExtension<KGElectrostaticNeumann>()->SetNormalBoundaryFlux(permittivity2/permittivity1);
 
-    KGRotatedSurface* mh2 = new KGRotatedSurface(middlehemi2);
-    KGSurface* middlehemisphere2 = new KGSurface(mh2);
+    auto* mh2 = new KGRotatedSurface(middlehemi2);
+    auto* middlehemisphere2 = new KGSurface(mh2);
     middlehemisphere2->SetName( "middlehemisphere2" );
     middlehemisphere2->MakeExtension<KGMesh>();
     middlehemisphere2->MakeExtension<KGElectrostaticNeumann>()->SetNormalBoundaryFlux(permittivity1/permittivity2);
 
-    KGRotatedSurface* oh1 = new KGRotatedSurface(outerhemi1);
-    KGSurface* outerhemisphere1 = new KGSurface(oh1);
+    auto* oh1 = new KGRotatedSurface(outerhemi1);
+    auto* outerhemisphere1 = new KGSurface(oh1);
     outerhemisphere1->SetName( "outerhemisphere1" );
     outerhemisphere1->MakeExtension<KGMesh>();
     outerhemisphere1->MakeExtension<KGElectrostaticDirichlet>()->SetBoundaryValue(potential2);
-    KGRotatedSurface* oh2 = new KGRotatedSurface(outerhemi2);
-    KGSurface* outerhemisphere2 = new KGSurface(oh2);
+    auto* oh2 = new KGRotatedSurface(outerhemi2);
+    auto* outerhemisphere2 = new KGSurface(oh2);
     outerhemisphere2->SetName( "outerhemisphere2" );
     outerhemisphere2->MakeExtension<KGMesh>();
     outerhemisphere2->MakeExtension<KGElectrostaticDirichlet>()->SetBoundaryValue(potential2);
 
     // Mesh the elements
-    KGMesher* mesher = new KGMesher();
+    auto* mesher = new KGMesher();
     innerhemisphere1->AcceptNode(mesher);
     innerhemisphere2->AcceptNode(mesher);
     middlehemisphere1->AcceptNode(mesher);
@@ -563,10 +563,10 @@ int main(int argc, char* argv[])
       gaussSeidel.AddVisitor(new KVTKResidualGraph<double>());
 #endif
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       gaussSeidel.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       gaussSeidel.AddVisitor(stateWriter);
 
@@ -605,10 +605,10 @@ int main(int argc, char* argv[])
     robinHood.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       robinHood.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       robinHood.AddVisitor(stateWriter);
 
@@ -639,10 +639,10 @@ int main(int argc, char* argv[])
     robinHood.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       robinHood.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       robinHood.AddVisitor(stateWriter);
 
@@ -671,10 +671,10 @@ int main(int argc, char* argv[])
     biCGStab.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       biCGStab.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       biCGStab.AddVisitor(stateWriter);
 
@@ -701,10 +701,10 @@ int main(int argc, char* argv[])
     biCGStab.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       biCGStab.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       biCGStab.AddVisitor(stateWriter);
 
@@ -732,10 +732,10 @@ int main(int argc, char* argv[])
     ssc.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
       }
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       ssc.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       ssc.AddVisitor(stateWriter);
 
@@ -766,10 +766,10 @@ int main(int argc, char* argv[])
 
       gmres.AddVisitor(new KIterationDisplay<KElectrostaticBoundaryIntegrator::ValueType>());
 
-      KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateReader = new KIterativeStateReader<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       gmres.AddVisitor(stateReader);
 
-      KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+      auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
       stateWriter->Interval(saveIncrement);
       gmres.AddVisitor(stateWriter);
 
@@ -795,7 +795,7 @@ int main(int argc, char* argv[])
 
   if (plotMatrix)
   {
-    KEMFieldCanvas* fieldCanvas = NULL;
+    KEMFieldCanvas* fieldCanvas = nullptr;
 
 #if defined(KEMFIELD_USE_VTK)
     fieldCanvas = new KEMVTKFieldCanvas(0.,double(A->Dimension()),0.,double(A->Dimension()),1.e30,true);
@@ -976,7 +976,7 @@ int main(int argc, char* argv[])
     KIntegratingFieldSolver<KElectrostaticBoundaryIntegrator> field(surfaceContainer,integrator);
 #endif
 
-    srand((unsigned)time(0));
+    srand((unsigned)time(nullptr));
 
     int nTest = 100;
 
@@ -1127,7 +1127,7 @@ int main(int argc, char* argv[])
       // std::cout<<""<<std::endl;
     }
 
-    TCanvas *C = new TCanvas("C","Canvas",5,5,900,450);
+    auto *C = new TCanvas("C","Canvas",5,5,900,450);
     C->Divide(2);
     C->cd(1);
     C->SetBorderMode(0);
@@ -1135,12 +1135,12 @@ int main(int argc, char* argv[])
     gStyle->SetOptStat(0000000);
     gStyle->SetOptFit(0111);
 
-    TMultiGraph* mg1 = new TMultiGraph();
+    auto* mg1 = new TMultiGraph();
 
-    TGraph* g1 = new TGraph(nSamples,&Z_points.at(0),&phiA_points.at(0));
+    auto* g1 = new TGraph(nSamples,&Z_points.at(0),&phiA_points.at(0));
     g1->SetLineColor(kBlue);
     mg1->Add(g1);
-    TGraph* g2 = new TGraph(nSamples,&Z_points.at(0),&phiN_points.at(0));
+    auto* g2 = new TGraph(nSamples,&Z_points.at(0),&phiN_points.at(0));
     g2->SetLineColor(kGreen);
     mg1->Add(g2);
 
@@ -1164,12 +1164,12 @@ int main(int argc, char* argv[])
     gStyle->SetOptStat(0000000);
     gStyle->SetOptFit(0111);
 
-    TMultiGraph* mg2 = new TMultiGraph();
+    auto* mg2 = new TMultiGraph();
 
-    TGraph* g3 = new TGraph(nSamples,&Z_points.at(0),&EA_points.at(0));
+    auto* g3 = new TGraph(nSamples,&Z_points.at(0),&EA_points.at(0));
     g3->SetLineColor(kBlue);
     mg2->Add(g3);
-    TGraph* g4 = new TGraph(nSamples,&Z_points.at(0),&EN_points.at(0));
+    auto* g4 = new TGraph(nSamples,&Z_points.at(0),&EN_points.at(0));
     g4->SetLineColor(kGreen);
     mg2->Add(g4);
 
@@ -1200,7 +1200,7 @@ int main(int argc, char* argv[])
     double dx = .05;
     double dz = .05;
 
-    KEMFieldCanvas* fieldCanvas = NULL;
+    KEMFieldCanvas* fieldCanvas = nullptr;
 
 #if defined(KEMFIELD_USE_ROOT)
     fieldCanvas = new KEMRootFieldCanvas(z1,z2,x1,x2,1.e30,true);
@@ -1210,8 +1210,8 @@ int main(int argc, char* argv[])
 
     if (fieldCanvas)
     {
-      int N_x = (int)((x2-x1)/dx);
-      int N_z = (int)((z2-z1)/dz);
+      auto N_x = (int)((x2-x1)/dx);
+      auto N_z = (int)((z2-z1)/dz);
 
       int counter = 0;
       int countermax = N_z*N_x;
@@ -1324,7 +1324,7 @@ void ReadInTriangles(std::string fileName,KSurfaceContainer& surfaceContainer)
 
     if (fabs(d[13]/d[12])<1.e-10)
     {
-      KDirichletTriangle* t = new KDirichletTriangle();
+      auto* t = new KDirichletTriangle();
 
       t->SetA(d[9]);
       t->SetB(d[10]);
@@ -1337,7 +1337,7 @@ void ReadInTriangles(std::string fileName,KSurfaceContainer& surfaceContainer)
     }
     else
     {
-      KNeumannTriangle* t = new KNeumannTriangle();
+      auto* t = new KNeumannTriangle();
 
       t->SetA(d[9]);
       t->SetB(d[10]);

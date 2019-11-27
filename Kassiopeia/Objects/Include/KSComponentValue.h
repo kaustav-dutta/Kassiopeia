@@ -62,7 +62,7 @@ namespace Kassiopeia
                     KSComponentValue< XValueType >( aCopy )
             {
             }
-            virtual ~KSComponentValueMaximum()
+            ~KSComponentValueMaximum() override
             {
             }
 
@@ -172,7 +172,7 @@ namespace Kassiopeia
                     KSComponentValue< XValueType >( aCopy )
             {
             }
-            virtual ~KSComponentValueMinimum()
+            ~KSComponentValueMinimum() override
             {
             }
 
@@ -256,7 +256,7 @@ namespace Kassiopeia
                     KSComponentValue< XValueType >( aCopy )
             {
             }
-            virtual ~KSComponentValueIntegral()
+            ~KSComponentValueIntegral() override
             {
             }
 
@@ -296,7 +296,7 @@ namespace Kassiopeia
                     fLastValue( aCopy.fLastValue )
             {
             }
-            virtual ~KSComponentValueDelta()
+            ~KSComponentValueDelta() override
             {
             }
 

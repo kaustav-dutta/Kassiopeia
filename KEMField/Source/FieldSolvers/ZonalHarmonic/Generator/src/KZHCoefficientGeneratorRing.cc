@@ -8,7 +8,7 @@ namespace KEMField
 {
   double KZHCoefficientGenerator<KRing>::Prefactor() const
   {
-    if (const KElectrostaticBasis* e =
+    if (const auto* e =
 	dynamic_cast<const KElectrostaticBasis*>(fRing))
       return e->GetSolution();
     else

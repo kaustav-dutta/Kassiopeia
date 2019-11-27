@@ -71,14 +71,14 @@ namespace KEMField
       : fContainer(container),
 	fSaveNameRoot("partialConvergence"),
 	fNConcurrentFiles(1) {}
-    virtual ~KIterativeStateWriter() {}
+    ~KIterativeStateWriter() override {}
 
     void SaveNameRoot(std::string root) { fSaveNameRoot = root; }
     void NConcurrentFiles(unsigned int i) { if (i>0) fNConcurrentFiles = i; }
 
-    void Initialize(KIterativeSolver<ValueType>&);
-    void Visit(KIterativeSolver<ValueType>&);
-    void Finalize(KIterativeSolver<ValueType>&);
+    void Initialize(KIterativeSolver<ValueType>&) override;
+    void Visit(KIterativeSolver<ValueType>&) override;
+    void Finalize(KIterativeSolver<ValueType>&) override;
 
   private:
 
@@ -202,7 +202,7 @@ namespace KEMField
 					     KResidualVector<ValueType>::Name(),
 					     vectorLabels);
 
-      for (std::deque<std::string>::iterator it=fSavedContainerFiles.begin();it!=fSavedContainerFiles.end();++it)
+      for (auto it=fSavedContainerFiles.begin();it!=fSavedContainerFiles.end();++it)
 	std::remove((*it).c_str());
     }
   }

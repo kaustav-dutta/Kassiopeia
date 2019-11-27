@@ -17,7 +17,7 @@ namespace KGeoBag
         public:
             KGExtendedSurface( KGSurface* aSurface );
             KGExtendedSurface( KGSurface* aSurface, const typename XExtension::Surface& );
-            virtual ~KGExtendedSurface();
+            ~KGExtendedSurface() override;
 
         private:
             KGExtendedSurface();
@@ -28,7 +28,7 @@ namespace KGeoBag
             //********
 
         protected:
-            KGExtensibleSurface* Clone( KGSurface* aParent = NULL ) const;
+            KGExtensibleSurface* Clone( KGSurface* aParent = nullptr ) const override;
 
             //*********
             //visitable
@@ -44,7 +44,7 @@ namespace KGeoBag
                     virtual void VisitExtendedSurface( KGExtendedSurface< XExtension >* ) = 0;
             };
 
-            void Accept( KGVisitor* aVisitor );
+            void Accept( KGVisitor* aVisitor ) override;
 
             //**********
             //extensible

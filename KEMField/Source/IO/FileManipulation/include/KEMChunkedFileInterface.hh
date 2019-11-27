@@ -5,7 +5,7 @@
 
 #include <string>
 #include <sstream>
-#include <stdio.h>
+#include <cstdio>
 
 namespace KEMField
 {
@@ -32,7 +32,7 @@ class KEMChunkedFileInterface
 
         KEMChunkedFileInterface()
         {
-            fFile = NULL;
+            fFile = nullptr;
             fFileName = "";
             fFilePath = "";
         };
@@ -44,7 +44,7 @@ class KEMChunkedFileInterface
         {
             std::string full_file_name = KEMFileInterface::GetInstance()->ActiveDirectory() + "/" + file_name;
             std::set< std::string > file_list = KEMFileInterface::GetInstance()->CompleteFileList();
-            for(std::set<std::string>::iterator it=file_list.begin(); it!=file_list.end(); ++it)
+            for(auto it=file_list.begin(); it!=file_list.end(); ++it)
             {
                 if(full_file_name == *it){return true;};
             }
@@ -58,9 +58,9 @@ class KEMChunkedFileInterface
 
             FILE* pFile = fopen(fFilePath.c_str(), "wb");
 
-            if(pFile == NULL)
+            if(pFile == nullptr)
             {
-                fFile = NULL;
+                fFile = nullptr;
                 return false;
             }
 
@@ -74,9 +74,9 @@ class KEMChunkedFileInterface
             fFilePath = KEMFileInterface::GetInstance()->ActiveDirectory() + "/" + fFileName;
 
             FILE* pFile = fopen(fFilePath.c_str(), "rb");
-            if(pFile == NULL)
+            if(pFile == nullptr)
             {
-                fFile = NULL;
+                fFile = nullptr;
                 return false;
             }
             else
@@ -90,7 +90,7 @@ class KEMChunkedFileInterface
         size_t Write(size_t n_objects, const ObjectType* obj_arr)
         {
             //write the buffer out to file
-            if(fFile != NULL)
+            if(fFile != nullptr)
             {
                 size_t n_objects_written = fwrite(obj_arr, sizeof(ObjectType), n_objects, fFile);
                 return n_objects_written;
@@ -102,7 +102,7 @@ class KEMChunkedFileInterface
         size_t Read(size_t n_objects, ObjectType* obj_arr)
         {
             //read buffer in from file
-            if(fFile != NULL)
+            if(fFile != nullptr)
             {
                 size_t n_objects_read = fread(obj_arr, sizeof(ObjectType), n_objects, fFile);
                 return n_objects_read;
@@ -112,11 +112,11 @@ class KEMChunkedFileInterface
 
         void CloseFile()
         {
-            if(fFile != NULL)
+            if(fFile != nullptr)
             {
                 fclose(fFile);
             }
-            fFile = NULL;
+            fFile = nullptr;
         }
 
     private:

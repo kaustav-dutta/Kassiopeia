@@ -19,7 +19,7 @@ namespace KGeoBag
             //********
 
         public:
-            virtual KGExtensibleSpace* Clone( KGSpace* aParent = NULL ) const = 0;
+            virtual KGExtensibleSpace* Clone( KGSpace* aParent = nullptr ) const = 0;
 
             //*********
             //visitable

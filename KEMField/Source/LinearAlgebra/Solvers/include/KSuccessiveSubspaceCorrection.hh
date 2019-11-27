@@ -18,7 +18,7 @@ namespace KEMField
     typedef KVector<ValueType> Vector;
 
     KSuccessiveSubspaceCorrection();
-    virtual ~KSuccessiveSubspaceCorrection();
+    ~KSuccessiveSubspaceCorrection() override;
 
     void SetSubspaceDimension(unsigned int i) { fSubspaceDimension = i; }
 
@@ -26,12 +26,12 @@ namespace KEMField
 
     void SetResidualCheckInterval(unsigned int i) { fResidualCheckInterval = i; }
 
-    void CoalesceData() { if (fTrait) fTrait->CoalesceData(); }
+    void CoalesceData() override { if (fTrait) fTrait->CoalesceData(); }
 
   private:
-    unsigned int Dimension() const { return (fTrait ? fTrait->Dimension() : 0); }
-    void SetResidualVector(const Vector& v) { if (fTrait) fTrait->SetResidualVector(v); }
-    void GetResidualVector(Vector& v) { if (fTrait) fTrait->GetResidualVector(v); }
+    unsigned int Dimension() const override { return (fTrait ? fTrait->Dimension() : 0); }
+    void SetResidualVector(const Vector& v) override { if (fTrait) fTrait->SetResidualVector(v); }
+    void GetResidualVector(Vector& v) override { if (fTrait) fTrait->GetResidualVector(v); }
 
     unsigned int fResidualCheckInterval;
     unsigned int fSubspaceDimension;
@@ -40,7 +40,7 @@ namespace KEMField
 
   template <typename ValueType,template <typename> class ParallelTrait>
   KSuccessiveSubspaceCorrection<ValueType,ParallelTrait>::KSuccessiveSubspaceCorrection()
-    : fResidualCheckInterval(0), fSubspaceDimension(2), fTrait(NULL)
+    : fResidualCheckInterval(0), fSubspaceDimension(2), fTrait(nullptr)
   {
   }
 
@@ -90,7 +90,7 @@ namespace KEMField
 
     this->FinalizeVisitors();
 
-    fTrait = NULL;
+    fTrait = nullptr;
   }
 
 }

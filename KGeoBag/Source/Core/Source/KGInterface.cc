@@ -7,7 +7,7 @@ using namespace std;
 namespace KGeoBag
 {
 
-    KGInterface* KGInterface::sInstance = NULL;
+    KGInterface* KGInterface::sInstance = nullptr;
 
     const char KGInterface::sSeparator[] = "\t ,;";
     const char KGInterface::sNest = '/';
@@ -17,7 +17,7 @@ namespace KGeoBag
 
     KGInterface* KGInterface::GetInstance()
     {
-        if( sInstance == NULL )
+        if( sInstance == nullptr )
         {
             sInstance = new KGInterface();
         }
@@ -26,10 +26,10 @@ namespace KGeoBag
     }
     KGInterface* KGInterface::DeleteInstance()
     {
-        if( sInstance != NULL )
+        if( sInstance != nullptr )
         {
             delete sInstance;
-            sInstance = NULL;
+            sInstance = nullptr;
         }
 
         return sInstance;
@@ -90,12 +90,12 @@ namespace KGeoBag
         if( tAccumulator.size() == 0 )
         {
             coremsg( eWarning ) << "no surfaces registered for path <" << aSpecifier << ">" << eom;
-            return NULL;
+            return nullptr;
         }
         if( tAccumulator.size() != 1 )
         {
             coremsg( eWarning ) << "multiple surfaces registered for path <" << aSpecifier << ">" << eom;
-            return NULL;
+            return nullptr;
         }
 
         return (*tAccumulator.begin());
@@ -135,12 +135,12 @@ namespace KGeoBag
         if( tAccumulator.size() == 0 )
         {
             coremsg( eWarning ) << "no spaces registered for path <" << aSpecifier << ">" << eom;
-            return NULL;
+            return nullptr;
         }
         if( tAccumulator.size() != 1 )
         {
             coremsg( eWarning ) << "multiple spaces registered for path <" << aSpecifier << ">" << eom;
-            return NULL;
+            return nullptr;
         }
 
         return (*tAccumulator.begin());
@@ -270,7 +270,7 @@ namespace KGeoBag
 
                 RetrieveSpacesByTag( tAccumulator, aNode, tTag, tRecursion );
 
-                for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+                for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
                 {
                     RetrieveSurfacesByPath( anAccumulator, *tIt, tTail );
                 }
@@ -300,7 +300,7 @@ namespace KGeoBag
 
                 RetrieveSpacesByWildcard( tAccumulator, aNode, tRecursion );
 
-                for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+                for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
                 {
                     RetrieveSurfacesByPath( anAccumulator, *tIt, tTail );
                 }
@@ -314,7 +314,7 @@ namespace KGeoBag
 
             RetrieveSpacesByName( tAccumulator, aNode, tName );
 
-            for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+            for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
             {
                 RetrieveSurfacesByPath( anAccumulator, *tIt, tTail );
             }
@@ -417,7 +417,7 @@ namespace KGeoBag
 
                 RetrieveSpacesByTag( tAccumulator, aNode, tTag, tRecursion );
 
-                for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+                for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
                 {
                     RetrieveSpacesByPath( anAccumulator, *tIt, tTail );
                 }
@@ -447,7 +447,7 @@ namespace KGeoBag
 
                 RetrieveSpacesByWildcard( tAccumulator, aNode, tRecursion );
 
-                for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+                for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
                 {
                     RetrieveSpacesByPath( anAccumulator, *tIt, tTail );
                 }
@@ -461,7 +461,7 @@ namespace KGeoBag
 
             RetrieveSpacesByName( tAccumulator, aNode, tName );
 
-            for( vector< KGSpace* >::iterator tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
+            for( auto tIt = tAccumulator.begin(); tIt != tAccumulator.end(); tIt++ )
             {
                 RetrieveSpacesByPath( anAccumulator, *tIt, tTail );
             }

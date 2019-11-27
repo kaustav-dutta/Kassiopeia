@@ -6,8 +6,8 @@ namespace katrin
 {
 
     KProcessor::KProcessor() :
-        fParent( NULL ),
-        fChild( NULL )
+        fParent( nullptr ),
+        fChild( nullptr )
     {
     }
     KProcessor::~KProcessor()
@@ -16,12 +16,12 @@ namespace katrin
 
     void KProcessor::Connect( KProcessor* aParent, KProcessor* aChild )
     {
-        if( (aParent == NULL) || (aChild == NULL) )
+        if( (aParent == nullptr) || (aChild == nullptr) )
         {
             return;
         }
 
-        if( (aParent->fChild != NULL) || (aChild->fParent != NULL) )
+        if( (aParent->fChild != nullptr) || (aChild->fParent != nullptr) )
         {
             return;
         }
@@ -33,7 +33,7 @@ namespace katrin
     }
     void KProcessor::Disconnect( KProcessor* aParent, KProcessor* aChild )
     {
-        if( (aParent == NULL) || (aChild == NULL) )
+        if( (aParent == nullptr) || (aChild == nullptr) )
         {
             return;
         }
@@ -43,20 +43,20 @@ namespace katrin
             return;
         }
 
-        aParent->fChild = NULL;
-        aChild->fParent = NULL;
+        aParent->fChild = nullptr;
+        aChild->fParent = nullptr;
 
         return;
     }
 
     void KProcessor::InsertBefore( KProcessor* aTarget )
     {
-        if( (fParent != NULL) || (fChild != NULL) || (aTarget == NULL) )
+        if( (fParent != nullptr) || (fChild != nullptr) || (aTarget == nullptr) )
         {
             return;
         }
 
-        if( aTarget->fParent != NULL )
+        if( aTarget->fParent != nullptr )
         {
             fParent = aTarget->fParent;
             fParent->fChild = this;
@@ -69,12 +69,12 @@ namespace katrin
     }
     void KProcessor::InsertAfter( KProcessor* aTarget )
     {
-        if( (fParent != NULL) || (fChild != NULL) || (aTarget == NULL) )
+        if( (fParent != nullptr) || (fChild != nullptr) || (aTarget == nullptr) )
         {
             return;
         }
 
-        if( aTarget->fChild != NULL )
+        if( aTarget->fChild != nullptr )
         {
             fChild = aTarget->fChild;
             fChild->fParent = this;
@@ -87,27 +87,27 @@ namespace katrin
     }
     void KProcessor::Remove()
     {
-        if( (fParent != NULL) && (fChild != NULL) )
+        if( (fParent != nullptr) && (fChild != nullptr) )
         {
             fParent->fChild = fChild;
             fChild->fParent = fParent;
 
-            fParent = NULL;
-            fChild = NULL;
+            fParent = nullptr;
+            fChild = nullptr;
 
             return;
         }
 
-        if( fParent != NULL )
+        if( fParent != nullptr )
         {
-            fParent->fChild = NULL;
-            fParent = NULL;
+            fParent->fChild = nullptr;
+            fParent = nullptr;
         }
 
-        if( fChild != NULL )
+        if( fChild != nullptr )
         {
-            fChild->fParent = NULL;
-            fChild = NULL;
+            fChild->fParent = nullptr;
+            fChild = nullptr;
         }
 
         return;
@@ -115,7 +115,7 @@ namespace katrin
 
     KProcessor* KProcessor::GetFirstParent()
     {
-        if( fParent != NULL )
+        if( fParent != nullptr )
         {
             return fParent->GetFirstParent();
         }
@@ -128,7 +128,7 @@ namespace katrin
 
     KProcessor* KProcessor::GetLastChild()
     {
-        if( fChild != NULL )
+        if( fChild != nullptr )
         {
             return fChild->GetLastChild();
         }
@@ -141,7 +141,7 @@ namespace katrin
 
     void KProcessor::ProcessToken( KBeginParsingToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -153,7 +153,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KBeginFileToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -165,7 +165,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KBeginElementToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -177,7 +177,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KBeginAttributeToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -189,7 +189,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KAttributeDataToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -201,7 +201,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KEndAttributeToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -213,7 +213,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KMidElementToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -225,7 +225,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KElementDataToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -237,7 +237,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KEndElementToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -249,7 +249,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KEndFileToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -261,7 +261,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KEndParsingToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -273,7 +273,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KCommentToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }
@@ -285,7 +285,7 @@ namespace katrin
     }
     void KProcessor::ProcessToken( KErrorToken* aToken )
     {
-        if( fChild == NULL )
+        if( fChild == nullptr )
         {
             return;
         }

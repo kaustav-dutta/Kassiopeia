@@ -21,11 +21,11 @@ namespace KEMField
 
     KBoundaryIntegralMatrix(const KSurfaceContainer& c,Integrator& integrator);
 
-    ~KBoundaryIntegralMatrix() {}
+    ~KBoundaryIntegralMatrix() override {}
 
-    unsigned int Dimension() const { return fDimension; }
+    unsigned int Dimension() const override { return fDimension; }
 
-    virtual const ValueType& operator()(unsigned int i,unsigned int j) const
+    const ValueType& operator()(unsigned int i,unsigned int j) const override
     {
       if (enableCaching)
       {

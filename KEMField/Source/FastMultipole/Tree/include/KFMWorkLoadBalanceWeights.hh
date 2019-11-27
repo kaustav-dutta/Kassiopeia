@@ -32,7 +32,7 @@ class KFMWorkLoadBalanceWeights: public KSAInputOutputObject
             fFFTWeight = 0;
         }
 
-        virtual ~KFMWorkLoadBalanceWeights(){;};
+        ~KFMWorkLoadBalanceWeights() override{;};
 
         unsigned int GetDivisions() const {return fDivisions;};
         void SetDivisions(const unsigned int& d){fDivisions = d;};
@@ -49,7 +49,7 @@ class KFMWorkLoadBalanceWeights: public KSAInputOutputObject
         double GetFFTWeight() const {return fFFTWeight;};
         void SetFFTWeight(const double& d){fFFTWeight = d;};
 
-        void DefineOutputNode(KSAOutputNode* node) const
+        void DefineOutputNode(KSAOutputNode* node) const override
         {
             AddKSAOutputFor(KFMWorkLoadBalanceWeights,Divisions,unsigned int);
             AddKSAOutputFor(KFMWorkLoadBalanceWeights,ZeroMaskSize,unsigned int);
@@ -58,7 +58,7 @@ class KFMWorkLoadBalanceWeights: public KSAInputOutputObject
             AddKSAOutputFor(KFMWorkLoadBalanceWeights,FFTWeight,double);
         }
 
-        void DefineInputNode(KSAInputNode* node)
+        void DefineInputNode(KSAInputNode* node) override
         {
             AddKSAInputFor(KFMWorkLoadBalanceWeights,Divisions,unsigned int);
             AddKSAInputFor(KFMWorkLoadBalanceWeights,ZeroMaskSize,unsigned int);

@@ -99,7 +99,7 @@ namespace KEMField
     {
       s<<"\t<"<<(*(*it).second).first<<">"<<std::endl;
       int i=0;
-      ClassContent::const_iterator it2 = (*(*it).second).second.begin();
+      auto it2 = (*(*it).second).second.begin();
       for (;it2!=(*(*it).second).second.end();++it2)
       {
 	if (it2->second==1)

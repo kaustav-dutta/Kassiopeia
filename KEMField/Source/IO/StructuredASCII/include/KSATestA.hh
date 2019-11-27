@@ -44,7 +44,7 @@ class KSATestA: public KSAOutputObject, public KSAInputObject
             fBVec = copyObject.fBVec;
         }
 
-        virtual ~KSATestA()
+        ~KSATestA() override
         {
 
         };
@@ -83,9 +83,9 @@ class KSATestA: public KSAOutputObject, public KSAInputObject
             return *this;
         }
 
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
+        void DefineOutputNode(KSAOutputNode* node) const override;
 
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineInputNode(KSAInputNode* node) override;
 
 
         virtual const char* ClassName() const { return "KSATestA"; };

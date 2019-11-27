@@ -16,12 +16,12 @@ namespace KGeoBag
     KGConicalWireArrayDiscreteRotationalMesher()
     {
     }
-    virtual ~KGConicalWireArrayDiscreteRotationalMesher()
+    ~KGConicalWireArrayDiscreteRotationalMesher() override
     {
     }
 
   public:
-    void VisitWrappedSurface(KGWrappedSurface< KGConicalWireArray >* conicalWireArraySurface);
+    void VisitWrappedSurface(KGWrappedSurface< KGConicalWireArray >* conicalWireArraySurface) override;
   };
 
 }

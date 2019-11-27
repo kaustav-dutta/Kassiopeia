@@ -17,7 +17,7 @@ namespace katrin
     }
     KSIntCalculatorKESSSet::~KSIntCalculatorKESSSet()
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             delete (*tIt);
         }
@@ -33,7 +33,7 @@ namespace katrin
 
     void KSIntCalculatorKESSSet::ReleaseCalculators( KSIntScattering* aScattering )
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             aScattering->AddCalculator( *tIt );
         }

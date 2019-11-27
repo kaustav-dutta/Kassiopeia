@@ -20,12 +20,12 @@ namespace Kassiopeia
         public:
             KESSInelasticPenn();
             KESSInelasticPenn( const KESSInelasticPenn& aCopy );
-            virtual KESSInelasticPenn* Clone() const;
-            virtual ~KESSInelasticPenn();
+            KESSInelasticPenn* Clone() const override;
+            ~KESSInelasticPenn() override;
 
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) override;
 
-            virtual void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
 
             K_SET_GET( double, PennDepositedEnergy)
 

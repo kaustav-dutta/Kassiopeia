@@ -6,8 +6,8 @@ namespace Kassiopeia
 {
 
     KSGenGeneratorComposite::KSGenGeneratorComposite() :
-            fPidValue( NULL ),
-	    fStringIdValue( NULL ),
+            fPidValue( nullptr ),
+	    fStringIdValue( nullptr ),
             fSpecials( 128 ),
             fCreators( 128 )
     {
@@ -91,7 +91,7 @@ namespace Kassiopeia
 
     void KSGenGeneratorComposite::ExecuteGeneration( KSParticleQueue& aPrimaries )
     {
-      if (fPidValue != NULL)
+      if (fPidValue != nullptr)
       	{
 	  vector< double > tPIDValues;
 	  vector< double >::iterator tPIDValueIt;
@@ -104,7 +104,7 @@ namespace Kassiopeia
 	      aPrimaries.push_back( tParticle );
 	    }
 	}
-      else if (fStringIdValue != NULL)
+      else if (fStringIdValue != nullptr)
 	{
 	  vector< std::string > tStringIdValues;
 	  vector< std::string >::iterator tStringIdValueIt;
@@ -139,15 +139,15 @@ namespace Kassiopeia
 
     void KSGenGeneratorComposite::InitializeComponent()
     {
-      if((fPidValue == NULL) && (fStringIdValue == NULL))
+      if((fPidValue == nullptr) && (fStringIdValue == nullptr))
         {
             genmsg(eError) << "NO PID VALUE OR STRING_ID VALUE" << eom;
         }
-      if(fPidValue != NULL)
+      if(fPidValue != nullptr)
 	{
 	  fPidValue->Initialize();
 	}
-      if(fStringIdValue != NULL)
+      if(fStringIdValue != nullptr)
 	{
 	  fStringIdValue->Initialize();
 	}
@@ -158,11 +158,11 @@ namespace Kassiopeia
 
     void KSGenGeneratorComposite::DeinitializeComponent()
     {
-      if(fPidValue != NULL)
+      if(fPidValue != nullptr)
 	{
 	  fPidValue->Deinitialize();
 	}
-      if(fStringIdValue != NULL)
+      if(fStringIdValue != nullptr)
 	{
 	  fStringIdValue->Deinitialize();
 	}

@@ -7,7 +7,7 @@ namespace KEMField{
 KFMRealSphericalHarmonicExpansionRotator::KFMRealSphericalHarmonicExpansionRotator()
 {
     fDegree = 0;
-    fJMatrix = NULL;
+    fJMatrix = nullptr;
     a = 0;
     b = 0;
     c = 0;

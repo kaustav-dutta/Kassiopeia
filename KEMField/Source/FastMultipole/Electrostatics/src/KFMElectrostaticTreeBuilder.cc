@@ -145,7 +145,7 @@ KFMElectrostaticTreeBuilder::ConstructRootNode()
     KFMObjectRetriever<KFMElectrostaticNodeObjects, KFMElectrostaticElementContainerBase<3,1> >::SetNodeObject(fContainer, root);
 
     //add the complete id set of all elements to the root node
-    KFMIdentitySet* root_list = new KFMIdentitySet();
+    auto* root_list = new KFMIdentitySet();
     for(unsigned int i=0; i<n_elements; i++)
     {
         root_list->AddID(i);
@@ -157,7 +157,7 @@ KFMElectrostaticTreeBuilder::ConstructRootNode()
     //set basis node properties
     root->SetID( tree_prop->RegisterNode() );
     root->SetIndex(0);
-    root->SetParent(NULL);
+    root->SetParent(nullptr);
 }
 
 void
@@ -167,7 +167,7 @@ KFMElectrostaticTreeBuilder::PerformSpatialSubdivision()
     KFMInsertionCondition<3> basic_insertion_condition;
     basic_insertion_condition.SetInsertionRatio(fInsertionRatio);
 
-    if(fSubdivisionCondition == NULL)
+    if(fSubdivisionCondition == nullptr)
     {
         //subdivision condition was unset, so we default to aggressive
         //since it is the only one which takes no paramters

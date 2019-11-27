@@ -9,7 +9,7 @@ namespace KGeoBag
 
     void KGMeshData::Clear()
     {
-        KGMeshElementIt it = fElements.begin();
+        auto it = fElements.begin();
         while( it != fElements.end() )
         {
             if( *it )

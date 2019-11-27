@@ -15,7 +15,7 @@ namespace Kassiopeia
     {
         public:
             KSGenSpecial();
-            virtual ~KSGenSpecial();
+            ~KSGenSpecial() override;
 
         public:
             virtual void DiceSpecial( KSParticleQueue* aPrimaries ) = 0;

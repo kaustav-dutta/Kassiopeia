@@ -56,7 +56,7 @@ namespace KEMField
     static No Test(...);
 
   public:
-    enum { Is = sizeof(Test<T>(0)) == sizeof(Yes) };
+    enum { Is = sizeof(Test<T>(nullptr)) == sizeof(Yes) };
   };
 
 }

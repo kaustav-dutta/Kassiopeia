@@ -18,21 +18,21 @@ namespace Kassiopeia {
 
         public:
             KSIntDecayCalculatorFerencIonisation();
-            virtual ~KSIntDecayCalculatorFerencIonisation();
+            ~KSIntDecayCalculatorFerencIonisation() override;
 
             KSIntDecayCalculatorFerencIonisation(const KSIntDecayCalculatorFerencIonisation &aCopy);
 
-            KSIntDecayCalculatorFerencIonisation *Clone() const;
+            KSIntDecayCalculatorFerencIonisation *Clone() const override;
 
         public:
-            void CalculateLifeTime(const KSParticle &aParticle, double &aLifeTime);
+            void CalculateLifeTime(const KSParticle &aParticle, double &aLifeTime) override;
 
             void ExecuteInteraction(const KSParticle &anInitialParticle,
                                           KSParticle &aFinalParticle,
-                                          KSParticleQueue &aSecondaries);
+                                          KSParticleQueue &aSecondaries) override;
 
         protected:
-            virtual void InitializeComponent();
+            void InitializeComponent() override;
 
 
         public:

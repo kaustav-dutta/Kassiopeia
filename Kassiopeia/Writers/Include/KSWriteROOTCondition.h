@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSWriteROOTCondition();
-            virtual ~KSWriteROOTCondition();
+            ~KSWriteROOTCondition() override;
 
         public:
             virtual void CalculateWriteCondition( bool& aFlag ) = 0;

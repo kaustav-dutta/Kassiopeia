@@ -30,7 +30,7 @@ namespace KEMField
     int i,j;
 
     int n = A.Dimension();
-    double** a = new double*[n];
+    auto** a = new double*[n];
     for (i=0;i<n;i++)
       a[i] = new double[n+1];
 

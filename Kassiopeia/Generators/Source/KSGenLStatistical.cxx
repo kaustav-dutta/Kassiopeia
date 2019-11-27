@@ -23,7 +23,7 @@ namespace Kassiopeia {
 
     void KSGenLStatistical::Dice(KSParticleQueue* aPrimaries) {
 
-        for(KSParticleIt p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
+        for(auto p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
             int n = (*p)->GetMainQuantumNumber();
             int l = std::floor(std::sqrt(KRandom::GetInstance().Uniform(1,n*n))-1);
 

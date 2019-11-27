@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
         	KSSurfaceInteraction();
-            virtual ~KSSurfaceInteraction();
+            ~KSSurfaceInteraction() override;
 
         public:
             virtual void ExecuteInteraction(

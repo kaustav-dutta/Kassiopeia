@@ -19,12 +19,12 @@ namespace KGeoBag
     KGLinearWireGridMesher()
     {
     }
-    virtual ~KGLinearWireGridMesher()
+    ~KGLinearWireGridMesher() override
     {
     }
 
   protected:
-    void VisitWrappedSurface(KGWrappedSurface< KGLinearWireGrid >* linearWireGridSurface);
+    void VisitWrappedSurface(KGWrappedSurface< KGLinearWireGrid >* linearWireGridSurface) override;
   };
 
 }

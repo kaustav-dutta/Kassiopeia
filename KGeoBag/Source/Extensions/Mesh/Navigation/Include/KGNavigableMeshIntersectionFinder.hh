@@ -46,7 +46,7 @@ class KGNavigableMeshIntersectionFinder: public KGNodeActor< KGMeshNavigationNod
 {
     public:
         KGNavigableMeshIntersectionFinder();
-        virtual ~KGNavigableMeshIntersectionFinder();
+        ~KGNavigableMeshIntersectionFinder() override;
 
         void SetMeshElementContainer(KGNavigableMeshElementContainer* container){fContainer = container;};
 
@@ -60,7 +60,7 @@ class KGNavigableMeshIntersectionFinder: public KGNodeActor< KGMeshNavigationNod
         void GetIntersections( std::vector< KThreeVector >* intersections) const;
         void GetIntersectedMeshElements( std::vector< const KGNavigableMeshElement* >* intersected_mesh_elements) const;
 
-        virtual void ApplyAction(KGMeshNavigationNode* node);
+        void ApplyAction(KGMeshNavigationNode* node) override;
 
     private:
 

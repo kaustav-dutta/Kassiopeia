@@ -13,25 +13,25 @@ namespace KEMField
     typedef KCurrentLoop ElementType;
 
     KZHCoefficientGenerator() : KZHCoefficientGeneratorElement() {}
-    virtual ~KZHCoefficientGenerator() {}
+    ~KZHCoefficientGenerator() override {}
 
     void SetElement(const KCurrentLoop* c) { fCurrentLoop = c; }
 
-    const KEMCoordinateSystem& GetCoordinateSystem() const
+    const KEMCoordinateSystem& GetCoordinateSystem() const override
     { return fCurrentLoop->GetCoordinateSystem(); }
 
-    double Prefactor() const { return fCurrentLoop->GetCurrent(); }
+    double Prefactor() const override { return fCurrentLoop->GetCurrent(); }
 
     void ComputeCentralCoefficients(double,
     				    double,
-    				    std::vector<double>&) const;
+    				    std::vector<double>&) const override;
     void ComputeRemoteCoefficients(double,
     				   double,
-    				   std::vector<double>&) const;
+    				   std::vector<double>&) const override;
 
-    double ComputeRho(double,bool) const;
+    double ComputeRho(double,bool) const override;
 
-    void GetExtrema(double&,double&) const;
+    void GetExtrema(double&,double&) const override;
 
   protected:
     const KCurrentLoop* fCurrentLoop;

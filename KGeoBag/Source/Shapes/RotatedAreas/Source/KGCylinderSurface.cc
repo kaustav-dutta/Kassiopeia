@@ -105,8 +105,8 @@ namespace KGeoBag
     }
     void KGCylinderSurface::AreaAccept( KGVisitor* aVisitor )
     {
-        KGCylinderSurface::Visitor* tCylinderSurfaceVisitor = dynamic_cast< KGCylinderSurface::Visitor* >( aVisitor );
-        if( tCylinderSurfaceVisitor != NULL )
+        auto* tCylinderSurfaceVisitor = dynamic_cast< KGCylinderSurface::Visitor* >( aVisitor );
+        if( tCylinderSurfaceVisitor != nullptr )
         {
             tCylinderSurfaceVisitor->VisitCylinderSurface( this );
             return;

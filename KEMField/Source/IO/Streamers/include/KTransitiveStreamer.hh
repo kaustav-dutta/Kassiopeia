@@ -47,10 +47,10 @@ namespace KEMField
   {
   public:
     KTransitiveStreamer() {}
-    ~KTransitiveStreamer() {}
+    ~KTransitiveStreamer() override {}
 
   protected:
-    Derived& Self() { return *(static_cast<Derived*>(this)); }
+    Derived& Self() override { return *(static_cast<Derived*>(this)); }
 
 
     template <class Object>

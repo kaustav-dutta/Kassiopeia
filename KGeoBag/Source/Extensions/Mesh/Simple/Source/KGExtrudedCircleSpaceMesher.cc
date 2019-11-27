@@ -33,13 +33,13 @@ namespace KGeoBag
 
         //surgery
         tMeshPoints.fData.pop_front();
-        for( TubeMesh::SetIt tStartIt = tStartMeshPoints.fData.begin(); tStartIt != tStartMeshPoints.fData.end(); ++tStartIt )
+        for( auto tStartIt = tStartMeshPoints.fData.begin(); tStartIt != tStartMeshPoints.fData.end(); ++tStartIt )
         {
             tMeshPoints.fData.push_front( *tStartIt );
         }
 
         tMeshPoints.fData.pop_back();
-        for( TubeMesh::SetIt tEndIt = tEndMeshPoints.fData.begin(); tEndIt != tEndMeshPoints.fData.end(); ++tEndIt )
+        for( auto tEndIt = tEndMeshPoints.fData.begin(); tEndIt != tEndMeshPoints.fData.end(); ++tEndIt )
         {
             tMeshPoints.fData.push_back( *tEndIt );
         }

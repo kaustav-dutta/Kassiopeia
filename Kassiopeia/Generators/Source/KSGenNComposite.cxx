@@ -5,7 +5,7 @@ namespace Kassiopeia
 {
 
     KSGenNComposite::KSGenNComposite() :
-            fNValue( NULL )
+            fNValue( nullptr )
     {
     }
     KSGenNComposite::KSGenNComposite( const KSGenNComposite& aCopy ) :
@@ -57,7 +57,7 @@ namespace Kassiopeia
 
     void KSGenNComposite::SetNValue( KSGenValue* anNValue )
     {
-        if( fNValue == NULL )
+        if( fNValue == nullptr )
         {
             fNValue = anNValue;
             return;
@@ -69,7 +69,7 @@ namespace Kassiopeia
     {
         if( fNValue == anNValue )
         {
-            fNValue = NULL;
+            fNValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear n value <" << anNValue->GetName() << "> from composite n creator <" << this->GetName() << ">" << eom;
@@ -78,7 +78,7 @@ namespace Kassiopeia
 
     void KSGenNComposite::InitializeComponent()
     {
-        if( fNValue != NULL )
+        if( fNValue != nullptr )
         {
             fNValue->Initialize();
         }
@@ -86,7 +86,7 @@ namespace Kassiopeia
     }
     void KSGenNComposite::DeinitializeComponent()
     {
-        if( fNValue != NULL )
+        if( fNValue != nullptr )
         {
             fNValue->Deinitialize();
         }

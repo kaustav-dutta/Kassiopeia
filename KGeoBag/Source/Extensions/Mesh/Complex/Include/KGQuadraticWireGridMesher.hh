@@ -19,12 +19,12 @@ namespace KGeoBag
     KGQuadraticWireGridMesher()
     {
     }
-    virtual ~KGQuadraticWireGridMesher()
+    ~KGQuadraticWireGridMesher() override
     {
     }
 
   protected:
-    void VisitWrappedSurface(KGWrappedSurface< KGQuadraticWireGrid >* quadraticWireGridSurface);
+    void VisitWrappedSurface(KGWrappedSurface< KGQuadraticWireGrid >* quadraticWireGridSurface) override;
   };
 
 }

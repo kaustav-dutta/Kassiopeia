@@ -26,13 +26,13 @@ int main(int argc, char* argv[])
   }
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
+    {"help", no_argument, nullptr, 'h'},
   };
 
   static const char *optString = "h";
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help

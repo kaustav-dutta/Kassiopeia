@@ -7,7 +7,7 @@ namespace Kassiopeia
 {
 
     KSSurface::KSSurface() :
-            fParent( NULL )
+            fParent( nullptr )
     {
     }
     KSSurface::~KSSurface()
@@ -24,7 +24,7 @@ namespace Kassiopeia
     }
     void KSSurface::SetParent( KSSpace* aParent )
     {
-        for( std::vector< KSSurface* >::iterator tSurfaceIt = aParent->fSurfaces.begin(); tSurfaceIt != aParent->fSurfaces.end(); tSurfaceIt++ )
+        for( auto tSurfaceIt = aParent->fSurfaces.begin(); tSurfaceIt != aParent->fSurfaces.end(); tSurfaceIt++ )
         {
             if( (*tSurfaceIt) == this )
             {

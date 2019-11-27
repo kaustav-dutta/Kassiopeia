@@ -128,7 +128,7 @@ namespace KGeoBag
 
         public:
             KGMesher();
-            virtual ~KGMesher();
+            ~KGMesher() override;
 
     };
 }

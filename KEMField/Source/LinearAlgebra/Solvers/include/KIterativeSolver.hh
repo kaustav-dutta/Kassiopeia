@@ -1,7 +1,7 @@
 #ifndef KITERATIVESOLVER_DEF
 #define KITERATIVESOLVER_DEF
 
-#include <limits.h>
+#include <climits>
 
 #include "KVector.hh"
 
@@ -70,7 +70,7 @@ namespace KEMField
   template <typename ValueType>
   KIterativeSolver<ValueType>::~KIterativeSolver()
   {
-    for (typename std::vector<Visitor*>::iterator it=fVisitors.begin();it!=fVisitors.end();++it)
+    for (auto it=fVisitors.begin();it!=fVisitors.end();++it)
       delete *it;
   }
 
@@ -112,10 +112,10 @@ namespace KEMField
   public:
     KIterationDisplay():fPrefix(""),fCarriageReturn(true){ KIterativeSolver<ValueType>::Visitor::Interval(1); }
     KIterationDisplay(std::string prefix):fPrefix(prefix),fCarriageReturn(false){ KIterativeSolver<ValueType>::Visitor::Interval(1); }
-    virtual ~KIterationDisplay() {}
-    void Initialize(KIterativeSolver<ValueType>& solver);
-    void Visit(KIterativeSolver<ValueType>& solver);
-    void Finalize(KIterativeSolver<ValueType>& solver);
+    ~KIterationDisplay() override {}
+    void Initialize(KIterativeSolver<ValueType>& solver) override;
+    void Visit(KIterativeSolver<ValueType>& solver) override;
+    void Finalize(KIterativeSolver<ValueType>& solver) override;
   private:
     std::string fPrefix;
     bool fCarriageReturn;

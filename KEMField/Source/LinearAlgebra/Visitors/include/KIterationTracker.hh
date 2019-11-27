@@ -1,7 +1,7 @@
 #ifndef KITERATIONTRACKER_DEF
 #define KITERATIONTRACKER_DEF
 
-#include <limits.h>
+#include <climits>
 
 #include "KIterativeSolver.hh"
 #include "KSurfaceContainer.hh"
@@ -21,15 +21,15 @@ namespace KEMField
 	fStampCounter(0),
 	fMaxIterationStamps(UINT_MAX)
     { KIterativeSolver<ValueType>::Visitor::Interval(1); }
-    virtual ~KIterationTracker() {}
+    ~KIterationTracker() override {}
 
     void WriteInterval(unsigned int i) { fWriteInterval = i; }
     void MaxIterationStamps(unsigned int i) { fMaxIterationStamps = i; }
     void SaveName(std::string fileName) { fSaveName = fileName; }
 
-    void Initialize(KIterativeSolver<ValueType>&);
-    void Visit(KIterativeSolver<ValueType>&);
-    void Finalize(KIterativeSolver<ValueType>&);
+    void Initialize(KIterativeSolver<ValueType>&) override;
+    void Visit(KIterativeSolver<ValueType>&) override;
+    void Finalize(KIterativeSolver<ValueType>&) override;
 
   private:
     void ResetInterval();
@@ -62,7 +62,7 @@ namespace KEMField
   {
     // clear the contents of the previous instance of the file
     std::ofstream file(fSaveName.c_str());
-    file << static_cast<unsigned int>(time(NULL)) << "\t"
+    file << static_cast<unsigned int>(time(nullptr)) << "\t"
 	 << solver.Tolerance() << "\n";
     file.close();
   }
@@ -72,7 +72,7 @@ namespace KEMField
   {
     fIterationStatus.
       push_back(KIterationStamp(solver.Iteration(),
-				static_cast<unsigned int>(time(NULL)),
+				static_cast<unsigned int>(time(nullptr)),
 				solver.ResidualNorm()));
     fStampCounter++;
 
@@ -80,7 +80,7 @@ namespace KEMField
     {
       std::ofstream file(fSaveName.c_str(),std::fstream::app);
 
-      for (typename IterationStatusVector::iterator it = fIterationStatus.begin();
+      for (auto it = fIterationStatus.begin();
 	   it!=fIterationStatus.end();++it)
 	file << (*it).fIteration << "\t"
 	     << (*it).fTime << "\t"
@@ -131,7 +131,7 @@ namespace KEMField
     file << startTime << "\t"
 	 << tolerance << "\n";
 
-    for (typename IterationStatusVector::iterator it = fIterationStatus.begin();
+    for (auto it = fIterationStatus.begin();
 	 it!=fIterationStatus.end();++it)
       file << (*it).fIteration << "\t"
 	   << (*it).fTime << "\t"
@@ -147,12 +147,12 @@ namespace KEMField
   {
     fIterationStatus.
       push_back(KIterationStamp(solver.Iteration(),
-				static_cast<unsigned int>(time(NULL)),
+				static_cast<unsigned int>(time(nullptr)),
 				solver.ResidualNorm()));
 
     std::ofstream file(fSaveName.c_str(),std::fstream::app);
 
-    for (typename IterationStatusVector::iterator it = fIterationStatus.begin();
+    for (auto it = fIterationStatus.begin();
 	 it!=fIterationStatus.end();++it)
       file << (*it).fIteration << "\t"
 	   << (*it).fTime << "\t"

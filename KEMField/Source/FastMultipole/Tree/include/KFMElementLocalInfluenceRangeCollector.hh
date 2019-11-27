@@ -39,16 +39,16 @@ class KFMElementInfluenceRangeCollector: public KFMNodeActor< KFMNode<ObjectType
             if(node != NULL )
             {
                 //retrieve this nodes KFMElementLocalInfluenceRange and delete it if it already exists
-                KFMElementLocalInfluenceRange* influence_range = NULL;
+                KFMElementLocalInfluenceRange* influence_range = nullptr;
                 influence_range = KFMObjectRetriever<ObjectTypeList, KFMElementLocalInfluenceRange>::GetNodeObject(node);
-                if(influence_range != NULL){delete influence_range; influence_range = NULL;};
+                if(influence_range != nullptr){delete influence_range; influence_range = nullptr;};
                 KFMObjectRetriever<ObjectTypeList, KFMElementLocalInfluenceRange>::SetNodeObject(NULL, node);
 
                 //node must have a non-empty id-set
-                KFMIdentitySet* id_set = NULL;
+                KFMIdentitySet* id_set = nullptr;
                 id_set = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject(node);
 
-                if(id_set != NULL)
+                if(id_set != nullptr)
                 {
                     if(id_set->GetSize() != 0)
                     {
@@ -61,10 +61,10 @@ class KFMElementInfluenceRangeCollector: public KFMNodeActor< KFMNode<ObjectType
                         {
                             if(fNodeNeighborList[j] != NULL)
                             {
-                                KFMNodeIdentityListRange* range = NULL;
+                                KFMNodeIdentityListRange* range = nullptr;
                                 range = KFMObjectRetriever<ObjectTypeList, KFMNodeIdentityListRange>::GetNodeObject( fNodeNeighborList[j] );
 
-                                if(range != NULL)
+                                if(range != nullptr)
                                 {
                                     if(range->GetLength() != 0)
                                     {

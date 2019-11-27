@@ -16,7 +16,7 @@ namespace Kassiopeia
 
 KSGenEnergyRydberg::KSGenEnergyRydberg() :
     fDepositedEnergy( 0. ),
-    fIonizationEnergy( KConst::ERyd_eV() )
+    fIonizationEnergy( katrin::KConst::ERyd_eV() )
 {
 }
 KSGenEnergyRydberg::KSGenEnergyRydberg( const KSGenEnergyRydberg& aCopy ) :

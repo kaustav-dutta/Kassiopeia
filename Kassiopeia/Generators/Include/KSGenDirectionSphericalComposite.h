@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenDirectionSphericalComposite();
             KSGenDirectionSphericalComposite( const KSGenDirectionSphericalComposite& aCopy );
-            KSGenDirectionSphericalComposite* Clone() const;
-            virtual ~KSGenDirectionSphericalComposite();
+            KSGenDirectionSphericalComposite* Clone() const override;
+            ~KSGenDirectionSphericalComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aParticleList );
+            void Dice( KSParticleQueue* aParticleList ) override;
 
         public:
             void SetXAxis( const KThreeVector& anXAxis );
@@ -39,8 +39,8 @@ namespace Kassiopeia
             KThreeVector fZAxis;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

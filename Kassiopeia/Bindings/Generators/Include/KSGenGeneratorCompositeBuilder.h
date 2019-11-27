@@ -58,14 +58,14 @@ namespace katrin
         }
         if( aContainer->GetName() == "pid" )
         {
-            KSGenValueFix* tPidValue = new KSGenValueFix();
+            auto* tPidValue = new KSGenValueFix();
             tPidValue->SetValue(aContainer->AsReference<double>());
             fObject->SetPid(tPidValue);
             return true;
         }
 	if( aContainer->GetName() == "string_id" )
         {
-	  KSGenStringValueFix* tStringIdValue = new KSGenStringValueFix();
+	  auto* tStringIdValue = new KSGenStringValueFix();
 	  tStringIdValue->SetValue(aContainer->AsReference<std::string>());
 	  fObject->SetStringId(tStringIdValue);
 	  return true;
@@ -92,14 +92,14 @@ namespace katrin
     template< >
     inline bool KSGenGeneratorCompositeBuilder::End()
     {
-       if ((fObject->GetPid() != NULL) && (fObject->GetStringId() != NULL))
+       if ((fObject->GetPid() != nullptr) && (fObject->GetStringId() != nullptr))
         {
             genmsg(eWarning) << "pid <" << fObject->GetPid() << "> overrides string_id <" << fObject->GetStringId() << ">. Only one should be used, to avoid confusion." << eom;
         }
-       else if ((fObject->GetPid() == NULL) && (fObject->GetStringId() == NULL))
+       else if ((fObject->GetPid() == nullptr) && (fObject->GetStringId() == nullptr))
         {
             genmsg(eWarning) << "No particle id (pid) or string_id was set. Kassiopeia assumes that electrons (pid=11 or string_id=\"e-\") should be tracked" << eom;
-            KSGenValueFix* tPidValue = new KSGenValueFix();
+            auto* tPidValue = new KSGenValueFix();
             tPidValue->SetValue(11);
             fObject->SetPid(tPidValue);
         }

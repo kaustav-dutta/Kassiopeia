@@ -25,7 +25,7 @@ class KGNavigableMeshTree: public KGSpaceTree<KGMESH_DIM, KGMeshNavigationNodeOb
 {
     public:
         KGNavigableMeshTree():KGSpaceTree<KGMESH_DIM, KGMeshNavigationNodeObjects >(){;}
-        virtual ~KGNavigableMeshTree()
+        ~KGNavigableMeshTree() override
         {
             //set the element container pointer to null for all nodes so we dont delete it more than once
             KGNodeObjectNullifier<KGMeshNavigationNodeObjects, KGNavigableMeshElementContainer> containerNullifier;

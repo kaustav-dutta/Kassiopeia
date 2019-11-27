@@ -20,9 +20,9 @@ public:
 	enum ErrorCode {noEntry, wrongType};
 
 	KKeyNotFoundException(std::string container, std::string key, ErrorCode errorCode);
-	~KKeyNotFoundException() noexcept;
+	~KKeyNotFoundException() noexcept override;
 
-	const char* what() const noexcept;
+	const char* what() const noexcept override;
 
 private:
 	std::string fContainer;

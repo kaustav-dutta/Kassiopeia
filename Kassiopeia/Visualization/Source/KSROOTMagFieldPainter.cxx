@@ -31,7 +31,7 @@ namespace Kassiopeia
 
     void KSROOTMagFieldPainter::FieldMapZ( KSMagneticField* tMagField , double tDeltaZ, double tDeltaR){
 		double tZ,tR;
-		TH2D* Map = new TH2D("Map", "Map", fZsteps,fZmin,fZmax,2*fRsteps,-fRmax,fRmax);
+		auto* Map = new TH2D("Map", "Map", fZsteps,fZmin,fZmax,2*fRsteps,-fRmax,fRmax);
     	KThreeVector tPosition;
 		KThreeVector tPosition_i, tPosition_j;
 
@@ -286,7 +286,7 @@ namespace Kassiopeia
 
     void KSROOTMagFieldPainter::FieldMapX( KSMagneticField* tMagField, double tDeltaZ, double tDeltaR){
 		double tR_i, tR_j;
-		TH2D* Map = new TH2D("Map", "Map", 2*fRsteps,-fRmax,fRmax,2*fRsteps,-fRmax,fRmax);
+		auto* Map = new TH2D("Map", "Map", 2*fRsteps,-fRmax,fRmax,2*fRsteps,-fRmax,fRmax);
 		KThreeVector tPosition;
 		KThreeVector tPosition_i, tPosition_j, tPosition_z;
 
@@ -412,7 +412,7 @@ namespace Kassiopeia
     void KSROOTMagFieldPainter::Render(){
 		vismsg(eNormal) << "Getting magnetic field <" << fMagneticFieldName << "> from the toolbox" << eom;
 		KSMagneticField* tMagField = getMagneticField( fMagneticFieldName );
-		if ( tMagField == NULL)
+		if ( tMagField == nullptr)
 			vismsg(eError) << "No magnetic Field!" << eom;
 		if ( fPlot!="magnetic_field_abs" && fPlot!="magnetic_field_x" && fPlot!="magnetic_field_x_abs"&& fPlot!="magnetic_field_y" && fPlot!="magnetic_field_y_abs" && fPlot!="magnetic_field_z" && fPlot!="magnetic_field_z_abs" && fPlot!="magnetic_potential_abs" && fPlot!="magnetic_gradient_z" && fPlot!="magnetic_gradient_z_abs" && fPlot!="magnetic_gradient_x" && fPlot!="magnetic_gradient_x_abs" && fPlot!="magnetic_gradient_y" && fPlot!="magnetic_gradient_y_abs" )
 			vismsg ( eError ) << "do not know what to plot, plot=<"<<fPlot<<"> is not defined in KSROOTMagFieldPainter" << eom;
@@ -492,7 +492,7 @@ namespace Kassiopeia
         	if( fUseLogZ==true ) fWindow->GetPad()->SetLogz();
 
         	fMap->GetZaxis()->SetTitleOffset(1.4);
-        	fMap->SetStats(0);
+        	fMap->SetStats(false);
         	fMap->SetTitle( "" );
         	fMap->Draw( fDraw.c_str() );
         }

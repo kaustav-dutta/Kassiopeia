@@ -2,6 +2,7 @@
 #define Kassiopeia_KSMathInterpolator_h_
 
 #include "KSMathSystem.h"
+#include "KSMathIntegrator.h"
 #include "KSMathDifferentiator.h"
 
 #include <cmath>
@@ -33,25 +34,27 @@ namespace Kassiopeia
             virtual double DistanceMetric(const XValueType& valueA, const XValueType& valueB) const;
 
             //use tolerance and max segment parameters to govern recursive subdivision the step into linear segments
-            virtual void GetPiecewiseLinearApproximation( double aTolerance,
-                                                          unsigned int nMaxSegments,
-                                                          double anInitialTime, /*have to pass start time parameter because we cannot rely on in being part of the XValueType*/
-                                                          double aFinalTime, /*have to pass end time parameter because we cannot rely on in being part of the XValueType*/
-                                                          const KSMathIntegrator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& anIntegrator,
-                                                          const KSMathDifferentiator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& aDifferentiator,
-                                                          const XValueType& anInitialValue,
-                                                          const XValueType& aFinalValue,
-                                                          std::vector<XValueType>* interpolatedValues) const;
+            virtual void GetPiecewiseLinearApproximation(
+                                    double aTolerance,
+                                    unsigned int nMaxSegments,
+                                    double anInitialTime, /*have to pass start time parameter because we cannot rely on in being part of the XValueType*/
+                                    double aFinalTime, /*have to pass end time parameter because we cannot rely on in being part of the XValueType*/
+                                    const KSMathIntegrator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& anIntegrator,
+                                    const KSMathDifferentiator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& aDifferentiator,
+                                    const XValueType& anInitialValue,
+                                    const XValueType& aFinalValue,
+                                    std::vector<XValueType>* interpolatedValues) const;
 
             //use fixed number of segments to evenly sample the entire step
-            virtual void GetPiecewiseLinearApproximation( unsigned int nSegments,
-                                                          double anInitialTime, /*have to pass start time parameter because we cannot rely on in being part of the XValueType*/
-                                                          double aFinalTime, /*have to pass end time parameter because we cannot rely on in being part of the XValueType*/
-                                                          const KSMathIntegrator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& anIntegrator,
-                                                          const KSMathDifferentiator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& aDifferentiator,
-                                                          const XValueType& anInitialValue,
-                                                          const XValueType& aFinalValue,
-                                                          std::vector<XValueType>* interpolatedValues) const;
+            virtual void GetFixedPiecewiseLinearApproximation(
+                                    unsigned int nSegments,
+                                    double anInitialTime, /*have to pass start time parameter because we cannot rely on in being part of the XValueType*/
+                                    double aFinalTime, /*have to pass end time parameter because we cannot rely on in being part of the XValueType*/
+                                    const KSMathIntegrator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& anIntegrator,
+                                    const KSMathDifferentiator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >& aDifferentiator,
+                                    const XValueType& anInitialValue,
+                                    const XValueType& aFinalValue,
+                                    std::vector<XValueType>* interpolatedValues) const;
 
 
             typedef typename std::pair<XValueType, bool> XValueFlagPair;
@@ -115,15 +118,15 @@ namespace Kassiopeia
         XValueFlagPairList tValues;
         tValues.push_back( XValueFlagPair(anInitialValue, true) );
         tValues.push_back( XValueFlagPair(aFinalValue, false) );
-        XValueFlagPairListIter tFirst = tValues.begin();
-        XValueFlagPairListIter tNext = tFirst; tNext++;
+        auto tFirst = tValues.begin();
+        auto tNext = tFirst; tNext++;
 
         //list of time parameters for each corresponding value
         std::list< double > tValueTimes;
         tValueTimes.push_back(anInitialTime);
         tValueTimes.push_back(aFinalTime);
-        std::list< double >::iterator tFirstTime = tValueTimes.begin();
-        std::list< double >::iterator tNextTime = tFirstTime; tNextTime++;
+        auto tFirstTime = tValueTimes.begin();
+        auto tNextTime = tFirstTime; tNextTime++;
 
         //temp variables for work
         double tMidTime;
@@ -193,7 +196,7 @@ namespace Kassiopeia
 
     template< class XValueType, class XDerivativeType, class XErrorType >
     void
-    KSMathInterpolator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >::GetPiecewiseLinearApproximation
+    KSMathInterpolator< KSMathSystem< XValueType, XDerivativeType, XErrorType > >::GetFixedPiecewiseLinearApproximation
     (
         unsigned int nSegments,
         double anInitialTime, /*have to pass start time parameter because we cannot rely on in being part of the XValueType*/

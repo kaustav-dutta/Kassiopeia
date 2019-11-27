@@ -1,6 +1,6 @@
 #include "KGMeshWire.hh"
 
-#include <math.h>
+#include <cmath>
 
 namespace KGeoBag
 {

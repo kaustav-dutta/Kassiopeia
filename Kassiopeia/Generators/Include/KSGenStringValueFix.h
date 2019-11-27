@@ -14,11 +14,11 @@ namespace Kassiopeia
         public:
             KSGenStringValueFix();
             KSGenStringValueFix( const KSGenStringValueFix& aCopy );
-            KSGenStringValueFix* Clone() const;
-            virtual ~KSGenStringValueFix();
+            KSGenStringValueFix* Clone() const override;
+            ~KSGenStringValueFix() override;
 
         public:
-            virtual void DiceValue( std::vector< std::string >& aDicedValues );
+            void DiceValue( std::vector< std::string >& aDicedValues ) override;
 
         public:
 	    K_SET_GET( std::string, Value )

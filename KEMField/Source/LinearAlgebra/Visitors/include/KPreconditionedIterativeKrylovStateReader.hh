@@ -52,20 +52,20 @@ class KPreconditionedIterativeKrylovStateReader: public KIterativeSolver<ValueTy
                 fVerbosity = 0;
             };
 
-        virtual ~KPreconditionedIterativeKrylovStateReader(){};
+        ~KPreconditionedIterativeKrylovStateReader() override{};
 
         void SetVerbosity(int v){fVerbosity = v;}
 
-        virtual void Initialize(KIterativeSolver<ValueType>& solver)
+        void Initialize(KIterativeSolver<ValueType>& solver) override
         {
-            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     ParallelTraitState<ValueType> trait_state;
                     unsigned int n_states = 0;
@@ -118,8 +118,8 @@ class KPreconditionedIterativeKrylovStateReader: public KIterativeSolver<ValueTy
 
         };
 
-        virtual void Visit(KIterativeSolver<ValueType>&){};
-        virtual void Finalize(KIterativeSolver<ValueType>&){};
+        void Visit(KIterativeSolver<ValueType>&) override{};
+        void Finalize(KIterativeSolver<ValueType>&) override{};
 
     protected:
 

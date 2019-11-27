@@ -51,20 +51,20 @@ class KSAObjectInputNode: public KSAInputNode
             fObject->DefineInputNode(this);
         }
 
-        virtual ~KSAObjectInputNode()
+        ~KSAObjectInputNode() override
         {
             delete fObject;
         }
 
-        virtual bool TagsAreSuppressed(){return false;};
+        bool TagsAreSuppressed() override{return false;};
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 fChildren[i]->Reset();
@@ -77,14 +77,14 @@ class KSAObjectInputNode: public KSAInputNode
         void AttachObjectToNode(T* &object_ptr) { object_ptr = fObject; }
         void DetachObjectFromNode(){fObject = NULL;};
 
-        virtual void FinalizeObject()
+        void FinalizeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
             fObject->Initialize();
         };
 
-        virtual void InitializeObject()
+        void InitializeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
@@ -125,20 +125,20 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
             fTagSuppression = true;
         }
 
-        virtual ~KSAObjectInputNode()
+        ~KSAObjectInputNode() override
         {
             delete fObject;
         }
 
-        virtual bool TagsAreSuppressed(){return fTagSuppression;};
+        bool TagsAreSuppressed() override{return fTagSuppression;};
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             fTagSuppression = true;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
@@ -152,14 +152,14 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
         void AttachObjectToNode(T* &object_ptr) { object_ptr = fObject; }
         void DetachObjectFromNode(){fObject = NULL;};
 
-        virtual void FinalizeObject()
+        void FinalizeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
             fObject->Initialize();
         };
 
-        virtual void InitializeObject()
+        void InitializeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
@@ -167,7 +167,7 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
         }
 
 
-        virtual void AddChild(KSAInputNode* child)
+        void AddChild(KSAInputNode* child) override
         {
 
             if( child->IsComposite() && !(child->TagsAreSuppressed()) )
@@ -185,7 +185,7 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
         };
 
 
-        virtual void AddLine(const std::string& line)
+        void AddLine(const std::string& line) override
         {
 
             int temp;
@@ -200,7 +200,7 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
             else if( LineIsStopTag(line) )
             {
                 fStatus = KSANODE_MOVE_UPWARD;
-                fNextNode = NULL;
+                fNextNode = nullptr;
                 FinalizeObject();
             }
 	        else if ( LineIsStartTag(line) )
@@ -208,7 +208,7 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
                 fHasData = true;
                 fIndex = 0;
                 fStatus = KSANODE_STAY;
-                fNextNode = NULL;
+                fNextNode = nullptr;
 	        }
             else
             {
@@ -222,7 +222,7 @@ class KSAObjectInputNode<T , 1>: public KSAInputNode
                     }
                     fIndex++;
                     fStatus = KSANODE_STAY;
-                    fNextNode = NULL;
+                    fNextNode = nullptr;
                 }
             }
 
@@ -258,16 +258,16 @@ class KSAExternalObjectInputNode: public KSAInputNode
         {
         }
 
-        virtual ~KSAExternalObjectInputNode()
+        ~KSAExternalObjectInputNode() override
         {
  	        delete fObject;
         }
 
-        virtual bool TagsAreSuppressed(){return false;};
+        bool TagsAreSuppressed() override{return false;};
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
@@ -287,14 +287,14 @@ class KSAExternalObjectInputNode: public KSAInputNode
         void AttachObjectToNode(T* &object_ptr) { object_ptr = fObject; }
         void DetachObjectFromNode(){fObject = NULL;};
 
-        virtual void FinalizeObject()
+        void FinalizeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
             fObject->Initialize();
         };
 
-        virtual void InitializeObject()
+        void InitializeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
@@ -333,16 +333,16 @@ class KSAExternalObjectInputNode<T , 1>: public KSAInputNode
             fTagSuppression = true;
         }
 
-        virtual ~KSAExternalObjectInputNode()
+        ~KSAExternalObjectInputNode() override
         {
             delete fObject;
         }
 
-        virtual bool TagsAreSuppressed(){return fTagSuppression;};
+        bool TagsAreSuppressed() override{return fTagSuppression;};
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fTagSuppression = true;
@@ -363,14 +363,14 @@ class KSAExternalObjectInputNode<T , 1>: public KSAInputNode
         void AttachObjectToNode(T* &object_ptr) { object_ptr = fObject; }
         void DetachObjectFromNode(){fObject = NULL;};
 
-        virtual void FinalizeObject()
+        void FinalizeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
             fObject->Initialize();
         };
 
-        virtual void InitializeObject()
+        void InitializeObject() override
         {
             //fObject define a function called Initialize()
             //this is guaranteed if fObject inherits from KSAInputOutputObject
@@ -378,7 +378,7 @@ class KSAExternalObjectInputNode<T , 1>: public KSAInputNode
         }
 
 
-        virtual void AddChild(KSAInputNode* child)
+        void AddChild(KSAInputNode* child) override
         {
             if( child->IsComposite() && !(child->TagsAreSuppressed()) )
             {
@@ -394,7 +394,7 @@ class KSAExternalObjectInputNode<T , 1>: public KSAInputNode
             fChildrenStopMap.insert( std::pair<std::string, unsigned int >(child->GetStopTag(), index) );
         };
 
-        virtual void AddLine(const std::string& line)
+        void AddLine(const std::string& line) override
         {
             //assumes the line has been trimmed of uncessary whitespace!!
             int temp;
@@ -460,7 +460,7 @@ class KSAAssociatedReferenceObjectInputNode: public KSAObjectInputNode< SetType,
             fCallPtr = call_ptr;
         }
 
-        void FinalizeObject()
+        void FinalizeObject() override
         {
             this->InitializeObject();
             fCallback(fCallPtr, *(this->fObject) );
@@ -473,7 +473,7 @@ class KSAAssociatedReferenceObjectInputNode: public KSAObjectInputNode< SetType,
         }
 
 
-        virtual ~KSAAssociatedReferenceObjectInputNode()
+        ~KSAAssociatedReferenceObjectInputNode() override
         {
 
         };
@@ -541,11 +541,11 @@ class KSAAssociatedAllocatedToVectorPointerObjectInputNode: public KSAObjectInpu
 
         KSAAssociatedAllocatedToVectorPointerObjectInputNode(std::string name):KSAObjectInputNode< SetType, KSAIsDerivedFrom< SetType, KSAFixedSizeInputOutputObject >::Is >( name )
         {
-            fCallPtr = NULL;
+            fCallPtr = nullptr;
         }
 
 
-        void FinalizeObject()
+        void FinalizeObject() override
         {
             this->InitializeObject();
             fCallPtr->push_back( new SetType( *(this->fObject ) ) );
@@ -557,7 +557,7 @@ class KSAAssociatedAllocatedToVectorPointerObjectInputNode: public KSAObjectInpu
         }
 
 
-        virtual ~KSAAssociatedAllocatedToVectorPointerObjectInputNode()
+        ~KSAAssociatedAllocatedToVectorPointerObjectInputNode() override
         {
 
         };
@@ -689,7 +689,7 @@ class KSAObjectInputNode< std::vector< T > >: public KSAInputNode
             KSAInputNode::AddChild(fElementNode);
         }
 
-        virtual ~KSAObjectInputNode()
+        ~KSAObjectInputNode() override
         {
             if(fObjectIsOwned)
             {
@@ -697,11 +697,11 @@ class KSAObjectInputNode< std::vector< T > >: public KSAInputNode
             }
         }
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 fChildren[i]->Reset();
@@ -713,7 +713,7 @@ class KSAObjectInputNode< std::vector< T > >: public KSAInputNode
         template <typename TheCallType, typename TheSetType >
         void AddChild(KSAAssociatedAllocatedToVectorPointerObjectInputNode< TheCallType, TheSetType>* child)
         {
-            if(child != NULL)
+            if(child != nullptr)
             {
                 //forward it on to fElementNode
                 fElementNode->template AddChild<TheCallType, TheSetType>(child);
@@ -735,7 +735,7 @@ class KSAObjectInputNode< std::vector< T > >: public KSAInputNode
             }
         }
 
-        void FinalizeObject(){;};
+        void FinalizeObject() override{;};
 
         virtual std::vector< T >* GetObject(){return fObject;};
 
@@ -819,7 +819,7 @@ class KSAObjectInputNode< std::vector< T* > >: public KSAInputNode
             KSAInputNode::AddChild(fElementNode);
         }
 
-        virtual ~KSAObjectInputNode()
+        ~KSAObjectInputNode() override
         {
             if(fObjectIsOwned)
             {
@@ -827,11 +827,11 @@ class KSAObjectInputNode< std::vector< T* > >: public KSAInputNode
             }
         }
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 fChildren[i]->Reset();
@@ -847,12 +847,12 @@ class KSAObjectInputNode< std::vector< T* > >: public KSAInputNode
         template <typename TheCallType, typename TheSetType >
         void AddChild(KSAAssociatedAllocatedToVectorPointerObjectInputNode< TheCallType, TheSetType>* child)
         {
-            if(child != NULL)
+            if(child != nullptr)
             {
-                T* ptr = NULL;
+                T* ptr = nullptr;
                 ptr = dynamic_cast< T* >(child->GetObject() );
 
-                if(ptr != NULL)
+                if(ptr != nullptr)
                 {
                     //T and Type must be virtual and either the same or base and derived
                     child->SetCallbackObject(fObject);
@@ -965,7 +965,7 @@ class KSAObjectInputNode< std::list< T > >: public KSAInputNode
             AddChild(fElementNode);
         }
 
-        virtual ~KSAObjectInputNode()
+        ~KSAObjectInputNode() override
         {
             if(fObjectIsOwned)
             {
@@ -973,7 +973,7 @@ class KSAObjectInputNode< std::list< T > >: public KSAInputNode
             }
         }
 
-        virtual void Reset()
+        void Reset() override
         {
             fIndex = 0;
             fStatus = KSANODE_STAY;
@@ -995,7 +995,7 @@ class KSAObjectInputNode< std::list< T > >: public KSAInputNode
             AddChild(fElementNode);
         }
 
-        void FinalizeObject(){;};
+        void FinalizeObject() override{;};
 
         virtual std::list< T >* GetObject(){return fObject;};
 

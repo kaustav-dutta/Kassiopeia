@@ -40,9 +40,9 @@ public:
 
     DistRatioVisitor(){}
 
-    void Visit(KTriangle& t) { ProcessTriangle(t); }
-    void Visit(KRectangle& r) { ProcessRectangle(r); }
-    void Visit(KLineSegment& l) { ProcessLineSegment(l); }
+    void Visit(KTriangle& t) override { ProcessTriangle(t); }
+    void Visit(KRectangle& r) override { ProcessRectangle(r); }
+    void Visit(KLineSegment& l) override { ProcessLineSegment(l); }
 
     void ProcessTriangle(KTriangle& t)
     {
@@ -243,9 +243,9 @@ int main(int argc, char* argv[])
     "\n";
 
     static struct option longOptions[] = {
-        {"help", no_argument, 0, 'h'},
-        {"file", required_argument, 0, 'f'},
-        {"name", required_argument, 0, 'n'}
+        {"help", no_argument, nullptr, 'h'},
+        {"file", required_argument, nullptr, 'f'},
+        {"name", required_argument, nullptr, 'n'}
     };
 
     static const char *optString = "h:f:n:";
@@ -253,9 +253,9 @@ int main(int argc, char* argv[])
     std::string inFile = "";
     std::string containerName = "surfaceContainer";
 
-    while(1)
+    while(true)
     {
-        char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+        char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
         if(optId == -1) break;
         switch(optId) {
         case('h'): // help
@@ -340,11 +340,11 @@ int main(int argc, char* argv[])
     // compute distance ratios separately for different shape types
     std::vector<TH1D*> data;
 
-    TApplication* fAppWindow = new TApplication("fAppWindow", 0, NULL);
+    auto* fAppWindow = new TApplication("fAppWindow", nullptr, nullptr);
 
     std::string outputPath("./DistRatioFromKdb.root");
 
-    TFile* gROOTFile = new TFile(outputPath.c_str(), "RECREATE");
+    auto* gROOTFile = new TFile(outputPath.c_str(), "RECREATE");
 
     data = ComputeDistanceRatios( fieldPoint, surfaceContainer.size(), types, lengths, centroids );
     TCanvas c0("cDR", "Distance ratio distributions", 0, 0, 960, 760);

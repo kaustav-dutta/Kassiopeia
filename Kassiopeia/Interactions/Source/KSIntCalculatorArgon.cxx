@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <cmath>
-#include <assert.h>
+#include <cassert>
 
 #include "KTextFile.h"
 using katrin::KTextFile;
@@ -14,7 +14,6 @@ using katrin::KTextFile;
 using KGeoBag::KThreeVector;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -43,7 +42,7 @@ namespace Kassiopeia
     {
         assert( anEnergy == anEnergy );
         assert( anEnergy >= 0. );
-        std::map< double, double >::iterator firstPoint = point;
+        auto firstPoint = point;
         --firstPoint;
 
         double slope = (point->second - firstPoint->second) / (point->first - firstPoint->first);
@@ -83,7 +82,7 @@ namespace Kassiopeia
                 break;
         }
 
-        return tTheta_deg * KConst::Pi() / 180.;
+        return tTheta_deg * katrin::KConst::Pi() / 180.;
     }
 
     double KSIntCalculatorArgon::GetTotalCrossSectionAt( const double &anEnergy ) const
@@ -92,7 +91,7 @@ namespace Kassiopeia
         assert( anEnergy >= 0. );
         // Zero? Interpolation? Extrapolation? Make a decision and execute it...
 
-        std::map< double, double >::iterator point = fSupportingPointsTotalCrossSection->lower_bound( anEnergy );
+        auto point = fSupportingPointsTotalCrossSection->lower_bound( anEnergy );
 
         if( point == fSupportingPointsTotalCrossSection->begin() )
         {
@@ -121,8 +120,8 @@ namespace Kassiopeia
 
         if( anEnergy > maxEnergy )
         {
-            double t = anEnergy / (2. * KConst::ERyd_eV());
-            double c = cos( anAngle * KConst::Pi() / 180. );
+            double t = anEnergy / (2. * katrin::KConst::ERyd_eV());
+            double c = cos( anAngle * katrin::KConst::Pi() / 180. );
             double k2 = 4. * (t * (1. - c));
 
             return 1.85099E-19 * 4.0 * (8.0 + k2) * (8.0 + k2) / pow( 4.0 + k2, 4.0 );
@@ -159,7 +158,7 @@ namespace Kassiopeia
                     // Copy data to the interpolation
                     std::map< double*, double > *data = reader.GetData();
 
-                    for( std::map< double*, double >::iterator i = data->begin(); i != data->end(); ++i )
+                    for( auto i = data->begin(); i != data->end(); ++i )
                     {
                         fDifferentialCrossSectionInterpolator->AddPoint( i->first[ 0 ], i->first[ 1 ], i->second );
                     }
@@ -323,7 +322,7 @@ namespace Kassiopeia
         intmsg_debug( "tLostKineticEnergy: " << tLostKineticEnergy << ret);
         assert( tLostKineticEnergy == tLostKineticEnergy );
         assert( tLostKineticEnergy >= 0. );
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         intmsg_debug( "tPhi: " << tPhi << ret << ret);
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
@@ -398,7 +397,7 @@ namespace Kassiopeia
                     // Copy data to the interpolation
                     std::map< double*, double > *data = reader.GetData();
 
-                    for( std::map< double*, double >::iterator i = data->begin(); i != data->end(); ++i )
+                    for( auto i = data->begin(); i != data->end(); ++i )
                     {
                         fDifferentialCrossSectionInterpolator->AddPoint( i->first[ 0 ], i->first[ 1 ], i->second );
                     }
@@ -468,7 +467,7 @@ namespace Kassiopeia
 
         if( anEnergy > maxEnergy )
         {
-            double k2 = 4. * anEnergy / (2. * KConst::ERyd_eV()) * (1. - cos( anAngle * KConst::Pi() / 180. ));
+            double k2 = 4. * anEnergy / (2. * katrin::KConst::ERyd_eV()) * (1. - cos( anAngle * katrin::KConst::Pi() / 180. ));
 
             return 1.85099E-19 * 4.0 * (8.0 + k2) * (8.0 + k2) / pow( 4.0 + k2, 4.0 );
         }
@@ -488,7 +487,7 @@ namespace Kassiopeia
         double anEloss = 0;
         // ArMolMass = 1/alpha^2 * #nuclei * m_p/m_e
         double ArMolMass = 1.38e9;
-        double emass = 1. / (KConst::Alpha() * KConst::Alpha());
+        double emass = 1. / (katrin::KConst::Alpha() * katrin::KConst::Alpha());
         double cosTheta = cos( aTheta );
 
         anEloss = 2. * emass / ArMolMass * (1. - cosTheta) * anEnergy;
@@ -517,7 +516,7 @@ namespace Kassiopeia
         intmsg_debug( "tTheta: " << tTheta << ret);
         double tLostKineticEnergy = GetEnergyLoss( tInitialKineticEnergy, tTheta );
         intmsg_debug( "tLostKineticEnergy: " << tLostKineticEnergy << ret);
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         intmsg_debug( "tPhi: " << tPhi << ret << ret);
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
@@ -602,7 +601,7 @@ namespace Kassiopeia
         intmsg_debug( "tLostKineticEnergy: " << tLostKineticEnergy << ret);
         tTheta = GetTheta( tInitialKineticEnergy, tLostKineticEnergy );
         intmsg_debug( "tTheta: " << tTheta << ret);
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         intmsg_debug( "tPhi: " << tPhi << ret << ret);
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
@@ -617,7 +616,7 @@ namespace Kassiopeia
 
         // Outgoing secondary
         tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         tOrthogonalOne = tInitialDirection.Orthogonal();
         tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -644,13 +643,13 @@ namespace Kassiopeia
         assert( anEnergy > fIonizationEnergy );
 
         double tmpSecEnergy;
-        double tmpMaxCross = KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( 0. - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
+        double tmpMaxCross = katrin::KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( 0. - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
 
         while( true )
         {
             tmpSecEnergy = KRandom::GetInstance().Uniform( 0., (anEnergy - fIonizationEnergy) / 2., false, true );
 
-            double tmpDiffCross = KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( tmpSecEnergy - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
+            double tmpDiffCross = katrin::KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( tmpSecEnergy - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
 
             if( KRandom::GetInstance().Uniform( 0., tmpMaxCross, false, true ) < tmpDiffCross )
                 break;
@@ -687,7 +686,7 @@ namespace Kassiopeia
         assert( tTheta_deg == tTheta_deg );
         assert( tTheta_deg >= 0. && tTheta_deg <= 180. );
 
-        return tTheta_deg * KConst::Pi() / 180.;
+        return tTheta_deg * katrin::KConst::Pi() / 180.;
     }
 
     double KSIntCalculatorArgonSingleIonisation::GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle, const double &anEloss ) const
@@ -700,7 +699,7 @@ namespace Kassiopeia
         assert( anAngle >= 0. );
 
         double aCrossection;
-        DiffCrossCalculator->CalculateDoublyDifferentialCrossSection( anEnergy / fIonizationEnergy, (anEnergy - anEloss) / fIonizationEnergy, cos( anAngle * KConst::Pi() / 180. ), aCrossection );
+        DiffCrossCalculator->CalculateDoublyDifferentialCrossSection( anEnergy / fIonizationEnergy, (anEnergy - anEloss) / fIonizationEnergy, cos( anAngle * katrin::KConst::Pi() / 180. ), aCrossection );
 
         double wrongtotalcross;
         DiffCrossCalculator->CalculateCrossSection( anEnergy, wrongtotalcross );
@@ -777,7 +776,7 @@ namespace Kassiopeia
         intmsg_debug( "tLostKineticEnergy: " << tLostKineticEnergy << ret);
         tTheta = GetTheta( tInitialKineticEnergy, tLostKineticEnergy );
         intmsg_debug( "tTheta: " << tTheta << ret);
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         intmsg_debug( "tPhi: " << tPhi << ret << ret);
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
@@ -794,7 +793,7 @@ namespace Kassiopeia
         for( int i = 0; i < 2; ++i )
         {
             tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-            tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+            tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
             tOrthogonalOne = tInitialDirection.Orthogonal();
             tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -824,13 +823,13 @@ double KSIntCalculatorArgonDoubleIonisation::GetEnergyLoss( const double &anEner
     assert( anEnergy >= 0. );
 
     double tmpSecEnergy;
-    double tmpMaxCross = KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( 0. - 2 + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
+    double tmpMaxCross = katrin::KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( 0. - 2 + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
 
     while( true )
     {
         tmpSecEnergy = KRandom::GetInstance().Uniform( 0., (anEnergy - fIonizationEnergy->at( 0 ) - fIonizationEnergy->at( 1 )) / 2., false, true );
 
-        double tmpDiffCross = KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( tmpSecEnergy - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
+        double tmpDiffCross = katrin::KConst::BohrRadiusSquared() * 13.2 / anEnergy * log( (anEnergy + 120.0 / anEnergy) / 15.76 ) * 10.3 * 10.3 / (pow( tmpSecEnergy - 2. + 100. / (10. + anEnergy), 2 ) + 10.3 * 10.3);
 
         if( KRandom::GetInstance().Uniform( 0., tmpMaxCross, false, true ) < tmpDiffCross )
             break;
@@ -866,7 +865,7 @@ double KSIntCalculatorArgonDoubleIonisation::GetTheta( const double &anEnergy, c
     assert( tTheta_deg == tTheta_deg );
     assert( tTheta_deg >= 0. && tTheta_deg <= 180. );
 
-    return tTheta_deg * KConst::Pi() / 180.;
+    return tTheta_deg * katrin::KConst::Pi() / 180.;
 }
 
 double KSIntCalculatorArgonDoubleIonisation::GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle, const double &anEloss ) const
@@ -883,7 +882,7 @@ double KSIntCalculatorArgonDoubleIonisation::GetDifferentialCrossSectionAt( cons
     double aReducedInitialEnergy = anEnergy / (fIonizationEnergy->at( 1 ));
     double aReducedFinalEnergy = (anEnergy - anEloss) / fIonizationEnergy->at( 1 );
 
-    DiffCrossCalculator->CalculateDoublyDifferentialCrossSection( aReducedInitialEnergy, aReducedFinalEnergy, cos( anAngle * KConst::Pi() / 180. ), aCrossection );
+    DiffCrossCalculator->CalculateDoublyDifferentialCrossSection( aReducedInitialEnergy, aReducedFinalEnergy, cos( anAngle * katrin::KConst::Pi() / 180. ), aCrossection );
 
     DiffCrossCalculator->CalculateCrossSection( anEnergy, wrongtotalcross );
 

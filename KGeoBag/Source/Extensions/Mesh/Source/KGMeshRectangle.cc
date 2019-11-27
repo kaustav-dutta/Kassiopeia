@@ -3,7 +3,7 @@
 #include "KTwoVector.hh"
 
 #include <vector>
-#include <math.h>
+#include <cmath>
 
 #define RECTANGLE_EPS 1e-6
 

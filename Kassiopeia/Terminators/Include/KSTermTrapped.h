@@ -15,18 +15,18 @@ namespace Kassiopeia
         public:
     		KSTermTrapped();
     		KSTermTrapped( const KSTermTrapped& aCopy );
-    		KSTermTrapped* Clone() const;
-            virtual ~KSTermTrapped();
+    		KSTermTrapped* Clone() const override;
+            ~KSTermTrapped() override;
 
             K_SET_GET(int, MaxTurns)
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         protected:
-            virtual void ActivateComponent();
-            virtual void DeactivateComponent();
+            void ActivateComponent() override;
+            void DeactivateComponent() override;
 
         private:
             int fCurrentTurns;

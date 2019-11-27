@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGRotatedPolyLoopSpaceMesher();
-            virtual ~KGRotatedPolyLoopSpaceMesher();
+            ~KGRotatedPolyLoopSpaceMesher() override;
 
         protected:
-            void VisitRotatedClosedPathSpace( KGRotatedPolyLoopSpace* aRotatedPolyLoopSpace );
+            void VisitRotatedClosedPathSpace( KGRotatedPolyLoopSpace* aRotatedPolyLoopSpace ) override;
     };
 
 }

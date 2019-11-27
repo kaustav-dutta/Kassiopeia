@@ -14,10 +14,10 @@ namespace Kassiopeia
         public:
             KSComponent();
             KSComponent( const KSComponent& aCopy );
-            virtual ~KSComponent();
+            ~KSComponent() override;
 
         public:
-            virtual KSComponent* Clone() const = 0;
+            KSComponent* Clone() const override = 0;
             virtual KSComponent* Component( const std::string& aField ) = 0;
             virtual KSCommand* Command( const std::string& aField, KSComponent* aChild ) = 0;
 
@@ -69,8 +69,8 @@ namespace Kassiopeia
     template< >
     inline bool KSObject::Is< KSComponent >()
     {
-        KSComponent* tComponent = dynamic_cast< KSComponent* >( this );
-        if( tComponent != NULL )
+        auto* tComponent = dynamic_cast< KSComponent* >( this );
+        if( tComponent != nullptr )
         {
             return true;
         }
@@ -80,8 +80,8 @@ namespace Kassiopeia
     template< >
     inline bool KSObject::Is< KSComponent >() const
     {
-        const KSComponent* tComponent = dynamic_cast< const KSComponent* >( this );
-        if( tComponent != NULL )
+        const auto* tComponent = dynamic_cast< const KSComponent* >( this );
+        if( tComponent != nullptr )
         {
             return true;
         }
@@ -91,23 +91,23 @@ namespace Kassiopeia
     template< >
     inline KSComponent* KSObject::As< KSComponent >()
     {
-        KSComponent* tComponent = dynamic_cast< KSComponent* >( this );
-        if( tComponent != NULL )
+        auto* tComponent = dynamic_cast< KSComponent* >( this );
+        if( tComponent != nullptr )
         {
             return tComponent;
         }
-        return NULL;
+        return nullptr;
     }
 
     template< >
     inline const KSComponent* KSObject::As< KSComponent >() const
     {
-        const KSComponent* tComponent = dynamic_cast< const KSComponent* >( this );
-        if( tComponent != NULL )
+        const auto* tComponent = dynamic_cast< const KSComponent* >( this );
+        if( tComponent != nullptr )
         {
             return tComponent;
         }
-        return NULL;
+        return nullptr;
     }
 
 }

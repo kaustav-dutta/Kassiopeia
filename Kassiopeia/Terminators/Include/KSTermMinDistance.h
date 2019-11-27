@@ -16,18 +16,18 @@ namespace Kassiopeia
         public:
             KSTermMinDistance();
             KSTermMinDistance( const KSTermMinDistance& aCopy );
-            KSTermMinDistance* Clone() const;
-            virtual ~KSTermMinDistance();
+            KSTermMinDistance* Clone() const override;
+            ~KSTermMinDistance() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
             void AddSurface( KGeoBag::KGSurface* aSurface );
             void AddSpace( KGeoBag::KGSpace* aSpace );
 
         protected:
-            void InitializeComponent();
+            void InitializeComponent() override;
 
 
         private:

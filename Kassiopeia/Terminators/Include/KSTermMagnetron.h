@@ -14,12 +14,12 @@ namespace Kassiopeia
         public:
             KSTermMagnetron();
             KSTermMagnetron( const KSTermMagnetron& aCopy );
-            KSTermMagnetron* Clone() const;
-            virtual ~KSTermMagnetron();
+            KSTermMagnetron* Clone() const override;
+            ~KSTermMagnetron() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetMaxPhi( const double& aValue );

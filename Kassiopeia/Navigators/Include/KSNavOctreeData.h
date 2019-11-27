@@ -205,7 +205,7 @@ Stream& operator>>(Stream& s, KSNavOctreeData& aData)
     id_set->reserve(id_set_size);
     for(unsigned int i=0; i < id_set_size; i++)
     {
-        KGIdentitySet* set = new KGIdentitySet();
+        auto* set = new KGIdentitySet();
         s >> *set;
         id_set->push_back(set);
     }
@@ -229,7 +229,7 @@ Stream& operator>>(Stream& s, KSNavOctreeData& aData)
     cubes->reserve(cube_size);
     for(unsigned int i=0; i < cube_size; i++)
     {
-        KGCube<KGMESH_DIM>* cube = new KGCube<KGMESH_DIM>();
+        auto* cube = new KGCube<KGMESH_DIM>();
         s >> *cube;
         cubes->push_back(cube);
     }

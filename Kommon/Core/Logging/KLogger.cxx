@@ -26,26 +26,13 @@ namespace {
 inline const char* level2Color(KLogger::ELevel level)
 {
     switch(level) {
-        case KLogger::eFatal:
-            return skFatalColor;
-            break;
-        case KLogger::eError:
-            return skErrorColor;
-            break;
-        case KLogger::eWarn:
-            return skWarnColor;
-            break;
-        case KLogger::eInfo:
-            return skInfoColor;
-            break;
-        case KLogger::eDebug:
-            return skDebugColor;
-            break;
-        case KLogger::eTrace:
-            return skDebugColor;
-            break;
-        default:
-            return skOtherColor;
+        case KLogger::eFatal : return skFatalColor;
+        case KLogger::eError : return skErrorColor;
+        case KLogger::eWarn  : return skWarnColor;
+        case KLogger::eInfo  : return skInfoColor;
+        case KLogger::eDebug : return skDebugColor;
+        case KLogger::eTrace : return skDebugColor;
+        default    : return skOtherColor;
     }
 }
 
@@ -115,11 +102,11 @@ public:
     END_LOG4CXX_CAST_MAP()
 
     ColoredPatternLayout() : PatternLayout() {}
-    ColoredPatternLayout(const LogString& pattern) : PatternLayout(pattern) {};
-    virtual ~ColoredPatternLayout() {}
+    ColoredPatternLayout(const LogString& pattern) : PatternLayout(pattern) {}
+    ~ColoredPatternLayout() override {}
 
 protected:
-    virtual void format(LogString& output, const spi::LoggingEventPtr& event, helpers::Pool& pool) const;
+    void format(LogString& output, const spi::LoggingEventPtr& event, helpers::Pool& pool) const override;
 };
 
 LOG4CXX_PTR_DEF(ColoredPatternLayout);
@@ -146,7 +133,7 @@ struct StaticInitializer {
 
         char* envLoggerConfig;
         envLoggerConfig = getenv("LOGGER_CONFIGURATION");
-        if (envLoggerConfig != 0) {
+        if (envLoggerConfig != nullptr) {
             PropertyConfigurator::configure(envLoggerConfig);
 //            #ifndef NDEBUG
 //                std::cout << "Logger configuration: " << envLoggerConfig << std::endl;
@@ -184,7 +171,7 @@ struct KLogger::Private
 
 KLogger::KLogger(const char* name) : fPrivate(new Private())
 {
-    fPrivate->fLogger = (name == 0) ? Logger::getRootLogger() : Logger::getLogger(name);
+    fPrivate->fLogger = (name == nullptr) ? Logger::getRootLogger() : Logger::getLogger(name);
 }
 
 KLogger::KLogger(const std::string& name) : fPrivate(new Private())

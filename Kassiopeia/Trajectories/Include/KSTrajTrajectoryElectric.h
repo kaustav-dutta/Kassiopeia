@@ -21,8 +21,8 @@ namespace Kassiopeia
         public:
             KSTrajTrajectoryElectric();
             KSTrajTrajectoryElectric( const KSTrajTrajectoryElectric& aCopy );
-            KSTrajTrajectoryElectric* Clone() const;
-            virtual ~KSTrajTrajectoryElectric();
+            KSTrajTrajectoryElectric* Clone() const override;
+            ~KSTrajTrajectoryElectric() override;
 
         public:
             void SetIntegrator( KSTrajElectricIntegrator* anIntegrator );
@@ -51,10 +51,10 @@ namespace Kassiopeia
             //**********
 
         public:
-            void Reset();
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void Reset() override;
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const override;
 
             //********************
             //exact term interface
@@ -67,7 +67,7 @@ namespace Kassiopeia
             unsigned int GetMaxNumberOfSegments() const {return fNMaxSegments;};
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const override;
 
         private:
             KSTrajElectricParticle fInitialParticle;

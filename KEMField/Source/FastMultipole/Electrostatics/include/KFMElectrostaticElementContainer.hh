@@ -40,7 +40,7 @@ class KFMElectrostaticElementContainer: public KFMElectrostaticElementContainerB
             fNElements = 0;
         }
 
-        virtual ~KFMElectrostaticElementContainer()
+        ~KFMElectrostaticElementContainer() override
         {
             delete fPointCloudContainer;
             delete fBoundingBallContainer;
@@ -48,9 +48,9 @@ class KFMElectrostaticElementContainer: public KFMElectrostaticElementContainerB
             delete fCentroidContainer;
         }
 
-        unsigned int GetNElements() const {return fNElements;};
+        unsigned int GetNElements() const override {return fNElements;};
 
-        void AddElectrostaticElement(const KFMElectrostaticElement< SpatialDimension, BasisDimension>& elem)
+        void AddElectrostaticElement(const KFMElectrostaticElement< SpatialDimension, BasisDimension>& elem) override
         {
             fPointCloudContainer->AddObject( elem.GetPointCloud() );
             fBoundingBallContainer->AddObject( elem.GetBoundingBall() );
@@ -60,7 +60,7 @@ class KFMElectrostaticElementContainer: public KFMElectrostaticElementContainerB
             fNElements++;
         }
 
-        KFMElectrostaticElement<SpatialDimension, BasisDimension> GetElectrostaticElement(unsigned int id)
+        KFMElectrostaticElement<SpatialDimension, BasisDimension> GetElectrostaticElement(unsigned int id) override
         {
             KFMElectrostaticElement<SpatialDimension, BasisDimension> elem;
             elem.SetPointCloud(*(GetPointCloud(id)));
@@ -72,24 +72,24 @@ class KFMElectrostaticElementContainer: public KFMElectrostaticElementContainerB
         }
 
 
-        KFMPointCloud<SpatialDimension>* GetPointCloud(unsigned int id){return fPointCloudContainer->GetObjectWithID(id);};
-        KFMBall<SpatialDimension>* GetBoundingBall(unsigned int id){return fBoundingBallContainer->GetObjectWithID(id);};
-        KFMBasisData<BasisDimension>* GetBasisData(unsigned int id){return fBasisDataContainer->GetObjectWithID(id);};
-        KFMPoint<SpatialDimension>* GetCentroid(unsigned int id){return fCentroidContainer->GetObjectWithID(id);};
+        KFMPointCloud<SpatialDimension>* GetPointCloud(unsigned int id) override{return fPointCloudContainer->GetObjectWithID(id);};
+        KFMBall<SpatialDimension>* GetBoundingBall(unsigned int id) override{return fBoundingBallContainer->GetObjectWithID(id);};
+        KFMBasisData<BasisDimension>* GetBasisData(unsigned int id) override{return fBasisDataContainer->GetObjectWithID(id);};
+        KFMPoint<SpatialDimension>* GetCentroid(unsigned int id) override{return fCentroidContainer->GetObjectWithID(id);};
 
-        const KFMPointCloud<SpatialDimension>* GetPointCloud(unsigned int id) const {return fPointCloudContainer->GetObjectWithID(id);};
-        const KFMBall<SpatialDimension>* GetBoundingBall(unsigned int id) const {return fBoundingBallContainer->GetObjectWithID(id);};
-        const KFMBasisData<BasisDimension>* GetBasisData(unsigned int id) const {return fBasisDataContainer->GetObjectWithID(id);};
-        const KFMPoint<SpatialDimension>* GetCentroid(unsigned int id) const {return fCentroidContainer->GetObjectWithID(id);};
-        double GetAspectRatio(unsigned int id) const {return fAspectRatio[id];};
+        const KFMPointCloud<SpatialDimension>* GetPointCloud(unsigned int id) const override {return fPointCloudContainer->GetObjectWithID(id);};
+        const KFMBall<SpatialDimension>* GetBoundingBall(unsigned int id) const override {return fBoundingBallContainer->GetObjectWithID(id);};
+        const KFMBasisData<BasisDimension>* GetBasisData(unsigned int id) const override {return fBasisDataContainer->GetObjectWithID(id);};
+        const KFMPoint<SpatialDimension>* GetCentroid(unsigned int id) const override {return fCentroidContainer->GetObjectWithID(id);};
+        double GetAspectRatio(unsigned int id) const override {return fAspectRatio[id];};
 
         //after the tree is constructed the bounding balls are no longer needed
-        void ClearBoundingBalls()
+        void ClearBoundingBalls() override
         {
             fBoundingBallContainer->DeleteAllObjects();
         }
 
-        void Clear()
+        void Clear() override
         {
             fPointCloudContainer->DeleteAllObjects();
             fBoundingBallContainer->DeleteAllObjects();
@@ -99,15 +99,15 @@ class KFMElectrostaticElementContainer: public KFMElectrostaticElementContainerB
             fNElements = 0;
         }
 
-        KFMObjectContainer< KFMPointCloud<SpatialDimension> >* GetPointCloudContainer(){return fPointCloudContainer;};
-        KFMObjectContainer< KFMBall<SpatialDimension> >* GetBoundingBallContainer(){return fBoundingBallContainer;};
-        KFMObjectContainer< KFMBasisData<BasisDimension> >* GetChargeDensityContainer(){return fBasisDataContainer;};
-        KFMObjectContainer< KFMPoint<SpatialDimension> >* GetCentroidContainer() {return fCentroidContainer;};
+        KFMObjectContainer< KFMPointCloud<SpatialDimension> >* GetPointCloudContainer() override{return fPointCloudContainer;};
+        KFMObjectContainer< KFMBall<SpatialDimension> >* GetBoundingBallContainer() override{return fBoundingBallContainer;};
+        KFMObjectContainer< KFMBasisData<BasisDimension> >* GetChargeDensityContainer() override{return fBasisDataContainer;};
+        KFMObjectContainer< KFMPoint<SpatialDimension> >* GetCentroidContainer() override {return fCentroidContainer;};
 
-        const KFMObjectContainer< KFMPointCloud<SpatialDimension> >* GetPointCloudContainer() const {return fPointCloudContainer;};
-        const KFMObjectContainer< KFMBall<SpatialDimension> >* GetBoundingBallContainer() const {return fBoundingBallContainer;};
-        const KFMObjectContainer< KFMBasisData<BasisDimension> >* GetChargeDensityContainer() const {return fBasisDataContainer;};
-        const KFMObjectContainer< KFMPoint<SpatialDimension> >* GetCentroidContainer() const {return fCentroidContainer;};
+        const KFMObjectContainer< KFMPointCloud<SpatialDimension> >* GetPointCloudContainer() const override {return fPointCloudContainer;};
+        const KFMObjectContainer< KFMBall<SpatialDimension> >* GetBoundingBallContainer() const override {return fBoundingBallContainer;};
+        const KFMObjectContainer< KFMBasisData<BasisDimension> >* GetChargeDensityContainer() const override {return fBasisDataContainer;};
+        const KFMObjectContainer< KFMPoint<SpatialDimension> >* GetCentroidContainer() const override {return fCentroidContainer;};
 
     private:
 

@@ -16,8 +16,8 @@ namespace Kassiopeia
             fIntermediateParticle(),
             fFinalParticle(),
             fError(),
-            fIntegrator( NULL ),
-            fInterpolator( NULL ),
+            fIntegrator( nullptr ),
+            fInterpolator( nullptr ),
             fTerms(),
             fControls(),
             fPiecewiseTolerance(1e-9),
@@ -54,7 +54,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryAdiabatic::SetIntegrator( KSTrajAdiabaticIntegrator* anIntegrator )
     {
-        if( fIntegrator == NULL )
+        if( fIntegrator == nullptr )
         {
             fIntegrator = anIntegrator;
             return;
@@ -66,7 +66,7 @@ namespace Kassiopeia
     {
         if( fIntegrator == anIntegrator )
         {
-            fIntegrator = NULL;
+            fIntegrator = nullptr;
             return;
         }
         trajmsg( eError ) << "cannot clear integrator in <" << this->GetName() << "> with <" << anIntegrator << ">" << eom;
@@ -75,7 +75,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryAdiabatic::SetInterpolator( KSTrajAdiabaticInterpolator* anInterpolator )
     {
-        if( fInterpolator == NULL )
+        if( fInterpolator == nullptr )
         {
             fInterpolator = anInterpolator;
             return;
@@ -87,7 +87,7 @@ namespace Kassiopeia
     {
         if( fInterpolator == anInterpolator )
         {
-            fInterpolator = NULL;
+            fInterpolator = nullptr;
             return;
         }
         trajmsg( eError ) << "cannot clear interpolator in <" << this->GetName() << "> with <" << anInterpolator << ">" << eom;
@@ -134,7 +134,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryAdiabatic::Reset()
     {
-        if(fIntegrator != NULL){ fIntegrator->ClearState(); }
+        if(fIntegrator != nullptr){ fIntegrator->ClearState(); }
         fInitialParticle = 0.0;
         fFinalParticle = 0.0;
     };
@@ -155,7 +155,7 @@ namespace Kassiopeia
         trajmsg_debug( "initial gc beta: " << fInitialParticle.GetBeta() << ret )
         trajmsg_debug( "initial parallel momentum: <" << fInitialParticle[5] << ">" << ret )
         trajmsg_debug( "initial perpendicular momentum: <" << fInitialParticle[6] << ">" << ret )
-		trajmsg_debug( "initial kinetic energy is: <" << fInitialParticle.GetKineticEnergy()/ KConst::Q() << ">" << eom )
+		trajmsg_debug( "initial kinetic energy is: <" << fInitialParticle.GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
         bool tFlag;
         double tStep;
@@ -264,9 +264,9 @@ namespace Kassiopeia
         trajmsg_debug( "final gc beta: " << fFinalParticle.GetBeta() << ret )
         trajmsg_debug( "final parallel momentum: <" << fFinalParticle[5] << ">" << ret )
         trajmsg_debug( "final perpendicular momentum: <" << fFinalParticle[6] << ">" << ret )
-		trajmsg_debug( "final kinetic energy is: <" << fFinalParticle.GetKineticEnergy()/ KConst::Q() << ">" << eom )
+		trajmsg_debug( "final kinetic energy is: <" << fFinalParticle.GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
-        if(fInterpolator != NULL)
+        if(fInterpolator != nullptr)
         {
             if(fUseTruePostion)
             {
@@ -275,10 +275,10 @@ namespace Kassiopeia
                 //the time step between states and the number of intermediate states we need
                 double mean_cyclotron = (fInitialParticle.GetCyclotronFrequency() + fFinalParticle.GetCyclotronFrequency() )/2.0;
                 double n_periods = ( fFinalParticle.GetTime() - fInitialParticle.GetTime() )*mean_cyclotron;
-                unsigned int n_segments = n_periods/fCyclotronFraction;
+                unsigned int n_segments = static_cast<unsigned int>(n_periods/fCyclotronFraction);
                 if(n_segments < 1){n_segments = 1;};
 
-                fInterpolator->GetPiecewiseLinearApproximation(n_segments,
+                fInterpolator->GetFixedPiecewiseLinearApproximation(n_segments,
                                                                fInitialParticle.GetTime(),
                                                                fFinalParticle.GetTime(),
                                                                *fIntegrator,
@@ -356,7 +356,7 @@ namespace Kassiopeia
             trajmsg_debug( "initial gc beta: " << fInitialParticle.GetBeta() << ret )
             trajmsg_debug( "initial parallel momentum: <" << fInitialParticle[5] << ">" << ret )
             trajmsg_debug( "initial perpendicular momentum: <" << fInitialParticle[6] << ">" << ret )
-    		trajmsg_debug( "initial kinetic energy is: <" << fInitialParticle.GetKineticEnergy()/ KConst::Q() << ">" << eom )
+    		trajmsg_debug( "initial kinetic energy is: <" << fInitialParticle.GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
 			if ( aTimeStep == 0.0 )
 			{
@@ -397,7 +397,7 @@ namespace Kassiopeia
 	        trajmsg_debug( "intermediate gc beta: " << fIntermediateParticle.GetBeta() << ret )
 	        trajmsg_debug( "intermediate parallel momentum: <" << fIntermediateParticle[5] << ">" << ret )
 	        trajmsg_debug( "intermediate perpendicular momentum: <" << fIntermediateParticle[6] << ">" << ret )
-    		trajmsg_debug( "intermediate kinetic energy is: <" << fIntermediateParticle.GetKineticEnergy()/ KConst::Q() << ">" << eom )
+    		trajmsg_debug( "intermediate kinetic energy is: <" << fIntermediateParticle.GetKineticEnergy()/ katrin::KConst::Q() << ">" << eom )
 
             fIntermediateParticle.PushTo( anIntermediateParticle );
 	        fFinalParticle = fIntermediateParticle;

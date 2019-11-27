@@ -104,7 +104,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "space" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSpace >
                 ( "root_space" )->Command( "add_space", tComponent );
@@ -113,7 +113,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "surface" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSpace >
                 ( "root_space" )->Command( "add_surface", tComponent );
@@ -122,7 +122,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "generator" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootGenerator >
                 ( "root_generator" )->Command( "set_generator", tComponent );
@@ -131,7 +131,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "trajectory" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootTrajectory >
                 ( "root_trajectory" )->Command( "set_trajectory", tComponent );
@@ -140,7 +140,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "space_interaction" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSpaceInteraction >
                 ( "root_space_interaction" )->Command( "add_space_interaction", tComponent );
@@ -149,7 +149,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "space_navigator" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSpaceNavigator >
                 ( "root_space_navigator" )->Command( "set_space_navigator", tComponent );
@@ -158,7 +158,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "surface_interaction" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSurfaceInteraction >
                 ( "root_surface_interaction" )->Command( "set_surface_interaction", tComponent );
@@ -167,7 +167,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "surface_navigator" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootSurfaceNavigator >
                 ( "root_surface_navigator" )->Command( "set_surface_navigator", tComponent );
@@ -176,7 +176,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "terminator" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootTerminator >
                 ( "root_terminator" )->Command( "add_terminator", tComponent );
@@ -185,7 +185,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "writer" )
         {
-            KSComponent* tComponent = KToolbox::GetInstance().Get< KSComponent >
+            auto* tComponent = KToolbox::GetInstance().Get< KSComponent >
                 ( aContainer->AsReference< std::string >() );
             KSCommand* tCommand = KToolbox::GetInstance().Get< KSRootWriter >
                 ( "root_writer" )->Command( "add_writer", tComponent );

@@ -25,10 +25,10 @@ class KFMCollocationPointIdentitySet: public KFMIdentitySet
 {
     public:
         KFMCollocationPointIdentitySet():KFMIdentitySet(){};
-        virtual ~KFMCollocationPointIdentitySet(){};
+        ~KFMCollocationPointIdentitySet() override{};
 
          //IO
-        virtual std::string ClassName() {return std::string("KFMCollocationPointIdentitySet");};
+        std::string ClassName() override {return std::string("KFMCollocationPointIdentitySet");};
 
     private:
 };

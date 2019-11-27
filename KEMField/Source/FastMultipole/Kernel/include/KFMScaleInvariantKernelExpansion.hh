@@ -25,9 +25,9 @@ class KFMScaleInvariantKernelExpansion: public KFMKernelExpansion<NDIM>
     public:
 
         KFMScaleInvariantKernelExpansion(): KFMKernelExpansion<NDIM>(){;};
-        virtual ~KFMScaleInvariantKernelExpansion(){};
+        ~KFMScaleInvariantKernelExpansion() override{};
 
-        bool IsScaleInvariant() const {return true;};
+        bool IsScaleInvariant() const override {return true;};
 
         virtual std::complex<double> GetSourceScaleFactor(int source_index, std::complex<double>& scale) const = 0;
         virtual std::complex<double> GetTargetScaleFactor(int target_index, std::complex<double>& scale) const = 0;

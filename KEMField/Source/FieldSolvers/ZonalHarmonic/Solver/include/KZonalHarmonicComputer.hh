@@ -48,9 +48,9 @@ namespace KEMField
   {
     if (fContainer.GetCentralSourcePoints().empty()) return false;
 
-    float p0 = (float)P[0];
-    float p1 = (float)P[1];
-    float z = (float)P[2];
+    auto p0 = (float)P[0];
+    auto p1 = (float)P[1];
+    auto z = (float)P[2];
 
     float r2 = p0*p0+p1*p1;
 
@@ -166,9 +166,9 @@ namespace KEMField
   {
     if (fContainer.GetRemoteSourcePoints().empty()) return false;
 
-    float p0 = (float)P[0];
-    float p1 = (float)P[1];
-    float z = (float)P[2];
+    auto p0 = (float)P[0];
+    auto p1 = (float)P[1];
+    auto z = (float)P[2];
 
     float r2 = p0*p0+p1*p1;    
     float delz;

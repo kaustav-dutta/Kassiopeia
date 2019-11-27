@@ -11,12 +11,12 @@ namespace KGeoBag
   class KGPortHousing : public KGBoundary
   {
   public:
-    KGPortHousing() : fCoordTransform(NULL) {}
+    KGPortHousing() : fCoordTransform(nullptr) {}
     KGPortHousing(double Amain[3],
 		  double Bmain[3],
 		  double rmain);
 
-    virtual ~KGPortHousing();
+    ~KGPortHousing() override;
 
     static std::string Name() { return "port_housing"; }
 
@@ -29,9 +29,10 @@ namespace KGeoBag
     virtual KGPortHousing* Clone() const;
 
     virtual void Initialize() const;
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool ContainsPoint(const double* P) const;
-    double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+    double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const;
 
     void SetAMain(double d[3])  { for (int i=0;i<3;i++) fAMain[i] = d[i]; }
     void SetBMain(double d[3])  { for (int i=0;i<3;i++) fBMain[i] = d[i]; }
@@ -101,19 +102,19 @@ namespace KGeoBag
 		      double       length,
 		      double       width);
 
-      virtual ~RectangularPort();
+      ~RectangularPort() override;
 
-      virtual RectangularPort* Clone(KGPortHousing*) const;
+      RectangularPort* Clone(KGPortHousing*) const override;
 
-      virtual void Initialize();
+      void Initialize() override;
 
-      bool   ContainsPoint(const double* P) const;
-      double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+      bool   ContainsPoint(const double* P) const override;
+      double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const override;
 
       void ComputeLocalFrame(double *cen,
 			     double *x,
 			     double *y,
-			     double *z) const;
+			     double *z) const override;
 
       // intrinsic characteristics of the port
       void     SetASub(double d[3])   { for (int i=0;i<3;i++) fASub[i]=d[i]; }
@@ -137,8 +138,8 @@ namespace KGeoBag
       int    GetNumDiscSub()    const { return fNumDiscSub; }
       int    GetLengthDisc()    const { return fLengthDisc; }
       int    GetWidthDisc()     const { return fWidthDisc; }
-      double GetBoxLength()     const { return fBoxLength; }
-      double GetBoxWidth()      const { return fBoxWidth; }
+      double GetBoxLength()     const override { return fBoxLength; }
+      double GetBoxWidth()      const override { return fBoxWidth; }
 
     private:
 
@@ -179,19 +180,19 @@ namespace KGeoBag
 		   double       asub[3],
 		   double       rsub);
 
-      virtual ~CircularPort();
+      ~CircularPort() override;
 
-      virtual CircularPort* Clone(KGPortHousing*) const;
+      CircularPort* Clone(KGPortHousing*) const override;
 
-      virtual void Initialize();
+      void Initialize() override;
 
-      bool   ContainsPoint(const double* P) const;
-      double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+      bool   ContainsPoint(const double* P) const override;
+      double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const override;
 
       void ComputeLocalFrame(double *cen,
 			     double *x,
 			     double *y,
-			     double *z) const;
+			     double *z) const override;
 
       // intrinsic characteristics of the port:
       void SetASub(double d[3]) { for (int i=0;i<3;i++) fASub[i] = d[i]; }
@@ -211,8 +212,8 @@ namespace KGeoBag
       int    GetXDisc()        const { return fXDisc; }
       int    GetNumDiscSub()   const { return fNumDiscSub; }
       int    GetPolySub()      const { return fPolySub; }
-      double GetBoxLength()    const { return fBoxLength; }
-      double GetBoxWidth()     const { return fBoxLength; }
+      double GetBoxLength()    const override { return fBoxLength; }
+      double GetBoxWidth()     const override { return fBoxLength; }
 
     private:
 

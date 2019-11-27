@@ -12,26 +12,26 @@ namespace Kassiopeia
             fEnterSplit( false ),
             fExitSplit( false ),
             fFailCheck( false ),
-            fCurrentTrajectory( NULL ),
-            fCurrentSpace( NULL ),
-            fParentSpace( NULL ),
+            fCurrentTrajectory( nullptr ),
+            fCurrentSpace( nullptr ),
+            fParentSpace( nullptr ),
             fParentSpaceAnchor( 0., 0., 0. ),
             fParentSpaceDistance( 0. ),
             fParentSpaceRecalculate( true ),
-            fChildSpace( NULL ),
+            fChildSpace( nullptr ),
             fChildSpaceAnchor( 0., 0., 0. ),
             fChildSpaceDistance( 0. ),
             fChildSpaceRecalculate( true ),
-            fParentSide( NULL ),
+            fParentSide( nullptr ),
             fParentSideAnchor( 0., 0., 0. ),
             fParentSideDistance( 0. ),
             fParentSideRecalculate( true ),
-            fChildSide( NULL ),
+            fChildSide( nullptr ),
             fChildSideAnchor( 0., 0., 0. ),
             fChildSideDistance( 0. ),
             fChildSideRecalculate( true ),
-            fChildSurface( NULL ),
-            fLastStepSurface( NULL ),
+            fChildSurface( nullptr ),
+            fLastStepSurface( nullptr ),
             fChildSurfaceAnchor( 0., 0., 0. ),
             fChildSurfaceDistance( 0. ),
             fChildSurfaceRecalculate( true ),
@@ -123,25 +123,25 @@ namespace Kassiopeia
 
         bool tSpaceFlag = false;
         double tSpaceTime = numeric_limits< double >::max();
-        fParentSpace = NULL;
-        fChildSpace = NULL;
+        fParentSpace = nullptr;
+        fChildSpace = nullptr;
 
         bool tSideFlag = false;
         double tSideTime = numeric_limits< double >::max();
-        fParentSide = NULL;
-        fChildSide = NULL;
+        fParentSide = nullptr;
+        fChildSide = nullptr;
 
         bool tSurfaceFlag = false;
         double tSurfaceTime = numeric_limits< double >::max();
-        fChildSurface = NULL;
+        fChildSurface = nullptr;
 
         double tTime = 0.0;
         double tDistance = 0.0;
         double tInitialIntersection = 0.0;
         double tFinalIntersection = 0.0;
-        KSSpace* tSpace = NULL;
-        KSSurface* tSurface = NULL;
-        KSSide* tSide = NULL;
+        KSSpace* tSpace = nullptr;
+        KSSurface* tSurface = nullptr;
+        KSSide* tSide = nullptr;
 
         navmsg_debug( "  in space <" << tCurrentSpace->GetName() << "> at <" << aTrajectoryCenter.X() << ", " << aTrajectoryCenter.Y() << ", " << aTrajectoryCenter.Z() << "> with radius <" << aTrajectoryRadius << ">" << eom );
 
@@ -273,7 +273,7 @@ namespace Kassiopeia
                 tSpaceFlag = true;
                 tSpaceTime = tTime;
                 fParentSpace = tSpace;
-                fChildSpace = NULL;
+                fChildSpace = nullptr;
 
             }
             while( false );
@@ -372,7 +372,7 @@ namespace Kassiopeia
 
                 tSpaceFlag = true;
                 tSpaceTime = tTime;
-                fParentSpace = NULL;
+                fParentSpace = nullptr;
                 fChildSpace = tSpace;
             }
 
@@ -483,7 +483,7 @@ namespace Kassiopeia
                 tSideFlag = true;
                 tSideTime = tTime;
                 fParentSide = tSide;
-                fChildSide = NULL;
+                fChildSide = nullptr;
             }
 
             fParentSideRecalculate = false;
@@ -584,7 +584,7 @@ namespace Kassiopeia
 
                     tSideFlag = true;
                     tSideTime = tTime;
-                    fParentSide = NULL;
+                    fParentSide = nullptr;
                     fChildSide = tSide;
                 }
             }
@@ -739,7 +739,7 @@ namespace Kassiopeia
         }
 
         //reset last step surface
-        fLastStepSurface = NULL;
+        fLastStepSurface = nullptr;
 
         //******************
         //case determination
@@ -749,9 +749,9 @@ namespace Kassiopeia
         {
             if( tSideTime < tSurfaceTime )
             {
-                fChildSurface = NULL;
-                fParentSpace = NULL;
-                fChildSpace = NULL;
+                fChildSurface = nullptr;
+                fParentSpace = nullptr;
+                fChildSpace = nullptr;
 
                 aTrajectory.ExecuteTrajectory( tSideTime, aNavigationParticle );
                 aNavigationStep = tSideTime;
@@ -767,8 +767,8 @@ namespace Kassiopeia
         {
             if( tSurfaceTime < tSpaceTime )
             {
-                fParentSpace = NULL;
-                fChildSpace = NULL;
+                fParentSpace = nullptr;
+                fChildSpace = nullptr;
 
                 aTrajectory.ExecuteTrajectory( tSurfaceTime, aNavigationParticle );
                 aNavigationStep = tSurfaceTime;
@@ -780,7 +780,7 @@ namespace Kassiopeia
             }
             else
             {
-                fChildSurface = NULL;
+                fChildSurface = nullptr;
 
                 aTrajectory.ExecuteTrajectory( tSpaceTime, aNavigationParticle );
                 aNavigationStep = tSpaceTime;
@@ -820,7 +820,7 @@ namespace Kassiopeia
         //do not perform a space check next step, as it may lead to wrong results in the step directly after a space change, when the particle is on a boundary (due to numerical errors)
         fSpaceInsideCheck = false;
 
-        if( fParentSpace != NULL )
+        if( fParentSpace != nullptr )
         {
             navmsg( eNormal ) << "  parent space <" << fParentSpace->GetName() << "> was exited" << eom;
 
@@ -831,10 +831,10 @@ namespace Kassiopeia
 
             if( fExitSplit == true )
             {
-                KSParticle* tExitSplitParticle = new KSParticle( aFinalParticle );
+                auto* tExitSplitParticle = new KSParticle( aFinalParticle );
                 tExitSplitParticle->SetCurrentSpace( fParentSpace->GetParent() );
-                tExitSplitParticle->SetCurrentSurface( NULL );
-                tExitSplitParticle->SetCurrentSide( NULL );
+                tExitSplitParticle->SetCurrentSurface( nullptr );
+                tExitSplitParticle->SetCurrentSide( nullptr );
                 tExitSplitParticle->ResetFieldCaching();
                 aParticleQueue.push_back( tExitSplitParticle );
                 aFinalParticle.SetActive( false );
@@ -843,7 +843,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fChildSpace != NULL )
+        if( fChildSpace != nullptr )
         {
             navmsg( eNormal ) << "  child space <" << fChildSpace->GetName() << "> was entered" << eom;
 
@@ -854,10 +854,10 @@ namespace Kassiopeia
 
             if( fEnterSplit == true )
             {
-                KSParticle* tEnterSplitParticle = new KSParticle( aFinalParticle );
+                auto* tEnterSplitParticle = new KSParticle( aFinalParticle );
                 tEnterSplitParticle->SetCurrentSpace( fChildSpace );
-                tEnterSplitParticle->SetCurrentSurface( NULL );
-                tEnterSplitParticle->SetCurrentSide( NULL );
+                tEnterSplitParticle->SetCurrentSurface( nullptr );
+                tEnterSplitParticle->SetCurrentSide( nullptr );
                 tEnterSplitParticle->ResetFieldCaching();
                 aParticleQueue.push_back( tEnterSplitParticle );
                 aFinalParticle.SetActive( false );
@@ -866,7 +866,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fParentSide != NULL )
+        if( fParentSide != nullptr )
         {
             navmsg( eNormal )<< "  parent side <" << fParentSide->GetName() << "> was crossed" << eom;
 
@@ -877,7 +877,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fChildSide != NULL )
+        if( fChildSide != nullptr )
         {
             navmsg( eNormal ) << "  child side <" << fChildSide->GetName() << "> was crossed" << eom;
 
@@ -888,7 +888,7 @@ namespace Kassiopeia
             return;
         }
 
-        if( fChildSurface != NULL )
+        if( fChildSurface != nullptr )
         {
             navmsg( eNormal ) << "  child surface <" << fChildSurface->GetName() << "> was crossed" << eom;
 
@@ -907,51 +907,51 @@ namespace Kassiopeia
     {
         navmsg_debug( "navigation space <" << this->GetName() << "> finalizing navigation:" << eom );
 
-        if( fParentSpace != NULL )
+        if( fParentSpace != nullptr )
         {
             navmsg_debug( "  finalizing navigation for exiting of parent space <" << fParentSpace->GetName() << "> " << eom );
 
             aFinalParticle.SetCurrentSpace( fParentSpace->GetParent() );
             aFinalParticle.ResetFieldCaching();
             fParentSpace->Exit();
-            fParentSpace = NULL;
+            fParentSpace = nullptr;
             return;
         }
 
-        if( fChildSpace != NULL )
+        if( fChildSpace != nullptr )
         {
             navmsg_debug( "  finalizing navigation for entering of child space <" << fChildSpace->GetName() << "> " << eom );
 
             aFinalParticle.SetCurrentSpace( fChildSpace );
             aFinalParticle.ResetFieldCaching();
             fChildSpace->Enter();
-            fChildSpace = NULL;
+            fChildSpace = nullptr;
             return;
         }
 
-        if( fParentSide != NULL )
+        if( fParentSide != nullptr )
         {
             navmsg_debug( "  finalizing navigation for crossing of parent side <" << fParentSide->GetName() << "> " << eom );
 
             aFinalParticle.SetCurrentSide( fParentSide );
             aFinalParticle.ResetFieldCaching();
             fParentSide->On();
-            fParentSide = NULL;
+            fParentSide = nullptr;
             return;
         }
 
-        if( fChildSide != NULL )
+        if( fChildSide != nullptr )
         {
             navmsg_debug( "  finalizing navigation for crossing of child side <" << fChildSide->GetName() << "> " << eom );
 
             aFinalParticle.SetCurrentSide( fChildSide );
             aFinalParticle.ResetFieldCaching();
             fChildSide->On();
-            fChildSide = NULL;
+            fChildSide = nullptr;
             return;
         }
 
-        if( fChildSurface != NULL )
+        if( fChildSurface != nullptr )
         {
             navmsg_debug( "  finalizing navigation for crossing of child surface <" << fChildSurface->GetName() << "> " << eom );
 
@@ -959,7 +959,7 @@ namespace Kassiopeia
             aFinalParticle.SetCurrentSurface( fChildSurface );
             aFinalParticle.ResetFieldCaching();
             fChildSurface->On();
-            fChildSurface = NULL;
+            fChildSurface = nullptr;
             return;
         }
 
@@ -972,20 +972,20 @@ namespace Kassiopeia
         navmsg_debug( "navigation space <" << this->GetName() << "> starting navigation:" << eom );
 
         // reset navigation
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
         fParentSideRecalculate = true;
         fChildSideRecalculate = true;
         fChildSurfaceRecalculate = true;
         fParentSpaceRecalculate = true;
         fChildSpaceRecalculate = true;
 
-        if( aParticle.GetCurrentSpace() == NULL )
+        if( aParticle.GetCurrentSpace() == nullptr )
         {
             navmsg_debug( "  computing fresh initial state" << eom );
 
             int tIndex = 0;
             KSSpace* tParentSpace = aRoot;
-            KSSpace* tSpace = NULL;
+            KSSpace* tSpace = nullptr;
             while( tIndex < tParentSpace->GetSpaceCount() )
             {
                 tSpace = tParentSpace->GetSpace( tIndex );
@@ -1022,7 +1022,7 @@ namespace Kassiopeia
                 tSequence.push_front( tSpace );
                 tSpace = tSpace->GetParent();
             }
-            for( deque< KSSpace* >::iterator tIt = tSequence.begin(); tIt != tSequence.end(); tIt++ )
+            for( auto tIt = tSequence.begin(); tIt != tSequence.end(); tIt++ )
             {
                 tSpace = *tIt;
 
@@ -1033,14 +1033,14 @@ namespace Kassiopeia
 
             fLastStepSurface = aParticle.GetLastStepSurface();
 
-            if ( tSurface != NULL )
+            if ( tSurface != nullptr )
             {
                 navmsg_debug( "  activating surface <" << tSurface->GetName() << ">" << eom );
 
             	tSurface->On();
             }
 
-            if ( tSide != NULL )
+            if ( tSide != nullptr )
             {
                 navmsg_debug( "  activating side <" << tSide->GetName() << ">" << eom );
 
@@ -1053,19 +1053,19 @@ namespace Kassiopeia
     void KSNavSpace::StopNavigation( KSParticle& aParticle, KSSpace* aRoot )
     {
         // reset navigation
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
         fParentSideRecalculate = true;
         fChildSideRecalculate = true;
         fChildSurfaceRecalculate = true;
         fParentSpaceRecalculate = true;
         fChildSpaceRecalculate = true;
 
-        fParentSpace = NULL;
-		fChildSpace = NULL;
-		fParentSide = NULL;
-		fChildSide = NULL;
-		fChildSurface = NULL;
-		fLastStepSurface = NULL;
+        fParentSpace = nullptr;
+		fChildSpace = nullptr;
+		fParentSide = nullptr;
+		fChildSide = nullptr;
+		fChildSurface = nullptr;
+		fLastStepSurface = nullptr;
 
         deque< KSSpace* > tSpaces;
         KSSpace* tSpace = aParticle.GetCurrentSpace();
@@ -1073,7 +1073,7 @@ namespace Kassiopeia
         KSSide* tSide = aParticle.GetCurrentSide();
 
         // undo side state
-        if( tSide != NULL )
+        if( tSide != nullptr )
         {
             navmsg_debug( "  deactivating side <" << tSide->GetName() << ">" << eom );
 
@@ -1081,7 +1081,7 @@ namespace Kassiopeia
         }
 
         // undo surface state
-        if( tSurface != NULL )
+        if( tSurface != nullptr )
         {
             navmsg_debug( "  deactivating surface <" << tSurface->GetName() << ">" << eom );
 
@@ -1094,7 +1094,7 @@ namespace Kassiopeia
             tSpaces.push_back( tSpace );
             tSpace = tSpace->GetParent();
         }
-        for( deque< KSSpace* >::iterator tIt = tSpaces.begin(); tIt != tSpaces.end(); tIt++ )
+        for( auto tIt = tSpaces.begin(); tIt != tSpaces.end(); tIt++ )
         {
             tSpace = *tIt;
 

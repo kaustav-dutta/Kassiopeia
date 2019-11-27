@@ -56,17 +56,17 @@ namespace KEMField
   {
   public:
     KSABuffer() {}
-    virtual ~KSABuffer() {}
+    ~KSABuffer() override {}
 
-    inline std::string& Entry() const { return fEntry; }
+    inline std::string& Entry() const override { return fEntry; }
     inline void FillBuffer(std::string s) { fBufferData = s; }
     inline void Clear() { fBufferData.clear(); }
-    inline void AppendEntryToBuffer()
+    inline void AppendEntryToBuffer() override
     {
       fBufferData.append(fEntry);
       fBufferData.append(&fDataSeparator);
     }
-    inline const std::string& PopEntryFromBuffer()
+    inline const std::string& PopEntryFromBuffer() override
     {
       size_t pos = fBufferData.find_first_of(fDataSeparator);
       fEntry = fBufferData.substr(0,pos);
@@ -90,7 +90,7 @@ namespace KEMField
     void PostStreamOutAction(const Streamed&) {}
 
   private:
-    KSABuffer& Self() { return *this; }
+    KSABuffer& Self() override { return *this; }
 
     std::string fBufferData;
     mutable std::string fEntry;

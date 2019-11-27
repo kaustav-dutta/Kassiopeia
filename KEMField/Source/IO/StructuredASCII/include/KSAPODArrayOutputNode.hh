@@ -30,7 +30,7 @@ class KSAPODArrayOutputNode: public KSAOutputNode
             fStringValue = "INVALID";
         };
 
-        virtual ~KSAPODArrayOutputNode()
+        ~KSAPODArrayOutputNode() override
         {
             delete fConverter;
         }
@@ -48,7 +48,7 @@ class KSAPODArrayOutputNode: public KSAOutputNode
 
     protected:
 
-        virtual std::string GetSingleLine(){return fStringValue;};
+        std::string GetSingleLine() override{return fStringValue;};
 
         unsigned int fArraySize;
         std::string fStringValue;

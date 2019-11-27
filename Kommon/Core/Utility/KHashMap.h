@@ -186,7 +186,7 @@ inline void KHashMap< Input, Result, Hash >::Reduce(size_t newSize)
         return;
     }
 
-    CacheMapIterator it = fHashMap.begin();
+    auto it = fHashMap.begin();
     while (fHashMap.size() > newSize && it != fHashMap.end()) {
         it = fHashMap.erase(it);
     }
@@ -219,7 +219,7 @@ inline bool KHashMap< Input, Result, Hash >::Has( const Input& input ) const
 template< class Input, class Result, class Hash >
 inline bool KHashMap< Input, Result, Hash >::Get( const Input& input, Result& result ) const
 {
-    CacheMapConstIterator it = fHashMap.find( input );
+    auto it = fHashMap.find( input );
 
     ++fNRead;
 
@@ -243,7 +243,7 @@ inline bool KHashMap< Input, Result, Hash >::Get( const Input& input, Result& re
 template< class Input, class Result, class Hash >
 inline const Result& KHashMap< Input, Result, Hash >::Get( const Input& input ) const 
 {
-    CacheMapConstIterator it = fHashMap.find( input );
+    auto it = fHashMap.find( input );
 
     if (it == fHashMap.end())
         throw KException() << "Unknown hash map key.";

@@ -23,7 +23,7 @@ namespace KGeoBag
         public:
             KGSurface();
             KGSurface( KGArea* anArea );
-            virtual ~KGSurface();
+            ~KGSurface() override;
 
             //**********
             //extensible

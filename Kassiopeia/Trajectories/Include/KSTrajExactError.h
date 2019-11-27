@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajExactError();
-            ~KSTrajExactError();
+            KSTrajExactError( const KSTrajExactError& other ) = default;
+            ~KSTrajExactError() override;
 
             //**********
             //assignment

@@ -2,7 +2,6 @@
 #include "KGShapeMessage.hh"
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace KGeoBag
 {
@@ -154,15 +153,15 @@ namespace KGeoBag
 
     KTwoVector KGPlanarCircle::At( const double& aLength ) const
     {
-        double tAngle = 2. * KConst::Pi() * aLength / fLength;
+        double tAngle = 2. * katrin::KConst::Pi() * aLength / fLength;
 
         if( tAngle < 0. )
         {
             tAngle = 0.;
         }
-        if( tAngle > 2. * KConst::Pi() )
+        if( tAngle > 2. * katrin::KConst::Pi() )
         {
-            tAngle = 2. * KConst::Pi();
+            tAngle = 2. * katrin::KConst::Pi();
         }
 
         return fCentroid + fRadius * cos( tAngle ) * KTwoVector::sXUnit + fRadius * sin( tAngle ) * KTwoVector::sYUnit;
@@ -197,7 +196,7 @@ namespace KGeoBag
     {
         shapemsg_debug( "initializing a circle" << eom );
 
-        fLength = 2. * KConst::Pi() * fRadius;
+        fLength = 2. * katrin::KConst::Pi() * fRadius;
         fAnchor = fCentroid + fRadius * KTwoVector::sXUnit;
 
         fInitialized = true;

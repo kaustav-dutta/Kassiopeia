@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGShellPolyLoopSurfaceMesher();
-            virtual ~KGShellPolyLoopSurfaceMesher();
+            ~KGShellPolyLoopSurfaceMesher() override;
 
         protected:
-            void VisitShellPathSurface( KGShellPolyLoopSurface* aShellPolyLoopSurface );
+            void VisitShellPathSurface( KGShellPolyLoopSurface* aShellPolyLoopSurface ) override;
     };
 
 }

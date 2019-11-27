@@ -41,7 +41,7 @@ void KGeoBag::KGCutConeTubeSpaceRandom::VisitCutConeTubeSpace(KGeoBag::KGCutCone
 
 	const double rRnd = sqrt( Uniform( rMin*rMin, rMax*rMax ) );
 
-	const double phiRnd = Uniform( 0, 2 * KConst::Pi() );
+	const double phiRnd = Uniform( 0, 2 * katrin::KConst::Pi() );
 
 	point.SetZ( zRnd );
 	point.SetX( cos(phiRnd) * rRnd);

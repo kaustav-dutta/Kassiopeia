@@ -26,8 +26,8 @@ namespace Kassiopeia
     public:
         KSGenPositionSurfaceRandom();
         KSGenPositionSurfaceRandom(const KSGenPositionSurfaceRandom&);
-        KSGenPositionSurfaceRandom* Clone() const;
-        virtual ~KSGenPositionSurfaceRandom();
+        KSGenPositionSurfaceRandom* Clone() const override;
+        ~KSGenPositionSurfaceRandom() override;
 
     public:
         /**
@@ -37,7 +37,7 @@ namespace Kassiopeia
         *
         * \param aPrimaries
         */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
     public:
         /**
@@ -60,8 +60,8 @@ namespace Kassiopeia
         KGeoBag::KGRandomPointGenerator random;
 
     protected:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

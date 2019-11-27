@@ -35,11 +35,11 @@ class BasisDataExtractor : public KSelectiveVisitor<KBasisVisitor,KTYPELIST_1(KE
 {
 public:
 	BasisDataExtractor(){};
-	virtual ~BasisDataExtractor(){};
+	~BasisDataExtractor() override{};
 
 	using KSelectiveVisitor<KBasisVisitor, KTYPELIST_1(KElectrostaticBasis)>::Visit;
 
-	void Visit(KElectrostaticBasis& basis)
+	void Visit(KElectrostaticBasis& basis) override
 	{
 		fCurrentBasisData = basis.GetSolution(0);
 	}
@@ -57,11 +57,11 @@ public:
 	using KSelectiveVisitor<KShapeVisitor,KTYPELIST_3(KTriangle,KRectangle,KLineSegment)>::Visit;
 
 	ShapeDataExtractor(){};
-	virtual ~ShapeDataExtractor(){};
+	~ShapeDataExtractor() override{};
 
-	void Visit(KTriangle& t) { ProcessTriangle(t); }
-	void Visit(KRectangle& r) { ProcessRectangle(r); }
-	void Visit(KLineSegment& l) { ProcessLineSegment(l); }
+	void Visit(KTriangle& t) override { ProcessTriangle(t); }
+	void Visit(KRectangle& r) override { ProcessRectangle(r); }
+	void Visit(KLineSegment& l) override { ProcessLineSegment(l); }
 
 	void ProcessTriangle(KTriangle& t)
 	{
@@ -175,9 +175,9 @@ int main(int argc, char* argv[])
     "\n";
 
     static struct option longOptions[] = {
-        {"help", no_argument, 0, 'h'},
-        {"file", required_argument, 0, 'f'},
-        {"name", required_argument, 0, 'n'}
+        {"help", no_argument, nullptr, 'h'},
+        {"file", required_argument, nullptr, 'f'},
+        {"name", required_argument, nullptr, 'n'}
     };
 
     static const char *optString = "ha:b:n:m:s:";
@@ -185,9 +185,9 @@ int main(int argc, char* argv[])
     std::string inFile = "";
     std::string containerName = "surfaceContainer";
 
-    while(1)
+    while(true)
     {
-        char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+        char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
         if(optId == -1) break;
         switch(optId) {
         case('h'): // help

@@ -35,7 +35,7 @@ class KSAAssociatedPassedPointerPODOutputNode: public KSAPODOutputNode< ReturnTy
             KSAPODOutputNode< ReturnType >::SetValue(&val);
         }
 
-        virtual ~KSAAssociatedPassedPointerPODOutputNode(){;};
+        ~KSAAssociatedPassedPointerPODOutputNode() override{;};
 
     protected:
 

@@ -171,10 +171,10 @@ namespace KEMField
 {
     class KElectrostaticPotentialmap : public KElectrostaticField
     {
-        virtual double PotentialCore(const KPosition& /*P*/) const{
+        double PotentialCore(const KPosition& /*P*/) const override{
             return std::numeric_limits<double>::quiet_NaN();
         }
-        virtual KThreeVector ElectricFieldCore(const KPosition& /*P*/) const {
+        KThreeVector ElectricFieldCore(const KPosition& /*P*/) const override {
             double nan = std::numeric_limits<double>::quiet_NaN();
             return KThreeVector(nan,nan,nan);
         }

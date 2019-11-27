@@ -11,7 +11,7 @@ namespace KGeoBag
   protected:
     KGShapeRandom() {}
   public:
-    virtual ~KGShapeRandom() {}
+    ~KGShapeRandom() override {}
 
     KThreeVector Random(KGSurface* surface);
     KThreeVector Random(KGSpace* space);

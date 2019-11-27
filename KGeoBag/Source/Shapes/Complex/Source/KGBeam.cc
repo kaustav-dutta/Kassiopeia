@@ -11,7 +11,7 @@ namespace KGeoBag
 
   KGBeam* KGBeam::Clone() const
   {
-    KGBeam* b = new KGBeam();
+    auto* b = new KGBeam();
 
     b->fNDiscRad = fNDiscRad;
     b->fNDiscLong = fNDiscLong;
@@ -211,7 +211,7 @@ namespace KGeoBag
 
     for (unsigned int i=0;i<lengths.size();i++)
     {
-      unsigned int radDisc = (unsigned int)(lengths.at(i)*fNDiscRad/totalLength);
+      auto radDisc = (unsigned int)(lengths.at(i)*fNDiscRad/totalLength);
       if (radDisc<1) radDisc = 1;
       fRadialDisc.push_back(radDisc);
     }
@@ -363,7 +363,7 @@ namespace KGeoBag
 
     if (u<=0.)
     {
-      if (P_in!=NULL)
+      if (P_in!=nullptr)
       {
 	P_in[0] = P1[0];
 	P_in[1] = P1[1];
@@ -376,7 +376,7 @@ namespace KGeoBag
     }
     else if (u>=1.)
     {
-      if (P_in!=NULL)
+      if (P_in!=nullptr)
       {
 	P_in[0] = P2[0];
 	P_in[1] = P2[1];

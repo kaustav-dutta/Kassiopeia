@@ -38,7 +38,7 @@ namespace KGeoBag
             ClosedPointsFlattenedToTubeMeshAndApex( tStartCirclePoints, aRotatedLineSegmentSpace->StartPath()->Centroid(), aRotatedLineSegmentSpace->Path()->Start().X(), aRotatedLineSegmentSpace->FlattenedMeshCount(), aRotatedLineSegmentSpace->FlattenedMeshPower(), tStartMeshPoints, tStartApex );
 
             //stitch circle mesh onto main mesh
-            TubeMesh::SetIt tCircleIt = tStartMeshPoints.fData.begin();
+            auto tCircleIt = tStartMeshPoints.fData.begin();
             while( tCircleIt != tStartMeshPoints.fData.end() )
             {
                 tMeshPoints.fData.push_front( *tCircleIt );
@@ -62,7 +62,7 @@ namespace KGeoBag
             TubeMesh tEndMeshPoints;
             ClosedPointsFlattenedToTubeMeshAndApex( tEndCirclePoints, aRotatedLineSegmentSpace->EndPath()->Centroid(), aRotatedLineSegmentSpace->Path()->End().X(), aRotatedLineSegmentSpace->FlattenedMeshCount(), aRotatedLineSegmentSpace->FlattenedMeshPower(), tEndMeshPoints, tEndApex );
 
-            TubeMesh::SetIt tCircleIt = tEndMeshPoints.fData.begin();
+            auto tCircleIt = tEndMeshPoints.fData.begin();
             while( tCircleIt != tEndMeshPoints.fData.end() )
             {
                 tMeshPoints.fData.push_back( *tCircleIt );

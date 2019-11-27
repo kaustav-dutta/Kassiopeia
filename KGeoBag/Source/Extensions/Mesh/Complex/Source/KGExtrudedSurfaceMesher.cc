@@ -61,7 +61,7 @@ namespace KGeoBag
                 else
                     nSegments = (int) (nDisc * fExtrudedObject->GetOuterSegment( i )->GetLength() / totalOuterLength);
 
-                if( const KGExtrudedObject::Arc* a = dynamic_cast< const KGExtrudedObject::Arc* >( fExtrudedObject->GetOuterSegment( i ) ) )
+                if( const auto* a = dynamic_cast< const KGExtrudedObject::Arc* >( fExtrudedObject->GetOuterSegment( i ) ) )
                 {
                     if( nSegments < a->GetAngularSpread() / (M_PI / 6.) )
                         nSegments = a->GetAngularSpread() / (M_PI / 6.);
@@ -86,7 +86,7 @@ namespace KGeoBag
                 else
                     nSegments = (int) (nDisc * fExtrudedObject->GetInnerSegment( i )->GetLength() / totalInnerLength);
 
-                if( const KGExtrudedObject::Arc* a = dynamic_cast< const KGExtrudedObject::Arc* >( fExtrudedObject->GetInnerSegment( i ) ) )
+                if( const auto* a = dynamic_cast< const KGExtrudedObject::Arc* >( fExtrudedObject->GetInnerSegment( i ) ) )
                 {
                     if( nSegments < a->GetAngularSpread() / (M_PI / 6.) )
                         nSegments = a->GetAngularSpread() / (M_PI / 6.);
@@ -181,7 +181,7 @@ namespace KGeoBag
 
     void KGExtrudedSurfaceMesher::DiscretizeSegment( const KGExtrudedObject::Line* line, const unsigned int nDisc, std::vector< std::vector< double > >& coords, unsigned int& counter )
     {
-        if( const KGExtrudedObject::Arc* arc = dynamic_cast< const KGExtrudedObject::Arc* >( line ) )
+        if( const auto* arc = dynamic_cast< const KGExtrudedObject::Arc* >( line ) )
             return DiscretizeSegment( arc, nDisc, coords, counter );
 
         double z_len = fExtrudedObject->GetZMax() - fExtrudedObject->GetZMin();
@@ -315,7 +315,7 @@ namespace KGeoBag
             {
                 if( i == 0 )
                 {
-                    std::vector< std::vector< double > >::iterator it = augmentedInnerCoords.begin();
+                    auto it = augmentedInnerCoords.begin();
                     augmentedInnerCoords.insert( it, iCoords.at( 0 ) );
                     continue;
                 }
@@ -333,7 +333,7 @@ namespace KGeoBag
             {
                 if( fExtrudedObject->RayIntersectsLineSeg( oCoords.at( i ), iCoords.at( j % iCoords.size() ), iCoords.at( (j + 1) % iCoords.size() ), P_int ) )
                 {
-                    std::vector< std::vector< double > >::iterator it = augmentedInnerCoords.begin() + i + ((j + 1) % iCoords.size());
+                    auto it = augmentedInnerCoords.begin() + i + ((j + 1) % iCoords.size());
                     augmentedInnerCoords.insert( it, P_int );
                     break;
                 }
@@ -348,7 +348,7 @@ namespace KGeoBag
             {
                 if( i == 0 )
                 {
-                    std::vector< std::vector< double > >::iterator it = augmentedOuterCoords.begin();
+                    auto it = augmentedOuterCoords.begin();
                     augmentedOuterCoords.insert( it, oCoords.at( 0 ) );
                     continue;
                 }
@@ -366,7 +366,7 @@ namespace KGeoBag
             {
                 if( fExtrudedObject->RayIntersectsLineSeg( iCoords.at( i ), oCoords.at( j % oCoords.size() ), oCoords.at( (j + 1) % oCoords.size() ), P_int ) )
                 {
-                    std::vector< std::vector< double > >::iterator it = augmentedOuterCoords.begin() + i + ((j + 1) % oCoords.size());
+                    auto it = augmentedOuterCoords.begin() + i + ((j + 1) % oCoords.size());
                     augmentedOuterCoords.insert( it, P_int );
                     break;
                 }
@@ -650,7 +650,7 @@ namespace KGeoBag
             for( int j = 0; j < n_disc; j++ )
             {
                 double p0[ 3 ], p1[ 3 ], p2[ 3 ];
-                KGMeshTriangle* t = 0;
+                KGMeshTriangle* t = nullptr;
 
                 p0[ 2 ] = p1[ 2 ] = p2[ 2 ] = fExtrudedObject->GetZMin();
                 p0[ 0 ] = i_l[ 0 ];

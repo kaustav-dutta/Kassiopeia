@@ -47,7 +47,7 @@ documentation and/or software.
 
 #include "md5.hh"
 
-#include <assert.h>
+#include <cassert>
 #include <string>
 
 
@@ -248,7 +248,7 @@ MD5::MD5(std::ifstream& stream){
 
 unsigned char *MD5::raw_digest(){
 
-  uint1 *s = new uint1[16];
+  auto *s = new uint1[16];
 
   if (!finalized){
     std::cerr << "MD5::raw_digest:  Can't get digest if you haven't "<<
@@ -265,7 +265,7 @@ unsigned char *MD5::raw_digest(){
 char *MD5::hex_digest(){
 
   int i;
-  char *s= new char[33];
+  auto *s= new char[33];
 
   if (!finalized){
     std::cerr << "MD5::hex_digest:  Can't get digest if you haven't "<<

@@ -127,7 +127,7 @@ public:
      * Standard constructor assigning a name to the logger instance.
      * @param name The logger name.
      */
-    KLogger(const char* name = 0);
+    KLogger(const char* name = nullptr);
     /// @overload
     KLogger(const std::string& name);
 

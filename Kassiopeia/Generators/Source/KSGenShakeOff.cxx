@@ -8,7 +8,7 @@
 #include "KSGenShakeOff.h"
 #include "KSGeneratorsMessage.h"
 #include "KRandom.h"
-#include <math.h>
+#include <cmath>
 
 using namespace std;
 using namespace katrin;

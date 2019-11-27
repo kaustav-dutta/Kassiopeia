@@ -4,11 +4,11 @@ namespace KGeoBag
 {
 
 KGNavigableMeshFirstIntersectionFinder::KGNavigableMeshFirstIntersectionFinder():
-    fContainer(NULL),
+    fContainer(nullptr),
     fDefaultStackSize(512),
     fStackReallocateLimit(384)
 {
-    fPreallocatedStack.resize(fDefaultStackSize, NULL);
+    fPreallocatedStack.resize(fDefaultStackSize, nullptr);
     fVerbose = false;
 };
 
@@ -200,10 +200,10 @@ void
 KGNavigableMeshFirstIntersectionFinder::ApplyAction(KGMeshNavigationNode* node)
 {
     fHaveIntersection = false;
-    fIntersectedElement = NULL;
+    fIntersectedElement = nullptr;
 
 
-    if(node != NULL)
+    if(node != nullptr)
     {
         //init stack
         {
@@ -269,7 +269,7 @@ KGNavigableMeshFirstIntersectionFinder::ApplyAction(KGMeshNavigationNode* node)
                 //get the list of mesh element id's from the node
                 KGIdentitySet* element_list = KGObjectRetriever<KGMeshNavigationNodeObjects, KGIdentitySet >::GetNodeObject(fTempNode);
 
-                if(element_list != NULL && element_list->GetSize() != 0)
+                if(element_list != nullptr && element_list->GetSize() != 0)
                 {
                     fHaveIntersection = false;
                     KThreeVector anIntersection;

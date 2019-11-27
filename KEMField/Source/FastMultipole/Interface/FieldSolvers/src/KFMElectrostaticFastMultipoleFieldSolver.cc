@@ -31,9 +31,9 @@ fNavigator()
     unsigned int max_direct_calls = direct_call_counter.GetMaxDirectCalls();
     fDirectCallIDs = new unsigned int[max_direct_calls];
 
-    fLeafNode = NULL;
-    fCube = NULL;
-    fLocalCoeff = NULL;
+    fLeafNode = nullptr;
+    fCube = nullptr;
+    fLocalCoeff = nullptr;
     fFallback = false;
 }
 
@@ -106,7 +106,7 @@ KFMElectrostaticFastMultipoleFieldSolver::SetPoint(const double* p) const
 
     if(fUseCaching)
     {
-        if(fCube != NULL)
+        if(fCube != nullptr)
         {
             if( fCube->PointIsInside(p) )
             {
@@ -137,10 +137,10 @@ KFMElectrostaticFastMultipoleFieldSolver::SetPoint(const double* p) const
         for(unsigned int i=0; i<n_nodes; i++)
         {
             KFMElectrostaticNode* node = (*fNodeList)[i];
-            if(node != NULL)
+            if(node != nullptr)
             {
                 KFMIdentitySetList* id_set_list = KFMObjectRetriever<KFMElectrostaticNodeObjects, KFMIdentitySetList >::GetNodeObject(node);
-                if(id_set_list != NULL)
+                if(id_set_list != nullptr)
                 {
                     unsigned int n_sets = id_set_list->GetNumberOfSets();
                     for(unsigned int j=0; j<n_sets; j++)
@@ -157,7 +157,7 @@ KFMElectrostaticFastMultipoleFieldSolver::SetPoint(const double* p) const
             }
         }
 
-        if(fLocalCoeff == NULL || fCube == NULL)
+        if(fLocalCoeff == nullptr || fCube == nullptr)
         {
             kfmout<<"KFMElectrostaticFastMultipoleFieldSolver::SetPoint: Warning, tree node located for point: ("<<p[0]<<", "<<p[1]<<", "<<p[2]<<") has incomplete data! Falling back to direct integrator. "<<kfmendl;
 

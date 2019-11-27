@@ -40,7 +40,7 @@ inline bool KElectrostaticBoundaryFieldBuilder::AddAttribute( KContainer* aConta
     {
         KGeoBag::KGSpace* tSpace = KGeoBag::KGInterface::GetInstance()->RetrieveSpace( aContainer->AsReference< string >() );
 
-        if( tSpace == NULL )
+        if( tSpace == nullptr )
         {
             BINDINGMSG( eWarning ) << "no spaces found for specifier <" << aContainer->AsReference< string >() << ">" << eom;
             return false;

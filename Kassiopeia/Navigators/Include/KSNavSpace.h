@@ -15,8 +15,8 @@ namespace Kassiopeia
         public:
             KSNavSpace();
             KSNavSpace( const KSNavSpace& aCopy );
-            KSNavSpace* Clone() const;
-            virtual ~KSNavSpace();
+            KSNavSpace* Clone() const override;
+            ~KSNavSpace() override;
 
         public:
             void SetEnterSplit( const bool& aEnterSplit );
@@ -34,11 +34,11 @@ namespace Kassiopeia
             bool fFailCheck;
 
         public:
-            void CalculateNavigation( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryStep, KSParticle& aNavigationParticle, double& aNavigationStep, bool& aNavigationFlag );
-            void ExecuteNavigation( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const;
-            void FinalizeNavigation( KSParticle& aFinalParticle ) const;
-            void StartNavigation( KSParticle& aParticle, KSSpace* aRoot );
-            void StopNavigation( KSParticle& aParticle, KSSpace* aRoot );
+            void CalculateNavigation( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryStep, KSParticle& aNavigationParticle, double& aNavigationStep, bool& aNavigationFlag ) override;
+            void ExecuteNavigation( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const override;
+            void FinalizeNavigation( KSParticle& aFinalParticle ) const override;
+            void StartNavigation( KSParticle& aParticle, KSSpace* aRoot ) override;
+            void StopNavigation( KSParticle& aParticle, KSSpace* aRoot ) override;
 
         private:
             const KSTrajectory* fCurrentTrajectory;

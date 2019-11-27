@@ -23,29 +23,29 @@ template< typename ValueType>
 class KMatrixPreconditioner : public KPreconditioner<ValueType> {
 public:
 	explicit KMatrixPreconditioner(KSmartPointer<const KSquareMatrix<ValueType> > matrix);
-	virtual ~KMatrixPreconditioner(){}
+	~KMatrixPreconditioner() override{}
 
-	virtual std::string Name() {return "Created from unnamed matrix";}
+	std::string Name() override {return "Created from unnamed matrix";}
 
-	virtual bool IsStationary() { return false;}
+	bool IsStationary() override { return false;}
 
 	//from KSquareMatrix
-	virtual unsigned int Dimension() const {
+	unsigned int Dimension() const override {
 		return fMatrix->Dimension();
 	}
 
-	virtual const ValueType& operator()(unsigned int i, unsigned int j) const {
+	const ValueType& operator()(unsigned int i, unsigned int j) const override {
 		return fMatrix->operator()(i,j);
 	}
 
 	//from KMatrix
-	virtual void Multiply(const KVector<ValueType>& x,
-			KVector<ValueType>& y) const {
+	void Multiply(const KVector<ValueType>& x,
+			KVector<ValueType>& y) const override {
 		fMatrix->Multiply(x,y);
 	}
 
-	virtual void MultiplyTranspose(const KVector<ValueType>& x,
-			KVector<ValueType>& y) const {
+	void MultiplyTranspose(const KVector<ValueType>& x,
+			KVector<ValueType>& y) const override {
 		fMatrix->MultiplyTranspose(x,y);
 	}
 

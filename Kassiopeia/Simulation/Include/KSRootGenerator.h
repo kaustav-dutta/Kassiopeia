@@ -13,15 +13,15 @@ namespace Kassiopeia
         public:
             KSRootGenerator();
             KSRootGenerator( const KSRootGenerator& aCopy );
-            KSRootGenerator* Clone() const;
-            virtual ~KSRootGenerator();
+            KSRootGenerator* Clone() const override;
+            ~KSRootGenerator() override;
 
             //*********
             //generator
             //*********
 
         public:
-            void ExecuteGeneration( KSParticleQueue& aPrimaries );
+            void ExecuteGeneration( KSParticleQueue& aPrimaries ) override;
 
             //***********
             //composition

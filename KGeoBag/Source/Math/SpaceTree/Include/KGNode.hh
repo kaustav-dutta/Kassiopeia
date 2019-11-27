@@ -29,9 +29,9 @@ class KGNode: public KGObjectCollection<ObjectTypeList>
 {
     public:
 
-        KGNode():fParent(NULL),fStorageIndex(0),fID(-1){};
+        KGNode():fParent(nullptr),fStorageIndex(0),fID(-1){};
 
-        virtual ~KGNode()
+        ~KGNode() override
         {
             DeleteChildren();
         };
@@ -40,7 +40,7 @@ class KGNode: public KGObjectCollection<ObjectTypeList>
         //the level from the root node
         virtual unsigned int GetLevel()
         {
-            if(fParent != NULL)
+            if(fParent != nullptr)
             {
                 return fParent->GetLevel() + 1;
             }
@@ -80,7 +80,7 @@ class KGNode: public KGObjectCollection<ObjectTypeList>
 
         virtual void AddChild(KGNode<ObjectTypeList>* child)
         {
-            if(child != NULL && child != this) //avoid disaster
+            if(child != nullptr && child != this) //avoid disaster
             {
                 child->SetIndex(fChildren.size());
                 child->SetParent(this);
@@ -107,7 +107,7 @@ class KGNode: public KGObjectCollection<ObjectTypeList>
             }
             else
             {
-                return NULL;
+                return nullptr;
             }
         }
 
@@ -121,7 +121,7 @@ class KGNode: public KGObjectCollection<ObjectTypeList>
             }
             else
             {
-                fChildren.resize(storage_index + 1, NULL);
+                fChildren.resize(storage_index + 1, nullptr);
                 fChildren[storage_index] = child;
                 fChildren[storage_index]->SetIndex(storage_index);
                 fChildren[storage_index]->SetParent(this);

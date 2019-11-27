@@ -50,18 +50,18 @@ KFMElectrostaticMultipoleCalculatorAnalytic::KFMElectrostaticMultipoleCalculator
     fTempM = kfm_matrix_alloc(3,3);
     fR = kfm_matrix_alloc(3,3);
 
-    fCheb1Arr = NULL;
-    fCheb2Arr = NULL;
-    fPlmZeroArr = NULL;
-    fNormArr = NULL;
-    fPlmArr = NULL;
-    fCosMPhiArr = NULL;
-    fSinMPhiArr = NULL;
-    fScratch = NULL;
+    fCheb1Arr = nullptr;
+    fCheb2Arr = nullptr;
+    fPlmZeroArr = nullptr;
+    fNormArr = nullptr;
+    fPlmArr = nullptr;
+    fCosMPhiArr = nullptr;
+    fSinMPhiArr = nullptr;
+    fScratch = nullptr;
 
-    fACoefficient = NULL;
-    fSolidHarmonics = NULL;
-    fAxialSphericalHarmonics = NULL;
+    fACoefficient = nullptr;
+    fSolidHarmonics = nullptr;
+    fAxialSphericalHarmonics = nullptr;
 }
 
 
@@ -130,16 +130,16 @@ KFMElectrostaticMultipoleCalculatorAnalytic::SetDegree(int l_max)
     }
 
 
-    if(fCheb1Arr != NULL){ delete[] fCheb1Arr;};
-    if(fCheb2Arr != NULL){ delete[] fCheb2Arr;};
-    if(fPlmZeroArr != NULL){ delete[] fPlmZeroArr;};
-    if(fNormArr != NULL){ delete[] fNormArr;};
-    if(fPlmArr != NULL){ delete[] fPlmArr;};
-    if(fCosMPhiArr != NULL){ delete[] fCosMPhiArr;};
-    if(fSinMPhiArr != NULL){ delete[] fSinMPhiArr;};
-    if(fACoefficient != NULL){ delete[] fACoefficient;};
-    if(fSolidHarmonics != NULL){ delete[] fSolidHarmonics;};
-    if(fScratch != NULL){ delete[] fScratch;};
+    if(fCheb1Arr != nullptr){ delete[] fCheb1Arr;};
+    if(fCheb2Arr != nullptr){ delete[] fCheb2Arr;};
+    if(fPlmZeroArr != nullptr){ delete[] fPlmZeroArr;};
+    if(fNormArr != nullptr){ delete[] fNormArr;};
+    if(fPlmArr != nullptr){ delete[] fPlmArr;};
+    if(fCosMPhiArr != nullptr){ delete[] fCosMPhiArr;};
+    if(fSinMPhiArr != nullptr){ delete[] fSinMPhiArr;};
+    if(fACoefficient != nullptr){ delete[] fACoefficient;};
+    if(fSolidHarmonics != nullptr){ delete[] fSolidHarmonics;};
+    if(fScratch != nullptr){ delete[] fScratch;};
 
 
     fCheb1Arr = new double[fSize];
@@ -177,7 +177,7 @@ KFMElectrostaticMultipoleCalculatorAnalytic::SetDegree(int l_max)
 bool
 KFMElectrostaticMultipoleCalculatorAnalytic::ConstructExpansion(double* target_origin, const KFMPointCloud<3>* vertices, KFMScalarMultipoleExpansion* moments) const
 {
-    if(vertices != NULL && moments != NULL)
+    if(vertices != nullptr && moments != nullptr)
     {
         moments->Clear();
         int n_vertices = vertices->GetNPoints();

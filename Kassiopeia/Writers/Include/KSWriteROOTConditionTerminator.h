@@ -18,8 +18,8 @@ class KSWriteROOTConditionTerminator :
 {
 public:
     KSWriteROOTConditionTerminator() :
-        fComponent( 0 ),
-        fValue( 0 ),
+        fComponent( nullptr ),
+        fValue( nullptr ),
         fMatchTerminator( std::string("") )
     {
     }
@@ -30,15 +30,15 @@ public:
         fMatchTerminator( aCopy.fMatchTerminator )
     {
     }
-    KSWriteROOTConditionTerminator* Clone() const
+    KSWriteROOTConditionTerminator* Clone() const override
     {
         return new KSWriteROOTConditionTerminator( *this );
     }
-    virtual ~KSWriteROOTConditionTerminator()
+    ~KSWriteROOTConditionTerminator() override
     {
     }
 
-    void CalculateWriteCondition( bool& aFlag )
+    void CalculateWriteCondition( bool& aFlag ) override
     {
         aFlag = (fValue->compare(fMatchTerminator) == 0);
 

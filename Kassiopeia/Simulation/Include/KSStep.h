@@ -17,8 +17,8 @@ namespace Kassiopeia
             KSStep();
             KSStep( const KSStep& aCopy );
             KSStep& operator=( const KSStep& aCopy );
-            KSStep* Clone() const;
-            ~KSStep();
+            KSStep* Clone() const override;
+            ~KSStep() override;
 
             void Reset();
 

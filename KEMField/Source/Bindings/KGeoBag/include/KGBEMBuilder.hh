@@ -20,10 +20,10 @@ namespace KGeoBag
                     fSurfaces()
             {
             }
-            virtual ~KGBEMAttributor()
+            ~KGBEMAttributor() override
             {
                 KGExtendedSurface< KGBEM< BasisPolicy, KDirichletBoundary > >* tBEMSurface;
-                for( std::vector< KGSurface* >::iterator tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
+                for( auto tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
                 {
                     tBEMSurface = (*tIt)->template MakeExtension< KGBEM< BasisPolicy, KDirichletBoundary > >();
                     tBEMSurface->SetName( this->GetName() );
@@ -31,7 +31,7 @@ namespace KGeoBag
                     tBEMSurface->SetBoundaryValue( this->GetBoundaryValue() );
                 }
                 KGExtendedSpace< KGBEM< BasisPolicy, KDirichletBoundary > >* tBEMSpace;
-                for( std::vector< KGSpace* >::iterator tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
+                for( auto tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
                 {
                     tBEMSpace = (*tIt)->template MakeExtension< KGBEM< BasisPolicy, KDirichletBoundary > >();
                     tBEMSpace->SetName( this->GetName() );
@@ -65,10 +65,10 @@ namespace KGeoBag
                     fSurfaces()
             {
             }
-            virtual ~KGBEMAttributor()
+            ~KGBEMAttributor() override
             {
                 KGExtendedSurface< KGBEM< BasisPolicy, KNeumannBoundary > >* tBEMSurface;
-                for( std::vector< KGSurface* >::iterator tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
+                for( auto tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
                 {
                     tBEMSurface = (*tIt)->template MakeExtension< KGBEM< BasisPolicy, KNeumannBoundary > >();
                     tBEMSurface->SetName( this->GetName() );
@@ -76,7 +76,7 @@ namespace KGeoBag
                     tBEMSurface->SetNormalBoundaryFlux( this->GetNormalBoundaryFlux() );
                 }
                 KGExtendedSpace< KGBEM< BasisPolicy, KNeumannBoundary > >* tBEMSpace;
-                for( std::vector< KGSpace* >::iterator tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
+                for( auto tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
                 {
                     tBEMSpace = (*tIt)->template MakeExtension< KGBEM< BasisPolicy, KNeumannBoundary > >();
                     tBEMSpace->SetName( this->GetName() );

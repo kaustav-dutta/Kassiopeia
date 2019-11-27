@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenValueAngleCosine();
             KSGenValueAngleCosine( const KSGenValueAngleCosine& aCopy );
-            KSGenValueAngleCosine* Clone() const;
-            virtual ~KSGenValueAngleCosine();
+            KSGenValueAngleCosine* Clone() const override;
+            ~KSGenValueAngleCosine() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, AngleMin )

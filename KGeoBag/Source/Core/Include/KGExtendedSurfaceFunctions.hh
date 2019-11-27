@@ -10,7 +10,7 @@ namespace KGeoBag
     XExtension::Surface( aSurface ),
     KGExtensibleSurface(),
     fSurface( aSurface ),
-    fParent( NULL )
+    fParent( nullptr )
     {
         SetName( fSurface->GetName() );
     }
@@ -19,7 +19,7 @@ namespace KGeoBag
     XExtension::Surface( aSurface, anExtension ),
     KGExtensibleSurface(),
     fSurface( aSurface ),
-    fParent( NULL )
+    fParent( nullptr )
     {
         SetName( fSurface->GetName() );
     }
@@ -35,7 +35,7 @@ namespace KGeoBag
     template< class XExtension >
     KGExtensibleSurface* KGExtendedSurface< XExtension >::Clone( KGSurface* aSurface ) const
     {
-        KGExtendedSurface< XExtension >* tClonedSurface = new KGExtendedSurface< XExtension >( aSurface, *this );
+        auto* tClonedSurface = new KGExtendedSurface< XExtension >( aSurface, *this );
         return tClonedSurface;
     }
 
@@ -59,8 +59,8 @@ namespace KGeoBag
         coremsg_debug( "extended surface named <" << GetName() << "> is receiving a visitor" << eom )
 
         //visit this extension
-        typename KGExtendedSurface< XExtension >::Visitor* MyVisitor = dynamic_cast< typename KGExtendedSurface< XExtension >::Visitor* >( aVisitor );
-        if( MyVisitor != NULL )
+        auto* MyVisitor = dynamic_cast< typename KGExtendedSurface< XExtension >::Visitor* >( aVisitor );
+        if( MyVisitor != nullptr )
         {
             coremsg_debug( "extended surface named <" << GetName() << "> is accepting a visitor" << eom )
             MyVisitor->VisitExtendedSurface( this );

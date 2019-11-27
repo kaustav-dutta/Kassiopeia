@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGLinearWireGrid* KGLinearWireGrid::Clone() const
   {
-    KGLinearWireGrid* w = new KGLinearWireGrid();
+    auto* w = new KGLinearWireGrid();
 
     w->fR = fR;
     w->fPitch = fPitch;

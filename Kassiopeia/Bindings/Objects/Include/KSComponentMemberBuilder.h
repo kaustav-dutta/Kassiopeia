@@ -54,7 +54,7 @@ namespace katrin
     template< >
     inline bool KSComponentBuilder::End()
     {
-        KSComponent* tParent = KToolbox::GetInstance().Get< KSComponent >( fObject->fParentName );
+        auto* tParent = KToolbox::GetInstance().Get< KSComponent >( fObject->fParentName );
         if ( tParent == nullptr )
         {
             objctmsg( eError ) << "component member <" << fObject->fName << "> could not find parent <" << fObject->fParentName << ">" << eom;

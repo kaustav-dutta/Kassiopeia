@@ -25,9 +25,9 @@ public:
 	typedef KBoundaryMatrixGenerator<ValueType> MatrixGenerator;
 
 	KKrylovPreconditionerGenerator();
-	virtual ~KKrylovPreconditionerGenerator();
+	~KKrylovPreconditionerGenerator() override;
 
-	KSmartPointer<KSquareMatrix<ValueType> > Build(const KSurfaceContainer& container) const;
+	KSmartPointer<KSquareMatrix<ValueType> > Build(const KSurfaceContainer& container) const override;
 
 	void SetMatrixGenerator(KSmartPointer<MatrixGenerator > matrixGen);
 	KSmartPointer<const MatrixGenerator> GetMatrixGenerator() const;

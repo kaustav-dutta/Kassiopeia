@@ -17,16 +17,16 @@ namespace Kassiopeia
     public:
         KSRootStepModifier();
         KSRootStepModifier( const KSRootStepModifier& aCopy );
-        KSRootStepModifier* Clone() const;
-        virtual ~KSRootStepModifier();
+        KSRootStepModifier* Clone() const override;
+        ~KSRootStepModifier() override;
 
         //**********
         // modifier
         //**********
 
     public:
-        bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue );
-        bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue );
+        bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue ) override;
+        bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) override;
 
         //***********
         //composition
@@ -50,8 +50,8 @@ namespace Kassiopeia
         bool ExecutePreStepModification();
         bool ExecutePostStepModification();
 
-        virtual void PushUpdateComponent();
-        virtual void PushDeupdateComponent();
+        void PushUpdateComponent() override;
+        void PushDeupdateComponent() override;
 
     private:
         KSStep* fStep;

@@ -48,8 +48,8 @@ namespace KGeoBag
     }
 
     void KGArea::AreaAccept( KGVisitor* aVisitor ) {
-    	KGArea::Visitor* tAreaVisitor = dynamic_cast< KGArea::Visitor* >(aVisitor);
-		if(tAreaVisitor != NULL) {
+    	auto* tAreaVisitor = dynamic_cast< KGArea::Visitor* >(aVisitor);
+		if(tAreaVisitor != nullptr) {
 			tAreaVisitor->VisitArea(this);
 		}
     }

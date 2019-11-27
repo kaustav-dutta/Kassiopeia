@@ -11,14 +11,14 @@ namespace Kassiopeia
 
     KSRootSpaceInteraction::KSRootSpaceInteraction() :
             fSpaceInteractions( 128 ),
-            fSpaceInteraction( NULL ),
-            fStep( NULL ),
-            fTerminatorParticle( NULL ),
-            fTrajectoryParticle( NULL ),
-            fInteractionParticle( NULL ),
-            fFinalParticle( NULL ),
-            fParticleQueue( NULL ),
-            fTrajectory( NULL )
+            fSpaceInteraction( nullptr ),
+            fStep( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fTrajectoryParticle( nullptr ),
+            fInteractionParticle( nullptr ),
+            fFinalParticle( nullptr ),
+            fParticleQueue( nullptr ),
+            fTrajectory( nullptr )
     {
     }
     KSRootSpaceInteraction::KSRootSpaceInteraction( const KSRootSpaceInteraction& aCopy ) :
@@ -68,7 +68,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceInteraction::ExecuteInteraction( const KSParticle& anInteractionParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const
     {
-        if( fSpaceInteraction != NULL )
+        if( fSpaceInteraction != nullptr )
         {
             fSpaceInteraction->ExecuteInteraction( anInteractionParticle, aFinalParticle, aSecondaries );
         }

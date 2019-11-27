@@ -26,14 +26,14 @@ namespace katrin
 
         public:
     		KROOTWindow();
-            virtual ~KROOTWindow();
+            ~KROOTWindow() override;
 
-            void Render();
-            void Display();
-            void Write();
+            void Render() override;
+            void Display() override;
+            void Write() override;
 
-            void AddPainter( KPainter* aPainter );
-            void RemovePainter( KPainter* aPainter );
+            void AddPainter( KPainter* aPainter ) override;
+            void RemovePainter( KPainter* aPainter ) override;
 
             void AddWindow( KWindow* aWindow );
             void RemoveWindow( KWindow* aWindow );

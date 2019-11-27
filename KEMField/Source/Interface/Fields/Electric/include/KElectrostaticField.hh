@@ -9,7 +9,7 @@ namespace KEMField
   {
   public:
     KElectrostaticField() {}
-    virtual ~KElectrostaticField() {}
+    ~KElectrostaticField() override {}
 
     static std::string Name() { return "ElectrostaticField"; }
 
@@ -27,17 +27,17 @@ namespace KEMField
 
   private:
 
-    virtual double PotentialCore(const KPosition& P, const double& /*time*/) const
+    double PotentialCore(const KPosition& P, const double& /*time*/) const override
     {
     	return PotentialCore(P);
     }
 
-    virtual KThreeVector ElectricFieldCore(const KPosition& P, const double& /*time*/) const
+    KThreeVector ElectricFieldCore(const KPosition& P, const double& /*time*/) const override
     {
     	return ElectricFieldCore(P);
     }
 
-    virtual std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P, const double& /*time*/) const
+    std::pair<KThreeVector,double> ElectricFieldAndPotentialCore(const KPosition& P, const double& /*time*/) const override
     {
         return ElectricFieldAndPotentialCore(P);
     }

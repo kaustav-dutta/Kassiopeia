@@ -28,7 +28,7 @@ class KSATokenizer
         KSATokenizer()
         {
             fDelim = " "; //default delim is space
-            fString = NULL;
+            fString = nullptr;
             fIncludeEmptyTokens = false;
         };
         virtual ~KSATokenizer(){;};
@@ -40,7 +40,7 @@ class KSATokenizer
         void SetDelimiter(const std::string& aDelim){fDelim = aDelim;};
         void GetTokens(std::vector< std::string>* tokens) const
         {
-            if(tokens != NULL && fString != NULL)
+            if(tokens != nullptr && fString != nullptr)
             {
                 tokens->clear();
                 if(fDelim.size() > 0)

@@ -37,7 +37,7 @@ namespace KGeoBag
 		KGMeshWire singleWire(startPoint, endPoint, wireDiameter );
 		singleWire.Transform(transform);
 
-		KGDiscreteRotationalMeshWire* w = new KGDiscreteRotationalMeshWire(singleWire);
+		auto* w = new KGDiscreteRotationalMeshWire(singleWire);
 		w->NumberOfElements( wireCount );
 		GetCurrentElements()->push_back(w);
 

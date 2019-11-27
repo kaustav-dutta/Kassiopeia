@@ -19,12 +19,12 @@ namespace KGeoBag
             KGCylinderMesher()
             {
             }
-            virtual ~KGCylinderMesher()
+            ~KGCylinderMesher() override
             {
             }
 
         protected:
-            void VisitCylinder( KGCylinder* cylinder );
+            void VisitCylinder( KGCylinder* cylinder ) override;
     };
 
 }

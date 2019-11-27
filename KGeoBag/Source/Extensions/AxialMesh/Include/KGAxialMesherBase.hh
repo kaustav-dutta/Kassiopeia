@@ -17,11 +17,11 @@ namespace KGeoBag
             KGAxialMesherBase();
 
         public:
-            virtual ~KGAxialMesherBase();
+            ~KGAxialMesherBase() override;
 
         public:
-            virtual void VisitExtendedSurface( KGExtendedSurface< KGAxialMesh >* aSurface );
-            virtual void VisitExtendedSpace( KGExtendedSpace< KGAxialMesh >* aSpace );
+            void VisitExtendedSurface( KGExtendedSurface< KGAxialMesh >* aSurface ) override;
+            void VisitExtendedSpace( KGExtendedSpace< KGAxialMesh >* aSpace ) override;
 
         protected:
             KGAxialMeshElementVector* fCurrentElements;

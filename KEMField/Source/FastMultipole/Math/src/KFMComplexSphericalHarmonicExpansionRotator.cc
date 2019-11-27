@@ -9,8 +9,8 @@ namespace KEMField{
 KFMComplexSphericalHarmonicExpansionRotator::KFMComplexSphericalHarmonicExpansionRotator()
 {
     fRealRotator = new KFMRealSphericalHarmonicExpansionRotator();
-    fNormalizationCoefficients = NULL;
-    fInverseNormalizationCoefficients = NULL;
+    fNormalizationCoefficients = nullptr;
+    fInverseNormalizationCoefficients = nullptr;
 }
 
 KFMComplexSphericalHarmonicExpansionRotator::~KFMComplexSphericalHarmonicExpansionRotator()
@@ -29,10 +29,10 @@ KFMComplexSphericalHarmonicExpansionRotator::SetDegree(int l_max)
     fRealRotator->SetDegree(fDegree);
     fRealMoments.resize(fSize);
 
-    if(fNormalizationCoefficients != NULL){delete[] fNormalizationCoefficients; fNormalizationCoefficients = NULL;};
+    if(fNormalizationCoefficients != nullptr){delete[] fNormalizationCoefficients; fNormalizationCoefficients = nullptr;};
     fNormalizationCoefficients = new double[fSize];
 
-    if(fInverseNormalizationCoefficients != NULL){delete[] fInverseNormalizationCoefficients; fInverseNormalizationCoefficients = NULL;};
+    if(fInverseNormalizationCoefficients != nullptr){delete[] fInverseNormalizationCoefficients; fInverseNormalizationCoefficients = nullptr;};
     fInverseNormalizationCoefficients = new double[fSize];
 
     double fac;

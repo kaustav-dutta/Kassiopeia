@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajExactSpinDerivative();
-            virtual ~KSTrajExactSpinDerivative();
+            KSTrajExactSpinDerivative( const KSTrajExactSpinDerivative& other) = default;
+            ~KSTrajExactSpinDerivative() override;
 
             //**********
             //assignment

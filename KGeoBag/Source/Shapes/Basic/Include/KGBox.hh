@@ -26,17 +26,17 @@ namespace KGeoBag
             KGBox( double x0, double x1, double y0, double y1, double z0, double z1 );
             KGBox( const KThreeVector& p0, const KThreeVector& p1 );
 
-            virtual ~KGBox()
+            ~KGBox() override
             {
             }
 
-            virtual void AreaInitialize() const
+            void AreaInitialize() const override
             {
             }
-            virtual void AreaAccept( KGVisitor* aVisitor );
-            virtual bool AreaAbove( const KThreeVector& aPoint ) const;
-            virtual KThreeVector AreaPoint( const KThreeVector& aPoint ) const;
-            virtual KThreeVector AreaNormal( const KThreeVector& aPoint ) const;
+            void AreaAccept( KGVisitor* aVisitor ) override;
+            bool AreaAbove( const KThreeVector& aPoint ) const override;
+            KThreeVector AreaPoint( const KThreeVector& aPoint ) const override;
+            KThreeVector AreaNormal( const KThreeVector& aPoint ) const override;
 
             void SetX0( double d )
             {

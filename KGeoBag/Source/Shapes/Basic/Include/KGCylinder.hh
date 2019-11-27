@@ -24,13 +24,13 @@ namespace KGeoBag
 	       const KThreeVector& p1,
 	       double radius);
 
-    virtual ~KGCylinder() {}
+    ~KGCylinder() override {}
 
-    virtual void AreaInitialize() const {}
-    virtual void AreaAccept(KGVisitor* aVisitor);
-    virtual bool AreaAbove(const KThreeVector& aPoint) const;
-    virtual KThreeVector AreaPoint(const KThreeVector& aPoint) const;
-    virtual KThreeVector AreaNormal(const KThreeVector& aPoint) const;
+    void AreaInitialize() const override {}
+    void AreaAccept(KGVisitor* aVisitor) override;
+    bool AreaAbove(const KThreeVector& aPoint) const override;
+    KThreeVector AreaPoint(const KThreeVector& aPoint) const override;
+    KThreeVector AreaNormal(const KThreeVector& aPoint) const override;
 
     void SetP0(const KThreeVector& p) { fP0 = p; }
     void SetP1(const KThreeVector& p) { fP1 = p; }

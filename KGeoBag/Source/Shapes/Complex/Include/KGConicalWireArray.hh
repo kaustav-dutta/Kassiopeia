@@ -1,7 +1,7 @@
 #ifndef KGCONICALWIREARRAY_DEF
 #define KGCONICALWIREARRAY_DEF
 
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -35,18 +35,19 @@ namespace KGeoBag
 					     fNDisc(nDisc),
 					     fNDiscPower(nDiscPower){}
 
-    virtual ~KGConicalWireArray() {}
+    ~KGConicalWireArray() override {}
 
     static std::string Name() { return "conical_wire_array"; }
 
     virtual KGConicalWireArray* Clone() const;
 
     virtual void Initialize() const {}
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool ContainsPoint(const double* P) const;
     double DistanceTo(const double* P,
-		      double* P_in=NULL,
-		      double* P_norm=NULL) const;
+		      double* P_in=nullptr,
+		      double* P_norm=nullptr) const;
     double GetLength() const;
     double Area() const;
     double Volume() const;

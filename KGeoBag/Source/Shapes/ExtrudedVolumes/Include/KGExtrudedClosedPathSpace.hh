@@ -59,7 +59,7 @@ namespace KGeoBag
                     fFlattenedMeshPower( 1. )
             {
             }
-            virtual ~KGExtrudedClosedPathSpace()
+            ~KGExtrudedClosedPathSpace() override
             {
             }
 
@@ -143,7 +143,7 @@ namespace KGeoBag
             mutable double fFlattenedMeshPower;
 
         public:
-            virtual void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const
+            void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const override
             {
                 auto tTop = std::make_shared<KGFlattenedClosedPathSurface< XPathType >>( fPath );
                 tTop->Z( fZMax );
@@ -166,11 +166,11 @@ namespace KGeoBag
 
                 return;
             }
-            virtual void VolumeAccept( KGVisitor* aVisitor )
+            void VolumeAccept( KGVisitor* aVisitor ) override
             {
                 shapemsg_debug( "extruded closed path volume named <" << GetName() << "> is receiving a visitor" << eom );
-                typename KGExtrudedClosedPathSpace::Visitor* tExtrudedClosedPathSpaceVisitor = dynamic_cast< typename KGExtrudedClosedPathSpace::Visitor* >( aVisitor );
-                if( tExtrudedClosedPathSpaceVisitor != NULL )
+                auto* tExtrudedClosedPathSpaceVisitor = dynamic_cast< typename KGExtrudedClosedPathSpace::Visitor* >( aVisitor );
+                if( tExtrudedClosedPathSpaceVisitor != nullptr )
                 {
                     shapemsg_debug( "extruded closed path volume named <" << GetName() << "> is accepting a visitor" << eom );
                     tExtrudedClosedPathSpaceVisitor->VisitExtrudedClosedPathSpace( this );
@@ -179,7 +179,7 @@ namespace KGeoBag
                 KGVolume::VolumeAccept( aVisitor );
                 return;
             }
-            virtual bool VolumeOutside( const KThreeVector& aPoint ) const
+            bool VolumeOutside( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tXYPoint = aPoint.ProjectXY();
                 double tZPoint = aPoint.Z();
@@ -233,7 +233,7 @@ namespace KGeoBag
                 }
                 return fPath->Above( tXYPoint );
             }
-            virtual KThreeVector VolumePoint( const KThreeVector& aPoint ) const
+            KThreeVector VolumePoint( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tXYPoint = aPoint.ProjectXY();
                 double tZPoint = aPoint.Z();
@@ -287,7 +287,7 @@ namespace KGeoBag
                 tZNearest = tZPoint + tJacketZ;
                 return KThreeVector( tXYNearest.X(), tXYNearest.Y(), tZNearest );
             }
-            virtual KThreeVector VolumeNormal( const KThreeVector& aPoint ) const
+            KThreeVector VolumeNormal( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tXYPoint = aPoint.ProjectXY();
                 double tZPoint = aPoint.Z();
@@ -342,7 +342,7 @@ namespace KGeoBag
         private:
             static KGPlanarClosedPath* CompilerCheck()
             {
-                XPathType* tPath = NULL;
+                XPathType* tPath = nullptr;
                 return tPath;
             }
     };

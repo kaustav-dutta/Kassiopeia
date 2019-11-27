@@ -38,11 +38,11 @@ class KJacobiPreconditioner: public KPreconditioner< ValueType >
             }
         };
 
-        virtual ~KJacobiPreconditioner(){};
+        ~KJacobiPreconditioner() override{};
 
-        virtual std::string Name(){ return std::string("jacobi"); };
+        std::string Name() override{ return std::string("jacobi"); };
 
-        virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
             for(unsigned int i=0; i<fDimension; i++)
             {
@@ -50,7 +50,7 @@ class KJacobiPreconditioner: public KPreconditioner< ValueType >
             }
         }
 
-        virtual void MultiplyTranspose(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void MultiplyTranspose(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
             //copy x into y
             for(unsigned int i=0; i<fDimension; i++)
@@ -59,11 +59,11 @@ class KJacobiPreconditioner: public KPreconditioner< ValueType >
             }
         }
 
-        virtual bool IsStationary(){return true;};
+        bool IsStationary() override{return true;};
 
-        virtual unsigned int Dimension() const {return fDimension;} ;
+        unsigned int Dimension() const override {return fDimension;} ;
 
-        virtual const ValueType& operator()(unsigned int i, unsigned int j) const
+        const ValueType& operator()(unsigned int i, unsigned int j) const override
         {
             if(i == j){return fInverseDiagonal(i);};
 

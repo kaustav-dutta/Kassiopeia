@@ -6,7 +6,6 @@
 #include "KESSScatteringCalculator.h"
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -326,7 +325,7 @@ namespace Kassiopeia
 
             (*AugerElectron) = aFinalParticle;
             AugerElectron->SetKineticEnergy_eV(augerEnergy_eV);
-            AugerElectron->SetPolarAngleToZ( 180*std::acos(1-2*KRandom::GetInstance().Uniform())/KConst::Pi() );
+            AugerElectron->SetPolarAngleToZ( 180*std::acos(1-2*KRandom::GetInstance().Uniform())/katrin::KConst::Pi() );
             AugerElectron->SetAzimuthalAngleToX( KRandom::GetInstance().Uniform() * 360 );
             AugerElectron->SetLabel( "KESSRelaxation" );
 

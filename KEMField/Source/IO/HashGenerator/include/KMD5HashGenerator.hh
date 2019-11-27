@@ -36,7 +36,7 @@ namespace KEMField
     {
       if (!(d.Omit()))
       {
-	Type& y = const_cast<Type&>(x);
+	auto& y = const_cast<Type&>(x);
 	d.GetMD5().update(reinterpret_cast<unsigned char*>(&y),sizeof(Type));
       }
       return d.Self();
@@ -198,8 +198,8 @@ namespace KEMField
   class KMD5HashGenerator : public KMD5HashGeneratorFundamentalTypes
   {
   public:
-    KMD5HashGenerator() : fOmit(false), fMaskedBits(1), fThreshold(1.e-12), fMD5(NULL), fOmitting(NULL) {}
-    virtual ~KMD5HashGenerator() { if (fMD5) delete fMD5; }
+    KMD5HashGenerator() : fOmit(false), fMaskedBits(1), fThreshold(1.e-12), fMD5(nullptr), fOmitting(nullptr) {}
+    ~KMD5HashGenerator() override { if (fMD5) delete fMD5; }
 
     template <class X>
     void Omit(Type2Type<X>) { fOmitted.insert(&typeid(X)); }
@@ -240,15 +240,15 @@ namespace KEMField
 
     void MaskedBits(unsigned short i) { fMaskedBits = i; }
     void MaskedBytes(unsigned short i) { fMaskedBits = 8*i; }
-    unsigned short MaskedBits() const { return fMaskedBits%8; }
-    unsigned short MaskedBytes() const { return fMaskedBits/8; }
+    unsigned short MaskedBits() const override { return fMaskedBits%8; }
+    unsigned short MaskedBytes() const override { return fMaskedBits/8; }
     void Threshold(double d) { fThreshold = d; }
-    double Threshold() const { return fThreshold; }
+    double Threshold() const override { return fThreshold; }
 
   protected:
-    bool Omit() const { return fOmit; }
-    class MD5& GetMD5() { return *fMD5; }
-    KMD5HashGenerator& Self() { return *this; }
+    bool Omit() const override { return fOmit; }
+    class MD5& GetMD5() override { return *fMD5; }
+    KMD5HashGenerator& Self() override { return *this; }
 
     bool fOmit;
     unsigned short fMaskedBits;
@@ -280,7 +280,7 @@ namespace KEMField
   template <class Streamed>
   void KMD5HashGenerator::PreStreamOutAction(const Streamed&)
   {
-    for (std::set<const std::type_info*>::const_iterator it = fOmitted.begin();
+    for (auto it = fOmitted.begin();
 	 it!=fOmitted.end();++it)
     {
       if (*(*it) == typeid(Streamed))

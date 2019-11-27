@@ -1,7 +1,7 @@
 #ifndef KGLINEARWIREGRID_DEF
 #define KGLINEARWIREGRID_DEF
 
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -29,18 +29,19 @@ namespace KGeoBag
 					     fNDiscPower(nDiscPower),
 					     fOuterCircle(outerCircle){}
 
-    virtual ~KGLinearWireGrid() {}
+    ~KGLinearWireGrid() override {}
 
     static std::string Name() { return "linear_wire_grid"; }
 
     virtual KGLinearWireGrid* Clone() const;
 
     virtual void Initialize() const {}
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool ContainsPoint(const double* P) const;
     double DistanceTo(const double* P,
-		      double* P_in=NULL,
-		      double* P_norm=NULL) const;
+		      double* P_in=nullptr,
+		      double* P_norm=nullptr) const;
 
     double GetLength() const;
     double Area() const;

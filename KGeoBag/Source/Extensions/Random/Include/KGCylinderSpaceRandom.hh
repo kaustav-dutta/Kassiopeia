@@ -22,7 +22,7 @@ namespace KGeoBag
   {
   public:
 	  KGCylinderSpaceRandom() : KGShapeRandom() {}
-    virtual ~KGCylinderSpaceRandom() {}
+    ~KGCylinderSpaceRandom() override {}
 
     /**
      * \brief Visitor function for dicing the point
@@ -30,7 +30,7 @@ namespace KGeoBag
      *
      * \brief aCylinderSpace
      */
-    virtual void VisitCylinderSpace(KGCylinderSpace* aCylinderSpace);
+    void VisitCylinderSpace(KGCylinderSpace* aCylinderSpace) override;
   };
 }
 

@@ -17,13 +17,13 @@ class KTRandom : public TRandom, public KSingleton<KTRandom>
 {
 public:
     KTRandom();
-    virtual ~KTRandom();
+    ~KTRandom() override;
 
-    virtual  UInt_t    GetSeed() const;
-    virtual  Double_t  Rndm(Int_t = 0);
-    virtual  void      RndmArray(Int_t n, Float_t *array);
-    virtual  void      RndmArray(Int_t n, double *array);
-    virtual  void      SetSeed(ULong_t seed = 0);
+     UInt_t    GetSeed() const override;
+     Double_t  Rndm(Int_t = 0) override;
+     void      RndmArray(Int_t n, Float_t *array) override;
+     void      RndmArray(Int_t n, double *array) override;
+     void      SetSeed(ULong_t seed = 0) override;
 
 private:
     KRandom& fGenerator;

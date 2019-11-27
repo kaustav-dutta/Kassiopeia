@@ -25,8 +25,8 @@ namespace Kassiopeia
     public:
         KSGenPositionMask();
         KSGenPositionMask(const KSGenPositionMask&);
-        KSGenPositionMask* Clone() const;
-        virtual ~KSGenPositionMask();
+        KSGenPositionMask* Clone() const override;
+        ~KSGenPositionMask() override;
 
     public:
         /**
@@ -38,7 +38,7 @@ namespace Kassiopeia
         *
         * \param aPrimaries
         */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
         /**
         * \brief Add given KGSpace object to list of allowed spaces.
@@ -80,8 +80,8 @@ namespace Kassiopeia
         unsigned int fMaxRetries;
 
     protected:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

@@ -15,7 +15,7 @@ namespace KGeoBag
             KGDiscreteRotationalMesherBase();
 
         public:
-            virtual ~KGDiscreteRotationalMesherBase();
+            ~KGDiscreteRotationalMesherBase() override;
 
         public:
             void SetMeshElementOutput(KGDiscreteRotationalMeshElementVector* aMeshElementVector );

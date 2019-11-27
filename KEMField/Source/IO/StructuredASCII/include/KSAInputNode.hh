@@ -36,7 +36,7 @@ class KSAInputNode: public KSAObject
             fStatus = KSANODE_STAY;
             fIndex = 0;
 	        fHasData = false;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             fChildren.clear();
             fChildrenStartMap.clear();
             fChildrenStopMap.clear();
@@ -48,13 +48,13 @@ class KSAInputNode: public KSAObject
             fStatus = KSANODE_STAY;
             fIndex = 0;
 	        fHasData = false;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             fChildren.clear();
             fChildrenStartMap.clear();
             fChildrenStopMap.clear();
         };
 
-        virtual ~KSAInputNode()
+        ~KSAInputNode() override
         {
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
@@ -91,7 +91,7 @@ class KSAInputNode: public KSAObject
         {
             fStatus = KSANODE_STAY;
             fIndex = 0;
-            fNextNode = NULL;
+            fNextNode = nullptr;
 	        fHasData = false;
         }
 
@@ -117,20 +117,20 @@ class KSAInputNode: public KSAObject
             else if( LineIsStopTag(line) )
             {
                 fStatus = KSANODE_MOVE_UPWARD;
-                fNextNode = NULL;
+                fNextNode = nullptr;
                 FinalizeObject();
             }
 	        else if ( LineIsStartTag(line) )
 	        {
                 fHasData = true;
                 fStatus = KSANODE_STAY;
-                fNextNode = NULL;
+                fNextNode = nullptr;
 	        }
             else
             {
                 //line is ignored, stay on current node
                 fStatus = KSANODE_STAY;
-                fNextNode = NULL;
+                fNextNode = nullptr;
             }
 
         }

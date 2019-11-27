@@ -98,14 +98,14 @@ namespace Kassiopeia
 
             if( tType == string( "two_vector" ) )
             {
-                KSTwoVector& tTwoVector = Add< KSTwoVector >( tLabel );
+                auto& tTwoVector = Add< KSTwoVector >( tLabel );
                 fData->SetBranchAddress( (tLabel + string( "_x" )).c_str(), &(tTwoVector.Value().X()) );
                 fData->SetBranchAddress( (tLabel + string( "_y" )).c_str(), &(tTwoVector.Value().Y()) );
                 continue;
             }
             if( tType == string( "three_vector" ) )
             {
-                KSThreeVector& tTwoVector = Add< KSThreeVector >( tLabel );
+                auto& tTwoVector = Add< KSThreeVector >( tLabel );
                 fData->SetBranchAddress( (tLabel + string( "_x" )).c_str(), &(tTwoVector.Value().X()) );
                 fData->SetBranchAddress( (tLabel + string( "_y" )).c_str(), &(tTwoVector.Value().Y()) );
                 fData->SetBranchAddress( (tLabel + string( "_z" )).c_str(), &(tTwoVector.Value().Z()) );
@@ -140,7 +140,7 @@ namespace Kassiopeia
         unsigned int tLastIndex = 0;
         unsigned int tFirstEntry = 0;
         unsigned int tTotalLength = 0;
-        for( vector< Presence >::iterator tIt = tPresences.begin(); tIt != tPresences.end(); tIt++ )
+        for( auto tIt = tPresences.begin(); tIt != tPresences.end(); tIt++ )
         {
         	tIndex = tIt->fIndex;
         	tLength = tIt->fLength;
@@ -180,7 +180,7 @@ namespace Kassiopeia
     void KSReadObjectROOT::operator++( int )
     {
         fIndex++;
-        for( vector< Presence >::iterator tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
+        for( auto tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
         {
             if( tIt->fIndex > fIndex )
             {
@@ -200,7 +200,7 @@ namespace Kassiopeia
     void KSReadObjectROOT::operator--( int )
     {
         fIndex--;
-        for( vector< Presence >::iterator tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
+        for( auto tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
         {
             if( tIt->fIndex > fIndex )
             {
@@ -220,7 +220,7 @@ namespace Kassiopeia
     void KSReadObjectROOT::operator<<( const unsigned int& aValue )
     {
         fIndex = aValue;
-        for( vector< Presence >::iterator tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
+        for( auto tIt = fPresences.begin(); tIt != fPresences.end(); tIt++ )
         {
             if( tIt->fIndex > fIndex )
             {

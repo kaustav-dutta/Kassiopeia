@@ -10,7 +10,6 @@ using katrin::KFile;
 #endif
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "vtkQuad.h"
 #include "vtkTriangle.h"
@@ -802,6 +801,30 @@ void KGVTKGeometryPainter::VisitShellPathSurface( KGShellPolyLoopSurface* aShell
         fCurrentSurface = NULL;
     }
 
+    void KGVTKGeometryPainter::VisitWrappedSurface( KGRodSurface* aRodSurface )
+    {
+        if( fIgnore == true )
+        {
+            return;
+        }
+
+        // getting the radius of the rod elements
+        double tRodRadius = aRodSurface->GetObject()->GetRadius();
+
+        // create three-dimensional poly line points
+        ThreePoints tRodThreePoints;
+        RodsToThreePoints( aRodSurface, tRodThreePoints );
+
+        //create rotated points
+        TubeMesh tMeshPoints;
+        ThreePointsToTubeMeshToVTK( tRodThreePoints, tMeshPoints, tRodRadius );
+
+        //clear space
+        fCurrentSurface = NULL;
+
+        return;
+    }
+
     //**************
     //space visitors
     //**************
@@ -1155,8 +1178,8 @@ void KGVTKGeometryPainter::VisitShellPathSurface( KGShellPolyLoopSurface* aShell
 
         TubeMeshToVTK( tMeshPoints );
 
-        //clear surface
-        fCurrentSurface = NULL;
+        //clear space
+        fCurrentSpace = NULL;
 
         return;
     }
@@ -1186,7 +1209,7 @@ void KGVTKGeometryPainter::VisitShellPathSurface( KGShellPolyLoopSurface* aShell
     {
         aPoints.fData.clear();
 
-        double tArcFraction = anArcSegment->Length() / (2. * KConst::Pi() * anArcSegment->Radius());
+        double tArcFraction = anArcSegment->Length() / (2. * katrin::KConst::Pi() * anArcSegment->Radius());
         unsigned int tArc = (unsigned int) (ceil( tArcFraction * (double) (fCurrentData->GetArc()) ));
 
         double tFraction;
@@ -1331,20 +1354,56 @@ void KGVTKGeometryPainter::VisitShellPathSurface( KGShellPolyLoopSurface* aShell
         return;
     }
 
+    void KGVTKGeometryPainter::RodsToThreePoints( const KGRodSurface* aRodSurface, ThreePoints& aThreePoints )
+    {
+        aThreePoints.fData.clear();
+
+        // determine number of rod vertices
+        unsigned int tNCoordinates = aRodSurface->GetObject()->GetNCoordinates();
+
+        // 1 SubThreePoint object = 2 Vertices
+        ThreePoints tSubThreePoints;
+        KThreeVector tStartPoint;
+        KThreeVector tEndPoint;
+
+        for( unsigned int tCoordinateIt=0; tCoordinateIt<(tNCoordinates-1); tCoordinateIt++ )
+        {
+            tSubThreePoints.fData.clear();
+
+            tStartPoint.SetComponents(
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt)[0],
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt)[1],
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt)[2]
+            );
+            tEndPoint.SetComponents(
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt+1, 0),
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt+1, 1),
+                    aRodSurface->GetObject()->GetCoordinate(tCoordinateIt+1, 2)
+            );
+
+            tSubThreePoints.fData.push_back( tStartPoint );
+            tSubThreePoints.fData.push_back( tEndPoint );
+
+            aThreePoints.fData.insert( aThreePoints.fData.end(), tSubThreePoints.fData.begin(), tSubThreePoints.fData.end() );
+        }
+
+        return;
+    }
+
     void KGVTKGeometryPainter::WireArrayToThreePoints( const KGConicalWireArraySurface* aConicalWireArraySurface, ThreePoints& aThreePoints )
     {
         aThreePoints.fData.clear();
 
         // gathering data from wire array object
         unsigned int tWiresInArray = aConicalWireArraySurface->GetObject()->GetNWires();
-        double tThetaOffset = aConicalWireArraySurface->GetObject()->GetThetaStart() * (KConst::Pi() / 180.);
+        double tThetaOffset = aConicalWireArraySurface->GetObject()->GetThetaStart() * (katrin::KConst::Pi() / 180.);
 
         double tZ1 = aConicalWireArraySurface->GetObject()->GetZ1();
         double tR1 = aConicalWireArraySurface->GetObject()->GetR1();
         double tZ2 = aConicalWireArraySurface->GetObject()->GetZ2();
         double tR2 = aConicalWireArraySurface->GetObject()->GetR2();
 
-        double tAngleStep = 2*KConst::Pi()/tWiresInArray;
+        double tAngleStep = 2*katrin::KConst::Pi()/tWiresInArray;
 
         // 1 SubThreePoint object = 2 Vertices
         ThreePoints tSubThreePoints;
@@ -1415,8 +1474,8 @@ void KGVTKGeometryPainter::VisitShellPathSurface( KGShellPolyLoopSurface* aShell
             {
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction );
-                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * KConst::Pi() * tFraction );
+                tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction );
+                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * katrin::KConst::Pi() * tFraction );
                 tPoint.Z() = (*tPointsIt).X();
                 tGroup.push_back( tPoint );
             }
@@ -1444,8 +1503,8 @@ void KGVTKGeometryPainter::OpenPointsRotatedToShellMesh( const OpenPoints& aPoin
         {
             tFraction = (double) (tCount) / (double) (tArc);
 
-            tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction * tAngle + aAngleStart* KConst::Pi()/180.);
-            tPoint.Y() = (*tPointsIt).Y() * sin(  2. * KConst::Pi() * tFraction * tAngle + aAngleStart* KConst::Pi()/180. );
+            tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction * tAngle + aAngleStart* katrin::KConst::Pi()/180.);
+            tPoint.Y() = (*tPointsIt).Y() * sin(  2. * katrin::KConst::Pi() * tFraction * tAngle + aAngleStart* katrin::KConst::Pi()/180. );
             tPoint.Z() = (*tPointsIt).X();
             tGroup.push_back( tPoint );
         }
@@ -1474,8 +1533,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
             {
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction );
-                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * KConst::Pi() * tFraction );
+                tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction );
+                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * katrin::KConst::Pi() * tFraction );
                 tPoint.Z() = (*tPointsIt).X();
                 tGroup.push_back( tPoint );
             }
@@ -1502,8 +1561,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
             {
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction * tAngle + aAngleStart* KConst::Pi()/180.);
-            tPoint.Y() = (*tPointsIt).Y() * sin(  2. * KConst::Pi() * tFraction * tAngle + aAngleStart* KConst::Pi()/180. );
+                tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction * tAngle + aAngleStart* katrin::KConst::Pi()/180.);
+            tPoint.Y() = (*tPointsIt).Y() * sin(  2. * katrin::KConst::Pi() * tFraction * tAngle + aAngleStart* katrin::KConst::Pi()/180. );
             tPoint.Z() = (*tPointsIt).X();
             tGroup.push_back( tPoint );
             }
@@ -1584,7 +1643,7 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
         KThreeVector tCenterPoint;
         KThreeVector tAxisUnit;
 
-        double toDegree = 180./KConst::Pi();
+        double toDegree = 180./katrin::KConst::Pi();
         double tTheta(0.);
         double tPhi(0.);
         double tR(0.);
@@ -1637,8 +1696,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
                 tEulerZXZ.SetOrigin( tStartPoint );
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (tStartPoint.X() + aTubeRadius * cos( 2. * KConst::Pi() * tFraction ));
-                tPoint.Y() = (tStartPoint.Y() + aTubeRadius * sin( 2. * KConst::Pi() * tFraction ));
+                tPoint.X() = (tStartPoint.X() + aTubeRadius * cos( 2. * katrin::KConst::Pi() * tFraction ));
+                tPoint.Y() = (tStartPoint.Y() + aTubeRadius * sin( 2. * katrin::KConst::Pi() * tFraction ));
                 tPoint.Z() = (tStartPoint.Z());
 
                 tEulerZXZ.ApplyRotation( tPoint );
@@ -1653,8 +1712,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
                 tEulerZXZ.SetOrigin( tEndPoint );
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (tEndPoint.X() + aTubeRadius * cos( 2. * KConst::Pi() * tFraction ));
-                tPoint.Y() = (tEndPoint.Y() + aTubeRadius * sin( 2. * KConst::Pi() * tFraction ));
+                tPoint.X() = (tEndPoint.X() + aTubeRadius * cos( 2. * katrin::KConst::Pi() * tFraction ));
+                tPoint.Y() = (tEndPoint.Y() + aTubeRadius * sin( 2. * katrin::KConst::Pi() * tFraction ));
                 tPoint.Z() = (tEndPoint.Z());
 
                 tEulerZXZ.ApplyRotation( tPoint );
@@ -1680,7 +1739,7 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
         KThreeVector tCenterPoint;
         KThreeVector tAxisUnit;
 
-        double toDegree = 180./KConst::Pi();
+        double toDegree = 180./katrin::KConst::Pi();
         double tTheta(0.);
         double tPhi(0.);
         double tR(0.);
@@ -1732,8 +1791,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
                 tEulerZXZ.SetOrigin( tStartPoint );
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (tStartPoint.X() + aTubeRadius * cos( 2. * KConst::Pi() * tFraction ));
-                tPoint.Y() = (tStartPoint.Y() + aTubeRadius * sin( 2. * KConst::Pi() * tFraction ));
+                tPoint.X() = (tStartPoint.X() + aTubeRadius * cos( 2. * katrin::KConst::Pi() * tFraction ));
+                tPoint.Y() = (tStartPoint.Y() + aTubeRadius * sin( 2. * katrin::KConst::Pi() * tFraction ));
                 tPoint.Z() = (tStartPoint.Z());
 
                 tEulerZXZ.ApplyRotation( tPoint );
@@ -1748,8 +1807,8 @@ void KGVTKGeometryPainter::ClosedPointsRotatedToTorusMesh( const ClosedPoints& a
                 tEulerZXZ.SetOrigin( tEndPoint );
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (tEndPoint.X() + aTubeRadius * cos( 2. * KConst::Pi() * tFraction ));
-                tPoint.Y() = (tEndPoint.Y() + aTubeRadius * sin( 2. * KConst::Pi() * tFraction ));
+                tPoint.X() = (tEndPoint.X() + aTubeRadius * cos( 2. * katrin::KConst::Pi() * tFraction ));
+                tPoint.Y() = (tEndPoint.Y() + aTubeRadius * sin( 2. * katrin::KConst::Pi() * tFraction ));
                 tPoint.Z() = (tEndPoint.Z());
 
                 tEulerZXZ.ApplyRotation( tPoint );

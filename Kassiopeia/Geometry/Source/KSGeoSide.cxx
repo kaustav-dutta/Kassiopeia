@@ -9,15 +9,15 @@ namespace Kassiopeia
 {
 
     KSGeoSide::KSGeoSide() :
-            fOutsideParent( NULL ),
-            fInsideParent( NULL ),
+            fOutsideParent( nullptr ),
+            fInsideParent( nullptr ),
             fContents()
     {
     }
     KSGeoSide::KSGeoSide( const KSGeoSide& aCopy ) :
             KSComponent(),
-            fOutsideParent( NULL ),
-            fInsideParent( NULL ),
+            fOutsideParent( nullptr ),
+            fInsideParent( nullptr ),
             fContents( aCopy.fContents )
     {
     }
@@ -79,7 +79,7 @@ namespace Kassiopeia
         vector< KGSurface* >::const_iterator tSide;
 
         double tNearestDistance = std::numeric_limits< double >::max();
-        const KGSurface* tNearestSide = NULL;
+        const KGSurface* tNearestSide = nullptr;
 
         for( tSide = fContents.begin(); tSide != fContents.end(); tSide++ )
         {
@@ -92,7 +92,7 @@ namespace Kassiopeia
             }
         }
 
-        if (tNearestSide != NULL)
+        if (tNearestSide != nullptr)
             return tNearestSide->Normal( aPoint );
 
         geomsg( eWarning ) << "geo side <" << GetName() << "> could not find a nearest space to position " << aPoint << eom;

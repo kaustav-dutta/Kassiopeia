@@ -13,7 +13,7 @@ namespace KGeoBag
     {
         public:
             KGElectromagnetAttributor();
-            virtual ~KGElectromagnetAttributor();
+            ~KGElectromagnetAttributor() override;
 
         public:
             void AddSurface( KGSurface* aSurface );

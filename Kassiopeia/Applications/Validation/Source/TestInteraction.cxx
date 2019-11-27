@@ -66,15 +66,15 @@ int main( int anArgc, char** anArgv )
     double tHighEnergy = 12000.0;
     double tEnergyStepSize = 0.2;
     double tLength = 1.0;
-    double tDensity = 100 * 1.0e-2 / (KConst::kB() * 300.0 ); //take value from density calculator in xml file
+    double tDensity = 100 * 1.0e-2 / (katrin::KConst::kB() * 300.0 ); //take value from density calculator in xml file
 
 
     // get stuff from toolbox
-    KSIntScattering* tScattering = katrin::KToolbox::GetInstance().Get<KSIntScattering>( tScatteringName );
+    auto* tScattering = katrin::KToolbox::GetInstance().Get<KSIntScattering>( tScatteringName );
     tScattering->Initialize();
 
     // initialize root
-    TApplication tApplication( "Test Interaction", 0, NULL );
+    TApplication tApplication( "Test Interaction", nullptr, nullptr );
 
     TCanvas tProbabilityCanvas( "probability_canvas", "interaction probability" );
     TGraph tInteractionProbabilityGraph;

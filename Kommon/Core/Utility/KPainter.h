@@ -13,7 +13,7 @@ namespace katrin
     {
         public:
             KPainter();
-            virtual ~KPainter();
+            ~KPainter() override;
 
         public:
             virtual void Render() = 0;

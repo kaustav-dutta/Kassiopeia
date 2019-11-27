@@ -43,7 +43,7 @@ class KFMNodeIdentityListRangeAssociator: public KFMNodeActor< KFMNode<ObjectTyp
             {
                 unsigned int id = node->GetID();
 
-                KFMNodeIdentityListRange* id_range = NULL;
+                KFMNodeIdentityListRange* id_range = nullptr;
                 id_range = KFMObjectRetriever<ObjectTypeList , KFMNodeIdentityListRange >::GetNodeObject(node);
 
                 if(fNodeIndexListSize.size() <= id)
@@ -52,7 +52,7 @@ class KFMNodeIdentityListRangeAssociator: public KFMNodeActor< KFMNode<ObjectTyp
                     fNodeStartIndexList.resize(id+1);
                 }
 
-                if(id_range != NULL)
+                if(id_range != nullptr)
                 {
                     unsigned int start_index = id_range->GetStartIndex();
                     unsigned int size = id_range->GetLength();

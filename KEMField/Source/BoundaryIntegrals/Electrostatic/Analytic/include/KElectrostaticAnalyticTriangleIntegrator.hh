@@ -18,11 +18,11 @@ namespace KEMField
     typedef KElectrostaticBasis::ValueType ValueType;
 
     KElectrostaticAnalyticTriangleIntegrator() {}
-    ~KElectrostaticAnalyticTriangleIntegrator() {}
+    ~KElectrostaticAnalyticTriangleIntegrator() override {}
 
 
-    double Potential( const KTriangle* source, const KPosition& P ) const;
-    KThreeVector ElectricField( const KTriangle* source, const KPosition& P ) const;
+    double Potential( const KTriangle* source, const KPosition& P ) const override;
+    KThreeVector ElectricField( const KTriangle* source, const KPosition& P ) const override;
     using KElectrostaticElementIntegrator<KTriangle>::Potential;
     using KElectrostaticElementIntegrator<KTriangle>::ElectricField;
   private:

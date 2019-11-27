@@ -28,7 +28,7 @@ namespace KEMField
         fZHCoeffSingleton = KZHLegendreCoefficients::GetInstance();
       }
 
-    virtual ~KZonalHarmonicFieldSolver() {}
+    ~KZonalHarmonicFieldSolver() override {}
 
     KThreeVector VectorPotential(const KPosition& P) const;
     KThreeVector MagneticField(const KPosition& P) const;

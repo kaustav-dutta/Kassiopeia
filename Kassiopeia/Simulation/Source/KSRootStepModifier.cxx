@@ -5,10 +5,10 @@ namespace Kassiopeia
 {
     KSRootStepModifier::KSRootStepModifier() :
         fModifiers(128),
-        fModifier( NULL ),
-        fInitialParticle( NULL ),
-        fFinalParticle( NULL ),
-        fParticleQueue( NULL )
+        fModifier( nullptr ),
+        fInitialParticle( nullptr ),
+        fFinalParticle( nullptr ),
+        fParticleQueue( nullptr )
     {
     }
 

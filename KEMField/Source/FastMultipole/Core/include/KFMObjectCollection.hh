@@ -25,7 +25,7 @@ class KFMObjectCollection: public KGenScatterHierarchy<TypeList, KFMObjectHolder
 {
     public:
         KFMObjectCollection(){};
-        virtual ~KFMObjectCollection(){};
+        ~KFMObjectCollection() override{};
 
     private:
 };

@@ -51,7 +51,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     tTagProcessor.InsertAfter( &tConditionProcessor );
     tElementProcessor.InsertAfter( &tTagProcessor );
 
-    KSIntDensityConstant* tDensityCalc = new KSIntDensityConstant();
+    auto* tDensityCalc = new KSIntDensityConstant();
     tDensityCalc->SetPressure(1.e-4); // pascal (*100 for mbar)
     tDensityCalc->SetTemperature(300.); // kelvin
     
@@ -61,7 +61,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 
 
     // get stuff from toolbox
-    KSIntScattering* tScattering = new KSIntScattering();
+    auto* tScattering = new KSIntScattering();
     tScattering->SetDensity( tDensityCalc );
     tScattering->SetSplit( false );
 
@@ -70,7 +70,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     tScattering->Initialize();
 
     // initialize root
-    TApplication tApplication( "Test Interaction", 0, NULL );
+    TApplication tApplication( "Test Interaction", nullptr, nullptr );
 
     TCanvas tCrossSectionCanvas( "crosssection_canvas", "Cross section on H_2" );
     TLegend tCrossSectionLegend(0.70,0.15,0.85,0.5);
@@ -157,7 +157,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 		tScattering->ExecuteInteraction( *tInitialParticle, *tFinalParticle, tSecondaries);
 
 		//tEnergyLossHisto.Fill( tInitialParticle->GetKineticEnergy_eV() - tFinalParticle->GetKineticEnergy_eV() );
-		tScatteringAngleHisto.Fill( cos(tSecondaries[0]->GetPolarAngleToZ()*KConst::Pi()/180) );
+		tScatteringAngleHisto.Fill( cos(tSecondaries[0]->GetPolarAngleToZ()*katrin::KConst::Pi()/180) );
 		tSecondaryEnergyHisto.Fill( tSecondaries[0]->GetKineticEnergy_eV() );
 	      }
 	    //Logarithmic step size in energy

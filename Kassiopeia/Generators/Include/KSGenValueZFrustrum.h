@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenValueZFrustrum();
             KSGenValueZFrustrum( const KSGenValueZFrustrum& aCopy );
-            KSGenValueZFrustrum* Clone() const;
-            virtual ~KSGenValueZFrustrum();
+            KSGenValueZFrustrum* Clone() const override;
+            ~KSGenValueZFrustrum() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, r1 )

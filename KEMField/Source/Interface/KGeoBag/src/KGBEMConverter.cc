@@ -15,7 +15,7 @@ namespace KGeoBag
 {
 
     KGBEMConverter::KGBEMConverter() :
-            fSurfaceContainer( NULL ),
+            fSurfaceContainer( nullptr ),
             fMinimumArea( 0. ),
             fMaximumAspectRatio(1e100),
             fVerbosity(0),
@@ -40,61 +40,61 @@ namespace KGeoBag
     {
         //cout << "clearing content" << endl;
 
-        for( std::vector< Triangle* >::iterator tTriangleIt = fTriangles.begin(); tTriangleIt != fTriangles.end(); ++tTriangleIt )
+        for( auto tTriangleIt = fTriangles.begin(); tTriangleIt != fTriangles.end(); ++tTriangleIt )
         {
             delete *tTriangleIt;
         }
         fTriangles.clear();
 
-        for( std::vector< Rectangle* >::iterator tRectangleIt = fRectangles.begin(); tRectangleIt != fRectangles.end(); ++tRectangleIt )
+        for( auto tRectangleIt = fRectangles.begin(); tRectangleIt != fRectangles.end(); ++tRectangleIt )
         {
             delete *tRectangleIt;
         }
         fRectangles.clear();
 
-        for( std::vector< LineSegment* >::iterator tLineSegmentIt = fLineSegments.begin(); tLineSegmentIt != fLineSegments.end(); ++tLineSegmentIt )
+        for( auto tLineSegmentIt = fLineSegments.begin(); tLineSegmentIt != fLineSegments.end(); ++tLineSegmentIt )
         {
             delete *tLineSegmentIt;
         }
         fLineSegments.clear();
 
-        for( std::vector< ConicSection* >::iterator tConicSectionIt = fConicSections.begin(); tConicSectionIt != fConicSections.end(); ++tConicSectionIt )
+        for( auto tConicSectionIt = fConicSections.begin(); tConicSectionIt != fConicSections.end(); ++tConicSectionIt )
         {
             delete *tConicSectionIt;
         }
         fConicSections.clear();
 
-        for( std::vector< Ring* >::iterator tRingIt = fRings.begin(); tRingIt != fRings.end(); ++tRingIt )
+        for( auto tRingIt = fRings.begin(); tRingIt != fRings.end(); ++tRingIt )
         {
             delete *tRingIt;
         }
         fRings.clear();
 
-        for( std::vector< SymmetricTriangle* >::iterator tTriangleIt = fSymmetricTriangles.begin(); tTriangleIt != fSymmetricTriangles.end(); ++tTriangleIt )
+        for( auto tTriangleIt = fSymmetricTriangles.begin(); tTriangleIt != fSymmetricTriangles.end(); ++tTriangleIt )
         {
             delete *tTriangleIt;
         }
         fSymmetricTriangles.clear();
 
-        for( std::vector< SymmetricRectangle* >::iterator tRectangleIt = fSymmetricRectangles.begin(); tRectangleIt != fSymmetricRectangles.end(); ++tRectangleIt )
+        for( auto tRectangleIt = fSymmetricRectangles.begin(); tRectangleIt != fSymmetricRectangles.end(); ++tRectangleIt )
         {
             delete *tRectangleIt;
         }
         fSymmetricRectangles.clear();
 
-        for( std::vector< SymmetricLineSegment* >::iterator tLineSegmentIt = fSymmetricLineSegments.begin(); tLineSegmentIt != fSymmetricLineSegments.end(); ++tLineSegmentIt )
+        for( auto tLineSegmentIt = fSymmetricLineSegments.begin(); tLineSegmentIt != fSymmetricLineSegments.end(); ++tLineSegmentIt )
         {
             delete *tLineSegmentIt;
         }
         fSymmetricLineSegments.clear();
 
-        for( std::vector< SymmetricConicSection* >::iterator tConicSectionIt = fSymmetricConicSections.begin(); tConicSectionIt != fSymmetricConicSections.end(); ++tConicSectionIt )
+        for( auto tConicSectionIt = fSymmetricConicSections.begin(); tConicSectionIt != fSymmetricConicSections.end(); ++tConicSectionIt )
         {
             delete *tConicSectionIt;
         }
         fSymmetricConicSections.clear();
 
-        for( std::vector< SymmetricRing* >::iterator tRingIt = fSymmetricRings.begin(); tRingIt != fSymmetricRings.end(); ++tRingIt )
+        for( auto tRingIt = fSymmetricRings.begin(); tRingIt != fSymmetricRings.end(); ++tRingIt )
         {
             delete *tRingIt;
         }
@@ -234,14 +234,14 @@ namespace KGeoBag
         Rectangle* tRectangle;
         LineSegment* tLineSegment;
 
-        if( aData != NULL )
+        if( aData != nullptr )
         {
-            for( vector< KGMeshElement* >::iterator tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
+            for( auto tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
             {
                 tMeshElement = *tElementIt;
 
                 tMeshTriangle = dynamic_cast< KGMeshTriangle* >( tMeshElement );
-                if( (tMeshTriangle != NULL) && (tMeshTriangle->Area() > fMinimumArea) &&  (tMeshTriangle->Aspect() < fMaximumAspectRatio) )
+                if( (tMeshTriangle != nullptr) && (tMeshTriangle->Area() > fMinimumArea) &&  (tMeshTriangle->Aspect() < fMaximumAspectRatio) )
                 {
                     tTriangle = new Triangle();
                     tTriangle->SetValues( LocalToInternal( tMeshTriangle->GetP0() ), LocalToInternal( tMeshTriangle->GetP1() ), LocalToInternal( tMeshTriangle->GetP2() ) );
@@ -250,7 +250,7 @@ namespace KGeoBag
                 }
 
                 tMeshRectangle = dynamic_cast< KGMeshRectangle* >( tMeshElement );
-                if( (tMeshRectangle != NULL) && (tMeshRectangle->Area() > fMinimumArea) && (tMeshRectangle->Aspect() < fMaximumAspectRatio) )
+                if( (tMeshRectangle != nullptr) && (tMeshRectangle->Area() > fMinimumArea) && (tMeshRectangle->Aspect() < fMaximumAspectRatio) )
                 {
                     tRectangle = new Rectangle();
                     tRectangle->SetValues( LocalToInternal( tMeshRectangle->GetP0() ), LocalToInternal( tMeshRectangle->GetP1() ), LocalToInternal( tMeshRectangle->GetP2() ), LocalToInternal( tMeshRectangle->GetP3() ) );
@@ -259,7 +259,7 @@ namespace KGeoBag
                 }
 
                 tMeshWire = dynamic_cast< KGMeshWire* >( tMeshElement );
-                if( (tMeshWire != NULL) && (tMeshWire->Area() > fMinimumArea) && (tMeshWire->Aspect() < fMaximumAspectRatio))
+                if( (tMeshWire != nullptr) && (tMeshWire->Area() > fMinimumArea) && (tMeshWire->Aspect() < fMaximumAspectRatio))
                 {
                     tLineSegment = new LineSegment();
                     tLineSegment->SetValues( LocalToInternal( tMeshWire->GetP0() ), LocalToInternal( tMeshWire->GetP1() ), tMeshWire->GetDiameter() );
@@ -309,7 +309,7 @@ namespace KGeoBag
         ConicSection* tConicSection;
         Ring* tRing;
 
-        if( aData != NULL )
+        if( aData != nullptr )
         {
             //cout << "adding axial mesh surface..." << endl;
 
@@ -323,12 +323,12 @@ namespace KGeoBag
                 return;
             }
 
-            for( vector< KGAxialMeshElement* >::iterator tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
+            for( auto tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
             {
                 tAxialMeshElement = *tElementIt;
 
                 tAxialMeshLoop = dynamic_cast< KGAxialMeshLoop* >( tAxialMeshElement );
-                if( (tAxialMeshLoop != NULL) && (tAxialMeshLoop->Area() > fMinimumArea) )
+                if( (tAxialMeshLoop != nullptr) && (tAxialMeshLoop->Area() > fMinimumArea) )
                 {
                     tConicSection = new ConicSection();
                     tConicSection->SetValues( LocalToInternal( tAxialMeshLoop->GetP0() ), LocalToInternal( tAxialMeshLoop->GetP1() ) );
@@ -337,7 +337,7 @@ namespace KGeoBag
                 }
 
                 tAxialMeshRing = dynamic_cast< KGAxialMeshRing* >( tAxialMeshElement );
-                if( (tAxialMeshRing != NULL) && (tAxialMeshRing->Area() > fMinimumArea) )
+                if( (tAxialMeshRing != nullptr) && (tAxialMeshRing->Area() > fMinimumArea) )
                 {
                     tRing = new Ring();
                     tRing->SetValues( LocalToInternal( tAxialMeshRing->GetP0() ) );
@@ -388,7 +388,7 @@ namespace KGeoBag
         KPosition tCenter;
         KDirection tDirection;
 
-        if( aData != NULL )
+        if( aData != nullptr )
         {
             //cout << "adding axial mesh surface..." << endl;
 
@@ -402,12 +402,12 @@ namespace KGeoBag
             tCenter.SetComponents( fAxis.GetCenter().X(), fAxis.GetCenter().Y(), fAxis.GetCenter().Z() );
             tDirection.SetComponents( fAxis.GetDirection().X(), fAxis.GetDirection().Y(), fAxis.GetDirection().Z() );
 
-            for( vector< KGDiscreteRotationalMeshElement* >::iterator tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
+            for( auto tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
             {
                 tMeshElement = *tElementIt;
 
                 tMeshTriangle = dynamic_cast< KGDiscreteRotationalMeshTriangle* >( tMeshElement );
-                if( (tMeshTriangle != NULL) && (tMeshTriangle->Area() > fMinimumArea) && (tMeshTriangle->Aspect() < fMaximumAspectRatio) )
+                if( (tMeshTriangle != nullptr) && (tMeshTriangle->Area() > fMinimumArea) && (tMeshTriangle->Aspect() < fMaximumAspectRatio) )
                 {
                     tTriangles = new SymmetricTriangle();
                     tTriangles->NewElement()->SetValues( LocalToInternal( tMeshTriangle->Element().GetP0() ), LocalToInternal( tMeshTriangle->Element().GetP1() ), LocalToInternal( tMeshTriangle->Element().GetP2() ) );
@@ -417,7 +417,7 @@ namespace KGeoBag
                 }
 
                 tMeshRectangle = dynamic_cast< KGDiscreteRotationalMeshRectangle* >( tMeshElement );
-                if( (tMeshRectangle != NULL) && (tMeshRectangle->Area() > fMinimumArea) &&  (tMeshRectangle->Aspect() < fMaximumAspectRatio) )
+                if( (tMeshRectangle != nullptr) && (tMeshRectangle->Area() > fMinimumArea) &&  (tMeshRectangle->Aspect() < fMaximumAspectRatio) )
                 {
                     tRectangles = new SymmetricRectangle();
                     tRectangles->NewElement()->SetValues( LocalToInternal( tMeshRectangle->Element().GetP0() ), LocalToInternal( tMeshRectangle->Element().GetP1() ), LocalToInternal( tMeshRectangle->Element().GetP2() ), LocalToInternal( tMeshRectangle->Element().GetP3() ) );
@@ -427,7 +427,7 @@ namespace KGeoBag
                 }
 
                 tMeshWire = dynamic_cast< KGDiscreteRotationalMeshWire* >( tMeshElement );
-                if( (tMeshWire != NULL) && (tMeshWire->Area() > fMinimumArea) &&  (tMeshWire->Aspect() < fMaximumAspectRatio) )
+                if( (tMeshWire != nullptr) && (tMeshWire->Area() > fMinimumArea) &&  (tMeshWire->Aspect() < fMaximumAspectRatio) )
                 {
                     tLineSegments = new SymmetricLineSegment();
                     tLineSegments->NewElement()->SetValues( LocalToInternal( tMeshWire->Element().GetP0() ), LocalToInternal( tMeshWire->Element().GetP1() ), tMeshWire->Element().GetDiameter() );

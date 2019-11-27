@@ -6,7 +6,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <iostream>
 #include <cmath>
@@ -61,7 +60,7 @@ void KSIntSurfaceDiffuse::ExecuteReflection(const KSParticle& anInitialParticle,
 	if (fUseRelativeLoss) {
 		tKineticEnergy *= (1.0 - fReflectionLossFraction);
 	} else {
-		tKineticEnergy -= std::fabs(KConst::Q() * fReflectionLoss);
+		tKineticEnergy -= std::fabs(katrin::KConst::Q() * fReflectionLoss);
 	}
 
 	//prevent kinetic energy from going negative
@@ -74,15 +73,15 @@ void KSIntSurfaceDiffuse::ExecuteReflection(const KSParticle& anInitialParticle,
 
 	//generate angles for diffuse 'Lambertian' reflection direction
 	double tAzimuthalAngle = KRandom::GetInstance().Uniform(0.,
-			2. * KConst::Pi());
+			2. * katrin::KConst::Pi());
 	double tSinTheta = std::sqrt(KRandom::GetInstance().Uniform(0., 1.)); // only KRandom::GetInstance().Uniform( 0., 1. ); is wrong: see http://www.sciencedirect.com/science/article/pii/S0042207X02001732
 	double tCosTheta = std::sqrt((1.0 - tSinTheta) * (1.0 + tSinTheta));
 
 	KThreeVector tNormal;
-	if (anInitialParticle.GetCurrentSurface() != NULL) {
+	if (anInitialParticle.GetCurrentSurface() != nullptr) {
 		tNormal = anInitialParticle.GetCurrentSurface()->Normal(
 				anInitialParticle.GetPosition());
-	} else if (anInitialParticle.GetCurrentSide() != NULL) {
+	} else if (anInitialParticle.GetCurrentSide() != nullptr) {
 		tNormal = anInitialParticle.GetCurrentSide()->Normal(
 				anInitialParticle.GetPosition());
 	} else {
@@ -128,7 +127,7 @@ void KSIntSurfaceDiffuse::ExecuteReflection(const KSParticle& anInitialParticle,
         }
         else
         {
-            tKineticEnergy -= std::fabs(KConst::Q() * fTransmissionLoss);
+            tKineticEnergy -= std::fabs(katrin::KConst::Q() * fTransmissionLoss);
         }
 
         //prevent kinetic energy from going negative

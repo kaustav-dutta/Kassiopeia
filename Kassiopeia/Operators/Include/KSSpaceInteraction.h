@@ -13,7 +13,7 @@ namespace Kassiopeia
     {
         public:
             KSSpaceInteraction();
-            virtual ~KSSpaceInteraction();
+            ~KSSpaceInteraction() override;
 
         public:
             virtual void CalculateInteraction(

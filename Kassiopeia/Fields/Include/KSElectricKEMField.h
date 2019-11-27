@@ -22,19 +22,19 @@ public:
 	KSElectricKEMField();
 	KSElectricKEMField(const KSElectricKEMField& aCopy);
     KSElectricKEMField(KEMField::KElectricField* field);
-	KSElectricKEMField* Clone() const;
-	virtual ~KSElectricKEMField();
+	KSElectricKEMField* Clone() const override;
+	~KSElectricKEMField() override;
 
 	void SetElectricField(KEMField::KElectricField* field);
 	const KEMField::KElectricField* getElectricField();
 
-	virtual void CalculatePotential( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, double& aPotential );
-	virtual void CalculateField( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, KGeoBag::KThreeVector& aField );
-    virtual void CalculateFieldAndPotential( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, KGeoBag::KThreeVector& aField, double& aPotential);
+	void CalculatePotential( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, double& aPotential ) override;
+	void CalculateField( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, KGeoBag::KThreeVector& aField ) override;
+    void CalculateFieldAndPotential( const KGeoBag::KThreeVector& aSamplePoint, const double& aSampleTime, KGeoBag::KThreeVector& aField, double& aPotential) override;
 
 private:
-    void InitializeComponent();
-    void DeinitializeComponent();
+    void InitializeComponent() override;
+    void DeinitializeComponent() override;
 
 
 	KEMField::KElectricField* fField;

@@ -47,7 +47,7 @@ namespace Kassiopeia
 
         FILE *ionizationFile = fopen( (myPathToTable + "/" + data_filename).c_str(), "r" );
 
-        if( ionizationFile == 0 )
+        if( ionizationFile == nullptr )
         {
             intmsg( eError ) << "KESSPhotoAbsorbtion::ReadIonisationPDF"
                              << ret << "FILE " << myPathToTable + "/" + data_filename
@@ -58,7 +58,7 @@ namespace Kassiopeia
 
         unsigned int lineN = 0;
 
-        while( fgets( line, 195, ionizationFile ) != NULL )
+        while( fgets( line, 195, ionizationFile ) != nullptr )
         {
             sscanf( line, "%lf %lf %lf %lf %lf", &one, &two, &three, &four, &five );
 
@@ -121,7 +121,7 @@ namespace Kassiopeia
     {
         //Dapor 2009 - 	arXiv:0903.4805v1 [cond-mat.mtrl-sci]
         //Shimizu 1992 - Rep. Prog. Phys. (1992) 487-531
-        double tPhi = KRandom::GetInstance().Uniform( 0.0, 2 * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0.0, 2 * katrin::KConst::Pi() );
         double tTheta = std::acos( 1 - 2 * KRandom::GetInstance().Uniform() );
 
         KThreeVector tInitialDirection = aFinalParticle.GetMomentum();

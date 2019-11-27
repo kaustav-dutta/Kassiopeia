@@ -32,7 +32,7 @@ class KFMIdentitySet: public KSAFixedSizeInputOutputObject
         {
             fIDSet = copyObject.fIDSet;
         }
-        virtual ~KFMIdentitySet(){};
+        ~KFMIdentitySet() override{};
 
         unsigned int GetSize() const;
 
@@ -74,8 +74,8 @@ class KFMIdentitySet: public KSAFixedSizeInputOutputObject
 
         //IO
         virtual std::string ClassName() {return std::string("KFMIdentitySet");};
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
 
     protected:
 

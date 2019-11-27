@@ -37,7 +37,7 @@ class KPreconditionedGeneralizedMinimalResidualState: public KGeneralizedMinimal
         typedef KSimpleVector<ValueType> KSimpleVectorType;
 
         KPreconditionedGeneralizedMinimalResidualState():KGeneralizedMinimalResidualState<ValueType>(){};
-        virtual ~KPreconditionedGeneralizedMinimalResidualState(){};
+        ~KPreconditionedGeneralizedMinimalResidualState() override{};
 
         static std::string Name() { return std::string("pgmres"); }
         std::string NameLabel() { return std::string("pgmres"); }
@@ -81,7 +81,7 @@ class KPreconditionedGeneralizedMinimalResidualState: public KGeneralizedMinimal
             }
         };
 
-        virtual void SynchronizeData()
+        void SynchronizeData() override
         {
 
             KGeneralizedMinimalResidualState<ValueType>::SynchronizeData();
@@ -141,7 +141,7 @@ Stream& operator>>(Stream& s, KPreconditionedGeneralizedMinimalResidualState<Val
 {
     s.PreStreamInAction(aData);
 
-    KGeneralizedMinimalResidualState<ValueType>* base = static_cast< KGeneralizedMinimalResidualState<ValueType>* >(&(aData));
+    auto* base = static_cast< KGeneralizedMinimalResidualState<ValueType>* >(&(aData));
     s >> *base;
 
     std::vector< KSimpleVector<ValueType> > z;

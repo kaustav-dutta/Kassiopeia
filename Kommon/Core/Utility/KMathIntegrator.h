@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <vector>
 #include <map>
+#include <utility>
 
 namespace katrin
 {
@@ -271,15 +272,15 @@ inline XFloatT KMathIntegrator<XFloatT, XSamplingPolicy>::Integrate(XIntegrandTy
 
     switch( fMethod ) {
         case KEMathIntegrationMethod::Trapezoidal :
-            return QTrap(integrand);
+            return QTrap(std::forward<XIntegrandType>(integrand));
         case KEMathIntegrationMethod::Simpson :
-            return QSimp(integrand);
+            return QSimp(std::forward<XIntegrandType>(integrand));
         case KEMathIntegrationMethod::K3 :
-            return QRomb(integrand, 3 );
+            return QRomb(std::forward<XIntegrandType>(integrand), 3 );
         case KEMathIntegrationMethod::K4 :
-            return QRomb(integrand, 4 );
+            return QRomb(std::forward<XIntegrandType>(integrand), 4 );
         case KEMathIntegrationMethod::Romberg :
-            return QRomb(integrand, 5 );
+            return QRomb(std::forward<XIntegrandType>(integrand), 5 );
         default :
             throw KMathIntegratorException() << "Invalid integration method specified.";
     }
@@ -290,7 +291,7 @@ template<class XIntegrandType>
 inline XFloatT KMathIntegrator<XFloatT, XSamplingPolicy>::Integrate(XIntegrandType&& integrand, XFloatT xStart, XFloatT xEnd)
 {
     SetRange(xStart, xEnd);
-    return Integrate(integrand);
+    return Integrate(std::forward<XIntegrandType>(integrand));
 }
 
 template<class XFloatT, class XSamplingPolicy>

@@ -11,7 +11,7 @@ namespace KGeoBag
     {
         public:
             KGAnnulusSurface();
-            virtual ~KGAnnulusSurface();
+            ~KGAnnulusSurface() override;
 
         public:
             void Z( const double& aZ );
@@ -48,8 +48,8 @@ namespace KGeoBag
             };
 
         public:
-            virtual void AreaInitialize() const;
-            virtual void AreaAccept( KGVisitor* aVisitor );
+            void AreaInitialize() const override;
+            void AreaAccept( KGVisitor* aVisitor ) override;
     };
 
 }

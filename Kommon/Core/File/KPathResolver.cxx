@@ -6,7 +6,20 @@
 
 #include <sys/stat.h>
 
+#include <boost/filesystem.hpp>
+
 using namespace std;
+
+namespace
+{
+	void filter(std::vector<std::string>& strings, std::string pattern)
+	{
+		auto pos = std::remove_if(std::begin(strings), std::end(strings),
+								  [&](std::string& s) { return s.find(pattern) == std::string::npos ; }) ;
+
+		strings.erase(pos, std::end(strings)) ;
+	}
+}
 
 namespace katrin
 {
@@ -39,6 +52,11 @@ std::string KPathResolver::GetDirectory(KEDirectory directory) const
 #ifdef SCRATCH_INSTALL_DIR
         case KEDirectory::Scratch :
             return AS_STRING( SCRATCH_INSTALL_DIR );
+#endif
+
+#ifdef OUTPUT_INSTALL_DIR
+        case KEDirectory::Output :
+            return AS_STRING( OUTPUT_INSTALL_DIR );
 #endif
 
         default :
@@ -76,5 +94,34 @@ std::string KPathResolver::ResolvePath(const string &filename, KEDirectory direc
 
     return "";
 }
+
+std::vector<std::string> KPathResolver::getAllFileNames(std::string directoryPath) const
+{
+    namespace fs = boost::filesystem ;
+    std::vector<std::string> names ;
+
+    if ( fs::exists(directoryPath) )
+    {
+        fs::directory_iterator it(directoryPath) ;
+        fs::directory_iterator end ;
+
+        while ( it != end )
+        {
+            names.push_back(it->path().filename().string()) ;
+            ++it ;
+        }
+    }
+
+    return names ;
+}
+
+std::vector<std::string> KPathResolver::getAllFilesContaining(std::string NamePattern) const
+{
+	auto names = getAllFileNames(".");
+	filter(names,NamePattern);
+
+	return names;
+}
+
 
 }

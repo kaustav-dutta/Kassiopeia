@@ -87,8 +87,8 @@ namespace Kassiopeia
 
         double x = aFinalParticle.GetSpinX();
         double z = aFinalParticle.GetSpinZ();
-        aFinalParticle.SetSpinX( x*cos( KConst::Pi() / 180 * fAngle ) + z*sin( KConst::Pi() / 180 * fAngle ) );
-        aFinalParticle.SetSpinZ( z*cos( KConst::Pi() / 180 * fAngle ) - x*sin( KConst::Pi() / 180 * fAngle ) );
+        aFinalParticle.SetSpinX( x*cos( katrin::KConst::Pi() / 180 * fAngle ) + z*sin( katrin::KConst::Pi() / 180 * fAngle ) );
+        aFinalParticle.SetSpinZ( z*cos( katrin::KConst::Pi() / 180 * fAngle ) - x*sin( katrin::KConst::Pi() / 180 * fAngle ) );
 
         aFinalParticle.RecalculateSpinBody();
 

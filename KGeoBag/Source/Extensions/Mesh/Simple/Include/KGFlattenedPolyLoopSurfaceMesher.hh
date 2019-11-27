@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGFlattenedPolyLoopSurfaceMesher();
-            virtual ~KGFlattenedPolyLoopSurfaceMesher();
+            ~KGFlattenedPolyLoopSurfaceMesher() override;
 
         protected:
-            void VisitFlattenedClosedPathSurface( KGFlattenedPolyLoopSurface* aFlattenedPolyLoopSurface );
+            void VisitFlattenedClosedPathSurface( KGFlattenedPolyLoopSurface* aFlattenedPolyLoopSurface ) override;
     };
 
 }

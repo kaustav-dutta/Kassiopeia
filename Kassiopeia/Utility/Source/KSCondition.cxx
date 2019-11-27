@@ -8,8 +8,8 @@ namespace Kassiopeia
         fMutex(),
         fCondition()
     {
-        pthread_mutex_init( &fMutex, NULL );
-        pthread_cond_init( &fCondition, NULL );
+        pthread_mutex_init( &fMutex, nullptr );
+        pthread_cond_init( &fCondition, nullptr );
     }
     KSCondition::~KSCondition()
     {

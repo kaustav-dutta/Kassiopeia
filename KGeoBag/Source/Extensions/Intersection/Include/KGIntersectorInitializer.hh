@@ -14,7 +14,7 @@ namespace KGeoBag
   protected:
     KGIntersectorInitializer() {}
   public:
-    virtual ~KGIntersectorInitializer() {}
+    ~KGIntersectorInitializer() override {}
 
     void Visit(KGExtendedSurface< KGIntersectable >* intersectableSurface);
 

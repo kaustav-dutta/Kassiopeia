@@ -23,8 +23,8 @@ namespace KGeoBag
 
   void KGDisk::AreaAccept(KGVisitor* aVisitor)
   {
-    KGDisk::Visitor* tDiskVisitor = dynamic_cast<KGDisk::Visitor*>(aVisitor);
-    if(tDiskVisitor != NULL)
+    auto* tDiskVisitor = dynamic_cast<KGDisk::Visitor*>(aVisitor);
+    if(tDiskVisitor != nullptr)
     {
       tDiskVisitor->Visit(this);
     }

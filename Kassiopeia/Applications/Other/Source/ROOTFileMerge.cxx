@@ -124,19 +124,19 @@ int main( int argc, char** argv )
     }
     mainmsg( eNormal ) << "Analyzing " << argc - 2 << " files" << eom;
 
-    Trees *tInputTrees = new Trees();
-    Trees *tOutputTrees = new Trees();
+    auto *tInputTrees = new Trees();
+    auto *tOutputTrees = new Trees();
 
-    Indices *tIndices = new Indices();
+    auto *tIndices = new Indices();
 
-    DataTreeVector *tRunDataTrees = new DataTreeVector();
-    DataTreeVector *tEventDataTrees = new DataTreeVector();
-    DataTreeVector *tTrackDataTrees = new DataTreeVector();
-    DataTreeVector *tStepDataTrees = new DataTreeVector();
-    DataTreeVector *tOutputRunDataTrees = new DataTreeVector();
-    DataTreeVector *tOutputEventDataTrees = new DataTreeVector();
-    DataTreeVector *tOutputTrackDataTrees = new DataTreeVector();
-    DataTreeVector *tOutputStepDataTrees = new DataTreeVector();
+    auto *tRunDataTrees = new DataTreeVector();
+    auto *tEventDataTrees = new DataTreeVector();
+    auto *tTrackDataTrees = new DataTreeVector();
+    auto *tStepDataTrees = new DataTreeVector();
+    auto *tOutputRunDataTrees = new DataTreeVector();
+    auto *tOutputEventDataTrees = new DataTreeVector();
+    auto *tOutputTrackDataTrees = new DataTreeVector();
+    auto *tOutputStepDataTrees = new DataTreeVector();
 
     //maps for data
     vector< DataMap * > tRunDataMapVector;
@@ -154,7 +154,7 @@ int main( int argc, char** argv )
     string tInputname;
 
     //make output file
-    KRootFile* tOutputRootFile = new KRootFile();
+    auto* tOutputRootFile = new KRootFile();
     string tOutputname( argv[argc-1] );
 
     //make the output file '.root'
@@ -221,22 +221,22 @@ int main( int argc, char** argv )
 
             mainmsg( eDebug ) << "Getting all data branches..." << eom;
             //get all data branches in any data trees found before
-            for( DataTreeVector::iterator tIt = tRunDataTrees->begin(); tIt != tRunDataTrees->end(); tIt += 3 )
+            for( auto tIt = tRunDataTrees->begin(); tIt != tRunDataTrees->end(); tIt += 3 )
             {
                 tRunDataMapVector.push_back( new DataMap() );
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tRunDataMapVector.back() );
             }
-            for( DataTreeVector::iterator tIt = tEventDataTrees->begin(); tIt != tEventDataTrees->end(); tIt += 3 )
+            for( auto tIt = tEventDataTrees->begin(); tIt != tEventDataTrees->end(); tIt += 3 )
             {
                 tEventDataMapVector.push_back( new DataMap() );
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tEventDataMapVector.back() );
             }
-            for( DataTreeVector::iterator tIt = tTrackDataTrees->begin(); tIt != tTrackDataTrees->end(); tIt += 3 )
+            for( auto tIt = tTrackDataTrees->begin(); tIt != tTrackDataTrees->end(); tIt += 3 )
             {
                 tTrackDataMapVector.push_back( new DataMap() );
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tTrackDataMapVector.back() );
             }
-            for( DataTreeVector::iterator tIt = tStepDataTrees->begin(); tIt != tStepDataTrees->end(); tIt += 3 )
+            for( auto tIt = tStepDataTrees->begin(); tIt != tStepDataTrees->end(); tIt += 3 )
             {
                 tStepDataMapVector.push_back( new DataMap() );
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tStepDataMapVector.back() );
@@ -306,25 +306,25 @@ int main( int argc, char** argv )
             mainmsg( eDebug ) << "Getting all data branches..." << eom;
             //get all data branches in any data trees found before
             unsigned int tIndex = 0;
-            for( DataTreeVector::iterator tIt = tRunDataTrees->begin(); tIt != tRunDataTrees->end(); tIt += 3 )
+            for( auto tIt = tRunDataTrees->begin(); tIt != tRunDataTrees->end(); tIt += 3 )
             {
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tRunDataMapVector.at(tIndex) );
                 ++tIndex;
             }
             tIndex = 0;
-            for( DataTreeVector::iterator tIt = tEventDataTrees->begin(); tIt != tEventDataTrees->end(); tIt += 3 )
+            for( auto tIt = tEventDataTrees->begin(); tIt != tEventDataTrees->end(); tIt += 3 )
             {
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tEventDataMapVector.at(tIndex) );
                 ++tIndex;
             }
             tIndex = 0;
-            for( DataTreeVector::iterator tIt = tTrackDataTrees->begin(); tIt != tTrackDataTrees->end(); tIt += 3 )
+            for( auto tIt = tTrackDataTrees->begin(); tIt != tTrackDataTrees->end(); tIt += 3 )
             {
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tTrackDataMapVector.at(tIndex) );
                 ++tIndex;
             }
             tIndex = 0;
-            for( DataTreeVector::iterator tIt = tStepDataTrees->begin(); tIt != tStepDataTrees->end(); tIt += 3 )
+            for( auto tIt = tStepDataTrees->begin(); tIt != tStepDataTrees->end(); tIt += 3 )
             {
                 GetDataBranches( (*tIt).second, (*(tIt+1)).second, (*(tIt+2)).second, tStepDataMapVector.at(tIndex) );
                 ++tIndex;
@@ -375,7 +375,7 @@ int main( int argc, char** argv )
 
 TTree* GetTree( KRootFile *tInputRootFile, TString tName )
 {
-    TTree *tTree = (TTree*) (tInputRootFile->File()->Get( tName ) );
+    auto *tTree = (TTree*) (tInputRootFile->File()->Get( tName ) );
     if( !tTree )
     {
         mainmsg( eError ) << "File <" << tInputRootFile->GetName() << "> has no Tree " << tName << ". Exiting..." << eom;
@@ -386,7 +386,7 @@ TTree* GetTree( KRootFile *tInputRootFile, TString tName )
 
 void CheckLabel( KRootFile *tInputRootFile )
 {
-    TObjString *tLabel = (TObjString*) (tInputRootFile->File()->Get( "LABEL" ));
+    auto *tLabel = (TObjString*) (tInputRootFile->File()->Get( "LABEL" ));
     if( !tLabel )
     {
         mainmsg( eError ) << "File <" << tInputRootFile->GetName() << "> has no LABEL. Probably not a Kassiopeia file. Exiting..." << eom;
@@ -603,7 +603,7 @@ void WriteIndexTrees( KRootFile *tRootFile, Trees *tTrees, Indices *tIndices, co
 
 void WriteDataTrees( KRootFile *tRootFile, DataTreeVector *tOutputDataTreeVector, DataTreeVector *tDataTreeVector )
 {
-    for( DataTreeVector::iterator tIt = tDataTreeVector->begin(); tIt != tDataTreeVector->end(); ++tIt )
+    for( auto tIt = tDataTreeVector->begin(); tIt != tDataTreeVector->end(); ++tIt )
     {
         tOutputDataTreeVector->push_back( make_pair( (*tIt).first, new TTree( (TString) (*tIt).first, (TString) (*tIt).first ) ) );
         tOutputDataTreeVector->back().second->SetDirectory( tRootFile->File() );
@@ -618,71 +618,71 @@ void WriteDataBranches( TTree *tStructureTree, TTree *tPresenceTree, TTree *tDat
     tPresenceTree->Branch( "INDEX", tDataMap->tPresenceIndexPointer, tBufferSize, tSplitSize );
     tPresenceTree->Branch( "LENGTH", tDataMap->tPresenceLengthPointer, tBufferSize, tSplitSize );
 
-    for( map< string, Bool_t >::iterator tIt = tDataMap->tBoolMap.begin(); tIt != tDataMap->tBoolMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tBoolMap.begin(); tIt != tDataMap->tBoolMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, UChar_t >::iterator tIt = tDataMap->tUCharMap.begin(); tIt != tDataMap->tUCharMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tUCharMap.begin(); tIt != tDataMap->tUCharMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Char_t >::iterator tIt = tDataMap->tCharMap.begin(); tIt != tDataMap->tCharMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tCharMap.begin(); tIt != tDataMap->tCharMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, UShort_t >::iterator tIt = tDataMap->tUShortMap.begin(); tIt != tDataMap->tUShortMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tUShortMap.begin(); tIt != tDataMap->tUShortMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Short_t >::iterator tIt = tDataMap->tShortMap.begin(); tIt != tDataMap->tShortMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tShortMap.begin(); tIt != tDataMap->tShortMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, UInt_t >::iterator tIt = tDataMap->tUIntMap.begin(); tIt != tDataMap->tUIntMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tUIntMap.begin(); tIt != tDataMap->tUIntMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Int_t >::iterator tIt = tDataMap->tIntMap.begin(); tIt != tDataMap->tIntMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tIntMap.begin(); tIt != tDataMap->tIntMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, ULong64_t >::iterator tIt = tDataMap->tULongMap.begin(); tIt != tDataMap->tULongMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tULongMap.begin(); tIt != tDataMap->tULongMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Long64_t >::iterator tIt = tDataMap->tLongMap.begin(); tIt != tDataMap->tLongMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tLongMap.begin(); tIt != tDataMap->tLongMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Float_t >::iterator tIt = tDataMap->tFloatMap.begin(); tIt != tDataMap->tFloatMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tFloatMap.begin(); tIt != tDataMap->tFloatMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tDoubleMap.begin(); tIt != tDataMap->tDoubleMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tDoubleMap.begin(); tIt != tDataMap->tDoubleMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, string * >::iterator tIt = tDataMap->tStringPointerMap.begin(); tIt != tDataMap->tStringPointerMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tStringPointerMap.begin(); tIt != tDataMap->tStringPointerMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tTwoVectorXMap.begin(); tIt != tDataMap->tTwoVectorXMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tTwoVectorXMap.begin(); tIt != tDataMap->tTwoVectorXMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tTwoVectorYMap.begin(); tIt != tDataMap->tTwoVectorYMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tTwoVectorYMap.begin(); tIt != tDataMap->tTwoVectorYMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tThreeVectorXMap.begin(); tIt != tDataMap->tThreeVectorXMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tThreeVectorXMap.begin(); tIt != tDataMap->tThreeVectorXMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tThreeVectorYMap.begin(); tIt != tDataMap->tThreeVectorYMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tThreeVectorYMap.begin(); tIt != tDataMap->tThreeVectorYMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }
-    for( map< string, Double_t >::iterator tIt = tDataMap->tThreeVectorZMap.begin(); tIt != tDataMap->tThreeVectorZMap.end(); ++tIt )
+    for( auto tIt = tDataMap->tThreeVectorZMap.begin(); tIt != tDataMap->tThreeVectorZMap.end(); ++tIt )
     {
         tDataTree->Branch( (TString) (*tIt).first, &((*tIt).second), tBufferSize, tSplitSize );
     }

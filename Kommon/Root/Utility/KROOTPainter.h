@@ -12,11 +12,11 @@ namespace katrin
     {
         public:
     		KROOTPainter();
-            virtual ~KROOTPainter();
+            ~KROOTPainter() override;
 
         public:
-            void SetWindow( KWindow* aWindow );
-            void ClearWindow( KWindow* aWindow );
+            void SetWindow( KWindow* aWindow ) override;
+            void ClearWindow( KWindow* aWindow ) override;
 
             void SetDisplayMode( bool aMode );
             void SetWriteMode( bool aMode );

@@ -82,7 +82,7 @@ namespace katrin
   {
     if (anElement->GetName() == "conical_wire_array")
     {
-      KGConicalWireArray* object = NULL;
+      KGConicalWireArray* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGConicalWireArray > smartPtr(object);
@@ -111,7 +111,7 @@ namespace katrin
   {
     if (anElement->GetName() == "conical_wire_array")
     {
-      KGConicalWireArray* object = NULL;
+      KGConicalWireArray* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGConicalWireArray > smartPtr(object);

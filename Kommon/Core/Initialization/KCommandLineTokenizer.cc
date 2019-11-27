@@ -23,7 +23,7 @@ namespace katrin
         string tVariableName;
         string tVariableValue;
 
-        for (env = environ; *env != 0; env++)
+        for (env = environ; *env != nullptr; env++)
         {
             string tEnv(*env);
             stringstream env_stream(tEnv);

@@ -31,16 +31,16 @@ class KFMNodeObjectRemover: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMNodeObjectRemover(){};
-        virtual ~KFMNodeObjectRemover(){};
+        ~KFMNodeObjectRemover() override{};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
             TypeToRemove* remove_this_object = KFMObjectRetriever<ObjectTypeList, TypeToRemove>::GetNodeObject(node);
 
-            if(remove_this_object != NULL)
+            if(remove_this_object != nullptr)
             {
                 delete remove_this_object;
-                KFMObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(NULL, node);
+                KFMObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(nullptr, node);
             }
         }
 

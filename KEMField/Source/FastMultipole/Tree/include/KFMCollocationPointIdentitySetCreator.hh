@@ -30,7 +30,7 @@ template< typename ObjectTypeList, unsigned int SpatialNDIM >
 class KFMCollocationPointIdentitySetCreator
 {
     public:
-        KFMCollocationPointIdentitySetCreator():fTree(NULL),fRootNode(NULL){};
+        KFMCollocationPointIdentitySetCreator():fTree(nullptr),fRootNode(nullptr){};
         virtual ~KFMCollocationPointIdentitySetCreator(){};
 
         void SetTree(KFMCubicSpaceTree<SpatialNDIM, ObjectTypeList>* tree)
@@ -53,10 +53,10 @@ class KFMCollocationPointIdentitySetCreator
                     KFMNode<ObjectTypeList>* node = fNavigator.GetLeafNode();
 
                     //we add this id to the leaf node's collocation point id list
-                    KFMCollocationPointIdentitySet* cpid_set = NULL;
+                    KFMCollocationPointIdentitySet* cpid_set = nullptr;
                     cpid_set = KFMObjectRetriever<ObjectTypeList, KFMCollocationPointIdentitySet >::GetNodeObject(node);
 
-                    if(cpid_set == NULL)
+                    if(cpid_set == nullptr)
                     {
                         //create this collocation point id set and add it to this node
                         cpid_set = new KFMCollocationPointIdentitySet();
@@ -90,10 +90,10 @@ class KFMCollocationPointIdentitySetCreator
                     KFMNode<ObjectTypeList>* node = fNavigator.GetLeafNode();
 
                     //we add this id to the leaf node's collocation point id list
-                    KFMCollocationPointIdentitySet* cpid_set = NULL;
+                    KFMCollocationPointIdentitySet* cpid_set = nullptr;
                     cpid_set = KFMObjectRetriever<ObjectTypeList, KFMCollocationPointIdentitySet >::GetNodeObject(node);
 
-                    if(cpid_set == NULL)
+                    if(cpid_set == nullptr)
                     {
                         //create this collocation point id set and add it to this node
                         cpid_set = new KFMCollocationPointIdentitySet();

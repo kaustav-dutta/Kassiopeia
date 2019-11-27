@@ -22,7 +22,7 @@ KVMFluxIntegral::SetField(const KVMField* aField)
     }
     else
     {
-        fField = NULL;
+        fField = nullptr;
     }
 }
 

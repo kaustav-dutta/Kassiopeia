@@ -168,8 +168,8 @@ namespace KGeoBag
     }
     void KGBoxSpace::VolumeAccept( KGVisitor* aVisitor )
     {
-        KGBoxSpace::Visitor* tBoxSpaceVisitor = dynamic_cast< KGBoxSpace::Visitor* >( aVisitor );
-        if( tBoxSpaceVisitor != NULL )
+        auto* tBoxSpaceVisitor = dynamic_cast< KGBoxSpace::Visitor* >( aVisitor );
+        if( tBoxSpaceVisitor != nullptr )
         {
             tBoxSpaceVisitor->VisitBoxSpace( this );
             return;

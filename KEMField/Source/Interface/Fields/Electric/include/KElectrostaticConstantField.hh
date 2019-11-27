@@ -16,7 +16,7 @@ namespace KEMField
       KElectrostaticField(),
       fField(field) {}
 
-    virtual ~KElectrostaticConstantField() {}
+    ~KElectrostaticConstantField() override {}
 
     void SetField(KThreeVector field) { fField = field; }
     KThreeVector GetField() {return fField;}
@@ -24,11 +24,11 @@ namespace KEMField
     static std::string Name() { return "ElectrostaticConstantFieldSolver"; }
 
 private:
-    virtual double PotentialCore(const KPosition& P) const {
+    double PotentialCore(const KPosition& P) const override {
     	return fField.Dot(P);
     }
 
-    virtual KThreeVector ElectricFieldCore(const KPosition&) const {
+    KThreeVector ElectricFieldCore(const KPosition&) const override {
     	return fField;
     }
 

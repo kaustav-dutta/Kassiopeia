@@ -23,8 +23,8 @@ namespace Kassiopeia
     public:
         KSGenPositionSurfaceAdjustmentStep();
         KSGenPositionSurfaceAdjustmentStep(const KSGenPositionSurfaceAdjustmentStep&);
-        KSGenPositionSurfaceAdjustmentStep* Clone() const;
-        virtual ~KSGenPositionSurfaceAdjustmentStep();
+        KSGenPositionSurfaceAdjustmentStep* Clone() const override;
+        ~KSGenPositionSurfaceAdjustmentStep() override;
 
     public:
         /**
@@ -32,7 +32,7 @@ namespace Kassiopeia
         *
         * \param aPrimaries
         */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
 
     private:
@@ -40,8 +40,8 @@ namespace Kassiopeia
 
 
     protected:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

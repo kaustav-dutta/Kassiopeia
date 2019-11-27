@@ -21,7 +21,7 @@ namespace KEMField
 		  fP0(0.,0.,0.),
 		  fP1(0.,0.,0.),
 		  fCurrent(0.) {}
-    virtual ~KSolenoid() {}
+    ~KSolenoid() override {}
 
     static std::string Name() { return "Solenoid"; }
 
@@ -51,7 +51,7 @@ namespace KEMField
     const KPosition&  GetP0()     const { return fP0; }
     const KPosition&  GetP1()     const { return fP1; }
 
-    void Accept(KElectromagnetVisitor& visitor);
+    void Accept(KElectromagnetVisitor& visitor) override;
 
   protected:
 

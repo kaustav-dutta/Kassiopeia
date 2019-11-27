@@ -31,8 +31,8 @@ const std::string KFMElectrostaticBoundaryIntegratorEngine_SingleThread::fWeight
 
 KFMElectrostaticBoundaryIntegratorEngine_SingleThread::KFMElectrostaticBoundaryIntegratorEngine_SingleThread()
 {
-    fTree = NULL;
-    fContainer = NULL;
+    fTree = nullptr;
+    fContainer = nullptr;
 
     fDegree = 0;
     fTopLevelDivisions = 0;
@@ -434,7 +434,7 @@ KFMElectrostaticBoundaryIntegratorEngine_SingleThread::ComputeDiskMatrixVectorPr
 
     //create a temporary file
     std::string filename("disk_matrix_temp.wle");
-    KEMChunkedFileInterface* fElementFileInterface = new KEMChunkedFileInterface();
+    auto* fElementFileInterface = new KEMChunkedFileInterface();
     fElementFileInterface->OpenFileForWriting(filename);
 
     std::vector<double> tmp;
@@ -542,13 +542,13 @@ KFMElectrostaticBoundaryIntegratorEngine_SingleThread::ComputeFFTWeight(unsigned
 
     //evaluate time for fft's
     unsigned int total_size_cpu = dim_size[1]*dim_size[2]*dim_size[3];
-    std::complex<double>* raw_data_cpu = new std::complex<double>[total_size_cpu];
+    auto* raw_data_cpu = new std::complex<double>[total_size_cpu];
     KFMArrayWrapper< std::complex<double>, 3> input_cpu(raw_data_cpu, &(dim_size[1]) );
 
     #ifdef KEMFIELD_USE_FFTW
     KFMMultidimensionalFastFourierTransformFFTW<3>* fft_cpu = new KFMMultidimensionalFastFourierTransformFFTW<3>();
     #else
-    KFMMultidimensionalFastFourierTransform<3>* fft_cpu = new KFMMultidimensionalFastFourierTransform<3>();
+    auto* fft_cpu = new KFMMultidimensionalFastFourierTransform<3>();
     #endif
 
     fft_cpu->SetForward();

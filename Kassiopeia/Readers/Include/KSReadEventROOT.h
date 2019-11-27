@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSReadEventROOT( TFile* aFile );
-            virtual ~KSReadEventROOT();
+            ~KSReadEventROOT() override;
 
         public:
             unsigned int GetEventIndex() const;

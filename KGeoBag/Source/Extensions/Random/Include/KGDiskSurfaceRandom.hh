@@ -21,14 +21,14 @@ namespace KGeoBag
     {
     public:
         KGDiskSurfaceRandom() : KGShapeRandom() {}
-        virtual ~KGDiskSurfaceRandom() {}
+        ~KGDiskSurfaceRandom() override {}
 
         /**
          * \brief Visitor function to dice the point on the KGDiskSurface.
          *
          * \param aDiskSurface
          */
-        virtual void VisitDiskSurface(KGDiskSurface* aDiskSurface);
+        void VisitDiskSurface(KGDiskSurface* aDiskSurface) override;
     };
 }
 

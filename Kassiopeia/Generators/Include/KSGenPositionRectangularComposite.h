@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenPositionRectangularComposite();
             KSGenPositionRectangularComposite( const KSGenPositionRectangularComposite& aCopy );
-            KSGenPositionRectangularComposite* Clone() const;
-            virtual ~KSGenPositionRectangularComposite();
+            KSGenPositionRectangularComposite* Clone() const override;
+            ~KSGenPositionRectangularComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaryList );
+            void Dice( KSParticleQueue* aPrimaryList ) override;
 
         public:
             void SetXValue( KSGenValue* anXValue );
@@ -49,8 +49,8 @@ namespace Kassiopeia
             std::vector<std::pair<CoordinateType,KSGenValue*> > fValues;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

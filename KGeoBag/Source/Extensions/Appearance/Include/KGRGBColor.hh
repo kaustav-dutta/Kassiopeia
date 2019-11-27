@@ -20,6 +20,7 @@ namespace KGeoBag
             KGRGBColor( const KGRGBColor& aColor );
             KGRGBColor( int aRed, int aGreen, int aBlue );
             virtual ~KGRGBColor();
+            KGRGBColor& operator =(const KGRGBColor& other) = default;
 
             void SetRed( const unsigned char& aRed );
             const unsigned char& GetRed() const;

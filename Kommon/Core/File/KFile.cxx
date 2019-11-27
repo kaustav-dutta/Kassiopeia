@@ -15,6 +15,8 @@ namespace katrin
         fResolvedPath( "" ),
         fResolvedBase( "" ),
         fResolvedName( "" ),
+        fUsingDefaultBase( false ),
+        fUsingDefaultPath( false ),
         fState( eClosed )
     {
     }
@@ -61,8 +63,27 @@ namespace katrin
         return fResolvedName;
     }
 
+    const std::string& KFile::GetDefaultPath() const
+    {
+        return fDefaultPath;
+    }
+    const std::string& KFile::GetDefaultBase() const
+    {
+        return fDefaultBase;
+    }
+
+    bool KFile::IsUsingDefaultBase() const
+    {
+        return fUsingDefaultBase;
+    }
+    bool KFile::IsUsingDefaultPath() const
+    {
+        return fUsingDefaultPath;
+    }
+
     bool KFile::Open( Mode aMode )
     {
+        fUsingDefaultBase = fUsingDefaultPath = false;
         if( fState == eClosed )
         {
             string tFileName;
@@ -124,6 +145,7 @@ namespace katrin
 					if( OpenFileSubclass( tFileName, aMode ) == true )
 					{
 					    SetResolvedAttributes( tFileName );
+                        fUsingDefaultPath = true;
 
 						filemsg_debug( "successfully opened file <" << fResolvedName << ">" << eom );
 
@@ -145,6 +167,7 @@ namespace katrin
 					if( OpenFileSubclass( tFileName, aMode ) == true )
 					{
 					    SetResolvedAttributes( tFileName );
+                        fUsingDefaultBase = true;
 
 						filemsg_debug( "successfully opened file <" << fResolvedName << ">" << eom );
 
@@ -164,6 +187,7 @@ namespace katrin
                 if( OpenFileSubclass( tFileName, aMode ) == true )
                 {
                     SetResolvedAttributes( tFileName );
+                    fUsingDefaultBase = fUsingDefaultPath = true;
 
                     filemsg_debug( "successfully opened file <" << fResolvedName << ">" << eom );
 
@@ -218,6 +242,7 @@ namespace katrin
                 fResolvedPath = string( "" );
                 fResolvedBase = string( "" );
                 fResolvedName = string( "" );
+                fUsingDefaultBase = fUsingDefaultPath = false;
 
                 fState = eClosed;
                 return true;

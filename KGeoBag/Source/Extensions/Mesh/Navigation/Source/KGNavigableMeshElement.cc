@@ -7,7 +7,7 @@ namespace KGeoBag
 KGNavigableMeshElement::KGNavigableMeshElement()
 {
     fType = -1;
-    fMeshElement = NULL;
+    fMeshElement = nullptr;
     fID = -1;
 }
 

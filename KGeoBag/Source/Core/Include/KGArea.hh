@@ -14,7 +14,6 @@
 using katrin::KTagged;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <cmath>
 
@@ -34,7 +33,7 @@ namespace KGeoBag
         public:
             KGArea();
             KGArea( const KGArea& aArea );
-            virtual ~KGArea();
+            ~KGArea() override;
 
         public:
             void Accept( KGVisitor* aVisitor );
@@ -54,7 +53,7 @@ namespace KGeoBag
 
         protected:
             void Check() const;
-            virtual void AreaInitialize() const = 0;
+            virtual void AreaInitialize() const override = 0;
             mutable bool fInitialized;
     };
 

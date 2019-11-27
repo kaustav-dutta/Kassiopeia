@@ -21,7 +21,7 @@ namespace katrin
         }
         if( (aContainer->GetName() == "force")  )
         {
-            KThreeVector* tForce = NULL;
+            KThreeVector* tForce = nullptr;
             aContainer->ReleaseTo( tForce );
             fObject->SetForce( *tForce );
             delete tForce;

@@ -17,7 +17,7 @@ namespace KEMField {
 class KStaticElectromagnetField: public KMagnetostaticField {
 public:
     KStaticElectromagnetField();
-    virtual ~KStaticElectromagnetField();
+    ~KStaticElectromagnetField() override;
 
     void SetDirectory( const std::string& aDirectory );
     void SetFile (const std::string& aFile );
@@ -30,13 +30,13 @@ public:
 
 protected:
 
-    void InitializeCore();
+    void InitializeCore() override;
     void CheckSolverExistance() const;
 
-    KThreeVector MagneticPotentialCore(const KPosition& aSamplePoint) const;
-    KThreeVector MagneticFieldCore(const KPosition& aSamplePoint) const;
-    KGradient MagneticGradientCore(const KPosition& aSamplePoint) const;
-    std::pair<KThreeVector, KGradient> MagneticFieldAndGradientCore(const KPosition& P) const;
+    KThreeVector MagneticPotentialCore(const KPosition& aSamplePoint) const override;
+    KThreeVector MagneticFieldCore(const KPosition& aSamplePoint) const override;
+    KGradient MagneticGradientCore(const KPosition& aSamplePoint) const override;
+    std::pair<KThreeVector, KGradient> MagneticFieldAndGradientCore(const KPosition& P) const override;
 
 private:
     KSmartPointer<KElectromagnetContainer> fContainer;

@@ -34,23 +34,23 @@ class KG2DPolyLine: public KG2DShape
         KG2DPolyLine(const std::vector< std::vector<double> >* ordered_vertices);
         KG2DPolyLine(const std::vector< KTwoVector >* ordered_vertices);
 
-        virtual ~KG2DPolyLine();
+        ~KG2DPolyLine() override;
 
         ///create the polyline by setting the vertices
         ///sides are created from the vertices in a 'connect the dots' manner.
         void SetVertices(const std::vector< std::vector<double> >* ordered_vertices);
         void SetVertices(const std::vector< KTwoVector >* ordered_vertices);
-        virtual void Initialize();
+        void Initialize() override;
 
         //getters
         void GetVertices(std::vector<KTwoVector>* vertices) const;
         void GetSides( std::vector<KG2DLineSegment>* sides) const;
 
         //geometry utilities
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-  virtual KTwoVector Point( const KTwoVector& aPoint) const;
-  virtual KTwoVector Normal( const KTwoVector& aPoint) const;
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+  KTwoVector Point( const KTwoVector& aPoint) const override;
+  KTwoVector Normal( const KTwoVector& aPoint) const override;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
         ///returns true if polyline has no self intersections
         virtual bool IsSimple() const {return fIsSimple;};

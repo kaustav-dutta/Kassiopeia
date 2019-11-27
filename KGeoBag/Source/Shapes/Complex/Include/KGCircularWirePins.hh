@@ -1,7 +1,7 @@
 #ifndef KGCIRCULARWIREPINS_DEF
 #define KGCIRCULARWIREPINS_DEF
 
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -35,7 +35,7 @@ public:
 	{
 	}
 
-	virtual ~KGCircularWirePins() {
+	~KGCircularWirePins() override {
 	}
 
 	static std::string Name() {
@@ -46,10 +46,11 @@ public:
 
 	virtual void Initialize() const {
 	}
+    virtual void AreaInitialize() const override { Initialize(); }
 
 	bool ContainsPoint(const double* P) const;
-	double DistanceTo(const double* P, double* P_in = NULL, double* P_norm =
-			NULL) const;
+	double DistanceTo(const double* P, double* P_in = nullptr, double* P_norm =
+			nullptr) const;
 
 	double GetLength() const;
 	double Area() const;

@@ -69,7 +69,7 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
         };
 
 
-        virtual ~KFMScalarMomentRemoteToRemoteConverter()
+        ~KFMScalarMomentRemoteToRemoteConverter() override
         {
             DeallocateArrays();
 
@@ -194,9 +194,9 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
 
 
         ////////////////////////////////////////////////////////////////////////
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if( node != NULL && node->HasChildren() && node->GetLevel() != 0 )
+            if( node != nullptr && node->HasChildren() && node->GetLevel() != 0 )
             {
                 double child_side_length =
                 KFMObjectRetriever<ObjectTypeList, KFMCube<SpatialNDIM> >::GetNodeObject(node->GetChild(0))->GetLength();
@@ -221,7 +221,7 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
 
                     //if the node has a prexisting expansion we add the collected child moments
                     //otherwise we create a new expansion
-                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) == NULL)
+                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) == nullptr)
                     {
                         fMomentInitializer->ApplyAction(node);
                     }
@@ -254,10 +254,10 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
             for(unsigned int i=0; i<n_children; i++)
             {
                 KFMNode<ObjectTypeList>* child = node->GetChild(i);
-                if(child != NULL)
+                if(child != nullptr)
                 {
                     ScalarMomentType* mom = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child);
-                    if(mom != NULL)
+                    if(mom != nullptr)
                     {
                         //compute the contribution to the parents moments from this child
                         mom->GetMoments(&fChildMoments);
@@ -288,9 +288,9 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
             for(unsigned int i=0; i<n_children; i++)
             {
                 KFMNode<ObjectTypeList>* child = node->GetChild(i);
-                if(child != NULL)
+                if(child != nullptr)
                 {
-                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != NULL)
+                    if( KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != nullptr)
                     {
                         return true;
                     }
@@ -353,10 +353,10 @@ class KFMScalarMomentRemoteToRemoteConverter: public KFMNodeActor< KFMNode<Objec
         {
             if(fAllocated)
             {
-                delete[] fPtrM2MCoeff; fPtrM2MCoeff = NULL;
-                delete fM2MCoeff; fM2MCoeff = NULL;
-                delete[] fPtrChildMoments; fPtrChildMoments = NULL;
-                delete fAllChildMoments; fAllChildMoments = NULL;
+                delete[] fPtrM2MCoeff; fPtrM2MCoeff = nullptr;
+                delete fM2MCoeff; fM2MCoeff = nullptr;
+                delete[] fPtrChildMoments; fPtrChildMoments = nullptr;
+                delete fAllChildMoments; fAllChildMoments = nullptr;
                 fAllocated = false;
             }
         }

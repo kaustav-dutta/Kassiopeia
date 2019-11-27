@@ -83,8 +83,8 @@ namespace KGeoBag
     }
     void KGTorusSurface::AreaAccept( KGVisitor* aVisitor )
     {
-        KGTorusSurface::Visitor* tTorusSurfaceVisitor = dynamic_cast< KGTorusSurface::Visitor* >( aVisitor );
-        if( tTorusSurfaceVisitor != NULL )
+        auto* tTorusSurfaceVisitor = dynamic_cast< KGTorusSurface::Visitor* >( aVisitor );
+        if( tTorusSurfaceVisitor != nullptr )
         {
             tTorusSurfaceVisitor->VisitTorusSurface( this );
             return;

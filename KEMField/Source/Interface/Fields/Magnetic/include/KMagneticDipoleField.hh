@@ -15,11 +15,11 @@ namespace KEMField {
 class KMagneticDipoleField: public KMagnetostaticField {
 public:
     KMagneticDipoleField();
-    virtual ~KMagneticDipoleField();
+    ~KMagneticDipoleField() override;
 private:
-    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint ) const;
-    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint ) const;
-    KGradient MagneticGradientCore( const KPosition& aSamplePoint) const;
+    KThreeVector MagneticPotentialCore( const KPosition& aSamplePoint ) const override;
+    KThreeVector MagneticFieldCore( const KPosition& aSamplePoint ) const override;
+    KGradient MagneticGradientCore( const KPosition& aSamplePoint) const override;
 
 public:
     void SetLocation( const KPosition& aLocation );

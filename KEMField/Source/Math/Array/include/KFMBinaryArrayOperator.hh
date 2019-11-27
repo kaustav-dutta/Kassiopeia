@@ -23,8 +23,8 @@ template<typename T, unsigned int NDIM>
 class KFMBinaryArrayOperator: public KFMArrayOperator<T,NDIM>
 {
     public:
-        KFMBinaryArrayOperator():fFirstInput(NULL),fSecondInput(NULL),fOutput(NULL){;};
-        virtual ~KFMBinaryArrayOperator(){;};
+        KFMBinaryArrayOperator():fFirstInput(nullptr),fSecondInput(nullptr),fOutput(nullptr){;};
+        ~KFMBinaryArrayOperator() override{;};
 
         virtual void SetFirstInput(KFMArrayWrapper<T,NDIM>* in){fFirstInput = in;};
         virtual void SetSecondInput(KFMArrayWrapper<T,NDIM>* in){fSecondInput = in;};
@@ -34,9 +34,9 @@ class KFMBinaryArrayOperator: public KFMArrayOperator<T,NDIM>
         virtual KFMArrayWrapper<T,NDIM>* GetSecondInput(){return fSecondInput;};
         virtual KFMArrayWrapper<T,NDIM>* GetOutput(){return fOutput;};
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
-        virtual void ExecuteOperation() = 0;
+        void ExecuteOperation() override = 0;
 
     protected:
 

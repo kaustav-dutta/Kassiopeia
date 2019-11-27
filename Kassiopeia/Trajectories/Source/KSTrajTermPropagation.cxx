@@ -3,7 +3,7 @@
 #include "KSTrajectoriesMessage.h"
 
 #include "KConst.h"
-#include <math.h>
+#include <cmath>
 
 namespace Kassiopeia
 {
@@ -41,7 +41,7 @@ namespace Kassiopeia
 
         KThreeVector tVelocity = fDirection * aParticle.GetVelocity();
 
-        KThreeVector MagneticMoment = aParticle.GetGyromagneticRatio() * aParticle.GetSpin() / aParticle.GetSpin().Magnitude() * aParticle.GetSpinMagnitude() * KConst::Hbar();
+        KThreeVector MagneticMoment = aParticle.GetGyromagneticRatio() * aParticle.GetSpin() / aParticle.GetSpin().Magnitude() * aParticle.GetSpinMagnitude() * katrin::KConst::Hbar();
         KThreeMatrix MagneticGradient = aParticle.GetMagneticGradient();
 
         double F1 = -MagneticMoment.X() * MagneticGradient[8] + MagneticMoment.Z() * MagneticGradient[2] - MagneticMoment.X() * MagneticGradient[4] + MagneticMoment.Y() * MagneticGradient[1];
@@ -55,9 +55,9 @@ namespace Kassiopeia
         {
           // FU
           double Temp0 = aParticle.GetLorentzFactor() * aParticle.GetElectricField().Dot( aParticle.GetVelocity() );
-          double Temp1 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().X() * KConst::C() + aParticle.GetMagneticField().Z() * aParticle.GetVelocity().Y() * KConst::C() - aParticle.GetMagneticField().Y() * aParticle.GetVelocity().Z() * KConst::C() );
-          double Temp2 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().Y() * KConst::C() - aParticle.GetMagneticField().Z() * aParticle.GetVelocity().X() * KConst::C() + aParticle.GetMagneticField().X() * aParticle.GetVelocity().Z() * KConst::C() );
-          double Temp3 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().Z() * KConst::C() + aParticle.GetMagneticField().Y() * aParticle.GetVelocity().X() * KConst::C() - aParticle.GetMagneticField().X() * aParticle.GetVelocity().Y() * KConst::C() );
+          double Temp1 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().X() * katrin::KConst::C() + aParticle.GetMagneticField().Z() * aParticle.GetVelocity().Y() * katrin::KConst::C() - aParticle.GetMagneticField().Y() * aParticle.GetVelocity().Z() * katrin::KConst::C() );
+          double Temp2 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().Y() * katrin::KConst::C() - aParticle.GetMagneticField().Z() * aParticle.GetVelocity().X() * katrin::KConst::C() + aParticle.GetMagneticField().X() * aParticle.GetVelocity().Z() * katrin::KConst::C() );
+          double Temp3 = aParticle.GetLorentzFactor() * ( aParticle.GetElectricField().Z() * katrin::KConst::C() + aParticle.GetMagneticField().Y() * aParticle.GetVelocity().X() * katrin::KConst::C() - aParticle.GetMagneticField().X() * aParticle.GetVelocity().Y() * katrin::KConst::C() );
 
           // SFU
           SFU = Temp0 * aParticle.GetSpin0() - Temp1 * aParticle.GetSpin().X() - Temp2 * aParticle.GetSpin().Y() - Temp3 * aParticle.GetSpin().Z();
@@ -65,22 +65,22 @@ namespace Kassiopeia
 
         // FS
         double FS0 = aParticle.GetElectricField().Dot( aParticle.GetSpin() );
-        double Temp1 = aParticle.GetElectricField().X() * aParticle.GetSpin0() + aParticle.GetMagneticField().Z() * aParticle.GetSpin().Y() * KConst::C() - aParticle.GetMagneticField().Y() * aParticle.GetSpin().Z() * KConst::C();
-        double Temp2 = aParticle.GetElectricField().Y() * aParticle.GetSpin0() - aParticle.GetMagneticField().Z() * aParticle.GetSpin().X() * KConst::C() + aParticle.GetMagneticField().X() * aParticle.GetSpin().Z() * KConst::C();
-        double Temp3 = aParticle.GetElectricField().Z() * aParticle.GetSpin0() + aParticle.GetMagneticField().Y() * aParticle.GetSpin().X() * KConst::C() - aParticle.GetMagneticField().X() * aParticle.GetSpin().Y() * KConst::C();
+        double Temp1 = aParticle.GetElectricField().X() * aParticle.GetSpin0() + aParticle.GetMagneticField().Z() * aParticle.GetSpin().Y() * katrin::KConst::C() - aParticle.GetMagneticField().Y() * aParticle.GetSpin().Z() * katrin::KConst::C();
+        double Temp2 = aParticle.GetElectricField().Y() * aParticle.GetSpin0() - aParticle.GetMagneticField().Z() * aParticle.GetSpin().X() * katrin::KConst::C() + aParticle.GetMagneticField().X() * aParticle.GetSpin().Z() * katrin::KConst::C();
+        double Temp3 = aParticle.GetElectricField().Z() * aParticle.GetSpin0() + aParticle.GetMagneticField().Y() * aParticle.GetSpin().X() * katrin::KConst::C() - aParticle.GetMagneticField().X() * aParticle.GetSpin().Y() * katrin::KConst::C();
         KThreeVector FS ( Temp1, Temp2, Temp3 );
 
         double SDU;
         {
           // dU/dtau
-          double DU0 = aParticle.GetLorentzFactor() / aParticle.GetMass() / KConst::C() * aParticle.GetVelocity().Dot( tForce );
+          double DU0 = aParticle.GetLorentzFactor() / aParticle.GetMass() / katrin::KConst::C() * aParticle.GetVelocity().Dot( tForce );
           KThreeVector DU = aParticle.GetLorentzFactor() / aParticle.GetMass() * tForce;
           // SdU/dtau
           SDU = aParticle.GetSpin0() * DU0 - aParticle.GetSpin().Dot(DU);
         }
 
-        double tOmega0 = -aParticle.GetGyromagneticRatio() / KConst::C() * ( FS0 + aParticle.GetLorentzFactor() / KConst::C() * SFU ) - aParticle.GetLorentzFactor() / KConst::C() * SDU;
-        KThreeVector tOmega = -aParticle.GetGyromagneticRatio() / KConst::C() * ( FS - aParticle.GetLorentzFactor() * aParticle.GetVelocity() / KConst::C() / KConst::C() * SFU ) + aParticle.GetLorentzFactor() * aParticle.GetVelocity() / KConst::C() / KConst::C() * SDU;
+        double tOmega0 = -aParticle.GetGyromagneticRatio() / katrin::KConst::C() * ( FS0 + aParticle.GetLorentzFactor() / katrin::KConst::C() * SFU ) - aParticle.GetLorentzFactor() / katrin::KConst::C() * SDU;
+        KThreeVector tOmega = -aParticle.GetGyromagneticRatio() / katrin::KConst::C() * ( FS - aParticle.GetLorentzFactor() * aParticle.GetVelocity() / katrin::KConst::C() / katrin::KConst::C() * SFU ) + aParticle.GetLorentzFactor() * aParticle.GetVelocity() / katrin::KConst::C() / katrin::KConst::C() * SDU;
 
         aDerivative.AddToVelocity( tVelocity );
         aDerivative.AddToForce( tForce / TempSN );
@@ -172,8 +172,8 @@ namespace Kassiopeia
 
         KThreeVector tVelocity = fDirection * aParticle.GetVelocity();
         KThreeVector tForce = aParticle.GetCharge() * (aParticle.GetElectricField() + tVelocity.Cross( aParticle.GetMagneticField() ))
-                + aParticle.GetGyromagneticRatio() * aParticle.GetSpinMagnitude() * KConst::Hbar() * aParticle.GetAlignedSpin() * GradBMagnitude
-                + aParticle.GetMagneticField().Magnitude() * aParticle.GetGyromagneticRatio() * aParticle.GetSpinMagnitude() * KConst::Hbar()
+                + aParticle.GetGyromagneticRatio() * aParticle.GetSpinMagnitude() * katrin::KConst::Hbar() * aParticle.GetAlignedSpin() * GradBMagnitude
+                + aParticle.GetMagneticField().Magnitude() * aParticle.GetGyromagneticRatio() * aParticle.GetSpinMagnitude() * katrin::KConst::Hbar()
                 * sqrt( 1 - aParticle.GetAlignedSpin() * aParticle.GetAlignedSpin() ) * ( GradBDirection * c );
         double tMDot = sqrt( 1 - aParticle.GetAlignedSpin() * aParticle.GetAlignedSpin() ) * tVelocity * GradBDirection * c;
         double tPhiDot = - aParticle.GetGyromagneticRatio() * aParticle.GetMagneticField().Magnitude() - aParticle.GetVelocity().Dot( A )

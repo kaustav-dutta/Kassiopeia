@@ -23,7 +23,7 @@ public:
 	typedef KBoundaryMatrixGenerator<ValueType> MatrixGenerator;
 
 	KKrylovChargeDensitySolver();
-	virtual ~KKrylovChargeDensitySolver();
+	~KKrylovChargeDensitySolver() override;
 
 	void SetMatrixGenerator(KSmartPointer<MatrixGenerator > matrixGen);
 	KSmartPointer<const MatrixGenerator> GetMatrixGenerator() const;
@@ -74,7 +74,7 @@ public:
 	}
 
 private:
-	void InitializeCore(KSurfaceContainer& container);
+	void InitializeCore(KSurfaceContainer& container) override;
 	void ComputeSolution(KSurfaceContainer& container);
 
 	KSmartPointer<MatrixGenerator> fMatrixGenerator;

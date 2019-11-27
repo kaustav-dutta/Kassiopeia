@@ -1,7 +1,6 @@
 #include "KGAxialMeshLoop.hh"
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace KGeoBag
 {
@@ -17,7 +16,7 @@ namespace KGeoBag
 
     double KGAxialMeshLoop::Area() const
     {
-        return KConst::Pi() * (fP0 - fP1).Magnitude() * (fP0 + fP1).Y();
+        return katrin::KConst::Pi() * (fP0 - fP1).Magnitude() * (fP0 + fP1).Y();
     }
     double KGAxialMeshLoop::Aspect() const
     {

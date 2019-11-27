@@ -8,7 +8,7 @@ namespace KEMField
 {
   double KZHCoefficientGenerator<KConicSection>::Prefactor() const
   {
-    if (const KElectrostaticBasis* e =
+    if (const auto* e =
 	dynamic_cast<const KElectrostaticBasis*>(fConicSection))
       return e->GetSolution();
     else
@@ -66,7 +66,7 @@ namespace KEMField
 	w[m]=w9[M-m];
     }
 
-    int n_coeffs = (int)coeff.size();
+    auto n_coeffs = (int)coeff.size();
     std::vector<double> P1(n_coeffs,0);
 
     double Z = (fConicSection->GetZ0()+fConicSection->GetZ1())/2.-z0;

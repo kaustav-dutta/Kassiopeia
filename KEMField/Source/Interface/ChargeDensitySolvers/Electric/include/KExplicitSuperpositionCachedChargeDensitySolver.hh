@@ -18,7 +18,7 @@ namespace KEMField {
 class KExplicitSuperpositionCachedChargeDensitySolver : public KChargeDensitySolver {
 public:
     KExplicitSuperpositionCachedChargeDensitySolver();
-    virtual ~KExplicitSuperpositionCachedChargeDensitySolver();
+    ~KExplicitSuperpositionCachedChargeDensitySolver() override;
 
     void SetName( std::string s )
     {
@@ -26,7 +26,7 @@ public:
     }
 
 private:
-    void InitializeCore( KSurfaceContainer& container );
+    void InitializeCore( KSurfaceContainer& container ) override;
 
 public:
     void AddSolutionComponent(KExplicitSuperpositionSolutionComponent* component)

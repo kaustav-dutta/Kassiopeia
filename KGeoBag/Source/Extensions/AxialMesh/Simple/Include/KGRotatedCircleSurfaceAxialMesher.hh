@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGRotatedCircleSurfaceAxialMesher();
-            virtual ~KGRotatedCircleSurfaceAxialMesher();
+            ~KGRotatedCircleSurfaceAxialMesher() override;
 
         protected:
-            void VisitRotatedPathSurface( KGRotatedCircleSurface* aRotatedCircleSurface );
+            void VisitRotatedPathSurface( KGRotatedCircleSurface* aRotatedCircleSurface ) override;
     };
 
 }

@@ -6,7 +6,7 @@ namespace katrin
 {
 
     KROOTPainter::KROOTPainter() :
-        fWindow( NULL ),
+        fWindow( nullptr ),
         fDisplayEnabled( true ),
         fWriteEnabled( true )
     {
@@ -18,10 +18,10 @@ namespace katrin
 
     void KROOTPainter::SetWindow( KWindow* aWindow )
     {
-    	KROOTWindow* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
-        if( tWindow != NULL )
+    	auto* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
+        if( tWindow != nullptr )
         {
-            if( fWindow == NULL )
+            if( fWindow == nullptr )
             {
                 fWindow = tWindow;
                 return;
@@ -34,12 +34,12 @@ namespace katrin
 
     void KROOTPainter::ClearWindow( KWindow* aWindow )
     {
-    	KROOTWindow* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
-        if( tWindow != NULL )
+    	auto* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
+        if( tWindow != nullptr )
         {
             if( fWindow == tWindow )
             {
-                fWindow = NULL;
+                fWindow = nullptr;
                 return;
             }
             utilmsg( eError ) << "cannot use root window <" << tWindow->GetName() << "> with root painter <" << GetName() << ">" << eom;

@@ -16,8 +16,8 @@ namespace Kassiopeia
 
     KESSScatteringCalculator::KESSScatteringCalculator() :
             fInteraction( "none" ),
-            fIonisationCalculator( NULL ),
-            fRelaxationCalculator( NULL )
+            fIonisationCalculator( nullptr ),
+            fRelaxationCalculator( nullptr )
     {
     }
 
@@ -37,7 +37,7 @@ namespace Kassiopeia
         string UnusedReturnValue;
         FILE *MapFile = fopen( (myPathToTable + "/" + data_filename).c_str(), "r" );
 
-        if( MapFile == 0 )
+        if( MapFile == nullptr )
         {
             intmsg( eError ) << "FILE " << myPathToTable + "/" + data_filename << " NOT FOUND!\n"
                              << ret << "CHECK YOUR IO CONFIGFILE FOR DATA DIRECTORY" << eom;
@@ -48,7 +48,7 @@ namespace Kassiopeia
             UnusedReturnValue = fgets( line, 195, MapFile );
         }
 
-        while( fgets( line, 195, MapFile ) != NULL )
+        while( fgets( line, 195, MapFile ) != nullptr )
         {            
             sscanf( line, "%lf %lf %lf", &one, &two, &three );
             if( feof( MapFile ) == false )
@@ -77,7 +77,7 @@ namespace Kassiopeia
         //change filename here
         FILE *elasticTable = fopen( (myPathToTable + "/" + data_filename).c_str(), "r" );
 
-        if( elasticTable == 0 )
+        if( elasticTable == nullptr )
         {
             intmsg( eError ) << "FILE " << myPathToTable + "/" + data_filename << " NOT FOUND!\n"
                              << ret << "CHECK YOUR IO CONFIGFILE FOR DATA DIRECTORY" << eom;
@@ -86,7 +86,7 @@ namespace Kassiopeia
         {
             UnusedReturnValue = fgets( line, 195, elasticTable );
         }
-        while( fgets( line, 195, elasticTable ) != NULL )
+        while( fgets( line, 195, elasticTable ) != nullptr )
         {            
             sscanf( line, "%lf %lf %lf", &one, &two, &three );
             if( feof( elasticTable ) == false )

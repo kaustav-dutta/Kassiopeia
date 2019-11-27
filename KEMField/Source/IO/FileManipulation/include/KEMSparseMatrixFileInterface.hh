@@ -9,7 +9,7 @@
 
 #include <string>
 #include <sstream>
-#include <stdio.h>
+#include <cstdio>
 
 namespace KEMField
 {
@@ -65,7 +65,7 @@ class KEMSparseMatrixFileInterface
 
             std::set< std::string > file_list = KEMFileInterface::GetInstance()->CompleteFileList();
 
-            for(std::set<std::string>::iterator it=file_list.begin(); it!=file_list.end(); ++it)
+            for(auto it=file_list.begin(); it!=file_list.end(); ++it)
             {
                 if(name == *it){return true;};
             }

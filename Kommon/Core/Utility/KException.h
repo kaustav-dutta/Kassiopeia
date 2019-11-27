@@ -21,12 +21,12 @@ class KExceptionBase : public std::exception
 {
 public:
     KExceptionBase();
-    virtual ~KExceptionBase() throw () { }
+    ~KExceptionBase() throw () override { }
 
     KExceptionBase(const KExceptionBase& toCopy);
     void operator= (const KExceptionBase& toCopy);
 
-    const char* what() const throw ();
+    const char* what() const throw () override;
 
 protected:
     std::ostringstream fMessage;

@@ -5,12 +5,12 @@
 namespace katrin
 {
     KElementBase::KElementBase() :
-            fParentElement( NULL ),
-            fAttributes( NULL ),
-            fChildAttribute( NULL ),
+            fParentElement( nullptr ),
+            fAttributes( nullptr ),
+            fChildAttribute( nullptr ),
             fAttributeDepth( 0 ),
-            fElements( NULL ),
-            fChildElement( NULL ),
+            fElements( nullptr ),
+            fChildElement( nullptr ),
             fElementDepth( 0 )
     {
     }
@@ -23,7 +23,7 @@ namespace katrin
         if( (fElementDepth == 0) && (fAttributeDepth == 0) )
         {
             //look up constructor method in the map, complain and exit if not found
-            KElementCIt It = fElements->find( aToken->GetValue() );
+            auto It = fElements->find( aToken->GetValue() );
             if( It == fElements->end() )
             {
                 initmsg( eError ) << "nothing registered for element <" << aToken->GetValue() << "> in element <" << GetName() << ">" << ret;
@@ -60,7 +60,7 @@ namespace katrin
         if( (fElementDepth == 0) && (fAttributeDepth == 0) )
         {
             //look up constructor method in the map, complain and exit if not found
-            KAttributeCIt It = fAttributes->find( aToken->GetValue() );
+            auto It = fAttributes->find( aToken->GetValue() );
             if( It == fAttributes->end() )
             {
                 initmsg( eError ) << "nothing registered for attribute <" << aToken->GetValue() << "> in element <" << GetName() << ">" << ret;
@@ -100,8 +100,8 @@ namespace katrin
             delete fChildAttribute;
 
             //reset child information
-            fChild = NULL;
-            fChildAttribute = NULL;
+            fChild = nullptr;
+            fChildAttribute = nullptr;
             fAttributeDepth = 0;
             return;
         }
@@ -174,8 +174,8 @@ namespace katrin
             //delete child element
             delete fChildElement;
 
-            fChild = NULL;
-            fChildElement = NULL;
+            fChild = nullptr;
+            fChildElement = nullptr;
             fElementDepth = 0;
             return;
         }

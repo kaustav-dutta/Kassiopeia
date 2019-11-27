@@ -40,7 +40,7 @@ namespace Kassiopeia
         bool tHasPhiValue = false;
         bool tHasZValue = false;
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             tHasRValue = tHasRValue | ( (*tIt).first == eRadius );
             tHasPhiValue = tHasPhiValue | ( (*tIt).first == ePhi );
@@ -84,7 +84,7 @@ namespace Kassiopeia
                     for( tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); tParticleIt++ )
                     {
                         double tRValue = tCylindricalPosition[0];
-                        double tPhiValue = (KConst::Pi() / 180.) * tCylindricalPosition[1];
+                        double tPhiValue = (katrin::KConst::Pi() / 180.) * tCylindricalPosition[1];
                         double tZValue = tCylindricalPosition[2];
 
                         tParticle = new KSParticle( **tParticleIt );
@@ -134,7 +134,7 @@ namespace Kassiopeia
     void KSGenPositionCylindricalComposite::SetRValue( KSGenValue* anRValue )
     {
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -149,7 +149,7 @@ namespace Kassiopeia
 
     void KSGenPositionCylindricalComposite::ClearRValue( KSGenValue* anRValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -166,7 +166,7 @@ namespace Kassiopeia
 
     void KSGenPositionCylindricalComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -181,7 +181,7 @@ namespace Kassiopeia
     }
     void KSGenPositionCylindricalComposite::ClearPhiValue( KSGenValue* anPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -198,7 +198,7 @@ namespace Kassiopeia
 
     void KSGenPositionCylindricalComposite::SetZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -213,7 +213,7 @@ namespace Kassiopeia
     }
     void KSGenPositionCylindricalComposite::ClearZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -230,7 +230,7 @@ namespace Kassiopeia
 
     void KSGenPositionCylindricalComposite::InitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Initialize();
         }
@@ -238,7 +238,7 @@ namespace Kassiopeia
     }
     void KSGenPositionCylindricalComposite::DeinitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Deinitialize();
         }

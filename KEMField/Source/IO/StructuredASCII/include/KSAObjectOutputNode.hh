@@ -48,13 +48,13 @@ class KSAObjectOutputNode: public KSAOutputNode
 
         KSAObjectOutputNode(std::string name, const T* obj):KSAOutputNode(name),fObject(obj){;};
 
-        KSAObjectOutputNode(std::string name):KSAOutputNode(name),fObject(NULL){;};
+        KSAObjectOutputNode(std::string name):KSAOutputNode(name),fObject(nullptr){;};
 
-        KSAObjectOutputNode():KSAOutputNode(),fObject(NULL){;};
+        KSAObjectOutputNode():KSAOutputNode(),fObject(nullptr){;};
 
-        virtual ~KSAObjectOutputNode(){;};
+        ~KSAObjectOutputNode() override{;};
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
         void AttachObjectToNode(const T* object_ptr)
         {
@@ -62,7 +62,7 @@ class KSAObjectOutputNode: public KSAOutputNode
             fObject->DefineOutputNode(this);
         };
 
-        void DetachObjectFromNode(){fObject = NULL;};
+        void DetachObjectFromNode(){fObject = nullptr;};
 
         const T* GetObject() const {return fObject;};
 
@@ -92,9 +92,9 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
             fTagSuppression = true;
         };
 
-        KSAObjectOutputNode():KSAOutputNode(),fObject(NULL){;};
+        KSAObjectOutputNode():KSAOutputNode(),fObject(nullptr){;};
 
-        virtual ~KSAObjectOutputNode(){;};
+        ~KSAObjectOutputNode() override{;};
 
         void AttachObjectToNode(const T* object_ptr)
         {
@@ -102,19 +102,19 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
             fObject->DefineOutputNode(this);
         };
 
-        void DetachObjectFromNode(){fObject = NULL;};
+        void DetachObjectFromNode(){fObject = nullptr;};
 
         const T* GetObject() const {return fObject;};
 
         //need to redefine the following functions which were originally defined in KSAOutputNode
 
-        virtual bool IsComposite(){return true;};
+        bool IsComposite() override{return true;};
 
-        virtual bool TagsAreSuppressed(){return fTagSuppression;}
+        bool TagsAreSuppressed() override{return fTagSuppression;}
 
-        virtual void Initialize(){;}; //maybe don't need to do anything with this one
+        void Initialize() override{;}; //maybe don't need to do anything with this one
 
-        virtual void AddChild(KSAOutputNode* child)
+        void AddChild(KSAOutputNode* child) override
         {
             if( child->IsComposite() && !(child->TagsAreSuppressed()) )
             {
@@ -134,13 +134,13 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
 //            return fStatus;
 //        }
 
-        virtual void Reset()
+        void Reset() override
         {
             fTagSuppression = true;
             fIndex = 0;
             fStatus = KSANODE_STAY;
             fSingle = 0;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 delete fChildren[i];
@@ -149,13 +149,13 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
             fChildren.clear();
         }
 
-        virtual bool HasChildren() const
+        bool HasChildren() const override
         {
             if( fChildren.size() == 0 ){return false;};
             return true;
         };
 
-        virtual void GetLine(std::string& line)
+        void GetLine(std::string& line) override
         {
 
             if(fChildren.size() != 0)
@@ -175,7 +175,7 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
                     {
                         fChildren[fIndex]->GetLine(line);
                         fStatus = KSANODE_STAY;
-                        fNextNode = NULL;
+                        fNextNode = nullptr;
                         fIndex++;
                     }
                 }
@@ -183,7 +183,7 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
                 {
                     line = GetStopTag() + std::string(LINE_DELIM); //close out the current node
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
             }
             else
@@ -194,14 +194,14 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
                 {
                     line = GetSingleLine() + std::string(LINE_DELIM);
                     fStatus = KSANODE_STAY;
-                    fNextNode = NULL;
+                    fNextNode = nullptr;
                     fSingle = 1;
                 }
                 else
                 {
                     line = GetStopTag() + std::string(LINE_DELIM);
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
 
             }
@@ -213,7 +213,7 @@ class KSAObjectOutputNode<T , 1>: public KSAOutputNode
 
         //must defined in a POD node, in composite nodes it is never called
         //^^breaking the above rule, this is a composite node!
-        virtual std::string GetSingleLine()
+        std::string GetSingleLine() override
         {
             //loop over children adding their strings into a single line, they must
             //return a single line string!!
@@ -270,12 +270,12 @@ class KSAObjectOutputNode< std::vector< T > >: public KSAOutputNode
             //all elements must have the same name, this is required by input
         };
 
-        virtual ~KSAObjectOutputNode()
+        ~KSAObjectOutputNode() override
         {
             delete fElementNode;
         };
 
-        virtual void Initialize()
+        void Initialize() override
         {
 
         };
@@ -289,7 +289,7 @@ class KSAObjectOutputNode< std::vector< T > >: public KSAOutputNode
 
         const std::vector< T >* GetObject() const {return fObject;};
 
-        virtual void GetLine(std::string& line)
+        void GetLine(std::string& line) override
         {
             if(fObject->size() != 0)
             {
@@ -312,7 +312,7 @@ class KSAObjectOutputNode< std::vector< T > >: public KSAOutputNode
                 {
                     line = GetStopTag() + std::string(LINE_DELIM); //close out the current node
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
             }
             else
@@ -320,7 +320,7 @@ class KSAObjectOutputNode< std::vector< T > >: public KSAOutputNode
                 //vector is empty, so close it out with no elements
                 line = GetStopTag() + std::string(LINE_DELIM);
                 fStatus = KSANODE_MOVE_UPWARD;
-                fNextNode = NULL; //next node is parent
+                fNextNode = nullptr; //next node is parent
             }
         }
 
@@ -360,18 +360,18 @@ class KSAObjectOutputNode< std::vector< T* > >: public KSAOutputNode
             fElementNode = new KSAObjectOutputNode< T, KSAIsDerivedFrom< T, KSAFixedSizeInputOutputObject >::Is >();
         };
 
-        KSAObjectOutputNode():KSAOutputNode(),fObject(NULL)
+        KSAObjectOutputNode():KSAOutputNode(),fObject(nullptr)
         {
             //fElementNode = new KSAObjectOutputNode< T >();
             fElementNode = new KSAObjectOutputNode< T, KSAIsDerivedFrom< T, KSAFixedSizeInputOutputObject >::Is >();
         };
 
-        virtual ~KSAObjectOutputNode()
+        ~KSAObjectOutputNode() override
         {
             delete fElementNode;
         };
 
-        virtual void Initialize()
+        void Initialize() override
         {
 
         };
@@ -381,11 +381,11 @@ class KSAObjectOutputNode< std::vector< T* > >: public KSAOutputNode
             fObject = object_ptr;
         };
 
-        void DetachObjectFromNode(){fObject = NULL;};
+        void DetachObjectFromNode(){fObject = nullptr;};
 
         const std::vector< T* >* GetObject() const {return fObject;};
 
-        virtual void GetLine(std::string& line)
+        void GetLine(std::string& line) override
         {
             if(fObject->size() != 0)
             {
@@ -411,7 +411,7 @@ class KSAObjectOutputNode< std::vector< T* > >: public KSAOutputNode
                 {
                     line = GetStopTag() + std::string(LINE_DELIM); //close out the current node
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
             }
             else
@@ -419,7 +419,7 @@ class KSAObjectOutputNode< std::vector< T* > >: public KSAOutputNode
                 //vector is empty, so close it out with no elements
                 line = GetStopTag() + std::string(LINE_DELIM);
                 fStatus = KSANODE_MOVE_UPWARD;
-                fNextNode = NULL; //next node is parent
+                fNextNode = nullptr; //next node is parent
             }
         }
 
@@ -471,12 +471,12 @@ class KSAObjectOutputNode< std::list< T > >: public KSAOutputNode
             fElementNode = new KSAObjectOutputNode< T, KSAIsDerivedFrom< T, KSAFixedSizeInputOutputObject >::Is >();
         };
 
-        virtual ~KSAObjectOutputNode()
+        ~KSAObjectOutputNode() override
         {
             delete fElementNode;
         };
 
-        virtual void Initialize()
+        void Initialize() override
         {
 
         };
@@ -492,7 +492,7 @@ class KSAObjectOutputNode< std::list< T > >: public KSAOutputNode
 
         const std::list< T >* GetObject() const {return fObject;};
 
-        virtual void GetLine(std::string& line)
+        void GetLine(std::string& line) override
         {
             if(fFirstCall)
             {

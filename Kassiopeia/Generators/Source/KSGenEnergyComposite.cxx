@@ -5,7 +5,7 @@ namespace Kassiopeia
 {
 
     KSGenEnergyComposite::KSGenEnergyComposite() :
-            fEnergyValue( NULL )
+            fEnergyValue( nullptr )
     {
     }
     KSGenEnergyComposite::KSGenEnergyComposite( const KSGenEnergyComposite& aCopy ) :
@@ -71,7 +71,7 @@ namespace Kassiopeia
 
     void KSGenEnergyComposite::SetEnergyValue( KSGenValue* anEnergyValue )
     {
-        if( fEnergyValue == NULL )
+        if( fEnergyValue == nullptr )
         {
             fEnergyValue = anEnergyValue;
             return;
@@ -85,7 +85,7 @@ namespace Kassiopeia
     {
         if( fEnergyValue == anEnergyValue )
         {
-            fEnergyValue = NULL;
+            fEnergyValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear energy value <"
@@ -96,7 +96,7 @@ namespace Kassiopeia
 
     void KSGenEnergyComposite::InitializeComponent()
     {
-        if( fEnergyValue != NULL )
+        if( fEnergyValue != nullptr )
         {
             fEnergyValue->Initialize();
         }
@@ -104,7 +104,7 @@ namespace Kassiopeia
     }
     void KSGenEnergyComposite::DeinitializeComponent()
     {
-        if( fEnergyValue != NULL )
+        if( fEnergyValue != nullptr )
         {
             fEnergyValue->Deinitialize();
         }

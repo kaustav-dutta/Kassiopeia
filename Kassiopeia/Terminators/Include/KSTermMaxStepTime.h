@@ -16,12 +16,12 @@ namespace Kassiopeia
         public:
             KSTermMaxStepTime();
             KSTermMaxStepTime( const KSTermMaxStepTime& aCopy );
-            KSTermMaxStepTime* Clone() const;
-            virtual ~KSTermMaxStepTime();
+            KSTermMaxStepTime* Clone() const override;
+            ~KSTermMaxStepTime() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetTime( const double& aValue );

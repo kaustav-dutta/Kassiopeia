@@ -26,7 +26,7 @@ KFMPinchonJMatrixCalculator::AllocateMatrices(std::vector< kfm_matrix* >* matric
     {
         unsigned int nrows = (2*l + 1);
         unsigned int ncolumns = (2*l + 1);
-        kfm_matrix* m = NULL;
+        kfm_matrix* m = nullptr;
         m = kfm_matrix_alloc(nrows, ncolumns);
         matrices->push_back(m);
     }
@@ -39,7 +39,7 @@ KFMPinchonJMatrixCalculator::DeallocateMatrices(std::vector< kfm_matrix* >* matr
 {
     for(unsigned int l=0; l < matrices->size(); l++)
     {
-        if(matrices->at(l) != NULL)
+        if(matrices->at(l) != nullptr)
         {
             kfm_matrix_free(matrices->at(l));
         }
@@ -51,7 +51,7 @@ KFMPinchonJMatrixCalculator::DeallocateMatrices(std::vector< kfm_matrix* >* matr
 bool
 KFMPinchonJMatrixCalculator::ComputeMatrices(std::vector< kfm_matrix* >* matrices)
 {
-    if(matrices == NULL){return false;}
+    if(matrices == nullptr){return false;}
 
     kfm_matrix* j_target;
     kfm_matrix* j_prev;
@@ -177,7 +177,7 @@ KFMPinchonJMatrixCalculator::CheckMatrixSizes(std::vector< kfm_matrix* >* matric
     {
         unsigned int nrows = (2*l + 1);
         unsigned int ncolumns = (2*l + 1);
-        if(matrices->at(l) == NULL){return false;};
+        if(matrices->at(l) == nullptr){return false;};
         if(nrows != matrices->at(l)->size1){return false;};
         if(ncolumns != matrices->at(l)->size2){return false;};
     }

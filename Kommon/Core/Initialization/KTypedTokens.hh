@@ -13,9 +13,9 @@ namespace katrin
         public:
             KTypedToken();
             KTypedToken( const KTypedToken& aToken );
-            virtual ~KTypedToken();
+            ~KTypedToken() override;
 
-            virtual KToken* Clone();
+            KToken* Clone() override;
     };
 
     template< class XType >

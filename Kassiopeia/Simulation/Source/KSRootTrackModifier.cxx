@@ -5,8 +5,8 @@ namespace Kassiopeia
 {
     KSRootTrackModifier::KSRootTrackModifier() :
         fModifiers(128),
-        fModifier( NULL ),
-        fTrack(NULL)
+        fModifier( nullptr ),
+        fTrack(nullptr)
     {
     }
 

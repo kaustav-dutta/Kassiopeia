@@ -17,11 +17,11 @@ namespace Kassiopeia
         public:
             KSGenPositionCylindricalComposite();
             KSGenPositionCylindricalComposite( const KSGenPositionCylindricalComposite& aCopy );
-            KSGenPositionCylindricalComposite* Clone() const;
-            virtual ~KSGenPositionCylindricalComposite();
+            KSGenPositionCylindricalComposite* Clone() const override;
+            ~KSGenPositionCylindricalComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaryList );
+            void Dice( KSParticleQueue* aPrimaryList ) override;
 
         public:
             void SetOrigin( const KThreeVector& anOrigin );
@@ -54,8 +54,8 @@ namespace Kassiopeia
 
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

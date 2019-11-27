@@ -32,9 +32,9 @@ namespace katrin {
 class KUnknown {
   public:
     // use RTTI to get actual type //
-    KUnknown(void) {}
+    KUnknown() {}
     virtual ~KUnknown() {}
-    virtual KUnknown* Clone(void) const = 0;
+    virtual KUnknown* Clone() const = 0;
 };
 
 
@@ -43,7 +43,7 @@ class KUnknown {
  */
 class KVariant {
   public:
-    inline KVariant(void);
+    inline KVariant();
     inline KVariant(bool Value);
     inline KVariant(int Value);
     inline KVariant(unsigned int Value);
@@ -61,7 +61,7 @@ class KVariant {
     inline KVariant& operator=(const KVariant& Value);
     inline void Assign(const KVariant& Value) ;
   public:
-    template<typename T> inline T As(void) const ;
+    template<typename T> inline T As() const ;
     inline operator bool() const ;
     inline operator int() const ;
     inline operator unsigned int() const ;
@@ -74,18 +74,18 @@ class KVariant {
     inline operator std::string() const;
     inline operator const KUnknown&() const ;
   public:
-    inline bool IsVoid(void) const;
-    inline bool IsBool(void) const;
-    inline bool IsInteger(void) const;
-    inline bool IsNumeric(void) const;
-    inline bool IsString(void) const;
-    inline bool IsUnknown(void) const;
-    bool AsBool(void) const ;
-    long long AsLong(void) const;
-    double AsDouble(void) const;
+    inline bool IsVoid() const;
+    inline bool IsBool() const;
+    inline bool IsInteger() const;
+    inline bool IsNumeric() const;
+    inline bool IsString() const;
+    inline bool IsUnknown() const;
+    bool AsBool() const ;
+    long long AsLong() const;
+    double AsDouble() const;
     std::string AsString(int precision=-1) const;
-    KUnknown& AsUnknown(void);
-    const KUnknown& AsUnknown(void) const;
+    KUnknown& AsUnknown();
+    const KUnknown& AsUnknown() const;
   public:
     inline KVariant Or(const KVariant& DefaultValue) const;
     std::map<int, KVariant> SplitBy(const std::string& Separator, std::vector<KVariant> DefaultValueList={}) const;
@@ -213,7 +213,7 @@ template<> struct KVariantDecoder<const KUnknown&> {
 
 
 
-KVariant::KVariant(void)
+KVariant::KVariant()
 : fType(Type_Void)
 {
 }
@@ -365,7 +365,7 @@ void KVariant::Assign(const KVariant& Value)
 }
 
 template <typename T> 
-inline T KVariant::As(void) const 
+inline T KVariant::As() const 
 {
     return katrin::KVariantDecoder<T>::As(*this);
 }
@@ -425,32 +425,32 @@ KVariant::operator const KUnknown&() const
     return As<const KUnknown&>();
 }
 
-bool KVariant::IsVoid(void) const
+bool KVariant::IsVoid() const
 {
     return (fType == Type_Void);
 }
 
-bool KVariant::IsBool(void) const
+bool KVariant::IsBool() const
 {
     return (fType == Type_Bool);
 }
 
-bool KVariant::IsInteger(void) const
+bool KVariant::IsInteger() const
 {
     return (fType == Type_Long);
 }
 
-bool KVariant::IsNumeric(void) const
+bool KVariant::IsNumeric() const
 {
     return ((fType == Type_Long) || (fType == Type_Double));
 }
 
-bool KVariant::IsString(void) const
+bool KVariant::IsString() const
 {
     return (fType == Type_String);
 }
 
-bool KVariant::IsUnknown(void) const
+bool KVariant::IsUnknown() const
 {
     return (fType == Type_Unknown);
 }

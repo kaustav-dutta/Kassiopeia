@@ -8,7 +8,7 @@ using katrin::KRandom;
 #include <limits>
 using std::numeric_limits;
 
-#include <math.h>
+#include <cmath>
 
 namespace Kassiopeia
 {
@@ -37,9 +37,9 @@ namespace Kassiopeia
 
       double CycleFlipProbability = 1 / aParticle.GetGyromagneticRatio() / aParticle.GetGyromagneticRatio() / aParticle.GetMagneticField().MagnitudeSquared()
                     * BDirectionDot.MagnitudeSquared()
-                    * sin( KConst::Pi() * ( 1 - aParticle.GetAlignedSpin() ) ) * sin( KConst::Pi() * ( 1 - aParticle.GetAlignedSpin() ) );
+                    * sin( katrin::KConst::Pi() * ( 1 - aParticle.GetAlignedSpin() ) ) * sin( katrin::KConst::Pi() * ( 1 - aParticle.GetAlignedSpin() ) );
 
-      aTransitionRate = std::fabs( CycleFlipProbability * aParticle.GetGyromagneticRatio() * aParticle.GetMagneticField().Magnitude() / 2 / KConst::Pi() );
+      aTransitionRate = std::fabs( CycleFlipProbability * aParticle.GetGyromagneticRatio() * aParticle.GetMagneticField().Magnitude() / 2 / katrin::KConst::Pi() );
     }
 
     void KSIntSpinFlip::CalculateInteraction(
@@ -82,7 +82,7 @@ namespace Kassiopeia
     {
         aFinalParticle = anInteractionParticle;
         aFinalParticle.SetAlignedSpin( -1 * aFinalParticle.GetAlignedSpin() );
-        aFinalParticle.SetSpinAngle( aFinalParticle.GetSpinAngle() + KConst::Pi() );
+        aFinalParticle.SetSpinAngle( aFinalParticle.GetSpinAngle() + katrin::KConst::Pi() );
     }
 
 }

@@ -9,7 +9,7 @@ namespace KGeoBag
 
     void KGDiscreteRotationalMeshData::Clear()
     {
-        KGDiscreteRotationalMeshElementIt it = fElements.begin();
+        auto it = fElements.begin();
         while( it != fElements.end() )
         {
             if( *it )

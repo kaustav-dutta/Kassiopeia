@@ -56,7 +56,7 @@ namespace KGeoBag
         fAngleStop(360)
         {
         }
-        virtual ~KGShellPathSurface()
+        ~KGShellPathSurface() override
         {
         }
 
@@ -126,22 +126,22 @@ namespace KGeoBag
         mutable double fAngleStop;
 
     public:
-        virtual void AreaInitialize() const
+        void AreaInitialize() const override
         {
             return;
         }
-        virtual void AreaAccept( KGVisitor* aVisitor )
+        void AreaAccept( KGVisitor* aVisitor ) override
         {
             shapemsg_debug( "shell path area named <" << GetName() << "> is receiving a visitor" << eom );
-            typename KGShellPathSurface< XPathType >::Visitor* tShellPathSurfaceVisitor = dynamic_cast< typename KGShellPathSurface< XPathType >::Visitor* >( aVisitor );
-            if( tShellPathSurfaceVisitor != NULL )
+            auto* tShellPathSurfaceVisitor = dynamic_cast< typename KGShellPathSurface< XPathType >::Visitor* >( aVisitor );
+            if( tShellPathSurfaceVisitor != nullptr )
             {
                 shapemsg_debug( "shell path area named <" << GetName() << "> is accepting a visitor" << eom );
                 tShellPathSurfaceVisitor->VisitShellPathSurface( this );
             }
             return;
         }
-        virtual bool AreaAbove( const KThreeVector& aPoint ) const
+        bool AreaAbove( const KThreeVector& aPoint ) const override
         {
             KTwoVector tZRPoint = aPoint.ProjectZR();
             bool tZRAbove = fPath->Above( tZRPoint );
@@ -154,13 +154,13 @@ namespace KGeoBag
                 return false;
             }
         }
-        virtual KThreeVector AreaPoint( const KThreeVector& aPoint ) const
+        KThreeVector AreaPoint( const KThreeVector& aPoint ) const override
         {
         	NearestPointInfo info = CalculateNearestPointInfo( aPoint );
             KTwoVector tZRNearest = fPath->Point( info.tZRPoint );
             return KThreeVector( cos( info.tAngleNearest ) * tZRNearest.R(), sin( info.tAngleNearest ) * tZRNearest.R(), tZRNearest.Z() );
         }
-        virtual KThreeVector AreaNormal( const KThreeVector& aPoint ) const
+        KThreeVector AreaNormal( const KThreeVector& aPoint ) const override
         {
         	NearestPointInfo info = CalculateNearestPointInfo( aPoint );
             KTwoVector tZRNormal = fPath->Normal( info.tZRPoint );
@@ -202,7 +202,7 @@ namespace KGeoBag
 
         static KGPlanarPath* CompilerCheck()
         {
-            XPathType* tPath = NULL;
+            XPathType* tPath = nullptr;
             return tPath;
         }
     };

@@ -16,7 +16,7 @@ class KVTKViewerAsBoundaryFieldVisitor : public KElectrostaticBoundaryField::Vis
 {
 public:
 	KVTKViewerAsBoundaryFieldVisitor();
-	virtual ~KVTKViewerAsBoundaryFieldVisitor();
+	~KVTKViewerAsBoundaryFieldVisitor() override;
 
 
 	void ViewGeometry( bool choice )
@@ -44,8 +44,8 @@ public:
 		return fSaveGeometry;
 	}
 
-	void PreVisit( KElectrostaticBoundaryField& );
-	void PostVisit( KElectrostaticBoundaryField& );
+	void PreVisit( KElectrostaticBoundaryField& ) override;
+	void PostVisit( KElectrostaticBoundaryField& ) override;
 
 private:
 

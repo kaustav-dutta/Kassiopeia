@@ -12,7 +12,7 @@ namespace KGeoBag
     {
         public:
             KGDiscreteRotationalMeshAttributor();
-            virtual ~KGDiscreteRotationalMeshAttributor();
+            ~KGDiscreteRotationalMeshAttributor() override;
 
         public:
             void AddSurface( KGSurface* aSurface );

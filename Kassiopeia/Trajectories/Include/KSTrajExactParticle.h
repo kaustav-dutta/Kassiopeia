@@ -12,7 +12,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajExactParticle();
-            ~KSTrajExactParticle();
+            ~KSTrajExactParticle() override;
+            KSTrajExactParticle(const KSTrajExactParticle& other) = default;
 
             //**********
             //assignment

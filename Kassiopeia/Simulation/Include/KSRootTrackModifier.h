@@ -16,16 +16,16 @@ namespace Kassiopeia
     public:
         KSRootTrackModifier();
         KSRootTrackModifier( const KSRootTrackModifier& aCopy );
-        KSRootTrackModifier* Clone() const;
-        virtual ~KSRootTrackModifier();
+        KSRootTrackModifier* Clone() const override;
+        ~KSRootTrackModifier() override;
 
         //**********
         // modifier
         //**********
 
     public:
-        bool ExecutePreTrackModification( KSTrack& aTrack );
-        bool ExecutePostTrackModification( KSTrack& aTrack );
+        bool ExecutePreTrackModification( KSTrack& aTrack ) override;
+        bool ExecutePostTrackModification( KSTrack& aTrack ) override;
 
         //***********
         //composition
@@ -49,8 +49,8 @@ namespace Kassiopeia
         bool ExecutePreTrackModification();
         bool ExecutePostTrackModification();
 
-        virtual void PushUpdateComponent();
-        virtual void PushDeupdateComponent();
+        void PushUpdateComponent() override;
+        void PushDeupdateComponent() override;
 
     private:
 

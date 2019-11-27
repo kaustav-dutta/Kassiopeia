@@ -31,7 +31,7 @@ class KFMScalarMomentDistributor:  public KFMNodeActor< KFMNode<ObjectTypeList> 
 {
     public:
         KFMScalarMomentDistributor(){fNTerms = 0;};
-        virtual ~KFMScalarMomentDistributor(){;};
+        ~KFMScalarMomentDistributor() override{;};
 
         virtual void SetNumberOfTermsInSeries(unsigned int n_terms)
         {
@@ -61,11 +61,11 @@ class KFMScalarMomentDistributor:  public KFMNodeActor< KFMNode<ObjectTypeList> 
         };
 
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
-                if(KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) != NULL )
+                if(KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) != nullptr )
                 {
                     if(fUseExpansionAdd)
                     {

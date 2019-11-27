@@ -19,7 +19,7 @@ namespace KGeoBag
         {
             tExtension = *tIt;
             tOtherExtension = dynamic_cast< KGExtendedSurface< XExtension >* >( tExtension );
-            if( tOtherExtension != NULL )
+            if( tOtherExtension != nullptr )
             {
                 return true;
             }
@@ -55,12 +55,12 @@ namespace KGeoBag
         {
             tExtension = *tIt;
             tOtherExtension = dynamic_cast< KGExtendedSurface< XExtension >* >( tExtension );
-            if( tOtherExtension != NULL )
+            if( tOtherExtension != nullptr )
             {
                 return tOtherExtension;
             }
         }
-        return NULL;
+        return nullptr;
     }
 
     template< class XExtension >
@@ -73,7 +73,7 @@ namespace KGeoBag
         {
             tExtension = *tIt;
             tOtherExtension = dynamic_cast< KGExtendedSurface< XExtension >* >( tExtension );
-            if( tOtherExtension != NULL )
+            if( tOtherExtension != nullptr )
             {
                 delete tOtherExtension;
                 fExtensions.erase( tIt );

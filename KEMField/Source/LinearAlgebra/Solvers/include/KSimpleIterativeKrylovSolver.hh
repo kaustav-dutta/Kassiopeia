@@ -21,16 +21,16 @@ public:
 
 
 	KSimpleIterativeKrylovSolver();
-	virtual ~KSimpleIterativeKrylovSolver();
+	~KSimpleIterativeKrylovSolver() override;
 
 	virtual void Solve(const Matrix& A,Vector& x,const Vector& b);
 
 	//set tolerancing (default is relative tolerance on l2 residual norm)
-	virtual void SetTolerance(double d) { SetRelativeTolerance(d); };
+	void SetTolerance(double d) override { SetRelativeTolerance(d); };
 	virtual void SetAbsoluteTolerance(double d){ this->fTolerance = d; fUseRelativeTolerance = false;};
 	virtual void SetRelativeTolerance(double d){ this->fTolerance = d; fUseRelativeTolerance = true;};
 
-	virtual double ResidualNorm() const
+	double ResidualNorm() const override
 	{
 		if(fUseRelativeTolerance)
 		{
@@ -42,16 +42,16 @@ public:
 		}
 	}
 
-	void CoalesceData() { if (fTrait) fTrait->CoalesceData(); }
+	void CoalesceData() override { if (fTrait) fTrait->CoalesceData(); }
 
 	ParallelTrait<ValueType>* GetTrait() {return fTrait;};
 
 private:
-	virtual void SolveCore(Vector& x, const Vector& b);
+	void SolveCore(Vector& x, const Vector& b) override;
 
-	unsigned int Dimension() const { return (fTrait ? fTrait->Dimension() : 0); }
-	void SetResidualVector(const Vector& v) { if (fTrait) fTrait->SetResidualVector(v); }
-	void GetResidualVector(Vector& v) { if (fTrait) fTrait->GetResidualVector(v); }
+	unsigned int Dimension() const override { return (fTrait ? fTrait->Dimension() : 0); }
+	void SetResidualVector(const Vector& v) override { if (fTrait) fTrait->SetResidualVector(v); }
+	void GetResidualVector(Vector& v) override { if (fTrait) fTrait->GetResidualVector(v); }
 
 	virtual bool HasConverged() const
 	{
@@ -89,7 +89,7 @@ private:
 
 template <typename ValueType,template <typename> class ParallelTrait>
 KSimpleIterativeKrylovSolver<ValueType,ParallelTrait>::KSimpleIterativeKrylovSolver():
-fTrait(NULL)
+fTrait(nullptr)
 {
 	fUseRelativeTolerance = false;
 	fInitialResidual = 1.0;
@@ -157,7 +157,7 @@ void KSimpleIterativeKrylovSolver<ValueType,ParallelTrait>::Solve(const Matrix& 
 
 	this->FinalizeVisitors();
 
-	fTrait = NULL;
+	fTrait = nullptr;
 }
 
 } /* namespace KEMField */

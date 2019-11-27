@@ -14,13 +14,13 @@ namespace Kassiopeia
         public:
             KSRootMagneticField();
             KSRootMagneticField( const KSRootMagneticField& aCopy );
-            KSRootMagneticField* Clone() const;
-            virtual ~KSRootMagneticField();
+            KSRootMagneticField* Clone() const override;
+            ~KSRootMagneticField() override;
 
         public:
-            void CalculateField( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField );
-            void CalculateGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeMatrix& aGradient );
-            void CalculateFieldAndGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField, KThreeMatrix& aGradient );
+            void CalculateField( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField ) override;
+            void CalculateGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeMatrix& aGradient ) override;
+            void CalculateFieldAndGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField, KThreeMatrix& aGradient ) override;
 
         public:
             void AddMagneticField( KSMagneticField* aMagneticField );

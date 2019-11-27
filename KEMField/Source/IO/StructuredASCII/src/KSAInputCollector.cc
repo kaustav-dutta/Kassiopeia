@@ -5,7 +5,7 @@ namespace KEMField{
 
 KSAInputCollector::KSAInputCollector()
 {
-    fReader = NULL;
+    fReader = nullptr;
 }
 
 KSAInputCollector::~KSAInputCollector()
@@ -21,7 +21,7 @@ KSAInputCollector::ForwardInput(KSAInputNode* root)
     fNodeStack.push(root);
 
     bool file_status = false;
-    if(fReader != NULL){file_status = true;};
+    if(fReader != nullptr){file_status = true;};
 
 
     int count = 0;
@@ -35,11 +35,11 @@ KSAInputCollector::ForwardInput(KSAInputNode* root)
 
         fNodeStack.top()->AddLine(fLine);
 
-        fTempNode = NULL;
+        fTempNode = nullptr;
         //now figure out whether we needed to decend the tree, stay, or ascend
         fStatus = fNodeStack.top()->GetNextNode(fTempNode);
 
-        if(fStatus == KSANODE_MOVE_DOWNWARD && fTempNode != NULL)
+        if(fStatus == KSANODE_MOVE_DOWNWARD && fTempNode != nullptr)
         {
             //std::cout<<"moving downard to node: "<<fTempNode->GetName()<<std::endl;
             fNodeStack.push( fTempNode ); //descend to child

@@ -7,7 +7,7 @@
 
 #include "KKrylovSolverConfiguration.hh"
 
-#include <limits.h>
+#include <climits>
 namespace KEMField {
 
 KKrylovSolverConfiguration::KKrylovSolverConfiguration() :

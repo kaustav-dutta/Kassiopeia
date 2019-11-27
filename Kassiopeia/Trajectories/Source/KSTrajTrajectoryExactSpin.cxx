@@ -16,8 +16,8 @@ namespace Kassiopeia
             fIntermediateParticle(),
             fFinalParticle(),
             fError(),
-            fIntegrator( NULL ),
-            fInterpolator( NULL ),
+            fIntegrator( nullptr ),
+            fInterpolator( nullptr ),
             fTerms(),
             fControls(),
             fPiecewiseTolerance(1e-9),
@@ -50,7 +50,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryExactSpin::SetIntegrator( KSTrajExactSpinIntegrator* anIntegrator )
     {
-        if( fIntegrator == NULL )
+        if( fIntegrator == nullptr )
         {
             fIntegrator = anIntegrator;
             fIntegrator->ClearState();
@@ -63,7 +63,7 @@ namespace Kassiopeia
     {
         if( fIntegrator == anIntegrator )
         {
-            fIntegrator = NULL;
+            fIntegrator = nullptr;
             return;
         }
         trajmsg( eError ) << "cannot clear integrator in <" << this->GetName() << "> with <" << anIntegrator << ">" << eom;
@@ -72,7 +72,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryExactSpin::SetInterpolator( KSTrajExactSpinInterpolator* anInterpolator )
     {
-        if( fInterpolator == NULL )
+        if( fInterpolator == nullptr )
         {
             fInterpolator = anInterpolator;
             return;
@@ -84,7 +84,7 @@ namespace Kassiopeia
     {
         if( fInterpolator == anInterpolator )
         {
-            fInterpolator = NULL;
+            fInterpolator = nullptr;
             return;
         }
         trajmsg( eError ) << "cannot clear interpolator in <" << this->GetName() << "> with <" << anInterpolator << ">" << eom;
@@ -131,7 +131,7 @@ namespace Kassiopeia
 
     void KSTrajTrajectoryExactSpin::Reset()
     {
-        if(fIntegrator != NULL){ fIntegrator->ClearState(); }
+        if(fIntegrator != nullptr){ fIntegrator->ClearState(); }
         fInitialParticle = 0.0;
         fFinalParticle = 0.0;
     };
@@ -224,7 +224,7 @@ namespace Kassiopeia
         aFinalParticle.SetLabel( GetName() );
         aFinalParticle.NormalizeSpin();
 
-        if(fInterpolator != NULL)
+        if(fInterpolator != nullptr)
         {
             fInterpolator->GetPiecewiseLinearApproximation(fPiecewiseTolerance,
                                                            fNMaxSegments,
@@ -278,7 +278,7 @@ namespace Kassiopeia
     void KSTrajTrajectoryExactSpin::ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const
     {
         double currentTime = anIntermediateParticle.GetTime();
-        if( fInterpolator != NULL )
+        if( fInterpolator != nullptr )
         {
             fInterpolator->Interpolate(currentTime, *fIntegrator, *this, fInitialParticle, fFinalParticle, aTimeStep, fIntermediateParticle );
             fIntermediateParticle.PushTo( anIntermediateParticle );

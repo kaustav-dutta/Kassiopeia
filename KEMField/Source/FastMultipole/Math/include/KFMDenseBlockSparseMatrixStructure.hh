@@ -25,7 +25,7 @@ class KFMDenseBlockSparseMatrixStructure: public KSAInputOutputObject
 {
     public:
         KFMDenseBlockSparseMatrixStructure();
-        virtual ~KFMDenseBlockSparseMatrixStructure();
+        ~KFMDenseBlockSparseMatrixStructure() override;
 
         void SetUniqueID(const std::string& unique_id){fUniqueID = unique_id;};
         std::string GetUniqueID() const { return fUniqueID;};
@@ -48,7 +48,7 @@ class KFMDenseBlockSparseMatrixStructure: public KSAInputOutputObject
         void SetMaxAllowableRowWidth(const size_t& max_allowable_width){fMaxAllowableRowWidth = max_allowable_width;};
         size_t GetMaxAllowableRowWidth() const {return fMaxAllowableRowWidth;};
 
-        virtual void Initialize();
+        void Initialize() override;
 
         //access to information created after intialization
 
@@ -79,8 +79,8 @@ class KFMDenseBlockSparseMatrixStructure: public KSAInputOutputObject
 
         //IO
         virtual std::string ClassName() {return std::string("KFMDenseBlockSparseMatrixStructure");};
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
 
         static const std::string StructureFilePrefix;
         static const std::string StructureFilePostfix;

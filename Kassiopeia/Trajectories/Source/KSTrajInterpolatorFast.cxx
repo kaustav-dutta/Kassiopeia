@@ -196,7 +196,7 @@ namespace Kassiopeia
         double tInterpolatedCylcontronfrequency = tInitialCyclotronfrequency + tFraction * (tFinalCyclotronfrequency - tInitialCyclotronfrequency);
         double tNTurns = tInterpolatedCylcontronfrequency * ( tFinalTime - tInitialTime );
         int tNTurnsInt = floor( tNTurns );
-        tFinalPhase += tNTurnsInt * 2.*KConst::Pi();
+        tFinalPhase += tNTurnsInt * 2.*katrin::KConst::Pi();
         double tInterpolatedPhase = tInitialPhase + tFraction * (tFinalPhase - tInitialPhase);
 
         //interpolate alpha and beta

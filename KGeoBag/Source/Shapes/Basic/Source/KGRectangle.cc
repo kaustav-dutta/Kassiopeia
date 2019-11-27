@@ -44,8 +44,8 @@ namespace KGeoBag
 
   void KGRectangle::AreaAccept(KGVisitor* aVisitor)
   {
-    KGRectangle::Visitor* tRectangleVisitor = dynamic_cast<KGRectangle::Visitor*>(aVisitor);
-    if(tRectangleVisitor != NULL)
+    auto* tRectangleVisitor = dynamic_cast<KGRectangle::Visitor*>(aVisitor);
+    if(tRectangleVisitor != nullptr)
     {
       tRectangleVisitor->Visit(this);
     }

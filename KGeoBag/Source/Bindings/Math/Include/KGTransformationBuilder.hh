@@ -16,7 +16,7 @@ namespace katrin
     {
         if( (aContainer->GetName() == "displacement") || (aContainer->GetName() == "d") )
         {
-            KThreeVector* tVector = NULL;
+            KThreeVector* tVector = nullptr;
             aContainer->ReleaseTo( tVector );
             fObject->SetDisplacement( tVector->X(), tVector->Y(), tVector->Z() );
             delete tVector;
@@ -24,13 +24,13 @@ namespace katrin
         }
         if( (aContainer->GetName() == "rotation_euler") || (aContainer->GetName() == "r_eu") )
         {
-            KThreeVector& tVector = aContainer->AsReference< KThreeVector >();
+            auto& tVector = aContainer->AsReference< KThreeVector >();
             fObject->SetRotationEuler( tVector.X(), tVector.Y(), tVector.Z() );
             return true;
         }
         if( (aContainer->GetName() == "rotation_axis_angle") || (aContainer->GetName() == "r_aa") )
         {
-            KThreeVector& tVector = aContainer->AsReference< KThreeVector >();
+            auto& tVector = aContainer->AsReference< KThreeVector >();
             fObject->SetRotationAxisAngle( tVector.X(), tVector.Y(), tVector.Z() );
             return true;
         }

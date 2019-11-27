@@ -18,7 +18,7 @@ namespace Kassiopeia
     		KSTermOutput() :
                 fMinValue( -1.0*std::numeric_limits< XValueType >::max() ),
                 fMaxValue( std::numeric_limits<XValueType>::max() ),
-                fValue( 0 ),
+                fValue( nullptr ),
                 fFirstStep( true )
 			{
 			}
@@ -30,15 +30,15 @@ namespace Kassiopeia
     				fFirstStep( aCopy.fFirstStep )
     		{
     	    }
-    		KSTermOutput* Clone() const
+    		KSTermOutput* Clone() const override
     	    {
     	        return new KSTermOutput( *this );
     	    }
-    		virtual ~KSTermOutput()
+    		~KSTermOutput() override
     		{
     		}
 
-            void CalculateTermination( const KSParticle& /*anInitialParticle*/, bool& aFlag )
+            void CalculateTermination( const KSParticle& /*anInitialParticle*/, bool& aFlag ) override
             {
 				if ( fFirstStep == true )
 				{
@@ -57,14 +57,14 @@ namespace Kassiopeia
                 return;
             }
 
-            void ExecuteTermination( const KSParticle& /*anInitialParticle*/, KSParticle& aFinalParticle, KSParticleQueue& /*aParticleQueue*/ ) const
+            void ExecuteTermination( const KSParticle& /*anInitialParticle*/, KSParticle& aFinalParticle, KSParticleQueue& /*aParticleQueue*/ ) const override
             {
                 aFinalParticle.SetActive( false );
                 aFinalParticle.SetLabel( katrin::KNamed::GetName() );
                 return;
             }
 
-            virtual void ActivateComponent()
+            void ActivateComponent() override
             {
             	fFirstStep = true;
             }

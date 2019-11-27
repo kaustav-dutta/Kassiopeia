@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <cstdlib>
 #include <bitset>
-#include <limits.h>
+#include <climits>
 
 #include "KFMMessaging.hh"
 

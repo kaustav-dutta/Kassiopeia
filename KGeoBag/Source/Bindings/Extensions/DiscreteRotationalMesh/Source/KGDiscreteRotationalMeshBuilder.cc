@@ -22,7 +22,7 @@ namespace KGeoBag
         tMesher.SetAxialCount( fAxialCount );
 
         KGDiscreteRotationalMeshSurface* tDiscreteRotationalMeshSurface;
-        for( vector< KGSurface* >::iterator tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
+        for( auto tIt = fSurfaces.begin(); tIt != fSurfaces.end(); tIt++ )
         {
             tDiscreteRotationalMeshSurface = (*tIt)->MakeExtension< KGDiscreteRotationalMesh >();
             (*tIt)->AcceptNode( &tMesher );
@@ -30,7 +30,7 @@ namespace KGeoBag
             tDiscreteRotationalMeshSurface->SetTags( GetTags() );
         }
         KGDiscreteRotationalMeshSpace* tDiscreteRotationalMeshSpace;
-        for( vector< KGSpace* >::iterator tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
+        for( auto tIt = fSpaces.begin(); tIt != fSpaces.end(); tIt++ )
         {
             tDiscreteRotationalMeshSpace = (*tIt)->MakeExtension< KGDiscreteRotationalMesh >();
             (*tIt)->AcceptNode( &tMesher );

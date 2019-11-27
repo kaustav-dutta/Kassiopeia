@@ -19,15 +19,15 @@ public:
     typedef KElectrostaticBasis::ValueType ValueType;
 
     KElectrostaticRWGRectangleIntegrator() {}
-    ~KElectrostaticRWGRectangleIntegrator() {}
+    ~KElectrostaticRWGRectangleIntegrator() override {}
 
-    double Potential(const KRectangle* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KRectangle* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KRectangle* source, const KPosition& P ) const;
+    double Potential(const KRectangle* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KRectangle* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KRectangle* source, const KPosition& P ) const override;
 
-    double Potential(const KSymmetryGroup<KRectangle>* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KSymmetryGroup<KRectangle>* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KRectangle>* source, const KPosition& P ) const;
+    double Potential(const KSymmetryGroup<KRectangle>* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KSymmetryGroup<KRectangle>* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KRectangle>* source, const KPosition& P ) const override;
 
 private:
     double LogArgTaylor( const double sMin, const double dist ) const;

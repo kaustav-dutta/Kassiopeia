@@ -24,7 +24,7 @@ class KSAInputOutputObject: public KSAInputObject, public KSAOutputObject
 {
     public:
         KSAInputOutputObject(){};
-        virtual ~KSAInputOutputObject(){};
+        ~KSAInputOutputObject() override{};
 
 //       //inherits these functions
 //       virtual void Initialize(){;};

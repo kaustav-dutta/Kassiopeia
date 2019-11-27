@@ -13,20 +13,21 @@ namespace KGeoBag
         public:
             KGMeshRectangle( const double& a, const double& b, const KThreeVector& p0, const KThreeVector& n1, const KThreeVector& n2 );
             KGMeshRectangle( const KThreeVector& p0, const KThreeVector& p1, const KThreeVector& /*p2*/, const KThreeVector& p3 );
-            virtual ~KGMeshRectangle();
+            KGMeshRectangle( const KGMeshRectangle& other) = default;
+            ~KGMeshRectangle() override;
 
-            double Area() const;
-            double Aspect() const;
-            void Transform( const KTransformation& transform );
+            double Area() const override;
+            double Aspect() const override;
+            void Transform( const KTransformation& transform ) override;
 
-            virtual double NearestDistance(const KThreeVector& aPoint) const;
-            virtual KThreeVector NearestPoint(const KThreeVector& aPoint) const;
-            virtual KThreeVector NearestNormal(const KThreeVector& aPoint) const;
-            virtual bool NearestIntersection(const KThreeVector& aStart, const KThreeVector& anEnd, KThreeVector& anIntersection) const;
+            double NearestDistance(const KThreeVector& aPoint) const override;
+            KThreeVector NearestPoint(const KThreeVector& aPoint) const override;
+            KThreeVector NearestNormal(const KThreeVector& aPoint) const override;
+            bool NearestIntersection(const KThreeVector& aStart, const KThreeVector& anEnd, KThreeVector& anIntersection) const override;
 
-            virtual KGPointCloud<KGMESH_DIM> GetPointCloud() const;
-            virtual unsigned int GetNumberOfEdges() const {return 4;};
-            virtual void GetEdge(KThreeVector& start, KThreeVector& end, unsigned int index) const;
+            KGPointCloud<KGMESH_DIM> GetPointCloud() const override;
+            unsigned int GetNumberOfEdges() const override {return 4;};
+            void GetEdge(KThreeVector& start, KThreeVector& end, unsigned int index) const override;
 
             //assignment
             inline KGMeshRectangle& operator=(const KGMeshRectangle& r)

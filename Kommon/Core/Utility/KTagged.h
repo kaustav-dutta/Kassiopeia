@@ -21,7 +21,7 @@ namespace katrin
         public:
             KTagged();
             KTagged( const KTagged& aCopy );
-            virtual ~KTagged();
+            ~KTagged() override;
 
             bool Empty() const;
             bool HasTag( const KTag& aTag ) const;
@@ -55,7 +55,7 @@ namespace katrin
     inline std::ostream& operator<<( std::ostream& aStream, const KTagged& aTagged )
     {
         aStream << "<" << aTagged.GetName() << "> with tags <";
-        for( KTagSetIt tIter = aTagged.GetTags().begin(); tIter != aTagged.GetTags().end(); tIter++ )
+        for( auto tIter = aTagged.GetTags().begin(); tIter != aTagged.GetTags().end(); tIter++ )
         {
             if( tIter != aTagged.GetTags().begin() )
             {

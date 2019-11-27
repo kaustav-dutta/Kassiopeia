@@ -17,7 +17,7 @@ namespace KGeoBag
       // collect all of the boundaries and surfaces held by the space, and
       // affix the deformation to them (if they don't have one already).
 
-      for (vector<KGSurface*>::const_iterator it=deformedSpace->AsBase()->GetBoundaries()->begin();it!=deformedSpace->AsBase()->GetBoundaries()->end();++it)
+      for (auto it=deformedSpace->AsBase()->GetBoundaries()->begin();it!=deformedSpace->AsBase()->GetBoundaries()->end();++it)
       {
 	if (!((*it)->HasExtension<KGDeformed>()))
 	{
@@ -26,7 +26,7 @@ namespace KGeoBag
 	}
       }
 
-      for (vector<KGSurface*>::const_iterator it=deformedSpace->AsBase()->GetChildSurfaces()->begin();it!=deformedSpace->AsBase()->GetChildSurfaces()->end();++it)
+      for (auto it=deformedSpace->AsBase()->GetChildSurfaces()->begin();it!=deformedSpace->AsBase()->GetChildSurfaces()->end();++it)
       {
 	if (!((*it)->HasExtension<KGDeformed>()))
 	{
@@ -63,11 +63,11 @@ namespace KGeoBag
 
   void KGMeshDeformer::AddDeformed(KGMeshElement* e)
   {
-    if (KGMeshRectangle* r = dynamic_cast<KGMeshRectangle*>(e))
+    if (auto* r = dynamic_cast<KGMeshRectangle*>(e))
       AddDeformed(r);
-    else if (KGMeshTriangle* t = dynamic_cast<KGMeshTriangle*>(e))
+    else if (auto* t = dynamic_cast<KGMeshTriangle*>(e))
       AddDeformed(t);
-    else if (KGMeshWire* w = dynamic_cast<KGMeshWire*>(e))
+    else if (auto* w = dynamic_cast<KGMeshWire*>(e))
       AddDeformed(w);
   }
 

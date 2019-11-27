@@ -6,7 +6,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -30,7 +29,7 @@ namespace Kassiopeia
     void KSGenValueRadiusFraction::DiceValue( vector< double >& aDicedValues )
     {
 
-        double tRadiusF = pow( KRandom::GetInstance().Uniform( 0., 1. ), (1./2.) );
+        double tRadiusF = std::pow( KRandom::GetInstance().Uniform( 0., 1. ), (1./2.) );
 
         aDicedValues.push_back( tRadiusF );
 

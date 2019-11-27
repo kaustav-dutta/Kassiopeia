@@ -1,7 +1,7 @@
 #ifndef KEMSMARTPOINTER_DEF
 #define KEMSMARTPOINTER_DEF
 
-#include <stddef.h>
+#include <cstddef>
 
 namespace KEMField
 {
@@ -29,12 +29,12 @@ namespace KEMField
 	template<typename U>
 	friend class KSmartPointer;  // for copy constructor from derived class
 
-    KSmartPointer() : fpData(0), fRef(0) 
+    KSmartPointer() : fpData(nullptr), fRef(nullptr) 
     {
       fRef = new KReferenceCounter();
       fRef->AddRef();
     }
-    KSmartPointer(T* pValue,bool persistent=false) : fpData(pValue), fRef(0)
+    KSmartPointer(T* pValue,bool persistent=false) : fpData(pValue), fRef(nullptr)
     {
       fRef = new KReferenceCounter();
       fRef->AddRef();
@@ -77,9 +77,9 @@ namespace KEMField
       return fpData;
     }
 
-    bool Is() const {return fpData!= NULL; }
+    bool Is() const {return fpData!= nullptr; }
 
-    bool Null() const { return fpData == NULL; }
+    bool Null() const { return fpData == nullptr; }
 
     KSmartPointer<T>& operator= (const KSmartPointer<T>& sp)
     {

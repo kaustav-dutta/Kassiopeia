@@ -34,7 +34,7 @@ class KPreconditionedIterativeKrylovSolver: public KIterativeKrylovSolver<ValueT
         typedef KPreconditioner<ValueType> Preconditioner;
 
         KPreconditionedIterativeKrylovSolver();
-        virtual ~KPreconditionedIterativeKrylovSolver();
+        ~KPreconditionedIterativeKrylovSolver() override;
 
         void Solve(const Matrix& A, Preconditioner& P, Vector& x, const Vector& b);
 
@@ -43,11 +43,11 @@ class KPreconditionedIterativeKrylovSolver: public KIterativeKrylovSolver<ValueT
         }
 
         //set tolerance (default is absolute tolerance on l2 residual norm)
-        virtual void SetTolerance(double d) { SetRelativeTolerance(d); };
+        void SetTolerance(double d) override { SetRelativeTolerance(d); };
         virtual void SetAbsoluteTolerance(double d){ this->fTolerance = d; fUseRelativeTolerance = false;};
         virtual void SetRelativeTolerance(double d){ this->fTolerance = d; fUseRelativeTolerance = true;};
 
-        virtual double ResidualNorm() const
+        double ResidualNorm() const override
         {
             if(fUseRelativeTolerance)
             {
@@ -62,11 +62,11 @@ class KPreconditionedIterativeKrylovSolver: public KIterativeKrylovSolver<ValueT
         ParallelTrait<ValueType>* GetTrait() {return fTrait;};
 
     private:
-        virtual void SolveCore(Vector& x, const Vector& b);
+        void SolveCore(Vector& x, const Vector& b) override;
 
-        unsigned int Dimension() const { return (fTrait ? fTrait->Dimension() : 0); }
-        void SetResidualVector(const Vector& v) { if (fTrait) fTrait->SetResidualVector(v); }
-        void GetResidualVector(Vector& v) { if (fTrait) fTrait->GetResidualVector(v); }
+        unsigned int Dimension() const override { return (fTrait ? fTrait->Dimension() : 0); }
+        void SetResidualVector(const Vector& v) override { if (fTrait) fTrait->SetResidualVector(v); }
+        void GetResidualVector(Vector& v) override { if (fTrait) fTrait->GetResidualVector(v); }
 
         virtual bool HasConverged() const;
 
@@ -81,7 +81,7 @@ class KPreconditionedIterativeKrylovSolver: public KIterativeKrylovSolver<ValueT
 
     template <typename ValueType,template <typename> class ParallelTrait>
     KPreconditionedIterativeKrylovSolver<ValueType,ParallelTrait>::KPreconditionedIterativeKrylovSolver():
-        fTrait(NULL)
+        fTrait(nullptr)
         {
             fUseRelativeTolerance = false;
             fInitialResidual = 1.0;
@@ -142,7 +142,7 @@ class KPreconditionedIterativeKrylovSolver: public KIterativeKrylovSolver<ValueT
         trait.Finalize();
         this->FinalizeVisitors();
 
-        fTrait = NULL;
+        fTrait = nullptr;
     }
 
     template <typename ValueType,template <typename> class ParallelTrait>

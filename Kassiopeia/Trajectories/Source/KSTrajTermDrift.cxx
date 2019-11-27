@@ -52,8 +52,15 @@ namespace Kassiopeia
         aDerivative.AddToGuidingCenterVelocity( tDriftVelocity );
         aDerivative.AddToLongitudinalForce( tLongitudinalForce );
         aDerivative.AddToTransverseForce( tTransverseForce );
+        fDriftVelocity = tDriftVelocity;
+        fLongitudinalForce = tLongitudinalForce;
+        fTransverseForce = tTransverseForce;
 
         return;
     }
 
+    STATICINT sKSTrajTermDriftDict =
+            KSDictionary< KSTrajTermDrift >::AddComponent( &KSTrajTermDrift::GetDriftVelocity, "gc_velocity" ) +
+            KSDictionary< KSTrajTermDrift >::AddComponent( &KSTrajTermDrift::GetLongitudinalForce, "longitudinal_force" ) +
+            KSDictionary< KSTrajTermDrift >::AddComponent( &KSTrajTermDrift::GetTransverseForce, "transverse_force" );
 }

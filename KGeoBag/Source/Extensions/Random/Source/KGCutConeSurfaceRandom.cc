@@ -34,7 +34,7 @@ void KGeoBag::KGCutConeSurfaceRandom::VisitCutConeSurface(KGeoBag::KGCutConeSurf
     double Ratio = (SmallRadius*SmallRadius) / (LargeRadius*LargeRadius);
     double ZPosition = sqrt(Ratio + (1 - Ratio) * Uniform()) * LargeZeta - SmallZeta;
     double r = SmallRadius + ConeSlope * ZPosition;
-    double phi = Uniform()* 2 * KConst::Pi() ;
+    double phi = Uniform()* 2 * katrin::KConst::Pi() ;
 
     point.SetZ(SmallRadiusPosition+ZPosition);
     point.SetX(cos(phi) * r);

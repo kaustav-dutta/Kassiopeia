@@ -37,7 +37,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     double tEnergyStepSize = 1.;
     double tLength = 1.0;
 
-    KSIntDensityConstant* tDensityCalc = new KSIntDensityConstant();
+    auto* tDensityCalc = new KSIntDensityConstant();
     tDensityCalc->SetPressure(1.e-4); // pascal (*100 for mbar)
     tDensityCalc->SetTemperature(300.); // kelvin
 
@@ -66,7 +66,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 
 
     // get stuff from toolbox == fuck the toolbox
-    KSIntScattering* tScattering = new KSIntScattering();
+    auto* tScattering = new KSIntScattering();
     tScattering->SetDensity( tDensityCalc );
     tScattering->SetSplit( false );
 
@@ -82,7 +82,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     tScattering->Initialize();
 
     // initialize root
-    TApplication tApplication( "Test Interaction", 0, NULL );
+    TApplication tApplication( "Test Interaction", nullptr, nullptr );
 
     TCanvas tCrossSectionCanvas( "crosssection_canvas", "cross section" );
     TGraph tCrossSectionGraph;

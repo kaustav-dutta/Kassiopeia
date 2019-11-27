@@ -10,7 +10,7 @@ namespace katrin
 
     KXMLTokenizer::KXMLTokenizer() :
                 KProcessor(),
-                fFile( NULL ),
+                fFile( nullptr ),
                 fPath( "" ),
                 fName( "" ),
                 fLine( 0 ),

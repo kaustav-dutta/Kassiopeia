@@ -24,7 +24,7 @@ int main( int argc, char** argv )
 {
     if( argc < 3 )
     {
-        cout << "usage: ./GeometryPainterROOT <config_file_name.xml> <geometry_path> <plane normal vector> <plane point> <swap axis>" << endl;
+        cout << "usage: ./GeometryPainterROOT <config_file_name.xml> <geometry_path> [...] <plane normal vector> <plane point> <swap axis>" << endl;
         return -1;
     }
 
@@ -33,7 +33,9 @@ int main( int argc, char** argv )
     KMessageTable::GetInstance().Get( "k_initialization" )->SetTerminalVerbosity( eNormal );
 
     string tFileName( argv[ 1 ] );
-    string tPath( argv[ 2 ] );
+    vector<string> tPathList;
+    for (int i = 2; i < max(3,argc-7); i++ )  // note 7 more following arguments
+        tPathList.push_back( argv[ i ] );
 
     KCommandLineTokenizer tCommandLine;
     tCommandLine.ProcessCommandLine( argc, argv );
@@ -112,19 +114,13 @@ int main( int argc, char** argv )
     	}
     }
 
-    vector< KGSurface* > tSurfaces = KGInterface::GetInstance()->RetrieveSurfaces( tPath );
-    vector< KGSurface* >::iterator tSurfaceIt;
-
-    vector< KGSpace* > tSpaces = KGInterface::GetInstance()->RetrieveSpaces( tPath );
-    vector< KGSpace* >::iterator tSpaceIt;
-
-    for( tSurfaceIt = tSurfaces.begin(); tSurfaceIt != tSurfaces.end(); tSurfaceIt++ )
-    {
-        tPainter.AddSurface( *tSurfaceIt );
-    }
-    for( tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++ )
-    {
-        tPainter.AddSpace( *tSpaceIt );
+    for (auto & tPath : tPathList) {
+        for (auto & tSurface : KGInterface::GetInstance()->RetrieveSurfaces( tPath ) ) {
+            tPainter.AddSurface( tSurface );
+        }
+        for (auto & tSpace : KGInterface::GetInstance()->RetrieveSpaces( tPath ) ) {
+            tPainter.AddSpace( tSpace );
+        }
     }
 
     tWindow.AddPainter( &tPainter );

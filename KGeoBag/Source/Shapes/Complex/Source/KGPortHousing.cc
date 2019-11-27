@@ -10,7 +10,7 @@ namespace KGeoBag
   KGPortHousing::KGPortHousing(double Amain[3],
 			       double Bmain[3],
 			       double rmain) :
-    fCoordTransform(NULL)
+    fCoordTransform(nullptr)
   {
     fRMain     = rmain;
     for (int i=0;i<3;i++)
@@ -37,7 +37,7 @@ namespace KGeoBag
   {
     // Adds a circular port to the housing.
 
-    KGPortHousing::CircularPort* p =
+    auto* p =
       new KGPortHousing::CircularPort(this,asub,rsub);
     fPorts.push_back(p);
   }
@@ -48,7 +48,7 @@ namespace KGeoBag
   {
     // Adds a rectangular port housing.
 
-    KGPortHousing::RectangularPort* p =
+    auto* p =
       new KGPortHousing::RectangularPort(this,
 					 asub,
 					 length,
@@ -67,7 +67,7 @@ namespace KGeoBag
 
   KGPortHousing* KGPortHousing::Clone() const
   {
-    KGPortHousing* p = new KGPortHousing();
+    auto* p = new KGPortHousing();
     for (unsigned int i=0;i<3;i++)
     {
       p->fAMain[i] = fAMain[i];
@@ -295,7 +295,7 @@ namespace KGeoBag
 
   KGPortHousing::RectangularPort* KGPortHousing::RectangularPort::Clone(KGPortHousing* p) const
   {
-    RectangularPort* r = new RectangularPort();
+    auto* r = new RectangularPort();
 
     r->fPortHousing = p;
 
@@ -586,7 +586,7 @@ namespace KGeoBag
 
   KGPortHousing::CircularPort* KGPortHousing::CircularPort::Clone(KGPortHousing* p) const
   {
-    CircularPort* c = new CircularPort();
+    auto* c = new CircularPort();
 
     c->fPortHousing = p;
 

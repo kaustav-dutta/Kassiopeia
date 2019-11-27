@@ -108,14 +108,14 @@ namespace katrin
     template<>
     inline int8_t KToken::GetValue<int8_t>() const
     {
-        const int helper = KToken::GetValue<int>();
+        const auto helper = KToken::GetValue<int>();
         return (helper >= -128 && helper <= 127) ? helper : 0;
     }
 
     template<>
     inline uint8_t KToken::GetValue<uint8_t>() const
     {
-        const int helper = KToken::GetValue<int>();
+        const auto helper = KToken::GetValue<int>();
         return (helper >= 0 && helper <= 255) ? helper : 0;
     }
 

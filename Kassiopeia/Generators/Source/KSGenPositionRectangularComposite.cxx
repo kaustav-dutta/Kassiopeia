@@ -40,7 +40,7 @@ namespace Kassiopeia
         bool tYValue = false;
         bool tZValue = false;
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             tXValue = tXValue | ( (*tIt).first == eX );
             tYValue = tYValue | ( (*tIt).first == eY );
@@ -108,7 +108,7 @@ namespace Kassiopeia
 
     void KSGenPositionRectangularComposite::SetXValue( KSGenValue* anXValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eX )
             {
@@ -122,7 +122,7 @@ namespace Kassiopeia
     }
     void KSGenPositionRectangularComposite::ClearXValue( KSGenValue* anXValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eX )
             {
@@ -139,7 +139,7 @@ namespace Kassiopeia
 
     void KSGenPositionRectangularComposite::SetYValue( KSGenValue* aYValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eY )
             {
@@ -153,7 +153,7 @@ namespace Kassiopeia
     }
     void KSGenPositionRectangularComposite::ClearYValue( KSGenValue* anYValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eY )
             {
@@ -170,7 +170,7 @@ namespace Kassiopeia
 
     void KSGenPositionRectangularComposite::SetZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -184,7 +184,7 @@ namespace Kassiopeia
     }
     void KSGenPositionRectangularComposite::ClearZValue( KSGenValue* anZValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eZ )
             {
@@ -222,7 +222,7 @@ namespace Kassiopeia
 
     void KSGenPositionRectangularComposite::InitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Initialize();
         }
@@ -230,7 +230,7 @@ namespace Kassiopeia
     }
     void KSGenPositionRectangularComposite::DeinitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Deinitialize();
         }

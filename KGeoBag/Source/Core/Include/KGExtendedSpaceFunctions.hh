@@ -10,7 +10,7 @@ namespace KGeoBag
             KGExtensibleSpace(),
             XExtension::Space( aSpace ),
             fSpace( aSpace ),
-            fParent( NULL )
+            fParent( nullptr )
     {
         SetName( fSpace->GetName() );
     }
@@ -19,7 +19,7 @@ namespace KGeoBag
             KGExtensibleSpace(),
             XExtension::Space( aSpace, anExtension ),
             fSpace( aSpace ),
-            fParent( NULL )
+            fParent( nullptr )
     {
         SetName( fSpace->GetName() );
     }
@@ -35,7 +35,7 @@ namespace KGeoBag
     template< class XExtension >
     KGExtensibleSpace* KGExtendedSpace< XExtension >::Clone( KGSpace* aSpace ) const
     {
-        KGExtendedSpace< XExtension >* tClonedSpace = new KGExtendedSpace< XExtension >( aSpace, *this );
+        auto* tClonedSpace = new KGExtendedSpace< XExtension >( aSpace, *this );
         return tClonedSpace;
     }
 
@@ -59,8 +59,8 @@ namespace KGeoBag
         coremsg_debug( "extended space named <" << GetName() << "> is receiving a visitor" << eom )
 
         //visit this extension
-        typename KGExtendedSpace< XExtension >::Visitor * MyVisitor = dynamic_cast< typename KGExtendedSpace< XExtension >::Visitor* >( aVisitor );
-        if( MyVisitor != NULL )
+        auto * MyVisitor = dynamic_cast< typename KGExtendedSpace< XExtension >::Visitor* >( aVisitor );
+        if( MyVisitor != nullptr )
         {
             coremsg_debug( "extended space named <" << GetName() << "> is accepting a visitor" << eom )
             MyVisitor->VisitExtendedSpace( this );

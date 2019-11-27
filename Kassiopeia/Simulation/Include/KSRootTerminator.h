@@ -16,16 +16,16 @@ namespace Kassiopeia
         public:
             KSRootTerminator();
             KSRootTerminator( const KSRootTerminator& aCopy );
-            KSRootTerminator* Clone() const;
-            virtual ~KSRootTerminator();
+            KSRootTerminator* Clone() const override;
+            ~KSRootTerminator() override;
 
             //**********
             //terminator
             //**********
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) const override;
 
             //***********
             //composition
@@ -49,8 +49,8 @@ namespace Kassiopeia
             void CalculateTermination();
             void ExecuteTermination();
 
-            virtual void PushUpdateComponent();
-            virtual void PushDeupdateComponent();
+            void PushUpdateComponent() override;
+            void PushDeupdateComponent() override;
 
         private:
             KSStep* fStep;

@@ -8,13 +8,6 @@
 #include "gsl/gsl_errno.h"
 #include "KToolbox.h"
 
-
-namespace locust  // project8
-{
-  class CyclotronRadiationExtractor;
-  class FieldCalculator;
-}
-
 namespace Kassiopeia
 {
     class KSRootMagneticField;
@@ -45,8 +38,8 @@ namespace Kassiopeia
         public:
             KSRoot();
             KSRoot( const KSRoot& aCopy );
-            KSRoot* Clone() const;
-            virtual ~KSRoot();
+            KSRoot* Clone() const override;
+            ~KSRoot() override;
 
         public:
 
@@ -59,10 +52,10 @@ namespace Kassiopeia
             void ExecuteStep();
 
         protected:
-            void ActivateComponent();
-            void DeactivateComponent();
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void ActivateComponent() override;
+            void DeactivateComponent() override;
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         private:
             static void SignalHandler(int aSignal);
@@ -86,10 +79,6 @@ namespace Kassiopeia
             KSRootSpaceNavigator* fRootSpaceNavigator;
             KSRootSurfaceInteraction* fRootSurfaceInteraction;
             KSRootSurfaceNavigator* fRootSurfaceNavigator;
-            // project8 segment
-            locust::CyclotronRadiationExtractor* fCyclotronRadiationExtractor;
-            locust::FieldCalculator* fFieldCalculator;
-            // end project8 segment
             KSRootTerminator* fRootTerminator;
             KSRootWriter* fRootWriter;
             KSRootStepModifier* fRootStepModifier;

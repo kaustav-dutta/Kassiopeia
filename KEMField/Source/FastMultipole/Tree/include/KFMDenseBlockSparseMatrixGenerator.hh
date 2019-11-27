@@ -43,20 +43,20 @@ class KFMDenseBlockSparseMatrixGenerator: public KFMNodeActor< KFMNode<ObjectTyp
             fRowSizes.clear();
             fColumnSizes.clear();
 
-            fRowFileInterface = NULL;
-            fColumnFileInterface = NULL;
-            fElementFileInterface = NULL;
+            fRowFileInterface = nullptr;
+            fColumnFileInterface = nullptr;
+            fElementFileInterface = nullptr;
 
             fStructureFileName = "";
             fRowFileName = "";
             fColumnFileName = "";
             fElementFileName = "";
 
-            fMatrix = NULL;
+            fMatrix = nullptr;
             fVerbose = 0;
         };
 
-        virtual ~KFMDenseBlockSparseMatrixGenerator()
+        ~KFMDenseBlockSparseMatrixGenerator() override
         {
             delete fRowFileInterface;
             delete fColumnFileInterface;
@@ -194,20 +194,20 @@ class KFMDenseBlockSparseMatrixGenerator: public KFMNodeActor< KFMNode<ObjectTyp
             }
         }
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
             if(!fMatrixOnFile)
             {
-                if(node != NULL)
+                if(node != nullptr)
                 {
                     if( !(node->HasChildren()) ) //only applicable to leaf nodes
                     {
                         //get the collocation point id set
                         //this object specifies the row indices of the current sparse matrix block)
-                        KFMCollocationPointIdentitySet* cpid_set = NULL;
+                        KFMCollocationPointIdentitySet* cpid_set = nullptr;
                         cpid_set = KFMObjectRetriever<ObjectTypeList, KFMCollocationPointIdentitySet >::GetNodeObject(node);
 
-                        if(cpid_set != NULL)
+                        if(cpid_set != nullptr)
                         {
                             fTempRowIndices.clear();
                             fTempColIndices.clear();
@@ -226,9 +226,9 @@ class KFMDenseBlockSparseMatrixGenerator: public KFMNodeActor< KFMNode<ObjectTyp
                                 KFMNode<ObjectTypeList>* next_node = node;
                                 do
                                 {
-                                    KFMIdentitySetList* id_set_list = NULL;
+                                    KFMIdentitySetList* id_set_list = nullptr;
                                     id_set_list = KFMObjectRetriever<ObjectTypeList, KFMIdentitySetList >::GetNodeObject(next_node);
-                                    if(id_set_list != NULL)
+                                    if(id_set_list != nullptr)
                                     {
                                         size_t n_sets = id_set_list->GetNumberOfSets();
                                         for(size_t j=0; j<n_sets; j++)
@@ -243,7 +243,7 @@ class KFMDenseBlockSparseMatrixGenerator: public KFMNodeActor< KFMNode<ObjectTyp
                                     }
                                     next_node = next_node->GetParent();
                                 }
-                                while(next_node != NULL);
+                                while(next_node != nullptr);
 
                                 size_t ncols = fTempColIndices.size();
 

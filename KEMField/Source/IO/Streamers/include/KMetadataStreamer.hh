@@ -43,7 +43,7 @@ namespace KEMField
   {
   public:
     KMetadataStreamer() {}
-    virtual ~KMetadataStreamer() {}
+    ~KMetadataStreamer() override {}
 
     static std::string Name() { return "KMetadataStreamer"; }
 
@@ -83,12 +83,12 @@ namespace KEMField
     void clear();
 
   protected:
-    KMetadataStreamer& Self() { return *this; }
+    KMetadataStreamer& Self() override { return *this; }
 
     std::fstream fFile;
     bool fIsReading;
 
-    void AddType(std::string type);
+    void AddType(std::string type) override;
 
     template <class Streamed>
     std::string GetName(Type2Type<Streamed>)

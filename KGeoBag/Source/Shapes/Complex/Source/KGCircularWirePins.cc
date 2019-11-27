@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGCircularWirePins* KGCircularWirePins::Clone() const
   {
-    KGCircularWirePins* w = new KGCircularWirePins();
+    auto* w = new KGCircularWirePins();
 
     w->fR1 = fR1;
     w->fR2 = fR2;

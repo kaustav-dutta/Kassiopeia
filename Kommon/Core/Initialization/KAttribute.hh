@@ -10,10 +10,10 @@ namespace katrin
         public KAttributeBase
     {
         public:
-            KAttribute( KElementBase* aParentElement = NULL );
-            virtual ~KAttribute();
+            KAttribute( KElementBase* aParentElement = nullptr );
+            ~KAttribute() override;
 
-            virtual bool SetValue( KToken* aToken );
+            bool SetValue( KToken* aToken ) override;
 
             static KAttributeBase* Create( KElementBase* aParentElement );
 

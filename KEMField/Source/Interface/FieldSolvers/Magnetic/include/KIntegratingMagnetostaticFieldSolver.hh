@@ -21,11 +21,11 @@ class KIntegratingMagnetostaticFieldSolver: public KMagneticFieldSolver {
 public:
     KIntegratingMagnetostaticFieldSolver();
 
-    void InitializeCore( KElectromagnetContainer& container );
+    void InitializeCore( KElectromagnetContainer& container ) override;
 
-    KThreeVector MagneticPotentialCore( const KPosition& P ) const;
-    KThreeVector MagneticFieldCore( const KPosition& P ) const;
-    KGradient MagneticGradientCore( const KPosition& P ) const;
+    KThreeVector MagneticPotentialCore( const KPosition& P ) const override;
+    KThreeVector MagneticFieldCore( const KPosition& P ) const override;
+    KGradient MagneticGradientCore( const KPosition& P ) const override;
 
 private:
     KElectromagnetIntegrator fIntegrator;

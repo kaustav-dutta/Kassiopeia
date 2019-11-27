@@ -17,8 +17,8 @@ namespace Kassiopeia
             KSWriteROOTConditionOutput() :
                 fMinValue( -1.0*std::numeric_limits< XValueType >::max() ),
                 fMaxValue( std::numeric_limits<XValueType>::max() ),
-                fComponent( 0 ),
-                fValue( 0 )
+                fComponent( nullptr ),
+                fValue( nullptr )
             {
 			}
             KSWriteROOTConditionOutput( const KSWriteROOTConditionOutput& aCopy ) :
@@ -29,15 +29,15 @@ namespace Kassiopeia
     				fValue( aCopy.fValue )
             {
     	    }
-            KSWriteROOTConditionOutput* Clone() const
+            KSWriteROOTConditionOutput* Clone() const override
     	    {
     	        return new KSWriteROOTConditionOutput( *this );
     	    }
-    		virtual ~KSWriteROOTConditionOutput()
+    		~KSWriteROOTConditionOutput() override
     		{
     		}
 
-            void CalculateWriteCondition( bool& aFlag )
+            void CalculateWriteCondition( bool& aFlag ) override
             {
         		if ( *fValue >= fMaxValue || *fValue <= fMinValue )
         		{

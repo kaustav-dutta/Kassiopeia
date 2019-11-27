@@ -24,7 +24,7 @@ int main()
 //    KSDouble& tLength = tWorld.Get< KSDouble >( "time" );
 
     KSReadObjectROOT& tCell = tStepReader.GetObject( "component_step_cell" );
-    KSDouble& tMoment = tCell.Get< KSDouble >( "orbital_magnetic_moment" );
+    auto& tMoment = tCell.Get< KSDouble >( "orbital_magnetic_moment" );
     KSDouble tMinMoment;
     KSDouble tMaxMoment;
     double tDeviation;

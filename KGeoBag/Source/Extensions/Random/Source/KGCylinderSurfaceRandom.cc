@@ -11,7 +11,7 @@ void KGeoBag::KGCylinderSurfaceRandom::VisitCylinderSurface(KGeoBag::KGCylinderS
 	KThreeVector point;
 
 
-	double phi = Uniform(0, 2 * KConst::Pi());
+	double phi = Uniform(0, 2 * katrin::KConst::Pi());
 
 		double z = Uniform();
 

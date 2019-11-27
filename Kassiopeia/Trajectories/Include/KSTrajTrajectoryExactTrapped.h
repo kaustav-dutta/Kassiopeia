@@ -19,8 +19,8 @@ namespace Kassiopeia
         public:
             KSTrajTrajectoryExactTrapped();
             KSTrajTrajectoryExactTrapped( const KSTrajTrajectoryExactTrapped& aCopy );
-            KSTrajTrajectoryExactTrapped* Clone() const;
-            virtual ~KSTrajTrajectoryExactTrapped();
+            KSTrajTrajectoryExactTrapped* Clone() const override;
+            ~KSTrajTrajectoryExactTrapped() override;
 
         public:
             void SetIntegrator( KSTrajExactTrappedIntegrator* anIntegrator );
@@ -53,17 +53,17 @@ namespace Kassiopeia
 
         public:
 
-            void Reset();
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void Reset() override;
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const override;
 
             //********************
             //ExactTrapped term interface
             //********************
 
         public:
-            virtual void Differentiate(double aTime, const KSTrajExactTrappedParticle& aValue, KSTrajExactTrappedDerivative& aDerivative ) const;
+            void Differentiate(double aTime, const KSTrajExactTrappedParticle& aValue, KSTrajExactTrappedDerivative& aDerivative ) const override;
 
         private:
 

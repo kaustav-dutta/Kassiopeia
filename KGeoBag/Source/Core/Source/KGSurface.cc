@@ -15,7 +15,7 @@ namespace KGeoBag
 
     KGSurface::KGSurface() :
             fExtensions(),
-            fParent( NULL ),
+            fParent( nullptr ),
             fOrigin( KThreeVector::sZero ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
@@ -25,7 +25,7 @@ namespace KGeoBag
     }
     KGSurface::KGSurface( KGArea* anArea ) :
             fExtensions(),
-            fParent( NULL ),
+            fParent( nullptr ),
             fOrigin( KThreeVector::sZero ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
@@ -51,7 +51,7 @@ namespace KGeoBag
 
     void KGSurface::Orphan()
     {
-        if( fParent != NULL )
+        if( fParent != nullptr )
         {
             vector< KGSurface* >::iterator tIt;
             for( tIt = fParent->fBoundaries.begin(); tIt != fParent->fBoundaries.end(); tIt++ )
@@ -59,7 +59,7 @@ namespace KGeoBag
                 if( (*tIt) == this )
                 {
                     fParent->fBoundaries.erase( tIt );
-                    fParent = NULL;
+                    fParent = nullptr;
                     return;
                 }
             }
@@ -68,7 +68,7 @@ namespace KGeoBag
                 if( (*tIt) == this )
                 {
                     fParent->fChildSurfaces.erase( tIt );
-                    fParent = NULL;
+                    fParent = nullptr;
                     return;
                 }
             }
@@ -134,7 +134,7 @@ namespace KGeoBag
 
     KGSurface* KGSurface::CloneNode() const
     {
-        KGSurface* tClone = new KGSurface();
+        auto* tClone = new KGSurface();
 
         //copy name
         tClone->SetName(this->GetName());
@@ -172,8 +172,8 @@ namespace KGeoBag
         coremsg_debug( "surface named <" << GetName() << "> is receiving a visitor" << eom )
 
         //try to visit surface
-        KGSurface::Visitor* tSurfaceVisitor = dynamic_cast< KGSurface::Visitor* >( aVisitor );
-        if( tSurfaceVisitor != NULL )
+        auto* tSurfaceVisitor = dynamic_cast< KGSurface::Visitor* >( aVisitor );
+        if( tSurfaceVisitor != nullptr )
         {
             coremsg_debug( "surface named <" << GetName() << "> is accepting a visitor" << eom )
             tSurfaceVisitor->VisitSurface( this );

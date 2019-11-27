@@ -34,8 +34,8 @@ class KVMPathIntegral
         {
             fNumInt = new KVMNumericalIntegrator<KVMCurveDDim, FieldNDIM>();
             fIntegrandWrapper = new KVMFieldWrapper<KVMPathIntegral, &KVMPathIntegral::Integrand>(this, KVMCurveDDim, FieldNDIM);
-            fCurve = NULL;
-            fField = NULL;
+            fCurve = nullptr;
+            fField = nullptr;
         }
 
         virtual ~KVMPathIntegral()
@@ -54,7 +54,7 @@ class KVMPathIntegral
             }
             else
             {
-                fField = NULL;
+                fField = nullptr;
             }
         }
 

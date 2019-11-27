@@ -36,6 +36,8 @@ class KFMPointCloud
                 fPoints.push_back(copyObject.fPoints[i]);
             }
         }
+        
+        KFMPointCloud& operator =(const KFMPointCloud& other) = default;
 
         unsigned int GetNPoints() const
         {

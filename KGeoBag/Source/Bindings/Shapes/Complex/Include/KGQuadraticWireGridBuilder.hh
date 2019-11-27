@@ -62,7 +62,7 @@ namespace katrin
   {
     if (anElement->GetName() == "quadratic_wire_grid")
     {
-      KGQuadraticWireGrid* object = NULL;
+      KGQuadraticWireGrid* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGQuadraticWireGrid > smartPtr(object);
@@ -91,7 +91,7 @@ namespace katrin
   {
     if (anElement->GetName() == "quadratic_wire_grid")
     {
-      KGQuadraticWireGrid* object = NULL;
+      KGQuadraticWireGrid* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGQuadraticWireGrid > smartPtr(object);

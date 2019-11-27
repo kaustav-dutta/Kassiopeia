@@ -56,7 +56,7 @@ class KFMKernelResponseArray: public KFMArrayFillingOperator< std::complex<doubl
             fZeroMaskSize = 0;
         }
 
-        virtual ~KFMKernelResponseArray()
+        ~KFMKernelResponseArray() override
         {
 
         }
@@ -124,10 +124,10 @@ class KFMKernelResponseArray: public KFMArrayFillingOperator< std::complex<doubl
             }
         }
 
-        virtual void Initialize()
+        void Initialize() override
         {
             fInitialized = false;
-            if(this->fOutput != NULL)
+            if(this->fOutput != nullptr)
             {
                 if(this->IsBoundedDomainSubsetOfArray(this->fOutput, fLowerLimits, fUpperLimits))
                 {
@@ -145,7 +145,7 @@ class KFMKernelResponseArray: public KFMArrayFillingOperator< std::complex<doubl
             }
         }
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             //clear out the array and reset to zero everywhere
             this->ResetArray(this->fOutput, std::complex<double>(0,0) );

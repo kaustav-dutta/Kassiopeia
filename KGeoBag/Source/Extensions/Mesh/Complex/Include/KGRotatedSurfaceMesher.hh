@@ -19,12 +19,12 @@ namespace KGeoBag
             KGRotatedSurfaceMesher()
             {
             }
-            virtual ~KGRotatedSurfaceMesher()
+            ~KGRotatedSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGRotatedSurface* rotatedSurface );
+            void VisitWrappedSurface( KGRotatedSurface* rotatedSurface ) override;
 
             void DiscretizeSegment( const KGRotatedObject::Line* line, const unsigned int nPolyBegin, const unsigned int nPolyEnd );
             void DiscretizeSegment( const KGRotatedObject::Arc* arc, const unsigned int nPolyBegin, const unsigned int nPolyEnd );

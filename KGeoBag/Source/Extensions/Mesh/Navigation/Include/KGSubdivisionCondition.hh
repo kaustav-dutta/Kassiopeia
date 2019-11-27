@@ -33,14 +33,14 @@ class KGSubdivisionCondition: public KGInspectingActor< KGMeshNavigationNode >
 {
     public:
 
-        KGSubdivisionCondition(unsigned int n_allowed = 1):fNAllowedElements(n_allowed),fContainer(NULL){};
-        virtual ~KGSubdivisionCondition(){};
+        KGSubdivisionCondition(unsigned int n_allowed = 1):fNAllowedElements(n_allowed),fContainer(nullptr){};
+        ~KGSubdivisionCondition() override{};
 
         void SetMeshElementContainer(KGNavigableMeshElementContainer* container){fContainer = container;};
 
         void SetNAllowedElements(unsigned int n_allowed){fNAllowedElements = n_allowed;};
 
-        virtual bool ConditionIsSatisfied(KGMeshNavigationNode* node);
+        bool ConditionIsSatisfied(KGMeshNavigationNode* node) override;
 
     private:
 

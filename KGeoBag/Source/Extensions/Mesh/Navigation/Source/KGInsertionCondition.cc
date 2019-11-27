@@ -8,7 +8,7 @@ namespace KGeoBag
 bool
 KGInsertionCondition::ElementIntersectsCube(const KGNavigableMeshElement* element, const KGCube<KGMESH_DIM>* cube) const
 {
-    if(element != NULL && cube !=NULL)
+    if(element != nullptr && cube !=nullptr)
     {
         //get the cube center and nearest point on the element to the center
         KGPoint<KGMESH_DIM> center = cube->GetCenter();
@@ -140,7 +140,7 @@ KGInsertionCondition::ElementIntersectsCube(const KGNavigableMeshElement* elemen
 bool
 KGInsertionCondition::ElementEnclosedByCube(const KGNavigableMeshElement* element, const KGCube<KGMESH_DIM>* cube) const
 {
-    if(element != NULL && cube !=NULL)
+    if(element != nullptr && cube !=nullptr)
     {
         KGPointCloud<KGMESH_DIM> point_cloud = element->GetMeshElement()->GetPointCloud();
         fBoundaryCalculator.Reset();

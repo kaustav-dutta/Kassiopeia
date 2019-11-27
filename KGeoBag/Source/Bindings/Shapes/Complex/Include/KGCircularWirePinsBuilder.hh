@@ -73,7 +73,7 @@ namespace katrin
   {
     if (anElement->GetName() == "circular_wire_pins")
     {
-      KGCircularWirePins* object = NULL;
+      KGCircularWirePins* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGCircularWirePins > smartPtr(object);
@@ -102,7 +102,7 @@ namespace katrin
   {
     if (anElement->GetName() == "circular_wire_pins")
     {
-      KGCircularWirePins* object = NULL;
+      KGCircularWirePins* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGCircularWirePins > smartPtr(object);

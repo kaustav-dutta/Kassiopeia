@@ -17,7 +17,7 @@ namespace Kassiopeia
     {
         public:
             KSMagneticField();
-            virtual ~KSMagneticField();
+            ~KSMagneticField() override;
 
         public:
             virtual void CalculatePotential( const KThreeVector& /*aSamplePoint*/, const double& /*aSampleTime*/, KThreeVector& /*aPotential*/ ) {}

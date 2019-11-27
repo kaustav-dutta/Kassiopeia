@@ -18,7 +18,7 @@ namespace KGeoBag
         const double nDiscPower = circularWirePinsSurface->GetObject()->GetNDiscPower();
 
         // angle between pins and length of pin
-        const double pinAngle = 2. * KConst::Pi() / nPins;
+        const double pinAngle = 2. * katrin::KConst::Pi() / nPins;
         const double lengthOfPin = r2-r1;
 
         // Iteration over pins
@@ -30,7 +30,7 @@ namespace KGeoBag
 
             double rInner( r1 );
             double rOuter( rInner );
-            const double thetaRadiant = 2. * KConst::Pi() * theta/360.;
+            const double thetaRadiant = 2. * katrin::KConst::Pi() * theta/360.;
 
             KThreeVector startPointPin, endPointPin;
             startPointPin.SetComponents(rInner * cos((pinIt*pinAngle) + thetaRadiant), rInner * sin((pinIt*pinAngle) + thetaRadiant), 0.);
@@ -43,7 +43,7 @@ namespace KGeoBag
                 endPointPin.SetComponents(rOuter * cos((pinIt*pinAngle) + thetaRadiant), rOuter * sin((pinIt*pinAngle) + thetaRadiant), 0.);
 
                 KGMeshWire singlePin( startPointPin, endPointPin, wireDiameter);
-                KGMeshWire* w = new KGMeshWire(singlePin);
+                auto* w = new KGMeshWire(singlePin);
                 if( rOuter >= rInner ) AddElement(w);
                 startPointPin = endPointPin;
                 rInner = rOuter;

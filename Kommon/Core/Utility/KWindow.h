@@ -17,7 +17,7 @@ namespace katrin
     {
         public:
             KWindow();
-            virtual ~KWindow();
+            ~KWindow() override;
 
         public:
             virtual void Render() = 0;

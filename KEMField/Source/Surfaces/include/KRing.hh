@@ -14,7 +14,7 @@ namespace KEMField
   protected:
 
     KRing() : fP(0.,0.,0.) {}
-    ~KRing() {}
+    ~KRing() override {}
 
   public:
 
@@ -25,12 +25,12 @@ namespace KEMField
     void SetValues(const double& r,
     		   const double& z);
 
-    double Area() const;
-    const KPosition Centroid() const { return fP; }
+    double Area() const override;
+    const KPosition Centroid() const override { return fP; }
 
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint);
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override;
 
-    const KDirection Normal() const;
+    const KDirection Normal() const override;
 
     void SetR(double d)         { fP[0] = d; }
     void SetZ(double d)         { fP[2] = d; }

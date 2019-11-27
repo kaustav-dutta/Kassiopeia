@@ -12,8 +12,8 @@ namespace Kassiopeia
         public:
             KSNavSurface();
             KSNavSurface( const KSNavSurface& aCopy );
-            KSNavSurface* Clone() const;
-            virtual ~KSNavSurface();
+            KSNavSurface* Clone() const override;
+            ~KSNavSurface() override;
 
         public:
             void SetTransmissionSplit( const bool& aTransmissionSplit );
@@ -27,8 +27,8 @@ namespace Kassiopeia
             bool fReflectionSplit;
 
         public:
-            void ExecuteNavigation( const KSParticle& anInitialParticle, const KSParticle& aNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const;
-            void FinalizeNavigation( KSParticle& aFinalParticle ) const;
+            void ExecuteNavigation( const KSParticle& anInitialParticle, const KSParticle& aNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const override;
+            void FinalizeNavigation( KSParticle& aFinalParticle ) const override;
     };
 
 }

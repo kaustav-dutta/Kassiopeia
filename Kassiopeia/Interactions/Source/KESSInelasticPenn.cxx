@@ -1,7 +1,6 @@
 #include "KESSInelasticPenn.h"
 #include "KSParticle.h"
 #include "KConst.h"
-using katrin::KConst;
 #include "KRandom.h"
 using katrin::KRandom;
 #include <map>
@@ -60,9 +59,9 @@ namespace Kassiopeia
         //linear interpolation
         double MeanFreePathAngstroem = this->InterpolateLinear( tKineticEnergy, inElENE1, inElENE2, inElMFP1, inElMFP2 );
 
-        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * KConst::N_A());
+        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * katrin::KConst::N_A());
         // Molar Volume of Silicon = 12.06 * 1E-6 m^3/mol
-        aCrossSection = 12.06 / (MeanFreePathAngstroem * 1E-4 * KConst::N_A());
+        aCrossSection = 12.06 / (MeanFreePathAngstroem * 1E-4 * katrin::KConst::N_A());
     }
 
     void KESSInelasticPenn::ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue )
@@ -82,12 +81,12 @@ namespace Kassiopeia
         double tTheta = CalculateScatteringAngle( tEloss_eV, tKineticEnergy_eV );
         intmsg_debug( "KESSInelasticPenn::Execute" << ret
                 << "Inelastic Calculator computed Azimutal Scattering Angle Theta =  "
-                << 180*tTheta/KConst::Pi() << eom );
+                << 180*tTheta/katrin::KConst::Pi() << eom );
 
         //dice an azimuthal angle
-        double tPhi = 2. * KConst::Pi() * KRandom::GetInstance().Uniform();
+        double tPhi = 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform();
         intmsg_debug( "KESSInelasticPenn::Execute" << ret
-                << "Randomly chosen azimuthal angle: " << 180*tPhi/KConst::Pi() << eom );
+                << "Randomly chosen azimuthal angle: " << 180*tPhi/katrin::KConst::Pi() << eom );
 
         //update the final particle
         KThreeVector tInitialDirection = anInitialParticle.GetMomentum();

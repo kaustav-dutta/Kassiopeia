@@ -62,7 +62,7 @@ namespace KGeoBag
                     fFlattenedMeshPower( 1. )
             {
             }
-            virtual ~KGRotatedOpenPathSpace()
+            ~KGRotatedOpenPathSpace() override
             {
             }
 
@@ -135,7 +135,7 @@ namespace KGeoBag
             mutable double fFlattenedMeshPower;
 
         public:
-            virtual void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const
+            void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const override
             {
                 fTopPath->X( 0. );
                 fTopPath->Y( 0. );
@@ -170,11 +170,11 @@ namespace KGeoBag
 
                 return;
             }
-            virtual void VolumeAccept( KGVisitor* aVisitor )
+            void VolumeAccept( KGVisitor* aVisitor ) override
             {
                 shapemsg_debug( "rotated open path volume named <" << GetName() << "> is receiving a visitor" << eom );
-                typename KGRotatedOpenPathSpace::Visitor* tRotatedOpenPathSpaceVisitor = dynamic_cast< typename KGRotatedOpenPathSpace::Visitor* >( aVisitor );
-                if( tRotatedOpenPathSpaceVisitor != NULL )
+                auto* tRotatedOpenPathSpaceVisitor = dynamic_cast< typename KGRotatedOpenPathSpace::Visitor* >( aVisitor );
+                if( tRotatedOpenPathSpaceVisitor != nullptr )
                 {
                     shapemsg_debug( "rotated open path volume named <" << GetName() << "> is accepting a visitor" << eom );
                     tRotatedOpenPathSpaceVisitor->VisitRotatedOpenPathSpace( this );
@@ -183,7 +183,7 @@ namespace KGeoBag
                 KGVolume::VolumeAccept( aVisitor );
                 return;
             }
-            virtual bool VolumeOutside( const KThreeVector& aQuery ) const
+            bool VolumeOutside( const KThreeVector& aQuery ) const override
             {
                 KThreeVector tPoint = VolumePoint( aQuery );
                 KThreeVector tNormal = VolumeNormal( aQuery );
@@ -195,7 +195,7 @@ namespace KGeoBag
 
                 return false;
             }
-            virtual KThreeVector VolumePoint( const KThreeVector& aQuery ) const
+            KThreeVector VolumePoint( const KThreeVector& aQuery ) const override
             {
                 KGFlattenedCircleSurface tTop = KGFlattenedCircleSurface( fTopPath );
                 tTop.Sign( 1. );
@@ -236,7 +236,7 @@ namespace KGeoBag
 					return tJacketPoint;
                 }
             }
-            virtual KThreeVector VolumeNormal( const KThreeVector& aQuery ) const
+            KThreeVector VolumeNormal( const KThreeVector& aQuery ) const override
             {
                 KTwoVector tZRPoint = aQuery.ProjectZR();
                 double tAngle = aQuery.AzimuthalAngle();
@@ -321,7 +321,7 @@ namespace KGeoBag
         private:
             static KGPlanarOpenPath* CompilerCheck()
             {
-                XPathType* tPath = NULL;
+                XPathType* tPath = nullptr;
                 return tPath;
             }
     };

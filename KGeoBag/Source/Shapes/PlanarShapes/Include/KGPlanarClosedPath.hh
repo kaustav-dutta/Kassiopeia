@@ -11,7 +11,7 @@ namespace KGeoBag
     {
         public:
             KGPlanarClosedPath();
-            virtual ~KGPlanarClosedPath();
+            ~KGPlanarClosedPath() override;
 
             //**********
             //properties

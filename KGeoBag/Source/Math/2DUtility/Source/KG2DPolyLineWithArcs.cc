@@ -283,10 +283,10 @@ KG2DPolyLineWithArcs::DetermineIfPolyLineIsSimple()
     do
     {
         test = false;
-        aLine = NULL;
-        aArc = NULL;
-        LineUnderTest = NULL;
-        ArcUnderTest = NULL;
+        aLine = nullptr;
+        aArc = nullptr;
+        LineUnderTest = nullptr;
+        ArcUnderTest = nullptr;
         inters.clear();
         flag = 0;
 

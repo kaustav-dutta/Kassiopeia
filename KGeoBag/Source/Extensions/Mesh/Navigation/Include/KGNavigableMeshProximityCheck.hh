@@ -44,7 +44,7 @@ class KGNavigableMeshProximityCheck: public KGNodeActor< KGMeshNavigationNode >
 {
     public:
         KGNavigableMeshProximityCheck();
-        virtual ~KGNavigableMeshProximityCheck();
+        ~KGNavigableMeshProximityCheck() override;
 
         void SetMeshElementContainer(KGNavigableMeshElementContainer* container){fContainer = container;};
 
@@ -54,7 +54,7 @@ class KGNavigableMeshProximityCheck: public KGNodeActor< KGMeshNavigationNode >
         bool BallIntersectsCube(const KGBall<KGMESH_DIM>& ball, const KGCube<KGMESH_DIM>& cube) const;
         bool CubeEnclosedByBall(const KGBall<KGMESH_DIM>& ball, const KGCube<KGMESH_DIM>& cube) const;
 
-        virtual void ApplyAction(KGMeshNavigationNode* node);
+        void ApplyAction(KGMeshNavigationNode* node) override;
 
     private:
 

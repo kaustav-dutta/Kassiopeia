@@ -46,6 +46,11 @@ namespace katrin
   template<>
   inline bool KGRodBuilder::AddAttribute(KContainer* anAttribute)
   {
+    if (anAttribute->GetName() == "name")
+    {
+      anAttribute->CopyTo(fObject, &KGRod::SetName);
+      return true;
+    }
     if (anAttribute->GetName() == "radius")
     {      
       anAttribute->CopyTo(fObject, &KGRod::SetRadius);
@@ -69,7 +74,7 @@ namespace katrin
   {
     if (anElement->GetName() == "vertex")
     {
-      KGRodVertex* vtx = anElement->AsPointer<KGRodVertex>();
+      auto* vtx = anElement->AsPointer<KGRodVertex>();
       double p[3] = {vtx->x,vtx->y,vtx->z};
       fObject->AddPoint(p);
       return true;
@@ -95,7 +100,7 @@ namespace katrin
   {
     if (anElement->GetName() == "rod")
     {
-      KGRod* object = NULL;
+      KGRod* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGRod > smartPtr(object);
@@ -124,7 +129,7 @@ namespace katrin
   {
     if (anElement->GetName() == "rod")
     {
-      KGRod* object = NULL;
+      KGRod* object = nullptr;
       anElement->ReleaseTo(object);
       object->Initialize();
       std::shared_ptr< KGRod > smartPtr(object);

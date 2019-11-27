@@ -43,20 +43,20 @@ class KFMNodeIdentityListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
         {
             if(node != NULL)
             {
-                KFMIdentitySet* id_set = NULL;
+                KFMIdentitySet* id_set = nullptr;
                 id_set = KFMObjectRetriever<ObjectTypeList , KFMIdentitySet >::GetNodeObject(node);
 
-                KFMNodeIdentityListRange* id_range = NULL;
+                KFMNodeIdentityListRange* id_range = nullptr;
                 id_range = KFMObjectRetriever<ObjectTypeList , KFMNodeIdentityListRange >::GetNodeObject(node);
 
-                if(id_range == NULL)
+                if(id_range == nullptr)
                 {
                     id_range = new KFMNodeIdentityListRange();
                     KFMObjectRetriever<ObjectTypeList, KFMNodeIdentityListRange>::SetNodeObject(id_range, node);
                 }
                 else
                 {
-                    delete id_range; id_range = NULL;
+                    delete id_range; id_range = nullptr;
                     id_range = new KFMNodeIdentityListRange();
                     KFMObjectRetriever<ObjectTypeList, KFMNodeIdentityListRange>::SetNodeObject(id_range, node);
                 }
@@ -70,10 +70,10 @@ class KFMNodeIdentityListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
                     for(unsigned int i=0; i<node->GetNChildren(); i++)
                     {
                         KFMNode<ObjectTypeList>* child = node->GetChild(i);
-                        KFMNodeIdentityListRange* child_id_range = NULL;
+                        KFMNodeIdentityListRange* child_id_range = nullptr;
                         child_id_range = KFMObjectRetriever<ObjectTypeList , KFMNodeIdentityListRange >::GetNodeObject(child);
 
-                        if(child_id_range != NULL)
+                        if(child_id_range != nullptr)
                         {
                             if(child_id_range->GetStartIndex() < start_index)
                             {
@@ -87,7 +87,7 @@ class KFMNodeIdentityListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
 
                 //whether or not node has children, we need to add elements that
                 //it might own itself
-                if(id_set != NULL)
+                if(id_set != nullptr)
                 {
                     size += id_set->GetSize();
                     //push the ids onto the list

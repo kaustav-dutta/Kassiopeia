@@ -34,13 +34,13 @@ class KSAAssociatedPassedPointerPODArrayOutputNode: public KSAPODArrayOutputNode
         KSAAssociatedPassedPointerPODArrayOutputNode(std::string name, unsigned int arr_size, const CallType* call_ptr):KSAPODArrayOutputNode< ReturnType >(name, arr_size)
         {
             KSAConstantReturnByPassedPointerGet< CallType, ReturnType, memberFunction > callback;
-            ReturnType* val = new ReturnType[this->fArraySize];
+            auto* val = new ReturnType[this->fArraySize];
             callback(call_ptr, val);
             KSAPODArrayOutputNode< ReturnType >::SetValue(val);
             delete[] val;
         }
 
-        virtual ~KSAAssociatedPassedPointerPODArrayOutputNode(){;};
+        ~KSAAssociatedPassedPointerPODArrayOutputNode() override{;};
 
     protected:
 

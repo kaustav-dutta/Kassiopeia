@@ -44,7 +44,7 @@ namespace KGeoBag
     {
       const KGPortHousing::Port* p = fObject->GetPort(i);
 
-      if (const KGPortHousing::RectangularPort* r =
+      if (const auto* r =
 	  dynamic_cast<const KGPortHousing::RectangularPort*>(p))
       {
 	double a = r->GetLength();
@@ -60,7 +60,7 @@ namespace KGeoBag
     auto rect = std::make_shared<KGRectangle>(a,b,p0,n1,n2);
 	aBoundaryContainer.push_back(rect);
       }
-      else if (const KGPortHousing::CircularPort* c =
+      else if (const auto* c =
 	       dynamic_cast<const KGPortHousing::CircularPort*>(p))
       {
 	auto disk = std::make_shared<KGDisk>();

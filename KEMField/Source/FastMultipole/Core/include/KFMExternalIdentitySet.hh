@@ -25,10 +25,10 @@ class KFMExternalIdentitySet: public KFMIdentitySet
 {
     public:
         KFMExternalIdentitySet():KFMIdentitySet(){};
-        virtual ~KFMExternalIdentitySet(){};
+        ~KFMExternalIdentitySet() override{};
 
          //IO
-        virtual std::string ClassName() {return std::string("KFMExternalIdentitySet");};
+        std::string ClassName() override {return std::string("KFMExternalIdentitySet");};
 
     private:
 };

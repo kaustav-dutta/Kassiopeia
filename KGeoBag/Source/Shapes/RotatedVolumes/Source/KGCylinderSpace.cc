@@ -127,8 +127,8 @@ namespace KGeoBag
     }
     void KGCylinderSpace::VolumeAccept( KGVisitor* aVisitor )
     {
-        KGCylinderSpace::Visitor* tCylinderSpaceVisitor = dynamic_cast< KGCylinderSpace::Visitor* >( aVisitor );
-        if( tCylinderSpaceVisitor != NULL )
+        auto* tCylinderSpaceVisitor = dynamic_cast< KGCylinderSpace::Visitor* >( aVisitor );
+        if( tCylinderSpaceVisitor != nullptr )
         {
             tCylinderSpaceVisitor->VisitCylinderSpace( this );
             return;

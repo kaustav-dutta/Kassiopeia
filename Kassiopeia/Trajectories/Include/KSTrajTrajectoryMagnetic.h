@@ -20,8 +20,8 @@ namespace Kassiopeia
         public:
             KSTrajTrajectoryMagnetic();
             KSTrajTrajectoryMagnetic( const KSTrajTrajectoryMagnetic& aCopy );
-            KSTrajTrajectoryMagnetic* Clone() const;
-            virtual ~KSTrajTrajectoryMagnetic();
+            KSTrajTrajectoryMagnetic* Clone() const override;
+            ~KSTrajTrajectoryMagnetic() override;
 
         public:
             void SetIntegrator( KSTrajMagneticIntegrator* anIntegrator );
@@ -50,10 +50,10 @@ namespace Kassiopeia
             //**********
 
         public:
-            void Reset();
-            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep );
-            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const;
-            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const;
+            void Reset() override;
+            void CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep ) override;
+            void ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const override;
+            void GetPiecewiseLinearApproximation(const KSParticle& anInitialParticle, const KSParticle& /*aFinalParticle*/, std::vector< KSParticle >* intermediateParticleStates) const override;
 
             //********************
             //exact term interface
@@ -67,7 +67,7 @@ namespace Kassiopeia
 
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const override;
 
         private:
             KSTrajMagneticParticle fInitialParticle;

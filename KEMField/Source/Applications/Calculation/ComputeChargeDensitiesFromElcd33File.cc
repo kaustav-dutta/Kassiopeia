@@ -72,7 +72,7 @@ typedef KSurface<KElectrostaticBasis,KDirichletBoundary,KLineSegment> KEMWire;
 
 void AddRectangle( double sideA, double sideB, KPosition p0, KPosition n1, KPosition n2, double pot, KSurfaceContainer &cont )
 {
-    KEMRectangle* rectangle = new KEMRectangle();
+    auto* rectangle = new KEMRectangle();
 
     rectangle->SetA( sideA );
     rectangle->SetB( sideB );
@@ -90,7 +90,7 @@ void AddRectangle( double sideA, double sideB, KPosition p0, KPosition n1, KPosi
 
 void AddWire( KPosition pA, KPosition pB, double diameter, double pot, KSurfaceContainer &cont )
 {
-    KEMWire* wire = new KEMWire();
+    auto* wire = new KEMWire();
 
     wire->SetP0( pA );
     wire->SetP1( pB );
@@ -190,7 +190,7 @@ int main(int argc, char* argv[])
   " or robinhood)\n";
 #endif
 
-  bool verbose = 1;
+  bool verbose = true;
 
   double accuracy = 1.e-8;
   (void) accuracy;
@@ -202,16 +202,16 @@ int main(int argc, char* argv[])
   std::string file = "ChDenFromTxtInput";
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
-    {"verbose", required_argument, 0, 'v'},
-    {"accuracy", required_argument, 0, 'a'},
-    {"increment", required_argument, 0, 'i'},    
-    {"save-increment", required_argument, 0, 'j'},    
-    {"file", required_argument, 0, 'k'},
+    {"help", no_argument, nullptr, 'h'},
+    {"verbose", required_argument, nullptr, 'v'},
+    {"accuracy", required_argument, nullptr, 'a'},
+    {"increment", required_argument, nullptr, 'i'},    
+    {"save-increment", required_argument, nullptr, 'j'},    
+    {"file", required_argument, nullptr, 'k'},
 #ifdef KEMFIELD_USE_VTK
     {"with-plot", no_argument, 0, 'e'},
 #endif
-    {"method", required_argument, 0, 'm'},
+    {"method", required_argument, nullptr, 'm'},
   };
 
 #ifdef KEMFIELD_USE_VTK
@@ -220,8 +220,8 @@ int main(int argc, char* argv[])
   static const char *optString = "hv:a:i:j:k:m:";
 #endif
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help
@@ -337,14 +337,14 @@ int main(int argc, char* argv[])
 
     MPI_SINGLE_PROCESS
     {
-      KIterationTracker<KElectrostaticBoundaryIntegrator::ValueType>* tracker = new KIterationTracker<KElectrostaticBoundaryIntegrator::ValueType>();
+      auto* tracker = new KIterationTracker<KElectrostaticBoundaryIntegrator::ValueType>();
       tracker->Interval(1);
       tracker->WriteInterval(100);
       tracker->MaxIterationStamps(1.e6);
       robinHood.AddVisitor(tracker);
     }
 
-    KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
+    auto* stateWriter = new KIterativeStateWriter<KElectrostaticBoundaryIntegrator::ValueType>(surfaceContainer);
     stateWriter->Interval(saveIncrement);
     stateWriter->SaveNameRoot(file);
     robinHood.AddVisitor(stateWriter);

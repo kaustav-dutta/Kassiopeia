@@ -22,11 +22,11 @@ class KIterativeSolverTimer : public KIterativeSolver<ValueType>::Visitor
 {
 public:
     KIterativeSolverTimer() : fTimer(sDescription) {}
-	virtual ~KIterativeSolverTimer(){}
+	~KIterativeSolverTimer() override{}
 
-    virtual void Initialize(KIterativeSolver<ValueType>&);
-    virtual void Visit(KIterativeSolver<ValueType>&) {}
-    virtual void Finalize(KIterativeSolver<ValueType>&);
+    void Initialize(KIterativeSolver<ValueType>&) override;
+    void Visit(KIterativeSolver<ValueType>&) override {}
+    void Finalize(KIterativeSolver<ValueType>&) override;
 private:
 	KTimer fTimer;
 	static const std::string sDescription;

@@ -14,9 +14,9 @@ namespace katrin{
     public:
         KApplicationRunner();
         KApplicationRunner( const KApplicationRunner& aCopy);
-        ~KApplicationRunner();
+        ~KApplicationRunner() override;
 
-        virtual bool Execute();
+        bool Execute() override;
         void AddApplication( KApplication* tApplication);
 
     protected:

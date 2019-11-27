@@ -27,7 +27,7 @@ namespace Kassiopeia
         if (fMinLongEnergy < 0.)
             termmsg( eError ) << "negative energy defined in MinLongEnergy terminator <" << this->GetName() << ">" << eom;
 
-        if( fabs( anInitialParticle.GetKineticEnergy_eV() * cos( (KConst::Pi() / 180.) * anInitialParticle.GetPolarAngleToB() ) ) < fMinLongEnergy )
+        if( fabs( anInitialParticle.GetKineticEnergy_eV() * cos( (katrin::KConst::Pi() / 180.) * anInitialParticle.GetPolarAngleToB() ) ) < fMinLongEnergy )
         {
             aFlag = true;
             return;

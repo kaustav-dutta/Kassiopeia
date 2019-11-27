@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSWriter();
-            virtual ~KSWriter();
+            ~KSWriter() override;
 
         public:
             virtual void ExecuteRun() = 0;

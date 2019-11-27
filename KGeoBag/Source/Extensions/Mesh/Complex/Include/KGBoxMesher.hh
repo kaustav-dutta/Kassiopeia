@@ -19,12 +19,12 @@ namespace KGeoBag
             KGBoxMesher()
             {
             }
-            virtual ~KGBoxMesher()
+            ~KGBoxMesher() override
             {
             }
 
         protected:
-            void VisitBox( KGBox* box );
+            void VisitBox( KGBox* box ) override;
     };
 
 }

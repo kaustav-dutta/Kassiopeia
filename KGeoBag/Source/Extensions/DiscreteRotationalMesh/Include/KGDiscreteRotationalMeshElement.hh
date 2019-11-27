@@ -38,14 +38,14 @@ namespace KGeoBag
       KGDiscreteRotationalMeshElement(),
       fMeshElement(element),
       fNElements(1) {}
-    virtual ~KGDiscreteRotationalMeshElementType() {}
+    ~KGDiscreteRotationalMeshElementType() override {}
 
-    XMeshElement& Element() { return fMeshElement; }
+    XMeshElement& Element() override { return fMeshElement; }
 
-    double Area() const { return fMeshElement.Area(); }
-    virtual double Aspect() const { return fMeshElement.Aspect(); }
+    double Area() const override { return fMeshElement.Area(); }
+    double Aspect() const override { return fMeshElement.Aspect(); }
 
-    virtual void Transform( const KTransformation& transform ) { fMeshElement.Transform(transform); }
+    void Transform( const KTransformation& transform ) override { fMeshElement.Transform(transform); }
 
     void NumberOfElements(unsigned int i) { fNElements = i; }
     unsigned int NumberOfElements() const { return fNElements; }

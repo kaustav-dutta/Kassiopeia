@@ -22,9 +22,9 @@ namespace katrin
     KROOTWindow::KROOTWindow() :
             fPainters(),
             fPads(),
-            fFrame( 0 ),
-            fApplication( 0 ),
-            fCanvas( 0 ),
+            fFrame( nullptr ),
+            fApplication( nullptr ),
+            fCanvas( nullptr ),
             fCanvasWidth( 1000 ),
             fCanvasHeight( 600 ),
             fActive( true ),
@@ -56,7 +56,7 @@ namespace katrin
         }
         else
         {
-            fApplication = new TApplication("My ROOT Application", 0, 0 );
+            fApplication = new TApplication("My ROOT Application", nullptr, nullptr );
         }
 
         TQObject::Connect("TCanvas", "Closed()", "TApplication", fApplication, "Terminate()");
@@ -110,7 +110,7 @@ namespace katrin
 
             Int_t tNBins = 1000;
             fFrame = new TH2F( GetName().c_str(), "", tNBins, tXMin, tXMax, tNBins, tYMin, tYMax);
-            fFrame->SetStats(0);
+            fFrame->SetStats(false);
 
             //take axis label of last painter
             KROOTPainter* tLastPainter = fPainters.at( fPainters.size() - 1 );
@@ -221,8 +221,8 @@ namespace katrin
 
     void KROOTWindow::AddPainter( KPainter* aPainter )
     {
-        KROOTPainter* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
-        if( tPainter != NULL )
+        auto* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
+        if( tPainter != nullptr )
         {
             fPainters.push_back( tPainter );
             tPainter->SetWindow( this );
@@ -233,8 +233,8 @@ namespace katrin
     }
     void KROOTWindow::RemovePainter( KPainter* aPainter )
     {
-        KROOTPainter* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
-        if( tPainter != NULL )
+        auto* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
+        if( tPainter != nullptr )
         {
             PainterIt tIt;
             for( tIt = fPainters.begin(); tIt != fPainters.end(); tIt++ )
@@ -254,8 +254,8 @@ namespace katrin
 
     void KROOTWindow::AddWindow( KWindow* aWindow )
     {
-        KROOTPad* tPad = dynamic_cast< KROOTPad* >( aWindow );
-        if( tPad != NULL )
+        auto* tPad = dynamic_cast< KROOTPad* >( aWindow );
+        if( tPad != nullptr )
         {
             fPads.push_back( tPad );
             tPad->SetWindow( this );
@@ -266,8 +266,8 @@ namespace katrin
     }
     void KROOTWindow::RemoveWindow( KWindow* aWindow )
     {
-        KROOTPad* tPad = dynamic_cast< KROOTPad* >( aWindow );
-        if( tPad != NULL )
+        auto* tPad = dynamic_cast< KROOTPad* >( aWindow );
+        if( tPad != nullptr )
         {
             PadIt tIt;
             for( tIt = fPads.begin(); tIt != fPads.end(); tIt++ )

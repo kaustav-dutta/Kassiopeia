@@ -31,7 +31,7 @@ inline bool KRampedElectricFieldBuilder::AddAttribute( KContainer* aContainer )
     if( aContainer->GetName() == "root_field" )
     {
         std::string fieldName = aContainer->AsReference< std::string >();
-        KEMField::KElectricField* field = katrin::KToolbox::GetInstance().
+        auto* field = katrin::KToolbox::GetInstance().
                 Get<KEMField::KElectricField>(fieldName);
         fObject->SetRootElectricField( field );
         return true;

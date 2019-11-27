@@ -5,8 +5,8 @@ namespace Kassiopeia
 {
 
     KSSide::KSSide() :
-            fInsideParent( NULL ),
-            fOutsideParent( NULL )
+            fInsideParent( nullptr ),
+            fOutsideParent( nullptr )
     {
     }
     KSSide::~KSSide()
@@ -31,7 +31,7 @@ namespace Kassiopeia
     }
     void KSSide::SetParent( KSSpace* aParent )
     {
-        for( std::vector< KSSide* >::iterator tSideIt = aParent->fSides.begin(); tSideIt != aParent->fSides.end(); tSideIt++ )
+        for( auto tSideIt = aParent->fSides.begin(); tSideIt != aParent->fSides.end(); tSideIt++ )
         {
             if( (*tSideIt) == this )
             {

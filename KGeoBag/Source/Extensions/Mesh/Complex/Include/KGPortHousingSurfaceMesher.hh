@@ -19,12 +19,12 @@ namespace KGeoBag
             KGPortHousingSurfaceMesher()
             {
             }
-            virtual ~KGPortHousingSurfaceMesher()
+            ~KGPortHousingSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGWrappedSurface< KGPortHousing >* portHousingSurface );
+            void VisitWrappedSurface( KGWrappedSurface< KGPortHousing >* portHousingSurface ) override;
 
             void ComputeEnclosingBoxLengths( std::vector< double >& theta, std::vector< double >& phi, std::vector< double >& mid, std::vector< double >& width );
 
@@ -38,7 +38,7 @@ namespace KGeoBag
 
                 protected:
                     PortDiscretizer() :
-                        fPortHousingDiscretizer( NULL )
+                        fPortHousingDiscretizer( nullptr )
                     {
                     }
 
@@ -51,7 +51,7 @@ namespace KGeoBag
                 public:
                     RectangularPortDiscretizer( KGPortHousingSurfaceMesher* d ) :
                             PortDiscretizer( d ),
-                            fRectangularPort( NULL )
+                            fRectangularPort( nullptr )
                     {
                     }
 
@@ -63,7 +63,7 @@ namespace KGeoBag
                 private:
                     RectangularPortDiscretizer() :
                         PortDiscretizer(),
-                        fRectangularPort( NULL )
+                        fRectangularPort( nullptr )
                     {
                     }
                     void PowerDistBoxCoord( int i, double length, double width, double *xyz );
@@ -81,7 +81,7 @@ namespace KGeoBag
                 public:
                     CircularPortDiscretizer( KGPortHousingSurfaceMesher* d ) :
                             PortDiscretizer( d ),
-                            fCircularPort( NULL )
+                            fCircularPort( nullptr )
                     {
                     }
 
@@ -94,7 +94,7 @@ namespace KGeoBag
                 private:
                     CircularPortDiscretizer() :
                         PortDiscretizer(),
-                        fCircularPort( NULL )
+                        fCircularPort( nullptr )
                     {
                     }
                     double Circle_theta( double r, int i );

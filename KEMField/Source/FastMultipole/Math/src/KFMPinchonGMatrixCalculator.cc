@@ -17,7 +17,7 @@ KFMPinchonGMatrixCalculator::~KFMPinchonGMatrixCalculator()
 bool
 KFMPinchonGMatrixCalculator::ComputeMatrix(kfm_matrix* G) const
 {
-    if(G == NULL){return false;};
+    if(G == nullptr){return false;};
 
     switch(fMatrixType)
     {
@@ -52,7 +52,7 @@ KFMPinchonGMatrixCalculator::ComputeGX(kfm_matrix* G) const
         if(fDegree > 0)
         {
             double elem;
-            double l = (double)fDegree;
+            auto l = (double)fDegree;
             double kd;
             unsigned int row;
             unsigned int column;
@@ -122,7 +122,7 @@ KFMPinchonGMatrixCalculator::ComputeGY(kfm_matrix* G) const
         if(fDegree > 0)
         {
             double elem;
-            double l = (double)fDegree;
+            auto l = (double)fDegree;
             double kd;
             unsigned int row;
             unsigned int column;
@@ -192,13 +192,13 @@ KFMPinchonGMatrixCalculator::ComputeGZ(kfm_matrix* G) const
         if(fDegree > 0)
         {
             double elem;
-            double l = (double)fDegree;
+            auto l = (double)fDegree;
             unsigned int row;
             unsigned int column;
 
             for(unsigned int k=1; k <= 2*fDegree + 1; k++)
             {
-                double kd = (double)k;
+                auto kd = (double)k;
                 elem = (std::sqrt( kd*(2*l + 2 - kd) ) )/(std::sqrt( (2*l + 1)*(2*l + 3) ) );
                 row = k+1;
                 column = k;
@@ -230,13 +230,13 @@ KFMPinchonGMatrixCalculator::ComputeGZHat(kfm_matrix* G) const
         if(fDegree > 0)
         {
             double elem;
-            double l = (double)fDegree;
+            auto l = (double)fDegree;
             unsigned int row;
             unsigned int column;
 
             for(unsigned int k=1; k <= 2*fDegree + 1; k++)
             {
-                double kd = (double)k;
+                auto kd = (double)k;
                 elem = (std::sqrt( kd*(2*l + 2 - kd) ) )/(std::sqrt( (2*l + 1)*(2*l + 3) ) );
                 row = k;
                 column = k;
@@ -267,13 +267,13 @@ KFMPinchonGMatrixCalculator::ComputeGZHatInverse(kfm_matrix* G) const
         if(fDegree > 0)
         {
             double elem;
-            double l = (double)fDegree;
+            auto l = (double)fDegree;
             unsigned int row;
             unsigned int column;
 
             for(unsigned int k=1; k <= 2*fDegree + 1; k++)
             {
-                double kd = (double)k;
+                auto kd = (double)k;
                 elem = (std::sqrt( kd*(2*l + 2 - kd) ) )/(std::sqrt( (2*l + 1)*(2*l + 3) ) );
                 row = k;
                 column = k;

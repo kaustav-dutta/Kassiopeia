@@ -31,16 +31,16 @@ class KFMFastFourierTransform: public KFMUnaryArrayOperator< std::complex<double
     public:
 
         KFMFastFourierTransform();
-        virtual ~KFMFastFourierTransform();
+        ~KFMFastFourierTransform() override;
 
         virtual void SetSize(unsigned int N);
 
         virtual void SetForward();
         virtual void SetBackward();
 
-        virtual void Initialize();
+        void Initialize() override;
 
-        virtual void ExecuteOperation();
+        void ExecuteOperation() override;
 
     private:
 

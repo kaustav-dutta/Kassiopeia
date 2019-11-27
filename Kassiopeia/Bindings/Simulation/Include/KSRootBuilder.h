@@ -38,7 +38,7 @@ inline bool KSRootBuilder::AddElement( KContainer* aContainer )
     if( aContainer->Is< KEMField::KElectricField >() ||
         aContainer->Is< KEMField::KElectrostaticPotentialmapCalculator >() )
     {
-        KSElectricKEMField* tField = new KSElectricKEMField();
+        auto* tField = new KSElectricKEMField();
         tField->SetName(aContainer->GetName());
         aContainer->ReleaseTo(tField, &KSElectricKEMField::SetElectricField );
         KToolbox::GetInstance().Add(tField,tField->GetName());
@@ -46,7 +46,7 @@ inline bool KSRootBuilder::AddElement( KContainer* aContainer )
     }
     if( aContainer->Is< KEMField::KMagneticField >() )
     {
-        KSMagneticKEMField* tField = new KSMagneticKEMField();
+        auto* tField = new KSMagneticKEMField();
         tField->SetName(aContainer->GetName());
         aContainer->ReleaseTo(tField, &KSMagneticKEMField::SetMagneticField );
         KToolbox::GetInstance().Add(tField,tField->GetName());

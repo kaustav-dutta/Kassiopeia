@@ -16,12 +16,12 @@ namespace Kassiopeia
         public:
             KSTermStepsize();
             KSTermStepsize( const KSTermStepsize& aCopy );
-            KSTermStepsize* Clone() const;
-            virtual ~KSTermStepsize();
+            KSTermStepsize* Clone() const override;
+            ~KSTermStepsize() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             ;K_SET_GET( double, LowerLimit )

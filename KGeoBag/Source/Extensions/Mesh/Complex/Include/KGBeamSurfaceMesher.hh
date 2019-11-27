@@ -19,12 +19,12 @@ namespace KGeoBag
             KGBeamSurfaceMesher()
             {
             }
-            virtual ~KGBeamSurfaceMesher()
+            ~KGBeamSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGBeamSurface* beamSurface );
+            void VisitWrappedSurface( KGBeamSurface* beamSurface ) override;
 
     };
 }

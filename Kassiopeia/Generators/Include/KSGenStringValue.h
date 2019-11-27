@@ -14,7 +14,7 @@ namespace Kassiopeia
     {
         public:
             KSGenStringValue();
-            virtual ~KSGenStringValue();
+            ~KSGenStringValue() override;
 
         public:
             virtual void DiceValue( std::vector< std::string >& aDicedValue ) = 0;

@@ -26,11 +26,11 @@ class KFMTreeStructureExtractor: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMTreeStructureExtractor(){ fFlattenedTree.clear(); fNNodes = 0; };
-        virtual ~KFMTreeStructureExtractor(){};
+        ~KFMTreeStructureExtractor() override{};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 //we only need to actively keep track of non-leaf nodes
                 if( node->HasChildren() )

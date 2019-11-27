@@ -40,7 +40,7 @@ namespace Kassiopeia
         bool tHasThetaValue = false;
         bool tHasPhiValue = false;
 
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             tHasRValue = tHasRValue | ( (*tIt).first == eRadius );
             tHasThetaValue = tHasThetaValue | ( (*tIt).first == eTheta );
@@ -134,7 +134,7 @@ namespace Kassiopeia
 
     void KSGenPositionSphericalComposite::SetRValue( KSGenValue* anRValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -148,7 +148,7 @@ namespace Kassiopeia
     }
     void KSGenPositionSphericalComposite::ClearRValue( KSGenValue* anRValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eRadius )
             {
@@ -165,7 +165,7 @@ namespace Kassiopeia
 
     void KSGenPositionSphericalComposite::SetThetaValue( KSGenValue* anThetaValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eTheta )
             {
@@ -180,7 +180,7 @@ namespace Kassiopeia
     }
     void KSGenPositionSphericalComposite::ClearThetaValue( KSGenValue* anThetaValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == eTheta )
             {
@@ -197,7 +197,7 @@ namespace Kassiopeia
 
     void KSGenPositionSphericalComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -212,7 +212,7 @@ namespace Kassiopeia
     }
     void KSGenPositionSphericalComposite::ClearPhiValue( KSGenValue* anPhiValue )
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             if( (*tIt).first == ePhi )
             {
@@ -229,7 +229,7 @@ namespace Kassiopeia
 
     void KSGenPositionSphericalComposite::InitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Initialize();
         }
@@ -237,7 +237,7 @@ namespace Kassiopeia
     }
     void KSGenPositionSphericalComposite::DeinitializeComponent()
     {
-        for( vector<pair<CoordinateType,KSGenValue*> >::iterator tIt = fValues.begin(); tIt != fValues.end(); tIt++)
+        for( auto tIt = fValues.begin(); tIt != fValues.end(); tIt++)
         {
             (*tIt).second->Deinitialize();
         }

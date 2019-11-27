@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajMagneticError();
-            virtual ~KSTrajMagneticError();
+            KSTrajMagneticError( const KSTrajMagneticError& other ) = default;
+            ~KSTrajMagneticError() override;
 
             //**********
             //assignment

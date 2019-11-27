@@ -14,7 +14,7 @@ namespace KGeoBag
 
   KGRotatedObject* KGRotatedObject::Clone() const
   {
-    KGRotatedObject* tClone = new KGRotatedObject();
+    auto* tClone = new KGRotatedObject();
     tClone->fP1[0] = fP1[0];
     tClone->fP1[1] = fP1[1];
     tClone->fP2[0] = fP2[0];
@@ -223,7 +223,7 @@ namespace KGeoBag
 
   KGRotatedObject::Line* KGRotatedObject::Line::Clone(KGRotatedObject* eO) const
   {
-    Line* tClone = new Line();
+    auto* tClone = new Line();
 
     tClone->fOrder = fOrder;
     tClone->fP1[0] = fP1[0];
@@ -473,7 +473,7 @@ namespace KGeoBag
 
   KGRotatedObject::Arc* KGRotatedObject::Arc::Clone(KGRotatedObject* rO) const
   {
-    Arc* tClone = new Arc();
+    auto* tClone = new Arc();
 
     tClone->fOrder = fOrder;
     tClone->fP1[0] = fP1[0];

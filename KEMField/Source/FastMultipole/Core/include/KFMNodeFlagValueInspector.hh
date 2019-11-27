@@ -35,18 +35,18 @@ class KFMNodeFlagValueInspector: public KFMInspectingActor< KFMNode<ObjectTypeLi
             fValue = 0;
         };
 
-        virtual ~KFMNodeFlagValueInspector(){};
+        ~KFMNodeFlagValueInspector() override{};
 
         void SetFlagIndex(unsigned int flag_index){fFlagIndex = flag_index;};
         void SetFlagValue(char value){fValue = value;};
 
         //needs to answer this question about whether this node statisfies a condition
-        virtual bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 KFMNodeFlags<NFLAGS>* flags = KFMObjectRetriever<ObjectTypeList, KFMNodeFlags<NFLAGS> >::GetNodeObject(node);
-                if(flags != NULL)
+                if(flags != nullptr)
                 {
                     if(flags->GetFlag(fFlagIndex) == fValue){return true;};
                 }

@@ -76,7 +76,7 @@ namespace Kassiopeia
 
         aFinalParticle = anInteractionParticle;
         aFinalParticle.SetAlignedSpin( -1. * aFinalParticle.GetAlignedSpin() );
-        aFinalParticle.SetSpinAngle( KConst::Pi() + aFinalParticle.GetSpinAngle() );
+        aFinalParticle.SetSpinAngle( katrin::KConst::Pi() + aFinalParticle.GetSpinAngle() );
         aFinalParticle.RecalculateSpinGlobal();
 
         return;

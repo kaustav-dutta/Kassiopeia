@@ -18,7 +18,7 @@ namespace katrin
     }
     KSIntCalculatorHydrogenSet::~KSIntCalculatorHydrogenSet()
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             delete (*tIt);
         }
@@ -34,7 +34,7 @@ namespace katrin
 
     void KSIntCalculatorHydrogenSet::ReleaseCalculators( KSIntScattering* aScattering )
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             aScattering->AddCalculator( *tIt );
         }

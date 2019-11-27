@@ -23,11 +23,14 @@ namespace Kassiopeia
 
     void KSTrajTermGyration::Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const
     {
-        double tPhaseVelocity = 2. * KConst::Pi() * aParticle.GetCyclotronFrequency();
+        double tPhaseVelocity = 2. * katrin::KConst::Pi() * aParticle.GetCyclotronFrequency();
 
         aDerivative.AddToPhaseVelocity( tPhaseVelocity );
 
+        fPhaseVelocity = tPhaseVelocity;
         return;
     }
 
+    STATICINT sKSTrajTermGyrationDict =
+            KSDictionary< KSTrajTermGyration >::AddComponent( &KSTrajTermGyration::GetPhaseVelocity, "phase_velocity" );
 }

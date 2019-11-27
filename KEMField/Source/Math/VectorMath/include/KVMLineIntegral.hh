@@ -29,13 +29,13 @@ class KVMLineIntegral: public KVMPathIntegral<1>
 {
     public:
         KVMLineIntegral();
-        virtual ~KVMLineIntegral();
+        ~KVMLineIntegral() override;
 
-        virtual void SetField(const KVMField* aField);
+        void SetField(const KVMField* aField) override;
 
     protected:
 
-        virtual void Integrand(const double* point, double* result) const;
+        void Integrand(const double* point, double* result) const override;
 
         mutable KVMFixedArray<double, KVMCurveRDim> fV;
 

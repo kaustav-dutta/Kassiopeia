@@ -17,16 +17,16 @@ namespace KGeoBag
 
         public:
             KGExtrudedSurfaceMesher() :
-                    fExtrudedObject( NULL ),
+                    fExtrudedObject( nullptr ),
                     fIsModifiable( false )
             {
             }
-            virtual ~KGExtrudedSurfaceMesher()
+            ~KGExtrudedSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGExtrudedSurface* extrudedSurface );
+            void VisitWrappedSurface( KGExtrudedSurface* extrudedSurface ) override;
 
             void Discretize( KGExtrudedObject* object );
             void DiscretizeSegment( const KGExtrudedObject::Line* line, const unsigned int nDisc, std::vector< std::vector< double > >& coords, unsigned int& counter );

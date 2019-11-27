@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
             KSGenValueBoltzmann();
             KSGenValueBoltzmann( const KSGenValueBoltzmann& aCopy );
-            KSGenValueBoltzmann* Clone() const;
-            virtual ~KSGenValueBoltzmann();
+            KSGenValueBoltzmann* Clone() const override;
+            ~KSGenValueBoltzmann() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, ValueMass )

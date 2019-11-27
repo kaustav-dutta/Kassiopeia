@@ -15,12 +15,12 @@ namespace Kassiopeia
         public:
             KSTrajTermConstantForcePropagation();
             KSTrajTermConstantForcePropagation( const KSTrajTermConstantForcePropagation& aCopy );
-            KSTrajTermConstantForcePropagation* Clone() const;
-            virtual ~KSTrajTermConstantForcePropagation();
+            KSTrajTermConstantForcePropagation* Clone() const override;
+            ~KSTrajTermConstantForcePropagation() override;
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue,
-                                        KSTrajExactDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue,
+                                        KSTrajExactDerivative& aDerivative ) const override;
             void SetForce( const KThreeVector& aForce );
 
         private:

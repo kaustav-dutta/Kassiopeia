@@ -171,15 +171,15 @@ namespace KEMField
 {
     class KMagnetostaticFieldmap : public KMagnetostaticField
     {
-        virtual KThreeVector MagneticPotentialCore(const KPosition& /*P*/) const {
+        KThreeVector MagneticPotentialCore(const KPosition& /*P*/) const override {
             double nan = std::numeric_limits<double>::quiet_NaN();
             return KThreeVector(nan,nan,nan);
         }
-        virtual KThreeVector MagneticFieldCore(const KPosition& /*P*/) const {
+        KThreeVector MagneticFieldCore(const KPosition& /*P*/) const override {
             double nan = std::numeric_limits<double>::quiet_NaN();
             return KThreeVector(nan,nan,nan);
         }
-        virtual KGradient MagneticGradientCore(const KPosition& /*P*/) const {
+        KGradient MagneticGradientCore(const KPosition& /*P*/) const override {
             double nan = std::numeric_limits<double>::quiet_NaN();
             return KGradient(nan,nan,nan,nan,nan,nan,nan,nan,nan);
         }

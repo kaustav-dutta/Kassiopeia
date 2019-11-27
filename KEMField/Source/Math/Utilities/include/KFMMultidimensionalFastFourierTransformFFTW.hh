@@ -1,6 +1,7 @@
 #ifndef KFMMultidimensionalFastFourierTransformFFTW_HH__
 #define KFMMultidimensionalFastFourierTransformFFTW_HH__
 
+#include <algorithm>
 #include <cstring>
 #include <fftw3.h>
 
@@ -124,8 +125,12 @@ class KFMMultidimensionalFastFourierTransformFFTW: public KFMUnaryArrayOperator<
                 }
                 else
                 {
-                    //alignment doesn't match so we need to use memcpy
-                    std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
+                    //alignment doesn't match so we need to use memcpy / copy
+                    //std::memcpy( fInPtr, this->fInput->GetData() , fTotalArraySize*sizeof(fftw_complex) );
+                    std::copy(this->fInput->GetData(),
+                              this->fInput->GetData()  + fTotalArraySize,
+                              reinterpret_cast<std::complex<double>*>(fInPtr)
+                              );
                     if(fForward)
                     {
                         fftw_execute(fPlanForward);
@@ -134,7 +139,11 @@ class KFMMultidimensionalFastFourierTransformFFTW: public KFMUnaryArrayOperator<
                     {
                         fftw_execute(fPlanBackward);
                     }
-                    std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    //std::memcpy(this->fOutput->GetData(), fOutPtr, fTotalArraySize*sizeof(fftw_complex) );
+                    std::copy(reinterpret_cast<std::complex<double>*>(fOutPtr),
+                              reinterpret_cast<std::complex<double>*>(fOutPtr)+fTotalArraySize,
+                              this->fOutput->GetData()
+                              );
                 }
             }
         }

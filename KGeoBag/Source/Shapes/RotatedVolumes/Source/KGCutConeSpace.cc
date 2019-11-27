@@ -137,8 +137,8 @@ namespace KGeoBag
     }
     void KGCutConeSpace::VolumeAccept( KGVisitor* aVisitor )
     {
-        KGCutConeSpace::Visitor* tCutConeSpaceVisitor = dynamic_cast< KGCutConeSpace::Visitor* >( aVisitor );
-        if( tCutConeSpaceVisitor != NULL )
+        auto* tCutConeSpaceVisitor = dynamic_cast< KGCutConeSpace::Visitor* >( aVisitor );
+        if( tCutConeSpaceVisitor != nullptr )
         {
             tCutConeSpaceVisitor->VisitCutConeSpace( this );
             return;

@@ -6,7 +6,7 @@ namespace KEMField
   {
     for (unsigned int i=0;i<Length<KEMField::KBoundaryTypes>::value+1;i++)
       for (unsigned int j=0;j<Length<KEMField::KShapeTypes>::value+1;j++)
-	fPartialSurfaceData[i][j] = NULL;
+	fPartialSurfaceData[i][j] = nullptr;
   }
 
   KSurfaceContainer::~KSurfaceContainer()
@@ -35,7 +35,7 @@ namespace KEMField
     int boundaryPolicy = aSurface->GetID().BoundaryID;
     int shapePolicy = aSurface->GetID().ShapeID;
     
-    KSurfaceDataIt it=fSurfaceData.begin();
+    auto it=fSurfaceData.begin();
     for (;it!=fSurfaceData.end();++it)
       if ((*it)->size()!=0)
 	if ((*it)->operator[](0)->GetID().BoundaryID == boundaryPolicy &&
@@ -50,13 +50,13 @@ namespace KEMField
 
   KSurfacePrimitive* KSurfaceContainer::FirstSurfaceType(unsigned int i) const
   {
-    return (i<fSurfaceData.size() ? fSurfaceData.at(i)->at(0) : NULL);
+    return (i<fSurfaceData.size() ? fSurfaceData.at(i)->at(0) : nullptr);
   }
 
   KSurfacePrimitive* KSurfaceContainer::operator[](const unsigned int& i) const
   {
     unsigned int j = i;
-    KSurfaceDataCIt surfaceDataIt = fSurfaceData.begin();
+    auto surfaceDataIt = fSurfaceData.begin();
     for (;surfaceDataIt!=fSurfaceData.end();++surfaceDataIt)
     {
       if (j >= (*surfaceDataIt)->size())
@@ -68,7 +68,7 @@ namespace KEMField
     	return *surfaceArrayIt;
       }
     }
-    return NULL;
+    return nullptr;
 
     // unsigned int j=i;
     // unsigned int size;
@@ -86,7 +86,7 @@ namespace KEMField
   unsigned int KSurfaceContainer::size() const
   {
     unsigned int i = 0;
-    for (KSurfaceDataCIt it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
+    for (auto it=fSurfaceData.begin();it!=fSurfaceData.end();++it)
       i+=(*it)->size();
     return i;
   }

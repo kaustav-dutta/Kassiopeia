@@ -67,8 +67,8 @@ namespace KGeoBag
 
   void KGBox::AreaAccept(KGVisitor* aVisitor)
   {
-    KGBox::Visitor* tBoxVisitor = dynamic_cast<KGBox::Visitor*>(aVisitor);
-    if(tBoxVisitor != NULL)
+    auto* tBoxVisitor = dynamic_cast<KGBox::Visitor*>(aVisitor);
+    if(tBoxVisitor != nullptr)
     {
       tBoxVisitor->VisitBox(this);
     }

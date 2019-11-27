@@ -10,7 +10,7 @@ namespace KGeoBag
 {
 
     KGElectromagnetConverter::KGElectromagnetConverter() :
-            fElectromagnetContainer( NULL ),
+            fElectromagnetContainer( nullptr ),
             fOrigin( KThreeVector::sZero ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
@@ -19,8 +19,8 @@ namespace KGeoBag
             fCurrentXAxis( KThreeVector::sXUnit ),
             fCurrentYAxis( KThreeVector::sYUnit ),
             fCurrentZAxis( KThreeVector::sZUnit ),
-            fCurrentElectromagnetSpace( NULL ),
-            fCurrentElectromagnetSurface( NULL )
+            fCurrentElectromagnetSpace( nullptr ),
+            fCurrentElectromagnetSurface( nullptr )
     {
     }
     KGElectromagnetConverter::~KGElectromagnetConverter()
@@ -130,7 +130,7 @@ namespace KGeoBag
                 KPosition p0( rod->GetObject()->GetCoordinate( i, 0 ), rod->GetObject()->GetCoordinate( i, 1 ), rod->GetObject()->GetCoordinate( i, 2 ) );
                 KPosition p1( rod->GetObject()->GetCoordinate( i + 1, 0 ), rod->GetObject()->GetCoordinate( i + 1, 1 ), rod->GetObject()->GetCoordinate( i + 1, 2 ) );
 
-                KLineCurrent* lineCurrent = new KLineCurrent();
+                auto* lineCurrent = new KLineCurrent();
                 lineCurrent->SetValues( p0, p1, fCurrentElectromagnetSpace->GetCurrent() );
 
                 lineCurrent->GetCoordinateSystem().SetValues( GlobalToInternalPosition( fCurrentOrigin ), GlobalToInternalVector( fCurrentXAxis ), GlobalToInternalVector( fCurrentYAxis ), GlobalToInternalVector( fCurrentZAxis ) );
@@ -147,7 +147,7 @@ namespace KGeoBag
             double tZMin = cylinder->Z1() > cylinder->Z2() ? cylinder->Z2() : cylinder->Z1();
             double tZMax = cylinder->Z1() > cylinder->Z2() ? cylinder->Z1() : cylinder->Z2();
             double tCurrent = fCurrentElectromagnetSurface->GetCurrent();
-            KSolenoid* solenoid = new KSolenoid();
+            auto* solenoid = new KSolenoid();
             solenoid->SetValues( tR, tZMin, tZMax, tCurrent );
 
             solenoid->GetCoordinateSystem().SetValues( GlobalToInternalPosition( fCurrentOrigin ), GlobalToInternalVector( fCurrentXAxis ), GlobalToInternalVector( fCurrentYAxis ), GlobalToInternalVector( fCurrentZAxis ) );
@@ -166,7 +166,7 @@ namespace KGeoBag
             double tZMax = cylinderTube->Z1() > cylinderTube->Z2() ? cylinderTube->Z1() : cylinderTube->Z2();
             double tCurrent = fCurrentElectromagnetSpace->GetCurrent();
 
-            KCoil* coil = new KCoil();
+            auto* coil = new KCoil();
             coil->SetValues( tRMin, tRMax, tZMin, tZMax, tCurrent, tNDisc );
 
             coil->GetCoordinateSystem().SetValues( GlobalToInternalPosition( fCurrentOrigin ), GlobalToInternalVector( fCurrentXAxis ), GlobalToInternalVector( fCurrentYAxis ), GlobalToInternalVector( fCurrentZAxis ) );
@@ -176,8 +176,8 @@ namespace KGeoBag
 
     void KGElectromagnetConverter::Clear()
     {
-        fCurrentElectromagnetSpace = NULL;
-        fCurrentElectromagnetSurface = NULL;
+        fCurrentElectromagnetSpace = nullptr;
+        fCurrentElectromagnetSurface = nullptr;
         return;
     }
 

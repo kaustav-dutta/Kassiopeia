@@ -106,31 +106,31 @@ namespace katrin
     {
         if( anElement->GetName() == "start_point" )
         {
-            KGPlanarPolyLine::StartPointArguments* tArgs = anElement->AsPointer< KGPlanarPolyLine::StartPointArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLine::StartPointArguments >();
             fObject->StartPoint( tArgs->fPoint );
             return true;
         }
         if( anElement->GetName() == "next_line" )
         {
-            KGPlanarPolyLine::LineArguments* tArgs = anElement->AsPointer< KGPlanarPolyLine::LineArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLine::LineArguments >();
             fObject->NextLine( tArgs->fVertex, tArgs->fMeshCount, tArgs->fMeshPower );
             return true;
         }
         if( anElement->GetName() == "next_arc" )
         {
-            KGPlanarPolyLine::ArcArguments* tArgs = anElement->AsPointer< KGPlanarPolyLine::ArcArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLine::ArcArguments >();
             fObject->NextArc( tArgs->fVertex, tArgs->fRadius, tArgs->fRight, tArgs->fShort, tArgs->fMeshCount );
             return true;
         }
         if( anElement->GetName() == "previous_line" )
         {
-            KGPlanarPolyLine::LineArguments* tArgs = anElement->AsPointer< KGPlanarPolyLine::LineArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLine::LineArguments >();
             fObject->PreviousLine( tArgs->fVertex, tArgs->fMeshCount, tArgs->fMeshPower );
             return true;
         }
         if( anElement->GetName() == "previous_arc" )
         {
-            KGPlanarPolyLine::ArcArguments* tArgs = anElement->AsPointer< KGPlanarPolyLine::ArcArguments >();
+            auto* tArgs = anElement->AsPointer< KGPlanarPolyLine::ArcArguments >();
             fObject->PreviousArc( tArgs->fVertex, tArgs->fRadius, tArgs->fRight, tArgs->fShort, tArgs->fMeshCount );
             return true;
         }

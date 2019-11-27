@@ -17,7 +17,7 @@ namespace KGeoBag
         public:
             KGExtendedSpace( KGSpace* aSpace );
             KGExtendedSpace( KGSpace* aSpace, const typename XExtension::Space& );
-            virtual ~KGExtendedSpace();
+            ~KGExtendedSpace() override;
 
         private:
             KGExtendedSpace();
@@ -28,7 +28,7 @@ namespace KGeoBag
             //********
 
         protected:
-            KGExtensibleSpace* Clone( KGSpace* aParent = NULL ) const;
+            KGExtensibleSpace* Clone( KGSpace* aParent = nullptr ) const override;
 
             //*********
             //visitable
@@ -44,7 +44,7 @@ namespace KGeoBag
                     virtual void VisitExtendedSpace( KGExtendedSpace< XExtension >* ) = 0;
             };
 
-            void Accept( KGVisitor* aVisitor );
+            void Accept( KGVisitor* aVisitor ) override;
 
             //**********
             //extensible

@@ -24,17 +24,17 @@ namespace katrin
         public:
             KVariableProcessor();
             KVariableProcessor( const VariableMap& anExternalMap );
-            virtual ~KVariableProcessor();
+            ~KVariableProcessor() override;
 
-            virtual void ProcessToken( KBeginFileToken* aToken );
-            virtual void ProcessToken( KBeginElementToken* aToken );
-            virtual void ProcessToken( KBeginAttributeToken* aToken );
-            virtual void ProcessToken( KAttributeDataToken* aToken );
-            virtual void ProcessToken( KEndAttributeToken* aToken );
-            virtual void ProcessToken( KMidElementToken* aToken );
-            virtual void ProcessToken( KElementDataToken* aToken );
-            virtual void ProcessToken( KEndElementToken* aToken );
-            virtual void ProcessToken( KEndFileToken* aToken );
+            void ProcessToken( KBeginFileToken* aToken ) override;
+            void ProcessToken( KBeginElementToken* aToken ) override;
+            void ProcessToken( KBeginAttributeToken* aToken ) override;
+            void ProcessToken( KAttributeDataToken* aToken ) override;
+            void ProcessToken( KEndAttributeToken* aToken ) override;
+            void ProcessToken( KMidElementToken* aToken ) override;
+            void ProcessToken( KElementDataToken* aToken ) override;
+            void ProcessToken( KEndElementToken* aToken ) override;
+            void ProcessToken( KEndFileToken* aToken ) override;
 
         private:
             void Evaluate( KToken* aToken );

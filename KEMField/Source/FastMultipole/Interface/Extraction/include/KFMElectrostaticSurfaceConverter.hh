@@ -44,10 +44,10 @@ class KFMElectrostaticSurfaceConverter
 
         KFMElectrostaticSurfaceConverter()
         {
-            fSurfaceContainer = NULL;
-            fSortedSurfaceContainer = NULL;
+            fSurfaceContainer = nullptr;
+            fSortedSurfaceContainer = nullptr;
             fContainerIsSorted = false;
-            fElectrostaticElementContainer = NULL;
+            fElectrostaticElementContainer = nullptr;
         };
 
         virtual ~KFMElectrostaticSurfaceConverter(){};

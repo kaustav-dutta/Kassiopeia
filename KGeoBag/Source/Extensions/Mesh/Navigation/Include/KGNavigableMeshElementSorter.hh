@@ -32,12 +32,12 @@ namespace KGeoBag
 class KGNavigableMeshElementSorter: public KGNodeActor< KGMeshNavigationNode >
 {
     public:
-        KGNavigableMeshElementSorter():fContainer(NULL){};
-        virtual ~KGNavigableMeshElementSorter(){};
+        KGNavigableMeshElementSorter():fContainer(nullptr){};
+        ~KGNavigableMeshElementSorter() override{};
 
         void SetMeshElementContainer(KGNavigableMeshElementContainer* container){fContainer = container;};
 
-        virtual void ApplyAction( KGMeshNavigationNode* node);
+        void ApplyAction( KGMeshNavigationNode* node) override;
 
     private:
 

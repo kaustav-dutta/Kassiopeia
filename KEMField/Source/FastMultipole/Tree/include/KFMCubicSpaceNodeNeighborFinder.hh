@@ -50,7 +50,7 @@ class KFMCubicSpaceNodeNeighborFinder
             neighbors->resize(list_size);
             for(unsigned int i=0; i<list_size; i++)
             {
-                neighbors->at(i) = NULL;
+                neighbors->at(i) = nullptr;
             }
 
             for(unsigned int n=0; n<list_size; n++)
@@ -89,7 +89,7 @@ class KFMCubicSpaceNodeNeighborFinder
             //get this node's parent
             KFMNode<ObjectTypeList>* parent = target_node->GetParent();
 
-            if(parent != NULL)
+            if(parent != nullptr)
             {
                 //get the dimensionality of the divisions at this tree level
                 if(parent->GetLevel() == 0)
@@ -119,18 +119,18 @@ class KFMCubicSpaceNodeNeighborFinder
                 KFMNode<ObjectTypeList>* parent_neighbor;
                 parent_neighbor = KFMCubicSpaceNodeNeighborFinder<NDIM, ObjectTypeList>::GetNeighbor(parent, div_coord);
 
-                if(parent_neighbor != NULL)
+                if(parent_neighbor != nullptr)
                 {
                     return parent_neighbor->GetChild( KFMArrayMath::OffsetFromRowMajorIndex<NDIM>(dim_size, mod_coord) );
                 }
                 else
                 {
-                    return NULL;
+                    return nullptr;
                 }
             }
             else
             {
-                return NULL;
+                return nullptr;
             }
         }
 

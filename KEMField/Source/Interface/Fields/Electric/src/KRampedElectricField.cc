@@ -6,7 +6,7 @@
  */
 
 #include "KRampedElectricField.hh"
-#include <assert.h>
+#include <cassert>
 #include "KEMCout.hh"
 #include "KEMSimpleException.hh"
 
@@ -14,7 +14,7 @@
 namespace KEMField {
 
 KRampedElectricField::KRampedElectricField() :
-                fRootElectricField( NULL ),
+                fRootElectricField( nullptr ),
                 fRampingType( rtExponential ),
                 fNumCycles( 1 ),
                 fRampUpDelay( 0. ),
@@ -51,7 +51,7 @@ double KRampedElectricField::GetModulationFactor( const double &aTime ) const
     double tLength = fRampUpDelay + fRampUpTime + fRampDownDelay + fRampDownTime;
 
     double tTime = aTime;
-    int tCycle = (int)floor( tTime / tLength );
+    auto tCycle = (int)floor( tTime / tLength );
     if ( tCycle < fNumCycles )
         tTime -= tCycle * tLength;
     tTime *= fTimeScalingFactor;

@@ -14,7 +14,7 @@ namespace Kassiopeia
     {
         public:
             KSTrajExactTrappedDerivative();
-            virtual ~KSTrajExactTrappedDerivative();
+            ~KSTrajExactTrappedDerivative() override;
 
             //**********
             //assignment

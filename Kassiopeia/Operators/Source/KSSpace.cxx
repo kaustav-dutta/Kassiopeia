@@ -8,7 +8,7 @@ namespace Kassiopeia
 {
 
     KSSpace::KSSpace() :
-            fParent( NULL ),
+            fParent( nullptr ),
             fSpaces(),
             fSurfaces(),
             fSides()
@@ -28,7 +28,7 @@ namespace Kassiopeia
     }
     void KSSpace::SetParent( KSSpace* aParent )
     {
-        for( vector< KSSpace* >::iterator tSpaceIt = aParent->fSpaces.begin(); tSpaceIt != aParent->fSpaces.end(); tSpaceIt++ )
+        for( auto tSpaceIt = aParent->fSpaces.begin(); tSpaceIt != aParent->fSpaces.end(); tSpaceIt++ )
         {
             if( (*tSpaceIt) == this )
             {
@@ -41,7 +41,7 @@ namespace Kassiopeia
 
         this->fParent = aParent;
 
-        for( vector< KSSide* >::iterator tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
+        for( auto tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
         {
             (*tSideIt)->fOutsideParent = aParent;
         }
@@ -63,7 +63,7 @@ namespace Kassiopeia
     }
     void KSSpace::AddSpace( KSSpace* aChild )
     {
-        for( vector< KSSpace* >::iterator tSpaceIt = this->fSpaces.begin(); tSpaceIt != this->fSpaces.end(); tSpaceIt++ )
+        for( auto tSpaceIt = this->fSpaces.begin(); tSpaceIt != this->fSpaces.end(); tSpaceIt++ )
         {
             if( (*tSpaceIt) == aChild )
             {
@@ -87,7 +87,7 @@ namespace Kassiopeia
     }
     void KSSpace::RemoveSpace( KSSpace* aChild )
     {
-        for( vector< KSSpace* >::iterator tSpaceIt = this->fSpaces.begin(); tSpaceIt != this->fSpaces.end(); tSpaceIt++ )
+        for( auto tSpaceIt = this->fSpaces.begin(); tSpaceIt != this->fSpaces.end(); tSpaceIt++ )
         {
             if( (*tSpaceIt) == aChild )
             {
@@ -96,7 +96,7 @@ namespace Kassiopeia
             }
         }
 
-        aChild->fParent = NULL;
+        aChild->fParent = nullptr;
 
         return;
     }
@@ -115,7 +115,7 @@ namespace Kassiopeia
     }
     void KSSpace::AddSurface( KSSurface* aChild )
     {
-        for( vector< KSSurface* >::iterator tSurfaceIt = this->fSurfaces.begin(); tSurfaceIt != this->fSurfaces.end(); tSurfaceIt++ )
+        for( auto tSurfaceIt = this->fSurfaces.begin(); tSurfaceIt != this->fSurfaces.end(); tSurfaceIt++ )
         {
             if( (*tSurfaceIt) == aChild )
             {
@@ -132,7 +132,7 @@ namespace Kassiopeia
     }
     void KSSpace::RemoveSurface( KSSurface* aChild )
     {
-        for( vector< KSSurface* >::iterator tSurfaceIt = this->fSurfaces.begin(); tSurfaceIt != this->fSurfaces.end(); tSurfaceIt++ )
+        for( auto tSurfaceIt = this->fSurfaces.begin(); tSurfaceIt != this->fSurfaces.end(); tSurfaceIt++ )
         {
             if( *tSurfaceIt == aChild )
             {
@@ -140,7 +140,7 @@ namespace Kassiopeia
                 break;
             }
         }
-        aChild->fParent = NULL;
+        aChild->fParent = nullptr;
         return;
     }
 
@@ -158,7 +158,7 @@ namespace Kassiopeia
     }
     void KSSpace::AddSide( KSSide* aChild )
     {
-        for( vector< KSSide* >::iterator tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
+        for( auto tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
         {
             if( (*tSideIt) == aChild )
             {
@@ -177,7 +177,7 @@ namespace Kassiopeia
     }
     void KSSpace::RemoveSide( KSSide* aChild )
     {
-        for( vector< KSSide* >::iterator tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
+        for( auto tSideIt = this->fSides.begin(); tSideIt != this->fSides.end(); tSideIt++ )
         {
             if( (*tSideIt) == aChild )
             {
@@ -186,9 +186,9 @@ namespace Kassiopeia
             }
         }
 
-        aChild->fInsideParent = NULL;
+        aChild->fInsideParent = nullptr;
 
-        aChild->fOutsideParent = NULL;
+        aChild->fOutsideParent = nullptr;
 
         return;
     }

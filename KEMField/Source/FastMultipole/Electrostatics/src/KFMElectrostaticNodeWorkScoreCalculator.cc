@@ -51,7 +51,7 @@ KFMElectrostaticNodeWorkScoreCalculator::ApplyAction( KFMNode< KFMElectrostaticN
 
     fSingleNodeActor.Reset();
 
-    if(node != NULL )
+    if(node != nullptr )
     {
         //we need to recursively vist this node and its children
         //to calculate the number of operations required to evaluate

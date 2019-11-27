@@ -16,8 +16,8 @@ namespace Kassiopeia
             KSEvent();
             KSEvent( const KSEvent& aCopy );
             KSEvent& operator=( const KSEvent& aCopy );
-            KSEvent* Clone() const;
-            ~KSEvent();
+            KSEvent* Clone() const override;
+            ~KSEvent() override;
 
             //***
             //IDs

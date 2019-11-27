@@ -18,10 +18,10 @@ namespace KEMField
     friend class KElectrostaticAnalyticConicSectionIntegrator;
 
     KElectrostaticAnalyticRingIntegrator() {}
-    ~KElectrostaticAnalyticRingIntegrator() {}
+    ~KElectrostaticAnalyticRingIntegrator() override {}
 
-    double Potential( const KRing* source, const KPosition& P ) const;
-    KThreeVector ElectricField( const KRing* source, const KPosition& P ) const;
+    double Potential( const KRing* source, const KPosition& P ) const override;
+    KThreeVector ElectricField( const KRing* source, const KPosition& P ) const override;
     using KElectrostaticElementIntegrator<KRing>::Potential;
     using KElectrostaticElementIntegrator<KRing>::ElectricField;
 

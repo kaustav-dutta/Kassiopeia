@@ -14,18 +14,18 @@ namespace Kassiopeia
         public:
             KSRootWriter();
             KSRootWriter( const KSRootWriter& aCopy );
-            KSRootWriter* Clone() const;
-            virtual ~KSRootWriter();
+            KSRootWriter* Clone() const override;
+            ~KSRootWriter() override;
 
             //******
             //writer
             //******
 
         public:
-            void ExecuteRun();
-            void ExecuteEvent();
-            void ExecuteTrack();
-            void ExecuteStep();
+            void ExecuteRun() override;
+            void ExecuteEvent() override;
+            void ExecuteTrack() override;
+            void ExecuteStep() override;
 
             //***********
             //composition

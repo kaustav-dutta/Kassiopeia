@@ -20,15 +20,15 @@ namespace Kassiopeia
         public:
             KSGeoSide();
             KSGeoSide( const KSGeoSide& aCopy );
-            KSGeoSide* Clone() const;
-            virtual ~KSGeoSide();
+            KSGeoSide* Clone() const override;
+            ~KSGeoSide() override;
 
         public:
-            void On() const;
-            void Off() const;
+            void On() const override;
+            void Off() const override;
 
-            KThreeVector Point( const KThreeVector& aPoint ) const;
-            KThreeVector Normal( const KThreeVector& aPoint ) const;
+            KThreeVector Point( const KThreeVector& aPoint ) const override;
+            KThreeVector Normal( const KThreeVector& aPoint ) const override;
 
         public:
             void AddContent( KGSurface* aSurface );
@@ -39,8 +39,8 @@ namespace Kassiopeia
             void RemoveCommand( KSCommand* anCommand );
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         private:
             KSGeoSpace* fOutsideParent;

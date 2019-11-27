@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGShellArcSegmentSurfaceMesher();
-            virtual ~KGShellArcSegmentSurfaceMesher();
+            ~KGShellArcSegmentSurfaceMesher() override;
 
         protected:
-            void VisitShellPathSurface( KGShellArcSegmentSurface* aShellArcSegmentSurface );
+            void VisitShellPathSurface( KGShellArcSegmentSurface* aShellArcSegmentSurface ) override;
     };
 
 }

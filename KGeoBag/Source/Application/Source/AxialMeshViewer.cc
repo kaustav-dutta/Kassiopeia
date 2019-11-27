@@ -28,12 +28,14 @@ int main( int argc, char** argv )
 {
     if( argc < 3 )
     {
-        cout << "usage: ./AxialMeshViewer <config_file_name.xml> <geometry_path>" << endl;
+        cout << "usage: ./AxialMeshViewer <config_file_name.xml> <geometry_path> [...]" << endl;
         return -1;
     }
 
     string tFileName( argv[ 1 ] );
-    string tPath( argv[ 2 ] );
+    vector<string> tPathList;
+    for (int i = 2; i < argc; i++ )
+        tPathList.push_back( argv[ i ] );
 
     KCommandLineTokenizer tCommandLine;
     tCommandLine.ProcessCommandLine( argc, argv );
@@ -87,24 +89,17 @@ int main( int argc, char** argv )
     tPainter.SetWriteMode( true );
     tPainter.SetColorMode( KGVTKAxialMeshPainter::sArea );
 
-    vector< KGSurface* > tSurfaces = KGInterface::GetInstance()->RetrieveSurfaces( tPath );
-    vector< KGSurface* >::iterator tSurfaceIt;
-
-    vector< KGSpace* > tSpaces = KGInterface::GetInstance()->RetrieveSpaces( tPath );
-    vector< KGSpace* >::iterator tSpaceIt;
-
-    for( tSurfaceIt = tSurfaces.begin(); tSurfaceIt != tSurfaces.end(); tSurfaceIt++ )
-    {
-        (*tSurfaceIt)->MakeExtension< KGAxialMesh >();
-        (*tSurfaceIt)->AcceptNode( &tMesher );
-        (*tSurfaceIt)->AcceptNode( &tPainter );
-    }
-
-    for( tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++ )
-    {
-        (*tSpaceIt)->MakeExtension< KGAxialMesh >();
-        (*tSpaceIt)->AcceptNode( &tMesher );
-        (*tSpaceIt)->AcceptNode( &tPainter );
+    for (auto & tPath : tPathList) {
+        for (auto & tSurface : KGInterface::GetInstance()->RetrieveSurfaces( tPath ) ) {
+            tSurface->MakeExtension< KGAxialMesh >();
+            tSurface->AcceptNode( &tMesher );
+            tSurface->AcceptNode( &tPainter );
+        }
+        for (auto & tSpace : KGInterface::GetInstance()->RetrieveSpaces( tPath ) ) {
+            tSpace->MakeExtension< KGAxialMesh >();
+            tSpace->AcceptNode( &tMesher );
+            tSpace->AcceptNode( &tPainter );
+        }
     }
 
     tWindow.AddPainter( &tPainter );

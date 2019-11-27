@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
             KSGenValueFormula();
             KSGenValueFormula( const KSGenValueFormula& aCopy );
-            KSGenValueFormula* Clone() const;
-            virtual ~KSGenValueFormula();
+            KSGenValueFormula* Clone() const override;
+            ~KSGenValueFormula() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             ;K_SET_GET( double, ValueMin );
@@ -27,8 +27,8 @@ namespace Kassiopeia
             ;K_SET_GET( std::string, ValueFormula );
 
         public:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         protected:
             TF1* fValueFunction;

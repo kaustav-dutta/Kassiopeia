@@ -12,8 +12,8 @@ using namespace std;
 namespace KEMField {
 
 KElectrostaticBoundaryField::KElectrostaticBoundaryField() :
-		fChargeDensitySolver( NULL ),
-		fFieldSolver( NULL ),
+		fChargeDensitySolver( nullptr ),
+		fFieldSolver( nullptr ),
 		fContainer(),
 		fFile(),
 		fDirectory( KEMFileInterface::GetInstance()->ActiveDirectory() ),
@@ -127,22 +127,19 @@ void KElectrostaticBoundaryField::SetHashThreshold( const double& aThreshold )
 }
 
 void KElectrostaticBoundaryField::VisitorPreprocessing() {
-	typedef vector<KSmartPointer<Visitor> >::iterator Viter;
-    for (Viter it = fVisitors.begin();it != fVisitors.end();++it)
+    for (auto it = fVisitors.begin();it != fVisitors.end();++it)
       if ((*it)->Preprocessing())
         (*it)->PreVisit(*this);
 }
 
 void KElectrostaticBoundaryField::VisitorInBetweenProcessing() {
-    typedef vector<KSmartPointer<Visitor> >::iterator Viter;
-    for (Viter it = fVisitors.begin();it != fVisitors.end();++it)
+    for (auto it = fVisitors.begin();it != fVisitors.end();++it)
         if ((*it)->InBetweenProcessing())
             (*it)->InBetweenVisit(*this);
 }
 
 void KElectrostaticBoundaryField::VisitorPostprocessing() {
-    typedef vector<KSmartPointer<Visitor> >::iterator Viter;
-	for (Viter it = fVisitors.begin();it != fVisitors.end();++it)
+	for (auto it = fVisitors.begin();it != fVisitors.end();++it)
       if ((*it)->Postprocessing())
         (*it)->PostVisit(*this);
 }

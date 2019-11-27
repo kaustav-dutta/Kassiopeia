@@ -25,7 +25,7 @@ namespace katrin
             aContainer->CopyTo( fObject, &KSIntCalculatorIon::SetGas );
 	    
 	    if ( (fObject->GetGas().compare("H_2")!=0) && (fObject->GetGas().compare("H2O")!=0) ) {
-	      intmsg(eError) << "\"" << fObject->GetGas() << "\" is not available for ion scattering! Available gases: \"H_2\", \"H2O\"" << eom;
+	      intmsg(eError) << "\"" << fObject->GetGas() << R"(" is not available for ion scattering! Available gases: "H_2", "H2O")" << eom;
 	      
 	      return false;
 	    }

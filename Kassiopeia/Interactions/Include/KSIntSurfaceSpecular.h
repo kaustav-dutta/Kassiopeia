@@ -16,11 +16,11 @@ namespace Kassiopeia
         public:
             KSIntSurfaceSpecular();
             KSIntSurfaceSpecular( const KSIntSurfaceSpecular& aCopy );
-            KSIntSurfaceSpecular* Clone() const;
-            virtual ~KSIntSurfaceSpecular();
+            KSIntSurfaceSpecular* Clone() const override;
+            ~KSIntSurfaceSpecular() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             void ExecuteReflection( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
             void ExecuteTransmission( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
 

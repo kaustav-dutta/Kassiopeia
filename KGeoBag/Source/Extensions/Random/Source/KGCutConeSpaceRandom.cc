@@ -25,7 +25,7 @@ void KGeoBag::KGCutConeSpaceRandom::VisitCutConeSpace(KGeoBag::KGCutConeSpace* a
 		r = aCutConeSpace->R1() * sqrt(Uniform());
 	}
 
-	double phi = Uniform(0, 2 * KConst::Pi());
+	double phi = Uniform(0, 2 * katrin::KConst::Pi());
 
 	point.SetZ(z);
 	point.SetX(cos(phi) * r);

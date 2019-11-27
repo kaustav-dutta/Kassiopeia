@@ -87,7 +87,7 @@ namespace Kassiopeia
         fElements = new XType*[ fLastElement ];
         for( fCurrentElement = 0; fCurrentElement < fLastElement; fCurrentElement++ )
         {
-            fElements[ fCurrentElement ] = NULL;
+            fElements[ fCurrentElement ] = nullptr;
         }
     }
     template< class XType >
@@ -183,7 +183,7 @@ namespace Kassiopeia
             {
                 if( fElements[ fCurrentElement ] == anElement )
                 {
-                    fElements[ fCurrentElement ] = NULL;
+                    fElements[ fCurrentElement ] = nullptr;
                     tIndex = fCurrentElement;
                 }
                 continue;
@@ -193,7 +193,7 @@ namespace Kassiopeia
         if( tIndex != -1 )
         {
             fEndElement--;
-            fElements[ fEndElement ] = NULL;
+            fElements[ fEndElement ] = nullptr;
         }
         return tIndex;
     }
@@ -203,7 +203,7 @@ namespace Kassiopeia
         fCurrentElement = anIndex;
         if( fCurrentElement >= fEndElement || fCurrentElement < 0 )
         {
-            return NULL;
+            return nullptr;
         }
         return fElements[ fCurrentElement ];
     }

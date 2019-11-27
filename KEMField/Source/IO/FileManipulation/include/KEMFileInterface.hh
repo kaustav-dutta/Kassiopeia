@@ -67,7 +67,7 @@ namespace KEMField
 
   private:
     KEMFileInterface();
-    virtual ~KEMFileInterface() {}
+    ~KEMFileInterface() override {}
 
     static KEMFileInterface* fEMFileInterface;
 
@@ -82,7 +82,7 @@ namespace KEMField
     result = true;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
     {
       if (HasElement(*it,name))
 	return Read(*it,readable,name);
@@ -96,7 +96,7 @@ namespace KEMField
     result = true;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
     {
       if (HasElement(*it,hash))
 	return ReadHashed(*it,readable,hash);
@@ -110,7 +110,7 @@ namespace KEMField
     result = true;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
     {
       unsigned int nLabeled = NumberOfLabeled(*it,label);
       if (index < nLabeled)
@@ -129,7 +129,7 @@ namespace KEMField
     result = true;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
     {
       unsigned int nLabeled = NumberOfLabeled(*it,labels);
       if (index < nLabeled)

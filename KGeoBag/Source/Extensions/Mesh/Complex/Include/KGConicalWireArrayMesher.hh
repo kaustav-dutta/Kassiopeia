@@ -19,12 +19,12 @@ namespace KGeoBag
     KGConicalWireArrayMesher()
     {
     }
-    virtual ~KGConicalWireArrayMesher()
+    ~KGConicalWireArrayMesher() override
     {
     }
 
   protected:
-    void VisitWrappedSurface(KGWrappedSurface< KGConicalWireArray >* conicalWireArraySurface);
+    void VisitWrappedSurface(KGWrappedSurface< KGConicalWireArray >* conicalWireArraySurface) override;
   };
 
 }

@@ -37,7 +37,7 @@ namespace KGeoBag
 
     void KGRotatedSurfaceMesher::DiscretizeSegment( const KGRotatedObject::Line* line, const unsigned int nPolyBegin, const unsigned int nPolyEnd )
     {
-        if( const KGRotatedObject::Arc* arc = dynamic_cast< const KGRotatedObject::Arc* >( line ) )
+        if( const auto* arc = dynamic_cast< const KGRotatedObject::Arc* >( line ) )
             return DiscretizeSegment( arc, nPolyBegin, nPolyEnd );
 
         // First, we find the length of a side of the polygon in the middle of the

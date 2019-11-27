@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGExtrudedArcSegmentSurfaceMesher();
-            virtual ~KGExtrudedArcSegmentSurfaceMesher();
+            ~KGExtrudedArcSegmentSurfaceMesher() override;
 
         protected:
-            void VisitExtrudedPathSurface( KGExtrudedArcSegmentSurface* aExtrudedArcSegmentSurface );
+            void VisitExtrudedPathSurface( KGExtrudedArcSegmentSurface* aExtrudedArcSegmentSurface ) override;
     };
 
 }

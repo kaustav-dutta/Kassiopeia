@@ -41,7 +41,7 @@ class KSAIsDerivedFrom
   static void Constraints(D* p) { B* pb = p; pb = p; }
 
 public:
-  enum { Is = sizeof(Test(static_cast<D*>(0))) == sizeof(Yes) };
+  enum { Is = sizeof(Test(static_cast<D*>(nullptr))) == sizeof(Yes) };
 
   KSAIsDerivedFrom() { void(*p)(D*) = Constraints; }
 };

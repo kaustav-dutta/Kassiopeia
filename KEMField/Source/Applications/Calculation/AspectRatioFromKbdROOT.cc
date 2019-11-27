@@ -39,9 +39,9 @@ public:
 
     AspectRatioVisitor(){}
 
-    void Visit(KTriangle& t) { ProcessTriangle(t); }
-    void Visit(KRectangle& r) { ProcessRectangle(r); }
-    void Visit(KLineSegment& l) { ProcessLineSegment(l); }
+    void Visit(KTriangle& t) override { ProcessTriangle(t); }
+    void Visit(KRectangle& r) override { ProcessRectangle(r); }
+    void Visit(KLineSegment& l) override { ProcessLineSegment(l); }
 
     void ProcessTriangle(KTriangle& tri)
     {
@@ -333,9 +333,9 @@ int main(int argc, char* argv[])
     "\n";
 
     static struct option longOptions[] = {
-        {"help", no_argument, 0, 'h'},
-        {"file", required_argument, 0, 'f'},
-        {"name", required_argument, 0, 'n'}
+        {"help", no_argument, nullptr, 'h'},
+        {"file", required_argument, nullptr, 'f'},
+        {"name", required_argument, nullptr, 'n'}
     };
 
     static const char *optString = "h:f:n:";
@@ -343,9 +343,9 @@ int main(int argc, char* argv[])
     std::string inFile = "";
     std::string containerName = "surfaceContainer";
 
-    while(1)
+    while(true)
     {
-        char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+        char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
         if(optId == -1) break;
         switch(optId) {
         case('h'): // help
@@ -424,11 +424,11 @@ int main(int argc, char* argv[])
     // compute aspect ratios separately for different shape types
     std::vector<TH1D*> data;
 
-    TApplication* fAppWindow = new TApplication("fAppWindow", 0, NULL);
+    auto* fAppWindow = new TApplication("fAppWindow", nullptr, nullptr);
 
     std::string outputPath("./AspectRatioFromKdb.root");
 
-    TFile* gROOTFile = new TFile(outputPath.c_str(), "RECREATE");
+    auto* gROOTFile = new TFile(outputPath.c_str(), "RECREATE");
 
     data = ComputeAspectRatios( surfaceContainer.size(), types, values );
     TCanvas c0("cAR", "Aspect ratio distribution", 0, 0, 960, 760);

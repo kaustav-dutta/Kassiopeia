@@ -28,7 +28,7 @@ void KSATestA::SetB(const KSATestB& b)
 
 void KSATestA::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedPointerPODOutputNode< KSATestA, std::vector< double >, &KSATestA::GetData >( std::string("data"), this) );
         node->AddChild(new KSAAssociatedPointerObjectOutputNode< KSATestA, KSATestB, &KSATestA::GetB >( std::string("KSATestB"), this) );
@@ -40,7 +40,7 @@ void KSATestA::DefineOutputNode(KSAOutputNode* node) const
 
 void KSATestA::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedReferenceObjectInputNode< KSATestA, KSATestB, &KSATestA::SetB >(std::string("KSATestB"), this) );
         node->AddChild(new KSAAssociatedPointerPODInputNode< KSATestA, std::vector< double >, &KSATestA::SetData >( std::string("data"), this) );

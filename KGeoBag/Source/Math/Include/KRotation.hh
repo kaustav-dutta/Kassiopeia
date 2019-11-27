@@ -15,7 +15,8 @@ namespace KGeoBag
         public:
             KRotation();
             KRotation( const KRotation& aRotation );
-            virtual ~KRotation();
+            KRotation& operator =(const KRotation& other) = default;
+            ~KRotation() override;
 
             KRotation& operator=( const KThreeMatrix& aMatrix );
 

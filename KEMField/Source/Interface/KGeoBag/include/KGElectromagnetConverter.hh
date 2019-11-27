@@ -28,7 +28,7 @@ namespace KGeoBag
     {
         public:
             KGElectromagnetConverter();
-            virtual ~KGElectromagnetConverter();
+            ~KGElectromagnetConverter() override;
 
         public:
             void SetElectromagnetContainer( KElectromagnetContainer* aContainer )
@@ -53,15 +53,15 @@ namespace KGeoBag
             KThreeVector InternalToGlobalVector( const KThreeVector& aVector );
             KThreeMatrix InternalTensorToGlobal( const KGradient& aGradient );
 
-            void VisitSpace( KGSpace* aSpace );
-            void VisitSurface( KGSurface* aSurface );
+            void VisitSpace( KGSpace* aSpace ) override;
+            void VisitSurface( KGSurface* aSurface ) override;
 
-            void VisitExtendedSpace( KGExtendedSpace< KGElectromagnet >* electromagnetSpace );
-            void VisitExtendedSurface( KGExtendedSurface< KGElectromagnet >* electromagnetSurface );
+            void VisitExtendedSpace( KGExtendedSpace< KGElectromagnet >* electromagnetSpace ) override;
+            void VisitExtendedSurface( KGExtendedSurface< KGElectromagnet >* electromagnetSurface ) override;
 
-            void VisitWrappedSpace( KGRodSpace* rod );
-            void VisitCylinderSurface( KGCylinderSurface* cylinder );
-            void VisitCylinderTubeSpace( KGCylinderTubeSpace* cylinderTube );
+            void VisitWrappedSpace( KGRodSpace* rod ) override;
+            void VisitCylinderSurface( KGCylinderSurface* cylinder ) override;
+            void VisitCylinderTubeSpace( KGCylinderTubeSpace* cylinderTube ) override;
 
         private:
             void Clear();

@@ -55,7 +55,7 @@ int main()
   for ( string filename : filelist )
   {
 
-    KRootFile* tRootFile = new KRootFile();
+    auto* tRootFile = new KRootFile();
     tRootFile->AddToNames( file_base + filename + file_end );
 
     KSReadFileROOT tReader;
@@ -71,11 +71,11 @@ int main()
     //KSThreeVector& tMomentum = tCell.Get< KSThreeVector >( "momentum" );
 
     KSReadObjectROOT& tCell = tTrackReader.GetObject( "component_track_world" );
-    KSString& tTerm = tCell.Get<KSString>( "terminator_name" );
+    auto& tTerm = tCell.Get<KSString>( "terminator_name" );
 
-    KSDouble& tTime = tCell.Get< KSDouble >( "final_time" );
-    KSDouble& tIKE = tCell.Get< KSDouble >( "initial_kinetic_energy" );
-    KSDouble& tFKE = tCell.Get< KSDouble >( "final_kinetic_energy" );
+    auto& tTime = tCell.Get< KSDouble >( "final_time" );
+    auto& tIKE = tCell.Get< KSDouble >( "initial_kinetic_energy" );
+    auto& tFKE = tCell.Get< KSDouble >( "final_kinetic_energy" );
 
     //vector<Double_t>* list_a = new vector<Double_t>();
     //vector<Double_t>* list_b = new vector<Double_t>();

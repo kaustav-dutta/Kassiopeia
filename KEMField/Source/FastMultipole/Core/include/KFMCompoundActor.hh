@@ -25,12 +25,12 @@ class KFMCompoundActor: public KFMNodeActor<NodeType>
 {
     public:
         KFMCompoundActor(){;};
-        virtual ~KFMCompoundActor(){;};
+        ~KFMCompoundActor() override{;};
 
         //add a visitor to the back of the list of actors
         void AddActor(KFMNodeActor<NodeType>* actor)
         {
-            if(actor != this && actor != NULL)//avoid a disaster
+            if(actor != this && actor != nullptr)//avoid a disaster
             {
                 fActors.push_back(actor);
             }
@@ -41,7 +41,7 @@ class KFMCompoundActor: public KFMNodeActor<NodeType>
             fActors.clear();
         }
 
-        void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
             for(unsigned int i=0; i<fActors.size(); i++)
             {

@@ -19,12 +19,12 @@ namespace KGeoBag
     KGCircleWireMesher()
     {
     }
-    virtual ~KGCircleWireMesher()
+    ~KGCircleWireMesher() override
     {
     }
 
   protected:
-    void VisitWrappedSurface(KGWrappedSurface< KGCircleWire >* circleWireSurface);
+    void VisitWrappedSurface(KGWrappedSurface< KGCircleWire >* circleWireSurface) override;
   };
 
 }

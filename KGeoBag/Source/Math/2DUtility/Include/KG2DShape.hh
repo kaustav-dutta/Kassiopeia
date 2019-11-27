@@ -54,15 +54,15 @@ class KG2DShape
             double val = angle;
             if(val < 0)
             {
-                int n = std::fabs( val/2.0*(KConst::Pi()) );
-                val += n*(2.0*KConst::Pi());
+                int n = std::fabs( val/2.0*(katrin::KConst::Pi()) );
+                val += n*(2.0*katrin::KConst::Pi());
                 return val;
             }
 
-            if( val > 2.0*KConst::Pi() )
+            if( val > 2.0*katrin::KConst::Pi() )
             {
-                int n = std::fabs( val/2.0*(KConst::Pi()) );
-                val -= n*(2.0*KConst::Pi());
+                int n = std::fabs( val/2.0*(katrin::KConst::Pi()) );
+                val -= n*(2.0*katrin::KConst::Pi());
                 return val;
             }
 

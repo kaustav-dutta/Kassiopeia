@@ -36,16 +36,16 @@ namespace KEMField
 
     KSymmetryGroup() : fNReflections(0), fNRotations(0), fOther(false) {}
     KSymmetryGroup(const KSymmetryGroup<ShapePolicy>& symmetryGroup);
-    ~KSymmetryGroup();
+    ~KSymmetryGroup() override;
 
   public:
 
     static std::string Name() { return std::string("SymmetryGroup_")+ShapePolicy::Name(); }
 
-    double Area() const { return fElements.front()->Area(); }
-    const KPosition Centroid() const { return fElements.front()->Centroid(); }
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) { return fElements.front()->DistanceTo(aPoint,nearestPoint); }
-    const KDirection Normal() const { return fElements.front()->Normal(); }
+    double Area() const override { return fElements.front()->Area(); }
+    const KPosition Centroid() const override { return fElements.front()->Centroid(); }
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override { return fElements.front()->DistanceTo(aPoint,nearestPoint); }
+    const KDirection Normal() const override { return fElements.front()->Normal(); }
 
     unsigned int size() const { return fElements.size(); }
 
@@ -110,7 +110,7 @@ namespace KEMField
       s << y.fOther;
 
       s << (unsigned int)(y.size());
-      for (typename KSymmetryGroup<ShapePolicy>::ShapeCIt it=y.begin();it!=y.end();++it)
+      for (auto it=y.begin();it!=y.end();++it)
 	s << *(*it);
       s.PostStreamOutAction(y);
       return s;
@@ -131,7 +131,7 @@ namespace KEMField
   template <class ShapePolicy>
   KSymmetryGroup<ShapePolicy>::~KSymmetryGroup()
   {
-    for (ShapeIt it=fElements.begin();it!=fElements.end();++it)
+    for (auto it=fElements.begin();it!=fElements.end();++it)
       delete *it;
   }
 

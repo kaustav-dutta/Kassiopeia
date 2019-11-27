@@ -13,7 +13,7 @@ using namespace KEMField;
 namespace Kassiopeia {
 
 KSMagneticKEMField::KSMagneticKEMField() :
-        KSComponent(),fField(NULL)
+        KSComponent(),fField(nullptr)
 {
 }
 

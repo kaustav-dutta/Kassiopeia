@@ -64,7 +64,7 @@ namespace Kassiopeia
     {
         //TODO: move constants somewhere. precision?
 
-        const double a02 = KConst::BohrRadiusSquared();
+        const double a02 = katrin::KConst::BohrRadiusSquared();
         // double a02= 28.e-22; //used several times
 
         const double R = 13.6; //hydrogen ionisation? precision?
@@ -75,7 +75,7 @@ namespace Kassiopeia
         else if( anE >= 11.18 && anE <= 250. )
             sigma = sigmaBC( anE ) + sigmadiss10( anE ) + sigmadiss15( anE );
         else
-            sigma = 4. * KConst::Pi() * a02 * R / anE * (0.80 * log( anE / R ) + 0.28);
+            sigma = 4. * katrin::KConst::Pi() * a02 * R / anE * (0.80 * log( anE / R ) + 0.28);
         //    sigma=sigmainel(anE)-sigmaion(anE);
         return sigma;
 
@@ -164,7 +164,7 @@ namespace Kassiopeia
             // Calculation of c=cos(Theta) and Theta:
             x = exp( y );
             c = 1. - (x - xmin) / (4. * T);
-            Theta = acos( c ) * 180. / KConst::Pi();
+            Theta = acos( c ) * 180. / katrin::KConst::Pi();
         }
         else
         {
@@ -185,7 +185,7 @@ namespace Kassiopeia
                 if( Dmax * u[ 2 ] < D )
                     break;
             }
-            Theta = acos( c ) * 180. / KConst::Pi();
+            Theta = acos( c ) * 180. / katrin::KConst::Pi();
         }
         // Energy loss Eloss generation:
 
@@ -291,8 +291,8 @@ namespace Kassiopeia
             intmsg( eError ) << "InelasticFerencCalculator::sigmaion" << ret;
             intmsg << "using unitialized calculator. quitting" << eom;
         }
-        const double a02 = KConst::BohrRadiusSquared();
-        const double ERyd = KConst::ERyd_eV(); //this does exist!
+        const double a02 = katrin::KConst::BohrRadiusSquared();
+        const double ERyd = katrin::KConst::ERyd_eV(); //this does exist!
 
         //in old code:
         //const double ERyd =13.6;//Rydberg constant from EH2SCAT
@@ -318,8 +318,8 @@ namespace Kassiopeia
                     if( fMoleculeType == "Hydrogen" && anE > 250. )
                     {
 
-                        sigma = 4. * KConst::Pi() * a02 * ERyd / anE * (0.82 * log( anE / ERyd ) + 1.3);
-                        CrossSections.push_back( 4. * KConst::Pi() * a02 * ERyd / anE * (0.82 * log( anE / ERyd ) + 1.3) );
+                        sigma = 4. * katrin::KConst::Pi() * a02 * ERyd / anE * (0.82 * log( anE / ERyd ) + 1.3);
+                        CrossSections.push_back( 4. * katrin::KConst::Pi() * a02 * ERyd / anE * (0.82 * log( anE / ERyd ) + 1.3) );
 
                         TotalCrossSection = CrossSections.at( i );
                     }
@@ -328,7 +328,7 @@ namespace Kassiopeia
                         double t = anE / fBindingEnergy.at( io );
                         double u = fOrbitalEnergy.at( io ) / fBindingEnergy.at( io );
                         double r = ERyd / fBindingEnergy.at( io );
-                        double S = 4. * KConst::Pi() * a02 * fNOccupation.at( io ) * r * r;
+                        double S = 4. * katrin::KConst::Pi() * a02 * fNOccupation.at( io ) * r * r;
                         double lnt = TMath::Log( t );
 
                         CrossSections.push_back( S / (t + u + 1.) * (lnt / 2. * (1. - 1. / (t * t)) + 1. - 1. / t - lnt / (t + 1.)) );
@@ -469,7 +469,7 @@ namespace Kassiopeia
         x = exp( y );
         c = 1. - (x - xmin) / (4. * T);
         Theta = acos( c );
-        Theta_deg = Theta * 180. / KConst::Pi();
+        Theta_deg = Theta * 180. / katrin::KConst::Pi();
 
         //
         // II. Generation of Eloss, for fixed Theta
@@ -513,9 +513,9 @@ namespace Kassiopeia
         qmax = Elmax / K - K / 2.;
         //
         q = qmax;
-        Fmax = 1. / 2. + 1. / KConst::Pi() * (q / (1. + q * q) + atan( q ));
+        Fmax = 1. / 2. + 1. / katrin::KConst::Pi() * (q / (1. + q * q) + atan( q ));
         q = qmin;
-        Fmin = 1. / 2. + 1. / KConst::Pi() * (q / (1. + q * q) + atan( q ));
+        Fmin = 1. / 2. + 1. / katrin::KConst::Pi() * (q / (1. + q * q) + atan( q ));
         h = Fmax - Fmin;
         // Generation of Eloss with the Neumann acceptance-rejection method:
         for( int j = 1; j < 5000; j++ )
@@ -529,8 +529,8 @@ namespace Kassiopeia
             y = 0.;
             for( int i = 1; i <= 30; i++ )
             {
-                G = 1. / 2. + (y + sin( 2. * y ) / 2.) / KConst::Pi();
-                Gp = (1. + cos( 2. * y )) / KConst::Pi();
+                G = 1. / 2. + (y + sin( 2. * y ) / 2.) / katrin::KConst::Pi();
+                Gp = (1. + cos( 2. * y )) / katrin::KConst::Pi();
                 y = y - (G - F) / Gp;
                 if( fabs( G - F ) < 1.e-8 )
                     break;
@@ -555,15 +555,15 @@ namespace Kassiopeia
             if( arg >= 0. )
                 arctg = atan( arg );
             else
-                arctg = atan( arg ) + KConst::Pi();
+                arctg = atan( arg ) + katrin::KConst::Pi();
             st1 = (K + kej) * (K + kej) + 1.;
             st2 = (K - kej) * (K - kej) + 1.;
-            fE = 1024. * El * (K2 + 2. / 3. * El) / (st1 * st1 * st1 * st2 * st2 * st2) * exp( -2. / kej * arctg ) / (1. - exp( -2. * KConst::Pi() / kej ));
+            fE = 1024. * El * (K2 + 2. / 3. * El) / (st1 * st1 * st1 * st2 * st2 * st2) * exp( -2. / kej * arctg ) / (1. - exp( -2. * katrin::KConst::Pi() / kej ));
             D2ion = 2. * kf / ki * Rex / (El * K2) * fE;
             K = KK;
             //
             WcE = D2ion;
-            Jstarq = 16. / (3. * KConst::Pi() * (1. + q * q) * (1. + q * q));
+            Jstarq = 16. / (3. * katrin::KConst::Pi() * (1. + q * q) * (1. + q * q));
             WcstarE = 4. / (K * K * K * K * K) * Jstarq;
             w = WcE / WcstarE;
             if( wmax * u[ 2 ] < w )
@@ -585,7 +585,7 @@ namespace Kassiopeia
         double K2, K, T, theta;
         double sigma = 0.;
         //double a02=28.e-22;   // Bohr radius squared
-        double a02 = KConst::BohrRadiusSquared();
+        double a02 = katrin::KConst::BohrRadiusSquared();
 
         double EE = 12.6 / 27.21;
         double e[ 5 ] =
@@ -613,7 +613,7 @@ namespace Kassiopeia
             sigma = 0.;
         else
         {
-            theta = acos( cosTheta ) * 180. / KConst::Pi();
+            theta = acos( cosTheta ) * 180. / katrin::KConst::Pi();
             for( i = 0; i <= 3; i++ )
                 if( anE >= e[ i ] && anE < e[ i + 1 ] )
                     for( j = 0; j <= 7; j++ )
@@ -628,7 +628,7 @@ namespace Kassiopeia
     {
 
         //double a02=28.e-22;   // Bohr radius squared
-        double a02 = KConst::BohrRadiusSquared();
+        double a02 = katrin::KConst::BohrRadiusSquared();
 
         double Cinel[ 50 ] =
         { -0.246, -0.244, -0.239, -0.234, -0.227, -0.219, -0.211, -0.201, -0.190, -0.179, -0.167, -0.155, -0.142, -0.130, -0.118, -0.107, -0.096, -0.085, -0.076, -0.067, -0.059, -0.051, -0.045, -0.039, -0.034, -0.029, -0.025, -0.022, -0.019, -0.016, -0.014, -0.010, -0.008, -0.006, -0.004, -0.003, -0.003, -0.002, -0.002, -0.001, -0.001, -0.001, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 };
@@ -713,12 +713,12 @@ namespace Kassiopeia
         //double Ei=0.568;  // ionization energy of molecular
         // hydrogen in Hartree atomic units
         //  (15.45 eV)
-        double a02 = KConst::BohrRadiusSquared();
+        double a02 = katrin::KConst::BohrRadiusSquared();
 
         double sigma, gamtot, T;
         T = anE / 27.21;
         gamtot = 2. * (-7. / 4. + log( IonizationEnergy_au / (2. * T) ));
-        sigma = 2. * KConst::Pi() / T * (1.5487 * log( 2. * T ) + 2.4036 + gamtot / (2. * T));
+        sigma = 2. * katrin::KConst::Pi() / T * (1.5487 * log( 2. * T ) + 2.4036 + gamtot / (2. * T));
         sigma = sigma * a02;
         return sigma;
 

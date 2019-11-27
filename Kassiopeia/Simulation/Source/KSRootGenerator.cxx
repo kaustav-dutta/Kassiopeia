@@ -6,8 +6,8 @@ namespace Kassiopeia
 {
 
     KSRootGenerator::KSRootGenerator() :
-        fGenerator( NULL ),
-        fEvent( NULL )
+        fGenerator( nullptr ),
+        fEvent( nullptr )
     {
     }
     KSRootGenerator::KSRootGenerator( const KSRootGenerator& aCopy ) :
@@ -26,7 +26,7 @@ namespace Kassiopeia
 
     void KSRootGenerator::SetGenerator( KSGenerator* aGenerator )
     {
-        if( fGenerator != NULL )
+        if( fGenerator != nullptr )
         {
             genmsg( eError ) << "tried to set generator <" << aGenerator->GetName() << "> with generator <" << fGenerator->GetName() << "> already set" << eom;
             return;
@@ -43,13 +43,13 @@ namespace Kassiopeia
             return;
         }
         genmsg_debug( "clearing root generator" << eom );
-        fGenerator = NULL;
+        fGenerator = nullptr;
         return;
     }
 
     void KSRootGenerator::ExecuteGeneration( KSParticleQueue& anInitialStates )
     {
-        if( fGenerator == NULL )
+        if( fGenerator == nullptr )
         {
             genmsg( eError ) << "root generator cannot generate with no generator set" << eom;
             return;

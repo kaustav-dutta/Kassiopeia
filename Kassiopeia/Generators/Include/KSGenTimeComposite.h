@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenTimeComposite();
             KSGenTimeComposite( const KSGenTimeComposite& aCopy );
-            KSGenTimeComposite* Clone() const;
-            virtual ~KSGenTimeComposite();
+            KSGenTimeComposite* Clone() const override;
+            ~KSGenTimeComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaries );
+            void Dice( KSParticleQueue* aPrimaries ) override;
 
         public:
             void SetTimeValue( KSGenValue* anTimeValue );
@@ -27,8 +27,8 @@ namespace Kassiopeia
             KSGenValue* fTimeValue;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
     };
 }

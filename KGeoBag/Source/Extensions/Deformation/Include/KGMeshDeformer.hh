@@ -22,11 +22,11 @@ namespace KGeoBag
   {
   public:
     KGMeshDeformer() {}
-    virtual ~KGMeshDeformer() {}
+    ~KGMeshDeformer() override {}
 
     void VisitSurface(KGSurface*) {}
-    void VisitExtendedSpace( KGExtendedSpace< KGDeformed >* deformedSpace );
-    void VisitExtendedSurface( KGExtendedSurface< KGMesh >* meshSurface );
+    void VisitExtendedSpace( KGExtendedSpace< KGDeformed >* deformedSpace ) override;
+    void VisitExtendedSurface( KGExtendedSurface< KGMesh >* meshSurface ) override;
 
   private:
     void AddDeformed(KGMeshElement* e);

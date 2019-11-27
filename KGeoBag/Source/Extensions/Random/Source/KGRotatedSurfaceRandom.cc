@@ -26,7 +26,7 @@ namespace KGeoBag
 
   KThreeVector KGRotatedSurfaceRandom::Random(const KGRotatedObject::Line* line)
   {
-    if (const KGRotatedObject::Arc* arc =
+    if (const auto* arc =
 	dynamic_cast<const KGRotatedObject::Arc*>(line))
       return Random(arc);
 

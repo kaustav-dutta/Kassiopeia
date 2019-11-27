@@ -27,7 +27,7 @@ using std::string;
 namespace KEMField {
 
 KElectricFastMultipoleFieldSolver::KElectricFastMultipoleFieldSolver() :
-                    		fFastMultipoleFieldSolver( NULL ),
+                    		fFastMultipoleFieldSolver( nullptr ),
 #ifdef KEMFIELD_USE_OPENCL
 							fFastMultipoleFieldSolverOpenCL(NULL),
 #endif
@@ -100,7 +100,7 @@ void KElectricFastMultipoleFieldSolver::InitializeCore( KSurfaceContainer& conta
             fmContainerName += string("_OpenCL");
         }
 
-        KFMElectrostaticTreeData* tree_data = new KFMElectrostaticTreeData();
+        auto* tree_data = new KFMElectrostaticTreeData();
 
         bool containerFound = false;
         KEMFileInterface::GetInstance()->FindByName( *tree_data, fmContainerName, containerFound);

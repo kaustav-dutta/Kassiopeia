@@ -21,14 +21,14 @@ namespace KGeoBag
   {
   public:
 	  KGCylinderSurfaceRandom() : KGShapeRandom() {}
-    virtual ~KGCylinderSurfaceRandom() {}
+    ~KGCylinderSurfaceRandom() override {}
 
     /**
      * \brief Visitor function to dice the point on the KGCylinderSpace.
      *
      * \param aCylinderSpace
      */
-    virtual void VisitCylinderSurface(KGCylinderSurface* aCylinderSpace);
+    void VisitCylinderSurface(KGCylinderSurface* aCylinderSpace) override;
   };
 }
 

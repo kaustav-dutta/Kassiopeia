@@ -64,10 +64,10 @@ namespace Kassiopeia
         double help = this->InterpolateLinear( tKineticEnergy, inElENE1, inElENE2, inElMFP1, inElMFP2 );
 
         //for BetheFano it is not the MeanFreePath that is stored, but a crossection-like variable
-        double MeanFreePathAngstroem = KConst::M_Si() / (KConst::N_A() * fRho * help);
+        double MeanFreePathAngstroem = katrin::KConst::M_Si() / (katrin::KConst::N_A() * fRho * help);
 
-        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * KConst::N_A());
-        aCrossSection = 12.06 / (MeanFreePathAngstroem * 1E-4 * KConst::N_A());
+        //aCrossSection = 12.06 * 1E-6 / (MeanFreePathAngstroem * 1E-10 * katrin::KConst::N_A());
+        aCrossSection = 12.06 / (MeanFreePathAngstroem * 1E-4 * katrin::KConst::N_A());
     }
 
     void KESSInelasticBetheFano::ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue )
@@ -88,17 +88,17 @@ namespace Kassiopeia
         double tTheta = CalculateScatteringAngle( tEloss_eV, tKineticEnergy_eV );
         intmsg_debug( "KESSInelasticBetheFano::Execute" << ret
                 << "Inelastic Calculator computed Azimutal Scattering Angle Theta =  "
-                << 180*tTheta/KConst::Pi() << eom );
+                << 180*tTheta/katrin::KConst::Pi() << eom );
 
         //dice an azimuthal angle
-        double tPhi = 2. * KConst::Pi() * KRandom::GetInstance().Uniform();
+        double tPhi = 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform();
         intmsg_debug( "KESSInelasticBetheFano::Execute" << ret
-                << "Randomly chosen azimuthal angle: " << 180*tPhi/KConst::Pi() << eom );
+                << "Randomly chosen azimuthal angle: " << 180*tPhi/katrin::KConst::Pi() << eom );
 
         //check if the new energy is too low
-        if( tKineticEnergy_eV - tEloss_eV < KConst::Q() * 0.1 )
+        if( tKineticEnergy_eV - tEloss_eV < katrin::KConst::Q() * 0.1 )
         {
-            tKineticEnergy_eV = tEloss_eV + KConst::Q() * 0.1;
+            tKineticEnergy_eV = tEloss_eV + katrin::KConst::Q() * 0.1;
 
             intmsg_debug( "KESSInelasticBetheFano::Execute" << ret
                     << "Warning: Energy after elastic scattering too low. Energy artificially increased. "<<eom );

@@ -41,21 +41,21 @@ namespace Kassiopeia
     template< class XType >
     XType& KSReadIterator::Add( const std::string& aVariable )
     {
-        KSReadSet< XType >& tSet = dynamic_cast< KSReadSet< XType >& >( *this );
+        auto& tSet = dynamic_cast< KSReadSet< XType >& >( *this );
         return tSet.Add( aVariable );
     }
 
     template< class XType >
     XType& KSReadIterator::Get( const std::string& aVariable ) const
     {
-        const KSReadSet< XType >& tSet = dynamic_cast< const KSReadSet< XType >& >( *this );
+        const auto& tSet = dynamic_cast< const KSReadSet< XType >& >( *this );
         return tSet.Get( aVariable );
     }
 
     template< class XType >
     bool KSReadIterator::Exists( const std::string& aVariable ) const
     {
-        const KSReadSet< XType >& tSet = dynamic_cast< const KSReadSet< XType >& >( *this );
+        const auto& tSet = dynamic_cast< const KSReadSet< XType >& >( *this );
         return tSet.Exists( aVariable );
     }
 

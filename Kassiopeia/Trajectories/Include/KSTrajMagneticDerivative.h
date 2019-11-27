@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajMagneticDerivative();
-            virtual ~KSTrajMagneticDerivative();
+            KSTrajMagneticDerivative( const KSTrajMagneticDerivative& other) = default;
+            ~KSTrajMagneticDerivative() override;
 
             //**********
             //assignment

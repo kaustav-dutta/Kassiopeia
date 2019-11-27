@@ -18,9 +18,9 @@ class KBoundaryElementInfoDisplay : public KElectrostaticBoundaryField::Visitor
 public:
 
     KBoundaryElementInfoDisplay();
-    virtual ~KBoundaryElementInfoDisplay();
+    ~KBoundaryElementInfoDisplay() override;
 
-    void PreVisit(KElectrostaticBoundaryField& field);
+    void PreVisit(KElectrostaticBoundaryField& field) override;
 
 };
 

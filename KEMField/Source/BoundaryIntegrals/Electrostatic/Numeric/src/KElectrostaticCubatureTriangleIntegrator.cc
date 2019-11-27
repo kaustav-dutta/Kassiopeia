@@ -669,7 +669,7 @@ std::pair<KThreeVector, double> KElectrostaticCubatureTriangleIntegrator::Electr
 double KElectrostaticCubatureTriangleIntegrator::Potential(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const
 {
 	double potential = 0.;
-	for( KSymmetryGroup<KTriangle>::ShapeCIt it=source->begin();it!=source->end();++it )
+	for( auto it=source->begin();it!=source->end();++it )
 		potential += Potential(*it,P);
 	return potential;
 }
@@ -677,7 +677,7 @@ double KElectrostaticCubatureTriangleIntegrator::Potential(const KSymmetryGroup<
 KThreeVector KElectrostaticCubatureTriangleIntegrator::ElectricField(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const
 {
 	KThreeVector electricField(0.,0.,0.);
-	for( KSymmetryGroup<KTriangle>::ShapeCIt it=source->begin();it!=source->end();++it )
+	for( auto it=source->begin();it!=source->end();++it )
 		electricField += ElectricField(*it,P);
 	return electricField;
 }
@@ -688,7 +688,7 @@ std::pair<KThreeVector, double> KElectrostaticCubatureTriangleIntegrator::Electr
 	double potential( 0. );
 	KThreeVector electricField( 0., 0., 0. );
 
-	for( KSymmetryGroup<KTriangle>::ShapeCIt it=source->begin(); it!=source->end(); ++it ) {
+	for( auto it=source->begin(); it!=source->end(); ++it ) {
 		fieldAndPotential = ElectricFieldAndPotential( *it, P );
 		electricField += fieldAndPotential.first;
 		potential += fieldAndPotential.second;

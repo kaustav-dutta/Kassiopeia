@@ -3,7 +3,7 @@
 #include "KUtilityMessage.h"
 #include "TStyle.h"
 
-#include <math.h>
+#include <cmath>
 #include <limits>
 
 namespace katrin
@@ -11,9 +11,9 @@ namespace katrin
 
 	KROOTPad::KROOTPad() :
 			fPainters(),
-			fFrame( 0 ),
-			fPad( 0 ),
-			fWindow( 0 ),
+			fFrame( nullptr ),
+			fPad( nullptr ),
+			fWindow( nullptr ),
 			fxlow( 0. ),
 			fylow( 0. ),
 			fxup( 1.0 ),
@@ -86,7 +86,7 @@ namespace katrin
 
 			Int_t tNBins = 1000;
 			fFrame = new TH2F( GetName().c_str(), "", tNBins, tXMin, tXMax, tNBins, tYMin, tYMax);
-			fFrame->SetStats(0);
+			fFrame->SetStats(false);
 
 			//take axis label of last painter
 			KROOTPainter* tLastPainter = fPainters.at( fPainters.size() - 1 );
@@ -139,8 +139,8 @@ namespace katrin
 
     void KROOTPad::AddPainter( KPainter* aPainter )
     {
-    	KROOTPainter* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
-        if( tPainter != NULL )
+    	auto* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
+        if( tPainter != nullptr )
         {
             fPainters.push_back( tPainter );
 			tPainter->SetWindow( this );
@@ -151,8 +151,8 @@ namespace katrin
     }
     void KROOTPad::RemovePainter( KPainter* aPainter )
     {
-    	KROOTPainter* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
-        if( tPainter != NULL )
+    	auto* tPainter = dynamic_cast< KROOTPainter* >( aPainter );
+        if( tPainter != nullptr )
         {
             PainterIt tIt;
             for( tIt = fPainters.begin(); tIt != fPainters.end(); tIt++ )
@@ -172,10 +172,10 @@ namespace katrin
 
     void KROOTPad::SetWindow( KWindow* aWindow )
     {
-    	KROOTWindow* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
-        if( tWindow != NULL )
+    	auto* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
+        if( tWindow != nullptr )
         {
-            if( fWindow == NULL )
+            if( fWindow == nullptr )
             {
                 fWindow = tWindow;
                 return;
@@ -188,12 +188,12 @@ namespace katrin
 
     void KROOTPad::ClearWindow( KWindow* aWindow )
     {
-    	KROOTWindow* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
-        if( tWindow != NULL )
+    	auto* tWindow = dynamic_cast< KROOTWindow* >( aWindow );
+        if( tWindow != nullptr )
         {
             if( fWindow == tWindow )
             {
-                fWindow = NULL;
+                fWindow = nullptr;
                 return;
             }
             utilmsg( eError ) << "cannot use root window <" << tWindow->GetName() << "> with root painter <" << GetName() << ">" << eom;

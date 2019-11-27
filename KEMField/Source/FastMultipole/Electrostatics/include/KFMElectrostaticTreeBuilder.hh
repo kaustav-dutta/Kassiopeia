@@ -45,7 +45,7 @@ class KFMElectrostaticTreeBuilder
     public:
         KFMElectrostaticTreeBuilder()
         {
-            fSubdivisionCondition = NULL;
+            fSubdivisionCondition = nullptr;
             fSubdivisionConditionIsOwned = false;
         };
 
@@ -67,7 +67,7 @@ class KFMElectrostaticTreeBuilder
 
         void SetSubdivisionCondition( KFMSubdivisionCondition<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects>* subdiv)
         {
-            if(subdiv != NULL)
+            if(subdiv != nullptr)
             {
                 fSubdivisionCondition = subdiv;
                 fSubdivisionConditionIsOwned = false;

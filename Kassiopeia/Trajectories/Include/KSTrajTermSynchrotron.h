@@ -18,21 +18,25 @@ namespace Kassiopeia
         public:
             KSTrajTermSynchrotron();
             KSTrajTermSynchrotron( const KSTrajTermSynchrotron& aCopy );
-            KSTrajTermSynchrotron* Clone() const;
-            virtual ~KSTrajTermSynchrotron();
+            KSTrajTermSynchrotron* Clone() const override;
+            ~KSTrajTermSynchrotron() override;
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajExactParticle& aParticle, KSTrajExactDerivative& aDerivative ) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const;
-            virtual void Differentiate(double aTime, const KSTrajExactTrappedParticle& aParticle, KSTrajExactTrappedDerivative& aDerivative) const;
+            void Differentiate(double /*aTime*/, const KSTrajExactParticle& aParticle, KSTrajExactDerivative& aDerivative ) const override;
+            void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aParticle, KSTrajAdiabaticDerivative& aDerivative ) const override;
+            void Differentiate(double aTime, const KSTrajExactTrappedParticle& aParticle, KSTrajExactTrappedDerivative& aDerivative) const override;
 
         public:
             void SetEnhancement( const double& anEnhancement );
             void SetOldMethode( const bool& aBool );
 
+            const double& GetTotalForce() const { return fTotalForce; }
+
         private:
             double fEnhancement;
             bool fOldMethode;
+
+            mutable double fTotalForce;
     };
 
 }

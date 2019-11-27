@@ -12,10 +12,10 @@ namespace KEMField
 
 KFMGaussLegendreQuadratureTableCalculator::KFMGaussLegendreQuadratureTableCalculator()
 {
-    fJ = NULL; //symmetric matrix to be decomposed
-    fLambda = NULL; //diagonal matrix of the eigenvalues
-    fQ = NULL; //matrix of eigenvectors
-    fQ_transpose = NULL; //transpose of fQ
+    fJ = nullptr; //symmetric matrix to be decomposed
+    fLambda = nullptr; //diagonal matrix of the eigenvalues
+    fQ = nullptr; //matrix of eigenvectors
+    fQ_transpose = nullptr; //transpose of fQ
     fWeights.clear();
     fAbscissa.clear();
     fN = 0;
@@ -23,10 +23,10 @@ KFMGaussLegendreQuadratureTableCalculator::KFMGaussLegendreQuadratureTableCalcul
 
 KFMGaussLegendreQuadratureTableCalculator::~KFMGaussLegendreQuadratureTableCalculator()
 {
-        if(fJ != NULL){kfm_matrix_free(fJ); fJ = NULL;};
-        if(fLambda != NULL){kfm_vector_free(fLambda); fLambda = NULL;};
-        if(fQ != NULL){kfm_matrix_free(fQ); fQ = NULL;};
-        if(fQ_transpose != NULL){kfm_matrix_free(fQ_transpose); fQ_transpose = NULL;};
+        if(fJ != nullptr){kfm_matrix_free(fJ); fJ = nullptr;};
+        if(fLambda != nullptr){kfm_vector_free(fLambda); fLambda = nullptr;};
+        if(fQ != nullptr){kfm_matrix_free(fQ); fQ = nullptr;};
+        if(fQ_transpose != nullptr){kfm_matrix_free(fQ_transpose); fQ_transpose = nullptr;};
 }
 
 void
@@ -35,10 +35,10 @@ KFMGaussLegendreQuadratureTableCalculator::SetNTerms(unsigned int n)
     if(n != 0 && fN != n)
     {
         fN = n;
-        if(fJ != NULL){kfm_matrix_free(fJ); fJ = NULL;};
-        if(fLambda != NULL){kfm_vector_free(fLambda); fLambda = NULL;};
-        if(fQ != NULL){kfm_matrix_free(fQ); fQ = NULL;};
-        if(fQ_transpose != NULL){kfm_matrix_free(fQ_transpose); fQ_transpose = NULL;};
+        if(fJ != nullptr){kfm_matrix_free(fJ); fJ = nullptr;};
+        if(fLambda != nullptr){kfm_vector_free(fLambda); fLambda = nullptr;};
+        if(fQ != nullptr){kfm_matrix_free(fQ); fQ = nullptr;};
+        if(fQ_transpose != nullptr){kfm_matrix_free(fQ_transpose); fQ_transpose = nullptr;};
 
         fJ = kfm_matrix_calloc(fN,fN);
         fLambda = kfm_vector_calloc(fN);

@@ -16,12 +16,12 @@ namespace Kassiopeia
         public:
             KSModDynamicEnhancement();
             KSModDynamicEnhancement( const KSModDynamicEnhancement& aCopy);
-            KSModDynamicEnhancement* Clone() const;
-            virtual ~KSModDynamicEnhancement();
+            KSModDynamicEnhancement* Clone() const override;
+            ~KSModDynamicEnhancement() override;
 
         public:
-            bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue );
-            bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue );
+            bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue ) override;
+            bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) override;
 
         public:
             K_GET(double, Enhancement )
@@ -39,12 +39,12 @@ namespace Kassiopeia
             double fReferenceCrossSection;
 
         private:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         protected:
-            virtual void PullDeupdateComponent();
-            virtual void PushDeupdateComponent();
+            void PullDeupdateComponent() override;
+            void PushDeupdateComponent() override;
     };
 }
 

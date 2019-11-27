@@ -13,9 +13,9 @@ KFMElementMomentBatchCalculator::KFMElementMomentBatchCalculator()
     unsigned int buffer_mb = KEMFIELD_MULTIPOLE_BUFFER_SIZE_MB;
     fMaxBufferSizeInBytes = buffer_mb*1024*1024;
 
-    fIDBuffer = NULL;
-    fOriginBuffer = NULL;
-    fMomentBuffer = NULL;
+    fIDBuffer = nullptr;
+    fOriginBuffer = nullptr;
+    fMomentBuffer = nullptr;
 
     fDim = 3; //default is three spatial dimensions
     fDegree = 0;
@@ -28,9 +28,9 @@ KFMElementMomentBatchCalculator::KFMElementMomentBatchCalculator()
 
 KFMElementMomentBatchCalculator::~KFMElementMomentBatchCalculator()
 {
-    delete[] fIDBuffer; fIDBuffer = NULL;
-    delete[] fOriginBuffer; fOriginBuffer = NULL;
-    delete[] fMomentBuffer; fMomentBuffer = NULL;
+    delete[] fIDBuffer; fIDBuffer = nullptr;
+    delete[] fOriginBuffer; fOriginBuffer = nullptr;
+    delete[] fMomentBuffer; fMomentBuffer = nullptr;
 }
 
 void KFMElementMomentBatchCalculator::SetDegree(int l_max)
@@ -80,9 +80,9 @@ void KFMElementMomentBatchCalculator::Initialize()
 
 void KFMElementMomentBatchCalculator::ReleaseMemory()
 {
-    delete[] fIDBuffer; fIDBuffer = NULL;
-    delete[] fOriginBuffer; fOriginBuffer = NULL;
-    delete[] fMomentBuffer; fMomentBuffer = NULL;
+    delete[] fIDBuffer; fIDBuffer = nullptr;
+    delete[] fOriginBuffer; fOriginBuffer = nullptr;
+    delete[] fMomentBuffer; fMomentBuffer = nullptr;
 }
 
 

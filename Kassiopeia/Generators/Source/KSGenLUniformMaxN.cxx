@@ -23,7 +23,7 @@ namespace Kassiopeia {
 
     void KSGenLUniformMaxN::Dice(KSParticleQueue* aPrimaries) {
 
-        for(KSParticleIt p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
+        for(auto p = aPrimaries->begin(); p != aPrimaries->end(); ++p) {
             (*p)->SetSecondQuantumNumber(KRandom::GetInstance().Uniform(0,(*p)->GetMainQuantumNumber()-1) );
         }
 

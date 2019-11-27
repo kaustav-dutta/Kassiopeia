@@ -3,7 +3,7 @@
 namespace KGeoBag
 {
 
-KGNavigableMeshIntersectionFinder::KGNavigableMeshIntersectionFinder():fContainer(NULL)
+KGNavigableMeshIntersectionFinder::KGNavigableMeshIntersectionFinder():fContainer(nullptr)
 {
 
 };
@@ -137,7 +137,7 @@ KGNavigableMeshIntersectionFinder::ApplyAction(KGMeshNavigationNode* node)
     fIntersectedElements.clear();
     fCheckedElements.clear();
 
-    if(node != NULL)
+    if(node != nullptr)
     {
         //make sure the stacks are empty
         fNodeStack = std::stack< KGMeshNavigationNode* >();
@@ -195,7 +195,7 @@ KGNavigableMeshIntersectionFinder::ApplyAction(KGMeshNavigationNode* node)
                 //get the list of mesh element id's from the node
                 KGIdentitySet* element_list = KGObjectRetriever<KGMeshNavigationNodeObjects, KGIdentitySet >::GetNodeObject(fNodeStack.top());
 
-                if(element_list != NULL && element_list->GetSize() != 0)
+                if(element_list != nullptr && element_list->GetSize() != 0)
                 {
                     KThreeVector anIntersection;
                     unsigned int n_elem = element_list->GetSize();

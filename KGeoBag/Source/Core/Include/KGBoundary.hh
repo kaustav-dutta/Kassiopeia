@@ -21,12 +21,13 @@ namespace KGeoBag
         public:
             KGBoundary();
             KGBoundary( const KGBoundary& aBoundary );
-            virtual ~KGBoundary();
+            ~KGBoundary() override;
 
         public:
             void Accept( KGVisitor* aVisitor );
 
         protected:
+            virtual void AreaInitialize() const = 0;
             mutable bool fInitialized;
     };
 

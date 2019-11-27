@@ -23,18 +23,18 @@ public:
         KMagnetostaticField(),
         fFieldVector(aField) {}
 
-    virtual ~KMagnetostaticConstantField() {}
+    ~KMagnetostaticConstantField() override {}
 
 private:
     /** We choose A(r) = 1/2 * B x r as the magnetic potential.
      * This is a viable choice for Coulomb gauge.*/
-    virtual KThreeVector MagneticPotentialCore(const KPosition& P) const {
+    KThreeVector MagneticPotentialCore(const KPosition& P) const override {
         return 0.5 * fFieldVector.Cross(P);
     }
-    virtual KThreeVector MagneticFieldCore(const KPosition& /*P*/) const {
+    KThreeVector MagneticFieldCore(const KPosition& /*P*/) const override {
         return fFieldVector;
     }
-    virtual KGradient MagneticGradientCore(const KPosition& /*P*/) const {
+    KGradient MagneticGradientCore(const KPosition& /*P*/) const override {
         return KThreeMatrix::sZero;
     }
 

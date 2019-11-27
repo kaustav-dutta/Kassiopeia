@@ -34,11 +34,11 @@ class KFMCubicSpaceNodeProgenitor: public KFMNodeActor< KFMNode<ObjectTypeList> 
 {
     public:
         KFMCubicSpaceNodeProgenitor(){};
-        virtual ~KFMCubicSpaceNodeProgenitor(){};
+        ~KFMCubicSpaceNodeProgenitor() override{};
 
-        virtual void ApplyAction( KFMNode< ObjectTypeList >* node) //creates children for this node
+        void ApplyAction( KFMNode< ObjectTypeList >* node) override //creates children for this node
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 //first get the tree properties associated with this node
                 KFMCubicSpaceTreeProperties<NDIM>* tree_prop = KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<NDIM> >::GetNodeObject(node);
@@ -73,7 +73,7 @@ class KFMCubicSpaceNodeProgenitor: public KFMNodeActor< KFMNode<ObjectTypeList> 
                 for(unsigned int i=0; i < total_size; i++)
                 {
                     //create a new child
-                    KFMNode< ObjectTypeList >* child = new KFMNode< ObjectTypeList >();
+                    auto* child = new KFMNode< ObjectTypeList >();
                     child->SetID( tree_prop->RegisterNode() );
 
                     child->SetIndex(i); //set its storage index
@@ -86,7 +86,7 @@ class KFMCubicSpaceNodeProgenitor: public KFMNodeActor< KFMNode<ObjectTypeList> 
                     KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<NDIM> >::SetNodeObject(tree_prop, child);
 
                     //create and give it a cube object
-                    KFMCube<NDIM>* cube = new KFMCube<NDIM>();
+                    auto* cube = new KFMCube<NDIM>();
                     //compute the cube's center
                     fCenter = fLowerCorner;
                     for(unsigned int i=0; i<NDIM; i++)

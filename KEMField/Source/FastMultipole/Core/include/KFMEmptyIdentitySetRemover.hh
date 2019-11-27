@@ -27,21 +27,21 @@ class KFMEmptyIdentitySetRemover: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMEmptyIdentitySetRemover(){};
-        virtual ~KFMEmptyIdentitySetRemover(){};
+        ~KFMEmptyIdentitySetRemover() override{};
 
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 KFMIdentitySet* set = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject(node);
 
-                if(set != NULL)
+                if(set != nullptr)
                 {
                     if(set->GetSize() == 0)
                     {
                         delete set;
-                        KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::SetNodeObject(NULL, node);
+                        KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::SetNodeObject(nullptr, node);
                     }
                 }
             }

@@ -14,15 +14,15 @@ namespace Kassiopeia
         public:
             KSRootSurfaceInteraction();
             KSRootSurfaceInteraction( const KSRootSurfaceInteraction& aCopy );
-            KSRootSurfaceInteraction* Clone() const;
-            ~KSRootSurfaceInteraction();
+            KSRootSurfaceInteraction* Clone() const override;
+            ~KSRootSurfaceInteraction() override;
 
             //*******************
             //surface interaction
             //*******************
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
             //***********
             //composition

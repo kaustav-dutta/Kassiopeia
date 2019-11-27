@@ -38,7 +38,7 @@ namespace KEMField
     KThreeVector_( const double anArray[ 3 ] ) : KThreeVector(anArray) {}
     KThreeVector_( const double& aX, const double& aY, const double& aZ ) : KThreeVector(aX,aY,aZ) {}
 
-    virtual ~KThreeVector_() {};
+    ~KThreeVector_() override {};
 
     static std::string Name();
 

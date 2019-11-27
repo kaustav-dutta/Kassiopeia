@@ -5,7 +5,7 @@ namespace katrin
 {
 
     KAttributeBase::KAttributeBase() :
-        fParentElement( NULL )
+        fParentElement( nullptr )
     {
     }
     KAttributeBase::~KAttributeBase()

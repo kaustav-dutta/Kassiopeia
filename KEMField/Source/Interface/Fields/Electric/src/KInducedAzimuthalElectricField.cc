@@ -12,7 +12,7 @@
 namespace KEMField {
 
 KInducedAzimuthalElectricField::KInducedAzimuthalElectricField() :
-        fMagneticField( NULL )
+        fMagneticField( nullptr )
 {
 }
 

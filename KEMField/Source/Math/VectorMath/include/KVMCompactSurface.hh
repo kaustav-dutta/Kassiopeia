@@ -29,20 +29,20 @@ class KVMCompactSurface: public KVMMap<KVMSurfaceDDim, KVMSurfaceRDim>
     public:
 
         KVMCompactSurface(){;};
-        virtual ~KVMCompactSurface(){;};
+        ~KVMCompactSurface() override{;};
 
         ///returns false if (u) outside of domain
-        virtual bool PointInDomain(const KVMFixedArray<double, KVMSurfaceDDim >* in) const;
+        bool PointInDomain(const KVMFixedArray<double, KVMSurfaceDDim >* in) const override;
 
         ///evaluates the function which defines the curve
-        virtual bool Evaluate(const KVMFixedArray<double, KVMSurfaceDDim >* in,
-                                KVMFixedArray<double, KVMSurfaceRDim >* out) const;
+        bool Evaluate(const KVMFixedArray<double, KVMSurfaceDDim >* in,
+                                KVMFixedArray<double, KVMSurfaceRDim >* out) const override;
 
         ///returns the derivative of the variable (specified by outputvarindex)
         ///with respect to the input (u), outputvarindex must be either 0,1, or 2
         ///otherwise it will return NaN.
-        virtual bool Jacobian(const KVMFixedArray<double, KVMSurfaceDDim >* in,
-                                KVMFixedArray< KVMFixedArray<double, KVMSurfaceRDim>, KVMSurfaceDDim >* jacobian) const;
+        bool Jacobian(const KVMFixedArray<double, KVMSurfaceDDim >* in,
+                                KVMFixedArray< KVMFixedArray<double, KVMSurfaceRDim>, KVMSurfaceDDim >* jacobian) const override;
 
         inline KVMCompactSurface(const KVMCompactSurface &copyObject);
 

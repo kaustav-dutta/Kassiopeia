@@ -36,12 +36,12 @@ class KFMScalarMultipoleExpansion: public KFMScalarMomentExpansion, public KSAFi
 {
     public:
         KFMScalarMultipoleExpansion();
-        virtual ~KFMScalarMultipoleExpansion();
+        ~KFMScalarMultipoleExpansion() override;
 
-        virtual void Clear();
+        void Clear() override;
 
-        virtual void SetNumberOfTermsInSeries(unsigned int n_terms);
-        virtual unsigned int GetNumberOfTermsInSeries() const;
+        void SetNumberOfTermsInSeries(unsigned int n_terms) override;
+        unsigned int GetNumberOfTermsInSeries() const override;
 
         static unsigned int GetNumberOfTermsFromDegree(unsigned int degree);
         static unsigned int GetDegreeFromNumberOfTerms(unsigned int n_terms);
@@ -49,8 +49,8 @@ class KFMScalarMultipoleExpansion: public KFMScalarMomentExpansion, public KSAFi
         virtual void SetDegree(const int& l_max);
         virtual int GetDegree() const;
 
-        virtual void SetMoments(const std::vector< std::complex<double> >* mom);
-        virtual void GetMoments(std::vector< std::complex<double> >* mom) const;
+        void SetMoments(const std::vector< std::complex<double> >* mom) override;
+        void GetMoments(std::vector< std::complex<double> >* mom) const override;
 
         KFMScalarMultipoleExpansion(const KFMScalarMultipoleExpansion &copyObject);
         KFMScalarMultipoleExpansion& operator=(const KFMScalarMultipoleExpansion& rhs);
@@ -70,8 +70,8 @@ class KFMScalarMultipoleExpansion: public KFMScalarMomentExpansion, public KSAFi
 
         //IO
         virtual std::string ClassName() const {return std::string("KFMScalarMultipoleExpansion");};
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
 
         static inline int TriangleNumber( int n){return (n*(n+1))/2;}; //triangle number
         static inline int ComplexBasisIndex(int l, int m){ return l*(l+1) + m;};//complex basis multipole index

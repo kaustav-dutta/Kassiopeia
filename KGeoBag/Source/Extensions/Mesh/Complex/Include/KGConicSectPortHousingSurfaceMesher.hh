@@ -19,12 +19,12 @@ namespace KGeoBag
             KGConicSectPortHousingSurfaceMesher()
             {
             }
-            virtual ~KGConicSectPortHousingSurfaceMesher()
+            ~KGConicSectPortHousingSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGConicSectPortHousingSurface* conicSectPortHousingSurface );
+            void VisitWrappedSurface( KGConicSectPortHousingSurface* conicSectPortHousingSurface ) override;
 
             void ComputeEnclosingBoxDimensions( std::vector< double >& z_mid, std::vector< double >& r_mid, std::vector< double >& theta, std::vector< double >& z_length, std::vector< double >& alpha );
 
@@ -38,7 +38,7 @@ namespace KGeoBag
 
                 protected:
                     PortDiscretizer() :
-                            fConicSectPortHousingDiscretizer( NULL )
+                            fConicSectPortHousingDiscretizer( nullptr )
                     {
                     }
                     KGConicSectPortHousingSurfaceMesher* fConicSectPortHousingDiscretizer;
@@ -51,7 +51,7 @@ namespace KGeoBag
                 public:
                     ParaxialPortDiscretizer( KGConicSectPortHousingSurfaceMesher* d ) :
                             PortDiscretizer( d ),
-                            fParaxialPort( NULL )
+                            fParaxialPort( nullptr )
                     {
                     }
 
@@ -63,7 +63,7 @@ namespace KGeoBag
                 private:
                     ParaxialPortDiscretizer() :
                         PortDiscretizer(),
-                        fParaxialPort( NULL )
+                        fParaxialPort( nullptr )
                     {
                     }
                     void Circle_coord( int i, double /*r*/, double p[ 3 ] );
@@ -81,7 +81,7 @@ namespace KGeoBag
                 public:
                     OrthogonalPortDiscretizer( KGConicSectPortHousingSurfaceMesher* d ) :
                             PortDiscretizer( d ),
-                            fOrthogonalPort( NULL )
+                            fOrthogonalPort( nullptr )
                     {
                     }
 
@@ -93,7 +93,7 @@ namespace KGeoBag
                 private:
                     OrthogonalPortDiscretizer() :
                         PortDiscretizer(),
-                        fOrthogonalPort( NULL )
+                        fOrthogonalPort( nullptr )
                     {
                     }
                     void Circle_coord( int i, double /*r*/, double p[ 3 ], std::vector< double >& x_int, std::vector< double >& y_int, std::vector< double >& z_int );

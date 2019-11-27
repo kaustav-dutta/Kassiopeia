@@ -15,8 +15,8 @@ namespace Kassiopeia
     {
         public:
             KSIntDecayCalculator();
-            virtual ~KSIntDecayCalculator();
-            virtual KSIntDecayCalculator* Clone() const = 0;
+            ~KSIntDecayCalculator() override;
+            KSIntDecayCalculator* Clone() const override = 0;
 
         public:
             virtual void CalculateLifeTime( const KSParticle& aParticle, double& aCrossSection ) = 0;
@@ -25,8 +25,8 @@ namespace Kassiopeia
                                              KSParticleQueue& aSecondaries ) = 0;
 
         protected:
-            virtual void PullDeupdateComponent();
-            virtual void PushDeupdateComponent();
+            void PullDeupdateComponent() override;
+            void PushDeupdateComponent() override;
 
 
             //variables for output

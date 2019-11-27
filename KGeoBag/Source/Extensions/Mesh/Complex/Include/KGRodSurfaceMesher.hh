@@ -19,12 +19,12 @@ namespace KGeoBag
             KGRodSurfaceMesher()
             {
             }
-            virtual ~KGRodSurfaceMesher()
+            ~KGRodSurfaceMesher() override
             {
             }
 
         protected:
-            void VisitWrappedSurface( KGWrappedSurface< KGRod >* rodSurface );
+            void VisitWrappedSurface( KGWrappedSurface< KGRod >* rodSurface ) override;
 
             void Normalize( const double* p1, const double* p2, double* norm );
 

@@ -2,7 +2,6 @@
 #include "KSGeneratorsMessage.h"
 #include "KSParticle.h"
 #include "KConst.h"
-using katrin::KConst;
 #include "KRandom.h"
 using katrin::KRandom;
 
@@ -64,7 +63,7 @@ namespace Kassiopeia
     	do{
 
     		tZValue = KRandom::GetInstance().Uniform( fZmin, fZmax);
-    		tPhiValue = KRandom::GetInstance().Uniform( fPhimin*KConst::Pi()/180., fPhimax*KConst::Pi()/180. );
+    		tPhiValue = KRandom::GetInstance().Uniform( fPhimin*katrin::KConst::Pi()/180., fPhimax*katrin::KConst::Pi()/180. );
 
     		tRValue = 0.0;
     		tFlux = 0.0;
@@ -74,7 +73,7 @@ namespace Kassiopeia
     		KThreeVector tField;
     		//calculate position at z=0 to get approximation for radius
     		CalculateField( KThreeVector( 0, 0, tZValue ), 0.0, tField );
-    		double tRApproximation = sqrt( fFlux / (KConst::Pi() * tField.Magnitude() ) );
+    		double tRApproximation = sqrt( fFlux / (katrin::KConst::Pi() * tField.Magnitude() ) );
     		genmsg_debug( "r approximation is <"<<tRApproximation<<">"<<eom);
 
     		//calculate stepsize from 0 to rApproximation
@@ -86,7 +85,7 @@ namespace Kassiopeia
     			tY = tRValue * sin( tPhiValue );
     			CalculateField( KThreeVector(tX,tY,tZValue), 0.0, tField );
 
-    			tArea = KConst::Pi()*tRValue*tRValue;
+    			tArea = katrin::KConst::Pi()*tRValue*tRValue;
     			tFlux += tField.Magnitude() * ( tArea - tLastArea);
 
     			genmsg_debug( "r <"<<tRValue<<">"<<eom);
@@ -99,7 +98,7 @@ namespace Kassiopeia
     		}
 
     		//correct the last step, to get a tFlux = fFlux
-    		tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*KConst::Pi() ) );
+    		tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*katrin::KConst::Pi() ) );
 
     		//dice r value in a cylinder volume with radius tRmax
 
@@ -210,7 +209,7 @@ namespace Kassiopeia
     				for ( int j = 0; j <= 36; j++)
     				{
     					tPhiValue = fPhimin + (fPhimax - fPhimin)/(36 - 1) * j;
-    					tPhiValue *= KConst::Pi()/180.;
+    					tPhiValue *= katrin::KConst::Pi()/180.;
 
     					tRValue = 0.0;
     					tFlux = 0.0;
@@ -219,7 +218,7 @@ namespace Kassiopeia
     					KThreeVector tField;
     					//calculate position at z=0 to get approximation for radius
     					CalculateField( KThreeVector( 0, 0, tZValue ), 0.0, tField );
-    					double tRApproximation = sqrt( fFlux / (KConst::Pi() * tField.Magnitude() ) );
+    					double tRApproximation = sqrt( fFlux / (katrin::KConst::Pi() * tField.Magnitude() ) );
     					genmsg_debug( "r approximation is <"<<tRApproximation<<">"<<eom);
 
     					//calculate stepsize from 0 to rApproximation
@@ -231,7 +230,7 @@ namespace Kassiopeia
     						tY = tRValue * sin( tPhiValue );
     						CalculateField( KThreeVector(tX,tY,tZValue), 0.0, tField );
 
-    						tArea = KConst::Pi()*tRValue*tRValue;
+    						tArea = katrin::KConst::Pi()*tRValue*tRValue;
     						tFlux += tField.Magnitude() * ( tArea - tLastArea);
 
     						genmsg_debug( "r <"<<tRValue<<">"<<eom);
@@ -244,7 +243,7 @@ namespace Kassiopeia
     					}
 
     					//correct the last step, to get a tFlux = fFlux
-    					tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*KConst::Pi() ) );
+    					tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*katrin::KConst::Pi() ) );
     					//tRValue = pow( KRandom::GetInstance().Uniform( 0.0, tRValue*tRValue ), (1./2.) );
 
     					if ( tRValue_temp < tRValue )

@@ -30,13 +30,13 @@ class KG2DLineSegment: public KG2DShape
         KG2DLineSegment(double point1[2], double point2[2]);
         KG2DLineSegment(const KTwoVector& point1, const KTwoVector& point2);
 
-        virtual ~KG2DLineSegment(){;};
+        ~KG2DLineSegment() override{;};
 
         //setters
         void SetPoints(const KTwoVector& point1, const KTwoVector& point2);
         void SetFirstPoint(const KTwoVector& point1);
         void SetSecondPoint(const KTwoVector& point2);
-        void Initialize();
+        void Initialize() override;
 
         //getters
         double GetLength() const {return fLength;};
@@ -45,10 +45,10 @@ class KG2DLineSegment: public KG2DShape
         KTwoVector GetUnitVector() const {return fUnit;};
 
         //geometry utilities
-        virtual void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const;
-        virtual KTwoVector Point( const KTwoVector& aPoint ) const;
-        virtual KTwoVector Normal( const KTwoVector& /*aPoint*/ ) const;
-        virtual void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const;
+        void NearestDistance( const KTwoVector& aPoint, double& aDistance ) const override;
+        KTwoVector Point( const KTwoVector& aPoint ) const override;
+        KTwoVector Normal( const KTwoVector& /*aPoint*/ ) const override;
+        void NearestIntersection( const KTwoVector& aStart, const KTwoVector& anEnd, bool& aResult, KTwoVector& anIntersection ) const override;
 
         void NearestIntersection(const KG2DLineSegment& aSegment, bool& aResult, KTwoVector& anIntersection ) const;
 

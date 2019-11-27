@@ -4,7 +4,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {

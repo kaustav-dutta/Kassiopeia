@@ -5,7 +5,7 @@ namespace Kassiopeia
 {
 
     KSGenLComposite::KSGenLComposite() :
-            fLValue( NULL )
+            fLValue( nullptr )
     {
     }
     KSGenLComposite::KSGenLComposite( const KSGenLComposite& aCopy ) :
@@ -57,7 +57,7 @@ namespace Kassiopeia
 
     void KSGenLComposite::SetLValue( KSGenValue* anLValue )
     {
-        if( fLValue == NULL )
+        if( fLValue == nullptr )
         {
             fLValue = anLValue;
             return;
@@ -69,7 +69,7 @@ namespace Kassiopeia
     {
         if( fLValue == anLValue )
         {
-            fLValue = NULL;
+            fLValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear L value <" << anLValue->GetName() << "> from composite L creator <" << this->GetName() << ">" << eom;
@@ -78,7 +78,7 @@ namespace Kassiopeia
 
     void KSGenLComposite::InitializeComponent()
     {
-        if( fLValue != NULL )
+        if( fLValue != nullptr )
         {
             fLValue->Initialize();
         }
@@ -86,7 +86,7 @@ namespace Kassiopeia
     }
     void KSGenLComposite::DeinitializeComponent()
     {
-        if( fLValue != NULL )
+        if( fLValue != nullptr )
         {
             fLValue->Deinitialize();
         }

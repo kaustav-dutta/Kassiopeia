@@ -28,17 +28,17 @@ class KFMNodeFlagValueInitializer: public KFMNodeActor< KFMNode<ObjectTypeList> 
 {
     public:
         KFMNodeFlagValueInitializer(){};
-        virtual ~KFMNodeFlagValueInitializer(){};
+        ~KFMNodeFlagValueInitializer() override{};
 
         void SetFlagIndex(unsigned int flag_index){fFlagIndex = flag_index;};
         void SetFlagValue(char value){fValue = value;};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 KFMNodeFlags<NFLAGS>* flags = KFMObjectRetriever<ObjectTypeList, KFMNodeFlags<NFLAGS> >::GetNodeObject(node);
-                if(flags == NULL)
+                if(flags == nullptr)
                 {
                     flags = new KFMNodeFlags<NFLAGS>();
                     KFMObjectRetriever<ObjectTypeList, KFMNodeFlags<NFLAGS> >::SetNodeObject(flags, node);

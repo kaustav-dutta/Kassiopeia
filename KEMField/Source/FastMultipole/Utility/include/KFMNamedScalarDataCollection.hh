@@ -28,7 +28,7 @@ class KFMNamedScalarDataCollection: public KSAInputOutputObject
 {
     public:
         KFMNamedScalarDataCollection(){fCollectionName = "data";};
-        virtual ~KFMNamedScalarDataCollection(){};
+        ~KFMNamedScalarDataCollection() override{};
 
         const KFMNamedScalarData* GetDataWithName(std::string name) const;
         KFMNamedScalarData* GetDataWithName(std::string name);
@@ -42,8 +42,8 @@ class KFMNamedScalarDataCollection: public KSAInputOutputObject
         void SetCollectionName(const std::string& name){fCollectionName = name;};
 
 
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
         virtual const char* ClassName() const { return "KFMNamedScalarDataCollection"; };
 
 

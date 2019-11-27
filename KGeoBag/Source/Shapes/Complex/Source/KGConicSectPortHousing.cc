@@ -38,7 +38,7 @@ namespace KGeoBag
 
   KGConicSectPortHousing* KGConicSectPortHousing::Clone() const
   {
-    KGConicSectPortHousing* c = new KGConicSectPortHousing();
+    auto* c = new KGConicSectPortHousing();
     c->fzAMain = fzAMain;
     c->frAMain = frAMain;
     c->fzBMain = fzBMain;
@@ -425,7 +425,7 @@ namespace KGeoBag
 
   KGConicSectPortHousing::OrthogonalPort* KGConicSectPortHousing::OrthogonalPort::Clone(KGConicSectPortHousing* c) const
   {
-    OrthogonalPort* o = new OrthogonalPort();
+    auto* o = new OrthogonalPort();
 
     o->fPortHousing = c;
     o->fASub[0] = fASub[0];
@@ -464,7 +464,7 @@ namespace KGeoBag
     fXDisc = 8;
     fCylDisc = 10;
 
-    fCoordTransform = NULL;
+    fCoordTransform = nullptr;
 
     // we compute the local frame
     ComputeLocalFrame(fCen,fX_loc,fY_loc,fZ_loc);
@@ -724,7 +724,7 @@ namespace KGeoBag
 
   KGConicSectPortHousing::ParaxialPort* KGConicSectPortHousing::ParaxialPort::Clone(KGConicSectPortHousing* c) const
   {
-    ParaxialPort* p = new ParaxialPort();
+    auto* p = new ParaxialPort();
 
     p->fPortHousing = c;
     p->fASub[0] = fASub[0];

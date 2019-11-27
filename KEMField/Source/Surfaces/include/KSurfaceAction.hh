@@ -351,7 +351,7 @@ namespace KEMField
     template <class Policy>
     void PerformAction(Type2Type<Policy>)
     {
-      Policy* policy = static_cast<Policy*>(fSurface);
+      auto* policy = static_cast<Policy*>(fSurface);
       fTypeCounter << *policy;
     }
 
@@ -401,7 +401,7 @@ namespace KEMField
     template <typename Surface>
     Stream& StreamSurface(Stream& s,const KSurfacePrimitive& sP,Int2Type<false>)
     {
-      KSurfacePrimitive& sP_ = const_cast<KSurfacePrimitive&>(sP);
+      auto& sP_ = const_cast<KSurfacePrimitive&>(sP);
       return s >> static_cast<Surface&>(sP_);
     }
 

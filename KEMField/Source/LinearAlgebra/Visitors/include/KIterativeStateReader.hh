@@ -25,11 +25,11 @@ namespace KEMField
   public:
     KIterativeStateReader(KSurfaceContainer& container)
     : fContainer(container) {}
-    virtual ~KIterativeStateReader() {}
+    ~KIterativeStateReader() override {}
 
-    void Initialize(KIterativeSolver<ValueType>&);
-    void Visit(KIterativeSolver<ValueType>&) {}
-    void Finalize(KIterativeSolver<ValueType>&) {}
+    void Initialize(KIterativeSolver<ValueType>&) override;
+    void Visit(KIterativeSolver<ValueType>&) override {}
+    void Finalize(KIterativeSolver<ValueType>&) override {}
 
   private:
     KSurfaceContainer& fContainer;

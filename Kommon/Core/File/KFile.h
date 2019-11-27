@@ -60,6 +60,10 @@ namespace katrin
             const std::string& GetPath() const;
             const std::string& GetBase() const;
             const std::string& GetName() const;
+            const std::string& GetDefaultPath() const;
+            const std::string& GetDefaultBase() const;
+            bool IsUsingDefaultBase() const;
+            bool IsUsingDefaultPath() const;
 
         protected:
             std::vector< std::string > fPaths;
@@ -70,6 +74,8 @@ namespace katrin
             std::string fResolvedPath;
             std::string fResolvedBase;
             std::string fResolvedName;
+            bool fUsingDefaultBase;
+            bool fUsingDefaultPath;
 
         public:
             typedef enum

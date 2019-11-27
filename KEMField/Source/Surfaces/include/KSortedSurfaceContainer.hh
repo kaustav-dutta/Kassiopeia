@@ -57,19 +57,19 @@ namespace KEMField
   inline KSurfacePrimitive* KSortedSurfaceContainer::operator[] (unsigned int i) const
   {
     unsigned int j=i;
-    for (KSurfaceContainer::KSurfaceDataCIt it=fSortedSurfaces.begin();
+    for (auto it=fSortedSurfaces.begin();
 	 it!=fSortedSurfaces.end();++it)
     {
       if ((*it)->size()>j) return (*it)->at(j);
       j-=(*it)->size();
     }
-    return NULL;
+    return nullptr;
   }
 
   inline unsigned int KSortedSurfaceContainer::size() const
   {
     unsigned int i=0;
-    for (KSurfaceContainer::KSurfaceDataCIt it=fSortedSurfaces.begin();
+    for (auto it=fSortedSurfaces.begin();
 	 it!=fSortedSurfaces.end();++it)
       i += (*it)->size();
     return i;

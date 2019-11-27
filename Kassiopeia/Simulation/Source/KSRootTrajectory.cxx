@@ -7,11 +7,11 @@ namespace Kassiopeia
 {
 
     KSRootTrajectory::KSRootTrajectory() :
-            fTrajectory( NULL ),
-            fStep( NULL ),
-            fTerminatorParticle( NULL ),
-            fTrajectoryParticle( NULL ),
-            fFinalParticle( NULL ),
+            fTrajectory( nullptr ),
+            fStep( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fTrajectoryParticle( nullptr ),
+            fFinalParticle( nullptr ),
             fFailureFlag(false)
     {
     }
@@ -35,7 +35,7 @@ namespace Kassiopeia
 
     void KSRootTrajectory::CalculateTrajectory( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KThreeVector& aCenter, double& aRadius, double& aTimeStep )
     {
-        if( fTrajectory == NULL )
+        if( fTrajectory == nullptr )
         {
             trajmsg( eError ) << "<" << GetName() << "> cannot calculate trajectory with no trajectory set" << eom;
         }
@@ -45,7 +45,7 @@ namespace Kassiopeia
     }
     void KSRootTrajectory::ExecuteTrajectory( const double& aTimeStep, KSParticle& anIntermediateParticle ) const
     {
-        if( fTrajectory == NULL )
+        if( fTrajectory == nullptr )
         {
             trajmsg( eError ) << "<" << GetName() << "> cannot execute trajectory with no trajectory set" << eom;
         }
@@ -55,7 +55,7 @@ namespace Kassiopeia
 
     void KSRootTrajectory::GetPiecewiseLinearApproximation( const KSParticle& anInitialParticle, const KSParticle& aFinalParticle, std::vector< KSParticle >* intermediateParticleStates ) const
     {
-        if( fTrajectory == NULL )
+        if( fTrajectory == nullptr )
         {
             trajmsg( eError ) << "<" << GetName() << "> cannot compute piecewise linear approximation with no trajectory set" << eom;
         }
@@ -65,7 +65,7 @@ namespace Kassiopeia
 
     void KSRootTrajectory::SetTrajectory( KSTrajectory* aTrajectory )
     {
-        if( fTrajectory != NULL )
+        if( fTrajectory != nullptr )
         {
             trajmsg( eError ) << "<" << GetName() << "> tried to set trajectory <" << aTrajectory->GetName() << "> with trajectory <" << fTrajectory->GetName() << "> already set" << eom;
             return;
@@ -82,7 +82,7 @@ namespace Kassiopeia
             return;
         }
         trajmsg_debug( "<" << GetName() << "> clearing trajectory <" << aTrajectory->GetName() << ">" << eom );
-        fTrajectory = NULL;
+        fTrajectory = nullptr;
         return;
     }
 

@@ -22,13 +22,13 @@ namespace KGeoBag
     ComputeEnclosingBoxDimensions( z_mid, r_mid, theta, z_length, alpha );
 
     // the ports are complicated, so they compute themselves.
-    KGConicSectPortHousingSurfaceMesher::ParaxialPortDiscretizer* paraxialPortDiscretizer = new KGConicSectPortHousingSurfaceMesher::ParaxialPortDiscretizer( this );
-    KGConicSectPortHousingSurfaceMesher::OrthogonalPortDiscretizer* orthogonalPortDiscretizer = new KGConicSectPortHousingSurfaceMesher::OrthogonalPortDiscretizer( this );
+    auto* paraxialPortDiscretizer = new KGConicSectPortHousingSurfaceMesher::ParaxialPortDiscretizer( this );
+    auto* orthogonalPortDiscretizer = new KGConicSectPortHousingSurfaceMesher::OrthogonalPortDiscretizer( this );
     for( unsigned int i = 0; i < fConicSectPortHousing->GetNPorts(); i++ )
     {
-      if( const KGConicSectPortHousing::ParaxialPort* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( fConicSectPortHousing->GetPort( i ) ) )
+      if( const auto* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( fConicSectPortHousing->GetPort( i ) ) )
 	paraxialPortDiscretizer->DiscretizePort( pP );
-      else if( const KGConicSectPortHousing::OrthogonalPort* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( fConicSectPortHousing->GetPort( i ) ) )
+      else if( const auto* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( fConicSectPortHousing->GetPort( i ) ) )
 	orthogonalPortDiscretizer->DiscretizePort( oP );
     }
     delete paraxialPortDiscretizer;
@@ -186,7 +186,7 @@ namespace KGeoBag
 	  P4[ 1 ] = (P5[ 1 ] + P3[ 1 ]) * .5;
 	  P4[ 2 ] = (P5[ 2 ] + P3[ 2 ]) * .5;
 
-	  KGMeshTriangle* t = new KGMeshTriangle( P0, P1, P5 );
+	  auto* t = new KGMeshTriangle( P0, P1, P5 );
 	  AddElement( t );
 	  t = new KGMeshTriangle( P0, P2, P5 );
 	  AddElement( t );
@@ -216,10 +216,10 @@ namespace KGeoBag
     {
       const KGConicSectPortHousing::Port* p = fConicSectPortHousing->GetPort( i );
 
-      if( const KGConicSectPortHousing::ParaxialPort* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p ) )
+      if( const auto* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p ) )
 	r_mid[ i ] = sqrt( pP->GetASub( 0 ) * pP->GetASub( 0 ) + pP->GetASub( 1 ) * pP->GetASub( 1 ) );
 
-      else if( const KGConicSectPortHousing::OrthogonalPort* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p ) )
+      else if( const auto* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p ) )
 	r_mid[ i ] = sqrt( oP->GetCen( 0 ) * oP->GetCen( 0 ) + oP->GetCen( 1 ) * oP->GetCen( 1 ) );
 
       z_mid[ i ] = (fConicSectPortHousing->GetZBMain() - fConicSectPortHousing->GetZAMain()) / (fConicSectPortHousing->GetRBMain() - fConicSectPortHousing->GetRAMain()) * r_mid[ i ] + z0;
@@ -238,10 +238,10 @@ namespace KGeoBag
 	  theta[ i ] = 2. * M_PI - theta[ i ];
       }
 
-      if( const KGConicSectPortHousing::ParaxialPort* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p ) )
+      if( const auto* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p ) )
 	alpha[ i ] = 2 * asin( pP->GetRSub() / fabs( z_mid[ i ] - z0 ) );
 
-      else if( const KGConicSectPortHousing::OrthogonalPort* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p ) )
+      else if( const auto* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p ) )
 	alpha[ i ] = 2 * asin( 2 * oP->GetRSub() );
 
       double z1 = (fConicSectPortHousing->GetZBMain() - fConicSectPortHousing->GetZAMain()) / (fConicSectPortHousing->GetRBMain() - fConicSectPortHousing->GetRAMain()) * (r_mid[ i ] - p->GetRSub()) + z0;
@@ -354,8 +354,8 @@ namespace KGeoBag
       for( unsigned int i = 0; i < fConicSectPortHousing->GetNPorts(); i++ )
       {
 	const KGConicSectPortHousing::Port* p = fConicSectPortHousing->GetPort( i );
-	const KGConicSectPortHousing::ParaxialPort* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p );
-	const KGConicSectPortHousing::OrthogonalPort* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p );
+	const auto* pP = dynamic_cast< const KGConicSectPortHousing::ParaxialPort* >( p );
+	const auto* oP = dynamic_cast< const KGConicSectPortHousing::OrthogonalPort* >( p );
 
 	double zdist_min = 0; // an absolute min for the bounding box length
 	double zdist_max = 1.e30; // an absolute max for the bounding box length
@@ -851,7 +851,7 @@ namespace KGeoBag
 	    n2[ k ] /= n2mag;
 	  }
 
-	  KGMeshRectangle* r = new KGMeshRectangle( a, b, p0, n1, n2 );
+	  auto* r = new KGMeshRectangle( a, b, p0, n1, n2 );
 	  fConicSectPortHousingDiscretizer->AddElement( r );
 	}
       }
@@ -1279,7 +1279,7 @@ namespace KGeoBag
 	orthogonalPort->GetCoordinateTransform()->ConvertToGlobalCoords( n1_loc, n1, true );
 	orthogonalPort->GetCoordinateTransform()->ConvertToGlobalCoords( n2_loc, n2, true );
 
-	KGMeshRectangle* r = new KGMeshRectangle( a, b, p0, n1, n2 );
+	auto* r = new KGMeshRectangle( a, b, p0, n1, n2 );
 	fConicSectPortHousingDiscretizer->AddElement( r );
       }
     }

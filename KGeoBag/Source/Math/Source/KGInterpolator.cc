@@ -8,9 +8,9 @@ namespace KGeoBag
   {
     DataSet data(x.size());
 
-    std::vector<double>::iterator x_it = x.begin();
-    std::vector<double>::iterator y_it = y.begin();
-    DataSet::iterator data_it = data.begin();
+    auto x_it = x.begin();
+    auto y_it = y.begin();
+    auto data_it = data.begin();
 
     for (;x_it!=x.end();++x_it,++y_it,++data_it)
     {

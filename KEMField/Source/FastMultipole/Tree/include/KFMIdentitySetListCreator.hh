@@ -30,16 +30,16 @@ class KFMIdentitySetListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
             fZeroMaskSize = 0;
             fMaxSize = 0;
         };
-        virtual ~KFMIdentitySetListCreator(){};
+        ~KFMIdentitySetListCreator() override{};
 
         void SetZeroMaskSize(unsigned int zmask){fZeroMaskSize = zmask;};
         unsigned int GetMaxExternalIDSetSize() const {return fMaxSize;};
 
-        virtual void ApplyAction( KFMNode< ObjectTypeList >* node)
+        void ApplyAction( KFMNode< ObjectTypeList >* node) override
         {
-            if(node != NULL )
+            if(node != nullptr )
             {
-                KFMIdentitySetList* set_list = new KFMIdentitySetList(); //create a new id set list
+                auto* set_list = new KFMIdentitySetList(); //create a new id set list
 
                 //now we will visit this node's immediate neighbors (at the same tree level) and if they own elements, we will collect
                 //them and add them to this node's id set list
@@ -51,11 +51,11 @@ class KFMIdentitySetListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
 
                 for(unsigned int j=0; j<fNodeNeighborList.size(); j++)
                 {
-                    KFMIdentitySet* id_set = NULL;
-                    if(fNodeNeighborList[j] != NULL)
+                    KFMIdentitySet* id_set = nullptr;
+                    if(fNodeNeighborList[j] != nullptr)
                     {
                         id_set =  KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject( fNodeNeighborList[j]);
-                        if(id_set != NULL)
+                        if(id_set != nullptr)
                         {
                             if(id_set->GetSize() != 0)
                             {
@@ -79,7 +79,7 @@ class KFMIdentitySetListCreator: public KFMNodeActor< KFMNode<ObjectTypeList> >
                     //delete the current superfluous id set list
                     delete set_list;
                     //set this node's id set list to NULL
-                    KFMObjectRetriever<ObjectTypeList, KFMIdentitySetList>::SetNodeObject(NULL, node);
+                    KFMObjectRetriever<ObjectTypeList, KFMIdentitySetList>::SetNodeObject(nullptr, node);
                 }
             }
         }

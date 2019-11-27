@@ -61,7 +61,7 @@ void KExplicitSuperpositionCachedChargeDensitySolver::InitializeCore( KSurfaceCo
     {
         tSolution = false;
 
-        KSurfaceContainer* tempContainer = new KSurfaceContainer();
+        auto* tempContainer = new KSurfaceContainer();
         KEMFileInterface::GetInstance()->FindByHash( *tempContainer, fHashLabels[n], tSolution);
 
         KResidualThreshold tResidualThreshold;

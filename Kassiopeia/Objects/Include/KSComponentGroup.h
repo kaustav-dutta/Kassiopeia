@@ -12,12 +12,12 @@ namespace Kassiopeia
         public:
             KSComponentGroup();
             KSComponentGroup( const KSComponentGroup& aCopy );
-            virtual ~KSComponentGroup();
+            ~KSComponentGroup() override;
 
         public:
-            KSComponentGroup* Clone() const;
-            KSComponent* Component( const std::string& aField );
-            KSCommand* Command( const std::string& aField, KSComponent* aChild );
+            KSComponentGroup* Clone() const override;
+            KSComponent* Component( const std::string& aField ) override;
+            KSCommand* Command( const std::string& aField, KSComponent* aChild ) override;
 
         public:
             void AddComponent( KSComponent* aComponent );

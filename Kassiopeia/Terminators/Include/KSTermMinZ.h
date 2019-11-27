@@ -14,12 +14,12 @@ namespace Kassiopeia
         public:
             KSTermMinZ();
             KSTermMinZ( const KSTermMinZ& aCopy );
-            KSTermMinZ* Clone() const;
-            virtual ~KSTermMinZ();
+            KSTermMinZ* Clone() const override;
+            ~KSTermMinZ() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetMinZ( const double& aValue );

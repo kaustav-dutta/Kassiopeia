@@ -12,14 +12,14 @@ namespace Kassiopeia
         public:
             KSIntDecayCalculatorGlukhovDeExcitation();
             KSIntDecayCalculatorGlukhovDeExcitation( const KSIntDecayCalculatorGlukhovDeExcitation& aCopy );
-            KSIntDecayCalculatorGlukhovDeExcitation* Clone() const;
-            virtual ~KSIntDecayCalculatorGlukhovDeExcitation();
+            KSIntDecayCalculatorGlukhovDeExcitation* Clone() const override;
+            ~KSIntDecayCalculatorGlukhovDeExcitation() override;
 
         public:
-            void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime );
+            void CalculateLifeTime( const KSParticle& aParticle, double& aLifeTime ) override;
             void ExecuteInteraction( const KSParticle& anInitialParticle,
                                      KSParticle& aFinalParticle,
-                                     KSParticleQueue& aSecondaries );
+                                     KSParticleQueue& aSecondaries ) override;
 
 
         public:

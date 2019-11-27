@@ -2,7 +2,6 @@
 #define KTWOVECTOR_H_
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <istream>
 using std::istream;
@@ -203,7 +202,7 @@ namespace KGeoBag
         double tAngle = atan2( fData[1], fData[0] );
         if( tAngle < 0. )
         {
-            tAngle += 2 * KConst::Pi();
+            tAngle += 2 * katrin::KConst::Pi();
         }
         return tAngle;
     }

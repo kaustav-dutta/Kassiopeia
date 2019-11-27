@@ -19,16 +19,16 @@ namespace Kassiopeia
         public:
             KSRootSurfaceNavigator();
             KSRootSurfaceNavigator( const KSRootSurfaceNavigator& aCopy );
-            KSRootSurfaceNavigator* Clone() const;
-            ~KSRootSurfaceNavigator();
+            KSRootSurfaceNavigator* Clone() const override;
+            ~KSRootSurfaceNavigator() override;
 
             //******************
             //surface navigation
             //******************
 
         public:
-            void ExecuteNavigation( const KSParticle& anInitialParticle, const KSParticle& anNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const;
-            void FinalizeNavigation( KSParticle& aFinalParticle ) const;
+            void ExecuteNavigation( const KSParticle& anInitialParticle, const KSParticle& anNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const override;
+            void FinalizeNavigation( KSParticle& aFinalParticle ) const override;
 
             //***********
             //composition

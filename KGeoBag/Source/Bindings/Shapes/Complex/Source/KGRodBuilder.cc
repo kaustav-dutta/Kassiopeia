@@ -13,6 +13,7 @@ namespace katrin
     KGRodVertexBuilder::Attribute<double>("z");
 
   STATICINT sKGRodBuilderStructure =
+    KGRodBuilder::Attribute<string>("name") +
     KGRodBuilder::Attribute<double>("radius") +
     KGRodBuilder::Attribute<int>("longitudinal_mesh_count") +
     KGRodBuilder::Attribute<int>("axial_mesh_count") +

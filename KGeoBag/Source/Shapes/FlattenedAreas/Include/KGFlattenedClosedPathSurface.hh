@@ -53,7 +53,7 @@ namespace KGeoBag
                     fFlattenedMeshPower( 1. )
             {
             }
-            virtual ~KGFlattenedClosedPathSurface()
+            ~KGFlattenedClosedPathSurface() override
             {
             }
 
@@ -115,22 +115,22 @@ namespace KGeoBag
             mutable double fFlattenedMeshPower;
 
         public:
-            virtual void AreaInitialize() const
+            void AreaInitialize() const override
             {
                 return;
             }
-            virtual void AreaAccept( KGVisitor* aVisitor )
+            void AreaAccept( KGVisitor* aVisitor ) override
             {
                 shapemsg_debug( "flattened closed path area named <" << GetName() << "> is receiving a visitor" << eom )
-                typename KGFlattenedClosedPathSurface< XPathType >::Visitor* tFlattenedClosedPathSurfaceVisitor = dynamic_cast< typename KGFlattenedClosedPathSurface< XPathType >::Visitor* >( aVisitor );
-                if( tFlattenedClosedPathSurfaceVisitor != NULL )
+                auto* tFlattenedClosedPathSurfaceVisitor = dynamic_cast< typename KGFlattenedClosedPathSurface< XPathType >::Visitor* >( aVisitor );
+                if( tFlattenedClosedPathSurfaceVisitor != nullptr )
                 {
                     shapemsg_debug( "flattened closed path area named <" << GetName() << "> is accepting a visitor" << eom )
                     tFlattenedClosedPathSurfaceVisitor->VisitFlattenedClosedPathSurface( this );
                 }
                 return;
             }
-            virtual bool AreaAbove( const KThreeVector& aPoint ) const
+            bool AreaAbove( const KThreeVector& aPoint ) const override
             {
                 double tZ = aPoint.Z();
 
@@ -143,7 +143,7 @@ namespace KGeoBag
                     return false;
                 }
             }
-            virtual KThreeVector AreaPoint( const KThreeVector& aPoint ) const
+            KThreeVector AreaPoint( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tXYPoint = aPoint.ProjectXY();
 
@@ -159,7 +159,7 @@ namespace KGeoBag
 
                 return KThreeVector( tXYNearest.X(), tXYNearest.Y(), fZ );
             }
-            virtual KThreeVector AreaNormal( const KThreeVector& /*aPoint*/) const
+            KThreeVector AreaNormal( const KThreeVector& /*aPoint*/) const override
             {
                 return KThreeVector( 0., 0., fSign );
             }
@@ -167,7 +167,7 @@ namespace KGeoBag
         private:
             static KGPlanarClosedPath* CompilerCheck()
             {
-                XPathType* tPath = NULL;
+                XPathType* tPath = nullptr;
                 return tPath;
             }
     };

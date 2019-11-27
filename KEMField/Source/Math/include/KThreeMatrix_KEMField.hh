@@ -46,7 +46,7 @@ namespace KEMField
     KGradient( const KThreeMatrix& aMatrix) : KThreeMatrix(aMatrix) {}
     KGradient( const double& anXX, const double& anXY, const double& anXZ, const double& aYX, const double& aYY, const double& aYZ, const double& aZX, const double& aZY, const double& aZZ ) : KThreeMatrix(anXX,anXY,anXZ,aYX,aYY,aYZ,aZX,aZY,aZZ) {}
 
-    virtual ~KGradient() {}
+    ~KGradient() override {}
 
     static std::string Name() { return "KGradient"; }
 

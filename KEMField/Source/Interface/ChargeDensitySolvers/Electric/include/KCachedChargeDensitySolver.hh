@@ -19,7 +19,7 @@ class KCachedChargeDensitySolver :
 {
 public:
 	KCachedChargeDensitySolver();
-	virtual ~KCachedChargeDensitySolver();
+	~KCachedChargeDensitySolver() override;
 
 	void SetName( std::string s )
 	{
@@ -31,7 +31,7 @@ public:
 	}
 
 private:
-    virtual void InitializeCore( KSurfaceContainer& container );
+    void InitializeCore( KSurfaceContainer& container ) override;
 
 	std::string fName;
 	std::string fHash;

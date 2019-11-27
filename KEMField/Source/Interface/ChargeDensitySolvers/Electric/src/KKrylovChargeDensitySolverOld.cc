@@ -26,14 +26,14 @@ KKrylovChargeDensitySolverOld::~KKrylovChargeDensitySolverOld()
 
 void KKrylovChargeDensitySolverOld::InitializeCore( KSurfaceContainer& surfaceContainer )
 {
-	if(fKrylovConfig->GetFFTMParams() == NULL) {
+	if(fKrylovConfig->GetFFTMParams() == nullptr) {
 		kfmout << "ABORTING no multiplication method set for"
 				" krylov bem solver" << kfmendl;
 		kfmexit(1);
 	}
 	fSolver->SetSolverElectrostaticParameters(*fKrylovConfig->GetFFTMParams());
 	fSolver->SetConfigurationObject(fKrylovConfig);
-	if(fKrylovConfig->GetPreconditionerFFTMParams() != NULL)
+	if(fKrylovConfig->GetPreconditionerFFTMParams() != nullptr)
 		fSolver->SetPreconditionerElectrostaticParameters(
 				*fKrylovConfig->GetPreconditionerFFTMParams());
 

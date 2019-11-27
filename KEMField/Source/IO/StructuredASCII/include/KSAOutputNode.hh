@@ -35,7 +35,7 @@ class KSAOutputNode: public KSAObject
         fStatus(KSANODE_STAY),
         fSingle(0),
         fIndex(0),
-        fNextNode(NULL)
+        fNextNode(nullptr)
         {
             fChildren.clear();
         };
@@ -45,17 +45,17 @@ class KSAOutputNode: public KSAObject
         fStatus(KSANODE_STAY),
         fSingle(0),
         fIndex(0),
-        fNextNode(NULL)
+        fNextNode(nullptr)
         {
             fChildren.clear();
         };
 
-        virtual ~KSAOutputNode()
+        ~KSAOutputNode() override
         {
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 delete fChildren[i];
-		        fChildren[i] = NULL;
+		        fChildren[i] = nullptr;
             }
 
             fChildren.clear();
@@ -82,7 +82,7 @@ class KSAOutputNode: public KSAObject
             fIndex = 0;
             fStatus = KSANODE_STAY;
             fSingle = 0;
-            fNextNode = NULL;
+            fNextNode = nullptr;
             for(unsigned int i = 0; i<fChildren.size(); i++)
             {
                 delete fChildren[i];
@@ -114,7 +114,7 @@ class KSAOutputNode: public KSAObject
                 {
                     line = GetStopTag() + std::string(LINE_DELIM); //close out the current node
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
             }
             else
@@ -125,14 +125,14 @@ class KSAOutputNode: public KSAObject
                 {
                     line = GetSingleLine() + std::string(LINE_DELIM);
                     fStatus = KSANODE_STAY;
-                    fNextNode = NULL;
+                    fNextNode = nullptr;
                     fSingle = 1;
                 }
                 else
                 {
                     line = GetStopTag() + std::string(LINE_DELIM);
                     fStatus = KSANODE_MOVE_UPWARD;
-                    fNextNode = NULL; //next node is parent
+                    fNextNode = nullptr; //next node is parent
                 }
 
             }

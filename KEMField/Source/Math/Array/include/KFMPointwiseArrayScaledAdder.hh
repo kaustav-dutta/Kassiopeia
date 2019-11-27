@@ -24,14 +24,14 @@ class KFMPointwiseArrayScaledAdder: public KFMBinaryArrayOperator< ArrayType, ND
     public:
 
         KFMPointwiseArrayScaledAdder(){;};
-        virtual ~KFMPointwiseArrayScaledAdder(){;}
+        ~KFMPointwiseArrayScaledAdder() override{;}
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
         //scale factor is always applied to the second input!
         void SetScaleFactor(const ArrayType& fac){fScalarFactor = fac;}
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             if(IsInputOutputValid())
             {
@@ -51,7 +51,7 @@ class KFMPointwiseArrayScaledAdder: public KFMBinaryArrayOperator< ArrayType, ND
 
         virtual bool IsInputOutputValid() const
         {
-            if(this->fFirstInput != NULL && this->fSecondInput != NULL && this->fOutput != NULL )
+            if(this->fFirstInput != nullptr && this->fSecondInput != nullptr && this->fOutput != nullptr )
             {
                 //check they have the same size/num elements
                 if( this->HaveSameNumberOfElements(this->fFirstInput, this->fOutput) &&

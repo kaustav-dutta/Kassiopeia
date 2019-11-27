@@ -18,7 +18,7 @@ namespace KEMField {
 class KRobinHoodChargeDensitySolver : public KChargeDensitySolver {
 public:
 	KRobinHoodChargeDensitySolver();
-	virtual ~KRobinHoodChargeDensitySolver();
+	~KRobinHoodChargeDensitySolver() override;
 
 	void SetIntegratorPolicy(const KEBIPolicy& policy)
 	{
@@ -80,7 +80,7 @@ KEMField::cout << "WARNING: cannot use vtk in robin hood without"
 	}
 
 private:
-	void InitializeCore( KSurfaceContainer& container );
+	void InitializeCore( KSurfaceContainer& container ) override;
 
 	KEBIPolicy fIntegratorPolicy;
 	double fTolerance;

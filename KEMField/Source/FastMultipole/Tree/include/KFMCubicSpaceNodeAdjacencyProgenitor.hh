@@ -34,16 +34,16 @@ class KFMCubicSpaceNodeAdjacencyProgenitor: public KFMNodeActor< KFMNode< Object
             fZeroMaskSize = 0;
         };
 
-        virtual ~KFMCubicSpaceNodeAdjacencyProgenitor()
+        ~KFMCubicSpaceNodeAdjacencyProgenitor() override
         {
             delete fProgenitor;
         };
 
         virtual void SetZeroMaskSize(int zmask){fZeroMaskSize = std::abs(zmask);};
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 //we expect that some external condition has been satisfied
                 //now visit all this nodes neighbors
@@ -53,7 +53,7 @@ class KFMCubicSpaceNodeAdjacencyProgenitor: public KFMNodeActor< KFMNode< Object
 
                 for(unsigned int i=0; i<fNeighborNodeList.size(); i++)
                 {
-                    if(fNeighborNodeList[i] != NULL)
+                    if(fNeighborNodeList[i] != nullptr)
                     {
                         if( !(fNeighborNodeList[i]->HasChildren()) )
                         {

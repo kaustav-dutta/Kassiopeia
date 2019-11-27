@@ -6,7 +6,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -41,11 +40,11 @@ namespace Kassiopeia
     void KSIntSurfaceUCN::ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue )
     {
         KThreeVector tNormal;
-        if( anInitialParticle.GetCurrentSurface() != NULL )
+        if( anInitialParticle.GetCurrentSurface() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSurface()->Normal( anInitialParticle.GetPosition() );
         }
-        else if( anInitialParticle.GetCurrentSide() != NULL )
+        else if( anInitialParticle.GetCurrentSide() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSide()->Normal( anInitialParticle.GetPosition() );
         }
@@ -58,7 +57,7 @@ namespace Kassiopeia
         KThreeVector tInitialNormalMomentum = tInitialMomentum.Dot( tNormal ) * tNormal;
         double Eperp = tInitialNormalMomentum * tInitialNormalMomentum / 2 / anInitialParticle.GetMass();
 
-        double pLoss = 2 * fEta * sqrt( Eperp / ( fRealOpticalPotential * KConst::Q() - Eperp ) );
+        double pLoss = 2 * fEta * sqrt( Eperp / ( fRealOpticalPotential * katrin::KConst::Q() - Eperp ) );
         if( std::isnan(pLoss) ){
                 pLoss = 1.;
         }
@@ -76,11 +75,11 @@ namespace Kassiopeia
     void KSIntSurfaceUCN::ExecuteReflection( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& )
     {
         KThreeVector tNormal;
-        if( anInitialParticle.GetCurrentSurface() != NULL )
+        if( anInitialParticle.GetCurrentSurface() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSurface()->Normal( anInitialParticle.GetPosition() );
         }
-        else if( anInitialParticle.GetCurrentSide() != NULL )
+        else if( anInitialParticle.GetCurrentSide() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSide()->Normal( anInitialParticle.GetPosition() );
         }
@@ -119,7 +118,7 @@ namespace Kassiopeia
 
         // calculate the new reflection direction
 
-        double k = tInitialMomentum.Magnitude() / KConst::Hbar();
+        double k = tInitialMomentum.Magnitude() / katrin::KConst::Hbar();
         double cosThetaIn = tInitialNormalMomentum.Magnitude() / tInitialMomentum.Magnitude();
         double sinThetaIn = tInitialTangentMomentum.Magnitude() / tInitialMomentum.Magnitude();
         fTanThetaIn = sinThetaIn / cosThetaIn;
@@ -131,9 +130,9 @@ namespace Kassiopeia
 
         double deltaTheta = 0.;
         double tValueMin = ValueFunction( -thetaIn );
-        double tValueMax = ValueFunction( KConst::Pi()/2-thetaIn );
+        double tValueMax = ValueFunction( katrin::KConst::Pi()/2-thetaIn );
         double tValue = KRandom::GetInstance().Uniform( tValueMin, tValueMax );
-        fSolver.Solve( KMathBracketingSolver::eBrent, this, &KSIntSurfaceUCN::ValueFunction, tValue, -thetaIn, KConst::Pi()/2-thetaIn, deltaTheta );
+        fSolver.Solve( KMathBracketingSolver::eBrent, this, &KSIntSurfaceUCN::ValueFunction, tValue, -thetaIn, katrin::KConst::Pi()/2-thetaIn, deltaTheta );
         double thetaOut = thetaIn + deltaTheta;
 
         KThreeVector tFinalMomentum = -tInitialMomentum.Magnitude()*tInitialNormalMomentum.Unit()*cos(thetaOut)
@@ -159,7 +158,7 @@ namespace Kassiopeia
 
     double KSIntSurfaceUCN::ValueFunction( const double& aValue ) const
     {
-        return fTanThetaIn*exp(-fExpThetaCoef*aValue*aValue)/2/sqrt(KConst::Pi()*fExpThetaCoef) + (1+erf(aValue*sqrt(fExpThetaCoef)))/2;
+        return fTanThetaIn*exp(-fExpThetaCoef*aValue*aValue)/2/sqrt(katrin::KConst::Pi()*fExpThetaCoef) + (1+erf(aValue*sqrt(fExpThetaCoef)))/2;
     }
 
 }

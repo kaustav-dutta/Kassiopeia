@@ -40,7 +40,7 @@ class KFMCube: public KSAFixedSizeInputOutputObject
 
         KFMCube(const double* center, const double& length){SetParameters(center, length); };
 
-        virtual ~KFMCube(){};
+        ~KFMCube() override{};
 
         unsigned int GetDimension() const {return NDIM;};
 
@@ -146,8 +146,8 @@ class KFMCube: public KSAFixedSizeInputOutputObject
 
 
         //IO
-        void DefineOutputNode(KSAOutputNode* node) const;
-        void DefineInputNode(KSAInputNode* node);
+        void DefineOutputNode(KSAOutputNode* node) const override;
+        void DefineInputNode(KSAInputNode* node) override;
 
 
         virtual const char* ClassName() const
@@ -181,7 +181,7 @@ template<unsigned int NDIM>
 void
 KFMCube<NDIM>::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedValuePODOutputNode<  KFMCube<NDIM>, double, &KFMCube<NDIM>::GetLength >( std::string("L"), this) );
         node->AddChild(new KSAAssociatedPassedPointerPODArrayOutputNode< KFMCube<NDIM>, double, &KFMCube<NDIM>::GetCenter>( std::string("C"), NDIM, this) );
@@ -193,7 +193,7 @@ template<unsigned int NDIM>
 void
 KFMCube<NDIM>::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedReferencePODInputNode< KFMCube<NDIM>, double, &KFMCube<NDIM>::SetLength >( std::string("L"), this) );
         node->AddChild(new KSAAssociatedPointerPODArrayInputNode< KFMCube<NDIM>, double, &KFMCube<NDIM>::SetCenter>( std::string("C"), NDIM, this) );

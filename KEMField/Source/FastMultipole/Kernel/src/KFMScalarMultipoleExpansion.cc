@@ -74,7 +74,7 @@ KFMScalarMultipoleExpansion::SetNumberOfTermsInSeries(unsigned int n_terms)
     if(n_terms > 0)
     {
         //compute the nearest integer square root
-        int degree_plus_one = (int) std::floor( std::sqrt((double)n_terms) );
+        auto degree_plus_one = (int) std::floor( std::sqrt((double)n_terms) );
         unsigned int expected_size = (degree_plus_one)*(degree_plus_one);
 
         if( expected_size != n_terms )
@@ -264,7 +264,7 @@ KFMScalarMultipoleExpansion::SetImaginaryMoments(const std::vector<double>* imag
 void
 KFMScalarMultipoleExpansion::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild( new KSAAssociatedPassedPointerPODOutputNode<KFMScalarMultipoleExpansion, std::vector< double >, &KFMScalarMultipoleExpansion::GetRealMoments >(std::string("real"), this) );
         node->AddChild( new KSAAssociatedPassedPointerPODOutputNode<KFMScalarMultipoleExpansion, std::vector< double >, &KFMScalarMultipoleExpansion::GetImaginaryMoments >(std::string("imag"), this) );
@@ -274,7 +274,7 @@ KFMScalarMultipoleExpansion::DefineOutputNode(KSAOutputNode* node) const
 void
 KFMScalarMultipoleExpansion::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild( new KSAAssociatedPointerPODInputNode<KFMScalarMultipoleExpansion, std::vector< double >, &KFMScalarMultipoleExpansion::SetRealMoments >(std::string("real"), this) );
         node->AddChild( new KSAAssociatedPointerPODInputNode<KFMScalarMultipoleExpansion, std::vector< double >, &KFMScalarMultipoleExpansion::SetImaginaryMoments >(std::string("imag"), this) );

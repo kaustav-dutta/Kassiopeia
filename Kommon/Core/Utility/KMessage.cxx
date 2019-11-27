@@ -126,18 +126,18 @@ namespace katrin
     }
     void KMessage::Flush()
     {
-        if( (fSeverity <= fTerminalVerbosity) && (fTerminalStream != NULL) && (fTerminalStream->good() == true) )
+        if( (fSeverity <= fTerminalVerbosity) && (fTerminalStream != nullptr) && (fTerminalStream->good() == true) )
         {
-            for( vector< pair< string, char > >::iterator It = fMessageLines.begin(); It != fMessageLines.end(); It++ )
+            for( auto It = fMessageLines.begin(); It != fMessageLines.end(); It++ )
             {
                 (*fTerminalStream) << this->*fColorPrefix << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] " << It->first << fSystemSuffix << this->*fColorSuffix << It->second;
             }
             (*fTerminalStream).flush();
         }
 
-        if( (fSeverity <= fLogVerbosity) && (fLogStream != NULL) && (fLogStream->good() == true) )
+        if( (fSeverity <= fLogVerbosity) && (fLogStream != nullptr) && (fLogStream->good() == true) )
         {
-            for( vector< pair< string, char > >::iterator It = fMessageLines.begin(); It != fMessageLines.end(); It++ )
+            for( auto It = fMessageLines.begin(); It != fMessageLines.end(); It++ )
             {
                 (*fLogStream) << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] " << It->first << fSystemSuffix << "\n";
             }
@@ -164,7 +164,7 @@ namespace katrin
         const size_t FrameCount = backtrace( FrameArray, MaxFrameCount );
         char** FrameSymbols = backtrace_symbols( FrameArray, FrameCount );
 
-        if( (fSeverity <= fTerminalVerbosity) && (fTerminalStream != NULL) && (fTerminalStream->good() == true) )
+        if( (fSeverity <= fTerminalVerbosity) && (fTerminalStream != nullptr) && (fTerminalStream->good() == true) )
         {
             (*fTerminalStream) << this->*fColorPrefix << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] shutting down..." << fSystemSuffix << this->*fColorSuffix << '\n';
             (*fTerminalStream) << this->*fColorPrefix << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] stack trace:" << fSystemSuffix << this->*fColorSuffix << '\n';
@@ -175,7 +175,7 @@ namespace katrin
             (*fTerminalStream).flush();
         }
 
-        if( (fSeverity <= fLogVerbosity) && (fLogStream != NULL) && (fLogStream->good() == true) )
+        if( (fSeverity <= fLogVerbosity) && (fLogStream != nullptr) && (fLogStream->good() == true) )
         {
             (*fLogStream) << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] shutting down..." << fSystemSuffix << '\n';
             (*fLogStream) << fSystemPrefix << "[" << fSystemDescription << " " << this->*fDescription << " MESSAGE] stack trace:" << fSystemSuffix << '\n';
@@ -234,7 +234,7 @@ namespace katrin
             fTerminalVerbosity( eNormal ),
             fTerminalStream( &cerr ),
             fLogVerbosity( eInfo ),
-            fLogStream( NULL )
+            fLogStream( nullptr )
     {
     }
 
@@ -248,7 +248,7 @@ namespace katrin
 
     void KMessageTable::Add( KMessage* aMessage )
     {
-        MessageIt tIter = fMessageMap.find( aMessage->GetKey() );
+        auto tIter = fMessageMap.find( aMessage->GetKey() );
         if( tIter == fMessageMap.end() )
         {
             fMessageMap.insert( MessageEntry( aMessage->GetKey(), aMessage ) );
@@ -257,16 +257,16 @@ namespace katrin
     }
     KMessage* KMessageTable::Get( const string& aKey )
     {
-        MessageIt tIter = fMessageMap.find( aKey );
+        auto tIter = fMessageMap.find( aKey );
         if( tIter != fMessageMap.end() )
         {
             return tIter->second;
         }
-        return NULL;
+        return nullptr;
     }
     void KMessageTable::Remove( KMessage* aMessage )
     {
-        MessageIt tIter = fMessageMap.find( aMessage->GetKey() );
+        auto tIter = fMessageMap.find( aMessage->GetKey() );
         if( tIter != fMessageMap.end() )
         {
             fMessageMap.erase( tIter );

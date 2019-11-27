@@ -50,7 +50,7 @@ namespace KEMField
   {
   public:
     KSADataStreamer():fFlushSize(CHUNK) {}
-    ~KSADataStreamer() {}
+    ~KSADataStreamer() override {}
 
     void open(const std::string& fileName,const std::string& action);
     void close();
@@ -70,10 +70,10 @@ namespace KEMField
 
     std::string GetFileSuffix() const { return ".zksa"; }
 
-    KSABuffer& Buffer() { return fBuffer; }
+    KSABuffer& Buffer() override { return fBuffer; }
 
   protected:
-    KSADataStreamer& Self() { return *this; }
+    KSADataStreamer& Self() override { return *this; }
 
     KSABuffer fBuffer;
 

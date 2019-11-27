@@ -11,15 +11,15 @@ namespace katrin
         public KElementBase
     {
         public:
-            KSimpleElement( KElementBase* aParentElement = NULL );
-            virtual ~KSimpleElement();
+            KSimpleElement( KElementBase* aParentElement = nullptr );
+            ~KSimpleElement() override;
 
-            virtual bool Begin();
-            virtual bool AddAttribute( KContainer* aToken );
-            virtual bool Body();
-            virtual bool AddElement( KContainer* anElement );
-            virtual bool SetValue( KToken* aToken );
-            virtual bool End();
+            bool Begin() override;
+            bool AddAttribute( KContainer* aToken ) override;
+            bool Body() override;
+            bool AddElement( KContainer* anElement ) override;
+            bool SetValue( KToken* aToken ) override;
+            bool End() override;
 
             static KElementBase* Create( KElementBase* aParentElement );
 
@@ -31,17 +31,17 @@ namespace katrin
 
     template< class XType >
     KSimpleElement< XType >::KSimpleElement( KElementBase* aParentElement ) :
-        fObject( NULL )
+        fObject( nullptr )
     {
         fParentElement = aParentElement;
 
-        if( sElements == NULL )
+        if( sElements == nullptr )
         {
             sElements = new KElementMap();
         }
         fElements = sElements;
 
-        if( sAttributes == NULL )
+        if( sAttributes == nullptr )
         {
             sAttributes = new KAttributeMap();
         }
@@ -93,10 +93,10 @@ namespace katrin
     }
 
     template< class XType >
-    KAttributeMap* KSimpleElement< XType >::sAttributes = NULL;
+    KAttributeMap* KSimpleElement< XType >::sAttributes = nullptr;
 
     template< class XType >
-    KElementMap* KSimpleElement< XType >::sElements = NULL;
+    KElementMap* KSimpleElement< XType >::sElements = nullptr;
 }
 
 #endif

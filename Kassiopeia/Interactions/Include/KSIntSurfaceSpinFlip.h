@@ -16,11 +16,11 @@ namespace Kassiopeia
         public:
             KSIntSurfaceSpinFlip();
             KSIntSurfaceSpinFlip( const KSIntSurfaceSpinFlip& aCopy );
-            KSIntSurfaceSpinFlip* Clone() const;
-            virtual ~KSIntSurfaceSpinFlip();
+            KSIntSurfaceSpinFlip* Clone() const override;
+            ~KSIntSurfaceSpinFlip() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
         public:
 

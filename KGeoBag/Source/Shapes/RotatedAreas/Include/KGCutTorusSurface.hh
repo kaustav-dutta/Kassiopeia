@@ -22,7 +22,7 @@ namespace KGeoBag
         public:
             KGCutTorusSurface();
             KGCutTorusSurface( const KGCutTorusSurface& aCopy );
-            virtual ~KGCutTorusSurface();
+            ~KGCutTorusSurface() override;
 
         public:
             void Z1( const double& aZ1 );
@@ -57,8 +57,8 @@ namespace KGeoBag
             unsigned int fAxialMeshCount;
 
         public:
-            virtual void AreaInitialize() const;
-            virtual void AreaAccept( KGVisitor* aVisitor );
+            void AreaInitialize() const override;
+            void AreaAccept( KGVisitor* aVisitor ) override;
     };
 
 }

@@ -41,7 +41,7 @@ namespace Kassiopeia
             {
                 fCurrentDotProduct = DotProduct;
 
-                KSParticle* tSplitParticle = new KSParticle( aFinalParticle );
+                auto* tSplitParticle = new KSParticle( aFinalParticle );
                 tSplitParticle->ResetFieldCaching();
                 aQueue.push_back( tSplitParticle );
 

@@ -278,7 +278,7 @@ namespace KGeoBag
                 KThreeVector tEndPoint;
 
                 double tRadius = tMeshWire->GetDiameter() / 2.;
-                double tIncrement = (2. * KConst::Pi()) / ((double) (fArcCount));
+                double tIncrement = (2. * katrin::KConst::Pi()) / ((double) (fArcCount));
                 double tPhi;
 
                 vector< vtkIdType > tStartIds;

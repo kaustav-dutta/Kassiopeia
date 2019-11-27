@@ -21,12 +21,12 @@ namespace Kassiopeia
         public:
             KESSInelasticBetheFano();
             KESSInelasticBetheFano( const KESSInelasticBetheFano& aCopy );
-            virtual KESSInelasticBetheFano* Clone() const;
-            virtual ~KESSInelasticBetheFano();
+            KESSInelasticBetheFano* Clone() const override;
+            ~KESSInelasticBetheFano() override;
 
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) override;
 
-            virtual void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
 
             K_SET_GET( double, BetheFanoDepositedEnergy )
 

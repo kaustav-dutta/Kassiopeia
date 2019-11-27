@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSReadTrackROOT( TFile* aFile );
-            virtual ~KSReadTrackROOT();
+            ~KSReadTrackROOT() override;
 
         public:
             unsigned int GetTrackIndex() const;

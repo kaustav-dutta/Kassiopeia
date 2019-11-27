@@ -21,7 +21,7 @@ namespace KGeoBag
   {
   public:
 	  KGBoxSurfaceRandom() : KGShapeRandom() {}
-    virtual ~KGBoxSurfaceRandom() {}
+    ~KGBoxSurfaceRandom() override {}
 
     /**
      * \brief Visitor function for dicing a point on
@@ -29,7 +29,7 @@ namespace KGeoBag
      *
      * \brief aBox
      */
-    virtual void VisitBox(KGBox* aBox);
+    void VisitBox(KGBox* aBox) override;
   };
 }
 

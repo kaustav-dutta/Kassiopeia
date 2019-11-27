@@ -6,7 +6,6 @@
  */
 
 #include "KRampedElectric2FieldBuilder.hh"
-
 #include "KEMToolboxBuilder.hh"
 
 using namespace KEMField;
@@ -30,7 +29,12 @@ KRampedElectric2FieldBuilder::~KComplexElement()
         KRampedElectric2FieldBuilder::Attribute< double >( "ramp_up_time" ) +
         KRampedElectric2FieldBuilder::Attribute< double >( "ramp_down_time" ) +
         KRampedElectric2FieldBuilder::Attribute< double >( "time_constant" ) +
-        KRampedElectric2FieldBuilder::Attribute< double >( "time_scaling" );
+        KRampedElectric2FieldBuilder::Attribute< double >( "time_scaling" ) +
+        KRampedElectric2FieldBuilder::Attribute< double >( "focus_time" ) +
+        KRampedElectric2FieldBuilder::Attribute< double >( "focus_exponent" ) +
+        KRampedElectric2FieldBuilder::Attribute< double >( "potential_scaling" ) +
+        KRampedElectric2FieldBuilder::Attribute< bool >( "small_spectrometer" );
+
 
     STATICINT sKRampedElectric2Field =
         KEMToolboxBuilder::ComplexElement< KRampedElectric2Field >( "ramped_transitional_electric_field" );

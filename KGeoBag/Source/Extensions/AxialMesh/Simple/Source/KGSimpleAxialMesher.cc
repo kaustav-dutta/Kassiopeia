@@ -137,7 +137,7 @@ namespace KGeoBag
             tElement = *tElementIt;
 
             tLineSegmentElement = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegmentElement != NULL )
+            if( tLineSegmentElement != nullptr )
             {
                 LineSegmentToOpenPoints( tLineSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -145,7 +145,7 @@ namespace KGeoBag
             }
 
             tArcSegmentElement = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegmentElement != NULL )
+            if( tArcSegmentElement != nullptr )
             {
                 ArcSegmentToOpenPoints( tArcSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -190,7 +190,7 @@ namespace KGeoBag
             tElement = *tElementIt;
 
             tLineSegmentElement = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegmentElement != NULL )
+            if( tLineSegmentElement != nullptr )
             {
                 LineSegmentToOpenPoints( tLineSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -198,7 +198,7 @@ namespace KGeoBag
             }
 
             tArcSegmentElement = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegmentElement != NULL )
+            if( tArcSegmentElement != nullptr )
             {
                 ArcSegmentToOpenPoints( tArcSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );

@@ -20,7 +20,7 @@ namespace KGeoBag
     {
         public:
             KGSimpleAxialMesher();
-            virtual ~KGSimpleAxialMesher();
+            ~KGSimpleAxialMesher() override;
 
             //**********
             //data types

@@ -44,9 +44,9 @@ namespace katrin
         }
         if( aContainer->Is< KGArea >() )
         {
-            KGArea* tArea = NULL;
+            KGArea* tArea = nullptr;
             aContainer->ReleaseTo( tArea );
-            KGSurface* tSurface = new KGSurface();
+            auto* tSurface = new KGSurface();
             tSurface->SetName( tArea->GetName() );
             tSurface->SetTags( tArea->GetTags() );
             tSurface->Area( std::shared_ptr<KGArea>(tArea) );
@@ -60,9 +60,9 @@ namespace katrin
         }
         if( aContainer->Is< KGVolume >() )
         {
-            KGVolume* tVolume = NULL;
+            KGVolume* tVolume = nullptr;
             aContainer->ReleaseTo( tVolume );
-            KGSpace* tSpace = new KGSpace();
+            auto* tSpace = new KGSpace();
             tSpace->SetName( tVolume->GetName() );
             tSpace->SetTags( tVolume->GetTags() );
             tSpace->Volume( std::shared_ptr<KGVolume>(tVolume) );
@@ -75,7 +75,7 @@ namespace katrin
     template< >
     inline bool KGInterfaceBuilder::End()
     {
-        fObject = NULL;
+        fObject = nullptr;
         return true;
     }
 

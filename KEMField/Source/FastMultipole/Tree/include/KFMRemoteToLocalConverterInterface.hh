@@ -30,7 +30,7 @@ class KFMRemoteToLocalConverterInterface: public KFMNodeActor< KFMNode<ObjectTyp
             fM2LConverter = new M2LType();
         }
 
-        virtual ~KFMRemoteToLocalConverterInterface()
+        ~KFMRemoteToLocalConverterInterface() override
         {
             delete fTopLevelM2LConverter;
             delete fM2LConverter;
@@ -106,9 +106,9 @@ class KFMRemoteToLocalConverterInterface: public KFMNodeActor< KFMNode<ObjectTyp
             fM2LConverter->Initialize();
         }
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 if(node->GetLevel() == 0)
                 {

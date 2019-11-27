@@ -33,12 +33,12 @@ class KVMFieldWrapper: public KVMField
         fDimRange(dimRange)
         {;};
 
-        ~KVMFieldWrapper(){;};
+        ~KVMFieldWrapper() override{;};
 
-        unsigned int GetNDimDomain() const {return fDimDomain;};
-        unsigned int GetNDimRange() const {return fDimRange;};
+        unsigned int GetNDimDomain() const override {return fDimDomain;};
+        unsigned int GetNDimRange() const override {return fDimRange;};
 
-        void Evaluate(const double* in, double* out) const
+        void Evaluate(const double* in, double* out) const override
         {
             return CALL_MEMBER_FN(fObjectPtr, memberFunction)(in, out);
         }

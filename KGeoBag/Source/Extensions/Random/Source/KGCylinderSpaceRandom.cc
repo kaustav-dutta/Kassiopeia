@@ -11,7 +11,7 @@ void KGeoBag::KGCylinderSpaceRandom::VisitCylinderSpace(KGeoBag::KGCylinderSpace
 	KThreeVector point;
 
 	double z = Uniform();
-	double phi = Uniform(0, 2 * KConst::Pi());
+	double phi = Uniform(0, 2 * katrin::KConst::Pi());
 	double r = aCylinderSpace->R() * sqrt(Uniform());
 
 	point.SetZ(aCylinderSpace->Z1() + z * (aCylinderSpace->Z2() - aCylinderSpace->Z1()));

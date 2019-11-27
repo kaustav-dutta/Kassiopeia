@@ -25,17 +25,17 @@ class KFMResponseKernel_3DLaplaceM2L: public KFMScaleInvariantKernelExpansion<3>
 {
     public:
         KFMResponseKernel_3DLaplaceM2L():KFMScaleInvariantKernelExpansion<3>(){;};
-        virtual ~KFMResponseKernel_3DLaplaceM2L(){;};
+        ~KFMResponseKernel_3DLaplaceM2L() override{;};
 
-        virtual void Initialize(){;};
-        virtual bool IsPhysical(int source_index, const int target_index) const;
-        virtual std::complex<double> GetResponseFunction(int source_index, int target_index) const;
+        void Initialize() override{;};
+        bool IsPhysical(int source_index, const int target_index) const override;
+        std::complex<double> GetResponseFunction(int source_index, int target_index) const override;
 
-        virtual std::complex<double> GetSourceScaleFactor(int source_index, std::complex<double>& scale) const;
-        virtual std::complex<double> GetTargetScaleFactor(int target_index, std::complex<double>& scale) const;
+        std::complex<double> GetSourceScaleFactor(int source_index, std::complex<double>& scale) const override;
+        std::complex<double> GetTargetScaleFactor(int target_index, std::complex<double>& scale) const override;
 
-        virtual std::complex<double> GetNormalizationFactor(int source_index, int target_index) const;
-        virtual std::complex<double> GetIndependentResponseFunction(int response_index) const;
+        std::complex<double> GetNormalizationFactor(int source_index, int target_index) const override;
+        std::complex<double> GetIndependentResponseFunction(int response_index) const override;
 
     protected:
 

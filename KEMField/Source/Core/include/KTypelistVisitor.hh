@@ -20,7 +20,7 @@ namespace KEMField
   public:
     using Base::Visit;
 
-    virtual ~KVisitorType() {}
+    ~KVisitorType() override {}
 
     virtual void Visit(Policy&) = 0;
   };
@@ -32,9 +32,9 @@ namespace KEMField
     using Base::Visit;
 
     KNonVisitorType() {}
-      virtual ~KNonVisitorType() {}
+      ~KNonVisitorType() override {}
 
-    virtual void Visit(Policy&) {}
+    void Visit(Policy&) override {}
   };
 
 /**
@@ -50,7 +50,7 @@ namespace KEMField
     public KGenLinearHierarchy<typename RemoveTypelist<typename Visitor::AcceptedTypes,VisitedList>::Result,KNonVisitorType,Visitor>
   {
   public:
-    virtual ~KSelectiveVisitor() {}
+    ~KSelectiveVisitor() override {}
   };
 
   template <class Visitor>
@@ -58,7 +58,7 @@ namespace KEMField
     public Visitor
   {
   public:
-    virtual ~KSelectiveVisitor() {}
+    ~KSelectiveVisitor() override {}
   };
 }
 

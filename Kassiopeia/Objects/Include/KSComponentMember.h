@@ -22,7 +22,7 @@ namespace Kassiopeia
         public KSComponent
     {
         public:
-            KSComponentMember( KSComponent* aParentComponent, XParentType* aParentPointer, const XValueType& (XParentType::*aMember)( void ) const ) :
+            KSComponentMember( KSComponent* aParentComponent, XParentType* aParentPointer, const XValueType& (XParentType::*aMember)( ) const ) :
                     KSComponent(),
                     fTarget( aParentPointer ),
                     fMember( aMember ),
@@ -40,7 +40,7 @@ namespace Kassiopeia
                 Set( &fValue );
                 this->SetParent( aCopy.fParentComponent );
             }
-            virtual ~KSComponentMember()
+            ~KSComponentMember() override
             {
             }
 
@@ -49,15 +49,15 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Clone() const
+            KSComponent* Clone() const override
             {
                 return new KSComponentMember< const XValueType& (XParentType::*)( void ) const >( *this );
             }
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "const-reference component member <" << this->GetName() << "> building component named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XValueType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "const-reference component member <" << this->GetName() << "> has no output named <" << aField << ">" << eom;
                 }
@@ -67,19 +67,19 @@ namespace Kassiopeia
                 }
                 return tComponent;
             }
-            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ )
+            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ ) override
             {
-                return NULL;
+                return nullptr;
             }
 
         public:
-            void PushUpdateComponent()
+            void PushUpdateComponent() override
             {
                 objctmsg_debug( "const-reference component member <" << this->GetName() << "> pushing update" << eom );
                 fValue = (fTarget->*fMember)();
                 return;
             }
-            void PullUpdateComponent()
+            void PullUpdateComponent() override
             {
                 objctmsg_debug( "const-reference component member <" << this->GetName() << "> pulling update" << eom );
                 fValue = (fTarget->*fMember)();
@@ -88,7 +88,7 @@ namespace Kassiopeia
 
         private:
             XParentType* fTarget;
-            const XValueType& (XParentType::*fMember)( void ) const;
+            const XValueType& (XParentType::*fMember)( ) const;
             XValueType fValue;
     };
 
@@ -101,18 +101,18 @@ namespace Kassiopeia
                     fMember( aMember )
             {
             }
-            virtual ~KSComponentMemberFactory()
+            ~KSComponentMemberFactory() override
             {
             }
 
         public:
-            KSComponent* CreateComponent( KSComponent* aParent ) const
+            KSComponent* CreateComponent( KSComponent* aParent ) const override
             {
-                XParentType* tParent = aParent->As< XParentType >();
-                if( tParent == NULL )
+                auto* tParent = aParent->As< XParentType >();
+                if( tParent == nullptr )
                 {
                     objctmsg_debug( "  component parent <" << aParent->GetName() << "> could not be cast to type <" << typeid( XParentType ).name() << ">" << eom );
-                    return NULL;
+                    return nullptr;
                 }
 
                 objctmsg_debug( "  component built" << eom );
@@ -132,7 +132,7 @@ namespace Kassiopeia
         public KSComponent
     {
         public:
-            KSComponentMember( KSComponent* aParentComponent, XParentType* aParentPointer, XValueType (XParentType::*aMember)( void ) const ) :
+            KSComponentMember( KSComponent* aParentComponent, XParentType* aParentPointer, XValueType (XParentType::*aMember)( ) const ) :
                     KSComponent(),
                     fTarget( aParentPointer ),
                     fMember( aMember ),
@@ -150,7 +150,7 @@ namespace Kassiopeia
                 Set( &fValue );
                 fParentComponent = aCopy.fParentComponent;
             }
-            virtual ~KSComponentMember()
+            ~KSComponentMember() override
             {
             }
 
@@ -159,15 +159,15 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Clone() const
+            KSComponent* Clone() const override
             {
                 return new KSComponentMember< XValueType (XParentType::*)( void ) const >( *this );
             }
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "copy-value component member <" << this->GetName() << "> building component named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XValueType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "const-reference component member <" << this->GetName() << "> has no output named <" << aField << ">" << eom;
                 }
@@ -177,13 +177,13 @@ namespace Kassiopeia
                 }
                 return tComponent;
             }
-            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ )
+            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ ) override
             {
-                return NULL;
+                return nullptr;
             }
 
         protected:
-            void PushUpdateComponent()
+            void PushUpdateComponent() override
             {
                 objctmsg_debug( "copy-value component member <" << this->GetName() << "> pushing update" << eom );
                 fValue = (fTarget->*fMember)();
@@ -192,7 +192,7 @@ namespace Kassiopeia
 
         private:
             XParentType* fTarget;
-            XValueType (XParentType::*fMember)( void ) const;
+            XValueType (XParentType::*fMember)( ) const;
             XValueType fValue;
     };
 
@@ -205,18 +205,18 @@ namespace Kassiopeia
                     fMember( aMember )
             {
             }
-            virtual ~KSComponentMemberFactory()
+            ~KSComponentMemberFactory() override
             {
             }
 
         public:
-            KSComponent* CreateComponent( KSComponent* aParent ) const
+            KSComponent* CreateComponent( KSComponent* aParent ) const override
             {
-                XParentType* tParent = aParent->As< XParentType >();
-                if( tParent == NULL )
+                auto* tParent = aParent->As< XParentType >();
+                if( tParent == nullptr )
                 {
                     objctmsg_debug( "  component parent <" << aParent->GetName() << "> could not be cast to type <" << typeid( XParentType ).name() << ">" << eom );
-                    return NULL;
+                    return nullptr;
                 }
 
                 objctmsg_debug( "  component built" << eom );
@@ -235,12 +235,12 @@ namespace Kassiopeia
     template< class XMemberType >
     int KSDictionary< XType >::AddComponent( XMemberType aMember, const std::string& aLabel )
     {
-        if( fComponentFactories == NULL )
+        if( fComponentFactories == nullptr )
         {
             fComponentFactories = new ComponentFactoryMap();
         }
 
-        KSComponentMemberFactory< XMemberType >* tComponentMemberFactory = new KSComponentMemberFactory< XMemberType >( aMember );
+        auto* tComponentMemberFactory = new KSComponentMemberFactory< XMemberType >( aMember );
         fComponentFactories->insert( ComponentFactoryEntry( aLabel, tComponentMemberFactory ) );
         return 0;
     }

@@ -5,7 +5,6 @@
 using katrin::KFile;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -74,7 +73,7 @@ namespace KGeoBag
         for( unsigned int tIndex = 0; tIndex < fSampleCount; tIndex++ )
         {
             tRadius = fSampleDiskRadius * sqrt( tRandom.Uniform( 0., 1. ) );
-            tPhi = tRandom.Uniform( 0., 2. * KConst::Pi() );
+            tPhi = tRandom.Uniform( 0., 2. * katrin::KConst::Pi() );
             tPoint = fSampleDiskOrigin + tRadius * (cos( tPhi ) * tUnitOne + sin( tPhi ) * tUnitTwo);
 
             for( vector< const KGSurface* >::iterator tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )

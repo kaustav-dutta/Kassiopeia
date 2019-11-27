@@ -33,11 +33,15 @@ namespace katrin
     {
     }
 
+    void KIncludeProcessor::SetPath(const string& path)
+    {
+        fDefaultPath = path;
+    }
 
     void KIncludeProcessor::AddDefaultPath(const string& path)
     {
-        if ( find(fDefaultPaths.begin(), fDefaultPaths.end(), path) == fDefaultPaths.end() )
-            fDefaultPaths.push_back( path );
+        if ( find(fAdditionalDefaultPaths.begin(), fAdditionalDefaultPaths.end(), path) == fAdditionalDefaultPaths.end() )
+            fAdditionalDefaultPaths.push_back( path );
     }
 
     void KIncludeProcessor::ProcessToken( KBeginElementToken* aToken )
@@ -211,7 +215,7 @@ namespace katrin
 
         if( fElementState == eElementComplete )
         {
-            KTextFile* aFile = new KTextFile();
+            auto* aFile = new KTextFile();
             aFile->SetDefaultPath( CONFIG_DEFAULT_DIR );
 
             for( const string& name : fNames )
@@ -220,7 +224,8 @@ namespace katrin
             for( const string& path : fPaths )
                 aFile->AddToPaths( path );
 
-            for( const string& defaultPath : fDefaultPaths )
+            aFile->AddToPaths( fDefaultPath );
+            for( const string& defaultPath : fAdditionalDefaultPaths )
                 aFile->AddToPaths( defaultPath );
 
             for( const string& base : fBases )
@@ -233,42 +238,7 @@ namespace katrin
 
                 if (fOptionalFlag == false)
                 {
-                    vector<string>::const_iterator It;
-
-                    initmsg( eError ) << "unable to open file with names <";
-                    It = fNames.begin();
-                    while( It != fNames.end() )
-                    {
-                        initmsg << *It;
-                        It++;
-                        if( It != fNames.end() )
-                        {
-                            initmsg << ",";
-                        }
-                    }
-                    initmsg << "> and paths <";
-                    It = fPaths.begin();
-                    while( It != fPaths.end() )
-                    {
-                        initmsg << *It;
-                        It++;
-                        if( It != fPaths.end() )
-                        {
-                            initmsg << ",";
-                        }
-                    }
-                    initmsg << "> and bases <";
-                    It = fBases.begin();
-                    while( It != fBases.end() )
-                    {
-                        initmsg << *It;
-                        It++;
-                        if( It != fBases.end() )
-                        {
-                            initmsg << ",";
-                        }
-                    }
-                    initmsg << ">" << eom;
+                    initmsg( eError ) << "unable to open include file <" << fBases.front() << ">" << eom;
                 }
             }
 
@@ -287,10 +257,15 @@ namespace katrin
                 }
                 else
                 {
+                    bool usingDefaultPath = (std::find(fAdditionalDefaultPaths.begin(), fAdditionalDefaultPaths.end(), aFile->GetPath()) != fAdditionalDefaultPaths.end());
+                    if (usingDefaultPath) {
+                        initmsg( eWarning ) << "using default include file <" << tFileName << ">" << eom;
+                    }
+
                     initmsg( eInfo ) << "including file <" << tFileName << ">" << eom;
                     fIncludedPaths.push_back( tFileName );
 
-                    KXMLTokenizer* aNewTokenizer = new KXMLTokenizer();
+                    auto* aNewTokenizer = new KXMLTokenizer();
                     aNewTokenizer->InsertBefore( GetFirstParent() );
                     aNewTokenizer->ProcessFile( aFile );
                     aNewTokenizer->Remove();

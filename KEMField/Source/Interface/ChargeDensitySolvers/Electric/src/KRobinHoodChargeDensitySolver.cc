@@ -168,7 +168,7 @@ void KRobinHoodChargeDensitySolver::InitializeCore( KSurfaceContainer& container
 		{
 			MPI_SINGLE_PROCESS
 			{
-				KIterationDisplay< KElectrostaticBoundaryIntegrator::ValueType >* display = new KIterationDisplay< KElectrostaticBoundaryIntegrator::ValueType >();
+				auto* display = new KIterationDisplay< KElectrostaticBoundaryIntegrator::ValueType >();
 				display->Interval( fDisplayInterval );
 				robinHood.AddVisitor( display );
 			}
@@ -177,7 +177,7 @@ void KRobinHoodChargeDensitySolver::InitializeCore( KSurfaceContainer& container
 		{
 			MPI_SINGLE_PROCESS
 			{
-				KIterativeStateWriter< KElectrostaticBoundaryIntegrator::ValueType >* stateWriter = new KIterativeStateWriter< KElectrostaticBoundaryIntegrator::ValueType >( container );
+				auto* stateWriter = new KIterativeStateWriter< KElectrostaticBoundaryIntegrator::ValueType >( container );
 				stateWriter->Interval( fWriteInterval );
 				robinHood.AddVisitor( stateWriter );
 			}

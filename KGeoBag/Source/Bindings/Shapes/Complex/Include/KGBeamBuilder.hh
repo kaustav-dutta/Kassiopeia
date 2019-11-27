@@ -82,7 +82,7 @@ namespace katrin
   {
     if (anElement->GetName() == "start_line")
     {
-      KGBeamLine* startLine = anElement->AsPointer<KGBeamLine>();
+      auto* startLine = anElement->AsPointer<KGBeamLine>();
       double p1[3] = {startLine->x1,startLine->y1,startLine->z1};
       double p2[3] = {startLine->x2,startLine->y2,startLine->z2};
       fObject->AddStartLine(p1,p2);
@@ -90,7 +90,7 @@ namespace katrin
     }
     if (anElement->GetName() == "end_line")
     {
-      KGBeamLine* endLine = anElement->AsPointer<KGBeamLine>();
+      auto* endLine = anElement->AsPointer<KGBeamLine>();
       double p1[3] = {endLine->x1,endLine->y1,endLine->z1};
       double p2[3] = {endLine->x2,endLine->y2,endLine->z2};
       fObject->AddEndLine(p1,p2);
@@ -117,7 +117,7 @@ namespace katrin
   {
     if (anElement->GetName() == "beam")
     {
-        KGBeam* object = NULL;
+        KGBeam* object = nullptr;
         anElement->ReleaseTo(object);
         object->Initialize();
         std::shared_ptr< KGBeam > smartPtr(object);
@@ -146,7 +146,7 @@ namespace katrin
   {
     if (anElement->GetName() == "beam")
     {
-        KGBeam* object = NULL;
+        KGBeam* object = nullptr;
         anElement->ReleaseTo(object);
         object->Initialize();
         std::shared_ptr< KGBeam > smartPtr(object);

@@ -16,8 +16,8 @@ using std::vector;
 
 namespace KEMField
 {
-  KEMFileInterface* KEMFileInterface::fEMFileInterface = 0;
-  bool KEMFileInterface::fNullResult = 0;
+  KEMFileInterface* KEMFileInterface::fEMFileInterface = nullptr;
+  bool KEMFileInterface::fNullResult = false;
 
   KEMFileInterface::KEMFileInterface()
     : KEMFile()
@@ -30,7 +30,7 @@ namespace KEMField
    */
   KEMFileInterface* KEMFileInterface::GetInstance()
   {
-    if (fEMFileInterface == 0)
+    if (fEMFileInterface == nullptr)
       fEMFileInterface = new KEMFileInterface();
     return fEMFileInterface;
   }
@@ -40,7 +40,7 @@ namespace KEMField
     unsigned int value = 0;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
       value += NumberOfLabeled(*it,label);
     return value;
   }
@@ -50,7 +50,7 @@ namespace KEMField
     unsigned int value = 0;
     set<string> fileList = FileList();
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
       value += NumberOfLabeled(*it,labels);
     return value;
   }
@@ -60,7 +60,7 @@ namespace KEMField
     set<string> fileList = FileList();
     set<string> labeledFileList;
 
-    for (set<string>::iterator it=fileList.begin();it!=fileList.end();++it)
+    for (auto it=fileList.begin();it!=fileList.end();++it)
     {
         if(NumberOfLabeled(*it,labels))
         {
@@ -81,9 +81,9 @@ namespace KEMField
 
     DIR *dir;
     struct dirent *ent;
-    if ((dir = opendir (directory.c_str())) != NULL)
+    if ((dir = opendir (directory.c_str())) != nullptr)
     {
-      while ((ent = readdir (dir)) != NULL)
+      while ((ent = readdir (dir)) != nullptr)
       {
 	string entry(ent->d_name);
 	if (entry.find_last_of(".") == string::npos)
@@ -106,9 +106,9 @@ namespace KEMField
 
         DIR *dir;
         struct dirent *ent;
-        if ((dir = opendir (directory.c_str())) != NULL)
+        if ((dir = opendir (directory.c_str())) != nullptr)
         {
-            while ((ent = readdir (dir)) != NULL)
+            while ((ent = readdir (dir)) != nullptr)
             {
                 string entry(ent->d_name);
                 if (entry.find_last_of(".") == string::npos)
@@ -133,7 +133,7 @@ namespace KEMField
   bool KEMFileInterface::DirectoryExists(string directory)
   {
     DIR *dir;
-    if ((dir = opendir (directory.c_str())) != NULL)
+    if ((dir = opendir (directory.c_str())) != nullptr)
     {
       closedir(dir);
       return true;
@@ -161,7 +161,7 @@ namespace KEMField
     {
         std::string full_file_name = KEMFileInterface::GetInstance()->ActiveDirectory() + "/" + file_name;
         std::set< std::string > file_list = KEMFileInterface::GetInstance()->CompleteFileList();
-        for(std::set<std::string>::iterator it=file_list.begin(); it!=file_list.end(); ++it)
+        for(auto it=file_list.begin(); it!=file_list.end(); ++it)
         {
             if(full_file_name == *it){return true;};
         }
@@ -241,7 +241,7 @@ namespace KEMField
         set<string> fileList = CompleteFileList();
         std::string full_file_name = ActiveDirectory() + "/" + file_name;
 
-        for(set<string>::iterator it=fileList.begin(); it!=fileList.end(); ++it)
+        for(auto it=fileList.begin(); it!=fileList.end(); ++it)
         {
             if( *it == full_file_name )
             {

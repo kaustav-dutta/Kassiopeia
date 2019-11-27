@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGQuadraticWireGrid* KGQuadraticWireGrid::Clone() const
   {
-    KGQuadraticWireGrid* w = new KGQuadraticWireGrid();
+    auto* w = new KGQuadraticWireGrid();
 
     w->fR = fR;
     w->fPitch = fPitch;

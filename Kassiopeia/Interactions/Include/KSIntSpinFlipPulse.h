@@ -15,8 +15,8 @@ namespace Kassiopeia
         public:
             KSIntSpinFlipPulse();
             KSIntSpinFlipPulse( const KSIntSpinFlipPulse& aCopy );
-            KSIntSpinFlipPulse* Clone() const;
-            virtual ~KSIntSpinFlipPulse();
+            KSIntSpinFlipPulse* Clone() const override;
+            ~KSIntSpinFlipPulse() override;
 
         public:
             void CalculateInteraction(
@@ -29,13 +29,13 @@ namespace Kassiopeia
                     KSParticle& anInteractionParticle,
                     double& aTimeStep,
                     bool& aFlag
-            );
+            ) override;
 
             void ExecuteInteraction(
                     const KSParticle& anInteractionParticle,
                     KSParticle& aFinalParticle,
                     KSParticleQueue& aSecondaries
-            ) const;
+            ) const override;
 
             //***********
             //composition

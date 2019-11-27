@@ -27,11 +27,11 @@ namespace katrin
             {
                 public:
                     KHolderPrototype( XType* anObject );
-                    virtual ~KHolderPrototype();
+                    ~KHolderPrototype() override;
 
                 public:
-                    virtual void Type();
-                    virtual void Clear();
+                    void Type() override;
+                    void Clear() override;
 
                 private:
                     XType* fObject;
@@ -39,7 +39,7 @@ namespace katrin
 
         public:
             KContainer();
-            virtual ~KContainer();
+            ~KContainer() override;
 
             bool Empty() const;
 
@@ -106,10 +106,10 @@ namespace katrin
     template< class XType >
     inline KContainer::KHolderPrototype< XType >::~KHolderPrototype()
     {
-        if( fObject != NULL )
+        if( fObject != nullptr )
         {
             delete fObject;
-            fObject = NULL;
+            fObject = nullptr;
         }
     }
     template< class XType >
@@ -121,19 +121,19 @@ namespace katrin
     template< class XType >
     inline void KContainer::KHolderPrototype< XType >::Clear()
     {
-        fObject = NULL;
+        fObject = nullptr;
         return;
     }
 
     template< class XTargetType >
     inline void KContainer::Set( XTargetType* aType )
     {
-        if( fHolder != NULL )
+        if( fHolder != nullptr )
         {
             delete fHolder;
-            fHolder = NULL;
+            fHolder = nullptr;
         }
-        KHolderPrototype< XTargetType >* tTypedHolder = new KHolderPrototype< XTargetType >( aType );
+        auto* tTypedHolder = new KHolderPrototype< XTargetType >( aType );
         fHolder = tTypedHolder;
     }
 
@@ -168,7 +168,7 @@ namespace katrin
         }
         catch(...) {}
 
-        XTargetType* tTarget = NULL;
+        XTargetType* tTarget = nullptr;
         return *tTarget;
     }
     template< class XTargetType >
@@ -184,7 +184,7 @@ namespace katrin
         }
         catch(...){}
 
-        XTargetType* tTarget = NULL;
+        XTargetType* tTarget = nullptr;
         return tTarget;
     }
 
@@ -300,9 +300,9 @@ namespace katrin
     }
 
     inline KContainer* KContainer::ReleaseToNewContainer(){
-        KContainer* newContainer = new KContainer();
+        auto* newContainer = new KContainer();
         newContainer->fHolder = fHolder;
-        fHolder = NULL;
+        fHolder = nullptr;
         return newContainer;
     }
 

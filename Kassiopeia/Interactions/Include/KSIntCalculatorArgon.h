@@ -185,12 +185,12 @@ namespace Kassiopeia
 
         public:
             KSIntCalculatorArgon();
-            virtual ~KSIntCalculatorArgon();
+            ~KSIntCalculatorArgon() override;
             std::map< double, double >* DEBUG_GetSupportingPoints();
             std::map< double*, double >* DEBUG_GetSupportingPointsDiffX();
 
         public:
-            virtual void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
             virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
 
         protected:
@@ -214,16 +214,16 @@ namespace Kassiopeia
         public:
             KSIntCalculatorArgonElastic();
             KSIntCalculatorArgonElastic( const KSIntCalculatorArgonElastic& aCopy );
-            KSIntCalculatorArgonElastic* Clone() const;
-            virtual ~KSIntCalculatorArgonElastic();
+            KSIntCalculatorArgonElastic* Clone() const override;
+            ~KSIntCalculatorArgonElastic() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
         protected:
-            virtual void InitializeComponent();
-            virtual double GetEnergyLoss( const double &anEnergy, const double &theta ) const;
-            virtual double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle ) const;
+            void InitializeComponent() override;
+            double GetEnergyLoss( const double &anEnergy, const double &theta ) const override;
+            double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle ) const override;
 
     };
 
@@ -236,18 +236,18 @@ namespace Kassiopeia
         public:
             KSIntCalculatorArgonExcitation();
             KSIntCalculatorArgonExcitation( const KSIntCalculatorArgonExcitation& aCopy );
-            KSIntCalculatorArgonExcitation* Clone() const;
-            virtual ~KSIntCalculatorArgonExcitation();
+            KSIntCalculatorArgonExcitation* Clone() const override;
+            ~KSIntCalculatorArgonExcitation() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             void SetExcitationState( unsigned int aState );
 
         protected:
-            virtual void InitializeComponent();
-            virtual double GetEnergyLoss( const double &anEnergy, const double &theta ) const;
-            virtual double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle ) const;
-            virtual void InitializeDifferentialCrossSection( unsigned int numOfParameters );
+            void InitializeComponent() override;
+            double GetEnergyLoss( const double &anEnergy, const double &theta ) const override;
+            double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle ) const override;
+            void InitializeDifferentialCrossSection( unsigned int numOfParameters ) override;
 
         protected:
             unsigned int fExcitationState;
@@ -265,15 +265,18 @@ namespace Kassiopeia
         public:
             KSIntCalculatorArgonSingleIonisation();
             KSIntCalculatorArgonSingleIonisation( const KSIntCalculatorArgonSingleIonisation& aCopy );
-            KSIntCalculatorArgonSingleIonisation* Clone() const;
-            virtual ~KSIntCalculatorArgonSingleIonisation();
+            KSIntCalculatorArgonSingleIonisation* Clone() const override;
+            ~KSIntCalculatorArgonSingleIonisation() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
         protected:
-            virtual void InitializeComponent();
-            virtual double GetEnergyLoss( const double &anEnergy, const double &anAngle ) const;
+            using KSIntCalculatorArgon::GetTheta;
+            using KSIntCalculatorArgon::GetDifferentialCrossSectionAt;
+
+            void InitializeComponent() override;
+            double GetEnergyLoss( const double &anEnergy, const double &anAngle ) const override;
             double GetTheta( const double &anEnergy, const double &anEloss ) const;
             double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle, const double &anEloss ) const;
             KSIntCalculatorHydrogenIonisation* DiffCrossCalculator;
@@ -291,15 +294,18 @@ namespace Kassiopeia
         public:
             KSIntCalculatorArgonDoubleIonisation();
             KSIntCalculatorArgonDoubleIonisation( const KSIntCalculatorArgonDoubleIonisation& aCopy );
-            KSIntCalculatorArgonDoubleIonisation* Clone() const;
-            virtual ~KSIntCalculatorArgonDoubleIonisation();
+            KSIntCalculatorArgonDoubleIonisation* Clone() const override;
+            ~KSIntCalculatorArgonDoubleIonisation() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
         protected:
-            virtual void InitializeComponent();
-            virtual double GetEnergyLoss( const double &anEnergy, const double & ) const;
+            using KSIntCalculatorArgon::GetTheta;
+            using KSIntCalculatorArgon::GetDifferentialCrossSectionAt;
+
+            void InitializeComponent() override;
+            double GetEnergyLoss( const double &anEnergy, const double & ) const override;
             double GetTheta( const double &anEnergy, const double &anEloss ) const;
             double GetDifferentialCrossSectionAt( const double &anEnergy, const double &anAngle, const double &anEloss ) const;
             KSIntCalculatorHydrogenIonisation* DiffCrossCalculator;

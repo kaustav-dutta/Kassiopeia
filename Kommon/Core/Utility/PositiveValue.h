@@ -88,7 +88,7 @@ namespace Kommon{
         return value;
 
     }
-    
+
     template <class Quantity, class ValueType>
     void PositiveValue<Quantity,ValueType>::SetValue(ValueType value_){
 
@@ -124,7 +124,7 @@ namespace Kommon{
         positiveValue.SetValue(std::move(value));
         return input;
 
-    };
+    }
 
 }
 

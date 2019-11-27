@@ -18,16 +18,16 @@ namespace Kassiopeia
     public:
         KSRootRunModifier();
         KSRootRunModifier( const KSRootRunModifier& aCopy );
-        KSRootRunModifier* Clone() const;
-        virtual ~KSRootRunModifier();
+        KSRootRunModifier* Clone() const override;
+        ~KSRootRunModifier() override;
 
         //**********
         // modifier
         //**********
 
     public:
-        bool ExecutePreRunModification( KSRun& aRun );
-        bool ExecutePostRunModification( KSRun& aRun );
+        bool ExecutePreRunModification( KSRun& aRun ) override;
+        bool ExecutePostRunModification( KSRun& aRun ) override;
 
         //***********
         //composition
@@ -51,8 +51,8 @@ namespace Kassiopeia
         bool ExecutePreRunModification();
         bool ExecutePostRunModification();
 
-        virtual void PushUpdateComponent();
-        virtual void PushDeupdateComponent();
+        void PushUpdateComponent() override;
+        void PushDeupdateComponent() override;
 
     private:
 

@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajAdiabaticSpinError();
-            ~KSTrajAdiabaticSpinError();
+            KSTrajAdiabaticSpinError( const KSTrajAdiabaticSpinError& other ) = default;
+            ~KSTrajAdiabaticSpinError() override;
 
             //**********
             //assignment

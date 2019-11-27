@@ -15,12 +15,12 @@ namespace Kassiopeia
         public:
             KSTrajControlMDot();
             KSTrajControlMDot( const KSTrajControlMDot& aCopy );
-            KSTrajControlMDot* Clone() const;
-            virtual ~KSTrajControlMDot();
+            KSTrajControlMDot* Clone() const override;
+            ~KSTrajControlMDot() override;
 
         public:
-            void Calculate( const KSTrajAdiabaticSpinParticle& aParticle, double& aValue );
-            void Check( const KSTrajAdiabaticSpinParticle& anInitialParticle, const KSTrajAdiabaticSpinParticle& aFinalParticle, const KSTrajAdiabaticSpinError& anError, bool& aFlag );
+            void Calculate( const KSTrajAdiabaticSpinParticle& aParticle, double& aValue ) override;
+            void Check( const KSTrajAdiabaticSpinParticle& anInitialParticle, const KSTrajAdiabaticSpinParticle& aFinalParticle, const KSTrajAdiabaticSpinError& anError, bool& aFlag ) override;
 
         public:
             void SetFraction( const double& aFraction );

@@ -20,7 +20,7 @@ namespace KEMField
     using KSelectiveVisitor<typename KZonalHarmonicTrait<Basis>::Visitor,
                 typename KZonalHarmonicTrait<Basis>::Types>::Visit;
 
-    virtual ~KZHElementVisitorBase() {}
+    ~KZHElementVisitorBase() override {}
 
     virtual void SetGenerator(KZHCoefficientGeneratorElement* e) = 0;
   };
@@ -30,15 +30,15 @@ namespace KEMField
   {
   public:
     using Base::Visit;
-    virtual ~KZHElementVisitorType() {}
+    ~KZHElementVisitorType() override {}
 
-    virtual void Visit(Type& t)
+    void Visit(Type& t) override
     {
         fGenerator.SetElement(&t);
         SetGenerator(&fGenerator);
     }
 
-    virtual void SetGenerator(KZHCoefficientGeneratorElement* e) = 0;
+    void SetGenerator(KZHCoefficientGeneratorElement* e) override = 0;
 
   protected:
     KZHCoefficientGenerator<Type> fGenerator;
@@ -59,7 +59,7 @@ namespace KEMField
                   KZHElementVisitorBase<Basis> >::Visit;
 
     KZonalHarmonicCoefficientGenerator(ElementContainer& container) : fElementContainer(container) {}
-    virtual ~KZonalHarmonicCoefficientGenerator() {}
+    ~KZonalHarmonicCoefficientGenerator() override {}
 
     void GroupCoaxialElements(std::vector<ElementContainer*>& subcontainers, double coaxialityTolerance);
     void BifurcateElements(std::vector<ElementContainer*>& subcontainers);
@@ -70,7 +70,7 @@ namespace KEMField
     const KEMCoordinateSystem* GetCoordinateSystem();
 
   protected:
-    void SetGenerator(KZHCoefficientGeneratorElement* e) { fGenerator = e; }
+    void SetGenerator(KZHCoefficientGeneratorElement* e) override { fGenerator = e; }
 
     KZonalHarmonicSourcePoint* GenerateCentralSourcePoint(double z,
                               unsigned int nCoeffs);
@@ -101,7 +101,7 @@ namespace KEMField
 
     if (fElementContainer.empty()) return;
 
-    ElementContainer* nonAxiallySymmetricElements = new ElementContainer();
+    auto* nonAxiallySymmetricElements = new ElementContainer();
 
     std::vector<KEMCoordinateSystem> coordinateSystems;
 
@@ -113,7 +113,7 @@ namespace KEMField
 
     for (;element<fElementContainer.size();element++)
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(element)->Accept(*this);
 
       if (fGenerator)
@@ -129,7 +129,7 @@ namespace KEMField
     for (unsigned int i=element+1;i<fElementContainer.size();i++)
     {
       bool newCoordinateSystem = true;
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(i)->Accept(*this);
 
       if (fGenerator)
@@ -197,7 +197,7 @@ namespace KEMField
 
     for (unsigned int i=0;i<fElementContainer.size();i++)
     {
-        fGenerator = NULL;
+        fGenerator = nullptr;
       fElementContainer.at(i)->Accept(*this);
         if(fGenerator)
         {
@@ -232,7 +232,7 @@ namespace KEMField
 
     // check if the container holds non-axially symmetric elements
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(0)->Accept(*this);
 
       if (!fGenerator)
@@ -274,7 +274,7 @@ namespace KEMField
 
     // check if the container holds non-axially symmetric elements
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(0)->Accept(*this);
 
       if (!fGenerator)
@@ -326,7 +326,7 @@ namespace KEMField
 
     // check if the container holds non-axially symmetric elements
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(0)->Accept(*this);
 
       if (!fGenerator)
@@ -376,10 +376,10 @@ namespace KEMField
     {
     //   fElementContainer.at(0)->Accept(*this);
         unsigned int elem = 0;
-        fGenerator = NULL;
+        fGenerator = nullptr;
         do {
         fElementContainer.at(elem++)->Accept(*this);
-        } while(fGenerator == NULL && elem < fElementContainer.size());
+        } while(fGenerator == nullptr && elem < fElementContainer.size());
 
       if (fGenerator)
         {
@@ -398,7 +398,7 @@ namespace KEMField
 
     ComputeCentralCoefficients(z,rho,coeffs);
 
-    KZonalHarmonicSourcePoint* sp = new KZonalHarmonicSourcePoint();
+    auto* sp = new KZonalHarmonicSourcePoint();
     sp->SetValues(z,rho,coeffs);
 
     return sp;
@@ -412,7 +412,7 @@ namespace KEMField
 
     ComputeRemoteCoefficients(z,rho,coeffs);
 
-    KZonalHarmonicSourcePoint* sp = new KZonalHarmonicSourcePoint();
+    auto* sp = new KZonalHarmonicSourcePoint();
     sp->SetValues(z,rho,coeffs);
 
     return sp;
@@ -425,7 +425,7 @@ namespace KEMField
     const KEMCoordinateSystem* coordinateSystem = GetCoordinateSystem();
     for (unsigned int i=0;i<fElementContainer.size();i++)
     {
-        fGenerator = NULL;
+        fGenerator = nullptr;
         fElementContainer.at(i)->Accept(*this);
         if (fGenerator)
         {
@@ -445,7 +445,7 @@ namespace KEMField
     const KEMCoordinateSystem* coordinateSystem = GetCoordinateSystem();
     for (unsigned int i=0;i<fElementContainer.size();i++)
     {
-        fGenerator = NULL;
+        fGenerator = nullptr;
         fElementContainer.at(i)->Accept(*this);
         if (fGenerator)
         {
@@ -464,14 +464,14 @@ namespace KEMField
     if (fElementContainer.empty()) return;
 
     unsigned int elem = 0;
-    fGenerator = NULL;
+    fGenerator = nullptr;
     do {
     fElementContainer.at(elem++)->Accept(*this);
-    } while(fGenerator == NULL && elem < fElementContainer.size());
+    } while(fGenerator == nullptr && elem < fElementContainer.size());
 
     const KEMCoordinateSystem* coordinateSystem = GetCoordinateSystem();
 
-    if(fGenerator == NULL)
+    if(fGenerator == nullptr)
     {
         return;
     }
@@ -480,7 +480,7 @@ namespace KEMField
 
     for (unsigned int i=1;i<fElementContainer.size();i++)
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(i)->Accept(*this);
       if (fGenerator)
       {
@@ -503,7 +503,7 @@ namespace KEMField
 
     for (unsigned int i=0;i<fElementContainer.size();i++)
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(i)->Accept(*this);
       if (fGenerator)
       {
@@ -520,7 +520,7 @@ namespace KEMField
 
     for (unsigned int i=0;i<fElementContainer.size();i++)
     {
-      fGenerator = NULL;
+      fGenerator = nullptr;
       fElementContainer.at(i)->Accept(*this);
       if (fGenerator)
       {

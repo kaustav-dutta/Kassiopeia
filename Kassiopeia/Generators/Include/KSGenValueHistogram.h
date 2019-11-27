@@ -22,11 +22,11 @@ namespace Kassiopeia
         public:
             KSGenValueHistogram();
             KSGenValueHistogram( const KSGenValueHistogram& aCopy );
-            KSGenValueHistogram* Clone() const;
-            virtual ~KSGenValueHistogram();
+            KSGenValueHistogram* Clone() const override;
+            ~KSGenValueHistogram() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             ;K_SET_GET( std::string, Base );
@@ -35,8 +35,8 @@ namespace Kassiopeia
             ;K_SET_GET( std::string, Formula );
 
         public:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         private:
             KRootFile* fRootFile;

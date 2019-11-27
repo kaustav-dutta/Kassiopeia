@@ -13,7 +13,6 @@ using katrin::KTextFile;
 using KGeoBag::KThreeVector;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -86,7 +85,7 @@ namespace Kassiopeia
         // tLostKineticEnergy is equal to the threshold energy, which currently is the first
         // element in the data map.
         double tLostKineticEnergy = fSupportingPoints->begin()->first;
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         // ToDo: tTheta?
         double tTheta = 0;
 
@@ -152,7 +151,7 @@ namespace Kassiopeia
 
         //todo:://here now some fancy formulas from ferencs EH2scat
 
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
         KThreeVector tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -343,7 +342,7 @@ namespace Kassiopeia
         //todo:://here now some fancy formulas from ferencs EH2scat
 
         // ToDo: tTheta?
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
         KThreeVector tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -356,7 +355,7 @@ namespace Kassiopeia
 
         // Outgoing secondary
         tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         tOrthogonalOne = tInitialDirection.Orthogonal();
         tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -434,7 +433,7 @@ namespace Kassiopeia
         //todo:://here now some fancy formulas from ferencs EH2scat
 
         // ToDo: tTheta?
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
         KThreeVector tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -449,7 +448,7 @@ namespace Kassiopeia
         for( int i = 0; i < 2; ++i )
         {
             tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-            tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+            tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
             tOrthogonalOne = tInitialDirection.Orthogonal();
             tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );

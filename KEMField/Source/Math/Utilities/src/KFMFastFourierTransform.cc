@@ -22,12 +22,12 @@ KFMFastFourierTransform::KFMFastFourierTransform()
 
     fN = 0;
     fM = 0;
-    fPermutation = NULL;
-    fTwiddle = NULL;
-    fConjugateTwiddle = NULL;
-    fScale = NULL;
-    fCirculant = NULL;
-    fWorkspace = NULL;
+    fPermutation = nullptr;
+    fTwiddle = nullptr;
+    fConjugateTwiddle = nullptr;
+    fScale = nullptr;
+    fCirculant = nullptr;
+    fWorkspace = nullptr;
 }
 
 KFMFastFourierTransform::~KFMFastFourierTransform()
@@ -181,12 +181,12 @@ KFMFastFourierTransform::AllocateWorkspace()
 void
 KFMFastFourierTransform::DealocateWorkspace()
 {
-    delete[] fPermutation; fPermutation = NULL;
-    delete[] fTwiddle; fTwiddle = NULL;
-    delete[] fConjugateTwiddle; fConjugateTwiddle = NULL;
-    delete[] fScale; fScale = NULL;
-    delete[] fCirculant; fCirculant = NULL;
-    delete[] fWorkspace; fWorkspace = NULL;
+    delete[] fPermutation; fPermutation = nullptr;
+    delete[] fTwiddle; fTwiddle = nullptr;
+    delete[] fConjugateTwiddle; fConjugateTwiddle = nullptr;
+    delete[] fScale; fScale = nullptr;
+    delete[] fCirculant; fCirculant = nullptr;
+    delete[] fWorkspace; fWorkspace = nullptr;
 }
 
 }

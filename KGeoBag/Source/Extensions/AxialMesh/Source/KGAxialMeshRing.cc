@@ -1,7 +1,6 @@
 #include "KGAxialMeshRing.hh"
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace KGeoBag
 {
@@ -17,7 +16,7 @@ namespace KGeoBag
 
     double KGAxialMeshRing::Area() const
     {
-        return 2. * KConst::Pi() * KConst::Pi() * fP0.Y() * fD;
+        return 2. * std::pow(katrin::KConst::Pi(),2) * fP0.Y() * fD;
     }
     double KGAxialMeshRing::Aspect() const
     {

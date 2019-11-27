@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSSurfaceNavigator();
-            virtual ~KSSurfaceNavigator();
+            ~KSSurfaceNavigator() override;
 
         public:
             virtual void ExecuteNavigation(

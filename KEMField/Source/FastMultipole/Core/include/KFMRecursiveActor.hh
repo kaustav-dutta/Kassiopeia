@@ -26,12 +26,12 @@ template< typename NodeType >
 class KFMRecursiveActor: public KFMNodeActor<NodeType>
 {
     public:
-       KFMRecursiveActor():fOperationalActor(NULL),fVisitingOrderForward(true){};
-       virtual ~KFMRecursiveActor(){};
+       KFMRecursiveActor():fOperationalActor(nullptr),fVisitingOrderForward(true){};
+       ~KFMRecursiveActor() override{};
 
         void SetOperationalActor(KFMNodeActor<NodeType>* opActor)
         {
-            if(opActor != this && opActor != NULL)//avoid a disaster
+            if(opActor != this && opActor != nullptr)//avoid a disaster
             {
                 fOperationalActor = opActor;
             }
@@ -40,14 +40,14 @@ class KFMRecursiveActor: public KFMNodeActor<NodeType>
         void VisitParentBeforeChildren(){fVisitingOrderForward = true;};
         void VisitChildrenBeforeParent(){fVisitingOrderForward = false;};
 
-        void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
 
                 //make sure the stacks are empty
-                std::stack< NodeType* >* nodeStack = new std::stack< NodeType* >();
-                std::stack< std::stack< NodeType* > >* secondaryNodeStack = new std::stack< std::stack< NodeType* > >();
+                auto* nodeStack = new std::stack< NodeType* >();
+                auto* secondaryNodeStack = new std::stack< std::stack< NodeType* > >();
                 secondaryNodeStack->push( std::stack< NodeType* >() );
 
                 //push on the first node

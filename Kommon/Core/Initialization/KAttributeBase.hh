@@ -15,11 +15,11 @@ namespace katrin
     {
         public:
             KAttributeBase();
-            virtual ~KAttributeBase();
+            ~KAttributeBase() override;
 
         public:
-            virtual void ProcessToken( KAttributeDataToken* aToken );
-            virtual void ProcessToken( KErrorToken* aToken );
+            void ProcessToken( KAttributeDataToken* aToken ) override;
+            void ProcessToken( KErrorToken* aToken ) override;
 
         public:
             virtual bool SetValue( KToken* aValue ) = 0;

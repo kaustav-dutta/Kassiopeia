@@ -23,11 +23,11 @@ class KFMPointwiseArrayMultiplier: public KFMBinaryArrayOperator< ArrayType, NDI
 {
     public:
         KFMPointwiseArrayMultiplier(){};
-        virtual ~KFMPointwiseArrayMultiplier(){};
+        ~KFMPointwiseArrayMultiplier() override{};
 
-        virtual void Initialize(){;};
+        void Initialize() override{;};
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             if(IsInputOutputValid())
             {

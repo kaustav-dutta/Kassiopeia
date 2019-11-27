@@ -22,7 +22,7 @@ namespace KGeoBag
   {
   public:
 	  KGCutConeTubeSpaceRandom() : KGShapeRandom() {}
-    virtual ~KGCutConeTubeSpaceRandom() {}
+    ~KGCutConeTubeSpaceRandom() override {}
 
     /**
      * \brief Visitor function for dicing the point
@@ -30,7 +30,7 @@ namespace KGeoBag
      *
      * \param aCutConeTubeSpace
      */
-    virtual void VisitCutConeTubeSpace(KGCutConeTubeSpace* aCutConeTubeSpace);
+    void VisitCutConeTubeSpace(KGCutConeTubeSpace* aCutConeTubeSpace) override;
   private:
     double LinearInterpolation( double zInput, const double z1, const double r1, const double z2, const double r2 );
   };

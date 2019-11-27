@@ -7,7 +7,7 @@ namespace Kassiopeia
             fValueMin( 0. ),
             fValueMax( 0. ),
             fValueFormula( "x" ),
-            fValueFunction( NULL )
+            fValueFunction( nullptr )
     {
     }
     KSGenValueFormula::KSGenValueFormula( const KSGenValueFormula& aCopy ) :
@@ -15,7 +15,7 @@ namespace Kassiopeia
             fValueMin( aCopy.fValueMin ),
             fValueMax( aCopy.fValueMax ),
             fValueFormula( aCopy.fValueFormula ),
-            fValueFunction( NULL )
+            fValueFunction( nullptr )
     {
     }
     KSGenValueFormula* KSGenValueFormula::Clone() const
@@ -44,7 +44,7 @@ namespace Kassiopeia
     void KSGenValueFormula::DeinitializeComponent()
     {
         delete fValueFunction;
-        fValueFunction = NULL;
+        fValueFunction = nullptr;
         return;
     }
 

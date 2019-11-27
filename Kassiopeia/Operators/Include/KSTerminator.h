@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSTerminator();
-            virtual ~KSTerminator();
+            ~KSTerminator() override;
 
         public:
             virtual void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) = 0;

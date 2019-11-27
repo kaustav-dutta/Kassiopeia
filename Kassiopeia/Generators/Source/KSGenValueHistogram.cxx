@@ -10,9 +10,9 @@ namespace Kassiopeia
             fPath( "" ),
             fHistogram( "" ),
             fFormula( "" ),
-            fRootFile( NULL ),
-            fValueHistogram( NULL ),
-            fValueFunction( NULL )
+            fRootFile( nullptr ),
+            fValueHistogram( nullptr ),
+            fValueFunction( nullptr )
     {
     }
     KSGenValueHistogram::KSGenValueHistogram( const KSGenValueHistogram& aCopy ) :
@@ -21,9 +21,9 @@ namespace Kassiopeia
             fPath( aCopy.fPath ),
             fHistogram( aCopy.fHistogram ),
             fFormula( aCopy.fFormula ),
-            fRootFile( NULL ),
-            fValueHistogram( NULL ),
-            fValueFunction( NULL )
+            fRootFile( nullptr ),
+            fValueHistogram( nullptr ),
+            fValueFunction( nullptr )
     {
     }
     KSGenValueHistogram* KSGenValueHistogram::Clone() const
@@ -40,7 +40,7 @@ namespace Kassiopeia
 
         tValue = fValueHistogram->GetRandom();
         genmsg_debug( "histogram generator <" << GetName() << "> diced value <" << tValue << "> from histogram <" << fHistogram << ">" << eom);
-        if ( fValueFunction != NULL )
+        if ( fValueFunction != nullptr )
         {
             tValue = fValueFunction->Eval( tValue );
             genmsg_debug( "histogram generator <" << GetName() << "> modified diced value to <" << tValue << "> via formula <" << fFormula << ">" << eom );
@@ -63,9 +63,9 @@ namespace Kassiopeia
         }
 
         fValueHistogram = static_cast< TH1* >( fRootFile->File()->Get( fHistogram.c_str() ) );
-        fValueHistogram->SetDirectory(0);
+        fValueHistogram->SetDirectory(nullptr);
 
-        if ( fValueHistogram == NULL )
+        if ( fValueHistogram == nullptr )
         {
             genmsg( eError ) << "histogram generator <" << GetName() << "> could not find ROOT histogram <" << fHistogram << ">" << eom;
         }
@@ -83,17 +83,17 @@ namespace Kassiopeia
     }
     void KSGenValueHistogram::DeinitializeComponent()
     {
-        if ( fRootFile != NULL )
+        if ( fRootFile != nullptr )
             delete fRootFile;
-        fRootFile = NULL;
+        fRootFile = nullptr;
 
-        if ( fValueHistogram != NULL )
+        if ( fValueHistogram != nullptr )
             delete fValueHistogram;
-        fValueHistogram = NULL;
+        fValueHistogram = nullptr;
 
-        if ( fValueFunction != NULL )
+        if ( fValueFunction != nullptr )
             delete fValueFunction;
-        fValueFunction = NULL;
+        fValueFunction = nullptr;
 
         return;
     }

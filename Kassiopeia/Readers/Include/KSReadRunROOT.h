@@ -11,7 +11,7 @@ namespace Kassiopeia
     {
         public:
             KSReadRunROOT( TFile* aFile );
-            virtual ~KSReadRunROOT();
+            ~KSReadRunROOT() override;
 
         public:
             unsigned int GetRunIndex() const;

@@ -6,12 +6,12 @@ namespace Kassiopeia
 
     KSRootTerminator::KSRootTerminator() :
             fTerminators( 128 ),
-            fTerminator( NULL ),
-            fStep( NULL ),
-            fInitialParticle( NULL ),
-            fTerminatorParticle( NULL ),
-            fFinalParticle( NULL ),
-            fParticleQueue( NULL )
+            fTerminator( nullptr ),
+            fStep( nullptr ),
+            fInitialParticle( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fFinalParticle( nullptr ),
+            fParticleQueue( nullptr )
     {
     }
     KSRootTerminator::KSRootTerminator( const KSRootTerminator& aCopy ) :
@@ -38,7 +38,7 @@ namespace Kassiopeia
         bool tTerminatorFlag;
 
         aFlag = false;
-        fTerminator = NULL;
+        fTerminator = nullptr;
         for( int tIndex = 0; tIndex < fTerminators.End(); tIndex++ )
         {
             fTerminators.ElementAt( tIndex )->CalculateTermination( anInitialParticle, tTerminatorFlag );
@@ -54,7 +54,7 @@ namespace Kassiopeia
     }
     void KSRootTerminator::ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const
     {
-        if( fTerminator != NULL )
+        if( fTerminator != nullptr )
         {
             fTerminator->ExecuteTermination( anInitialParticle, aFinalParticle, aParticleQueue );
         }

@@ -167,7 +167,7 @@ namespace katrin
   {
     if (anElement->GetName() == "rotated_object")
     {
-        KGRotatedObject* object = NULL;
+        KGRotatedObject* object = nullptr;
         anElement->ReleaseTo(object);
         object->Initialize();
         std::shared_ptr<KGRotatedObject> smartPtr(object);
@@ -196,7 +196,7 @@ namespace katrin
   {
     if (anElement->GetName() == "rotated_object")
     {
-        KGRotatedObject* object = NULL;
+        KGRotatedObject* object = nullptr;
         anElement->ReleaseTo(object);
         object->Initialize();
         std::shared_ptr<KGRotatedObject> smartPtr(object);

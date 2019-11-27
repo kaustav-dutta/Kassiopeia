@@ -31,7 +31,7 @@ class KFMElectrostaticNodeWorkScoreCalculator: public KFMNodeActor< KFMNode<KFME
     public:
 
         KFMElectrostaticNodeWorkScoreCalculator();
-        virtual ~KFMElectrostaticNodeWorkScoreCalculator();
+        ~KFMElectrostaticNodeWorkScoreCalculator() override;
 
         void SetNTerms(unsigned int n_terms){fNTerms = n_terms;};
         void SetDivisions(unsigned int div){fDivisions = div;};
@@ -40,7 +40,7 @@ class KFMElectrostaticNodeWorkScoreCalculator: public KFMNodeActor< KFMNode<KFME
         void SetFFTWeight(double fft_weight){fGamma = fft_weight;};
         void SetSparseMatrixWeight(double mx_weight){fTheta = mx_weight;};
 
-        virtual void ApplyAction( KFMNode< KFMElectrostaticNodeObjects >* node);
+        void ApplyAction( KFMNode< KFMElectrostaticNodeObjects >* node) override;
 
         double GetNodeScore() const {return fNodeScore;};
 
@@ -65,7 +65,7 @@ class KFMElectrostaticNodeWorkScoreCalculator: public KFMNodeActor< KFMNode<KFME
                     fLocalCoeffFlagCondition.SetFlagIndex(0);
                     fLocalCoeffFlagCondition.SetFlagValue(1);
                 };
-                virtual ~SingleNodeActor(){;};
+                ~SingleNodeActor() override{;};
 
                 void Reset()
                 {
@@ -77,9 +77,9 @@ class KFMElectrostaticNodeWorkScoreCalculator: public KFMNodeActor< KFMNode<KFME
                     fNSparseMatrixElements = 0;
                 }
 
-                virtual void ApplyAction( KFMNode< KFMElectrostaticNodeObjects >* node)
+                void ApplyAction( KFMNode< KFMElectrostaticNodeObjects >* node) override
                 {
-                    if(node != NULL)
+                    if(node != nullptr)
                     {
 
                         if( fMultipoleFlagCondition.ConditionIsSatisfied( node ) )
@@ -97,7 +97,7 @@ class KFMElectrostaticNodeWorkScoreCalculator: public KFMNodeActor< KFMNode<KFME
                         }
 
                         KFMIdentitySet* id_set = KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySet>::GetNodeObject(node);
-                        if( id_set != NULL )
+                        if( id_set != nullptr )
                         {
                             fNSources += id_set->GetSize();
                             //collocation point id lists have not yet been filled, but this is a reasonable proxy

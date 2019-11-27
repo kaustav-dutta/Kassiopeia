@@ -35,12 +35,12 @@ namespace Kassiopeia
         public:
             KSIntSurfaceMultiplication();
             KSIntSurfaceMultiplication( const KSIntSurfaceMultiplication& aCopy );
-            KSIntSurfaceMultiplication* Clone() const;
-            virtual ~KSIntSurfaceMultiplication();
+            KSIntSurfaceMultiplication* Clone() const override;
+            ~KSIntSurfaceMultiplication() override;
 
         public:
 
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
 
         public:
 
@@ -53,7 +53,7 @@ namespace Kassiopeia
 
             void SetEnergyRequiredPerParticle(double e)
             {
-                fEnergyRequiredPerParticle = e*KConst::Q(); //electron volts
+                fEnergyRequiredPerParticle = e*katrin::KConst::Q(); //electron volts
             }
 
             double GetEnergyRequiredPerParticle() const {return fEnergyRequiredPerParticle;};

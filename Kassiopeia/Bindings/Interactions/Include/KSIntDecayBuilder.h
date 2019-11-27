@@ -37,7 +37,7 @@ namespace katrin
         }
         if( aContainer->GetName() == "calculator" )
         {
-            KSIntDecayCalculator* tCalculator = KToolbox::GetInstance().Get< KSIntDecayCalculator >( aContainer->AsReference< std::string >() );
+            auto* tCalculator = KToolbox::GetInstance().Get< KSIntDecayCalculator >( aContainer->AsReference< std::string >() );
             fObject->AddCalculator( tCalculator );
             return true;
         }
@@ -69,7 +69,7 @@ namespace katrin
         }
         if( aContainer->Is< KSIntDecayCalculatorSet >() == true )
         {
-            KSIntDecayCalculatorSet* tSet = NULL;
+            KSIntDecayCalculatorSet* tSet = nullptr;
             aContainer->ReleaseTo( tSet );
             tSet->ReleaseCalculators( fObject );
             delete tSet;

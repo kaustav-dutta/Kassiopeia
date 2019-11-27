@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenValueRadiusFraction();
             KSGenValueRadiusFraction( const KSGenValueRadiusFraction& aCopy );
-            KSGenValueRadiusFraction* Clone() const;
-            virtual ~KSGenValueRadiusFraction();
+            KSGenValueRadiusFraction* Clone() const override;
+            ~KSGenValueRadiusFraction() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
     };
 

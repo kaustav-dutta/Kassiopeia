@@ -19,10 +19,10 @@ namespace Kassiopeia {
 KSElectricField* MakeConstantElectricField(
         KGeoBag::KThreeVector field)
 {
-    KElectrostaticConstantField* kemfield = new KElectrostaticConstantField();
+    auto* kemfield = new KElectrostaticConstantField();
     kemfield->SetField(field);
 
-    KSElectricKEMField* kasfield = new KSElectricKEMField();
+    auto* kasfield = new KSElectricKEMField();
     kasfield->SetElectricField(kemfield);
     return kasfield;
 }
@@ -30,10 +30,10 @@ KSElectricField* MakeConstantElectricField(
 KSMagneticField* MakeConstantMagneticField(
         KGeoBag::KThreeVector field)
 {
-    KMagnetostaticConstantField* kemfield = new KMagnetostaticConstantField();
+    auto* kemfield = new KMagnetostaticConstantField();
     kemfield->SetField(field);
 
-    KSMagneticKEMField* kasfield = new KSMagneticKEMField();
+    auto* kasfield = new KSMagneticKEMField();
     kasfield->SetMagneticField(kemfield);
     return kasfield;
 }

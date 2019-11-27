@@ -21,12 +21,12 @@ namespace Kassiopeia
         public:
             KSModSplitOnTurn();
             KSModSplitOnTurn( const KSModSplitOnTurn& aCopy);
-            KSModSplitOnTurn* Clone() const;
-            virtual ~KSModSplitOnTurn();
+            KSModSplitOnTurn* Clone() const override;
+            ~KSModSplitOnTurn() override;
 
         public:
-            bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue );
-            bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue );
+            bool ExecutePreStepModification( KSParticle& anInitialParticle, KSParticleQueue& aQueue ) override;
+            bool ExecutePostStepModification( KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aQueue ) override;
 
         public:
             K_SET_GET( int, Direction );
@@ -35,12 +35,12 @@ namespace Kassiopeia
             double fCurrentDotProduct;
 
         private:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         protected:
-            virtual void PullDeupdateComponent();
-            virtual void PushDeupdateComponent();
+            void PullDeupdateComponent() override;
+            void PushDeupdateComponent() override;
     };
 }
 

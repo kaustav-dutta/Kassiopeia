@@ -35,9 +35,9 @@ class KSAAssociatedPointerPODInputNode: public KSAPODInputNode<SetType>
             fCallPtr = call_ptr;
         };
 
-        virtual ~KSAAssociatedPointerPODInputNode(){;};
+        ~KSAAssociatedPointerPODInputNode() override{;};
 
-        void FinalizeObject()
+        void FinalizeObject() override
         {
             fCallback(fCallPtr, &(this->fValue) );
         }

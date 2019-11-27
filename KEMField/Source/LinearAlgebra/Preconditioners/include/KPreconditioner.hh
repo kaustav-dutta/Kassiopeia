@@ -30,7 +30,7 @@ class KPreconditioner: public KSquareMatrix<ValueType >
 {
     public:
         KPreconditioner():KSquareMatrix<ValueType>(){};
-        virtual ~KPreconditioner(){}
+        ~KPreconditioner() override{}
 
     virtual std::string Name() = 0;
 

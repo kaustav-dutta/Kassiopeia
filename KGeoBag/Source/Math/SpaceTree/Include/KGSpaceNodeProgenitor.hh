@@ -34,11 +34,11 @@ class KGSpaceNodeProgenitor: public KGNodeActor< KGNode<ObjectTypeList> >
 {
     public:
         KGSpaceNodeProgenitor(){};
-        virtual ~KGSpaceNodeProgenitor(){};
+        ~KGSpaceNodeProgenitor() override{};
 
-        virtual void ApplyAction( KGNode< ObjectTypeList >* node) //creates children for this node
+        void ApplyAction( KGNode< ObjectTypeList >* node) override //creates children for this node
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 //first get the tree properties associated with this node
                 KGSpaceTreeProperties<NDIM>* tree_prop = KGObjectRetriever<ObjectTypeList, KGSpaceTreeProperties<NDIM> >::GetNodeObject(node);
@@ -61,7 +61,7 @@ class KGSpaceNodeProgenitor: public KGNodeActor< KGNode<ObjectTypeList> >
                 for(unsigned int i=0; i < total_size; i++)
                 {
                     //create a new child
-                    KGNode< ObjectTypeList >* child = new KGNode< ObjectTypeList >();
+                    auto* child = new KGNode< ObjectTypeList >();
                     child->SetID( tree_prop->RegisterNode() );
 
                     child->SetIndex(i); //set its storage index
@@ -74,7 +74,7 @@ class KGSpaceNodeProgenitor: public KGNodeActor< KGNode<ObjectTypeList> >
                     KGObjectRetriever<ObjectTypeList, KGSpaceTreeProperties<NDIM> >::SetNodeObject(tree_prop, child);
 
                     //create and give it a cube object
-                    KGCube<NDIM>* cube = new KGCube<NDIM>();
+                    auto* cube = new KGCube<NDIM>();
                     //compute the cube's center
                     fCenter = fLowerCorner;
                     for(unsigned int i=0; i<NDIM; i++)

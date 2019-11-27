@@ -210,8 +210,8 @@ int main( int anArgc, char** anArgv )
 
             tParticlePositionHistogram.Fill( tParticle->GetPosition().X(), tParticle->GetPosition().Y(), tParticle->GetPosition().Z() );
             tParticleDirectionHistogram.Fill( tParticle->GetMomentum().Unit().X(), tParticle->GetMomentum().Unit().Y(), tParticle->GetMomentum().Unit().Z() );
-            tParticleDirectionThetaHistogram.Fill( (180. / KConst::Pi()) * tParticle->GetMomentum().PolarAngle() );
-            tParticleDirectionPhiHistogram.Fill( (180. / KConst::Pi()) * tParticle->GetMomentum().AzimuthalAngle() );
+            tParticleDirectionThetaHistogram.Fill( (180. / katrin::KConst::Pi()) * tParticle->GetMomentum().PolarAngle() );
+            tParticleDirectionPhiHistogram.Fill( (180. / katrin::KConst::Pi()) * tParticle->GetMomentum().AzimuthalAngle() );
             tParticleEnergyHistogram.Fill( tParticle->GetKineticEnergy_eV() );
             tParticleTimeHistogram.Fill( tParticle->GetTime() );
 

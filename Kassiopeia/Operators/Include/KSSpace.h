@@ -24,7 +24,7 @@ namespace Kassiopeia
 
         public:
             KSSpace();
-            virtual ~KSSpace();
+            ~KSSpace() override;
 
         public:
             virtual void Enter() const = 0;

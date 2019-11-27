@@ -12,13 +12,13 @@ void KGeoBag::KGConeSurfaceRandom::VisitConeSurface(KGeoBag::KGConeSurface* aCon
 
 	// Decide, on which area the point have to be
 	double h = std::abs(aConeSpace->ZA() - aConeSpace->ZB());
-	double face = KConst::Pi() * aConeSpace->RB() * aConeSpace->RB();
-	double curvedSurfaceArea = KConst::Pi() * aConeSpace->RB() * (aConeSpace->RB()
+	double face = katrin::KConst::Pi() * aConeSpace->RB() * aConeSpace->RB();
+	double curvedSurfaceArea = katrin::KConst::Pi() * aConeSpace->RB() * (aConeSpace->RB()
 			+ sqrt(aConeSpace->RB() * aConeSpace->RB() + h * h));
 
 	double total = face + curvedSurfaceArea;
 	double decision = Uniform(0, total);
-	double phi = Uniform(0, 2 * KConst::Pi());
+	double phi = Uniform(0, 2 * katrin::KConst::Pi());
 
 	if((total -= curvedSurfaceArea) < decision) {
 		double z1 = aConeSpace->ZA();

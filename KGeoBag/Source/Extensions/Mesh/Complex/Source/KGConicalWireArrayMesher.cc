@@ -21,7 +21,7 @@ namespace KGeoBag
 
       const double wireNDisc = conicalWireArraySurface->GetObject()->GetNDisc();
 
-      double tAngleStep = 2*KConst::Pi()/wireCount;
+      double tAngleStep = 2*katrin::KConst::Pi()/wireCount;
       unsigned int tAngleIt( 0 ), tLongitudinalDiscIt( 0 );
 
       std::vector<double> segments( wireNDisc, 0. );
@@ -47,7 +47,7 @@ namespace KGeoBag
 			  KGMeshWire singleWire( startPoint, endPoint, wireDiameter );
 			  singleWire.Transform(transform);
 
-			  KGMeshWire* w = new KGMeshWire(singleWire);
+			  auto* w = new KGMeshWire(singleWire);
 			  AddElement(w);
 
 			  startPoint = endPoint;

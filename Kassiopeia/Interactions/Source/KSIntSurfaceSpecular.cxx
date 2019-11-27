@@ -58,7 +58,7 @@ namespace Kassiopeia
         }
         else
         {
-            tKineticEnergy -= std::fabs(KConst::Q() * fReflectionLoss);
+            tKineticEnergy -= std::fabs(katrin::KConst::Q() * fReflectionLoss);
         }
 
         //prevent kinetic energy from going negative
@@ -69,11 +69,11 @@ namespace Kassiopeia
         }
 
         KThreeVector tNormal;
-        if( anInitialParticle.GetCurrentSurface() != NULL )
+        if( anInitialParticle.GetCurrentSurface() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSurface()->Normal( anInitialParticle.GetPosition() );
         }
-        else if( anInitialParticle.GetCurrentSide() != NULL )
+        else if( anInitialParticle.GetCurrentSide() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSide()->Normal( anInitialParticle.GetPosition() );
         }
@@ -102,7 +102,7 @@ namespace Kassiopeia
         }
         else
         {
-            tKineticEnergy -= std::fabs(KConst::Q() * fTransmissionLoss);
+            tKineticEnergy -= std::fabs(katrin::KConst::Q() * fTransmissionLoss);
         }
 
         //prevent kinetic energy from going negative

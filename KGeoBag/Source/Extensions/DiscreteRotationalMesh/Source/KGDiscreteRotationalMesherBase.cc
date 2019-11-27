@@ -4,7 +4,7 @@ namespace KGeoBag
 {
 
     KGDiscreteRotationalMesherBase::KGDiscreteRotationalMesherBase() :
-            fCurrentElements( NULL )
+            fCurrentElements( nullptr )
     {
     }
     KGDiscreteRotationalMesherBase::~KGDiscreteRotationalMesherBase()

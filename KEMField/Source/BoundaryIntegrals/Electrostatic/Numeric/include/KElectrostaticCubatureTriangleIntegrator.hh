@@ -18,7 +18,7 @@ namespace KEMField
     typedef KElectrostaticBasis::ValueType ValueType;
 
     KElectrostaticCubatureTriangleIntegrator() {}
-    ~KElectrostaticCubatureTriangleIntegrator() {}
+    ~KElectrostaticCubatureTriangleIntegrator() override {}
 
     void GaussPoints_Tri4P( const double* data, double* Q ) const;
     void GaussPoints_Tri7P( const double* data, double* Q ) const;
@@ -34,13 +34,13 @@ namespace KEMField
     std::pair<KThreeVector, double> ElectricFieldAndPotential_TriNP( const double* data, const KPosition& P,
     		const unsigned short noPoints, double* Q, const double* weights) const;
 
-    double Potential(const KTriangle* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KTriangle* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KTriangle* source, const KPosition& P ) const;
+    double Potential(const KTriangle* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KTriangle* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KTriangle* source, const KPosition& P ) const override;
 
-    double Potential(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KTriangle>* source, const KPosition& P ) const;
+    double Potential(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KSymmetryGroup<KTriangle>* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KTriangle>* source, const KPosition& P ) const override;
 
   private:
 

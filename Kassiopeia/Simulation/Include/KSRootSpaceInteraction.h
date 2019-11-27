@@ -19,16 +19,16 @@ namespace Kassiopeia
         public:
             KSRootSpaceInteraction();
             KSRootSpaceInteraction( const KSRootSpaceInteraction& aCopy );
-            KSRootSpaceInteraction* Clone() const;
-            ~KSRootSpaceInteraction();
+            KSRootSpaceInteraction* Clone() const override;
+            ~KSRootSpaceInteraction() override;
 
             //*****************
             //space interaction
             //*****************
 
         public:
-            void CalculateInteraction( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryTimeStep, KSParticle& anInteractionParticle, double& aTimeStep, bool& aFlag );
-            void ExecuteInteraction( const KSParticle& anInteractionParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const;
+            void CalculateInteraction( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryTimeStep, KSParticle& anInteractionParticle, double& aTimeStep, bool& aFlag ) override;
+            void ExecuteInteraction( const KSParticle& anInteractionParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const override;
 
             //***********
             //composition
@@ -53,8 +53,8 @@ namespace Kassiopeia
             void CalculateInteraction();
             void ExecuteInteraction();
 
-            virtual void PushUpdateComponent();
-            virtual void PushDeupdateComponent();
+            void PushUpdateComponent() override;
+            void PushDeupdateComponent() override;
 
         private:
             KSStep* fStep;

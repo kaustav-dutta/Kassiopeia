@@ -18,11 +18,11 @@ namespace Kassiopeia
         public:
             KSIntSurfaceUCN();
             KSIntSurfaceUCN( const KSIntSurfaceUCN& aCopy );
-            KSIntSurfaceUCN* Clone() const;
-            virtual ~KSIntSurfaceUCN();
+            KSIntSurfaceUCN* Clone() const override;
+            ~KSIntSurfaceUCN() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             void ExecuteReflection( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
             void ExecuteTransmission( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
 

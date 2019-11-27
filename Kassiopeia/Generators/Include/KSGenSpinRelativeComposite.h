@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenSpinRelativeComposite();
             KSGenSpinRelativeComposite( const KSGenSpinRelativeComposite& aCopy );
-            KSGenSpinRelativeComposite* Clone() const;
-            virtual ~KSGenSpinRelativeComposite();
+            KSGenSpinRelativeComposite* Clone() const override;
+            ~KSGenSpinRelativeComposite() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aParticleList );
+            void Dice( KSParticleQueue* aParticleList ) override;
 
         public:
             void SetThetaValue( KSGenValue* anThetaValue );
@@ -31,8 +31,8 @@ namespace Kassiopeia
             KSGenValue* fPhiValue;
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

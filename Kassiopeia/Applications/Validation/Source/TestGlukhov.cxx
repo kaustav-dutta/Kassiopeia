@@ -56,24 +56,24 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     //double tEnergyStepSize = .1;
     double tLength = 1.0;
 
-    KSIntDecayCalculatorGlukhovSpontaneous* tSpontaneus = new KSIntDecayCalculatorGlukhovSpontaneous();
+    auto* tSpontaneus = new KSIntDecayCalculatorGlukhovSpontaneous();
     tSpontaneus->SetName("spon");
     tSpontaneus->SetTag("spon");
     tSpontaneus->SetTargetPID(10000);
 
-    KSIntDecayCalculatorGlukhovIonisation* tIon = new KSIntDecayCalculatorGlukhovIonisation();
+    auto* tIon = new KSIntDecayCalculatorGlukhovIonisation();
     tIon->SetName("ion");
     tIon->SetTag("ion");
     tIon->SetTargetPID(10000);
     tIon->SetTemperature(300.);
 
-    KSIntDecayCalculatorGlukhovExcitation* tExc = new KSIntDecayCalculatorGlukhovExcitation();
+    auto* tExc = new KSIntDecayCalculatorGlukhovExcitation();
     tExc->SetName("exc");
     tExc->SetTag("exc");
     tExc->SetTargetPID(10000);
     tExc->SetTemperature(300.);
 
-    KSIntDecayCalculatorGlukhovDeExcitation* tDex = new KSIntDecayCalculatorGlukhovDeExcitation();
+    auto* tDex = new KSIntDecayCalculatorGlukhovDeExcitation();
     tDex->SetName("dex");
     tDex->SetTag("dex");
     tDex->SetTargetPID(10000);
@@ -81,7 +81,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 
 
 
-    KSIntDecay* tDecay = new KSIntDecay();
+    auto* tDecay = new KSIntDecay();
     tDecay->SetSplit( false );
     tDecay->AddCalculator(tSpontaneus);
     tDecay->AddCalculator(tIon);
@@ -91,7 +91,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
     tDecay->Initialize();
 
     // initialize root
-    TApplication tApplication( "Test Glukhov", 0, NULL );
+    TApplication tApplication( "Test Glukhov", nullptr, nullptr );
 
     TCanvas tLifeTimeCanvas( "lifetime_canvas", "lifetime" );
     TGraph tLifeTimeGraph;

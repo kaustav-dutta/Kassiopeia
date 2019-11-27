@@ -31,8 +31,8 @@ inline bool KApplicationRunnerBuilder::AddElement(KContainer *anElement)
     }
     if( anElement->Is<KNamedReference>() )
     {
-        KNamedReference& tRef = anElement->AsReference<KNamedReference>();
-        KApplication* app = KToolbox::GetInstance().Get<KApplication>(tRef.GetName());
+        auto& tRef = anElement->AsReference<KNamedReference>();
+        auto* app = KToolbox::GetInstance().Get<KApplication>(tRef.GetName());
         if(!app)
             return false;
         fObject->AddApplication(app);

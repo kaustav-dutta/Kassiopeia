@@ -24,7 +24,7 @@ namespace KEMField
   {
   public:
     KEMTransformation() {}
-    ~KEMTransformation() {}
+    ~KEMTransformation() override {}
 
     template <class Object>
     void Transform(Object& object);
@@ -58,7 +58,7 @@ namespace KEMField
 		  fOrigin(0.,0.,0.),
 		  fAxis(0.,0.,1.),
 		  fAngle(0.) {}
-    ~KRotation() {}
+    ~KRotation() override {}
 
     using KEMTransformation::Transform;
 
@@ -66,8 +66,8 @@ namespace KEMField
     void SetAxis(const KDirection& axis) { fAxis = axis; }
     void SetAngle(const double angle) { fAngle = angle; }
 
-    void Transform(KPosition& position) { position.RotateAboutAxis(fOrigin,fAxis,fAngle); }
-    void Transform(KDirection& direction) { direction.RotateAboutAxis(fOrigin,fAxis,fAngle); }
+    void Transform(KPosition& position) override { position.RotateAboutAxis(fOrigin,fAxis,fAngle); }
+    void Transform(KDirection& direction) override { direction.RotateAboutAxis(fOrigin,fAxis,fAngle); }
 
   private:
     KPosition fOrigin;
@@ -80,14 +80,14 @@ namespace KEMField
   public:
     KTranslation() : KEMTransformation(),
 		  fTranslation(0.,0.,0.) {}
-    ~KTranslation() {}
+    ~KTranslation() override {}
 
     using KEMTransformation::Transform;
 
     void SetTranslation(const KDirection& translation) { fTranslation = translation; }
 
-    void Transform(KPosition& position) { position += fTranslation; }
-    void Transform(KDirection&) {}
+    void Transform(KPosition& position) override { position += fTranslation; }
+    void Transform(KDirection&) override {}
 
   private:
     KDirection fTranslation;
@@ -99,15 +99,15 @@ namespace KEMField
     KReflection() : KEMTransformation(),
 		    fOrigin(0.,0.,0.),
 		    fNormal(0.,0.,1.) {}
-    ~KReflection() {}
+    ~KReflection() override {}
 
     using KEMTransformation::Transform;
 
     void SetOrigin(const KPosition& origin) { fOrigin = origin; }
     void SetNormal(const KDirection& normal) { fNormal = normal; }
 
-    void Transform(KPosition& position) { position.ReflectThroughPlane(fOrigin,fNormal); }
-    void Transform(KDirection& direction) { direction.ReflectThroughPlane(fOrigin,fNormal); }
+    void Transform(KPosition& position) override { position.ReflectThroughPlane(fOrigin,fNormal); }
+    void Transform(KDirection& direction) override { direction.ReflectThroughPlane(fOrigin,fNormal); }
 
   private:
     KPosition fOrigin;

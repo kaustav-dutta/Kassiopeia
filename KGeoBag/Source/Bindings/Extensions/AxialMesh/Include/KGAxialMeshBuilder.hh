@@ -12,7 +12,7 @@ namespace KGeoBag
     {
         public:
             KGAxialMeshAttributor();
-            virtual ~KGAxialMeshAttributor();
+            ~KGAxialMeshAttributor() override;
 
         public:
             void AddSurface( KGSurface* aSurface );

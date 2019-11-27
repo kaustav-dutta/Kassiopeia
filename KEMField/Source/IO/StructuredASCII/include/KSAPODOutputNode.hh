@@ -34,14 +34,14 @@ class KSAPODOutputNode: public KSAOutputNode
             fStringValue = "INVALID";
         };
 
-        virtual ~KSAPODOutputNode()
+        ~KSAPODOutputNode() override
         {
             delete fConverter;
         }
 
-        virtual bool TagsAreSuppressed(){return false;};
+        bool TagsAreSuppressed() override{return false;};
 
-        virtual bool IsComposite(){return false;};
+        bool IsComposite() override{return false;};
 
         void SetValue(const U& val)
         {
@@ -55,7 +55,7 @@ class KSAPODOutputNode: public KSAOutputNode
 
     protected:
 
-        virtual std::string GetSingleLine(){return fStringValue;};
+        std::string GetSingleLine() override{return fStringValue;};
 
         std::string fStringValue;
         KSAPODConverter< U >* fConverter;

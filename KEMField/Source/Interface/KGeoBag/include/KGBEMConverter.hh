@@ -57,7 +57,7 @@ namespace KGeoBag
             KGBEMConverter();
 
         public:
-            virtual ~KGBEMConverter();
+            ~KGBEMConverter() override;
 
         public:
             void SetSurfaceContainer( KSurfaceContainer* aContainer )
@@ -97,7 +97,7 @@ namespace KGeoBag
                     Triangle()
                     {
                     }
-                    virtual ~Triangle()
+                    ~Triangle() override
                     {
                     }
             };
@@ -111,7 +111,7 @@ namespace KGeoBag
                     Rectangle()
                     {
                     }
-                    virtual ~Rectangle()
+                    ~Rectangle() override
                     {
                     }
             };
@@ -125,7 +125,7 @@ namespace KGeoBag
                     LineSegment()
                     {
                     }
-                    virtual ~LineSegment()
+                    ~LineSegment() override
                     {
                     }
             };
@@ -139,7 +139,7 @@ namespace KGeoBag
                     ConicSection()
                     {
                     }
-                    virtual ~ConicSection()
+                    ~ConicSection() override
                     {
                     }
             };
@@ -153,7 +153,7 @@ namespace KGeoBag
                     Ring()
                     {
                     }
-                    virtual ~Ring()
+                    ~Ring() override
                     {
                     }
             };
@@ -167,7 +167,7 @@ namespace KGeoBag
                     SymmetricTriangle()
                     {
                     }
-                    virtual ~SymmetricTriangle()
+                    ~SymmetricTriangle() override
                     {
                     }
             };
@@ -181,7 +181,7 @@ namespace KGeoBag
                     SymmetricRectangle()
                     {
                     }
-                    virtual ~SymmetricRectangle()
+                    ~SymmetricRectangle() override
                     {
                     }
             };
@@ -195,7 +195,7 @@ namespace KGeoBag
                     SymmetricLineSegment()
                     {
                     }
-                    virtual ~SymmetricLineSegment()
+                    ~SymmetricLineSegment() override
                     {
                     }
             };
@@ -209,7 +209,7 @@ namespace KGeoBag
                     SymmetricConicSection()
                     {
                     }
-                    virtual ~SymmetricConicSection()
+                    ~SymmetricConicSection() override
                     {
                     }
             };
@@ -223,7 +223,7 @@ namespace KGeoBag
                     SymmetricRing()
                     {
                     }
-                    virtual ~SymmetricRing()
+                    ~SymmetricRing() override
                     {
                     }
             };
@@ -254,8 +254,8 @@ namespace KGeoBag
             KThreeVector InternalToGlobalPosition( const KThreeVector& aVector );
             KThreeVector InternalToGlobalVector( const KThreeVector& aVector );
 
-            void VisitSurface( KGSurface* aSurface );
-            void VisitSpace( KGSpace* aSpace );
+            void VisitSurface( KGSurface* aSurface ) override;
+            void VisitSpace( KGSpace* aSpace ) override;
 
         protected:
             KPosition LocalToInternal( const KThreeVector& aVector );
@@ -289,18 +289,18 @@ namespace KGeoBag
                     KGBEMConverter()
             {
             }
-            virtual ~KGBEMConverterNode()
+            ~KGBEMConverterNode() override
             {
             }
 
         public:
-            void VisitExtendedSurface( KGExtendedSurface< KGBEM< XBasisPolicy, XBoundaryPolicy > >* aSurface )
+            void VisitExtendedSurface( KGExtendedSurface< KGBEM< XBasisPolicy, XBoundaryPolicy > >* aSurface ) override
             {
                 Add( aSurface );
                 return;
             }
 
-            void VisitExtendedSpace( KGExtendedSpace< KGBEM< XBasisPolicy, XBoundaryPolicy > >* aSpace )
+            void VisitExtendedSpace( KGExtendedSpace< KGBEM< XBasisPolicy, XBoundaryPolicy > >* aSpace ) override
             {
                 Add( aSpace );
                 return;
@@ -311,43 +311,43 @@ namespace KGeoBag
             {
                 //cout << "adding bem surface of type < " << XBasisPolicy::Name() << ", " << XBoundaryPolicy::Name() << " >..." << endl;
 
-                for( vector< Triangle* >::iterator tTriangleIt = fTriangles.begin(); tTriangleIt != fTriangles.end(); tTriangleIt++ )
+                for( auto tTriangleIt = fTriangles.begin(); tTriangleIt != fTriangles.end(); tTriangleIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KTriangle >( *aBEM, *aBEM, **tTriangleIt ) );
                 }
-                for( vector< Rectangle* >::iterator tRectangleIt = fRectangles.begin(); tRectangleIt != fRectangles.end(); tRectangleIt++ )
+                for( auto tRectangleIt = fRectangles.begin(); tRectangleIt != fRectangles.end(); tRectangleIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KRectangle >( *aBEM, *aBEM, **tRectangleIt ) );
                 }
-                for( vector< LineSegment* >::iterator tLineSegmentIt = fLineSegments.begin(); tLineSegmentIt != fLineSegments.end(); tLineSegmentIt++ )
+                for( auto tLineSegmentIt = fLineSegments.begin(); tLineSegmentIt != fLineSegments.end(); tLineSegmentIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KLineSegment >( *aBEM, *aBEM, **tLineSegmentIt ) );
                 }
-                for( vector< ConicSection* >::iterator tConicSectionIt = fConicSections.begin(); tConicSectionIt != fConicSections.end(); tConicSectionIt++ )
+                for( auto tConicSectionIt = fConicSections.begin(); tConicSectionIt != fConicSections.end(); tConicSectionIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KConicSection >( *aBEM, *aBEM, **tConicSectionIt ) );
                 }
-                for( vector< Ring* >::iterator tRingIt = fRings.begin(); tRingIt != fRings.end(); tRingIt++ )
+                for( auto tRingIt = fRings.begin(); tRingIt != fRings.end(); tRingIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KRing >( *aBEM, *aBEM, **tRingIt ) );
                 }
-                for( vector< SymmetricTriangle* >::iterator tTriangleIt = fSymmetricTriangles.begin(); tTriangleIt != fSymmetricTriangles.end(); tTriangleIt++ )
+                for( auto tTriangleIt = fSymmetricTriangles.begin(); tTriangleIt != fSymmetricTriangles.end(); tTriangleIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KSymmetryGroup< KTriangle > >( *aBEM, *aBEM, **tTriangleIt ) );
                 }
-                for( vector< SymmetricRectangle* >::iterator tRectangleIt = fSymmetricRectangles.begin(); tRectangleIt != fSymmetricRectangles.end(); tRectangleIt++ )
+                for( auto tRectangleIt = fSymmetricRectangles.begin(); tRectangleIt != fSymmetricRectangles.end(); tRectangleIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KSymmetryGroup< KRectangle > >( *aBEM, *aBEM, **tRectangleIt ) );
                 }
-                for( vector< SymmetricLineSegment* >::iterator tLineSegmentIt = fSymmetricLineSegments.begin(); tLineSegmentIt != fSymmetricLineSegments.end(); tLineSegmentIt++ )
+                for( auto tLineSegmentIt = fSymmetricLineSegments.begin(); tLineSegmentIt != fSymmetricLineSegments.end(); tLineSegmentIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KSymmetryGroup< KLineSegment > >( *aBEM, *aBEM, **tLineSegmentIt ) );
                 }
-                for( vector< SymmetricConicSection* >::iterator tConicSectionIt = fSymmetricConicSections.begin(); tConicSectionIt != fSymmetricConicSections.end(); tConicSectionIt++ )
+                for( auto tConicSectionIt = fSymmetricConicSections.begin(); tConicSectionIt != fSymmetricConicSections.end(); tConicSectionIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KSymmetryGroup< KConicSection > >( *aBEM, *aBEM, **tConicSectionIt ) );
                 }
-                for( vector< SymmetricRing* >::iterator tRingIt = fSymmetricRings.begin(); tRingIt != fSymmetricRings.end(); tRingIt++ )
+                for( auto tRingIt = fSymmetricRings.begin(); tRingIt != fSymmetricRings.end(); tRingIt++ )
                 {
                     fSurfaceContainer->push_back( new KSurface< XBasisPolicy, XBoundaryPolicy, KSymmetryGroup< KRing > >( *aBEM, *aBEM, **tRingIt ) );
                 }
@@ -364,11 +364,11 @@ namespace KGeoBag
         public:
             KGBEMMeshConverter();
             KGBEMMeshConverter( KSurfaceContainer& aContainer );
-            virtual ~KGBEMMeshConverter();
+            ~KGBEMMeshConverter() override;
 
         protected:
-            void DispatchSurface( KGSurface* aSurface );
-            void DispatchSpace( KGSpace* aSpace );
+            void DispatchSurface( KGSurface* aSurface ) override;
+            void DispatchSpace( KGSpace* aSpace ) override;
 
         private:
             void Add( KGMeshData* aData );
@@ -381,11 +381,11 @@ namespace KGeoBag
         public:
             KGBEMAxialMeshConverter();
             KGBEMAxialMeshConverter( KSurfaceContainer& aContainer );
-            virtual ~KGBEMAxialMeshConverter();
+            ~KGBEMAxialMeshConverter() override;
 
         protected:
-            void DispatchSurface( KGSurface* aSurface );
-            void DispatchSpace( KGSpace* aSpace );
+            void DispatchSurface( KGSurface* aSurface ) override;
+            void DispatchSpace( KGSpace* aSpace ) override;
 
         private:
             void Add( KGAxialMeshData* aData );
@@ -398,11 +398,11 @@ namespace KGeoBag
         public:
             KGBEMDiscreteRotationalMeshConverter();
             KGBEMDiscreteRotationalMeshConverter( KSurfaceContainer& aContainer );
-            virtual ~KGBEMDiscreteRotationalMeshConverter();
+            ~KGBEMDiscreteRotationalMeshConverter() override;
 
         protected:
-            void DispatchSurface( KGSurface* aSurface );
-            void DispatchSpace( KGSpace* aSpace );
+            void DispatchSurface( KGSurface* aSurface ) override;
+            void DispatchSpace( KGSpace* aSpace ) override;
 
         private:
             void Add( KGDiscreteRotationalMeshData* aData );

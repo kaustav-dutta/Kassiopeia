@@ -21,7 +21,7 @@ namespace KGeoBag
   {
   public:
 	  KGBoxSpaceRandom() : KGShapeRandom() {}
-    virtual ~KGBoxSpaceRandom() {}
+    ~KGBoxSpaceRandom() override {}
 
     /**
 	 * \brief Visitor function for dicing a point inside
@@ -29,7 +29,7 @@ namespace KGeoBag
 	 *
 	 * \brief aBox
 	 */
-    virtual void VisitBoxSpace(const KGBoxSpace* aBox);
+    void VisitBoxSpace(const KGBoxSpace* aBox) override;
   };
 }
 

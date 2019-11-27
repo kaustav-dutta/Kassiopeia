@@ -9,7 +9,6 @@ using katrin::KTextFile;
 using KGeoBag::KThreeVector;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -48,7 +47,7 @@ namespace Kassiopeia
         CalculateTheta( tInitialKineticEnergy, tTheta );
         CalculateEloss( tInitialKineticEnergy, tTheta, tLostKineticEnergy );
 
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
         KThreeVector tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -66,7 +65,7 @@ namespace Kassiopeia
 
     void KSIntCalculatorHydrogenElasticBase::CalculateTheta( const double anEnergy, double& aTheta )
     {
-        double clight = 1. / KConst::Alpha();
+        double clight = 1. / katrin::KConst::Alpha();
         double T, c, b, G, a, gam, K2, Gmax;
 
         double tDiffCrossSection;
@@ -102,8 +101,8 @@ namespace Kassiopeia
     {
         // Nishimura et al., J. Phys. Soc. Jpn. 54 (1985) 1757.
 
-        double a02 = KConst::BohrRadiusSquared();
-        double clight = 1. / KConst::Alpha(); // velocity of light in atomic units is 1/ alpha
+        double a02 = katrin::KConst::BohrRadiusSquared();
+        double clight = 1. / katrin::KConst::Alpha(); // velocity of light in atomic units is 1/ alpha
 
         double Cel[ 50 ] =
         { -0.512, -0.512, -0.509, -0.505, -0.499, -0.491, -0.476, -0.473, -0.462, -0.452, -0.438, -0.422, -0.406, -0.388, -0.370, -0.352, -0.333, -0.314, -0.296, -0.277, -0.258, -0.239, -0.221, -0.202, -0.185, -0.167, -0.151, -0.135, -0.120, -0.105, -0.092, -0.070, -0.053, -0.039, -0.030, -0.024, -0.019, -0.016, -0.014, -0.013, -0.012, -0.009, -0.008, -0.006, -0.005, -0.004, -0.003, -0.002, -0.002, -0.001 };
@@ -174,7 +173,7 @@ namespace Kassiopeia
         } //end if anE>=250
         else
         {
-            theta = acos( cosTheta ) * 180. / KConst::Pi();
+            theta = acos( cosTheta ) * 180. / katrin::KConst::Pi();
             for( i = 0; i <= 8; i++ )
                 if( anEnergy >= e[ i ] && anEnergy < e[ i + 1 ] )
                     for( j = 0; j <= 8; j++ )
@@ -216,15 +215,15 @@ namespace Kassiopeia
         const double s[ 14 ] =
         { 9.6, 13., 15., 12., 10., 7., 5.6, 3.3, 1.1, 0.9, 0.5, 0.36, 0.23, 0.15 };
 
-        const double emass = 1. / (KConst::Alpha() * KConst::Alpha());
-        const double a02 = KConst::BohrRadiusSquared();
+        const double emass = 1. / (katrin::KConst::Alpha() * katrin::KConst::Alpha());
+        const double a02 = katrin::KConst::BohrRadiusSquared();
 
         double gam, T;
         T = anEnergie / 27.2;
         if( anEnergie >= 400. )
         {
             gam = (emass + T) / emass;
-            aCrossSection = gam * gam * KConst::Pi() / (2. * T) * (4.2106 - 1. / T) * a02;
+            aCrossSection = gam * gam * katrin::KConst::Pi() / (2. * T) * (4.2106 - 1. / T) * a02;
         }
         else
         {
@@ -241,7 +240,7 @@ namespace Kassiopeia
     void KSIntCalculatorHydrogenElastic::CalculateEloss( const double anEnergie, const double aTheta, double& anEloss )
     {
         double H2molmass = 69.e6;
-        double emass = 1. / (KConst::Alpha() * KConst::Alpha());
+        double emass = 1. / (katrin::KConst::Alpha() * katrin::KConst::Alpha());
         double cosTheta = cos( aTheta );
 
         anEloss = 2. * emass / H2molmass * (1. - cosTheta) * anEnergie;
@@ -253,28 +252,28 @@ namespace Kassiopeia
             double rndAngle = KRandom::GetInstance().Uniform();
 
             //generation of molecule velocity by maxwell-boltzmann distribution
-            double Gx = sqrt( -2. * log( rndNr ) ) * cos( 2. * KConst::Pi() * rndAngle );
-            double Gy = sqrt( -2. * log( rndNr ) ) * sin( 2. * KConst::Pi() * rndAngle );
-            double Gz = sqrt( -2. * log( KRandom::GetInstance().Uniform() ) ) * cos( 2. * KConst::Pi() * KRandom::GetInstance().Uniform() );
+            double Gx = sqrt( -2. * log( rndNr ) ) * cos( 2. * katrin::KConst::Pi() * rndAngle );
+            double Gy = sqrt( -2. * log( rndNr ) ) * sin( 2. * katrin::KConst::Pi() * rndAngle );
+            double Gz = sqrt( -2. * log( KRandom::GetInstance().Uniform() ) ) * cos( 2. * katrin::KConst::Pi() * KRandom::GetInstance().Uniform() );
 
             //thermal velocity of gas molecules
             double T = 300.; //gas temperature
-            double sigmaT = sqrt( KConst::kB() * T / (2. * KConst::M_prot_kg()) );
+            double sigmaT = sqrt( katrin::KConst::kB() * T / (2. * katrin::KConst::M_prot_kg()) );
             KThreeVector MolVelocity( sigmaT * Gx, sigmaT * Gy, sigmaT * Gz );
 
             //new electron velocity vector and energy:
 
             //assume electron velocity along z
-            KThreeVector ElVelocity( 0., 0., sqrt( 2. * anEnergie * KConst::Q() / KConst::M_el_kg() ) );
+            KThreeVector ElVelocity( 0., 0., sqrt( 2. * anEnergie * katrin::KConst::Q() / katrin::KConst::M_el_kg() ) );
             //relative velocity electron-molecule
             KThreeVector RelativeVelocity = ElVelocity - MolVelocity;
             //transformation into CMS
-            KThreeVector CMSVelocity = (KConst::M_el_kg() / (KConst::M_el_kg() + KConst::M_prot_kg()) * ElVelocity + 2. * KConst::M_prot_kg() / (KConst::M_el_kg() + KConst::M_prot_kg()) * MolVelocity);
+            KThreeVector CMSVelocity = (katrin::KConst::M_el_kg() / (katrin::KConst::M_el_kg() + katrin::KConst::M_prot_kg()) * ElVelocity + 2. * katrin::KConst::M_prot_kg() / (katrin::KConst::M_el_kg() + katrin::KConst::M_prot_kg()) * MolVelocity);
             //generation of random direction
             KThreeVector Random( KRandom::GetInstance().Uniform(), KRandom::GetInstance().Uniform(), KRandom::GetInstance().Uniform() );
             //new electron velocity
-            ElVelocity = KConst::M_prot_kg() / (KConst::M_prot_kg() + KConst::M_el_kg()) * RelativeVelocity.Magnitude() * Random + CMSVelocity;
-            anEloss = anEnergie - KConst::M_el_kg() / (2. * KConst::Q()) * ElVelocity.Magnitude() * ElVelocity.Magnitude();
+            ElVelocity = katrin::KConst::M_prot_kg() / (katrin::KConst::M_prot_kg() + katrin::KConst::M_el_kg()) * RelativeVelocity.Magnitude() * Random + CMSVelocity;
+            anEloss = anEnergie - katrin::KConst::M_el_kg() / (2. * katrin::KConst::Q()) * ElVelocity.Magnitude() * ElVelocity.Magnitude();
         }
         return;
     }
@@ -622,7 +621,7 @@ namespace Kassiopeia
         CalculateTheta( tInitialKineticEnergy, tTheta );
         CalculateEloss( tInitialKineticEnergy, tTheta, tLostKineticEnergy );
 
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         KThreeVector tOrthogonalOne = tInitialDirection.Orthogonal();
         KThreeVector tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );
@@ -640,7 +639,7 @@ namespace Kassiopeia
 
     void KSIntCalculatorHydrogenExcitationBase::CalculateTheta( const double anEnergy, double& aTheta )
     {
-        double clight = 1. / KConst::Alpha();
+        double clight = 1. / katrin::KConst::Alpha();
         double T, c, b, G, a, gam, K2, Gmax;
 
         double tDiffCrossSection;
@@ -676,8 +675,8 @@ namespace Kassiopeia
     {
         // Nishimura et al., J. Phys. Soc. Jpn. 54 (1985) 1757.
 
-        double a02 = KConst::BohrRadiusSquared();
-        double clight = 1. / KConst::Alpha(); // velocity of light in atomic units is 1/ alpha
+        double a02 = katrin::KConst::BohrRadiusSquared();
+        double clight = 1. / katrin::KConst::Alpha(); // velocity of light in atomic units is 1/ alpha
 
         double Cel[ 50 ] =
         { -0.512, -0.512, -0.509, -0.505, -0.499, -0.491, -0.476, -0.473, -0.462, -0.452, -0.438, -0.422, -0.406, -0.388, -0.370, -0.352, -0.333, -0.314, -0.296, -0.277, -0.258, -0.239, -0.221, -0.202, -0.185, -0.167, -0.151, -0.135, -0.120, -0.105, -0.092, -0.070, -0.053, -0.039, -0.030, -0.024, -0.019, -0.016, -0.014, -0.013, -0.012, -0.009, -0.008, -0.006, -0.005, -0.004, -0.003, -0.002, -0.002, -0.001 };
@@ -748,7 +747,7 @@ namespace Kassiopeia
         } //end if anE>=250
         else
         {
-            theta = acos( cosTheta ) * 180. / KConst::Pi();
+            theta = acos( cosTheta ) * 180. / katrin::KConst::Pi();
             for( i = 0; i <= 8; i++ )
                 if( anEnergy >= e[ i ] && anEnergy < e[ i + 1 ] )
                     for( j = 0; j <= 8; j++ )
@@ -871,8 +870,8 @@ namespace Kassiopeia
 //        PR A 54 (1996) 2146, and
 //        Physica 31 (1965) 94.
 
-        const double a02 = KConst::BohrRadiusSquared();
-        const double ERyd = KConst::ERyd_eV();
+        const double a02 = katrin::KConst::BohrRadiusSquared();
+        const double ERyd = katrin::KConst::ERyd_eV();
 
         const double tBindingEnergy = 15.43;
         const double tOrbitalEnergy = 15.98;
@@ -883,14 +882,14 @@ namespace Kassiopeia
         {
             if( anEnergie > tDifferentFormula )
             {
-                aCrossSection = 4. * KConst::Pi() * a02 * ERyd / anEnergie * (0.82 * log( anEnergie / ERyd ) + 1.3);
+                aCrossSection = 4. * katrin::KConst::Pi() * a02 * ERyd / anEnergie * (0.82 * log( anEnergie / ERyd ) + 1.3);
             }
             else
             {
                 double t = anEnergie / tBindingEnergy;
                 double u = tOrbitalEnergy / tBindingEnergy;
                 double r = ERyd / tBindingEnergy;
-                double S = 4. * KConst::Pi() * a02 * tNOccupation * r * r;
+                double S = 4. * katrin::KConst::Pi() * a02 * tNOccupation * r * r;
                 double lnt = log( t );
 
                 aCrossSection = S / (t + u + 1.) * (lnt / 2. * (1. - 1. / (t * t)) + 1. - 1. / t - lnt / (t + 1.));
@@ -918,7 +917,7 @@ namespace Kassiopeia
 
         //todo:://here now some fancy formulas from ferencs EH2scat
 
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         tTheta = 0.; // just to keep my darling clang quiet and charming
         tLostKineticEnergy = 0.; // just to keep my darling clang quiet and charming
 
@@ -934,7 +933,7 @@ namespace Kassiopeia
         // outgoing secondary
 
         tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-        tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
         tOrthogonalOne = tInitialDirection.Orthogonal();
         tOrthogonalTwo = tInitialDirection.Cross( tOrthogonalOne );

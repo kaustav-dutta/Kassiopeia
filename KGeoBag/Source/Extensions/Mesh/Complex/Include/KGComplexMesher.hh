@@ -21,7 +21,7 @@ namespace KGeoBag
             KGComplexMesher();
 
         public:
-            virtual ~KGComplexMesher();
+            ~KGComplexMesher() override;
 
             static void DiscretizeInterval( double interval, int nSegments, double power, std::vector< double >& segments );
 

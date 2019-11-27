@@ -65,19 +65,19 @@ class KPreconditionedIterativeKrylovStateWriter: public KIterativeSolver<ValueTy
                 fPreviousStateFile = "";
             };
 
-        virtual ~KPreconditionedIterativeKrylovStateWriter(){};
+        ~KPreconditionedIterativeKrylovStateWriter() override{};
 
-        virtual void Initialize(KIterativeSolver<ValueType>& solver)
+        void Initialize(KIterativeSolver<ValueType>& solver) override
         {
-            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     std::stringstream ss;
                     ss << fSaveNameRoot;
@@ -109,17 +109,17 @@ class KPreconditionedIterativeKrylovStateWriter: public KIterativeSolver<ValueTy
             }
         };
 
-        virtual void Visit(KIterativeSolver<ValueType>& solver)
+        void Visit(KIterativeSolver<ValueType>& solver) override
         {
-            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     //compute hash for the krylov solver state (for unique id, not reference)
                     KMD5HashGenerator hashGenerator;
@@ -169,18 +169,18 @@ class KPreconditionedIterativeKrylovStateWriter: public KIterativeSolver<ValueTy
             }
         }
 
-        virtual void Finalize(KIterativeSolver<ValueType>& solver)
+        void Finalize(KIterativeSolver<ValueType>& solver) override
         {
-            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KPreconditionedIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     std::vector< std::string > stateLabels;
                     stateLabels = fLabels;

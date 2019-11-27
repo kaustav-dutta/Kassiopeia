@@ -46,16 +46,16 @@ private:
 
 		ShapeVisitorForPotential(Integrator& integrator) : fIntegrator(integrator) {}
 
-		void Visit(KTriangle& t) { ComputePotential(t); }
-		void Visit(KRectangle& r) { ComputePotential(r); }
-		void Visit(KLineSegment& l) { ComputePotential(l); }
-		void Visit(KConicSection& c) { ComputePotential(c); }
-		void Visit(KRing& r) { ComputePotential(r); }
-		void Visit(KTriangleGroup& t) { ComputePotential(t); }
-		void Visit(KRectangleGroup& r) { ComputePotential(r); }
-		void Visit(KLineSegmentGroup& l) { ComputePotential(l);}
-		void Visit(KConicSectionGroup& c) { ComputePotential(c); }
-		void Visit(KRingGroup& r) { ComputePotential(r); }
+		void Visit(KTriangle& t) override { ComputePotential(t); }
+		void Visit(KRectangle& r) override { ComputePotential(r); }
+		void Visit(KLineSegment& l) override { ComputePotential(l); }
+		void Visit(KConicSection& c) override { ComputePotential(c); }
+		void Visit(KRing& r) override { ComputePotential(r); }
+		void Visit(KTriangleGroup& t) override { ComputePotential(t); }
+		void Visit(KRectangleGroup& r) override { ComputePotential(r); }
+		void Visit(KLineSegmentGroup& l) override { ComputePotential(l);}
+		void Visit(KConicSectionGroup& c) override { ComputePotential(c); }
+		void Visit(KRingGroup& r) override { ComputePotential(r); }
 
 		template <class ShapePolicy>
 		void ComputePotential(ShapePolicy& s)
@@ -81,16 +81,16 @@ private:
 
 		ShapeVisitorForElectricField(Integrator& integrator) : fIntegrator(integrator) {}
 
-		void Visit(KTriangle& t) { ComputeElectricField(t); }
-		void Visit(KRectangle& r) { ComputeElectricField(r); }
-		void Visit(KLineSegment& l) { ComputeElectricField(l); }
-		void Visit(KConicSection& c) { ComputeElectricField(c); }
-		void Visit(KRing& r) { ComputeElectricField(r); }
-		void Visit(KTriangleGroup& t) { ComputeElectricField(t); }
-		void Visit(KRectangleGroup& r) { ComputeElectricField(r); }
-		void Visit(KLineSegmentGroup& l) { ComputeElectricField(l);}
-		void Visit(KConicSectionGroup& c) { ComputeElectricField(c); }
-		void Visit(KRingGroup& r) { ComputeElectricField(r); }
+		void Visit(KTriangle& t) override { ComputeElectricField(t); }
+		void Visit(KRectangle& r) override { ComputeElectricField(r); }
+		void Visit(KLineSegment& l) override { ComputeElectricField(l); }
+		void Visit(KConicSection& c) override { ComputeElectricField(c); }
+		void Visit(KRing& r) override { ComputeElectricField(r); }
+		void Visit(KTriangleGroup& t) override { ComputeElectricField(t); }
+		void Visit(KRectangleGroup& r) override { ComputeElectricField(r); }
+		void Visit(KLineSegmentGroup& l) override { ComputeElectricField(l);}
+		void Visit(KConicSectionGroup& c) override { ComputeElectricField(c); }
+		void Visit(KRingGroup& r) override { ComputeElectricField(r); }
 
 		template <class ShapePolicy>
 		void ComputeElectricField(ShapePolicy& s)
@@ -116,16 +116,16 @@ private:
 
 		ShapeVisitorForElectricFieldAndPotential(Integrator& integrator) : fIntegrator(integrator) {}
 
-		void Visit(KTriangle& t) { ComputeElectricFieldAndPotential(t); }
-		void Visit(KRectangle& r) { ComputeElectricFieldAndPotential(r); }
-		void Visit(KLineSegment& l) { ComputeElectricFieldAndPotential(l); }
-		void Visit(KConicSection& c) { ComputeElectricFieldAndPotential(c); }
-		void Visit(KRing& r) { ComputeElectricFieldAndPotential(r); }
-		void Visit(KTriangleGroup& t) { ComputeElectricFieldAndPotential(t); }
-		void Visit(KRectangleGroup& r) { ComputeElectricFieldAndPotential(r); }
-		void Visit(KLineSegmentGroup& l) { ComputeElectricFieldAndPotential(l);}
-		void Visit(KConicSectionGroup& c) { ComputeElectricFieldAndPotential(c); }
-		void Visit(KRingGroup& r) { ComputeElectricFieldAndPotential(r); }
+		void Visit(KTriangle& t) override { ComputeElectricFieldAndPotential(t); }
+		void Visit(KRectangle& r) override { ComputeElectricFieldAndPotential(r); }
+		void Visit(KLineSegment& l) override { ComputeElectricFieldAndPotential(l); }
+		void Visit(KConicSection& c) override { ComputeElectricFieldAndPotential(c); }
+		void Visit(KRing& r) override { ComputeElectricFieldAndPotential(r); }
+		void Visit(KTriangleGroup& t) override { ComputeElectricFieldAndPotential(t); }
+		void Visit(KRectangleGroup& r) override { ComputeElectricFieldAndPotential(r); }
+		void Visit(KLineSegmentGroup& l) override { ComputeElectricFieldAndPotential(l);}
+		void Visit(KConicSectionGroup& c) override { ComputeElectricFieldAndPotential(c); }
+		void Visit(KRingGroup& r) override { ComputeElectricFieldAndPotential(r); }
 
 		template <class ShapePolicy>
 		void ComputeElectricFieldAndPotential(ShapePolicy& s)

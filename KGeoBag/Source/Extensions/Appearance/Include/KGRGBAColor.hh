@@ -13,7 +13,8 @@ namespace KGeoBag
             KGRGBAColor();
             KGRGBAColor( const KGRGBAColor& );
             KGRGBAColor( int aRed, int aGreen, int aBlue, int anOpacity );
-            virtual ~KGRGBAColor();
+            ~KGRGBAColor() override;
+            KGRGBAColor& operator =(const KGRGBAColor& other) = default;
 
             void SetOpacity( const unsigned char& anOpacity );
             const unsigned char& GetOpacity() const;

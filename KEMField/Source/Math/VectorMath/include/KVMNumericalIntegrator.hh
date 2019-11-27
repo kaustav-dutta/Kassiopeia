@@ -29,8 +29,8 @@ class KVMNumericalIntegrator
     public:
         KVMNumericalIntegrator()
         {
-            fWeights= NULL;
-            fAbscissa = NULL;
+            fWeights= nullptr;
+            fAbscissa = nullptr;
         };
 
         virtual ~KVMNumericalIntegrator()
@@ -45,8 +45,8 @@ class KVMNumericalIntegrator
             if(n != 0 && n != fN)
             {
                 fN = n;
-                if(fWeights != NULL){delete[] fWeights; fWeights = NULL;};
-                if(fAbscissa != NULL){delete[] fAbscissa; fAbscissa = NULL;};
+                if(fWeights != nullptr){delete[] fWeights; fWeights = nullptr;};
+                if(fAbscissa != nullptr){delete[] fAbscissa; fAbscissa = nullptr;};
 
                 fWeights = new double[fN];
                 fAbscissa = new double[fN];

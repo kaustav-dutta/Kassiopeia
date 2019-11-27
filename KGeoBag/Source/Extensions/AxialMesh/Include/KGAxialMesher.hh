@@ -45,7 +45,7 @@ namespace KGeoBag
 
         public:
             KGAxialMesher();
-            virtual ~KGAxialMesher();
+            ~KGAxialMesher() override;
 
     };
 }

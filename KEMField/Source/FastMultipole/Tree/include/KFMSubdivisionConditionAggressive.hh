@@ -35,9 +35,9 @@ class KFMSubdivisionConditionAggressive: public KFMSubdivisionCondition<NDIM, Ob
 {
     public:
         KFMSubdivisionConditionAggressive(){};
-        virtual ~KFMSubdivisionConditionAggressive(){};
+        ~KFMSubdivisionConditionAggressive() override{};
 
-        virtual bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) override
         {
             //first get the tree properties associated with this node
             KFMCubicSpaceTreeProperties<NDIM>* tree_prop = KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<NDIM> >::GetNodeObject(node);
@@ -132,7 +132,7 @@ class KFMSubdivisionConditionAggressive: public KFMSubdivisionCondition<NDIM, Ob
 
         }
 
-        virtual std::string Name() {return std::string("aggressive");};
+        std::string Name() override {return std::string("aggressive");};
 
     protected:
 

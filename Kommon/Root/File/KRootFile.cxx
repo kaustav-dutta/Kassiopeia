@@ -8,7 +8,7 @@ namespace katrin
 {
 
     KRootFile::KRootFile() :
-        fFile( NULL )
+        fFile( nullptr )
     {
     }
     KRootFile::~KRootFile()
@@ -33,7 +33,7 @@ namespace katrin
         if( fFile->IsZombie() == true )
         {
             delete fFile;
-            fFile = NULL;
+            fFile = nullptr;
             return false;
         }
 
@@ -41,11 +41,11 @@ namespace katrin
     }
     bool KRootFile::CloseFileSubclass()
     {
-        if( fFile != NULL )
+        if( fFile != nullptr )
         {
             fFile->Close();
             delete fFile;
-            fFile = NULL;
+            fFile = nullptr;
 
             return true;
         }
@@ -59,7 +59,7 @@ namespace katrin
             return fFile;
         }
         filemsg( eError ) << "attempting to access file pointer of unopened file " << eom;
-        return NULL;
+        return nullptr;
     }
 
 }

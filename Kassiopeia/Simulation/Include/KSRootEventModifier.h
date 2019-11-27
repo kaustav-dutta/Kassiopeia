@@ -17,16 +17,16 @@ namespace Kassiopeia
     public:
         KSRootEventModifier();
         KSRootEventModifier( const KSRootEventModifier& aCopy );
-        KSRootEventModifier* Clone() const;
-        virtual ~KSRootEventModifier();
+        KSRootEventModifier* Clone() const override;
+        ~KSRootEventModifier() override;
 
         //**********
         // modifier
         //**********
 
     public:
-        bool ExecutePreEventModification( KSEvent& anEvent );
-        bool ExecutePostEventModification( KSEvent& anEvent );
+        bool ExecutePreEventModification( KSEvent& anEvent ) override;
+        bool ExecutePostEventModification( KSEvent& anEvent ) override;
 
         //***********
         //composition
@@ -50,8 +50,8 @@ namespace Kassiopeia
         bool ExecutePreEventModification();
         bool ExecutePostEventModification();
 
-        virtual void PushUpdateComponent();
-        virtual void PushDeupdateComponent();
+        void PushUpdateComponent() override;
+        void PushDeupdateComponent() override;
 
     private:
 

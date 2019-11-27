@@ -63,10 +63,10 @@ inline bool KMagneticSuperpositionFieldBuilder::AddElement( KContainer* aContain
 {
     if( aContainer->Is< KMagneticSuperpositionFieldEntry >() )
     {
-        KMagneticSuperpositionFieldEntry* tNewField =
+        auto* tNewField =
                 aContainer->AsPointer< KMagneticSuperpositionFieldEntry >();
 
-        KEMField::KMagneticField* tMagneticField =
+        auto* tMagneticField =
                 katrin::KToolbox::GetInstance().Get< KEMField::KMagneticField >(
                         tNewField->fName );
 

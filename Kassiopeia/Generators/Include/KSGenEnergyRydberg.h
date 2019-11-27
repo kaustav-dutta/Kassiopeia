@@ -16,15 +16,15 @@ class KSGenEnergyRydberg:
 public:
     KSGenEnergyRydberg();
     KSGenEnergyRydberg( const KSGenEnergyRydberg& aCopy );
-    KSGenEnergyRydberg* Clone() const;
-    virtual ~KSGenEnergyRydberg();
+    KSGenEnergyRydberg* Clone() const override;
+    ~KSGenEnergyRydberg() override;
 
     //******
     //action
     //******
 
 public:
-    void Dice( KSParticleQueue* aPrimaries );
+    void Dice( KSParticleQueue* aPrimaries ) override;
 
 private:
     ;K_SET_GET( double, DepositedEnergy );
@@ -35,8 +35,8 @@ private:
     //**********
 
 public:
-    void InitializeComponent();
-    void DeinitializeComponent();
+    void InitializeComponent() override;
+    void DeinitializeComponent() override;
 };
 
 }

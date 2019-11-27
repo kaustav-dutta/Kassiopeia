@@ -18,7 +18,7 @@ namespace KGeoBag
         const double maxR = rCircle - wireDiameter;
 
         // no. of parallel wires at y>0 (or y<0), round down
-        const unsigned int nWires = static_cast<unsigned int>(rCircle / wirePitch);
+        const auto nWires = static_cast<unsigned int>(rCircle / wirePitch);
 
         // length of single segment
         const double segmentLength = wirePitch / nDiscPerPitch;
@@ -36,7 +36,7 @@ namespace KGeoBag
         startPointXN.SetComponents(0., 0., 0.);
 
         // number of segments for wire at y = 0 and perpendicular
-        unsigned int numberOfSegments = static_cast<unsigned int>(maxR
+        auto numberOfSegments = static_cast<unsigned int>(maxR
                 / segmentLength);
 
         for (unsigned int i = 0; i < numberOfSegments; i++) {
@@ -48,19 +48,19 @@ namespace KGeoBag
             endPointXN.SetComponents(0., startPointXN.GetY() - segmentLength, 0.);
 
             KGMeshWire singleWireYP(startPointYP, endPointYP, wireDiameter);
-            KGMeshWire* wYP = new KGMeshWire(singleWireYP);
+            auto* wYP = new KGMeshWire(singleWireYP);
             AddElement(wYP);
 
             KGMeshWire singleWireXP(startPointXP, endPointXP, wireDiameter);
-            KGMeshWire* wXP = new KGMeshWire(singleWireXP);
+            auto* wXP = new KGMeshWire(singleWireXP);
             AddElement(wXP);
 
             KGMeshWire singleWireYN(startPointYN, endPointYN, wireDiameter);
-            KGMeshWire* wYN = new KGMeshWire(singleWireYN);
+            auto* wYN = new KGMeshWire(singleWireYN);
             AddElement(wYN);
 
             KGMeshWire singleWireXN(startPointXN, endPointXN, wireDiameter);
-            KGMeshWire* wXN = new KGMeshWire(singleWireXN);
+            auto* wXN = new KGMeshWire(singleWireXN);
             AddElement(wXN);
 
             startPointYP = endPointYP;
@@ -88,7 +88,7 @@ namespace KGeoBag
             double xLengthIt = 2. * sqrt(2. * maxR * height - POW2(height));
 
             // calculate number of segments for the wires
-            unsigned int numberOfSegments = static_cast<unsigned int>(0.5
+            auto numberOfSegments = static_cast<unsigned int>(0.5
                     * xLengthIt / segmentLength);
 
             // start points for y<0, y>0 and perpendicular
@@ -135,49 +135,49 @@ namespace KGeoBag
                 if (height > (wirePitch / 2.)) {
                     KGMeshWire singleWireYPP(startPointYPP, endPointYPP,
                             wireDiameter);
-                    KGMeshWire* wYPP = new KGMeshWire(singleWireYPP);
+                    auto* wYPP = new KGMeshWire(singleWireYPP);
                     AddElement(wYPP);
                     startPointYPP = endPointYPP;
 
                     KGMeshWire singleWireYPN(startPointYPN, endPointYPN,
                             wireDiameter);
-                    KGMeshWire* wYPN = new KGMeshWire(singleWireYPN);
+                    auto* wYPN = new KGMeshWire(singleWireYPN);
                     AddElement(wYPN);
                     startPointYPN = endPointYPN;
 
                     KGMeshWire singleWireYNP(startPointYNP, endPointYNP,
                             wireDiameter);
-                    KGMeshWire* wYNP = new KGMeshWire(singleWireYNP);
+                    auto* wYNP = new KGMeshWire(singleWireYNP);
                     AddElement(wYNP);
                     startPointYNP = endPointYNP;
 
                     KGMeshWire singleWireYNN(startPointYNN, endPointYNN,
                             wireDiameter);
-                    KGMeshWire* wYNN = new KGMeshWire(singleWireYNN);
+                    auto* wYNN = new KGMeshWire(singleWireYNN);
                     AddElement(wYNN);
                     startPointYNN = endPointYNN;
 
                     KGMeshWire singleWireXPP(startPointXPP, endPointXPP,
                             wireDiameter);
-                    KGMeshWire* wXPP = new KGMeshWire(singleWireXPP);
+                    auto* wXPP = new KGMeshWire(singleWireXPP);
                     AddElement(wXPP);
                     startPointXPP = endPointXPP;
 
                     KGMeshWire singleWireXPN(startPointXPN, endPointXPN,
                             wireDiameter);
-                    KGMeshWire* wXPN = new KGMeshWire(singleWireXPN);
+                    auto* wXPN = new KGMeshWire(singleWireXPN);
                     AddElement(wXPN);
                     startPointXPN = endPointXPN;
 
                     KGMeshWire singleWireXNP(startPointXNP, endPointXNP,
                             wireDiameter);
-                    KGMeshWire* wXNP = new KGMeshWire(singleWireXNP);
+                    auto* wXNP = new KGMeshWire(singleWireXNP);
                     AddElement(wXNP);
                     startPointXNP = endPointXNP;
 
                     KGMeshWire singleWireXNN(startPointXNN, endPointXNN,
                             wireDiameter);
-                    KGMeshWire* wXNN = new KGMeshWire(singleWireXNN);
+                    auto* wXNN = new KGMeshWire(singleWireXNN);
                     AddElement(wXNN);
                     startPointXNN = endPointXNN;
                 }
@@ -190,11 +190,10 @@ namespace KGeoBag
         // draw outer circle with wire elements
         if (OuterCircle) {
             // number of elements
-            unsigned int circleSegmentsIt = static_cast<unsigned int>(2
-                    * KConst::Pi() * rCircle / segmentLength);
+            auto circleSegmentsIt = static_cast<unsigned int>(2 * katrin::KConst::Pi() * rCircle / segmentLength);
 
             // discretize circle
-            const double circleAngle = 2 * KConst::Pi() / circleSegmentsIt;
+            const double circleAngle = 2 * katrin::KConst::Pi() / circleSegmentsIt;
             KThreeVector startPointCircle, endPointCircle;
 
             startPointCircle.SetComponents(rCircle * cos(circleAngle),
@@ -208,7 +207,7 @@ namespace KGeoBag
 
                 // add element
                 KGMeshWire singleWireCircle(startPointCircle, endPointCircle, wireDiameter);
-                KGMeshWire* circle = new KGMeshWire(singleWireCircle);
+                auto* circle = new KGMeshWire(singleWireCircle);
                 AddElement(circle);
                 startPointCircle = endPointCircle;
 

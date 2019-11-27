@@ -51,7 +51,7 @@ public:
 protected:
 
 	KEMToolbox() {}
-	virtual ~KEMToolbox() {}
+	~KEMToolbox() override {}
 
 private:
 	bool checkKeyIsFree(std::string name);

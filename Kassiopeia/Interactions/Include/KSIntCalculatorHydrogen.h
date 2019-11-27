@@ -26,12 +26,12 @@ namespace Kassiopeia
     {
         public:
             KSIntCalculatorHydrogenElasticBase();
-            virtual ~KSIntCalculatorHydrogenElasticBase();
+            ~KSIntCalculatorHydrogenElasticBase() override;
 
         public:
-            virtual void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
             virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection ) = 0;
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) = 0;
 
         protected:
@@ -50,12 +50,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenElastic();
             KSIntCalculatorHydrogenElastic( const KSIntCalculatorHydrogenElastic& aCopy );
-            KSIntCalculatorHydrogenElastic* Clone() const;
-            virtual ~KSIntCalculatorHydrogenElastic();
+            KSIntCalculatorHydrogenElastic* Clone() const override;
+            ~KSIntCalculatorHydrogenElastic() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
     };
 
@@ -69,12 +69,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenVib();
             KSIntCalculatorHydrogenVib( const KSIntCalculatorHydrogenVib& aCopy );
-            KSIntCalculatorHydrogenVib* Clone() const;
-            virtual ~KSIntCalculatorHydrogenVib();
+            KSIntCalculatorHydrogenVib* Clone() const override;
+            ~KSIntCalculatorHydrogenVib() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
     };
 
@@ -88,12 +88,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenRot02();
             KSIntCalculatorHydrogenRot02( const KSIntCalculatorHydrogenRot02& aCopy );
-            KSIntCalculatorHydrogenRot02* Clone() const;
-            virtual ~KSIntCalculatorHydrogenRot02();
+            KSIntCalculatorHydrogenRot02* Clone() const override;
+            ~KSIntCalculatorHydrogenRot02() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
     };
 
@@ -107,12 +107,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenRot13();
             KSIntCalculatorHydrogenRot13( const KSIntCalculatorHydrogenRot13& aCopy );
-            KSIntCalculatorHydrogenRot13* Clone() const;
-            virtual ~KSIntCalculatorHydrogenRot13();
+            KSIntCalculatorHydrogenRot13* Clone() const override;
+            ~KSIntCalculatorHydrogenRot13() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
     };
 
@@ -126,12 +126,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenRot20();
             KSIntCalculatorHydrogenRot20( const KSIntCalculatorHydrogenRot20& aCopy );
-            KSIntCalculatorHydrogenRot20* Clone() const;
-            virtual ~KSIntCalculatorHydrogenRot20();
+            KSIntCalculatorHydrogenRot20* Clone() const override;
+            ~KSIntCalculatorHydrogenRot20() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
     };
 
@@ -144,12 +144,12 @@ namespace Kassiopeia
     {
         public:
             KSIntCalculatorHydrogenExcitationBase();
-            virtual ~KSIntCalculatorHydrogenExcitationBase();
+            ~KSIntCalculatorHydrogenExcitationBase() override;
 
         public:
-            virtual void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
             virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection ) = 0;
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) = 0;
             static void CalculateDifferentialCrossSection( const double anEnergy, const double cosTheta, double& aCrossSection );
             static double sumexc( double K );
@@ -176,12 +176,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenExcitationB();
             KSIntCalculatorHydrogenExcitationB( const KSIntCalculatorHydrogenExcitationB& aCopy );
-            KSIntCalculatorHydrogenExcitationB* Clone() const;
-            virtual ~KSIntCalculatorHydrogenExcitationB();
+            KSIntCalculatorHydrogenExcitationB* Clone() const override;
+            ~KSIntCalculatorHydrogenExcitationB() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
         private:
             static const double EnergyLevels[ 28 ];
@@ -204,12 +204,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenExcitationC();
             KSIntCalculatorHydrogenExcitationC( const KSIntCalculatorHydrogenExcitationC& aCopy );
-            KSIntCalculatorHydrogenExcitationC* Clone() const;
-            virtual ~KSIntCalculatorHydrogenExcitationC();
+            KSIntCalculatorHydrogenExcitationC* Clone() const override;
+            ~KSIntCalculatorHydrogenExcitationC() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
         private:
             static const double EnergyLevels[ 14 ];
@@ -229,12 +229,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenDissoziation10();
             KSIntCalculatorHydrogenDissoziation10( const KSIntCalculatorHydrogenDissoziation10& aCopy );
-            KSIntCalculatorHydrogenDissoziation10* Clone() const;
-            virtual ~KSIntCalculatorHydrogenDissoziation10();
+            KSIntCalculatorHydrogenDissoziation10* Clone() const override;
+            ~KSIntCalculatorHydrogenDissoziation10() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
         private:
             double Emin;
@@ -251,12 +251,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenDissoziation15();
             KSIntCalculatorHydrogenDissoziation15( const KSIntCalculatorHydrogenDissoziation15& aCopy );
-            KSIntCalculatorHydrogenDissoziation15* Clone() const;
-            virtual ~KSIntCalculatorHydrogenDissoziation15();
+            KSIntCalculatorHydrogenDissoziation15* Clone() const override;
+            ~KSIntCalculatorHydrogenDissoziation15() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
         private:
             double Emin;
@@ -273,12 +273,12 @@ namespace Kassiopeia
         public:
             KSIntCalculatorHydrogenExcitationElectronic();
             KSIntCalculatorHydrogenExcitationElectronic( const KSIntCalculatorHydrogenExcitationElectronic& aCopy );
-            KSIntCalculatorHydrogenExcitationElectronic* Clone() const;
-            virtual ~KSIntCalculatorHydrogenExcitationElectronic();
+            KSIntCalculatorHydrogenExcitationElectronic* Clone() const override;
+            ~KSIntCalculatorHydrogenExcitationElectronic() override;
 
         public:
-            virtual void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            virtual void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss );
+            void CalculateCrossSection( const double anEnergy, double& aCrossSection ) override;
+            void CalculateEloss( const double anEnergy, const double aTheta, double& anEloss ) override;
 
         public:
             double Emin;
@@ -302,13 +302,13 @@ namespace Kassiopeia
             KSIntCalculatorHydrogenIonisation();
             KSIntCalculatorHydrogenIonisation( const double aCrossParam_A1, const double aCrossParam_A2, const double aCrossParam_A3, const double aCrossExponent, const double abeta, const double agamma, const double aG_5, const double ag_b, const double aBindingEnergy );
             KSIntCalculatorHydrogenIonisation( const KSIntCalculatorHydrogenIonisation& aCopy );
-            KSIntCalculatorHydrogenIonisation* Clone() const;
-            virtual ~KSIntCalculatorHydrogenIonisation();
+            KSIntCalculatorHydrogenIonisation* Clone() const override;
+            ~KSIntCalculatorHydrogenIonisation() override;
 
         public:
-            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle, double& aCrossSection ) override;
             void CalculateCrossSection( const double anEnergy, double& aCrossSection );
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             void CalculateDoublyDifferentialCrossSection( const double aReducedInitialEnergy, const double aReducedFinalEnergy, const double aCosTheta, double& aCrossSection );
             void CalculateFinalEnergy( const double aReducedInitialEnergy, double& aReducedFinalEnergy );
         

@@ -55,7 +55,7 @@ namespace Kassiopeia
         tReader.OpenFile( tRootFile );
 
         CreateColors( tReader );
-        vector<Color_t>::iterator tColorIterator = fColorVector.begin();
+        auto tColorIterator = fColorVector.begin();
 
         KSReadRunROOT& tRunReader = tReader.GetRun();
         KSReadEventROOT& tEventReader = tReader.GetEvent();
@@ -65,7 +65,7 @@ namespace Kassiopeia
         if ( fPlotMode == ePlotStep )
         {
             KSReadObjectROOT& tStepGroup = tStepReader.GetObject( fStepOutputGroupName );
-            KSThreeVector& tPosition = tStepGroup.Get< KSThreeVector >( fPositionName );
+            auto& tPosition = tStepGroup.Get< KSThreeVector >( fPositionName );
 
             for( tRunReader = 0; tRunReader <= tRunReader.GetLastRunIndex(); tRunReader++ )
             {
@@ -76,7 +76,7 @@ namespace Kassiopeia
                     for( tTrackReader = tEventReader.GetFirstTrackIndex(); tTrackReader <= tEventReader.GetLastTrackIndex(); tTrackReader++ )
                     {
                         vismsg( eDebug ) << "Analyzing track <" << tTrackReader.GetTrackIndex() << "> with steps from <" << tTrackReader.GetFirstStepIndex() << "> to <"<<tTrackReader.GetLastStepIndex()<<">"<< eom;
-                        TGraph* myGraph = NULL;
+                        TGraph* myGraph = nullptr;
                         if ( fColorMode == eColorTrack || fColorMode == eColorFix  )
                         {
                             myGraph = new TGraph();
@@ -156,7 +156,7 @@ namespace Kassiopeia
                             //if axial mirror is set, another graph is created with the same points, put y has a changed sign
                             if ( fAxialMirror )
                             {
-                                TGraph* myMirroredGraph = new TGraph();
+                                auto* myMirroredGraph = new TGraph();
                                 myMirroredGraph->SetLineColor( myGraph->GetLineColor() );
                                 double tX,tY;
                                 for ( int tIndex = 0; tIndex < myGraph->GetN(); tIndex++ )
@@ -178,7 +178,7 @@ namespace Kassiopeia
         if ( fPlotMode == ePlotTrack )
         {
             KSReadObjectROOT& tTrackGroup = tTrackReader.GetObject( fTrackOutputGroupName );
-            KSThreeVector& tPosition = tTrackGroup.Get< KSThreeVector >( fPositionName );
+            auto& tPosition = tTrackGroup.Get< KSThreeVector >( fPositionName );
             for( tRunReader = 0; tRunReader <= tRunReader.GetLastRunIndex(); tRunReader++ )
             {
                 for( tEventReader = tRunReader.GetFirstEventIndex(); tEventReader <= tRunReader.GetLastEventIndex(); tEventReader++ )
@@ -561,7 +561,7 @@ namespace Kassiopeia
         {
             for ( int tIndex = 0; tIndex < tGraphList->GetSize(); tIndex++ )
             {
-                TGraph* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
+                auto* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
                 double* tX = tGraph->GetX();
                 for ( int tIndexArray = 0; tIndexArray < tGraph->GetN(); tIndexArray++ )
                 {
@@ -582,7 +582,7 @@ namespace Kassiopeia
         {
             for ( int tIndex = 0; tIndex < tGraphList->GetSize(); tIndex++ )
             {
-                TGraph* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
+                auto* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
                 double* tX = tGraph->GetX();
                 for ( int tIndexArray = 0; tIndexArray < tGraph->GetN(); tIndexArray++ )
                 {
@@ -604,7 +604,7 @@ namespace Kassiopeia
         {
             for ( int tIndex = 0; tIndex < tGraphList->GetSize(); tIndex++ )
             {
-                TGraph* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
+                auto* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
                 double* tY = tGraph->GetY();
                 for ( int tIndexArray = 0; tIndexArray < tGraph->GetN(); tIndexArray++ )
                 {
@@ -625,7 +625,7 @@ namespace Kassiopeia
         {
             for ( int tIndex = 0; tIndex < tGraphList->GetSize(); tIndex++ )
             {
-                TGraph* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
+                auto* tGraph = dynamic_cast<TGraph*> ( tGraphList->At( tIndex ) );
                 double* tY = tGraph->GetY();
                 for ( int tIndexArray = 0; tIndexArray < tGraph->GetN(); tIndexArray++ )
                 {

@@ -164,9 +164,9 @@ namespace KEMField
 
   protected:
     KBoundaryType() : KBoundary(), KDirichletBoundary(), KBoundaryValue<typename BasisPolicy::ValueType,BasisPolicy::Dimension>() {}
-    virtual ~KBoundaryType() {}
+    ~KBoundaryType() override {}
 
-    bool SameBoundaryAs(const KBoundary*) const;
+    bool SameBoundaryAs(const KBoundary*) const override;
 
   public:
     static std::string Name() { return KDirichletBoundary::Name(); }
@@ -175,7 +175,7 @@ namespace KEMField
   template <class BasisPolicy>
   bool KBoundaryType<BasisPolicy,KDirichletBoundary>::SameBoundaryAs(const KBoundary* rhs) const
   {
-    if (const KBoundaryType<BasisPolicy,KDirichletBoundary>* b = dynamic_cast<const KBoundaryType<BasisPolicy,KDirichletBoundary>*>(rhs))
+    if (const auto* b = dynamic_cast<const KBoundaryType<BasisPolicy,KDirichletBoundary>*>(rhs))
     {
       static KDataComparator dC;
       return dC.Compare(*this,*b);
@@ -214,9 +214,9 @@ namespace KEMField
 
   protected:
     KBoundaryType() : KBoundary(), KNeumannBoundary(), KNormalBoundaryFlux<typename BasisPolicy::ValueType,BasisPolicy::Dimension>() {}
-    virtual ~KBoundaryType() {}
+    ~KBoundaryType() override {}
 
-    bool SameBoundaryAs(const KBoundary*) const;
+    bool SameBoundaryAs(const KBoundary*) const override;
 
   public:
     static std::string Name() { return KNeumannBoundary::Name(); }
@@ -225,7 +225,7 @@ namespace KEMField
   template <class BasisPolicy>
   bool KBoundaryType<BasisPolicy,KNeumannBoundary>::SameBoundaryAs(const KBoundary* rhs) const
   {
-    if (const KBoundaryType<BasisPolicy,KNeumannBoundary>* b = dynamic_cast<const KBoundaryType<BasisPolicy,KNeumannBoundary>*>(rhs))
+    if (const auto* b = dynamic_cast<const KBoundaryType<BasisPolicy,KNeumannBoundary>*>(rhs))
     {
       static KDataComparator dC;
       return dC.Compare(*this,*b);
@@ -266,9 +266,9 @@ namespace KEMField
   protected:
     KBoundaryType() : KBoundary(), KCauchyBoundary(), KBoundaryValue<typename BasisPolicy::ValueType,BasisPolicy::Dimension>(),
 		      KNormalBoundaryFlux<typename BasisPolicy::ValueType,BasisPolicy::Dimension>() {}
-    virtual ~KBoundaryType() {}
+    ~KBoundaryType() override {}
 
-    bool SameBoundaryAs(const KBoundary*) const;
+    bool SameBoundaryAs(const KBoundary*) const override;
 
   public:
     static std::string Name() { return KCauchyBoundary::Name(); }
@@ -277,7 +277,7 @@ namespace KEMField
   template <class BasisPolicy>
   bool KBoundaryType<BasisPolicy,KCauchyBoundary>::SameBoundaryAs(const KBoundary* rhs) const
   {
-    if (const KBoundaryType<BasisPolicy,KCauchyBoundary>* b = dynamic_cast<const KBoundaryType<BasisPolicy,KCauchyBoundary>*>(rhs))
+    if (const auto* b = dynamic_cast<const KBoundaryType<BasisPolicy,KCauchyBoundary>*>(rhs))
     {
       static KDataComparator dC;
       return dC.Compare(*this,*b);
@@ -320,9 +320,9 @@ namespace KEMField
 
     KBoundaryType() : KBoundary(), KRobinBoundary(), KBoundaryValue<typename BasisPolicy::ValueType,BasisPolicy::Dimension>(),
 		      KNormalBoundaryFlux<typename BasisPolicy::ValueType,BasisPolicy::Dimension>() {}
-    virtual ~KBoundaryType() {}
+    ~KBoundaryType() override {}
 
-    bool SameBoundaryAs(const KBoundary*) const;
+    bool SameBoundaryAs(const KBoundary*) const override;
 
   public:
     static std::string Name() { return KRobinBoundary::Name(); }
@@ -331,7 +331,7 @@ namespace KEMField
   template <class BasisPolicy>
   bool KBoundaryType<BasisPolicy,KRobinBoundary>::SameBoundaryAs(const KBoundary* rhs) const
   {
-    if (const KBoundaryType<BasisPolicy,KRobinBoundary>* b = dynamic_cast<const KBoundaryType<BasisPolicy,KRobinBoundary>*>(rhs))
+    if (const auto* b = dynamic_cast<const KBoundaryType<BasisPolicy,KRobinBoundary>*>(rhs))
     {
       static KDataComparator dC;
       return dC.Compare(*this,*b);
@@ -371,9 +371,9 @@ namespace KEMField
 
   protected:
     KBoundaryType() : KBoundary(), fBoundaryIndex(0) {}
-    virtual ~KBoundaryType() {}
+    ~KBoundaryType() override {}
 
-    bool SameBoundaryAs(const KBoundary*) const;
+    bool SameBoundaryAs(const KBoundary*) const override;
 
     unsigned int fBoundaryIndex;
 
@@ -387,7 +387,7 @@ namespace KEMField
   template <class BasisPolicy>
   bool KBoundaryType<BasisPolicy,KIsolatedBoundary>::SameBoundaryAs(const KBoundary* rhs) const
   {
-    if (const KBoundaryType<BasisPolicy,KIsolatedBoundary>* b = dynamic_cast<const KBoundaryType<BasisPolicy,KIsolatedBoundary>*>(rhs))
+    if (const auto* b = dynamic_cast<const KBoundaryType<BasisPolicy,KIsolatedBoundary>*>(rhs))
     {
       static KDataComparator dC;
       return dC.Compare(*this,*b);

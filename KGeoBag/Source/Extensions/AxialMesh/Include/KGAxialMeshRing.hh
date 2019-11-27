@@ -13,10 +13,10 @@ namespace KGeoBag
     {
         public:
             KGAxialMeshRing( const double& aD, const KTwoVector& aP0 );
-            virtual ~KGAxialMeshRing();
+            ~KGAxialMeshRing() override;
 
-            double Area() const;
-            double Aspect() const;
+            double Area() const override;
+            double Aspect() const override;
 
             const double& GetD() const
             {

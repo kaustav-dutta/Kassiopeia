@@ -26,8 +26,8 @@ namespace Kassiopeia
         public:
             KSTrajIntegratorRK54();
             KSTrajIntegratorRK54( const KSTrajIntegratorRK54& aCopy );
-            KSTrajIntegratorRK54* Clone() const;
-            virtual ~KSTrajIntegratorRK54();
+            KSTrajIntegratorRK54* Clone() const override;
+            ~KSTrajIntegratorRK54() override;
     };
 
 }

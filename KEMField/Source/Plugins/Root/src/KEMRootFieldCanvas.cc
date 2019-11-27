@@ -409,7 +409,7 @@ namespace KEMField
   {
     if (x_1>=x1 && x_2<=x2 && y_1>=y1 && y_2<=y2)
     {
-      TBox *box = new TBox(x_1,y_1,x_2,y_2);
+      auto *box = new TBox(x_1,y_1,x_2,y_2);
       box->SetFillStyle(0);
       box->SetLineColor(1);
       // box->SetLineWidth(.5);
@@ -478,7 +478,7 @@ namespace KEMField
         hist->Fill(x[i],-y[i],(V2[i]-V1[i]));
     }
 
-    gStyle->SetPalette(1,0);
+    gStyle->SetPalette(1,nullptr);
     gStyle->SetOptTitle(1);
     gStyle->SetOptStat(0);
 

@@ -18,9 +18,9 @@ class KGaussianEliminationChargeDensitySolver :
 {
     public:
         KGaussianEliminationChargeDensitySolver();
-        virtual ~KGaussianEliminationChargeDensitySolver();
+        ~KGaussianEliminationChargeDensitySolver() override;
 
-        virtual void InitializeCore( KSurfaceContainer& container );
+        void InitializeCore( KSurfaceContainer& container ) override;
 
         void SetIntegratorPolicy(const KEBIPolicy& integrator);
     private:

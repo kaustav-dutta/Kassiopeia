@@ -12,20 +12,20 @@ namespace KGeoBag
     {
         public:
             KGMeshWire( const KThreeVector& p0, const KThreeVector& p1, const double& diameter );
-            virtual ~KGMeshWire();
+            ~KGMeshWire() override;
 
-            double Area() const;
-            double Aspect() const;
-            void Transform( const KTransformation& transform );
+            double Area() const override;
+            double Aspect() const override;
+            void Transform( const KTransformation& transform ) override;
 
-            virtual double NearestDistance(const KThreeVector& aPoint) const;
-            virtual KThreeVector NearestPoint(const KThreeVector& aPoint) const;
-            virtual KThreeVector NearestNormal(const KThreeVector& aPoint) const;
-            virtual bool NearestIntersection(const KThreeVector& aStart, const KThreeVector& anEnd, KThreeVector& anIntersection) const;
+            double NearestDistance(const KThreeVector& aPoint) const override;
+            KThreeVector NearestPoint(const KThreeVector& aPoint) const override;
+            KThreeVector NearestNormal(const KThreeVector& aPoint) const override;
+            bool NearestIntersection(const KThreeVector& aStart, const KThreeVector& anEnd, KThreeVector& anIntersection) const override;
 
-            virtual KGPointCloud<KGMESH_DIM> GetPointCloud() const;
-            virtual unsigned int GetNumberOfEdges() const {return 1;};
-            virtual void GetEdge(KThreeVector& start, KThreeVector& end, unsigned int /*index*/) const;
+            KGPointCloud<KGMESH_DIM> GetPointCloud() const override;
+            unsigned int GetNumberOfEdges() const override {return 1;};
+            void GetEdge(KThreeVector& start, KThreeVector& end, unsigned int /*index*/) const override;
 
             const KThreeVector& GetP0() const
             {

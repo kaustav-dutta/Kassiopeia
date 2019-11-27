@@ -29,7 +29,7 @@ namespace Kassiopeia
                 this->SetParent( aCopy.fParentComponent );
                 aCopy.fParentComponent->AddChild( this );
             }
-            virtual ~KSComponentDelta()
+            ~KSComponentDelta() override
             {
             }
 
@@ -38,15 +38,15 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Clone() const
+            KSComponent* Clone() const override
             {
                 return new KSComponentDelta< XValueType >( *this );
             }
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "component delta <" << this->GetName() << "> building component named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XValueType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "component delta <" << this->GetName() << "> has no output named <" << aField << ">" << eom;
                 }
@@ -56,25 +56,25 @@ namespace Kassiopeia
                 }
                 return tComponent;
             }
-            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ )
+            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/ ) override
             {
-                return NULL;
+                return nullptr;
             }
 
         public:
-            void InitializeComponent()
+            void InitializeComponent() override
             {
                 fDelta.Reset();
             }
 
-            void PushUpdateComponent()
+            void PushUpdateComponent() override
             {
                 objctmsg_debug( "component delta <" << this->GetName() << "> pushing update" << eom );
                 (void) fDelta.Update();
                 return;
             }
 
-            void PullDeupdateComponent()
+            void PullDeupdateComponent() override
             {
                 objctmsg_debug( "component delta <" << this->GetName() << "> pulling deupdate" << eom );
                 fDelta.Reset();

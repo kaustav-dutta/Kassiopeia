@@ -4,7 +4,7 @@
 
 #include "KConst.h"
 #include <cmath>
-#include <math.h>
+#include <cmath>
 #include <ctime>
 
 using namespace std;
@@ -21,22 +21,23 @@ namespace Kassiopeia
 
     KSParticle::KSParticle() :
             fLabel( "" ),
+            fIndexNumber( -1 ),
             fParentRunId( -1 ),
             fParentEventId( -1 ),
             fParentTrackId( -1 ),
             fParentStepId( -1 ),
 
             fActive( true ),
-            fCurrentSpace( NULL ),
-            fCurrentSurface( NULL ),
-            fLastStepSurface( NULL ),
-            fCurrentSide( NULL ),
+            fCurrentSpace( nullptr ),
+            fCurrentSurface( nullptr ),
+            fLastStepSurface( nullptr ),
+            fCurrentSide( nullptr ),
             fCurrentSpaceName( "" ),
             fCurrentSurfaceName( "" ),
             fCurrentSideName( "" ),
 
-            fMagneticFieldCalculator( NULL ),
-            fElectricFieldCalculator( NULL ),
+            fMagneticFieldCalculator( nullptr ),
+            fElectricFieldCalculator( nullptr ),
 
             fPID( 0 ),
             fStringID( "" ),
@@ -103,6 +104,7 @@ namespace Kassiopeia
     }
     KSParticle::KSParticle( const KSParticle& aParticle ) :
             fLabel( aParticle.fLabel ),
+            fIndexNumber( aParticle.fIndexNumber ),
             fParentRunId( aParticle.fParentRunId ),
             fParentEventId( aParticle.fParentEventId ),
             fParentTrackId( aParticle.fParentTrackId ),
@@ -187,6 +189,7 @@ namespace Kassiopeia
     void KSParticle::operator=( const KSParticle& aParticle )
     {
         fLabel = aParticle.fLabel;
+        fIndexNumber = aParticle.fIndexNumber;
         fParentRunId = aParticle.fParentRunId;
         fParentEventId = aParticle.fParentEventId;
         fParentTrackId = aParticle.fParentTrackId;
@@ -367,6 +370,15 @@ namespace Kassiopeia
         return;
     }
 
+    void KSParticle::SetIndexNumber( const int& anId )
+    {
+        fIndexNumber = anId;
+        return;
+    }
+    const int& KSParticle::GetIndexNumber() const {
+        return fIndexNumber;
+    }
+
     void KSParticle::SetParentRunId( const int& anId )
     {
         fParentRunId = anId;
@@ -424,7 +436,7 @@ namespace Kassiopeia
     void KSParticle::SetCurrentSpace( KSSpace* aSpace )
     {
         fCurrentSpace = aSpace;
-        if ( fCurrentSpace != 0 )
+        if ( fCurrentSpace != nullptr )
         {
             fCurrentSpaceName = fCurrentSpace->GetName();
         }
@@ -446,7 +458,7 @@ namespace Kassiopeia
     void KSParticle::SetCurrentSurface( KSSurface* aSurface )
     {
         fCurrentSurface = aSurface;
-        if ( fCurrentSurface != 0 )
+        if ( fCurrentSurface != nullptr )
         {
             fCurrentSurfaceName = fCurrentSurface->GetName();
         }
@@ -468,7 +480,7 @@ namespace Kassiopeia
     void KSParticle::SetCurrentSide( KSSide* aSide )
     {
         fCurrentSide = aSide;
-        if ( fCurrentSide != 0 )
+        if ( fCurrentSide != nullptr )
         {
             fCurrentSideName = fCurrentSide->GetName();
         }
@@ -957,7 +969,7 @@ namespace Kassiopeia
     void KSParticle::SetVelocity( const KThreeVector& NewVelocity )
     {
         double Speed = NewVelocity.Magnitude();
-        double Beta = Speed/KConst::C();
+        double Beta = Speed/katrin::KConst::C();
         double LorentzFactor = 1.0 / sqrt( (1.0-Beta)*(1+Beta) );
 
         fMomentum = GetMass() * LorentzFactor * NewVelocity;
@@ -1212,7 +1224,7 @@ namespace Kassiopeia
     void KSParticle::SetInitialSpin( const KThreeVector& aSpin )
     {
         fSpin = aSpin;
-        fSpin0 = fVelocity.Dot(aSpin) / KConst::C();
+        fSpin0 = fVelocity.Dot(aSpin) / katrin::KConst::C();
 
         NormalizeSpin();
 
@@ -1259,7 +1271,7 @@ namespace Kassiopeia
         KThreeVector e2 = e3.Cross( e1 );
 
         fSpin = e3 * fAlignedSpin + std::sqrt( 1 - fAlignedSpin * fAlignedSpin ) * ( cos( fSpinAngle ) * e1 + sin( fSpinAngle ) * e2 );
-        fSpin0 = fVelocity.Dot( fSpin ) / KConst::C();
+        fSpin0 = fVelocity.Dot( fSpin ) / katrin::KConst::C();
 
         NormalizeSpin();
     }
@@ -1276,9 +1288,9 @@ namespace Kassiopeia
 
     void KSParticle::SetSpeed( const double& NewSpeed )
     {
-        double Beta = NewSpeed / KConst::C();
+        double Beta = NewSpeed / katrin::KConst::C();
         double LorentzFactor = 1.0 / sqrt( (1.0-Beta)*(1+Beta) );
-        double MomentumMagnitude = GetMass() * KConst::C() * sqrt( (LorentzFactor - 1.0) * (LorentzFactor + 1.0) );
+        double MomentumMagnitude = GetMass() * katrin::KConst::C() * sqrt( (LorentzFactor - 1.0) * (LorentzFactor + 1.0) );
 
         fMomentum.SetMagnitude( MomentumMagnitude );
         fLorentzFactor = LorentzFactor;
@@ -1334,7 +1346,7 @@ namespace Kassiopeia
 
     void KSParticle::SetLorentzFactor( const double& NewLorentzFactor )
     {
-        double MomentumMagnitude = GetMass() * KConst::C() * sqrt( (NewLorentzFactor - 1.0)*(NewLorentzFactor + 1.0) );
+        double MomentumMagnitude = GetMass() * katrin::KConst::C() * sqrt( (NewLorentzFactor - 1.0)*(NewLorentzFactor + 1.0) );
 
         fMomentum.SetMagnitude( MomentumMagnitude );
         fLorentzFactor = NewLorentzFactor;
@@ -1365,7 +1377,7 @@ namespace Kassiopeia
 
     void KSParticle::RecalculateLorentzFactor() const
     {
-        fLorentzFactor = sqrt( 1.0 + fMomentum.MagnitudeSquared() / (GetMass() * GetMass() * KConst::C() * KConst::C()) );
+        fLorentzFactor = sqrt( 1.0 + fMomentum.MagnitudeSquared() / (GetMass() * GetMass() * katrin::KConst::C() * katrin::KConst::C()) );
 
         oprmsg_debug( "KSParticle: [" << this << "] recalculating fLorentzFactor" << ret );
         oprmsg_debug( "[" << fLorentzFactor << "]" << eom );
@@ -1387,7 +1399,7 @@ namespace Kassiopeia
 
     void KSParticle::SetKineticEnergy( const double& NewKineticEnergy )
     {
-        double MomentumMagnitude = (NewKineticEnergy / KConst::C()) * sqrt( 1.0 + (2.0 * GetMass() * KConst::C() * KConst::C()) / NewKineticEnergy );
+        double MomentumMagnitude = (NewKineticEnergy / katrin::KConst::C()) * sqrt( 1.0 + (2.0 * GetMass() * katrin::KConst::C() * katrin::KConst::C()) / NewKineticEnergy );
         fMomentum.SetMagnitude( MomentumMagnitude );
         fKineticEnergy = NewKineticEnergy;
 
@@ -1438,14 +1450,14 @@ namespace Kassiopeia
         oprmsg_debug( "KSParticle: [" << this << "] setting fKineticEnergy in eV" << ret );
         oprmsg_debug( "[" << NewKineticEnergy << "]" << eom );
 
-        double NewKineticEnergy_SI = NewKineticEnergy * KConst::Q();
+        double NewKineticEnergy_SI = NewKineticEnergy * katrin::KConst::Q();
         SetKineticEnergy( NewKineticEnergy_SI );
         return;
     }
 
     const double& KSParticle::GetKineticEnergy_eV() const
     {
-        fKineticEnergy_eV = GetKineticEnergy() / KConst::Q();
+        fKineticEnergy_eV = GetKineticEnergy() / katrin::KConst::Q();
 
         oprmsg_debug( "KSParticle: [" << this << "] getting fKineticEnergy in eV" << ret );
         oprmsg_debug( "[" << fKineticEnergy_eV << "]" << eom );
@@ -1474,7 +1486,7 @@ namespace Kassiopeia
         fPolarAngleToZ = NewPolarAngleToZ;
 
         double MomentumMagnitude = fMomentum.Magnitude();
-        double NewPolarAngleToZ_SI = fPolarAngleToZ / 180. * KConst::Pi();
+        double NewPolarAngleToZ_SI = fPolarAngleToZ / 180. * katrin::KConst::Pi();
 
         fMomentum.SetComponents( MomentumMagnitude * sin( NewPolarAngleToZ_SI ) * cos( GetAzimuthalAngleToX() ), MomentumMagnitude * sin( NewPolarAngleToZ_SI ) * sin( GetAzimuthalAngleToX() ), MomentumMagnitude * cos( NewPolarAngleToZ_SI ) );
 
@@ -1502,7 +1514,7 @@ namespace Kassiopeia
 
     void KSParticle::RecalculatePolarAngleToZ() const
     {
-        fPolarAngleToZ = (180. / KConst::Pi()) * acos( fMomentum[ 2 ] / fMomentum.Magnitude() );
+        fPolarAngleToZ = (180. / katrin::KConst::Pi()) * acos( fMomentum[ 2 ] / fMomentum.Magnitude() );
 
         oprmsg_debug( "KSParticle: [" << this << "] recalculating fPolarAngleToZ" << ret );
         oprmsg_debug( "[" << fPolarAngleToZ << "]" << eom );
@@ -1530,8 +1542,8 @@ namespace Kassiopeia
             fAzimuthalAngleToX += 360.0;
         }
 
-        double NewAzimuthalAngleToX_SI = (KConst::Pi() / 180.) * fAzimuthalAngleToX;
-        double PolarAngleToZ_SI = (KConst::Pi() / 180.) * GetPolarAngleToZ();
+        double NewAzimuthalAngleToX_SI = (katrin::KConst::Pi() / 180.) * fAzimuthalAngleToX;
+        double PolarAngleToZ_SI = (katrin::KConst::Pi() / 180.) * GetPolarAngleToZ();
         double MomentumMagnitude = fMomentum.Magnitude();
 
         fMomentum.SetComponents( MomentumMagnitude * sin( PolarAngleToZ_SI ) * cos( NewAzimuthalAngleToX_SI ), MomentumMagnitude * sin( PolarAngleToZ_SI ) * sin( NewAzimuthalAngleToX_SI ), MomentumMagnitude * cos( PolarAngleToZ_SI ) );
@@ -1584,11 +1596,11 @@ namespace Kassiopeia
             NewCosPhi = Px / sqrt( Px * Px + Py * Py );
             if( GetMomentum()[ 1 ] >= 0. )
             {
-                fAzimuthalAngleToX = (180. / KConst::Pi()) * acos( NewCosPhi );
+                fAzimuthalAngleToX = (180. / katrin::KConst::Pi()) * acos( NewCosPhi );
             }
             else
             {
-                fAzimuthalAngleToX = (180. / KConst::Pi()) * (2. * KConst::Pi() - acos( NewCosPhi ));
+                fAzimuthalAngleToX = (180. / katrin::KConst::Pi()) * (2. * katrin::KConst::Pi() - acos( NewCosPhi ));
             }
         }
 
@@ -1634,7 +1646,7 @@ namespace Kassiopeia
 
     void KSParticle::RecalculateMagneticField() const
     {
-        if(fMagneticFieldCalculator != NULL){
+        if(fMagneticFieldCalculator != nullptr){
             fMagneticFieldCalculator->CalculateField( GetPosition(), GetTime(), fMagneticField );
             fGetMagneticFieldAction = &KSParticle::DoNothing;
         }
@@ -1846,7 +1858,7 @@ namespace Kassiopeia
 
         fVelocity += LongVelocityVector;
         fSpeed = fVelocity.Magnitude();
-        double Beta = fSpeed / KConst::C();
+        double Beta = fSpeed / katrin::KConst::C();
         fLorentzFactor = 1.0 / sqrt( (1.0 - Beta)*(1 + Beta) );
         fMomentum = (GetMass() * fLorentzFactor) * fVelocity;
         fLongVelocity = NewLongVelocity;
@@ -1906,7 +1918,7 @@ namespace Kassiopeia
 
         fVelocity += TransVelocityVector;
         fSpeed = fVelocity.Magnitude();
-        double Beta = fSpeed / KConst::C();
+        double Beta = fSpeed / katrin::KConst::C();
         fLorentzFactor = 1.0 / sqrt( (1.0 - Beta)*(1 + Beta) );
         fMomentum = (GetMass() * fLorentzFactor) * fVelocity;
         fTransVelocity = NewTransVelocity;
@@ -1967,7 +1979,7 @@ namespace Kassiopeia
             oprmsg( eWarning ) <<"[" << fPolarAngleToB << "]" << ret;
             oprmsg( eWarning ) << "Polar Angle is only defined between 0 and 180 degree" << eom;
         }
-        double NewPolarAngleToB_SI = (KConst::Pi() / 180.) * NewPolarAngleToB;
+        double NewPolarAngleToB_SI = (katrin::KConst::Pi() / 180.) * NewPolarAngleToB;
         double MomentumMagnitude = fMomentum.Magnitude();
         KThreeVector LongUnit = GetMagneticField().Unit();
         KThreeVector TransUnit = (fMomentum - GetLongMomentum() * LongUnit).Unit();
@@ -2003,7 +2015,7 @@ namespace Kassiopeia
     }
     void KSParticle::RecalculatePolarAngleToB() const
     {
-        fPolarAngleToB = acos( fMomentum.Unit().Dot( GetMagneticField().Unit() ) ) * 180. / KConst::Pi();
+        fPolarAngleToB = acos( fMomentum.Unit().Dot( GetMagneticField().Unit() ) ) * 180. / katrin::KConst::Pi();
 
         oprmsg_debug( "KSParticle: [" << this << "] recalculating fPolarAngleToB" << ret );
         oprmsg_debug( "[" << fPolarAngleToB << "]" << eom );
@@ -2019,8 +2031,8 @@ namespace Kassiopeia
 
     void KSParticle::SetCyclotronFrequency( const double& NewCyclotronFrequency )
     {
-        double LorentzFactor = (GetCharge() * GetMagneticField().Magnitude()) / (2.0 * KConst::Pi() * GetMass() * NewCyclotronFrequency);
-        double MomentumMagnitude = GetMass() * KConst::C() * sqrt( (LorentzFactor + 1.0)*( LorentzFactor - 1.0) );
+        double LorentzFactor = (GetCharge() * GetMagneticField().Magnitude()) / (2.0 * katrin::KConst::Pi() * GetMass() * NewCyclotronFrequency);
+        double MomentumMagnitude = GetMass() * katrin::KConst::C() * sqrt( (LorentzFactor + 1.0)*( LorentzFactor - 1.0) );
 
         fMomentum.SetMagnitude( MomentumMagnitude );
         fLorentzFactor = LorentzFactor;
@@ -2056,7 +2068,7 @@ namespace Kassiopeia
     {
         oprmsg_assert( fMagneticField.Magnitude(), != 0.0 );
 
-        fCyclotronFrequency = (fabs( GetCharge() ) * GetMagneticField().Magnitude()) / (2.0 * KConst::Pi() * GetMass() * GetLorentzFactor());
+        fCyclotronFrequency = (fabs( GetCharge() ) * GetMagneticField().Magnitude()) / (2.0 * katrin::KConst::Pi() * GetMass() * GetLorentzFactor());
 
         oprmsg_debug( "KSParticle: [" << this << "] recalculating fCyclotronFrequency" << ret );
         oprmsg_debug( "[" << fCyclotronFrequency << "]" << eom );
@@ -2226,7 +2238,7 @@ namespace Kassiopeia
                 }
                 else
                 {
-                    fSpinAngle = 2*KConst::Pi() - acos( fSpin.Dot( LocalX ) / fSpin.Magnitude() / sqrt( 1 - GetAlignedSpin() * GetAlignedSpin() ) );
+                    fSpinAngle = 2*katrin::KConst::Pi() - acos( fSpin.Dot( LocalX ) / fSpin.Magnitude() / sqrt( 1 - GetAlignedSpin() * GetAlignedSpin() ) );
                 }
             }
             else
@@ -2246,6 +2258,7 @@ namespace Kassiopeia
 
 
     STATICINT sKSParticleDict =
+            KSDictionary< KSParticle >::AddComponent( &KSParticle::GetIndexNumber, "index_number" ) +
             KSDictionary< KSParticle >::AddComponent( &KSParticle::GetParentRunId, "parent_run_id" ) +
             KSDictionary< KSParticle >::AddComponent( &KSParticle::GetParentEventId, "parent_event_id" ) +
             KSDictionary< KSParticle >::AddComponent( &KSParticle::GetParentTrackId, "parent_track_id" ) +

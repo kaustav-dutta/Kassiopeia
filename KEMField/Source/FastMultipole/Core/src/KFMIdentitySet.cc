@@ -22,7 +22,7 @@ KFMIdentitySet::AddID(unsigned int id)
 void
 KFMIdentitySet::RemoveID(unsigned int id)
 {
-    std::vector<unsigned int>::iterator IT = std::find(fIDSet.begin(), fIDSet.end(), id);
+    auto IT = std::find(fIDSet.begin(), fIDSet.end(), id);
     if(IT != fIDSet.end())
     {
         fIDSet.erase(IT);
@@ -53,8 +53,8 @@ void KFMIdentitySet::Print() const
 int
 KFMIdentitySet::FindID(unsigned int id) const
 {
-    std::vector<unsigned int>::const_iterator a = fIDSet.begin();
-    std::vector<unsigned int>::const_iterator b = fIDSet.end();
+    auto a = fIDSet.begin();
+    auto b = fIDSet.end();
     std::vector<unsigned int>::const_iterator c;
 
     if( std::binary_search(a,b,id) )
@@ -140,7 +140,7 @@ KFMIdentitySet::Clear()
 void
 KFMIdentitySet::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild( new KSAAssociatedPassedPointerPODOutputNode< KFMIdentitySet, std::vector< unsigned int >, &KFMIdentitySet::GetIDs >(std::string("IDs"), this) );
     }
@@ -149,7 +149,7 @@ KFMIdentitySet::DefineOutputNode(KSAOutputNode* node) const
 void
 KFMIdentitySet::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild( new KSAAssociatedPointerPODInputNode< KFMIdentitySet, std::vector< unsigned int >, &KFMIdentitySet::SetIDs >(std::string("IDs"), this) );
     }

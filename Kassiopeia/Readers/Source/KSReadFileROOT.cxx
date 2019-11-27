@@ -8,11 +8,11 @@ namespace Kassiopeia
 {
 
     KSReadFileROOT::KSReadFileROOT() :
-            fRootFile( NULL ),
-            fRun( NULL ),
-            fEvent( NULL ),
-            fTrack( NULL ),
-            fStep( NULL )
+            fRootFile( nullptr ),
+            fRun( nullptr ),
+            fEvent( nullptr ),
+            fTrack( nullptr ),
+            fStep( nullptr )
     {
     }
 

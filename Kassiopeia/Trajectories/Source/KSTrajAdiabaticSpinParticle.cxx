@@ -2,7 +2,6 @@
 #include "KSTrajectoriesMessage.h"
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <cmath>
 
@@ -20,8 +19,8 @@ namespace Kassiopeia
     //8 is B-aligned component of spin
     //9 is B-perp angle of spin
 
-    KSMagneticField* KSTrajAdiabaticSpinParticle::fMagneticFieldCalculator = NULL;
-    KSElectricField* KSTrajAdiabaticSpinParticle::fElectricFieldCalculator = NULL;
+    KSMagneticField* KSTrajAdiabaticSpinParticle::fMagneticFieldCalculator = nullptr;
+    KSElectricField* KSTrajAdiabaticSpinParticle::fElectricFieldCalculator = nullptr;
     double KSTrajAdiabaticSpinParticle::fMass = 0.;
     double KSTrajAdiabaticSpinParticle::fCharge = 0.;
     double KSTrajAdiabaticSpinParticle::fSpinMagnitude = 0.;
@@ -159,7 +158,7 @@ namespace Kassiopeia
         {
             fSpinAngle = aParticle.GetSpinAngle();
 
-            fData[ 9 ] = std::fmod( fSpinAngle, 2.*KConst::Pi() );
+            fData[ 9 ] = std::fmod( fSpinAngle, 2.*katrin::KConst::Pi() );
         }
 
         FixSpin();
@@ -182,7 +181,7 @@ namespace Kassiopeia
         aParticle.SetTime( GetTime() );
 
         aParticle.SetAlignedSpin( GetAlignedSpin() );
-        aParticle.SetSpinAngle( std::fmod( GetSpinAngle(), 2.*KConst::Pi() ) );
+        aParticle.SetSpinAngle( std::fmod( GetSpinAngle(), 2.*katrin::KConst::Pi() ) );
 
         if( fGetMagneticFieldPtr == &KSTrajAdiabaticSpinParticle::DoNothing )
         {
@@ -324,7 +323,7 @@ namespace Kassiopeia
     }
     const double& KSTrajAdiabaticSpinParticle::GetLorentzFactor() const
     {
-        fLorentzFactor = sqrt( 1. + GetMomentum().MagnitudeSquared() / (GetMass() * GetMass() * KConst::C() * KConst::C()) );
+        fLorentzFactor = sqrt( 1. + GetMomentum().MagnitudeSquared() / (GetMass() * GetMass() * katrin::KConst::C() * katrin::KConst::C()) );
         return fLorentzFactor;
     }
     const double& KSTrajAdiabaticSpinParticle::GetKineticEnergy() const
@@ -386,7 +385,7 @@ namespace Kassiopeia
     }
     const double& KSTrajAdiabaticSpinParticle::GetCyclotronFrequency() const
     {
-        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * KConst::Pi() * GetLorentzFactor() * GetMass());
+        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * katrin::KConst::Pi() * GetLorentzFactor() * GetMass());
         return fCyclotronFrequency;
     }
     const double& KSTrajAdiabaticSpinParticle::GetSpinPrecessionFrequency() const

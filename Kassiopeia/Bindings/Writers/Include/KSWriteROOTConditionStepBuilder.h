@@ -64,10 +64,10 @@ namespace katrin
     template< >
     inline bool KSWriteROOTConditionStepBuilder::End()
     {
-        KSComponent* tComponent = NULL;
+        KSComponent* tComponent = nullptr;
         if( fObject->fGroupName.empty() == false )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
             {
                 KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -77,7 +77,7 @@ namespace katrin
                     break;
                 }
             }
-            if( tComponent == NULL )
+            if( tComponent == nullptr )
             {
                 objctmsg( eError ) << "write ROOT condition step builder could not find component <" << fObject->fComponentName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;
@@ -89,11 +89,11 @@ namespace katrin
         }
 
 
-        KSWriteROOTCondition* tCondition = NULL;
+        KSWriteROOTCondition* tCondition = nullptr;
 
         if( tComponent->Is< unsigned short >() == true )
         {
-        	KSWriteROOTConditionStep< unsigned short >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned short >();
+        	auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned short >();
         	tWriteROOTConditionStep->SetName( fObject->fName );
         	tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
         	tWriteROOTConditionStep->SetValue( tComponent->As< unsigned short >() );
@@ -105,7 +105,7 @@ namespace katrin
 
         if( tComponent->Is< short >() == true )
         {
-            KSWriteROOTConditionStep< short >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< short >();
+            auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< short >();
             tWriteROOTConditionStep->SetName( fObject->fName );
             tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
             tWriteROOTConditionStep->SetValue( tComponent->As< short >() );
@@ -117,7 +117,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned int >() == true )
         {
-            KSWriteROOTConditionStep< unsigned int >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned int >();
+            auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned int >();
             tWriteROOTConditionStep->SetName( fObject->fName );
             tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
             tWriteROOTConditionStep->SetValue( tComponent->As< unsigned int >() );
@@ -129,7 +129,7 @@ namespace katrin
 
         if( tComponent->Is< int >() == true )
         {
-            KSWriteROOTConditionStep< int >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< int >();
+            auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< int >();
             tWriteROOTConditionStep->SetName( fObject->fName );
             tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
             tWriteROOTConditionStep->SetValue( tComponent->As< int >() );
@@ -141,7 +141,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned long >() == true )
         {
-            KSWriteROOTConditionStep< unsigned long >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned long >();
+            auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< unsigned long >();
             tWriteROOTConditionStep->SetName( fObject->fName );
             tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
             tWriteROOTConditionStep->SetValue( tComponent->As< unsigned long >() );
@@ -153,7 +153,7 @@ namespace katrin
 
         if( tComponent->Is< long >() == true )
         {
-            KSWriteROOTConditionStep< long >* tWriteROOTConditionStep = new KSWriteROOTConditionStep< long >();
+            auto* tWriteROOTConditionStep = new KSWriteROOTConditionStep< long >();
             tWriteROOTConditionStep->SetName( fObject->fName );
             tWriteROOTConditionStep->SetNthStepValue( fObject->fNthStepValue );
             tWriteROOTConditionStep->SetValue( tComponent->As< long >() );

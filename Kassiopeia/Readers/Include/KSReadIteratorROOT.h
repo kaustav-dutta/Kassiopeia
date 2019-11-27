@@ -30,30 +30,30 @@ namespace Kassiopeia
 
         public:
             KSReadIteratorROOT( TFile* aFile, TTree* aKeyTree, TTree* aDataTree );
-            virtual ~KSReadIteratorROOT();
+            ~KSReadIteratorROOT() override;
 
             //*********
             //traversal
             //*********
 
         public:
-            void operator<<( const unsigned int& aValue );
-            void operator++( int );
-            void operator--( int );
+            void operator<<( const unsigned int& aValue ) override;
+            void operator++( int ) override;
+            void operator--( int ) override;
 
             //**********
             //comparison
             //**********
 
         public:
-            bool Valid() const;
-            unsigned int Index() const;
-            bool operator<( const unsigned int& aValue ) const;
-            bool operator<=( const unsigned int& aValue ) const;
-            bool operator>( const unsigned int& aValue ) const;
-            bool operator>=( const unsigned int& aValue  ) const;
-            bool operator==( const unsigned int& aValue ) const;
-            bool operator!=( const unsigned int& aValue ) const;
+            bool Valid() const override;
+            unsigned int Index() const override;
+            bool operator<( const unsigned int& aValue ) const override;
+            bool operator<=( const unsigned int& aValue ) const override;
+            bool operator>( const unsigned int& aValue ) const override;
+            bool operator>=( const unsigned int& aValue  ) const override;
+            bool operator==( const unsigned int& aValue ) const override;
+            bool operator!=( const unsigned int& aValue ) const override;
 
             //*******
             //content

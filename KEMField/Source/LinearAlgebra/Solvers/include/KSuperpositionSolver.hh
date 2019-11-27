@@ -35,10 +35,10 @@ namespace KEMField
     public:
       Matrix(std::vector<std::vector<ValueType> >& elements)
 	: fElements(elements) {}
-      virtual ~Matrix() {}
+      ~Matrix() override {}
 
-      unsigned int Dimension(unsigned int) const;
-      const ValueType& operator()(unsigned int,unsigned int) const;
+      unsigned int Dimension(unsigned int) const override;
+      const ValueType& operator()(unsigned int,unsigned int) const override;
 
     private:
       std::vector<std::vector<ValueType> >& fElements;

@@ -24,11 +24,11 @@ namespace Kassiopeia
         public:
             KSGenGeneratorSimulation();
             KSGenGeneratorSimulation( const KSGenGeneratorSimulation& aCopy );
-            KSGenGeneratorSimulation* Clone() const;
-            virtual ~KSGenGeneratorSimulation();
+            KSGenGeneratorSimulation* Clone() const override;
+            ~KSGenGeneratorSimulation() override;
 
         public:
-            virtual void ExecuteGeneration( KSParticleQueue& aPrimaries );
+            void ExecuteGeneration( KSParticleQueue& aPrimaries ) override;
 
         public:
             // note that some of these member variables cannot be set via XML bindings yet
@@ -59,8 +59,8 @@ namespace Kassiopeia
             ;K_SET_GET( int, DefaultPID );
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
             void GenerateParticlesFromFile( KSParticleQueue &aParticleQueue );
 

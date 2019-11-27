@@ -18,7 +18,7 @@ namespace katrin
 
     KSIntCalculatorArgonSet::~KSIntCalculatorArgonSet()
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             delete (*tIt);
         }
@@ -33,7 +33,7 @@ namespace katrin
 
     void KSIntCalculatorArgonSet::ReleaseCalculators( KSIntScattering* aScattering )
     {
-        for( vector< KSIntCalculator* >::iterator tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
+        for( auto tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             aScattering->AddCalculator( *tIt );
         }

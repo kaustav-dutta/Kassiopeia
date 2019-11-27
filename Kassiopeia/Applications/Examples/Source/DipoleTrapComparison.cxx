@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
 
-    KRootFile* exact_tRootFile = new KRootFile();
+    auto* exact_tRootFile = new KRootFile();
     exact_tRootFile->AddToNames( "~/Work/kasper/install/output/Kassiopeia/DipoleNeutronTrapSimulation.root" );
 
     KSReadFileROOT exact_tReader;
@@ -24,11 +24,11 @@ int main()
     KSReadStepROOT& exact_tStepReader= exact_tReader.GetStep();
 
     KSReadObjectROOT& exact_tCell = exact_tStepReader.GetObject( "component_step_world" );
-    KSDouble& exact_tTime = exact_tCell.Get< KSDouble >( "time" );
-    KSThreeVector& exact_tMomentum = exact_tCell.Get< KSThreeVector >( "momentum" );
+    auto& exact_tTime = exact_tCell.Get< KSDouble >( "time" );
+    auto& exact_tMomentum = exact_tCell.Get< KSThreeVector >( "momentum" );
 
-    vector<Double_t>* exact_time_list = new vector<Double_t>();
-    vector<Double_t>* exact_momentum_z_list = new vector<Double_t>();
+    auto* exact_time_list = new vector<Double_t>();
+    auto* exact_momentum_z_list = new vector<Double_t>();
     int i = 0;
 
     for( exact_tRunReader = 0; exact_tRunReader <= exact_tRunReader.GetLastRunIndex(); exact_tRunReader++ )
@@ -55,7 +55,7 @@ int main()
 
     delete exact_tRootFile;
 
-    KRootFile* adiabatic_tRootFile = new KRootFile();
+    auto* adiabatic_tRootFile = new KRootFile();
     adiabatic_tRootFile->AddToNames( "~/Work/kasper/install/output/Kassiopeia/DipoleNeutronAdiabaticTrapSimulation.root" );
 
     KSReadFileROOT adiabatic_tReader;
@@ -67,11 +67,11 @@ int main()
     KSReadStepROOT& adiabatic_tStepReader= adiabatic_tReader.GetStep();
 
     KSReadObjectROOT& adiabatic_tCell = adiabatic_tStepReader.GetObject( "component_step_world" );
-    KSDouble& adiabatic_tTime = adiabatic_tCell.Get< KSDouble >( "time" );
-    KSThreeVector& adiabatic_tMomentum = adiabatic_tCell.Get< KSThreeVector >( "momentum" );
+    auto& adiabatic_tTime = adiabatic_tCell.Get< KSDouble >( "time" );
+    auto& adiabatic_tMomentum = adiabatic_tCell.Get< KSThreeVector >( "momentum" );
 
-    vector<Double_t>* adiabatic_time_list = new vector<Double_t>();
-    vector<Double_t>* adiabatic_momentum_z_list = new vector<Double_t>();
+    auto* adiabatic_time_list = new vector<Double_t>();
+    auto* adiabatic_momentum_z_list = new vector<Double_t>();
 
     for( adiabatic_tRunReader = 0; adiabatic_tRunReader <= adiabatic_tRunReader.GetLastRunIndex(); adiabatic_tRunReader++ )
     {
@@ -91,7 +91,7 @@ int main()
   		}
     }
 
-    vector<Double_t>* momentum_diff_list = new vector<Double_t>();
+    auto* momentum_diff_list = new vector<Double_t>();
 
     for ( i = 0; i < 3000; i++ )
     {
@@ -109,9 +109,9 @@ int main()
     //delete[] adiabatic_time_list;
     //delete[] adiabatic_momentum_z_list;
 
-    TApplication* tApplication = new TApplication("app", 0, 0 );
+    auto* tApplication = new TApplication("app", nullptr, nullptr );
 
-    TCanvas* c1 = new TCanvas("c1","Track Comparison",200,10,1000,700);
+    auto* c1 = new TCanvas("c1","Track Comparison",200,10,1000,700);
 
     // std::cout << exact_time_list->size() << "\n";
     // for (i = 0; i < exact_time_list->size(); i++ )
@@ -128,7 +128,7 @@ int main()
     // gr2->SetMarkerColor(2);
     // gr2->Draw("P");
 
-    TGraph *gr3 = new TGraph( 3000, &(*adiabatic_time_list)[0], &(*momentum_diff_list)[0] );
+    auto *gr3 = new TGraph( 3000, &(*adiabatic_time_list)[0], &(*momentum_diff_list)[0] );
     gr3->SetMarkerColor(4);
     gr3->Draw("AP");
     gr3->GetXaxis()->SetTitle( "Time" );

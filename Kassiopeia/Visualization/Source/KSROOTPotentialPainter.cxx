@@ -15,7 +15,7 @@ namespace Kassiopeia
     KSROOTPotentialPainter::KSROOTPotentialPainter() :
             fXAxis( "z" ),
             fYAxis( "y" ),
-            fCalcPot(1),
+            fCalcPot(true),
             fMap(),
             fComparison( false )
     {
@@ -28,19 +28,19 @@ namespace Kassiopeia
     {
         vismsg(eNormal) << "Getting electric field " << fElectricFieldName << " from the toolbox" << eom;
         KSElectricField* tElField = getElectricField( fElectricFieldName );
-        if ( tElField == NULL)
+        if ( tElField == nullptr)
             vismsg(eError) << "No electric Field!" << eom;
         vismsg(eNormal) << "Initialize electric field (again)" << eom;
         tElField->Initialize();
 
         // reference field
-        KSElectricField* tRefField = NULL;
+        KSElectricField* tRefField = nullptr;
         if( fComparison )
         {
             vismsg(eNormal) << "Getting reference electric field " << fReferenceFieldName << " from the toolbox" << eom;
             tRefField = getElectricField( fReferenceFieldName );
 
-            if ( tRefField == NULL)
+            if ( tRefField == nullptr)
                 vismsg(eError) << "No electric Field!" << eom;
 
             vismsg(eNormal) << "Initialize electric field (again)" << eom;
@@ -50,7 +50,7 @@ namespace Kassiopeia
         double tDeltaZ = fabs(fZmax-fZmin)/fZsteps;
         double tDeltaR = fabs(fRmax)/fRsteps;
         double tZ,tR;
-        TH2D* Map = new TH2D("Map", "Map", fZsteps,fZmin,fZmax,2*fRsteps,-fRmax,fRmax);
+        auto* Map = new TH2D("Map", "Map", fZsteps,fZmin,fZmax,2*fRsteps,-fRmax,fRmax);
         KThreeVector tPosition;
 
         KThreeVector ElectricField;
@@ -175,7 +175,7 @@ namespace Kassiopeia
         	else if(fYAxis=="x") fMap->GetYaxis()->SetTitle("x (m)");
 
         	fMap->GetZaxis()->SetTitleOffset(1.4);
-        	fMap->SetStats(0);
+        	fMap->SetStats(false);
         	fMap->SetTitle( "" );
         	fMap->Draw( "COLZL" );
         }

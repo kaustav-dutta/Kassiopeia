@@ -45,19 +45,19 @@ public:
 	{
 	}
 
-	virtual ~KImplicitKrylovPreconditioner() {}
+	~KImplicitKrylovPreconditioner() override {}
 
-	virtual std::string Name(){ return std::string("implicit_krylov"); }
+	std::string Name() override{ return std::string("implicit_krylov"); }
 
 	KSmartPointer< KIterativeKrylovSolver<ValueType> > GetSolver(){return fSolver;}
 
-	virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+	void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
 	{
 		y.Fill(0.);
 		fSolver->Solve(y, x);
 	}
 
-	virtual void MultiplyTranspose(const KVector<ValueType>& /*x*/, KVector<ValueType>& /*y*/) const
+	void MultiplyTranspose(const KVector<ValueType>& /*x*/, KVector<ValueType>& /*y*/) const override
 	{
 		//this function must be present, but its not defined
 		kfmout<<"KImplicitKrylovPreconditioner::MultiplyTranspose: Fatal error, this function is not implemented."<<kfmendl;
@@ -67,11 +67,11 @@ public:
 	//while the matrix defining the preconditioner is fixed
 	//because we must implicity solve for the inverse action of this matrix
 	//we consider this to be a non-stationary preconditioner
-	virtual bool IsStationary(){return false;};
+	bool IsStationary() override{return false;};
 
-	virtual unsigned int Dimension() const {return fSolver->Dimension();} ;
+	unsigned int Dimension() const override {return fSolver->Dimension();} ;
 
-	virtual const ValueType& operator()(unsigned int /*i*/, unsigned int /*j*/) const
+	const ValueType& operator()(unsigned int /*i*/, unsigned int /*j*/) const override
 	{
 		//This function always returns zero as an implicit (non-stationary)
 		//preconditioner cannot easily compute fixed matrix elements of the inverse action
@@ -97,7 +97,7 @@ KSmartPointer< KPreconditioner<ValueType> >
 KBuildKrylovPreconditioner(
 		const KKrylovSolverConfiguration& config,
 		KSmartPointer<const KSquareMatrix<ValueType> > matrix,
-		KSmartPointer<const KSquareMatrix<ValueType> > preconditioner = NULL)
+		KSmartPointer<const KSquareMatrix<ValueType> > preconditioner = nullptr)
 {
 	KSmartPointer< KIterativeKrylovSolver<ValueType > > solver =
 			KBuildKrylovSolver(config,matrix,preconditioner);

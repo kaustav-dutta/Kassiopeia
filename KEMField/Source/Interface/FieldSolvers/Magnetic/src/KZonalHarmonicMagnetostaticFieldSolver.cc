@@ -15,8 +15,8 @@ using namespace std;
 namespace KEMField {
 
 KZonalHarmonicMagnetostaticFieldSolver::KZonalHarmonicMagnetostaticFieldSolver() :
-        fZHContainer( NULL ),
-        fZonalHarmonicFieldSolver( NULL )
+        fZHContainer( nullptr ),
+        fZonalHarmonicFieldSolver( nullptr )
 {
     fParameters = new KZonalHarmonicParameters();
 }
@@ -48,7 +48,7 @@ void KZonalHarmonicMagnetostaticFieldSolver::InitializeCore( KElectromagnetConta
     zhContainerLabels.push_back( solutionHash );
     zhContainerLabels.push_back( parameterHash );
 
-    KZonalHarmonicParameters* tParametersCopy = new KZonalHarmonicParameters;
+    auto* tParametersCopy = new KZonalHarmonicParameters;
     *tParametersCopy = *fParameters;
 
     fZHContainer = new KZonalHarmonicContainer< KMagnetostaticBasis >( container, tParametersCopy );

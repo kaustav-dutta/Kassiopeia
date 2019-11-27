@@ -12,19 +12,19 @@ namespace Kassiopeia
         public:
             KSTermMaxSteps();
             KSTermMaxSteps( const KSTermMaxSteps& aCopy );
-            KSTermMaxSteps* Clone() const;
-            virtual ~KSTermMaxSteps();
+            KSTermMaxSteps* Clone() const override;
+            ~KSTermMaxSteps() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetMaxSteps( const unsigned int& maxsteps );
 
         protected:
-            virtual void ActivateComponent();
-            virtual void DeactivateComponent();
+            void ActivateComponent() override;
+            void DeactivateComponent() override;
 
         private:
             unsigned int fMaxSteps;

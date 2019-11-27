@@ -25,13 +25,13 @@ class KFMLeafConditionActor: public KFMInspectingActor<NodeType>
 {
     public:
         KFMLeafConditionActor(){fSwitch = true;};
-        virtual ~KFMLeafConditionActor(){};
+        ~KFMLeafConditionActor() override{};
 
         void SetTrueOnLeafNodes(){fSwitch = true;}
         void SetFalseOnLeafNodes(){fSwitch = false;};
 
         //needs to answer this question about whether this node statisfies a condition
-        virtual bool ConditionIsSatisfied(NodeType* node)
+        bool ConditionIsSatisfied(NodeType* node) override
         {
             if( node->HasChildren() )
             {

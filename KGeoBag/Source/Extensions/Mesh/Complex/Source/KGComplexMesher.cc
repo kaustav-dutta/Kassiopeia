@@ -27,22 +27,22 @@ namespace KGeoBag
 
         //figure out if we have a triangle, rectangle, or wire element
         //TODO figure out a way to get rid of these dynamics casts
-        KGMeshTriangle* t = NULL;
+        KGMeshTriangle* t = nullptr;
         t = dynamic_cast<KGMeshTriangle*>(e);
 
-        KGMeshRectangle* r = NULL;
+        KGMeshRectangle* r = nullptr;
         r = dynamic_cast<KGMeshRectangle*>(e);
 
         bool have_triangle = false;
-        if(t != NULL){have_triangle = true;};
+        if(t != nullptr){have_triangle = true;};
 
         bool have_rectangle = false;
-        if(r != NULL){have_rectangle = true;};
+        if(r != nullptr){have_rectangle = true;};
 
         if(have_triangle)
         {
             //get the nearest normal to the centroid
-            if(fCurrentSurface != NULL)
+            if(fCurrentSurface != nullptr)
             {
                 KThreeVector p0 = t->GetP0();
                 KThreeVector p1 = t->GetP1();
@@ -68,7 +68,7 @@ namespace KGeoBag
         if(have_rectangle)
         {
             //get the nearest normal to the centroid
-            if(fCurrentSurface != NULL)
+            if(fCurrentSurface != nullptr)
             {
                 KThreeVector p0 = r->GetP0();
                 KThreeVector p1 = r->GetP1();

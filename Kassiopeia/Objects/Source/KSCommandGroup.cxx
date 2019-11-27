@@ -15,14 +15,14 @@ namespace Kassiopeia
     {
         Set( this );
 
-        for( CommandIt tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
+        for( auto tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
         {
             (*tIt) = (*tIt)->Clone();
         }
     }
     KSCommandGroup::~KSCommandGroup()
     {
-        for( CommandIt tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
+        for( auto tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
         {
             delete (*tIt);
         }
@@ -45,7 +45,7 @@ namespace Kassiopeia
     }
     void KSCommandGroup::RemoveCommand( KSCommand* aCommand )
     {
-        for( CommandIt tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
+        for( auto tIt = fCommands.begin(); tIt != fCommands.end(); tIt++ )
         {
             if( (*tIt) == aCommand )
             {

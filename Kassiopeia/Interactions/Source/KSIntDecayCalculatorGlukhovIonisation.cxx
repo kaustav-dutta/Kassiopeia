@@ -4,7 +4,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -13,7 +12,7 @@ namespace Kassiopeia
             fTargetPID( 0 ),
             fminPID( 0 ),
             fmaxPID( 0 ),
-            fDecayProductGenerator( NULL )
+            fDecayProductGenerator( nullptr )
     {
     }
 
@@ -112,7 +111,7 @@ namespace Kassiopeia
             fStepNDecays = 1;
             fStepEnergyLoss = 0.;
 
-            if(fDecayProductGenerator != NULL)
+            if(fDecayProductGenerator != nullptr)
             {
                 KSParticleQueue tDecayProducts;
 
@@ -134,7 +133,7 @@ namespace Kassiopeia
 
     void KSIntDecayCalculatorGlukhovIonisation::SetDecayProductGenerator( KSGenerator* aGenerator )
     {
-        if( fDecayProductGenerator == NULL )
+        if( fDecayProductGenerator == nullptr )
         {
             fDecayProductGenerator = aGenerator;
             return;

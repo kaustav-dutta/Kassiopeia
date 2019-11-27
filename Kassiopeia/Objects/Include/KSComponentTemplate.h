@@ -25,7 +25,7 @@ namespace Kassiopeia
             {
                 Set( static_cast< XThisType* >( this ) );
             }
-            virtual ~KSComponentTemplate()
+            ~KSComponentTemplate() override
             {
             }
 
@@ -34,11 +34,11 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "component <" << this->GetName() << "> building output named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XThisType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     return XFirstParentType::Component( aField );
                 }
@@ -48,7 +48,7 @@ namespace Kassiopeia
                     return tComponent;
                 }
             }
-            KSCommand* Command( const std::string& aField, KSComponent* aChild )
+            KSCommand* Command( const std::string& aField, KSComponent* aChild ) override
             {
                 if ( aChild == nullptr )
                 {
@@ -58,7 +58,7 @@ namespace Kassiopeia
 
                 objctmsg_debug( "component <" << this->GetName() << "> building command named <" << aField << ">" << eom )
                 KSCommand* tCommand = KSDictionary< XThisType >::GetCommand( this, aChild, aField );
-                if( tCommand == NULL )
+                if( tCommand == nullptr )
                 {
                     return XFirstParentType::Command( aField, aChild );
                 }
@@ -83,7 +83,7 @@ namespace Kassiopeia
             {
                 Set( static_cast< XThisType* >( this ) );
             }
-            virtual ~KSComponentTemplate()
+            ~KSComponentTemplate() override
             {
             }
 
@@ -92,14 +92,14 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Component( const std::string& aLabel )
+            KSComponent* Component( const std::string& aLabel ) override
             {
                 objctmsg_debug( "component <" << this->GetName() << "> building component named <" << aLabel << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XThisType >::GetComponent( this, aLabel );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "component <" << this->GetName() << "> has no component named <" << aLabel << ">" << eom;
-                    return NULL;
+                    return nullptr;
                 }
                 else
                 {
@@ -107,14 +107,14 @@ namespace Kassiopeia
                     return tComponent;
                 }
             }
-            KSCommand* Command( const std::string& aField, KSComponent* aChild )
+            KSCommand* Command( const std::string& aField, KSComponent* aChild ) override
             {
                 objctmsg_debug( "component <" << this->GetName() << "> building command named <" << aField << ">" << eom )
                 KSCommand* tCommand = KSDictionary< XThisType >::GetCommand( this, aChild, aField );
-                if( tCommand == NULL )
+                if( tCommand == nullptr )
                 {
                     objctmsg( eError ) << "component <" << this->GetName() << "> has no command named <" << aField << ">" << eom;
-                    return NULL;
+                    return nullptr;
                 }
                 else
                 {

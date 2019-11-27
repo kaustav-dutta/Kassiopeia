@@ -5,6 +5,7 @@ using std::cout;
 using std::endl;
 
 #include <cmath>
+#include "KConst.h"
 
 #include "KGMathMessage.hh"
 
@@ -107,13 +108,13 @@ namespace KGeoBag
     }
     void KTransformation::SetFrameAxisAngle( const double& angle, const double& theta, const double& phi )
     {
-        double CosTheta = cos( (KConst::Pi() / 180.) * theta );
-        double SinTheta = sin( (KConst::Pi() / 180.) * theta );
-        double CosPhi = cos( (KConst::Pi() / 180.) * phi );
-        double SinPhi = sin( (KConst::Pi() / 180.) * phi );
+        double CosTheta = cos( (katrin::KConst::Pi() / 180.) * theta );
+        double SinTheta = sin( (katrin::KConst::Pi() / 180.) * theta );
+        double CosPhi = cos( (katrin::KConst::Pi() / 180.) * phi );
+        double SinPhi = sin( (katrin::KConst::Pi() / 180.) * phi );
 
         KThreeVector Axis( SinTheta * CosPhi, SinTheta * SinPhi, CosTheta );
-        double Angle = (KConst::Pi() / 180.) * angle;
+        double Angle = (katrin::KConst::Pi() / 180.) * angle;
 
         KRotation Orientation;
         Orientation.SetAxisAngle( Axis, Angle );
@@ -137,9 +138,9 @@ namespace KGeoBag
     }
     void KTransformation::SetFrameEuler( const double& phi, const double& theta, const double& psi )
     {
-        double Phi = (KConst::Pi() / 180.) * phi;
-        double Theta = (KConst::Pi() / 180.) * theta;
-        double Psi = (KConst::Pi() / 180.) * psi;
+        double Phi = (katrin::KConst::Pi() / 180.) * phi;
+        double Theta = (katrin::KConst::Pi() / 180.) * theta;
+        double Psi = (katrin::KConst::Pi() / 180.) * psi;
 
         KRotation Orientation;
         Orientation.SetEulerAngles( Phi, Theta, Psi );
@@ -216,13 +217,13 @@ namespace KGeoBag
 
     void KTransformation::SetRotationAxisAngle( const double& anAngle, const double& aTheta, const double& aPhi )
     {
-        double tCosTheta = cos( (KConst::Pi() / 180.) * aTheta );
-        double tSinTheta = sin( (KConst::Pi() / 180.) * aTheta );
-        double tCosPhi = cos( (KConst::Pi() / 180.) * aPhi );
-        double tSinPhi = sin( (KConst::Pi() / 180.) * aPhi );
+        double tCosTheta = cos( (katrin::KConst::Pi() / 180.) * aTheta );
+        double tSinTheta = sin( (katrin::KConst::Pi() / 180.) * aTheta );
+        double tCosPhi = cos( (katrin::KConst::Pi() / 180.) * aPhi );
+        double tSinPhi = sin( (katrin::KConst::Pi() / 180.) * aPhi );
 
         KThreeVector tAxis( tSinTheta * tCosPhi, tSinTheta * tSinPhi, tCosTheta );
-        double tRadianAngle = (KConst::Pi() / 180.) * anAngle;
+        double tRadianAngle = (katrin::KConst::Pi() / 180.) * anAngle;
 
         fRotation.SetAxisAngle( tAxis, tRadianAngle );
         fRotationInverse = fRotation.Inverse();
@@ -232,9 +233,9 @@ namespace KGeoBag
 
     void KTransformation::SetRotationEuler( const double& anAlpha, const double& aBeta, const double& aGamma )
     {
-        double tRadianAlpha = (KConst::Pi() / 180.) * anAlpha;
-        double tRadianBeta = (KConst::Pi() / 180.) * aBeta;
-        double tRadianGamma = (KConst::Pi() / 180.) * aGamma;
+        double tRadianAlpha = (katrin::KConst::Pi() / 180.) * anAlpha;
+        double tRadianBeta = (katrin::KConst::Pi() / 180.) * aBeta;
+        double tRadianGamma = (katrin::KConst::Pi() / 180.) * aGamma;
 
         fRotation.SetEulerAngles( tRadianAlpha, tRadianBeta, tRadianGamma );
         fRotationInverse = fRotation.Inverse();
@@ -244,9 +245,9 @@ namespace KGeoBag
 
     void KTransformation::SetRotationZYZEuler( const double& anAlpha, const double& aBeta, const double& aGamma )
     {
-        double tRadianAlpha = (KConst::Pi() / 180.) * anAlpha;
-        double tRadianBeta = (KConst::Pi() / 180.) * aBeta;
-        double tRadianGamma = (KConst::Pi() / 180.) * aGamma;
+        double tRadianAlpha = (katrin::KConst::Pi() / 180.) * anAlpha;
+        double tRadianBeta = (katrin::KConst::Pi() / 180.) * aBeta;
+        double tRadianGamma = (katrin::KConst::Pi() / 180.) * aGamma;
 
         fRotation.SetEulerZYZAngles( tRadianAlpha, tRadianBeta, tRadianGamma );
         fRotationInverse = fRotation.Inverse();

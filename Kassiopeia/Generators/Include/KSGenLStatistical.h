@@ -19,8 +19,8 @@ namespace Kassiopeia
     public:
         KSGenLStatistical();
         KSGenLStatistical(const KSGenLStatistical&);
-        KSGenLStatistical* Clone() const;
-        virtual ~KSGenLStatistical();
+        KSGenLStatistical* Clone() const override;
+        ~KSGenLStatistical() override;
 
     public:
         /**
@@ -30,12 +30,12 @@ namespace Kassiopeia
          *
          * \param aPrimaries
          */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
 
     public:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

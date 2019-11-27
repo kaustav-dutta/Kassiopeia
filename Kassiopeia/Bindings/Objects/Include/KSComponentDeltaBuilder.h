@@ -108,7 +108,7 @@ namespace katrin
             return new KSComponentDelta< KThreeMatrix >( aComponent, aComponent->As< KThreeMatrix >() );
         }
 
-        return NULL;
+        return nullptr;
     }
 
     typedef KComplexElement< KSComponentDeltaData > KSComponentDeltaBuilder;
@@ -154,10 +154,10 @@ namespace katrin
     template< >
     inline bool KSComponentDeltaBuilder::End()
     {
-        KSComponent* tParentComponent = NULL;
+        KSComponent* tParentComponent = nullptr;
         if( fObject->fGroupName.empty() == false )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
             {
                 KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -167,7 +167,7 @@ namespace katrin
                     break;
                 }
             }
-            if( tParentComponent == NULL )
+            if( tParentComponent == nullptr )
             {
                 objctmsg( eError ) << "component delta builder could not find component <" << fObject->fParentName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;

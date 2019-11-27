@@ -29,11 +29,11 @@ class KFMElectrostaticBasisDataExtractor: public KSelectiveVisitor<KBasisVisitor
 {
     public:
         KFMElectrostaticBasisDataExtractor(){};
-        virtual ~KFMElectrostaticBasisDataExtractor(){};
+        ~KFMElectrostaticBasisDataExtractor() override{};
 
         using KSelectiveVisitor<KBasisVisitor, KTYPELIST_1(KElectrostaticBasis)>::Visit;
 
-        void Visit(KElectrostaticBasis& basis)
+        void Visit(KElectrostaticBasis& basis) override
         {
             fCurrentBasisData[0] = basis.GetSolution(0);
         }

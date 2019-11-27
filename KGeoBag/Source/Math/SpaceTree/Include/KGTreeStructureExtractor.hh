@@ -27,11 +27,11 @@ class KGTreeStructureExtractor: public KGNodeActor< KGNode<ObjectTypeList> >
 {
     public:
         KGTreeStructureExtractor(){ fFlattenedTree.clear(); fNNodes = 0; };
-        virtual ~KGTreeStructureExtractor(){};
+        ~KGTreeStructureExtractor() override{};
 
-        virtual void ApplyAction( KGNode<ObjectTypeList>* node)
+        void ApplyAction( KGNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 //we only need to actively keep track of non-leaf nodes
                 if( node->HasChildren() )

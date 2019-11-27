@@ -54,7 +54,7 @@ namespace Kassiopeia
         KThreeVector tNearestPoint(0., 0., 0.);
         double tMinDist( 0. );
 
-        for( vector< KGeoBag::KGSurface* >::iterator tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
+        for( auto tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
         {
             tNearestPoint = (*tSurfaceIt)->Point( anInitialParticle.GetPosition() );
             tMinDist = (anInitialParticle.GetPosition() - tNearestPoint).Magnitude();
@@ -64,7 +64,7 @@ namespace Kassiopeia
             }
         }
 
-        for( vector< KGeoBag::KGSpace* >::iterator tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
+        for( auto tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
         {
             tNearestPoint = (*tSpaceIt)->Point( anInitialParticle.GetPosition() );
             tMinDist = (anInitialParticle.GetPosition() - tNearestPoint).Magnitude();

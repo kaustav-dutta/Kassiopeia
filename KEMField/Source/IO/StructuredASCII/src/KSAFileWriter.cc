@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include <assert.h>
+#include <cassert>
 
 #ifndef KEMFIELD_USE_ZLIB
 #include "miniz.c"

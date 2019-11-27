@@ -82,8 +82,8 @@ namespace KGeoBag
     }
     void KGTorusSpace::VolumeAccept( KGVisitor* aVisitor )
     {
-        KGTorusSpace::Visitor* tTorusSpaceVisitor = dynamic_cast< KGTorusSpace::Visitor* >( aVisitor );
-        if( tTorusSpaceVisitor != NULL )
+        auto* tTorusSpaceVisitor = dynamic_cast< KGTorusSpace::Visitor* >( aVisitor );
+        if( tTorusSpaceVisitor != nullptr )
         {
             tTorusSpaceVisitor->VisitTorusSpace( this );
             return;

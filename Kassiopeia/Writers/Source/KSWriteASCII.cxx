@@ -100,14 +100,14 @@ namespace Kassiopeia
         Objekt* tObjekt;
         vector< KSComponent* >::iterator tIt;
 
-        for( tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
+        for( tIt = fComponents.begin(); tIt != fComponents.end(); ++tIt )
         {
             tComponent = (*tIt);
             tComponent->PullUpdate();
         }
 
         string str;
-        for (vector< Objekt* >::iterator tIt = fObjekts.begin(); tIt != fObjekts.end(); tIt++  )
+        for (auto tIt = fObjekts.begin(); tIt != fObjekts.end(); ++tIt  )
         {
             tObjekt = (*tIt);
             str = string(tObjekt->getValue().c_str());
@@ -115,7 +115,7 @@ namespace Kassiopeia
             for ( std::string::iterator it=str.begin(); it!=str.end(); ++it)
                 fWriter->TextFile()->File()->put(*it);
         }
-        for( tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
+        for( tIt = fComponents.begin(); tIt != fComponents.end(); ++tIt )
         {
             tComponent = (*tIt);
             tComponent->PullDeupdate();
@@ -129,8 +129,8 @@ namespace Kassiopeia
     {
         wtrmsg_debug( "making title for object <" << aComponent->GetName() << ">" << eom )
 
-        KSComponentGroup* tComponentGroup = aComponent->As< KSComponentGroup >();
-        if( tComponentGroup != NULL )
+        auto* tComponentGroup = aComponent->As< KSComponentGroup >();
+        if( tComponentGroup != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a group" << eom )
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
@@ -139,8 +139,8 @@ namespace Kassiopeia
             return;
         }
 
-        string* tString = aComponent->As< string >();
-        if( tString != NULL )
+        auto* tString = aComponent->As< string >();
+        if( tString != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a string" << eom )
             string* str = new string((aComponent->GetName() + '\t').c_str());
@@ -158,8 +158,8 @@ namespace Kassiopeia
             return;
         }
 
-        KTwoVector* tTwoVector = aComponent->As< KTwoVector >();
-        if( tTwoVector != NULL )
+        auto* tTwoVector = aComponent->As< KTwoVector >();
+        if( tTwoVector != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a two_vector" << eom )
             string* str = new string((aComponent->GetName() + string( "_x" ) + '\t' + aComponent->GetName() + string( "_y" ) + '\t').c_str());
@@ -175,8 +175,8 @@ namespace Kassiopeia
             return;
         }
 
-        KThreeVector* tThreeVector = aComponent->As< KThreeVector >();
-        if( tThreeVector != NULL )
+        auto* tThreeVector = aComponent->As< KThreeVector >();
+        if( tThreeVector != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a three_vector" << eom )
             string* str = new string((aComponent->GetName() + string( "_x" ) + '\t' + aComponent->GetName() + string( "_y" ) + '\t' + aComponent->GetName() + string( "_z" ) + '\t').c_str());
@@ -193,8 +193,8 @@ namespace Kassiopeia
             return;
         }
 
-        bool* tBool = aComponent->As< bool >();
-        if( tBool != NULL )
+        auto* tBool = aComponent->As< bool >();
+        if( tBool != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a bool" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -211,8 +211,8 @@ namespace Kassiopeia
             return;
         }
 
-        unsigned char* tUChar = aComponent->As< unsigned char >();
-        if( tUChar != NULL )
+        auto* tUChar = aComponent->As< unsigned char >();
+        if( tUChar != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is an unsigned_char" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -229,8 +229,8 @@ namespace Kassiopeia
             return;
         }
 
-        char* tChar = aComponent->As< char >();
-        if( tChar != NULL )
+        auto* tChar = aComponent->As< char >();
+        if( tChar != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a char" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -247,8 +247,8 @@ namespace Kassiopeia
             return;
         }
 
-        unsigned short* tUShort = aComponent->As< unsigned short >();
-        if( tUShort != NULL )
+        auto* tUShort = aComponent->As< unsigned short >();
+        if( tUShort != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is an unsigned_short" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -265,8 +265,8 @@ namespace Kassiopeia
             return;
         }
 
-        short* tShort = aComponent->As< short >();
-        if( tShort != NULL )
+        auto* tShort = aComponent->As< short >();
+        if( tShort != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a short" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -283,8 +283,8 @@ namespace Kassiopeia
             return;
         }
 
-        unsigned int* tUInt = aComponent->As< unsigned int >();
-        if( tUInt != NULL )
+        auto* tUInt = aComponent->As< unsigned int >();
+        if( tUInt != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a unsigned_int" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -301,8 +301,8 @@ namespace Kassiopeia
             return;
         }
 
-        int* tInt = aComponent->As< int >();
-        if( tInt != NULL )
+        auto* tInt = aComponent->As< int >();
+        if( tInt != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is an int" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -319,8 +319,8 @@ namespace Kassiopeia
             return;
         }
 
-        unsigned long* tULong = aComponent->As< unsigned long >();
-        if( tULong != NULL )
+        auto* tULong = aComponent->As< unsigned long >();
+        if( tULong != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is an unsigned_long" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -337,8 +337,8 @@ namespace Kassiopeia
             return;
         }
 
-        long* tLong = aComponent->As< long >();
-        if( tLong != NULL )
+        auto* tLong = aComponent->As< long >();
+        if( tLong != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a long" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -355,8 +355,8 @@ namespace Kassiopeia
             return;
         }
 
-        float* tFloat = aComponent->As< float >();
-        if( tFloat != NULL )
+        auto* tFloat = aComponent->As< float >();
+        if( tFloat != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a float" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -373,8 +373,8 @@ namespace Kassiopeia
             return;
         }
 
-        double* tDouble = aComponent->As< double >();
-        if( tDouble != NULL )
+        auto* tDouble = aComponent->As< double >();
+        if( tDouble != nullptr )
         {
             wtrmsg_debug( "  object <" << aComponent->GetName() << "> is a double" << eom )
             string* str = new string((aComponent->GetName()  + '\t').c_str());
@@ -401,7 +401,7 @@ namespace Kassiopeia
     fPath( "" ),
     fStepIteration( 1 ),
     fStepIterationIndex( 0 ),
-    fTextFile( NULL ),
+    fTextFile( nullptr ),
     fRunComponents(),
     fActiveRunComponents(),
     fRunIndex( 0 ),
@@ -437,7 +437,7 @@ namespace Kassiopeia
     fPath( aCopy.fPath ),
     fStepIteration( aCopy.fStepIteration ),
     fStepIterationIndex( 0 ),
-    fTextFile( NULL ),
+    fTextFile( nullptr ),
     fRunComponents(),
     fActiveRunComponents(),
     fRunIndex( 0 ),
@@ -478,7 +478,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::ExecuteRun()
     {
-        wtrmsg_debug( "ASCII writer <" << fName << "> is filling a run" << eom );
+        wtrmsg_debug( "ASCII writer <" << GetName() << "> is filling a run" << eom );
 
         if ( fEventIndex != 0 )
             fRunLastEventIndex = fEventIndex - 1;
@@ -489,7 +489,7 @@ namespace Kassiopeia
         if ( fStepIndex != 0 )
             fRunLastStepIndex = fStepIndex - 1;
 
-        for( ComponentIt tIt = fActiveRunComponents.begin(); tIt != fActiveRunComponents.end(); tIt++ )
+        for( auto tIt = fActiveRunComponents.begin(); tIt != fActiveRunComponents.end(); tIt++ )
             tIt->second->Fill();
 
         fRunIndex++;
@@ -502,7 +502,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::ExecuteEvent()
     {
-        wtrmsg_debug( "ASCII writer <" << fName << "> is filling an event" << eom );
+        wtrmsg_debug( "ASCII writer <" << GetName() << "> is filling an event" << eom );
 
         if ( fTrackIndex != 0 )
             fEventLastTrackIndex = fTrackIndex - 1;
@@ -510,7 +510,7 @@ namespace Kassiopeia
         if ( fStepIndex != 0 )
             fEventLastStepIndex = fStepIndex - 1;
 
-        for( ComponentIt tIt = fActiveEventComponents.begin(); tIt != fActiveEventComponents.end(); tIt++ )
+        for( auto tIt = fActiveEventComponents.begin(); tIt != fActiveEventComponents.end(); tIt++ )
             tIt->second->Fill();
 
 
@@ -522,7 +522,7 @@ namespace Kassiopeia
     }
     void KSWriteASCII::ExecuteTrack()
     {
-        wtrmsg_debug( "ASCII writer <" << fName << "> is filling a track" << eom );
+        wtrmsg_debug( "ASCII writer <" << GetName() << "> is filling a track" << eom );
 
         if ( fStepIndex != 0 )
             fTrackLastStepIndex = fStepIndex - 1;
@@ -530,7 +530,7 @@ namespace Kassiopeia
         ComponentIt tIt;
 
         fTextFile->File()->put('\n');
-        for( ComponentIt tIt = fActiveTrackComponents.begin(); tIt != fActiveTrackComponents.end(); tIt++ )
+        for( auto tIt = fActiveTrackComponents.begin(); tIt != fActiveTrackComponents.end(); ++tIt )
             tIt->second->Fill();
 
         fTextFile->Close();
@@ -568,16 +568,16 @@ namespace Kassiopeia
     {
         if ( fStepIterationIndex % fStepIteration != 0 )
         {
-            wtrmsg_debug( "ASCII writer <" << fName << "> is skipping a step because of step iteration value <"<<fStepIteration<<">" << eom );
+            wtrmsg_debug( "ASCII writer <" << GetName() << "> is skipping a step because of step iteration value <"<<fStepIteration<<">" << eom );
             fStepIterationIndex++;
             return;
         }
         fTextFile->File()->put('\n');
         if( fStepComponent == true )
         {
-            wtrmsg_debug( "ASCII writer <" << fName << "> is filling a step" << eom );
+            wtrmsg_debug( "ASCII writer <" << GetName() << "> is filling a step" << eom );
 
-            for( ComponentIt tIt = fActiveStepComponents.begin(); tIt != fActiveStepComponents.end(); tIt++ )
+            for( auto tIt = fActiveStepComponents.begin(); tIt != fActiveStepComponents.end(); tIt++ )
                 tIt->second->Fill();
         }
 
@@ -589,7 +589,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::AddRunComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fRunComponents.find( aComponent );
+        auto tIt = fRunComponents.find( aComponent );
         if( tIt == fRunComponents.end() )
         {
             wtrmsg_debug( "ASCII writer is making a new run output called <" << aComponent->GetName() << ">" << eom );
@@ -598,7 +598,7 @@ namespace Kassiopeia
             fKey = aComponent->GetName();
 
 
-            Data* tRunData = new Data( aComponent ,this);
+            auto* tRunData = new Data( aComponent ,this);
             tIt = fRunComponents.insert( ComponentEntry( aComponent, tRunData ) ).first;
         }
 
@@ -612,7 +612,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::RemoveRunComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fActiveRunComponents.find( aComponent );
+        auto tIt = fActiveRunComponents.find( aComponent );
         if( tIt == fActiveRunComponents.end() )
         {
             wtrmsg( eError ) << "ASCII writer has no run output called <" << aComponent->GetName() << ">" << eom;
@@ -625,14 +625,14 @@ namespace Kassiopeia
 
     void KSWriteASCII::AddEventComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fEventComponents.find( aComponent );
+        auto tIt = fEventComponents.find( aComponent );
         if( tIt == fEventComponents.end() )
         {
             wtrmsg_debug( "ASCII writer is making a new event output called <" << aComponent->GetName() << ">" << eom );
 
             fKey = aComponent->GetName();
 
-            Data* tEventData = new Data( aComponent,this );
+            auto* tEventData = new Data( aComponent,this );
             tIt = fEventComponents.insert( ComponentEntry( aComponent, tEventData ) ).first;
         }
 
@@ -646,7 +646,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::RemoveEventComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fActiveEventComponents.find( aComponent );
+        auto tIt = fActiveEventComponents.find( aComponent );
         if( tIt == fActiveEventComponents.end() )
         {
             wtrmsg( eError ) << "ASCII writer has no event output called <" << aComponent->GetName() << ">" << eom;
@@ -660,14 +660,14 @@ namespace Kassiopeia
     void KSWriteASCII::AddTrackComponent( KSComponent* aComponent )
     {
 
-        ComponentIt tIt = fTrackComponents.find( aComponent );
+        auto tIt = fTrackComponents.find( aComponent );
         if( tIt == fTrackComponents.end() )
         {
             wtrmsg_debug( "ASCII writer is making a new track output called <" << aComponent->GetName() << ">" << eom );
 
             fKey = aComponent->GetName();
 
-            Data* tTrackData = new Data( aComponent,this );
+            auto* tTrackData = new Data( aComponent,this );
             tIt = fTrackComponents.insert( ComponentEntry( aComponent, tTrackData ) ).first;
             fTextFile->File()->put('\n');
         }
@@ -682,7 +682,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::RemoveTrackComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fActiveTrackComponents.find( aComponent );
+        auto tIt = fActiveTrackComponents.find( aComponent );
         if( tIt == fActiveTrackComponents.end() )
         {
             wtrmsg( eError ) << "ASCII writer has no track output called <" << aComponent->GetName() << ">" << eom;
@@ -698,14 +698,14 @@ namespace Kassiopeia
         if( fStepComponent == false )
             fStepComponent = true;
 
-        ComponentIt tIt = fStepComponents.find( aComponent );
+        auto tIt = fStepComponents.find( aComponent );
         if( tIt == fStepComponents.end() )
         {
             wtrmsg_debug( "ASCII writer is making a new step output called <" << aComponent->GetName() << ">" << eom );
 
             fKey = aComponent->GetName();
 
-            Data* tStepData = new Data( aComponent, this );
+            auto* tStepData = new Data( aComponent, this );
 
             tIt = fStepComponents.insert( ComponentEntry( aComponent, tStepData ) ).first;
         }
@@ -721,7 +721,7 @@ namespace Kassiopeia
 
     void KSWriteASCII::RemoveStepComponent( KSComponent* aComponent )
     {
-        ComponentIt tIt = fActiveStepComponents.find( aComponent );
+        auto tIt = fActiveStepComponents.find( aComponent );
         if( tIt == fActiveStepComponents.end() )
         {
             wtrmsg( eError ) << "ASCII writer has no step output called <" << aComponent->GetName() << ">" << eom;
@@ -761,6 +761,7 @@ namespace Kassiopeia
         for( tIt = fStepComponents.begin(); tIt != fStepComponents.end(); tIt++ )
             delete tIt->second;
 
+        wtrmsg( eNormal ) << "ASCII output was written to file <" << fTextFile->GetName() << ">" << eom;
         fTextFile->Close();
 
         delete fTextFile;

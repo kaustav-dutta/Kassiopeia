@@ -23,7 +23,7 @@ namespace katrin
         if( anAttribute->GetName() == "node" )
         {
             KGSurface* tSource = KGInterface::GetInstance()->RetrieveSurface( anAttribute->AsReference< std::string >() );
-            if( tSource == NULL )
+            if( tSource == nullptr )
             {
                 return false;
             }

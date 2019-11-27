@@ -38,7 +38,7 @@ namespace KEMField
 
   protected:
     KBasisType() : fSolution(Dim,0.) {}
-    virtual ~KBasisType() {}
+    ~KBasisType() override {}
 
   public:
     void SetSolution(ValueType v) { fSolution[0] = v; }

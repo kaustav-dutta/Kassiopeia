@@ -17,12 +17,12 @@ namespace KEMField
     typedef typename Integrator::Basis::ValueType ValueType;
 
     KBoundaryIntegralSolutionVector(KSurfaceContainer& c,Integrator& integrator);
-    virtual ~KBoundaryIntegralSolutionVector() {}
+    ~KBoundaryIntegralSolutionVector() override {}
 
-    unsigned int Dimension() const { return fDimension; }
+    unsigned int Dimension() const override { return fDimension; }
 
-    virtual const ValueType& operator()(unsigned int i) const;
-    virtual ValueType& operator[](unsigned int i);
+    const ValueType& operator()(unsigned int i) const override;
+    ValueType& operator[](unsigned int i) override;
 
   private:
     KSurfaceContainer& fContainer;

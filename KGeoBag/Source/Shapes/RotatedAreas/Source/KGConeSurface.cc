@@ -105,8 +105,8 @@ namespace KGeoBag
     }
     void KGConeSurface::AreaAccept( KGVisitor* aVisitor )
     {
-        KGConeSurface::Visitor* tConeSurfaceVisitor = dynamic_cast< KGConeSurface::Visitor* >( aVisitor );
-        if( tConeSurfaceVisitor != NULL )
+        auto* tConeSurfaceVisitor = dynamic_cast< KGConeSurface::Visitor* >( aVisitor );
+        if( tConeSurfaceVisitor != nullptr )
         {
             tConeSurfaceVisitor->VisitConeSurface( this );
         }

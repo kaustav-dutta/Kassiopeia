@@ -175,7 +175,7 @@ namespace katrin
   {
     if (anElement->GetName() == "orthogonal_port")
     {
-        KGConicSectPortHousing::OrthogonalPort* orthogonalPort = NULL;
+        KGConicSectPortHousing::OrthogonalPort* orthogonalPort = nullptr;
         anElement->ReleaseTo(orthogonalPort);
         fObject->AddPort(orthogonalPort);
         orthogonalPort->Initialize();
@@ -183,7 +183,7 @@ namespace katrin
     }
     if (anElement->GetName() == "paraxial_port")
     {
-        KGConicSectPortHousing::ParaxialPort* paraxialPort = NULL;
+        KGConicSectPortHousing::ParaxialPort* paraxialPort = nullptr;
         anElement->ReleaseTo(paraxialPort);
         fObject->AddPort(paraxialPort);
         paraxialPort->Initialize();
@@ -210,7 +210,7 @@ namespace katrin
   {
     if (anElement->GetName() == "conic_section_port_housing")
     {
-        KGConicSectPortHousing* object = NULL;
+        KGConicSectPortHousing* object = nullptr;
         anElement->ReleaseTo(object);
         std::shared_ptr< KGConicSectPortHousing > smartPtr(object);
         fObject->SetObject(smartPtr);
@@ -238,7 +238,7 @@ namespace katrin
   {
     if (anElement->GetName() == "conic_section_port_housing")
     {
-        KGConicSectPortHousing* object = NULL;
+        KGConicSectPortHousing* object = nullptr;
         anElement->ReleaseTo(object);
         std::shared_ptr< KGConicSectPortHousing > smartPtr(object);
         fObject->SetObject(smartPtr);

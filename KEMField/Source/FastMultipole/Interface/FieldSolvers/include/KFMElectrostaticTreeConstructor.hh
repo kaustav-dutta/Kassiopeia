@@ -178,7 +178,7 @@ class KFMElectrostaticTreeConstructor
 
             //now we need to create a vector of N empty nodes, and enumerate them
             std::vector< KFMElectrostaticNode* > tree_nodes;
-            tree_nodes.resize(n_nodes, NULL);
+            tree_nodes.resize(n_nodes, nullptr);
 
             for(unsigned int i=0; i<n_nodes; i++)
             {

@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGShellCircleSurfaceMesher();
-            virtual ~KGShellCircleSurfaceMesher();
+            ~KGShellCircleSurfaceMesher() override;
 
         protected:
-            void VisitShellPathSurface( KGShellCircleSurface* aShellCircleSurface );
+            void VisitShellPathSurface( KGShellCircleSurface* aShellCircleSurface ) override;
     };
 
 }

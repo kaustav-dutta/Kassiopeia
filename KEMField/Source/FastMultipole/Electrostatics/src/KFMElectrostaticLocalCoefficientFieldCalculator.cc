@@ -20,14 +20,14 @@ KFMElectrostaticLocalCoefficientFieldCalculator::fRootThreeOverTwo = 0.866025403
 KFMElectrostaticLocalCoefficientFieldCalculator::KFMElectrostaticLocalCoefficientFieldCalculator():
 fDegree(-1)
 {
-    fPlmArr = NULL;
-    fPlmDervArr = NULL;
-    fRadPowerArr = NULL;
-    fCosMPhiArr = NULL;
-    fSinMPhiArr = NULL;
+    fPlmArr = nullptr;
+    fPlmDervArr = nullptr;
+    fRadPowerArr = nullptr;
+    fCosMPhiArr = nullptr;
+    fSinMPhiArr = nullptr;
 
-    fRealMoments = NULL;
-    fImagMoments = NULL;
+    fRealMoments = nullptr;
+    fImagMoments = nullptr;
 
     fKFactor = ( 1.0/(4.0*M_PI*KEMConstants::Eps0) );
 
@@ -51,8 +51,8 @@ fDegree(-1)
     fNTerms = 0;
 
     fExpansionRadius = 0.0;
-    fRealMomentsB = NULL;
-    fImagMomentsB = NULL;
+    fRealMomentsB = nullptr;
+    fImagMomentsB = nullptr;
 
 }
 
@@ -152,7 +152,7 @@ KFMElectrostaticLocalCoefficientFieldCalculator::SetExpansionOrigin(const double
 void
 KFMElectrostaticLocalCoefficientFieldCalculator::SetLocalCoefficients(const KFMElectrostaticLocalCoefficientSet* set)
 {
-    if(set != NULL)
+    if(set != nullptr)
     {
         SetDegree( set->GetDegree() );
         fLocalCoeff = set;

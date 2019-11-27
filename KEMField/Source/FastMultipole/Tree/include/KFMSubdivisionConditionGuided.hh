@@ -39,12 +39,12 @@ class KFMSubdivisionConditionGuided: public KFMSubdivisionCondition<NDIM, Object
             fFraction = 0.1;
             fNAllowedElements = 100;
         };
-        virtual ~KFMSubdivisionConditionGuided(){};
+        ~KFMSubdivisionConditionGuided() override{};
 
         void SetAllowedNumberOfElements(unsigned int n_allowed){fNAllowedElements = n_allowed;};
         void SetFractionForDivision(double frac){fFraction = frac;}
 
-        virtual bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node)
+        bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) override
         {
             //first get the tree properties associated with this node
             KFMCubicSpaceTreeProperties<NDIM>* tree_prop = KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<NDIM> >::GetNodeObject(node);
@@ -153,7 +153,7 @@ class KFMSubdivisionConditionGuided: public KFMSubdivisionCondition<NDIM, Object
 
         }
 
-        virtual std::string Name() {return std::string("guided");};
+        std::string Name() override {return std::string("guided");};
 
     protected:
 

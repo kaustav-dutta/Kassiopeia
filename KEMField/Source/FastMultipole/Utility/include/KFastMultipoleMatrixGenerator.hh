@@ -18,9 +18,9 @@ public:
 	typedef KFMElectrostaticTypes::ValueType ValueType;
 
 	KFastMultipoleMatrixGenerator();
-	virtual ~KFastMultipoleMatrixGenerator();
+	~KFastMultipoleMatrixGenerator() override;
 
-	virtual KSmartPointer<KSquareMatrix<ValueType> > Build(const KSurfaceContainer& container)const;
+	KSmartPointer<KSquareMatrix<ValueType> > Build(const KSurfaceContainer& container)const override;
 
 	void SetDirectIntegrator( const KElectrostaticBoundaryIntegrator& integrator) {
 		fDirectIntegrator = integrator;

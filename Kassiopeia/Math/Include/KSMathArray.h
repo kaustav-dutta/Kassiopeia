@@ -135,9 +135,11 @@ namespace Kassiopeia
             {
                 (*this) = (0.);
             }
+            KSMathArray(const KSMathArray& other) = default;
             virtual ~KSMathArray()
             {
             }
+            
 
         public:
             KSMathArray& operator=( const double& anOperand )

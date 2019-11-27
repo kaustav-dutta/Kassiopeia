@@ -8,11 +8,11 @@ namespace KGeoBag
 const double KGNavigableMeshProximityCheck::fCubeLengthToRadius = 0.866025403784438597;
 
 KGNavigableMeshProximityCheck::KGNavigableMeshProximityCheck():
-    fContainer(NULL),
+    fContainer(nullptr),
     fDefaultStackSize(512),
     fStackReallocateLimit(384)
 {
-    fPreallocatedStack.resize(fDefaultStackSize, NULL);
+    fPreallocatedStack.resize(fDefaultStackSize, nullptr);
 };
 
 KGNavigableMeshProximityCheck::~KGNavigableMeshProximityCheck(){};
@@ -96,7 +96,7 @@ KGNavigableMeshProximityCheck::ApplyAction(KGMeshNavigationNode* node)
     fLeafNodes.clear();
     KGMeshNavigationNode* tempNode;
 
-    if(node != NULL)
+    if(node != nullptr)
     {
         //init stack
         {
@@ -151,7 +151,7 @@ KGNavigableMeshProximityCheck::ApplyAction(KGMeshNavigationNode* node)
                 KGIdentitySet* element_list =
                 KGObjectRetriever<KGMeshNavigationNodeObjects, KGIdentitySet >::GetNodeObject(tempNode);
 
-                if(element_list != NULL)
+                if(element_list != nullptr)
                 {
                     if( element_list->GetSize() != 0)
                     {

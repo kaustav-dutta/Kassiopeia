@@ -17,7 +17,7 @@ namespace katrin
     {
         public:
             KXMLTokenizer();
-            virtual ~KXMLTokenizer();
+            ~KXMLTokenizer() override;
 
             //**********
             //processing

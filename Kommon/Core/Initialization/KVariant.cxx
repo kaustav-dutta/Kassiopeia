@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <limits>
 #include <cstdlib>
 #include <cerrno>
 #include "KVariant.h"
@@ -14,7 +15,7 @@ using namespace std;
 using namespace katrin;
 
 
-bool KVariant::AsBool(void) const
+bool KVariant::AsBool() const
 {
     if (fType == Type_Void) {
         throw KException() << "conversion from undefined to bool";
@@ -42,14 +43,14 @@ bool KVariant::AsBool(void) const
 #endif
     }
     else if (fType == Type_Unknown) {
-        return fPrimitive.fUnknownValue != 0;
+        return fPrimitive.fUnknownValue != nullptr;
     }
     
     throw KException() << "bad type to convert to bool: \""
             << AsString() << "\"";
 }
 
-long long KVariant::AsLong(void) const
+long long KVariant::AsLong() const
 {
     if (fType == Type_Void) {
         throw KException() << "conversion from undefined to integer";
@@ -86,10 +87,11 @@ long long KVariant::AsLong(void) const
 	    <<"bad type to convert to int: \"" << AsString() << "\"";
 }
 
-double KVariant::AsDouble(void) const
+double KVariant::AsDouble() const
 {
     if (fType == Type_Void) {
-        throw KException() << "conversion from undefined to double";
+        //throw KException() << "conversion from undefined to double";
+        return std::numeric_limits<double>::quiet_NaN();
     }
     else if (fType == Type_Bool) {
         return fPrimitive.fBoolValue ? 1 : 0;
@@ -151,7 +153,7 @@ std::string KVariant::AsString(int precision) const
     return os.str();
 }
 
-KUnknown& KVariant::AsUnknown(void)
+KUnknown& KVariant::AsUnknown()
 {
     if (fType == Type_Void) {
         throw KException() << "conversion from undefined to unknown";
@@ -164,7 +166,7 @@ KUnknown& KVariant::AsUnknown(void)
     return *fPrimitive.fUnknownValue;
 }
 
-const KUnknown& KVariant::AsUnknown(void) const
+const KUnknown& KVariant::AsUnknown() const
 {
     if (fType == Type_Void) {
         throw KException() << "conversion from undefined to unknown";

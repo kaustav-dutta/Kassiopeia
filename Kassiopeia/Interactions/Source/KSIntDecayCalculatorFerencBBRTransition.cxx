@@ -6,7 +6,6 @@
 #include "KSIntDecayCalculatorFerencBBRTransition.h"
 #include "KRandom.h"
 using katrin::KRandom;
-using katrin::KConst;
 
 namespace Kassiopeia
 {

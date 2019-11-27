@@ -28,8 +28,8 @@ namespace Kassiopeia
         public:
             KSTrajIntegratorRK8();
             KSTrajIntegratorRK8( const KSTrajIntegratorRK8& aCopy );
-            KSTrajIntegratorRK8* Clone() const;
-            virtual ~KSTrajIntegratorRK8();
+            KSTrajIntegratorRK8* Clone() const override;
+            ~KSTrajIntegratorRK8() override;
     };
 
 }

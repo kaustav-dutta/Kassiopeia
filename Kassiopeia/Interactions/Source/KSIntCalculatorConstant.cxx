@@ -4,7 +4,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -38,7 +37,7 @@ namespace Kassiopeia
         KThreeVector tMomentum = anInitialParticle.GetMomentum();
 
         double tTheta = acos( KRandom::GetInstance().Uniform( -1., 1. ) );
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
         tMomentum.SetPolarAngle( tTheta );
         tMomentum.SetAzimuthalAngle( tPhi );
 

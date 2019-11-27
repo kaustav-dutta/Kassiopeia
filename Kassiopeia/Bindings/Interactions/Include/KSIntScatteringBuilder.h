@@ -37,13 +37,13 @@ namespace katrin
         }
         if( aContainer->GetName() == "density" )
         {
-            KSIntDensity* tDensityCalculator = KToolbox::GetInstance().Get< KSIntDensity >( aContainer->AsReference< std::string >() );
+            auto* tDensityCalculator = KToolbox::GetInstance().Get< KSIntDensity >( aContainer->AsReference< std::string >() );
             fObject->SetDensity( tDensityCalculator->Clone() );
             return true;
         }
         if( aContainer->GetName() == "calculator" )
         {
-            KSIntCalculator* tCalculator = KToolbox::GetInstance().Get< KSIntCalculator >( aContainer->AsReference< std::string >() );
+            auto* tCalculator = KToolbox::GetInstance().Get< KSIntCalculator >( aContainer->AsReference< std::string >() );
             fObject->AddCalculator( tCalculator );
             return true;
         }
@@ -80,7 +80,7 @@ namespace katrin
         }
         if( aContainer->Is< KSIntCalculatorSet >() == true )
         {
-            KSIntCalculatorSet* tSet = NULL;
+            KSIntCalculatorSet* tSet = nullptr;
             aContainer->ReleaseTo( tSet );
             tSet->ReleaseCalculators( fObject );
             delete tSet;

@@ -26,12 +26,12 @@ namespace KEMField {
 class KElectricFastMultipoleFieldSolver : public KElectricFieldSolver{
 public:
 	KElectricFastMultipoleFieldSolver();
-	virtual ~KElectricFastMultipoleFieldSolver();
+	~KElectricFastMultipoleFieldSolver() override;
 
-	void InitializeCore( KSurfaceContainer& container );
+	void InitializeCore( KSurfaceContainer& container ) override;
 
-	double PotentialCore( const KPosition& P ) const;
-	KThreeVector ElectricFieldCore( const KPosition& P ) const;
+	double PotentialCore( const KPosition& P ) const override;
+	KThreeVector ElectricFieldCore( const KPosition& P ) const override;
 
 	void SetIntegratorPolicy(const KEBIPolicy& policy) {
 		fIntegratorPolicy = policy;

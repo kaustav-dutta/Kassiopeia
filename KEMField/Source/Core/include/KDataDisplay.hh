@@ -170,13 +170,13 @@ namespace KEMField
   {
   public:
     KDataDisplay();
-    virtual ~KDataDisplay() { Reset(); }
+    ~KDataDisplay() override { Reset(); }
 
     void Verbose(bool isVerbose) { fVerbose = isVerbose; }
-    bool Verbose() const { return fVerbose; }
+    bool Verbose() const override { return fVerbose; }
 
   protected:
-    KDataDisplay<Stream>& Self() { return *this; }
+    KDataDisplay<Stream>& Self() override { return *this; }
     void Reset(int i=-1);
 
     template <class Streamed>
@@ -221,7 +221,7 @@ namespace KEMField
 
     void flush() { fStream.flush(); }
 
-    Stream& GetStream() { return fStream; }
+    Stream& GetStream() override { return fStream; }
 
   protected:
 
@@ -236,10 +236,10 @@ namespace KEMField
 
   public:
 
-    int Level() const { return fLevel; };
-    std::string& Separator() const { return fSeparator; }
-    unsigned int AssignmentCounter(int i) const { return fAssignmentCounter.at(i); }
-    void IncrementAssignmentCounter(int i) { fAssignmentCounter.at(i)++; }
+    int Level() const override { return fLevel; };
+    std::string& Separator() const override { return fSeparator; }
+    unsigned int AssignmentCounter(int i) const override { return fAssignmentCounter.at(i); }
+    void IncrementAssignmentCounter(int i) override { fAssignmentCounter.at(i)++; }
 
 
     // special case for std::complex
@@ -331,10 +331,10 @@ namespace KEMField
   {
   public:
     KDataDisplay() {}
-    virtual ~KDataDisplay() {}
+    ~KDataDisplay() override {}
 
   protected:
-    KDataDisplay<KNullStream>& Self() { return *this; }
+    KDataDisplay<KNullStream>& Self() override { return *this; }
 
   public:
     template <class Streamed>
@@ -348,7 +348,7 @@ namespace KEMField
 
     void flush() {}
 
-    KNullStream& GetStream() { return fStream; }
+    KNullStream& GetStream() override { return fStream; }
 
   protected:
 

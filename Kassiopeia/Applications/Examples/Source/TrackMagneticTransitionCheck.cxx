@@ -17,7 +17,7 @@ int main()
     double gyromagnetic_ratio = -1.83247172e+8;
     //double spin_magnitude = 0.5; // in units of hbar
 
-    KRootFile* tRootFile = new KRootFile();
+    auto* tRootFile = new KRootFile();
     tRootFile->AddToNames( "~/Work/kasper/install/output/Kassiopeia/CombinedNeutronTrapAdiabaticSimulation.root" );
 
     KSReadFileROOT tReader;
@@ -29,9 +29,9 @@ int main()
     KSReadStepROOT& tStepReader= tReader.GetStep();
 
     KSReadObjectROOT& tCell = tStepReader.GetObject( "component_step_world" );
-    KSDouble& tTime = tCell.Get< KSDouble >( "time" );
+    auto& tTime = tCell.Get< KSDouble >( "time" );
     //KSThreeVector& B = tCell.Get< KSThreeVector >( "magnetic_field" );
-    KSDouble& m = tCell.Get< KSDouble >( "aligned_spin" );
+    auto& m = tCell.Get< KSDouble >( "aligned_spin" );
 
     vector<Double_t> time_list;
     vector<KThreeVector> B_list;

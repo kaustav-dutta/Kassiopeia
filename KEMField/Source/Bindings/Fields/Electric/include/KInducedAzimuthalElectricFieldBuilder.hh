@@ -33,7 +33,7 @@ typedef KComplexElement< KEMField::KInducedAzimuthalElectricField > KInducedAzim
             std::string fieldName = aContainer->AsReference<std::string>();
             // toolbox contains only entries of type KMagneticField, so we have to
             // do an ugly downcast
-            KEMField::KMagneticField* magneticField =
+            auto* magneticField =
                     katrin::KToolbox::GetInstance().Get<KEMField::KMagneticField>(fieldName);
             auto rampedMagneticField = dynamic_cast<KEMField::KRampedMagneticField*>(magneticField);
             if(rampedMagneticField)

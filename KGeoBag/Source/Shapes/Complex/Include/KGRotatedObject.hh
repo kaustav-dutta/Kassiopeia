@@ -1,7 +1,7 @@
 #ifndef KGROTATEDOBJECT_DEF
 #define KGROTATEDOBJECT_DEF
 
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -24,18 +24,19 @@ namespace KGeoBag
 					     fNPolyEnd(nPolyEnd),
 					     fNSegments(0),
 					     fDiscretizationPower(2.) {}
-    virtual ~KGRotatedObject();
+    ~KGRotatedObject() override;
 
     static std::string Name() { return "rotated_object"; }
 
     virtual void Initialize() const {}
+    virtual void AreaInitialize() const override { Initialize(); }
 
     virtual KGRotatedObject* Clone() const;
 
     bool ContainsPoint(const double* P) const;
     double DistanceTo(const double* P,
-		      double* P_in=NULL,
-		      double* P_norm=NULL) const;
+		      double* P_in=nullptr,
+		      double* P_norm=nullptr) const;
     double Area() const;
     double Volume() const;
 
@@ -69,8 +70,8 @@ namespace KGeoBag
 
       virtual bool ContainsPoint(const double* P) const;
       virtual double DistanceTo(const double* P,
-				double* P_in=NULL,
-				double* P_norm=NULL) const;
+				double* P_in=nullptr,
+				double* P_norm=nullptr) const;
 
       double Area() const { return fArea; }
       double Volume() const { return fVolume; }
@@ -172,20 +173,20 @@ namespace KGeoBag
           const bool      positiveOrientation=true);
       Arc(const KGRotatedObject::Arc& rA);
 
-      virtual ~Arc() {}
+      ~Arc() override {}
 
-      virtual void Initialize() const;
+      void Initialize() const override;
 
-      virtual Arc* Clone(KGRotatedObject* rO) const;
+      Arc* Clone(KGRotatedObject* rO) const override;
 
-      virtual bool ContainsPoint(const double* P) const;
-      virtual double DistanceTo(const double* P,
-				double* P_in=NULL,
-				double* P_norm=NULL) const;
+      bool ContainsPoint(const double* P) const override;
+      double DistanceTo(const double* P,
+				double* P_in=nullptr,
+				double* P_norm=nullptr) const override;
 
       void FindCenter() const;
 
-      double GetLength() const;
+      double GetLength() const override;
 
       double NormalizeAngle(double angle) const;
 
@@ -204,7 +205,7 @@ namespace KGeoBag
 
       double GetRMax() const { return fRMax; }
 
-      bool IsArc() const { return true; }
+      bool IsArc() const override { return true; }
 
     private:
 

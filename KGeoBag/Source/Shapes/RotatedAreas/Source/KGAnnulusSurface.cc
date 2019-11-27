@@ -105,8 +105,8 @@ namespace KGeoBag
     }
     void KGAnnulusSurface::AreaAccept( KGVisitor* aVisitor )
     {
-        KGAnnulusSurface::Visitor* tAnnulusSurfaceVisitor = dynamic_cast< KGAnnulusSurface::Visitor* >( aVisitor );
-        if( tAnnulusSurfaceVisitor != NULL )
+        auto* tAnnulusSurfaceVisitor = dynamic_cast< KGAnnulusSurface::Visitor* >( aVisitor );
+        if( tAnnulusSurfaceVisitor != nullptr )
         {
             tAnnulusSurfaceVisitor->VisitAnnulusSurface( this );
             return;

@@ -33,13 +33,13 @@ class KFMDirectCallCounter: public KFMNodeActor< KFMNode<ObjectTypeList> >
         {
             fMaxDirectCalls = 0;
         };
-        virtual ~KFMDirectCallCounter(){};
+        ~KFMDirectCallCounter() override{};
 
         unsigned int GetMaxDirectCalls() const {return fMaxDirectCalls;};
 
-        virtual void ApplyAction( KFMNode< ObjectTypeList >* node)
+        void ApplyAction( KFMNode< ObjectTypeList >* node) override
         {
-            if(node != NULL )
+            if(node != nullptr )
             {
                 if( !(node->HasChildren()) ) //only apply to leaf nodes
                 {
@@ -48,24 +48,24 @@ class KFMDirectCallCounter: public KFMNodeActor< KFMNode<ObjectTypeList> >
                     KFMNode<ObjectTypeList>* temp_node = node;
                     do
                     {
-                        if(temp_node != NULL)
+                        if(temp_node != nullptr)
                         {
                             fNodeList.push_back(temp_node);
                             temp_node = temp_node->GetParent();
                         }
                     }
-                    while(temp_node != NULL);
+                    while(temp_node != nullptr);
 
                     //loop over the node list and collect the direct call elements from their id set lists
                     unsigned int subset_size = 0;
                     unsigned int n_nodes = fNodeList.size();
                     for(unsigned int i=0; i<n_nodes; i++)
                     {
-                        if(fNodeList[i] != NULL)
+                        if(fNodeList[i] != nullptr)
                         {
                             KFMIdentitySetList* id_set_list = KFMObjectRetriever<KFMElectrostaticNodeObjects, KFMIdentitySetList >::GetNodeObject(fNodeList[i]);
 
-                            if(id_set_list != NULL)
+                            if(id_set_list != nullptr)
                             {
                                 unsigned int n_sets = id_set_list->GetNumberOfSets();
                                 for(unsigned int j=0; j<n_sets; j++)

@@ -40,6 +40,8 @@ public:
     static bool IsNumeric(const char& character);
     static bool IsNumeric(const std::string& string);
 
+//    static bool MatchWildcardString(std::string pattern, std::string input);
+
     template< typename TargetT >
     static bool Convert(const std::string& string, TargetT& result);
 
@@ -94,6 +96,7 @@ public:
     static std::string GroupDigits(std::string input, const std::string& sep = ",");
 
     static std::string RandomAlphaNum(size_t length);
+
 };
 
 inline bool KStringUtils::IsNumeric(const char& character)
@@ -190,11 +193,9 @@ inline std::string KStringUtils::TrimRight(const std::string& input)
 template <class SequenceT, class SeparatorT>
 inline std::ostream& KStringUtils::Join(std::ostream& stream, const SequenceT& sequence, const SeparatorT& separator)
 {
-    typedef typename boost::range_const_iterator<SequenceT>::type InputIteratorT;
-
     // Parse input
-    InputIteratorT itBegin = boost::begin(sequence);
-    InputIteratorT itEnd = boost::end(sequence);
+    auto itBegin = boost::begin(sequence);
+    auto itEnd = boost::end(sequence);
 
     // Append first element
     if(itBegin!=itEnd) {
@@ -223,7 +224,7 @@ inline std::string KStringUtils::Join(const SequenceT& sequence, const Separator
 template <class KeyT, class ValueT>
 inline std::ostream& KStringUtils::Join(std::ostream& stream, const std::map<KeyT, ValueT>& map)
 {
-    typename std::map<KeyT, ValueT>::const_iterator it = map.begin();
+    auto it = map.begin();
     if (it != map.end()) {
         stream << "[" << it->first << "] " << it->second;
         it++;

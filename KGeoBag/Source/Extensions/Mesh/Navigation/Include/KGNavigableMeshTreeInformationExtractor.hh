@@ -32,13 +32,13 @@ class KGNavigableMeshTreeInformationExtractor: public KGNodeActor< KGMeshNavigat
             fNNodes = 0;
         };
 
-        virtual ~KGNavigableMeshTreeInformationExtractor(){};
+        ~KGNavigableMeshTreeInformationExtractor() override{};
 
 
 
-        virtual void ApplyAction(KGMeshNavigationNode* node)
+        void ApplyAction(KGMeshNavigationNode* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 fNNodes++;
                 unsigned int level = node->GetLevel();
@@ -70,7 +70,7 @@ class KGNavigableMeshTreeInformationExtractor: public KGNodeActor< KGMeshNavigat
                 }
 
                 KGIdentitySet* id_set = KGObjectRetriever< KGMeshNavigationNodeObjects, KGIdentitySet>::GetNodeObject(node);
-                if( id_set != NULL )
+                if( id_set != nullptr )
                 {
                     fNLevelElements[level] += id_set->GetSize();
                 }

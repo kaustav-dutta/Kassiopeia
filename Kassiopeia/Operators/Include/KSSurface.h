@@ -19,7 +19,7 @@ namespace Kassiopeia
 
         public:
             KSSurface();
-            virtual ~KSSurface();
+            ~KSSurface() override;
 
         public:
             virtual void On() const = 0;

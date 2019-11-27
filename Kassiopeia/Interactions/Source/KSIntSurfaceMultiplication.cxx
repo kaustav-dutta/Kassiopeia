@@ -6,7 +6,6 @@
 using katrin::KRandom;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <iostream>
 #include <cmath>
@@ -99,11 +98,11 @@ namespace Kassiopeia
         //figure out the basis directions for the particle ejections
         //we eject them with a diffuse 'Lambertian' distribution
         KThreeVector tNormal;
-        if( anInitialParticle.GetCurrentSurface() != NULL )
+        if( anInitialParticle.GetCurrentSurface() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSurface()->Normal( anInitialParticle.GetPosition() );
         }
-        else if( anInitialParticle.GetCurrentSide() != NULL )
+        else if( anInitialParticle.GetCurrentSide() != nullptr )
         {
             tNormal = anInitialParticle.GetCurrentSide()->Normal( anInitialParticle.GetPosition() );
         }
@@ -145,10 +144,10 @@ namespace Kassiopeia
             //now generate the ejected particles
             for(unsigned int i=0; i<tNParticles; i++)
             {
-                KSParticle* tParticle = new KSParticle( anInitialParticle );
+                auto* tParticle = new KSParticle( anInitialParticle );
 
                 //dice direction
-                double tAzimuthalAngle = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+                double tAzimuthalAngle = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
                 double tSinTheta = KRandom::GetInstance().Uniform( 0., 0.5 ); //this is not a true lambertian (has cut-off angle)
                 double tCosTheta = std::sqrt( (1.0 - tSinTheta)*(1.0 + tSinTheta) );
 
@@ -164,7 +163,7 @@ namespace Kassiopeia
 
                 tParticle->SetMomentum(tDirection);
                 tParticle->SetKineticEnergy(tChildEnergy[i]);
-                tParticle->SetCurrentSurface(NULL);
+                tParticle->SetCurrentSurface(nullptr);
                 aQueue.push_back(tParticle);
             }
         }

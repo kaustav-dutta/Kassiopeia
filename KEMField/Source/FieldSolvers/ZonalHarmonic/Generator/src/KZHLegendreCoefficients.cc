@@ -1,15 +1,15 @@
 #include "KZHLegendreCoefficients.hh"
 
 #include <cstddef>
-#include <stddef.h>
+#include <cstddef>
 
 namespace KEMField
 {
-  KZHLegendreCoefficients* KZHLegendreCoefficients::fZHLegendreCoefficients = NULL;
+  KZHLegendreCoefficients* KZHLegendreCoefficients::fZHLegendreCoefficients = nullptr;
 
   KZHLegendreCoefficients* KZHLegendreCoefficients::GetInstance()
   {
-    if (fZHLegendreCoefficients == 0)
+    if (fZHLegendreCoefficients == nullptr)
       fZHLegendreCoefficients = new KZHLegendreCoefficients();
     return fZHLegendreCoefficients;
   }

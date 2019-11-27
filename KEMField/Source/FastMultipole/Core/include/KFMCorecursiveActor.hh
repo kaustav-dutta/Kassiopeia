@@ -28,15 +28,15 @@ template< typename NodeType>
 class KFMCorecursiveActor: public KFMNodeActor<NodeType>
 {
     public:
-        KFMCorecursiveActor():fOperationalActor(NULL),fVisitingOrderForward(true){};
-        virtual ~KFMCorecursiveActor(){};
+        KFMCorecursiveActor():fOperationalActor(nullptr),fVisitingOrderForward(true){};
+        ~KFMCorecursiveActor() override{};
 
         void VisitParentBeforeChildren(){fVisitingOrderForward = true;};
         void VisitChildrenBeforeParent(){fVisitingOrderForward = false;};
 
         void SetOperationalActor(KFMNodeActor<NodeType>* opActor)
         {
-            if(opActor != this && opActor != NULL)//avoid a disaster
+            if(opActor != this && opActor != nullptr)//avoid a disaster
             {
                 fOperationalActor = opActor;
             }
@@ -44,13 +44,13 @@ class KFMCorecursiveActor: public KFMNodeActor<NodeType>
 
         //corecursively apply the operational visitor to every node
         //below this one
-        void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 if(fVisitingOrderForward)
                 {
-                    std::queue< NodeType* >* nodeQueue = new std::queue< NodeType* >();
+                    auto* nodeQueue = new std::queue< NodeType* >();
                     nodeQueue->push(node);
 
                     while( !(nodeQueue->empty()))
@@ -77,8 +77,8 @@ class KFMCorecursiveActor: public KFMNodeActor<NodeType>
                     //to all the nodes in the tree in order to perform
                     //this type of traversal
 
-                    std::queue< NodeType* >* nodeQueue = new std::queue< NodeType* >();
-                    std::stack< NodeType* >* nodeStack = new std::stack< NodeType* >();
+                    auto* nodeQueue = new std::queue< NodeType* >();
+                    auto* nodeStack = new std::stack< NodeType* >();
 
                     nodeQueue->push(node);
                     while( !(nodeQueue->empty()) )

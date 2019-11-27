@@ -18,8 +18,8 @@ namespace Kassiopeia
         public:
             KSSimulation();
             KSSimulation( const KSSimulation& aCopy );
-            KSSimulation* Clone() const;
-            virtual ~KSSimulation();
+            KSSimulation* Clone() const override;
+            ~KSSimulation() override;
 
         public:
 
@@ -50,10 +50,10 @@ namespace Kassiopeia
             std::vector< KSStepModifier* >* GetStaticStepModifiers() {return &fStaticStepModifiers;};
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
-            void ActivateComponent();
-            void DeactivateComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
+            void ActivateComponent() override;
+            void DeactivateComponent() override;
 
             unsigned int fSeed;
             unsigned int fRun;

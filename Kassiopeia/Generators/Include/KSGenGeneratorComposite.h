@@ -18,15 +18,15 @@ namespace Kassiopeia
         public:
             KSGenGeneratorComposite();
             KSGenGeneratorComposite( const KSGenGeneratorComposite& aCopy );
-            KSGenGeneratorComposite* Clone() const;
-            virtual ~KSGenGeneratorComposite();
+            KSGenGeneratorComposite* Clone() const override;
+            ~KSGenGeneratorComposite() override;
 
             //******
             //action
             //******
 
         public:
-            virtual void ExecuteGeneration( KSParticleQueue& aPrimaries );
+            void ExecuteGeneration( KSParticleQueue& aPrimaries ) override;
 
             //***********
             //composition
@@ -46,8 +46,8 @@ namespace Kassiopeia
             void RemoveSpecial( KSGenSpecial* a );
 
         private:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         protected:
             KSGenValue* fPidValue;

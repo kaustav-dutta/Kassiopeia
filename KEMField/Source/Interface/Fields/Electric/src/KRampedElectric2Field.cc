@@ -7,15 +7,15 @@
 
 #include "KRampedElectric2Field.hh"
 
-#include <assert.h>
+#include <cassert>
 #include "KEMCout.hh"
 #include "KEMSimpleException.hh"
 
 namespace KEMField {
 
 KRampedElectric2Field::KRampedElectric2Field() :
-                       fRootElectricField1( NULL ),
-                       fRootElectricField2( NULL ),
+                       fRootElectricField1( nullptr ),
+                       fRootElectricField2( nullptr ),
                        fRampingType( rtExponential ),
                        fNumCycles( 1 ),
                        fRampUpDelay( 0. ),
@@ -23,7 +23,10 @@ KRampedElectric2Field::KRampedElectric2Field() :
                        fRampUpTime( 0. ),
                        fRampDownTime( 0. ),
                        fTimeConstant( 0. ),
-                       fTimeScalingFactor( 1. )
+                       fTimeScalingFactor( 1. ),
+                       fFocusTime( 0. ),
+                       fFocusExponent( 2. ),
+                       fSmall( false )
 {
 }
 
@@ -49,9 +52,12 @@ KThreeVector KRampedElectric2Field::ElectricFieldCore( const KPosition &aSampleP
             fRootElectricField2->ElectricField( aSamplePoint, aSampleTime );
 
     double Modulation = GetModulationFactor( aSampleTime );
-    return (1 - Modulation) * field1 + Modulation * field2;
+    return (1. - Modulation) * field1 + Modulation * field2;
     // fieldmsg_debug( "Ramped electric field <" << GetName() << "> returns E=" << aTarget << " at t=" << aSampleTime << eom );
 }
+
+
+
 
 double KRampedElectric2Field::GetModulationFactor( const double &aTime ) const
 {
@@ -67,6 +73,7 @@ double KRampedElectric2Field::GetModulationFactor( const double &aTime ) const
     double tHigh = tUp   + fRampUpTime    * fTimeScalingFactor;
     double tDown = tHigh + fRampDownDelay * fTimeScalingFactor;
     double tLow  = tDown + fRampDownTime  * fTimeScalingFactor;
+    double tFocus = fFocusTime;
     double tOmega = 2.*M_PI/tLength;
 
     double Field = 0.;
@@ -99,6 +106,8 @@ double KRampedElectric2Field::GetModulationFactor( const double &aTime ) const
     case rtSinus :
         if (tTime >= tUp)
             Field = 0.5 + 0.5 * sin(tTime * tOmega);
+        else
+            Field = 0.;
         break;
 
     case rtSquare :
@@ -106,6 +115,23 @@ double KRampedElectric2Field::GetModulationFactor( const double &aTime ) const
             Field = 0.;
         else if (tTime >= tUp)
             Field = 1.;
+        break;
+
+    case rtFocus :
+        if (tTime >= tDown)
+            Field = 0.;
+        else if (tTime >= tHigh)
+            Field = 1.;
+        else if (tTime >= tUp)
+        {
+            double a = pow(tFocus,fFocusExponent)*pow( (tFocus-tHigh), fFocusExponent )/( pow(tFocus, fFocusExponent) -pow( (tFocus-tHigh), fFocusExponent ) );
+            double b = -a / pow(tFocus, fFocusExponent);
+            Field = a/pow( (tFocus - (tTime - tUp)), fFocusExponent ) + b;
+        }
+        break;
+
+    case rtFocusExperimental :
+        Field = CalculateNeededPotential(tFocus-tTime,fSmall)/200.;
         break;
 
     default :
@@ -116,6 +142,20 @@ double KRampedElectric2Field::GetModulationFactor( const double &aTime ) const
     //fieldmsg_debug( "Ramped electric field <" << GetName() << "> uses modulation factor " << Field << " at t=" << tTime << eom );
     return Field;
 }
+
+double KRampedElectric2Field::CalculateNeededPotential(const double &aTof, const bool small) const{
+    std::vector<double> tof = small? tof_mc_small : tof_mc;
+    std::vector<double> u = small? u_mc_small : u_mc;
+    for(size_t i=0;i<tof.size()-1;i++){
+        if (tof.at(i) >= aTof && tof.at(i+1) <= aTof ){
+            double coeff1 = ( aTof-tof.at(i) )/( tof.at(i+1)-tof.at(i) );
+            double coeff2 = ( tof.at(i+1) - aTof )/( tof.at(i+1)-tof.at(i) );
+            return coeff1*u.at(i+1)+coeff2*u.at(i);
+        }
+    }
+    throw KEMSimpleException ("CalculateNeededPotential could not find right index, make sure the focus time is withing bounds.");
+}
+
 
 void KRampedElectric2Field::InitializeCore()
 {

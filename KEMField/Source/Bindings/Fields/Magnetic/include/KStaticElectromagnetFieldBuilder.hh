@@ -84,7 +84,7 @@ typedef KComplexElement< KEMField::KGStaticElectromagnetField > KStaticElectroma
             KGeoBag::KGSpace* tSpace =
             KGeoBag::KGInterface::GetInstance()->RetrieveSpace( aContainer->AsReference< std::string >() );
 
-            if( tSpace == NULL )
+            if( tSpace == nullptr )
             {
                 BINDINGMSG( eWarning ) << "no spaces found for specifier <" << aContainer->AsReference< std::string >() << ">" << eom;
                 return false;

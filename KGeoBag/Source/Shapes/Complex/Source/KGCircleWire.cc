@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGCircleWire* KGCircleWire::Clone() const
   {
-    KGCircleWire* w = new KGCircleWire();
+    auto* w = new KGCircleWire();
 
     w->fR = fR;
     w->fDiameter = fDiameter;

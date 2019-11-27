@@ -37,19 +37,19 @@ class KFMDenseBlockSparseMatrix: public KSquareMatrix< ValueType >
             fVerbosity(verbosity)
         {
             fZero = 0.0;
-            fRowFileInterface = NULL;
-            fColumnFileInterface = NULL;
-            fElementFileInterface = NULL;
+            fRowFileInterface = nullptr;
+            fColumnFileInterface = nullptr;
+            fElementFileInterface = nullptr;
         };
 
-        virtual ~KFMDenseBlockSparseMatrix()
+        ~KFMDenseBlockSparseMatrix() override
         {
             delete fRowFileInterface;
             delete fColumnFileInterface;
             delete fElementFileInterface;
         };
 
-        virtual unsigned int Dimension() const {return (unsigned int)fDimension;};
+        unsigned int Dimension() const override {return (unsigned int)fDimension;};
 
         static size_t GetSuggestedMatrixElementBufferSize()
         {
@@ -67,7 +67,7 @@ class KFMDenseBlockSparseMatrix: public KSquareMatrix< ValueType >
 
         static size_t GetSuggestedMaximumRowWidth() { return 1024;};
 
-        virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
             //initialize y to zero
             for(size_t i=0; i<fDimension; i++)
@@ -170,7 +170,7 @@ class KFMDenseBlockSparseMatrix: public KSquareMatrix< ValueType >
 
 
         //following function must be defined but it is not implemented
-        virtual const ValueType& operator()(unsigned int,unsigned int) const
+        const ValueType& operator()(unsigned int,unsigned int) const override
         {
             return fZero;
         }

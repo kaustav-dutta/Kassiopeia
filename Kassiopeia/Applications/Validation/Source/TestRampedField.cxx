@@ -85,7 +85,7 @@ int main( int argc, char** argv )
     double tStep = 0.001;
 
     // initialize magnetic field
-    KSMagneticField* tRootMagneticField = NULL;
+    KSMagneticField* tRootMagneticField = nullptr;
     try
     {
         tRootMagneticField = getMagneticField( tPathB );
@@ -97,7 +97,7 @@ int main( int argc, char** argv )
     }
 
     // initialize electric field
-    KSElectricField* tRootElectricField = NULL;
+    KSElectricField* tRootElectricField = nullptr;
     try
     {
         tRootElectricField = getElectricField( tPathE );
@@ -114,15 +114,15 @@ int main( int argc, char** argv )
     KThreeMatrix tMagneticGradient;
 
     // initialize root
-    TApplication tApplication( "TestRampedField", 0, NULL );
+    TApplication tApplication( "TestRampedField", nullptr, nullptr );
 
-    TGraph *tMagneticFieldXGraph = new TGraph();
-    TGraph *tMagneticFieldYGraph = new TGraph();
-    TGraph *tMagneticFieldZGraph = new TGraph();
+    auto *tMagneticFieldXGraph = new TGraph();
+    auto *tMagneticFieldYGraph = new TGraph();
+    auto *tMagneticFieldZGraph = new TGraph();
 
-    TGraph *tElectricFieldXGraph = new TGraph();
-    TGraph *tElectricFieldYGraph = new TGraph();
-    TGraph *tElectricFieldZGraph = new TGraph();
+    auto *tElectricFieldXGraph = new TGraph();
+    auto *tElectricFieldYGraph = new TGraph();
+    auto *tElectricFieldZGraph = new TGraph();
 
     for (unsigned int i=0; i<tCount; i++)
     {
@@ -164,7 +164,7 @@ int main( int argc, char** argv )
     }
 
     // show plots
-    TCanvas *tCanvas = new TCanvas( "canvas", "TestRampedField" );
+    auto *tCanvas = new TCanvas( "canvas", "TestRampedField" );
     tCanvas->Divide( 2, 3 );
 
     tCanvas->cd( 1 );

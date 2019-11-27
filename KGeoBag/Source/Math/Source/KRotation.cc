@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <cassert>
+#include "KConst.h"
 
 namespace KGeoBag
 {
@@ -75,7 +76,7 @@ namespace KGeoBag
     }
     void KRotation::SetAxisAngleInDegrees( const KThreeVector& tAxis, const double& anAngle )
     {
-        SetAxisAngle( tAxis, KConst::Pi() / 180. * anAngle );
+        SetAxisAngle( tAxis, katrin::KConst::Pi() / 180. * anAngle );
     }
 
     void KRotation::SetEulerAngles( const double& anAlpha, const double& aBeta, const double& aGamma )
@@ -103,7 +104,7 @@ namespace KGeoBag
     }
     void KRotation::SetEulerAnglesInDegrees( const double& anAlpha, const double& aBeta, const double& aGamma )
     {
-        SetEulerAngles( KConst::Pi() / 180. * anAlpha, KConst::Pi() / 180. * aBeta, KConst::Pi() / 180. * aGamma );
+        SetEulerAngles( katrin::KConst::Pi() / 180. * anAlpha, katrin::KConst::Pi() / 180. * aBeta, katrin::KConst::Pi() / 180. * aGamma );
     }
 
     void KRotation::SetEulerAngles( const vector<double>& anArray )
@@ -143,7 +144,7 @@ namespace KGeoBag
     }
     void KRotation::SetEulerZYZAnglesInDegrees( const double& anAlpha, const double& aBeta, const double& aGamma )
     {
-        SetEulerZYZAngles( KConst::Pi() / 180. * anAlpha, KConst::Pi() / 180. * aBeta, KConst::Pi() / 180. * aGamma );
+        SetEulerZYZAngles( katrin::KConst::Pi() / 180. * anAlpha, katrin::KConst::Pi() / 180. * aBeta, katrin::KConst::Pi() / 180. * aGamma );
     }
 
     void KRotation::SetEulerZYZAngles( const vector<double>& anArray )

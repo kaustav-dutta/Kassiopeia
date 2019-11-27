@@ -20,8 +20,8 @@ namespace Kassiopeia
                 fIncrement( 0. ),
                 fResetMin( 0. ),
                 fResetMax( 0. ),
-                fComponent( 0 ),
-                fValue( 0 ),
+                fComponent( nullptr ),
+                fValue( nullptr ),
                 fDone( false ),
                 fMinValue( std::numeric_limits< XValueType >::max() ), //NOTE: defaults to always-off until reset
                 fMaxValue( -1.0*std::numeric_limits<XValueType>::max() )
@@ -41,15 +41,15 @@ namespace Kassiopeia
     				fMaxValue( aCopy.fMaxValue )
             {
     	    }
-            KSWriteROOTConditionPeriodic* Clone() const
+            KSWriteROOTConditionPeriodic* Clone() const override
     	    {
     	        return new KSWriteROOTConditionPeriodic( *this );
     	    }
-    		virtual ~KSWriteROOTConditionPeriodic()
+    		~KSWriteROOTConditionPeriodic() override
     		{
     		}
 
-            void CalculateWriteCondition( bool& aFlag )
+            void CalculateWriteCondition( bool& aFlag ) override
             {
                 if (*fValue >= fResetMin && *fValue <= fResetMax )  // NOTE: this needs to occur even before the first use
                 {

@@ -154,7 +154,7 @@ class KFMElectrostaticTree: public KFMCubicSpaceTree<KFMELECTROSTATICS_DIM, KFME
 {
     public:
         KFMElectrostaticTree():KFMCubicSpaceTree<KFMELECTROSTATICS_DIM, KFMElectrostaticNodeObjects >(){;}
-        virtual ~KFMElectrostaticTree()
+        ~KFMElectrostaticTree() override
         {
         };
 

@@ -17,7 +17,7 @@ namespace Kassiopeia
     {
         public:
             KSElectricField();
-            virtual ~KSElectricField();
+            ~KSElectricField() override;
 
         public:
             virtual void CalculatePotential( const KThreeVector& aSamplePoint, const double& aSampleTime, double& aPotential ) = 0;

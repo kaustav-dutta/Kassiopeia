@@ -56,7 +56,7 @@ int main( int argc, char** argv )
     coremsg( eNormal ) << "starting..." << eom;
 
     KTextFile* tFile;
-    for( vector< string >::const_iterator tIter = tCommandLine.GetFiles().begin(); tIter != tCommandLine.GetFiles().end(); tIter++ )
+    for( auto tIter = tCommandLine.GetFiles().begin(); tIter != tCommandLine.GetFiles().end(); tIter++ )
     {
         tFile = new KTextFile();
         tFile->AddToNames( *tIter );

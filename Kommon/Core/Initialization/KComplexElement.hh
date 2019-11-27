@@ -22,15 +22,15 @@ namespace katrin
         public KElementBase
     {
         public:
-            KComplexElement( KElementBase* aParentElement = NULL );
-            virtual ~KComplexElement();
+            KComplexElement( KElementBase* aParentElement = nullptr );
+            ~KComplexElement() override;
 
-            virtual bool Begin();
-            virtual bool AddAttribute( KContainer* aToken );
-            virtual bool Body();
-            virtual bool AddElement( KContainer* anElement );
-            virtual bool SetValue( KToken* aValue );
-            virtual bool End();
+            bool Begin() override;
+            bool AddAttribute( KContainer* aToken ) override;
+            bool Body() override;
+            bool AddElement( KContainer* anElement ) override;
+            bool SetValue( KToken* aValue ) override;
+            bool End() override;
 
             static KElementBase* Create( KElementBase* aParentElement );
             template< class XAttributeType >
@@ -48,17 +48,17 @@ namespace katrin
 
     template< class XType >
     KComplexElement< XType >::KComplexElement( KElementBase* aParentElement ) :
-        fObject( NULL )
+        fObject( nullptr )
     {
         fParentElement = aParentElement;
 
-        if( sElements == NULL )
+        if( sElements == nullptr )
         {
             sElements = new KElementMap();
         }
         fElements = sElements;
 
-        if( sAttributes == NULL )
+        if( sAttributes == nullptr )
         {
             sAttributes = new KAttributeMap();
         }
@@ -109,12 +109,12 @@ namespace katrin
     }
 
     template< class XType >
-    KAttributeMap* KComplexElement< XType >::sAttributes = NULL;
+    KAttributeMap* KComplexElement< XType >::sAttributes = nullptr;
     template< class XType >
     template< class XAttributeType >
     int KComplexElement< XType >::Attribute( const std::string& aName )
     {
-        if( sAttributes == NULL )
+        if( sAttributes == nullptr )
         {
             sAttributes = new KAttributeMap();
         }
@@ -122,12 +122,12 @@ namespace katrin
         return 0;
     }
     template< class XType >
-    KElementMap* KComplexElement< XType >::sElements = NULL;
+    KElementMap* KComplexElement< XType >::sElements = nullptr;
     template< class XType >
     template< class XElementType >
     int KComplexElement< XType >::SimpleElement( const std::string& aName )
     {
-        if( sElements == NULL )
+        if( sElements == nullptr )
         {
             sElements = new KElementMap();
         }
@@ -138,7 +138,7 @@ namespace katrin
     template< class XElementType >
     int KComplexElement< XType >::ComplexElement( const std::string& aName )
     {
-        if( sElements == NULL )
+        if( sElements == nullptr )
         {
             sElements = new KElementMap();
         }

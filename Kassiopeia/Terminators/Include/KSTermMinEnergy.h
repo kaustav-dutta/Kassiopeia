@@ -14,12 +14,12 @@ namespace Kassiopeia
         public:
             KSTermMinEnergy();
             KSTermMinEnergy( const KSTermMinEnergy& aCopy );
-            KSTermMinEnergy* Clone() const;
-            virtual ~KSTermMinEnergy();
+            KSTermMinEnergy* Clone() const override;
+            ~KSTermMinEnergy() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetMinEnergy( const double& aValue );

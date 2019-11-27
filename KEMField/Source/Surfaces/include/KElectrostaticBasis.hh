@@ -23,7 +23,7 @@ namespace KEMField
   {
   public:
     KElectrostaticBasis() : KBasisType<double,1>() {}
-    virtual ~KElectrostaticBasis() {}
+    ~KElectrostaticBasis() override {}
 
     static std::string Name() { return "ElectrostaticBasis"; }
   };

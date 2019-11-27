@@ -25,7 +25,7 @@ namespace KEMField
 		       double y_2,
 		       double zmir = 1.e10,
 		       bool   isfull = true);
-    virtual ~KEMRootFieldCanvas();
+    ~KEMRootFieldCanvas() override;
 
     void InitializeCanvas();
 
@@ -47,16 +47,16 @@ namespace KEMField
 		      std::vector<double> y,
 		      std::vector<double> V,
 		      bool xy = false,
-		      double z = 0);
+		      double z = 0) override;
     void DrawComparisonMap(int nPoints,
 			   std::vector<double> x,
 			   std::vector<double> y,
 			   std::vector<double> V1,
-			   std::vector<double> V2);
-    void DrawFieldLines(std::vector<double> x,std::vector<double> y);
-    void LabelAxes(std::string xname,std::string yname,std::string zname);
-    void LabelCanvas(std::string title);
-    void SaveAs(std::string savename);
+			   std::vector<double> V2) override;
+    void DrawFieldLines(std::vector<double> x,std::vector<double> y) override;
+    void LabelAxes(std::string xname,std::string yname,std::string zname) override;
+    void LabelCanvas(std::string title) override;
+    void SaveAs(std::string savename) override;
 
   private:
     TCanvas* canvas;

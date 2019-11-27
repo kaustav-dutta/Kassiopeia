@@ -17,22 +17,23 @@ namespace KGeoBag
       faces).
     */
   public:
-    KGBeam() : f2DTransform(NULL) {}
+    KGBeam() : f2DTransform(nullptr) {}
     KGBeam(int nDiscRad,
 	   int nDiscLong) : fNDiscRad(nDiscRad),
 			    fNDiscLong(nDiscLong),
-			    f2DTransform(NULL) {}
+			    f2DTransform(nullptr) {}
 
-    virtual ~KGBeam();
+    ~KGBeam() override;
 
     static std::string Name() { return "beam"; }
 
     virtual KGBeam* Clone() const;
 
     virtual void Initialize() const;
+    virtual void AreaInitialize() const override { Initialize(); }
 
     bool   ContainsPoint(const double* P) const;
-    double DistanceTo(const double* P,double* P_in=NULL,double* P_norm=NULL) const;
+    double DistanceTo(const double* P,double* P_in=nullptr,double* P_norm=nullptr) const;
 
     void AddStartLine(double p1[3],double p2[3]);
     void AddEndLine(double p1[3],double p2[3]);
@@ -59,7 +60,7 @@ namespace KGeoBag
     static double DistanceToLine(const double *P,
 				 const double *P1,
 				 const double*P2,
-				 double *P_in=NULL);
+				 double *P_in=nullptr);
 
   private:
 

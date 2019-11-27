@@ -24,7 +24,7 @@ namespace KEMField
   {
   public:
     KMagnetostaticBasis() : KBasisType<double,2>() {}
-    virtual ~KMagnetostaticBasis() {}
+    ~KMagnetostaticBasis() override {}
 
     static std::string Name() { return "MagnetostaticBasis"; }
   };

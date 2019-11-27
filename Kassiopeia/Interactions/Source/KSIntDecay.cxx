@@ -14,7 +14,7 @@ namespace Kassiopeia
 
     KSIntDecay::KSIntDecay() :
             fSplit( false ),
-            fCalculator( NULL ),
+            fCalculator( nullptr ),
             fCalculators(),
             fLifeTimes(),
             fEnhancement( 1. )
@@ -90,7 +90,7 @@ namespace Kassiopeia
 
         if( tTimes.at(tSmallest) > aTrajectoryTimeStep )
         {
-            fCalculator = NULL;
+            fCalculator = nullptr;
 
             anInteractionParticle = aTrajectoryFinalParticle;
             aTimeStep = aTrajectoryTimeStep;
@@ -117,11 +117,11 @@ namespace Kassiopeia
                                          KSParticle& aFinalParticle,
                                          KSParticleQueue& aSecondaries ) const
     {
-        if( fCalculator != NULL )
+        if( fCalculator != nullptr )
         {
             if(fSplit)
             {
-                KSParticle* tSplitParticle = new KSParticle();
+                auto* tSplitParticle = new KSParticle();
                 *tSplitParticle = aFinalParticle;
 
                 fCalculator->ExecuteInteraction( anInteractionParticle, *tSplitParticle, aSecondaries );
@@ -208,7 +208,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Initialize();
             }
@@ -223,7 +223,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Deinitialize();
             }
@@ -238,7 +238,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Activate();
             }
@@ -253,7 +253,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Deactivate();
             }
@@ -268,7 +268,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->PushUpdate();
             }
@@ -283,7 +283,7 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->PushDeupdate();
             }

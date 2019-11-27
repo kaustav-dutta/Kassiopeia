@@ -23,19 +23,19 @@ namespace Kassiopeia
     {
         public:
             KSROOTTrackPainter();
-            ~KSROOTTrackPainter();
+            ~KSROOTTrackPainter() override;
 
-            virtual void Render();
-            virtual void Display();
-            virtual void Write();
+            void Render() override;
+            void Display() override;
+            void Write() override;
 
-            virtual double GetXMin();
-            virtual double GetXMax();
-            virtual double GetYMin();
-            virtual double GetYMax();
+            double GetXMin() override;
+            double GetXMax() override;
+            double GetYMin() override;
+            double GetYMax() override;
 
-            virtual std::string GetXAxisLabel();
-            virtual std::string GetYAxisLabel();
+            std::string GetXAxisLabel() override;
+            std::string GetYAxisLabel() override;
 
             void AddBaseColor(TColor aColor, double aFraction );
 

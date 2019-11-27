@@ -15,11 +15,11 @@ namespace Kassiopeia
         public:
     		KSGenPositionFluxTube();
     		KSGenPositionFluxTube( const KSGenPositionFluxTube& aCopy );
-    		KSGenPositionFluxTube* Clone() const;
-            virtual ~KSGenPositionFluxTube();
+    		KSGenPositionFluxTube* Clone() const override;
+            ~KSGenPositionFluxTube() override;
 
         public:
-            virtual void Dice( KSParticleQueue* aPrimaryList );
+            void Dice( KSParticleQueue* aPrimaryList ) override;
 
         public:
             void SetPhiValue( KSGenValue* aPhiValue );
@@ -43,8 +43,8 @@ namespace Kassiopeia
             ;K_SET( bool, OnlySurface );
 
         protected:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
     };
 
 }

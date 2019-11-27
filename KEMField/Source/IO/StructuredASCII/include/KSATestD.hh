@@ -26,7 +26,7 @@ class KSATestD: public KSATestB
 {
     public:
         KSATestD(){;}
-        virtual ~KSATestD(){;}
+        ~KSATestD() override{;}
 
         KSATestD(const KSATestD& copyObject):
         KSATestB(copyObject)
@@ -48,14 +48,14 @@ class KSATestD: public KSATestB
             return *this;
         }
 
-        virtual void DefineOutputNode(KSAOutputNode* node) const;
+        void DefineOutputNode(KSAOutputNode* node) const override;
 
-        virtual void DefineInputNode(KSAInputNode* node);
+        void DefineInputNode(KSAInputNode* node) override;
 
         void SetD(const double& d){fD = d;};
         double GetD() const {return fD;};
 
-        virtual const char* ClassName() const { return "KSATestD"; };
+        const char* ClassName() const override { return "KSATestD"; };
 
     protected:
 

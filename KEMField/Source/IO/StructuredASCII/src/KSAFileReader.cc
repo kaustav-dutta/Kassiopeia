@@ -1,5 +1,5 @@
 #include <iostream>
-#include <assert.h>
+#include <cassert>
 #include "KSAFileReader.hh"
 
 #ifndef __has_cpp_attribute
@@ -276,7 +276,7 @@ void KSAFileReader::ExtractLines()
 //        while( fCharacterQueue.size() != 0 );
 //    }
 
-    std::vector<unsigned char>::iterator line_begin = fLineStagingBuffer.begin();
+    auto line_begin = fLineStagingBuffer.begin();
     std::vector<unsigned char>::iterator it;
 
     for( it = fLineStagingBuffer.begin(); it != fLineStagingBuffer.end();)

@@ -16,7 +16,7 @@ namespace KGeoBag
 
   KGExtrudedObject* KGExtrudedObject::Clone() const
   {
-    KGExtrudedObject* tClone = new KGExtrudedObject();
+    auto* tClone = new KGExtrudedObject();
     tClone->fZMin = fZMin;
     tClone->fZMax = fZMax;
     tClone->fNDisc = fNDisc;
@@ -526,7 +526,7 @@ namespace KGeoBag
 
   KGExtrudedObject::Line* KGExtrudedObject::Line::Clone(KGExtrudedObject* eO) const
   {
-    Line* tClone = new Line();
+    auto* tClone = new Line();
 
     tClone->fOrder = fOrder;
     tClone->fP1[0] = fP1[0];
@@ -557,7 +557,7 @@ namespace KGeoBag
 
     if (u<=0.)
     {
-      if (P_in!=NULL)
+      if (P_in!=nullptr)
       {
 	P_in[0] = fP1[0];
 	P_in[1] = fP1[1];
@@ -567,7 +567,7 @@ namespace KGeoBag
     }
     else if (u>=1.)
     {
-      if (P_in!=NULL)
+      if (P_in!=nullptr)
       {
 	P_in[0] = fP2[0];
 	P_in[1] = fP2[1];
@@ -579,7 +579,7 @@ namespace KGeoBag
       double x_int = fP1[0] + u*(fP2[0]-fP1[0]);
       double y_int = fP1[1] + u*(fP2[1]-fP1[1]);
 
-      if (P_in!=NULL)
+      if (P_in!=nullptr)
       {
 	P_in[0] = x_int;
 	P_in[1] = y_int;
@@ -588,7 +588,7 @@ namespace KGeoBag
       dist = sqrt((P[0]-x_int)*(P[0]-x_int) + (P[1]-y_int)*(P[1]-y_int));
     }
 
-    if (P_norm!=NULL)
+    if (P_norm!=nullptr)
     {
       P_norm[0] = P[0] - P_in[0];
       P_norm[1] = P[1] - P_in[1];
@@ -628,7 +628,7 @@ namespace KGeoBag
 
   KGExtrudedObject::Arc* KGExtrudedObject::Arc::Clone(KGExtrudedObject* eO) const
   {
-    Arc* tClone = new Arc();
+    auto* tClone = new Arc();
 
     tClone->fOrder = fOrder;
     tClone->fP1[0] = fP1[0];
@@ -759,7 +759,7 @@ namespace KGeoBag
     {
       double tmp[2] = {fRadius*cos(phi_P) + fCenter[0],
 		       fRadius*sin(phi_P) + fCenter[1]};
-      if (P_in != NULL)
+      if (P_in != nullptr)
       {
 	P_in[0] = tmp[0];
 	P_in[1] = tmp[1];
@@ -775,7 +775,7 @@ namespace KGeoBag
     }
     else if (AngleIsWithinRange(phi_P,fPhiEnd,fPhiBoundary,fPositiveOrientation))
     {
-      if (P_in != NULL)
+      if (P_in != nullptr)
       {
 	P_in[0] = fP2[0];
 	P_in[1] = fP2[1];
@@ -791,7 +791,7 @@ namespace KGeoBag
     }
     else
     {
-      if (P_in != NULL)
+      if (P_in != nullptr)
       {
 	P_in[0] = fP1[0];
 	P_in[1] = fP1[1];
@@ -806,7 +806,7 @@ namespace KGeoBag
       dist = sqrt((P[0]-fP1[0])*(P[0]-fP1[0]) + (P[1]-fP1[1])*(P[1]-fP1[1]));
     }
 
-    if (P_norm!=NULL)
+    if (P_norm!=nullptr)
     {
       P_norm[0] = P[0] - P_in[0];
       P_norm[1] = P[1] - P_in[1];

@@ -32,13 +32,13 @@ class KFMElectrostaticMultipoleCalculatorAnalytic: public KFMElectrostaticMultip
 {
     public:
         KFMElectrostaticMultipoleCalculatorAnalytic();
-        virtual ~KFMElectrostaticMultipoleCalculatorAnalytic();
+        ~KFMElectrostaticMultipoleCalculatorAnalytic() override;
 
-        virtual void SetDegree(int l_max);
+        void SetDegree(int l_max) override;
 
         //constructs unscaled multipole expansion, assuming constant charge density
         //assumes a point cloud with 2 vertics is a wire electrode, 3 vertices is a triangle, and 4 is a rectangle/quadrilateral
-        virtual bool ConstructExpansion(double* target_origin, const KFMPointCloud<3>* vertices, KFMScalarMultipoleExpansion* moments) const;
+        bool ConstructExpansion(double* target_origin, const KFMPointCloud<3>* vertices, KFMScalarMultipoleExpansion* moments) const override;
 
         //M2M translation rule
         void TranslateMoments(const double* del, std::vector< std::complex<double> >& source_moments, std::vector< std::complex<double> >& target_moments) const;

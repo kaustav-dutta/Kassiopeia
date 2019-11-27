@@ -13,25 +13,25 @@ namespace KEMField
     typedef KCoil ElementType;
 
     KZHCoefficientGenerator() : KZHCoefficientGeneratorElement() {}
-    virtual ~KZHCoefficientGenerator() {}
+    ~KZHCoefficientGenerator() override {}
 
     void SetElement(const KCoil* c) { fCoil = c; }
 
-    const KEMCoordinateSystem& GetCoordinateSystem() const
+    const KEMCoordinateSystem& GetCoordinateSystem() const override
     { return fCoil->GetCoordinateSystem(); }
 
-    double Prefactor() const { return fCoil->GetCurrent(); }
+    double Prefactor() const override { return fCoil->GetCurrent(); }
 
     void ComputeCentralCoefficients(double,
     				    double,
-    				    std::vector<double>&) const;
+    				    std::vector<double>&) const override;
     void ComputeRemoteCoefficients(double,
     				   double,
-    				   std::vector<double>&) const;
+    				   std::vector<double>&) const override;
 
-    double ComputeRho(double,bool) const;
+    double ComputeRho(double,bool) const override;
 
-    void GetExtrema(double&,double&) const;
+    void GetExtrema(double&,double&) const override;
 
   protected:
     const KCoil* fCoil;

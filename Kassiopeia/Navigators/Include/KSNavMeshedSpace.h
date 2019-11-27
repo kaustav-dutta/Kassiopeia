@@ -51,10 +51,10 @@ namespace Kassiopeia
         public:
             KSNavMeshedSpace();
             KSNavMeshedSpace( const KSNavMeshedSpace& aCopy );
-            KSNavMeshedSpace* Clone() const;
-            virtual ~KSNavMeshedSpace();
+            KSNavMeshedSpace* Clone() const override;
+            ~KSNavMeshedSpace() override;
 
-            virtual void InitializeComponent()
+            void InitializeComponent() override
             {
                 CollectMeshElements();
                 ConstructTree();
@@ -97,11 +97,11 @@ namespace Kassiopeia
 
         public:
 
-            void CalculateNavigation( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryStep, KSParticle& aNavigationParticle, double& aNavigationStep, bool& aNavigationFlag );
-            void ExecuteNavigation( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const;
-            void FinalizeNavigation( KSParticle& aFinalParticle ) const;
-            void StartNavigation( KSParticle& aParticle, KSSpace* aRoot );
-            void StopNavigation( KSParticle& aParticle, KSSpace* aRoot );
+            void CalculateNavigation( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryStep, KSParticle& aNavigationParticle, double& aNavigationStep, bool& aNavigationFlag ) override;
+            void ExecuteNavigation( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const override;
+            void FinalizeNavigation( KSParticle& aFinalParticle ) const override;
+            void StartNavigation( KSParticle& aParticle, KSSpace* aRoot ) override;
+            void StopNavigation( KSParticle& aParticle, KSSpace* aRoot ) override;
 
         private:
 
@@ -173,40 +173,40 @@ namespace Kassiopeia
             {
                 public:
                     KSMeshElementCollector() :
-						fType(0), fSpace(NULL), fSide(NULL), fSurface(NULL), fMap(NULL) { }
-                    virtual ~KSMeshElementCollector() { }
+						fType(0), fSpace(nullptr), fSide(nullptr), fSurface(nullptr), fMap(nullptr) { }
+                    ~KSMeshElementCollector() override { }
 
                     void SetSpace(KSGeoSpace* space)
                     {
                         fType = KSNAVMESHEDSPACE_SPACE;
                         fSpace = space;
-                        fSide = NULL;
-                        fSurface = NULL;
+                        fSide = nullptr;
+                        fSurface = nullptr;
                     };
 
                     void SetSide(KSGeoSide* side)
                     {
                         fType = KSNAVMESHEDSPACE_SIDE;
-                        fSpace = NULL;
+                        fSpace = nullptr;
                         fSide = side;
-                        fSurface = NULL;
+                        fSurface = nullptr;
                     };
 
                     void SetSurface(KSGeoSurface* surface)
                     {
                         fType = KSNAVMESHEDSPACE_SURFACE;
-                        fSpace = NULL;
-                        fSide = NULL;
+                        fSpace = nullptr;
+                        fSide = nullptr;
                         fSurface = surface;
                     };
 
                     void SetElementMap(std::vector< MeshElementAssociation >* element_map){fMap = element_map;};
 
-                    virtual void PreCollectionActionExecute(KGMeshData* aData )
+                    void PreCollectionActionExecute(KGMeshData* aData ) override
                     {
                         unsigned int n_elem = aData->Elements()->size();
                         double sum_area = 0.0;
-                        for( std::vector< KGMeshElement* >::iterator tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
+                        for( auto tElementIt = aData->Elements()->begin(); tElementIt != aData->Elements()->end(); tElementIt++ )
                         {
                             sum_area += (*tElementIt)->Area();
                         }
@@ -243,7 +243,7 @@ namespace Kassiopeia
 
                     }
 
-                    virtual void PostCollectionActionExecute(KGNavigableMeshElement* /*element */)
+                    void PostCollectionActionExecute(KGNavigableMeshElement* /*element */) override
                     {
                         MeshElementAssociation temp;
                         temp.fElementID = fMap->size();

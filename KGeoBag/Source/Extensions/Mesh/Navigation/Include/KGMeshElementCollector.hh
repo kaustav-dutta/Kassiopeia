@@ -35,7 +35,7 @@ class KGMeshElementCollector:
     {
         public:
             KGMeshElementCollector();
-            virtual ~KGMeshElementCollector();
+            ~KGMeshElementCollector() override;
 
             void SetMeshElementContainer( KGNavigableMeshElementContainer* aContainer )
             {
@@ -48,8 +48,8 @@ class KGMeshElementCollector:
             const KThreeVector& GetYAxis() const;
             const KThreeVector& GetZAxis() const;
 
-            void VisitSurface( KGSurface* aSurface );
-            void VisitSpace( KGSpace* aSpace );
+            void VisitSurface( KGSurface* aSurface ) override;
+            void VisitSpace( KGSpace* aSpace ) override;
 
         protected:
 

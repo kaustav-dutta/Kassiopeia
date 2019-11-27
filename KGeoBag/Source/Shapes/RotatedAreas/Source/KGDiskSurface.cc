@@ -86,8 +86,8 @@ namespace KGeoBag
     }
     void KGDiskSurface::AreaAccept( KGVisitor* aVisitor )
     {
-        KGDiskSurface::Visitor* tDiskSurfaceVisitor = dynamic_cast< KGDiskSurface::Visitor* >( aVisitor );
-        if( tDiskSurfaceVisitor != 0 )
+        auto* tDiskSurfaceVisitor = dynamic_cast< KGDiskSurface::Visitor* >( aVisitor );
+        if( tDiskSurfaceVisitor != nullptr )
         {
             tDiskSurfaceVisitor->VisitDiskSurface( this );
             return;

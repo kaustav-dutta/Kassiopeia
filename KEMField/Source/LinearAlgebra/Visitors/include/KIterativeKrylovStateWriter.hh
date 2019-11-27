@@ -64,19 +64,19 @@ class KIterativeKrylovStateWriter: public KIterativeSolver<ValueType>::Visitor
                 fPreviousStateFile = "";
             };
 
-        virtual ~KIterativeKrylovStateWriter(){};
+        ~KIterativeKrylovStateWriter() override{};
 
-        virtual void Initialize(KIterativeSolver<ValueType>& solver)
+        void Initialize(KIterativeSolver<ValueType>& solver) override
         {
-            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     std::stringstream ss;
                     ss << fSaveNameRoot;
@@ -108,17 +108,17 @@ class KIterativeKrylovStateWriter: public KIterativeSolver<ValueType>::Visitor
             }
         };
 
-        virtual void Visit(KIterativeSolver<ValueType>& solver)
+        void Visit(KIterativeSolver<ValueType>& solver) override
         {
-            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     //compute hash for the krylov solver state (for unique id, not reference)
                     KMD5HashGenerator hashGenerator;
@@ -168,17 +168,17 @@ class KIterativeKrylovStateWriter: public KIterativeSolver<ValueType>::Visitor
             }
         }
 
-        virtual void Finalize(KIterativeSolver<ValueType>& solver)
+        void Finalize(KIterativeSolver<ValueType>& solver) override
         {
-            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = NULL;
+            KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* krylov_solver = nullptr;
             krylov_solver = dynamic_cast< KSimpleIterativeKrylovSolver<ValueType, ParallelTrait>* >(&solver);
 
-            if(krylov_solver != NULL)
+            if(krylov_solver != nullptr)
             {
                 krylov_solver->CoalesceData();
                 ParallelTrait<ValueType>* trait = krylov_solver->GetTrait();
 
-                if(trait != NULL)
+                if(trait != nullptr)
                 {
                     std::vector< std::string > stateLabels;
                     stateLabels = fLabels;

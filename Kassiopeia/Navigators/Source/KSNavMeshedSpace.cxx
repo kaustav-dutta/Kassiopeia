@@ -29,7 +29,7 @@ namespace Kassiopeia
         fFailCheck(false),
         fRelativeTolerance(1e-2),
         fAbsoluteTolerance(1e-3),
-        fRootSpace(NULL),
+        fRootSpace(nullptr),
         fMaxDepth(8),
         fSpecifyMaxDepth(false),
         fSpatialResolution(1e-6),
@@ -79,10 +79,10 @@ namespace Kassiopeia
 
         //starting with the root space, we need to retrieve all of the surfaces, spaces and sides it contains
         //recursively iterate over the objects in the root space
-        std::queue< KSSpace* >* spaceQueue = new std::queue< KSSpace* >();
+        auto* spaceQueue = new std::queue< KSSpace* >();
         spaceQueue->push(fRootSpace);
 
-        if(fRootSpace == NULL)
+        if(fRootSpace == nullptr)
         {
             navmsg( eError ) << "please check your configuration, the root space has not been specified!" << eom;
         }
@@ -92,8 +92,8 @@ namespace Kassiopeia
             tSpace = spaceQueue->front();
 
             //collect this space if it is a geo space
-            KSGeoSpace* geo_space = dynamic_cast< KSGeoSpace* >(tSpace);
-            if(geo_space != NULL)
+            auto* geo_space = dynamic_cast< KSGeoSpace* >(tSpace);
+            if(geo_space != nullptr)
             {
                 navmsg_debug( " navigator <"<<GetName()<<"> is collecting the space <"<< geo_space->GetName() << "> for meshing " << eom );
                 fSpaces.push_back(geo_space);
@@ -102,8 +102,8 @@ namespace Kassiopeia
             //collect the surfaces that are children of this space and are geo surfaces
             for(int i=0; i<tSpace->GetSurfaceCount(); i++)
             {
-                KSGeoSurface* geo_surface = dynamic_cast< KSGeoSurface* >(tSpace->GetSurface(i));
-                if(geo_surface != NULL)
+                auto* geo_surface = dynamic_cast< KSGeoSurface* >(tSpace->GetSurface(i));
+                if(geo_surface != nullptr)
                 {
                     navmsg_debug( " navigator <"<<GetName()<<"> is collecting the surface <"<< geo_surface->GetName() << "> for meshing " << eom );
                     fSurfaces.push_back(geo_surface);
@@ -113,8 +113,8 @@ namespace Kassiopeia
             //collect the sides of this space that are geo sides
             for(int i=0; i<tSpace->GetSideCount(); i++)
             {
-                KSGeoSide* geo_side = dynamic_cast< KSGeoSide* >(tSpace->GetSide(i));
-                if(geo_side != NULL)
+                auto* geo_side = dynamic_cast< KSGeoSide* >(tSpace->GetSide(i));
+                if(geo_side != nullptr)
                 {
                     navmsg_debug( " navigator <"<<GetName()<<"> is collecting the side <"<< geo_side->GetName() << "> for meshing " << eom );
                     fSides.push_back(geo_side);
@@ -327,7 +327,7 @@ namespace Kassiopeia
 
         if(fFileName == "")
         {
-            time_t t = time(0);
+            time_t t = time(nullptr);
             struct tm * now = localtime(&t);
             std::stringstream s;
             s << "KSOctree_"
@@ -426,7 +426,7 @@ namespace Kassiopeia
 
             //now we need to create a vector of N empty nodes, and enumerate them
             std::vector< KGMeshNavigationNode* > tree_nodes;
-            tree_nodes.resize(n_nodes, NULL);
+            tree_nodes.resize(n_nodes, nullptr);
             for(unsigned int i=0; i<n_nodes; i++)
             {
                 tree_nodes[i] = new KGMeshNavigationNode();
@@ -496,9 +496,9 @@ namespace Kassiopeia
         KThreeVector tFinalPoint = aTrajectoryFinalParticle.GetPosition();
         double tTime;
 
-        fSpaceEntity = NULL;
-        fSideEntity = NULL;
-        fSurfaceEntity = NULL;
+        fSpaceEntity = nullptr;
+        fSideEntity = nullptr;
+        fSurfaceEntity = nullptr;
         fIsEntry = false;
 
         fNavigationFail = false;
@@ -532,8 +532,8 @@ namespace Kassiopeia
             //positive triggers for an intersection search
             //(since a bounding ball, while simple, is not the best culling volume for a nearly linear trajectory)
 
-            std::vector< KSParticle >::iterator startIt = fIntermediateParticleStates.begin();
-            std::vector< KSParticle >::iterator stopIt = startIt; stopIt++;
+            auto startIt = fIntermediateParticleStates.begin();
+            auto stopIt = startIt; stopIt++;
 
             unsigned int repeatCount = 0;
             unsigned int seg = 0;
@@ -594,8 +594,8 @@ namespace Kassiopeia
                         case KSNAVMESHEDSPACE_SPACE:
                             //intersection with space element
                             fSpaceEntity = fElementMap[fMeshElementID].fSpace;
-                            fSideEntity = NULL;
-                            fSurfaceEntity = NULL;
+                            fSideEntity = nullptr;
+                            fSurfaceEntity = nullptr;
 
                             if(tCurrentSpace == fSpaceEntity)
                             {
@@ -615,7 +615,7 @@ namespace Kassiopeia
                                 else{dist_to_add = fRelativeTolerance*length;}
 
                                 //just started tracking this particle
-                                if( fLastSpaceEntity == NULL )
+                                if( fLastSpaceEntity == nullptr )
                                 {
                                     navmsg_debug( "  invalid intersection detected near starting position on <" << fSpaceEntity->GetName() << ">" << eom );
                                     validIntersection = false;
@@ -627,7 +627,7 @@ namespace Kassiopeia
                                     validIntersection = false;
                                 }
                             }
-                            else if(fLastSpaceEntity == fSpaceEntity  || fLastSpaceEntity == NULL)
+                            else if(fLastSpaceEntity == fSpaceEntity  || fLastSpaceEntity == nullptr)
                             {
                                 //check if navigation count is within 1 step
                                 //and distance from last intersection is within the length of the segment
@@ -647,9 +647,9 @@ namespace Kassiopeia
                         break;
                         case KSNAVMESHEDSPACE_SIDE:
                             //intersection with side element
-                            fSpaceEntity = NULL;
+                            fSpaceEntity = nullptr;
                             fSideEntity = fElementMap[fMeshElementID].fSide;
-                            fSurfaceEntity = NULL;
+                            fSurfaceEntity = nullptr;
 
                             dist_from_last = (tIntersection - fLastIntersection).Magnitude();
                             if(dist_from_last < fRelativeTolerance*aTrajectoryRadius || dist_from_last < fAbsoluteTolerance)
@@ -658,7 +658,7 @@ namespace Kassiopeia
                                 else{dist_to_add = fRelativeTolerance*aTrajectoryRadius;}
 
                                 //just started tracking this particle
-                                if( fLastSideEntity == NULL )
+                                if( fLastSideEntity == nullptr )
                                 {
                                     navmsg_debug( "  invalid intersection detected near starting position at on <" << fSideEntity->GetName() << ">" << eom );
                                     validIntersection = false;
@@ -670,7 +670,7 @@ namespace Kassiopeia
                                     validIntersection = false;
                                 }
                             }
-                            else if(fLastSideEntity == fSideEntity  || fLastSideEntity == NULL)
+                            else if(fLastSideEntity == fSideEntity  || fLastSideEntity == nullptr)
                             {
                                 //check if navigation count is within 1 step
                                 //and distance from last intersection is within the length of the segment
@@ -689,8 +689,8 @@ namespace Kassiopeia
                         break;
                         case KSNAVMESHEDSPACE_SURFACE:
                             //intersection with surface element
-                            fSpaceEntity = NULL;
-                            fSideEntity = NULL;
+                            fSpaceEntity = nullptr;
+                            fSideEntity = nullptr;
                             fSurfaceEntity = fElementMap[fMeshElementID].fSurface;
 
                             dist_from_last = (tIntersection - fLastIntersection).Magnitude();
@@ -700,7 +700,7 @@ namespace Kassiopeia
                                 else{dist_to_add = fRelativeTolerance*aTrajectoryRadius;}
 
                                 //just started tracking this particle
-                                if( fLastSurfaceEntity == NULL )
+                                if( fLastSurfaceEntity == nullptr )
                                 {
                                     navmsg_debug( "  invalid intersection detected near starting position at on <" << fSurfaceEntity->GetName() << ">" << eom );
                                     validIntersection = false;
@@ -712,7 +712,7 @@ namespace Kassiopeia
                                     validIntersection = false;
                                 }
                             }
-                            else if(fLastSurfaceEntity == fSurfaceEntity  || fLastSurfaceEntity == NULL)
+                            else if(fLastSurfaceEntity == fSurfaceEntity  || fLastSurfaceEntity == nullptr)
                             {
                                 //check if navigation count is within 1 step
                                 //and distance from last intersection is within the length of the segment
@@ -831,7 +831,7 @@ namespace Kassiopeia
         }
 
         //we had a space intersection
-        if(fSpaceEntity != NULL)
+        if(fSpaceEntity != nullptr)
         {
             aFinalParticle = aNavigationParticle;
             aFinalParticle.SetLabel( GetName() );
@@ -844,10 +844,10 @@ namespace Kassiopeia
 
                 if( fEnterSplit == true )
                 {
-                    KSParticle* tEnterSplitParticle = new KSParticle( aFinalParticle );
+                    auto* tEnterSplitParticle = new KSParticle( aFinalParticle );
                     tEnterSplitParticle->SetCurrentSpace( fSpaceEntity );
-                    tEnterSplitParticle->SetCurrentSurface( NULL );
-                    tEnterSplitParticle->SetCurrentSide( NULL );
+                    tEnterSplitParticle->SetCurrentSurface( nullptr );
+                    tEnterSplitParticle->SetCurrentSide( nullptr );
                     tEnterSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tEnterSplitParticle );
                     aFinalParticle.SetActive( false );
@@ -860,17 +860,17 @@ namespace Kassiopeia
                 aFinalParticle.AddLabel( "exit" );
 
                 bool world_exit = false;
-                if(fSpaceEntity->GetParent() == NULL)
+                if(fSpaceEntity->GetParent() == nullptr)
                 {
                     world_exit = true;
                 }
 
                 if(fExitSplit == true && !world_exit)
                 {
-                    KSParticle* tExitSplitParticle = new KSParticle( aFinalParticle );
+                    auto* tExitSplitParticle = new KSParticle( aFinalParticle );
                     tExitSplitParticle->SetCurrentSpace( fSpaceEntity->GetParent() );
-                    tExitSplitParticle->SetCurrentSurface( NULL );
-                    tExitSplitParticle->SetCurrentSide( NULL );
+                    tExitSplitParticle->SetCurrentSurface( nullptr );
+                    tExitSplitParticle->SetCurrentSide( nullptr );
                     tExitSplitParticle->ResetFieldCaching();
                     aParticleQueue.push_back( tExitSplitParticle );
                     aFinalParticle.SetActive( false );
@@ -888,7 +888,7 @@ namespace Kassiopeia
             return;
         }
 
-        if(fSideEntity != NULL)
+        if(fSideEntity != nullptr)
         {
             navmsg( eNormal )<< "  side <" << fSideEntity->GetName() << "> was crossed" << eom;
             aFinalParticle = aNavigationParticle;;
@@ -898,7 +898,7 @@ namespace Kassiopeia
             return;
         }
 
-        if(fSurfaceEntity != NULL)
+        if(fSurfaceEntity != nullptr)
         {
             navmsg( eNormal ) << "   surface <" << fSurfaceEntity->GetName() << "> was crossed" << eom;
             aFinalParticle = aNavigationParticle;
@@ -919,26 +919,26 @@ namespace Kassiopeia
         navmsg_debug( "navigation space <" << this->GetName() << "> finalizing navigation:" << eom );
 
         //we had a space intersection
-        if(fSpaceEntity != NULL)
+        if(fSpaceEntity != nullptr)
         {
             if(fIsEntry)
             {
                 navmsg_debug( "  finalizing navigation for exiting of space <" << fSpaceEntity->GetName() << "> " << eom );
                 aFinalParticle.SetCurrentSpace( fSpaceEntity );
-                aFinalParticle.SetCurrentSide( NULL );
-                aFinalParticle.SetCurrentSurface( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
+                aFinalParticle.SetCurrentSurface( nullptr );
                 aFinalParticle.ResetFieldCaching();
 
                 fLastEntityType = KSNAVMESHEDSPACE_SPACE;
                 fLastMeshElementID = fMeshElementID;
                 fLastSpaceEntity = fSpaceEntity;
-                fLastSideEntity = NULL;
-                fLastSurfaceEntity = NULL;
+                fLastSideEntity = nullptr;
+                fLastSurfaceEntity = nullptr;
                 fLastIntersection = aFinalParticle.GetPosition();
                 fLastDirection = aFinalParticle.GetMomentum().Unit();
 
                 fSpaceEntity->Enter();
-                fSpaceEntity = NULL;
+                fSpaceEntity = nullptr;
 
                 fLastSpaceCount = fNavigationCount;
             }
@@ -946,20 +946,20 @@ namespace Kassiopeia
             {
                 navmsg_debug( "  finalizing navigation for entering of space <" << fSpaceEntity->GetName() << "> " << eom );
                 aFinalParticle.SetCurrentSpace( fSpaceEntity->GetParent() );
-                aFinalParticle.SetCurrentSide( NULL );
-                aFinalParticle.SetCurrentSurface( NULL );
+                aFinalParticle.SetCurrentSide( nullptr );
+                aFinalParticle.SetCurrentSurface( nullptr );
                 aFinalParticle.ResetFieldCaching();
 
                 fLastEntityType = KSNAVMESHEDSPACE_SPACE;
                 fLastMeshElementID = fMeshElementID;
                 fLastSpaceEntity = fSpaceEntity;
-                fLastSideEntity = NULL;
-                fLastSurfaceEntity = NULL;
+                fLastSideEntity = nullptr;
+                fLastSurfaceEntity = nullptr;
                 fLastIntersection = aFinalParticle.GetPosition();
                 fLastDirection = aFinalParticle.GetMomentum().Unit();
 
                 fSpaceEntity->Exit();
-                fSpaceEntity = NULL;
+                fSpaceEntity = nullptr;
 
                 fLastSpaceCount = fNavigationCount;
             }
@@ -968,48 +968,48 @@ namespace Kassiopeia
             return;
         }
 
-        if(fSideEntity != NULL)
+        if(fSideEntity != nullptr)
         {
             navmsg_debug( "  finalizing navigation for crossing of side <" << fSideEntity->GetName() << "> " << eom );
 
             aFinalParticle.SetCurrentSide( fSideEntity );
-            aFinalParticle.SetCurrentSurface( NULL );
+            aFinalParticle.SetCurrentSurface( nullptr );
             aFinalParticle.ResetFieldCaching();
 
             fLastEntityType = KSNAVMESHEDSPACE_SIDE;
             fLastMeshElementID = fMeshElementID;
             fLastSpaceEntity = aFinalParticle.GetCurrentSpace();
             fLastSideEntity = fSideEntity;
-            fLastSurfaceEntity = NULL;
+            fLastSurfaceEntity = nullptr;
             fLastIntersection = aFinalParticle.GetPosition();
             fLastDirection = aFinalParticle.GetMomentum().Unit();
 
             fSideEntity->On();
-            fSideEntity = NULL;
+            fSideEntity = nullptr;
 
             fLastSideCount = fNavigationCount;
             fNavigationCount++;
             return;
         }
 
-        if(fSurfaceEntity != NULL)
+        if(fSurfaceEntity != nullptr)
         {
             navmsg_debug( "  finalizing navigation for crossing of surface <" << fSurfaceEntity->GetName() << "> " << eom );
 
-            aFinalParticle.SetCurrentSide( NULL );
+            aFinalParticle.SetCurrentSide( nullptr );
             aFinalParticle.SetCurrentSurface( fSurfaceEntity );
             aFinalParticle.ResetFieldCaching();
 
             fLastEntityType = KSNAVMESHEDSPACE_SURFACE;
             fLastMeshElementID = fMeshElementID;
             fLastSpaceEntity = aFinalParticle.GetCurrentSpace();
-            fLastSideEntity = NULL;
+            fLastSideEntity = nullptr;
             fLastSurfaceEntity = fSurfaceEntity;
             fLastIntersection = aFinalParticle.GetPosition();
             fLastDirection = aFinalParticle.GetMomentum().Unit();
 
             fSurfaceEntity->On();
-            fSurfaceEntity = NULL;
+            fSurfaceEntity = nullptr;
 
             fLastSurfaceCount = fNavigationCount;
             fNavigationCount++;
@@ -1025,9 +1025,9 @@ namespace Kassiopeia
     void KSNavMeshedSpace::StartNavigation( KSParticle& aParticle, KSSpace* aRoot )
     {
         // reset navigation
-        fSpaceEntity = NULL;
-        fSideEntity = NULL;
-        fSurfaceEntity = NULL;
+        fSpaceEntity = nullptr;
+        fSideEntity = nullptr;
+        fSurfaceEntity = nullptr;
         fNavigationCount = 0;
         fLastSideCount = 0;
         fLastSpaceCount = 0;
@@ -1041,12 +1041,12 @@ namespace Kassiopeia
 
         navmsg_debug( "navigation space <" << this->GetName() << "> starting navigation:" << eom );
 
-        if( aParticle.GetCurrentSpace() == NULL )
+        if( aParticle.GetCurrentSpace() == nullptr )
         {
             navmsg_debug( "  computing fresh initial state" << eom );
             int tIndex = 0;
             KSSpace* tParentSpace = aRoot;
-            KSSpace* tSpace = NULL;
+            KSSpace* tSpace = nullptr;
             while( tIndex < tParentSpace->GetSpaceCount() )
             {
                 tSpace = tParentSpace->GetSpace( tIndex );
@@ -1076,26 +1076,26 @@ namespace Kassiopeia
             deque< KSSpace* > tSequence;
 
             // get into the correct space state
-            while( tSpace != aRoot && tSpace != NULL )
+            while( tSpace != aRoot && tSpace != nullptr )
             {
                 tSequence.push_front( tSpace );
                 tSpace = tSpace->GetParent();
             }
 
-            for( deque< KSSpace* >::iterator tIt = tSequence.begin(); tIt != tSequence.end(); tIt++ )
+            for( auto tIt = tSequence.begin(); tIt != tSequence.end(); tIt++ )
             {
                 tSpace = *tIt;
                 navmsg_debug( "  entering space <" << tSpace->GetName() << ">" << eom );
                 tSpace->Enter();
             }
 
-            if ( tSurface != NULL )
+            if ( tSurface != nullptr )
             {
                 navmsg_debug( "  activating surface <" << tSurface->GetName() << ">" << eom );
             	tSurface->On();
             }
 
-            if ( tSide != NULL )
+            if ( tSide != nullptr )
             {
                 navmsg_debug( "  activating side <" << tSide->GetName() << ">" << eom );
             	tSide->On();
@@ -1107,17 +1107,17 @@ namespace Kassiopeia
     void KSNavMeshedSpace::StopNavigation( KSParticle& aParticle, KSSpace* aRoot )
     {
         // reset navigation
-        fSpaceEntity = NULL;
-        fSideEntity = NULL;
-        fSurfaceEntity = NULL;
+        fSpaceEntity = nullptr;
+        fSideEntity = nullptr;
+        fSurfaceEntity = nullptr;
         fNavigationCount = 0;
         fLastSideCount = 0;
         fLastSpaceCount = 0;
         fLastSurfaceCount = 0;
 
-        fLastSideEntity = NULL;
-        fLastSpaceEntity = NULL;
-        fLastSurfaceEntity = NULL;
+        fLastSideEntity = nullptr;
+        fLastSpaceEntity = nullptr;
+        fLastSurfaceEntity = nullptr;
 
         deque< KSSpace* > tSpaces;
 
@@ -1126,26 +1126,26 @@ namespace Kassiopeia
         KSSide* tSide = aParticle.GetCurrentSide();
 
         // undo side state
-        if( tSide != NULL )
+        if( tSide != nullptr )
         {
             navmsg_debug( "  deactivating side <" << tSide->GetName() << ">" << eom );
             tSide->Off();
         }
 
         // undo surface state
-        if( tSurface != NULL )
+        if( tSurface != nullptr )
         {
             navmsg_debug( "  deactivating surface <" << tSurface->GetName() << ">" << eom );
             tSurface->Off();
         }
 
         // undo space state
-        while( tSpace != aRoot && tSpace != NULL )
+        while( tSpace != aRoot && tSpace != nullptr )
         {
             tSpaces.push_back( tSpace );
             tSpace = tSpace->GetParent();
         }
-        for( deque< KSSpace* >::iterator tIt = tSpaces.begin(); tIt != tSpaces.end(); tIt++ )
+        for( auto tIt = tSpaces.begin(); tIt != tSpaces.end(); tIt++ )
         {
             tSpace = *tIt;
             navmsg_debug( "  deactivating space <" << tSpace->GetName() << ">" << eom );

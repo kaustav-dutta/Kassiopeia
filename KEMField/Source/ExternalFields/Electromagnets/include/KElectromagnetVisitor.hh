@@ -15,7 +15,7 @@ namespace KEMField
     typedef KElectromagnetTypes AcceptedTypes;
 
     KElectromagnetVisitor() {}
-    virtual ~KElectromagnetVisitor() {}
+    ~KElectromagnetVisitor() override {}
   };
 }
 

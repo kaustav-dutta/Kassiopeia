@@ -4,7 +4,7 @@ namespace KGeoBag
 {
 
     KGAxialMesherBase::KGAxialMesherBase() :
-            fCurrentElements( NULL )
+            fCurrentElements( nullptr )
     {
     }
     KGAxialMesherBase::~KGAxialMesherBase()

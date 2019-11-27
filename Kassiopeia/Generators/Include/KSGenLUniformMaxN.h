@@ -20,8 +20,8 @@ namespace Kassiopeia
     public:
         KSGenLUniformMaxN();
         KSGenLUniformMaxN(const KSGenLUniformMaxN&);
-        KSGenLUniformMaxN* Clone() const;
-        virtual ~KSGenLUniformMaxN();
+        KSGenLUniformMaxN* Clone() const override;
+        ~KSGenLUniformMaxN() override;
 
     public:
         /**
@@ -31,12 +31,12 @@ namespace Kassiopeia
          *
          * \param aPrimaries
          */
-        virtual void Dice(KSParticleQueue* aPrimaries);
+        void Dice(KSParticleQueue* aPrimaries) override;
 
 
     public:
-        void InitializeComponent();
-        void DeinitializeComponent();
+        void InitializeComponent() override;
+        void DeinitializeComponent() override;
     };
 }
 

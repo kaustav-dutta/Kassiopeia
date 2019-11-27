@@ -28,7 +28,7 @@ namespace Kassiopeia
 
     void KSGenPositionSurfaceAdjustmentStep::Dice(KSParticleQueue* aPrimaries)
     {
-        for(KSParticleIt tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
+        for(auto tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
         {
             genmsg_debug("Position before: <" << (*tParticleIt)->GetPosition() << ">" << eom);
             KThreeVector tPosition = (*tParticleIt)->GetPosition() + fLength * (*tParticleIt)->GetMomentum().Unit();

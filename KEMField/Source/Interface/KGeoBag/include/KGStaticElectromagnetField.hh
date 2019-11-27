@@ -20,7 +20,7 @@ namespace KEMField {
 class KGStaticElectromagnetField: public KStaticElectromagnetField {
 public:
     KGStaticElectromagnetField();
-    virtual ~KGStaticElectromagnetField();
+    ~KGStaticElectromagnetField() override;
 
     void SetSystem( KGeoBag::KGSpace* aSystem );
     void AddSurface( KGeoBag::KGSurface* aSurface );
@@ -29,11 +29,11 @@ public:
     KSmartPointer<KGeoBag::KGElectromagnetConverter> GetConverter();
 
 private:
-    void InitializeCore();
+    void InitializeCore() override;
 
-    KThreeVector MagneticPotentialCore(const KPosition& aSamplePoint) const;
-    KThreeVector MagneticFieldCore(const KPosition& aSamplePoint) const;
-    KGradient MagneticGradientCore(const KPosition& aSamplePoint) const;
+    KThreeVector MagneticPotentialCore(const KPosition& aSamplePoint) const override;
+    KThreeVector MagneticFieldCore(const KPosition& aSamplePoint) const override;
+    KGradient MagneticGradientCore(const KPosition& aSamplePoint) const override;
 
     void ConfigureSurfaceContainer();
 

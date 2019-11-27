@@ -16,10 +16,10 @@ namespace KEMField
     typedef KElectrostaticBasis::ValueType ValueType;
 
     KElectrostaticAnalyticLineSegmentIntegrator() {}
-    ~KElectrostaticAnalyticLineSegmentIntegrator() {}
+    ~KElectrostaticAnalyticLineSegmentIntegrator() override {}
 
-    double Potential( const KLineSegment* source, const KPosition& P ) const;
-    KThreeVector ElectricField( const KLineSegment* source, const KPosition& P ) const;
+    double Potential( const KLineSegment* source, const KPosition& P ) const override;
+    KThreeVector ElectricField( const KLineSegment* source, const KPosition& P ) const override;
     using KElectrostaticElementIntegrator<KLineSegment>::Potential;
     using KElectrostaticElementIntegrator<KLineSegment>::ElectricField;
 

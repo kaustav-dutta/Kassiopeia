@@ -30,7 +30,7 @@ class KFMCompoundInspectingActor: public KFMInspectingActor<NodeType>
             fAndOr = true;
         };
 
-        virtual ~KFMCompoundInspectingActor(){};
+        ~KFMCompoundInspectingActor() override{};
 
         void AddInspectingActor( KFMInspectingActor<NodeType>* actor)
         {
@@ -44,7 +44,7 @@ class KFMCompoundInspectingActor: public KFMInspectingActor<NodeType>
         void UseOrCondition(){fAndOr = false;};
 
         //needs to answer this question about whether this node statisfies a condition
-        virtual bool ConditionIsSatisfied(NodeType* node)
+        bool ConditionIsSatisfied(NodeType* node) override
         {
             bool result = fAndOr;
 

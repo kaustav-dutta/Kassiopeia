@@ -16,8 +16,8 @@ namespace Kassiopeia
         public:
             KSTrajIntegratorSym4();
             KSTrajIntegratorSym4( const KSTrajIntegratorSym4& aCopy );
-            KSTrajIntegratorSym4* Clone() const;
-            virtual ~KSTrajIntegratorSym4();
+            KSTrajIntegratorSym4* Clone() const override;
+            ~KSTrajIntegratorSym4() override;
     };
 
 }

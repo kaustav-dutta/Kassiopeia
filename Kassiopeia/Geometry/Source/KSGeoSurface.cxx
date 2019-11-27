@@ -9,13 +9,13 @@ namespace Kassiopeia
 {
 
     KSGeoSurface::KSGeoSurface() :
-            fParent( NULL ),
+            fParent( nullptr ),
             fContents()
     {
     }
     KSGeoSurface::KSGeoSurface( const KSGeoSurface& aCopy ) :
             KSComponent(),
-            fParent( NULL ),
+            fParent( nullptr ),
             fContents( aCopy.fContents )
     {
     }
@@ -77,7 +77,7 @@ namespace Kassiopeia
         vector< KGSurface* >::const_iterator tSurface;
 
         double tNearestDistance = std::numeric_limits< double >::max();
-        const KGSurface* tNearestSurface = NULL;
+        const KGSurface* tNearestSurface = nullptr;
 
         for( tSurface = fContents.begin(); tSurface != fContents.end(); tSurface++ )
         {
@@ -90,7 +90,7 @@ namespace Kassiopeia
             }
         }
 
-        if (tNearestSurface != NULL)
+        if (tNearestSurface != nullptr)
             return tNearestSurface->Normal( aPoint );
 
         geomsg( eWarning ) << "geo surface <" << GetName() << "> could not find a nearest space to position " << aPoint << eom;

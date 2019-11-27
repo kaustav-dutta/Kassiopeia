@@ -28,8 +28,8 @@ namespace KGeoBag
 
   void KGCylinder::AreaAccept(KGVisitor* aVisitor)
   {
-    KGCylinder::Visitor* tCylinderVisitor = dynamic_cast<KGCylinder::Visitor*>(aVisitor);
-    if(tCylinderVisitor != NULL)
+    auto* tCylinderVisitor = dynamic_cast<KGCylinder::Visitor*>(aVisitor);
+    if(tCylinderVisitor != nullptr)
     {
       tCylinderVisitor->VisitCylinder(this);
     }

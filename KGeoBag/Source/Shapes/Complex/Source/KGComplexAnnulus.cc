@@ -8,7 +8,7 @@
 namespace KGeoBag
 {
   KGComplexAnnulus::KGComplexAnnulus(double rmain) :
-    fCoordTransform(NULL)
+    fCoordTransform(nullptr)
   {
     fRMain     = rmain;
   }
@@ -29,7 +29,7 @@ namespace KGeoBag
 				      double rsub)
   {
     // Adds a Ring to the Annulus.
-    KGComplexAnnulus::Ring* r =
+    auto* r =
     new KGComplexAnnulus::Ring(this,asub,rsub);
     fRings.push_back(r);
   }
@@ -45,7 +45,7 @@ namespace KGeoBag
 
   KGComplexAnnulus* KGComplexAnnulus::Clone() const
   {
-    KGComplexAnnulus* a = new KGComplexAnnulus();
+    auto* a = new KGComplexAnnulus();
     a->fRMain = fRMain;
     a->fRadialMeshMain = fRadialMeshMain;
     a->fPolyMain = fPolyMain;
@@ -205,7 +205,7 @@ namespace KGeoBag
 
   KGComplexAnnulus::Ring* KGComplexAnnulus::Ring::Clone(KGComplexAnnulus* a) const
   {
-    Ring* r = new Ring();
+    auto* r = new Ring();
 
     r->fComplexAnnulus = a;
 

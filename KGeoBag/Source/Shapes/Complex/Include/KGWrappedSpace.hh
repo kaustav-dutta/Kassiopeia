@@ -27,18 +27,18 @@ namespace KGeoBag
     KGWrappedSpace(XObject* anObject);
     KGWrappedSpace(const std::shared_ptr<XObject>& anObject);
     KGWrappedSpace(const KGWrappedSpace& aCopy);
-    virtual ~KGWrappedSpace();
+    ~KGWrappedSpace() override;
 
   public:
     void SetObject(std::shared_ptr<XObject> anObject);
     std::shared_ptr<XObject> GetObject() const;
 
   public:
-    virtual void VolumeInitialize(BoundaryContainer& aBoundaryContainer) const;
-    virtual void VolumeAccept(KGVisitor* aVisitor);
-    virtual bool VolumeOutside(const KThreeVector& aPoint) const;
-    virtual KThreeVector VolumePoint(const KThreeVector& aPoint) const;
-    virtual KThreeVector VolumeNormal(const KThreeVector& aPoint) const;
+    void VolumeInitialize(BoundaryContainer& aBoundaryContainer) const override;
+    void VolumeAccept(KGVisitor* aVisitor) override;
+    bool VolumeOutside(const KThreeVector& aPoint) const override;
+    KThreeVector VolumePoint(const KThreeVector& aPoint) const override;
+    KThreeVector VolumeNormal(const KThreeVector& aPoint) const override;
 
   protected:
     std::shared_ptr<XObject> fObject;
@@ -99,8 +99,8 @@ namespace KGeoBag
   template<class XObject>
   void KGWrappedSpace<XObject>::VolumeAccept(KGVisitor* aVisitor)
   {
-    typename KGWrappedSpace<XObject>::Visitor* tWrappedSpaceVisitor = dynamic_cast<typename KGWrappedSpace<XObject>::Visitor*>(aVisitor);
-    if(tWrappedSpaceVisitor != NULL)
+    auto* tWrappedSpaceVisitor = dynamic_cast<typename KGWrappedSpace<XObject>::Visitor*>(aVisitor);
+    if(tWrappedSpaceVisitor != nullptr)
     {
       tWrappedSpaceVisitor->VisitWrappedSpace(this);
       return;
@@ -132,7 +132,7 @@ namespace KGeoBag
   KThreeVector KGWrappedSpace<XObject>::VolumeNormal(const KThreeVector& aQuery) const
   {
     KThreeVector tNormal;
-    fObject->DistanceTo((const double*) (aQuery), NULL, (double*) (tNormal));
+    fObject->DistanceTo((const double*) (aQuery), nullptr, (double*) (tNormal));
 
     return tNormal;
   }

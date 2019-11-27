@@ -5,8 +5,8 @@ namespace Kassiopeia
 {
     KSRootRunModifier::KSRootRunModifier() :
         fModifiers(128),
-        fModifier( NULL ),
-        fRun(NULL)
+        fModifier( nullptr ),
+        fRun(nullptr)
     {
     }
 

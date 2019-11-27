@@ -42,7 +42,7 @@ class KFMIdentitySetCollector: public KFMNodeActor< KFMNode<ObjectTypeList> >
             if(node != NULL)
             {
                 KFMIdentitySet* set = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject(node);
-                if(set != NULL)
+                if(set != nullptr)
                 {
                     fRawIDSets.push_back(set->GetRawIDList() );
                 }

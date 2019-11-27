@@ -41,7 +41,7 @@ public KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >
 
         KFMReducedScalarMomentCollector():KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >()
         {
-            fChild = NULL;
+            fChild = nullptr;
             for(unsigned int i=0; i<SpatialNDIM+1; i++)
             {
                 fLowerLimits[i] = 0;
@@ -52,12 +52,12 @@ public KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >
         }
 
 
-        virtual ~KFMReducedScalarMomentCollector(){;};
+        ~KFMReducedScalarMomentCollector() override{;};
 
-        virtual void Initialize()
+        void Initialize() override
         {
             fInitialized = false;
-            if(this->fOutput != NULL)
+            if(this->fOutput != nullptr)
             {
                 if(this->IsBoundedDomainSubsetOfArray(this->fOutput, fLowerLimits, fUpperLimits) )
                 {
@@ -83,13 +83,13 @@ public KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >
             }
         };
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node){fPrimaryNode = node; ExecuteOperation();};
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override{fPrimaryNode = node; ExecuteOperation();};
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             this->ZeroArray(this->fOutput);
 
-            if(fPrimaryNode != NULL && fInitialized)
+            if(fPrimaryNode != nullptr && fInitialized)
             {
                 if(fPrimaryNode->HasChildren() )
                 {
@@ -124,7 +124,7 @@ public KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >
             int index[SpatialNDIM + 1];
             unsigned int spatial_index[SpatialNDIM];
 
-            if(child != NULL && KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != NULL )
+            if(child != nullptr && KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != nullptr )
             {
                 ScalarMomentType* scalar_moments = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child);
 
@@ -155,7 +155,7 @@ public KFMArrayFillingOperator< std::complex<double>, SpatialNDIM+1 >
             int index[SpatialNDIM + 1];
             unsigned int spatial_index[SpatialNDIM];
 
-            if(child != NULL && KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != NULL )
+            if(child != nullptr && KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child) != nullptr )
             {
                 ScalarMomentType* scalar_moments = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child);
 

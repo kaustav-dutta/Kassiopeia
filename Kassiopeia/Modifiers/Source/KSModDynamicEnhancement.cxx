@@ -9,8 +9,8 @@ namespace Kassiopeia
             fStaticEnhancement( 1. ),
             fDynamic( false ),
             fReferenceCrossSectionEnergy( -1. ),
-            fScattering( NULL ),
-            fSynchrotron( NULL ),
+            fScattering( nullptr ),
+            fSynchrotron( nullptr ),
             fReferenceCrossSection( 0. )
     {
     }
@@ -52,9 +52,9 @@ namespace Kassiopeia
         }
         fEnhancement = fStaticEnhancement * tDynamicEnhancement;
 
-        if( fScattering != NULL )
+        if( fScattering != nullptr )
             fScattering->SetEnhancement( fEnhancement );
-        if( fSynchrotron != NULL )
+        if( fSynchrotron != nullptr )
             fSynchrotron->SetEnhancement( fEnhancement );
 
         return false; //intial particle state not changed
@@ -81,7 +81,7 @@ namespace Kassiopeia
 
     void KSModDynamicEnhancement::InitializeComponent()
     {
-        if( fScattering != NULL && fReferenceCrossSectionEnergy != -1. && fDynamic )
+        if( fScattering != nullptr && fReferenceCrossSectionEnergy != -1. && fDynamic )
         {
             KSParticle* tInitialisationParticle = KSParticleFactory::GetInstance().Create( 11 );
             tInitialisationParticle->SetPosition(0., 0., 0.);

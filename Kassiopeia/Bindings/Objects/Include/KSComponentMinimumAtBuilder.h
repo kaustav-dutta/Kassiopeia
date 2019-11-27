@@ -81,7 +81,7 @@ namespace katrin
 #undef BUILD_OUTPUT_CLASS
 #undef BUILD_OUTPUT
 
-        return NULL;
+        return nullptr;
     }
 
     typedef KComplexElement< KSComponentMinimumAtData > KSComponentMinimumAtBuilder;
@@ -133,11 +133,11 @@ namespace katrin
     template< >
     inline bool KSComponentMinimumAtBuilder::End()
     {
-        KSComponent* tParentComponent = NULL;
-        KSComponent* tSourceComponent = NULL;
+        KSComponent* tParentComponent = nullptr;
+        KSComponent* tSourceComponent = nullptr;
         if( fObject->fGroupName.empty() == false )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
             {
                 KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -150,12 +150,12 @@ namespace katrin
                     tSourceComponent = tGroupComponent;
                 }
             }
-            if( tParentComponent == NULL )
+            if( tParentComponent == nullptr )
             {
                 objctmsg( eError ) << "component minimum_at builder could not find component <" << fObject->fParentName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;
             }
-            if( tSourceComponent == NULL )
+            if( tSourceComponent == nullptr )
             {
                 objctmsg( eError ) << "component minimum_at builder could not find component <" << fObject->fSourceName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;

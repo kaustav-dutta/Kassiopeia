@@ -5,7 +5,7 @@ namespace Kassiopeia
 {
 
     KSGenTimeComposite::KSGenTimeComposite() :
-            fTimeValue( NULL )
+            fTimeValue( nullptr )
     {
     }
     KSGenTimeComposite::KSGenTimeComposite( const KSGenTimeComposite& aCopy ) :
@@ -57,7 +57,7 @@ namespace Kassiopeia
 
     void KSGenTimeComposite::SetTimeValue( KSGenValue* anTimeValue )
     {
-        if( fTimeValue == NULL )
+        if( fTimeValue == nullptr )
         {
             fTimeValue = anTimeValue;
             return;
@@ -69,7 +69,7 @@ namespace Kassiopeia
     {
         if( fTimeValue == anTimeValue )
         {
-            fTimeValue = NULL;
+            fTimeValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear time value <" << anTimeValue->GetName() << "> from composite time creator <" << this->GetName() << ">" << eom;
@@ -78,7 +78,7 @@ namespace Kassiopeia
 
     void KSGenTimeComposite::InitializeComponent()
     {
-        if( fTimeValue != NULL )
+        if( fTimeValue != nullptr )
         {
             fTimeValue->Initialize();
         }
@@ -86,7 +86,7 @@ namespace Kassiopeia
     }
     void KSGenTimeComposite::DeinitializeComponent()
     {
-        if( fTimeValue != NULL )
+        if( fTimeValue != nullptr )
         {
             fTimeValue->Deinitialize();
         }

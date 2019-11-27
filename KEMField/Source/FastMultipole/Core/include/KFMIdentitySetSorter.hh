@@ -27,12 +27,12 @@ class KFMIdentitySetSorter: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMIdentitySetSorter(){};
-        virtual ~KFMIdentitySetSorter(){};
+        ~KFMIdentitySetSorter() override{};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
             KFMIdentitySet* set = KFMObjectRetriever<ObjectTypeList, KFMIdentitySet>::GetNodeObject(node);
-            if(set != NULL)
+            if(set != nullptr)
             {
                 set->Sort();
             }

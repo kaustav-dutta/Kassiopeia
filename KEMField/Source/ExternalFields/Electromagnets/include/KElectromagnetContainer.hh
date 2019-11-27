@@ -26,7 +26,7 @@ namespace KEMField
       s >> nElectromagnets;
       for (unsigned int i=0;i<nElectromagnets;i++)
       {
-	Electromagnet* e = new Electromagnet();
+	auto* e = new Electromagnet();
 	s >> e;
 	c.push_back(e);
       }
@@ -37,7 +37,7 @@ namespace KEMField
     friend Stream& operator<<(Stream& s,const KElectromagnetContainerType<Electromagnet>& c)
     {
       s << c.size();
-      for (ElectromagnetCIterator it = c.begin(); it != c.end(); ++it)
+      for (auto it = c.begin(); it != c.end(); ++it)
 	s << *(*it);
       return s;
     }
@@ -52,7 +52,7 @@ namespace KEMField
   {
     if (IsOwner())
     {
-      for (ElectromagnetIterator it=std::vector<Electromagnet*>::begin();it!=std::vector<Electromagnet*>::end();++it)
+      for (auto it=std::vector<Electromagnet*>::begin();it!=std::vector<Electromagnet*>::end();++it)
 	delete *it;
     }
     std::vector<Electromagnet*>::clear();
@@ -87,7 +87,7 @@ namespace KEMField
     template <class Stream>
     static Stream& StreamOut(Stream& stream, const KElectromagnetContainer& c)
     {
-      const ElectromagnetContainer& container = static_cast<const ElectromagnetContainer&>(c);
+      const auto& container = static_cast<const ElectromagnetContainer&>(c);
       stream << container;
       return KElectromagnetAction<typeID+1>::StreamOut(stream,c);
     }
@@ -100,7 +100,7 @@ namespace KEMField
   {
   public:
     KElectromagnetContainer() : fIsOwner(true) {}
-    virtual ~KElectromagnetContainer() { clear(); }
+    ~KElectromagnetContainer() override { clear(); }
 
     static std::string Name() { return "ElectromagnetContainer"; }
 
@@ -134,7 +134,7 @@ namespace KEMField
     const Electromagnet* at(unsigned int i) const { return KElectromagnetContainerType<Electromagnet>::at(i); }
 
     void IsOwner(bool choice) { fIsOwner = choice; }
-    bool IsOwner() const { return fIsOwner; }
+    bool IsOwner() const override { return fIsOwner; }
 
   protected:
     bool fIsOwner;
@@ -161,7 +161,7 @@ namespace KEMField
   template <int typeID>
   void KElectromagnetAction<typeID>::push_back(KElectromagnetContainer& c,KElectromagnet* e)
   {
-    if (Electromagnet* m = dynamic_cast<Electromagnet*>(e))
+    if (auto* m = dynamic_cast<Electromagnet*>(e))
       c.ElectromagnetContainer::push_back(m);
     else
       return KElectromagnetAction<typeID+1>::push_back(c,e);
@@ -210,8 +210,8 @@ namespace KEMField
   public:
     static void push_back(KElectromagnetContainer&,KElectromagnet*) {}
     static unsigned int size(const KElectromagnetContainer&) { return 0; }
-    static KElectromagnet* at(unsigned int,KElectromagnetContainer&) { return NULL; }
-    static const KElectromagnet* at(unsigned int,const KElectromagnetContainer&) { return NULL; }
+    static KElectromagnet* at(unsigned int,KElectromagnetContainer&) { return nullptr; }
+    static const KElectromagnet* at(unsigned int,const KElectromagnetContainer&) { return nullptr; }
     static void Clear(KElectromagnetContainer&) {}
     template <class Action>
     static void ActOnElectromagnets(Action&) {}

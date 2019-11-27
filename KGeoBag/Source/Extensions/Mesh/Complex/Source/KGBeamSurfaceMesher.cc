@@ -70,7 +70,7 @@ namespace KGeoBag
                     for( unsigned int j = 0; j < 3; j++ )
                         tmp[ j ] = p2[ j ] + n23[ j ] * len12 * sin( theta214 - M_PI / 2. );
 
-                    KGMeshTriangle* t = new KGMeshTriangle( p1, p2, tmp );
+                    auto* t = new KGMeshTriangle( p1, p2, tmp );
                     RefineAndAddElement( t, beam->GetRadialDiscretization( i ), 2 );
 
                     for( unsigned int j = 0; j < 3; j++ )
@@ -81,7 +81,7 @@ namespace KGeoBag
                     for( unsigned int j = 0; j < 3; j++ )
                         tmp[ j ] = p1[ j ] + n14[ j ] * len12 * sin( M_PI / 2. - theta214 );
 
-                    KGMeshTriangle* t = new KGMeshTriangle( p1, p2, tmp );
+                    auto* t = new KGMeshTriangle( p1, p2, tmp );
                     RefineAndAddElement( t, beam->GetRadialDiscretization( i ), 2 );
 
                     for( unsigned int j = 0; j < 3; j++ )

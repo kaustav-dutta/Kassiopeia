@@ -24,28 +24,28 @@ class KVMTriangularSurface: public KVMCompactSurface, public KVMSpaceTriangle
     public:
 
         KVMTriangularSurface();
-        virtual ~KVMTriangularSurface(){;};
+        ~KVMTriangularSurface() override{;};
 
         inline KVMTriangularSurface(const KVMTriangularSurface& copyObject);
 
         inline KVMTriangularSurface& operator=(const KVMSpaceTriangle& rhs);
 
-        virtual void Initialize();
+        void Initialize() override;
 
     protected:
 
         //functions that define the jacobian
-        virtual double dxdu(double /*u*/, double v) const;
-        virtual double dydu(double /*u*/, double v) const;
-        virtual double dzdu(double /*u*/, double v) const;
-        virtual double dxdv(double u, double /*v*/) const;
-        virtual double dydv(double u, double /*v*/) const;
-        virtual double dzdv(double u, double /*v*/) const;
+        double dxdu(double /*u*/, double v) const override;
+        double dydu(double /*u*/, double v) const override;
+        double dzdu(double /*u*/, double v) const override;
+        double dxdv(double u, double /*v*/) const override;
+        double dydv(double u, double /*v*/) const override;
+        double dzdv(double u, double /*v*/) const override;
 
         //functions which define the surface
-        virtual double x(double u, double v) const;
-        virtual double y(double u, double v) const;
-        virtual double z(double u, double v) const;
+        double x(double u, double v) const override;
+        double y(double u, double v) const override;
+        double z(double u, double v) const override;
 
         double fLSum;
 

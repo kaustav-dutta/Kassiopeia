@@ -2,7 +2,6 @@
 #include "KSTrajectoriesMessage.h"
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <cmath>
 
@@ -15,8 +14,8 @@ namespace Kassiopeia
     //3 is y component of position
     //4 is z component of position
 
-    KSMagneticField* KSTrajElectricParticle::fMagneticFieldCalculator = NULL;
-    KSElectricField* KSTrajElectricParticle::fElectricFieldCalculator = NULL;
+    KSMagneticField* KSTrajElectricParticle::fMagneticFieldCalculator = nullptr;
+    KSElectricField* KSTrajElectricParticle::fElectricFieldCalculator = nullptr;
     double KSTrajElectricParticle::fMass = 0.;
     double KSTrajElectricParticle::fCharge = 0.;
 
@@ -230,7 +229,7 @@ namespace Kassiopeia
     }
     const double& KSTrajElectricParticle::GetLorentzFactor() const
     {
-        fLorentzFactor = 1. / sqrt( 1. - GetVelocity().MagnitudeSquared() / (KConst::C() * KConst::C()) );
+        fLorentzFactor = 1. / sqrt( 1. - GetVelocity().MagnitudeSquared() / (katrin::KConst::C() * katrin::KConst::C()) );
         return fLorentzFactor;
     }
     const double& KSTrajElectricParticle::GetKineticEnergy() const
@@ -287,7 +286,7 @@ namespace Kassiopeia
     }
     const double& KSTrajElectricParticle::GetCyclotronFrequency() const
     {
-        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * KConst::Pi() * GetLorentzFactor() * GetMass());
+        fCyclotronFrequency = (fabs( fCharge ) * GetMagneticField().Magnitude()) / (2. * katrin::KConst::Pi() * GetLorentzFactor() * GetMass());
         return fCyclotronFrequency;
     }
     const double& KSTrajElectricParticle::GetOrbitalMagneticMoment() const

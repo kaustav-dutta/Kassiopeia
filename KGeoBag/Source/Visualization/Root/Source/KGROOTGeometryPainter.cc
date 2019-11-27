@@ -5,7 +5,6 @@
 using katrin::KFile;
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include <TColor.h>
 
@@ -28,9 +27,9 @@ namespace KGeoBag
             fEpsilon( 1.0e-10 ),
             fROOTSpaces(),
             fROOTSurfaces(),
-            fCurrentSpace( NULL ),
-            fCurrentSurface( NULL ),
-            fCurrentData( NULL ),
+            fCurrentSpace( nullptr ),
+            fCurrentSurface( nullptr ),
+            fCurrentData( nullptr ),
             fCurrentOrigin( KThreeVector::sZero ),
             fCurrentXAxis( KThreeVector::sXUnit ),
             fCurrentYAxis( KThreeVector::sYUnit ),
@@ -454,9 +453,9 @@ namespace KGeoBag
             fCurrentData = &fDefaultData;
         }
 
-        if( fCurrentSpace != NULL )
+        if( fCurrentSpace != nullptr )
         {
-            for( vector< KGSurface* >::const_iterator tIt = fCurrentSpace->GetBoundaries()->begin(); tIt != fCurrentSpace->GetBoundaries()->end(); tIt++ )
+            for( auto tIt = fCurrentSpace->GetBoundaries()->begin(); tIt != fCurrentSpace->GetBoundaries()->end(); tIt++ )
             {
                 if( (*tIt) == fCurrentSurface )
                 {
@@ -510,7 +509,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -580,7 +579,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface(tOrderedPoints); // Creating the ROOT poly lines.
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -641,7 +640,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -692,7 +691,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -743,7 +742,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -794,7 +793,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -843,7 +842,7 @@ namespace KGeoBag
         IntersectionPointsToOrderedPoints( tAllIntersections, tOrderedPoints);
 
         //connect last and first point (Todo::This doesnt work out for some cases)
-        for ( OrderedPoints::SetIt tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
         {
             (*tSetIt).fData.push_back( *((*tSetIt).fData.begin()) );
         }
@@ -851,7 +850,7 @@ namespace KGeoBag
         OrderedPointsToROOTSurface( tOrderedPoints );
 
         //clear surface
-        fCurrentSurface = NULL;
+        fCurrentSurface = nullptr;
 
         return;
     }
@@ -881,7 +880,7 @@ namespace KGeoBag
         return;
     }
 
-    void KGROOTGeometryPainter::VisitWrappedSurface( KGWrappedSurface<KGPortHousing>* aPortHousingSurface)
+    void KGROOTGeometryPainter::VisitWrappedSurface( KGPortHousingSurface* aPortHousingSurface)
     {
         std::shared_ptr< KGPortHousing > fPortHousing = aPortHousingSurface ->GetObject();
 
@@ -924,11 +923,11 @@ namespace KGeoBag
          SubPortOrderedPoints tSubPortPoints;
 
          for(unsigned int i = 0; i < fPortHousing->GetNPorts(); i++){
-             if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) ){
+             if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) ){
                  vismsg(eWarning) << "Rectangular Ports yet to be implemented, aborting sub port house mesh." << eom;
                  delete r;
              }
-             else if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) ){
+             else if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) ){
                  PortMesh tSubPortMesh;
                  ClosedPointsToSubPortMesh(c, tSubPortMesh);
 
@@ -978,12 +977,12 @@ namespace KGeoBag
          OrderedPointsToROOTSurface( tOrderedPoints );
 
          //clear surface
-         fCurrentSurface = NULL;
+         fCurrentSurface = nullptr;
 
          return;
     }
 
-    void KGROOTGeometryPainter::VisitWrappedSurface( KGWrappedSurface<KGBeam>* aBeamSurface){
+    void KGROOTGeometryPainter::VisitWrappedSurface( KGBeamSurface* aBeamSurface){
 
         std::shared_ptr<KGBeam> fBeam = aBeamSurface->GetObject();
         vector<vector<double>> tStartCoord = fBeam->GetStartCoords();
@@ -1026,7 +1025,7 @@ namespace KGeoBag
 
         return;
     }
-    void KGROOTGeometryPainter::VisitWrappedSurface(KGWrappedSurface<KGComplexAnnulus>* aComplexAnnulus)
+    void KGROOTGeometryPainter::VisitWrappedSurface(KGComplexAnnulusSurface* aComplexAnnulus)
     {
         std::shared_ptr<KGComplexAnnulus> fComplexAnnulus = aComplexAnnulus->GetObject();
 
@@ -1068,6 +1067,12 @@ namespace KGeoBag
         OrderedPointsToROOTSurface(tOrderedPoint);
 
 
+        return;
+    }
+
+    void KGROOTGeometryPainter::VisitWrappedSurface( KGRodSurface* )
+    {
+        vismsg( eWarning ) << "rod surfaces are not yet supported by the root geometry painter!"<<eom;
         return;
     }
 
@@ -1138,7 +1143,7 @@ namespace KGeoBag
         CombineOrderedPoints( tOrderedPoints );
 
         //connect last and first point (Todo::This doesnt work out for some cases)
-        for ( OrderedPoints::SetIt tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
         {
             (*tSetIt).fData.push_back( *((*tSetIt).fData.begin()) );
         }
@@ -1146,7 +1151,7 @@ namespace KGeoBag
         OrderedPointsToROOTSpace( tOrderedPoints );
 
         //clear surface
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
 
         return;
     }
@@ -1193,7 +1198,7 @@ namespace KGeoBag
         CombineOrderedPoints( tOrderedPoints );
 
         //connect last and first point (Todo::This doesnt work out for some cases)
-        for ( OrderedPoints::SetIt tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
         {
             (*tSetIt).fData.push_back( *((*tSetIt).fData.begin()) );
         }
@@ -1201,7 +1206,7 @@ namespace KGeoBag
         OrderedPointsToROOTSpace( tOrderedPoints );
 
         //clear surface
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
 
         return;
     }
@@ -1248,7 +1253,7 @@ namespace KGeoBag
         CombineOrderedPoints( tOrderedPoints );
 
         //connect last and first point (Todo::This doesnt work out for some cases)
-        for ( OrderedPoints::SetIt tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
         {
             (*tSetIt).fData.push_back( *((*tSetIt).fData.begin()) );
         }
@@ -1256,7 +1261,7 @@ namespace KGeoBag
         OrderedPointsToROOTSpace( tOrderedPoints );
 
         //clear surface
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
 
         return;
     }
@@ -1302,7 +1307,7 @@ namespace KGeoBag
         OrderedPointsToROOTSpace( tOrderedPoints );
 
         //clear surface
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
 
         return;
     }
@@ -1346,7 +1351,7 @@ namespace KGeoBag
         IntersectionPointsToOrderedPoints( tAllIntersections, tOrderedPoints);
 
         //connect last and first point (Todo::This doesnt work out for some cases)
-        for ( OrderedPoints::SetIt tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = tOrderedPoints.fData.begin(); tSetIt != tOrderedPoints.fData.end(); tSetIt++ )
         {
             (*tSetIt).fData.push_back( *((*tSetIt).fData.begin()) );
         }
@@ -1354,7 +1359,7 @@ namespace KGeoBag
         OrderedPointsToROOTSpace( tOrderedPoints );
 
         //clear surface
-        fCurrentSpace = NULL;
+        fCurrentSpace = nullptr;
 
         return;
     }
@@ -1370,12 +1375,19 @@ namespace KGeoBag
         return;
     }
 
+    void KGROOTGeometryPainter::VisitWrappedSpace( KGRodSpace*)
+    {
+        vismsg( eWarning ) << "rod spaces are not yet supported by the root geometry painter!"<<eom;
+    }
+
+
     void KGROOTGeometryPainter::LocalToGlobal( const KThreeVector& aLocal, KThreeVector& aGlobal )
     {
         aGlobal = fCurrentOrigin + aLocal.X() * fCurrentXAxis + aLocal.Y() * fCurrentYAxis + aLocal.Z() * fCurrentZAxis;
 //        vismsg_debug( "Converting "<<aLocal<<" to "<<aGlobal<<eom);
         return;
     }
+
 
     //****************
     //points functions
@@ -1396,8 +1408,8 @@ namespace KGeoBag
     {
         aPoints.fData.clear();
 
-        double tArcFraction = anArcSegment->Length() / (2. * KConst::Pi() * anArcSegment->Radius());
-        unsigned int tArc = (unsigned int) (ceil( tArcFraction * (double) (fCurrentData->GetArc()) ));
+        double tArcFraction = anArcSegment->Length() / (2. * katrin::KConst::Pi() * anArcSegment->Radius());
+        auto tArc = (unsigned int) (ceil( tArcFraction * (double) (fCurrentData->GetArc()) ));
 
         double tFraction;
         unsigned int tCount;
@@ -1427,7 +1439,7 @@ namespace KGeoBag
             tElement = *tElementIt;
 
             tLineSegmentElement = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegmentElement != NULL )
+            if( tLineSegmentElement != nullptr )
             {
                 LineSegmentToOpenPoints( tLineSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -1435,7 +1447,7 @@ namespace KGeoBag
             }
 
             tArcSegmentElement = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegmentElement != NULL )
+            if( tArcSegmentElement != nullptr )
             {
                 ArcSegmentToOpenPoints( tArcSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -1446,6 +1458,20 @@ namespace KGeoBag
         aPoints.fData.push_back( aPolyLine->End() );
 
         vismsg_debug( "poly line partitioned into <" << aPoints.fData.size() << "> open points vertices" << eom );
+
+        return;
+    }
+    void KGROOTGeometryPainter::RodToOpenPoints( const KGRod* aRod, OpenPoints& aPoints )
+    {
+        aPoints.fData.clear();
+
+        const unsigned int nCoords = aRod->GetNCoordinates();
+        for( unsigned int i = 0; i < nCoords; i++ )
+        {
+            aPoints.fData.push_back(aRod->GetCoordinate(i));
+        }
+
+        vismsg_debug( "rod partitioned into <" << aPoints.fData.size() << "> open points vertices" << eom );
 
         return;
     }
@@ -1484,7 +1510,7 @@ namespace KGeoBag
             tSubPoints.fData.clear();
 
             tLineSegmentElement = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegmentElement != NULL )
+            if( tLineSegmentElement != nullptr )
             {
                 LineSegmentToOpenPoints( tLineSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -1492,7 +1518,7 @@ namespace KGeoBag
             }
 
             tArcSegmentElement = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegmentElement != NULL )
+            if( tArcSegmentElement != nullptr )
             {
                 ArcSegmentToOpenPoints( tArcSegmentElement, tSubPoints );
                 aPoints.fData.insert( aPoints.fData.end(), tSubPoints.fData.begin(), --(tSubPoints.fData.end()) );
@@ -1513,7 +1539,7 @@ namespace KGeoBag
     {
         KThreeVector tPoint;
         TubeMesh::Group tGroup;
-        for( ClosedPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tPoint.X() = (*tPointsIt).X();
             tPoint.Y() = (*tPointsIt).Y();
@@ -1538,7 +1564,7 @@ namespace KGeoBag
 
         KThreeVector tPoint;
         TubeMesh::Group tGroup;
-        for( OpenPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tGroup.clear();
 
@@ -1557,8 +1583,8 @@ namespace KGeoBag
             {
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction );
-                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * KConst::Pi() * tFraction );
+                tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction );
+                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * katrin::KConst::Pi() * tFraction );
                 tPoint.Z() = (*tPointsIt).X();
                 tGroup.push_back( tPoint );
             }
@@ -1578,7 +1604,7 @@ namespace KGeoBag
 
         KThreeVector tPoint;
         ShellMesh::Group tGroup;
-        for (OpenPoints::CIt tPointsIt = aPoints.fData.begin();
+        for (auto tPointsIt = aPoints.fData.begin();
                 tPointsIt != aPoints.fData.end(); tPointsIt++) {
             tGroup.clear();
 
@@ -1593,16 +1619,16 @@ namespace KGeoBag
                 continue;
             }
 
-            for (Partition::It tPartitionIt = tPartition.fData.begin();
+            for (auto tPartitionIt = tPartition.fData.begin();
                     tPartitionIt != tPartition.fData.end(); tPartitionIt++) {
                 tPoint.X() = (*tPointsIt).Y()
                         * cos(
-                                2. * KConst::Pi() * (*tPartitionIt) * tAngle
-                                        + AngleStart * KConst::Pi() / 180.);
+                                2. * katrin::KConst::Pi() * (*tPartitionIt) * tAngle
+                                        + AngleStart * katrin::KConst::Pi() / 180.);
                 tPoint.Y() = (*tPointsIt).Y()
                         * sin(
-                                2. * KConst::Pi() * (*tPartitionIt) * tAngle
-                                        + AngleStart * KConst::Pi() / 180.);
+                                2. * katrin::KConst::Pi() * (*tPartitionIt) * tAngle
+                                        + AngleStart * katrin::KConst::Pi() / 180.);
                 tPoint.Z() = (*tPointsIt).X();
                 tGroup.push_back(tPoint);
             }
@@ -1624,15 +1650,15 @@ namespace KGeoBag
 
         KThreeVector tPoint;
         TubeMesh::Group tGroup;
-        for( ClosedPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tGroup.clear();
             for( tCount = 0; tCount < tArc; tCount++ )
             {
                 tFraction = (double) (tCount) / (double) (tArc);
 
-                tPoint.X() = (*tPointsIt).Y() * cos( 2. * KConst::Pi() * tFraction );
-                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * KConst::Pi() * tFraction );
+                tPoint.X() = (*tPointsIt).Y() * cos( 2. * katrin::KConst::Pi() * tFraction );
+                tPoint.Y() = (*tPointsIt).Y() * sin( 2. * katrin::KConst::Pi() * tFraction );
                 tPoint.Z() = (*tPointsIt).X();
                 tGroup.push_back( tPoint );
             }
@@ -1649,7 +1675,7 @@ namespace KGeoBag
         TubeMesh::Group tGroup;
 
         tGroup.clear();
-        for( OpenPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tPoint.X() = (*tPointsIt).X();
             tPoint.Y() = (*tPointsIt).Y();
@@ -1659,7 +1685,7 @@ namespace KGeoBag
         aMesh.fData.push_back( tGroup );
 
         tGroup.clear();
-        for( OpenPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tPoint.X() = (*tPointsIt).X();
             tPoint.Y() = (*tPointsIt).Y();
@@ -1678,7 +1704,7 @@ namespace KGeoBag
         TubeMesh::Group tGroup;
 
         tGroup.clear();
-        for( ClosedPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tPoint.X() = (*tPointsIt).X();
             tPoint.Y() = (*tPointsIt).Y();
@@ -1688,7 +1714,7 @@ namespace KGeoBag
         aMesh.fData.push_back( tGroup );
 
         tGroup.clear();
-        for( ClosedPoints::CIt tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
+        for( auto tPointsIt = aPoints.fData.begin(); tPointsIt != aPoints.fData.end(); tPointsIt++ )
         {
             tPoint.X() = (*tPointsIt).X();
             tPoint.Y() = (*tPointsIt).Y();
@@ -1718,8 +1744,8 @@ namespace KGeoBag
         for(unsigned int tCircleCount = 0; tCircleCount < tArc; tCircleCount++ )
         {
              tCircleFraction = (double) (tCircleCount) / (double) (tArc);
-             tPoint.Y() = aStartPointFront * cos( 2. * KConst::Pi() * tCircleFraction );
-             tPoint.X() = aStartPointFront * sin( 2. * KConst::Pi() * tCircleFraction );
+             tPoint.Y() = aStartPointFront * cos( 2. * katrin::KConst::Pi() * tCircleFraction );
+             tPoint.X() = aStartPointFront * sin( 2. * katrin::KConst::Pi() * tCircleFraction );
              tPoint.Z() = FrontPoint.Z();
              tGroup.push_back( tPoint );
         }
@@ -1735,8 +1761,8 @@ namespace KGeoBag
             for(unsigned int tCircleCount = 0; tCircleCount < tArc; tCircleCount ++ )
             {
                 tCircleFraction = (double) (tCircleCount) / (double) (tArc) ;
-                tPoint.Y() = aNextStartPoint * cos( 2. * KConst::Pi() * tCircleFraction );
-                tPoint.X() = aNextStartPoint * sin( 2. * KConst::Pi() * tCircleFraction );
+                tPoint.Y() = aNextStartPoint * cos( 2. * katrin::KConst::Pi() * tCircleFraction );
+                tPoint.X() = aNextStartPoint * sin( 2. * katrin::KConst::Pi() * tCircleFraction );
                 tPoint.Z() = NextPoint.Z();
                 tGroup.push_back( tPoint );
             }
@@ -1780,8 +1806,8 @@ namespace KGeoBag
         for(unsigned int tCount = 0; tCount < tArc; tCount++ )
         {
             tFraction = (double) (tCount) / (double) (tArc);
-            tPointLocal1.Y() = aLocalStart.X() * cos( 2. * KConst::Pi() * tFraction );
-            tPointLocal1.X() = aLocalStart.X() * sin( 2. * KConst::Pi() * tFraction );
+            tPointLocal1.Y() = aLocalStart.X() * cos( 2. * katrin::KConst::Pi() * tFraction );
+            tPointLocal1.X() = aLocalStart.X() * sin( 2. * katrin::KConst::Pi() * tFraction );
             tPointLocal1.Z() = aLocalStart.Z();
 
             fCoordTransform->ConvertToGlobalCoords(tPointLocal1, tPointGlobal1, false);
@@ -1816,7 +1842,7 @@ namespace KGeoBag
     {
         BeamMesh::Group tGroup;
 
-        for(vector<vector<double>>::const_iterator tSetIt = aStartCoord.begin(); tSetIt != aStartCoord.end(); tSetIt++){
+        for(auto tSetIt = aStartCoord.begin(); tSetIt != aStartCoord.end(); tSetIt++){
             vector<double> tCoordinates = *tSetIt;
             KThreeVector tPoint(tCoordinates.at(0),tCoordinates.at(1),tCoordinates.at(2));
             tGroup.push_back(tPoint);
@@ -1825,7 +1851,7 @@ namespace KGeoBag
         aMesh.fData.push_back(tGroup);
         tGroup.clear();
 
-        for(vector<vector<double>>::const_iterator tSetIt = anEndCoord.begin(); tSetIt != anEndCoord.end(); tSetIt++){
+        for(auto tSetIt = anEndCoord.begin(); tSetIt != anEndCoord.end(); tSetIt++){
             vector<double> tCoordinates = *tSetIt;
             KThreeVector tPoint(tCoordinates.at(0),tCoordinates.at(1),tCoordinates.at(2));
             tGroup.push_back(tPoint);
@@ -1852,8 +1878,8 @@ namespace KGeoBag
         for(unsigned int tCount = 0; tCount < tArc; tCount++ )
         {
             tFraction = (double) (tCount) / (double) (tArc);
-            tPoint.Y() = aStartPoint.X() * cos( 2. * KConst::Pi() * tFraction );
-            tPoint.X() = aStartPoint.X() * sin( 2. * KConst::Pi() * tFraction );
+            tPoint.Y() = aStartPoint.X() * cos( 2. * katrin::KConst::Pi() * tFraction );
+            tPoint.X() = aStartPoint.X() * sin( 2. * katrin::KConst::Pi() * tFraction );
             tPoint.Z() = aStartPoint.Z();
             tGroup.push_back(tPoint);
         }
@@ -1887,8 +1913,8 @@ namespace KGeoBag
             for(unsigned int tCount = 0; tCount < tArc; tCount++ )
             {
                 tFraction = (double) (tCount) / (double) (tArc);
-                tLocalPoint.Y() = aLocalStart.X() * cos( 2. * KConst::Pi() * tFraction );
-                tLocalPoint.X() = aLocalStart.X() * sin( 2. * KConst::Pi() * tFraction );
+                tLocalPoint.Y() = aLocalStart.X() * cos( 2. * katrin::KConst::Pi() * tFraction );
+                tLocalPoint.X() = aLocalStart.X() * sin( 2. * katrin::KConst::Pi() * tFraction );
                 tLocalPoint.Z() = aLocalStart.Z();
 
                 fCoordTransform->ConvertToGlobalCoords(tLocalPoint,tGlobalPoint,false);
@@ -1913,10 +1939,10 @@ namespace KGeoBag
         Lines::Group tCircleLinesGroup;
 
         //create lines from tube mesh
-        for( TubeMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+        for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
         {
             tCircleLinesGroup.clear();
-            TubeMesh::GroupCIt tGroupIt = tSetIt->begin();
+            auto tGroupIt = tSetIt->begin();
             //get case, when point is on z axis (no tube mesh, just single point)
             if ( tSetIt->size() == 1 )
             {
@@ -1948,10 +1974,10 @@ namespace KGeoBag
        Lines::Group tArcLinesGroup;
 
        //create lines from tube mesh
-       for( TubeMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+       for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
        {
         tArcLinesGroup.clear();
-        TubeMesh::GroupCIt tGroupIt = tSetIt->begin();
+        auto tGroupIt = tSetIt->begin();
         //get case, when point is on z axis (no tube mesh, just single point)
         if ( tSetIt->size() == 1 )
         {
@@ -1983,7 +2009,7 @@ namespace KGeoBag
         Lines::Group tParallelLinesGroup;
 
         //create lines from tube mesh
-        TubeMesh::SetCIt tSetIt = aMesh.fData.begin();
+        auto tSetIt = aMesh.fData.begin();
         while( ( tSetIt + 1 ) != aMesh.fData.end() )
         {
             tParallelLinesGroup.clear();
@@ -1999,7 +2025,7 @@ namespace KGeoBag
             {
                 KThreeVector tSinglePoint = *(tSetIt->begin());
                 LocalToGlobal( tSinglePoint, tPoint1 );
-                for( TubeMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
+                for( auto tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
                 {
                     LocalToGlobal( *tNextGroupIt, tPoint2 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2009,13 +2035,13 @@ namespace KGeoBag
                 continue;
             }
 
-            TubeMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin();
+            auto tNextGroupIt = ( tSetIt + 1)->begin();
             //get case, when next point is on z axis (no tube mesh, just single point)
             if ( ( tSetIt + 1)->size() == 1 )
             {
                 KThreeVector tSinglePoint = *( (tSetIt + 1)->begin());
                 LocalToGlobal( tSinglePoint, tPoint2 );
-                for( TubeMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+                for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
                 {
                     LocalToGlobal( *tGroupIt, tPoint1 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2027,7 +2053,7 @@ namespace KGeoBag
             }
 
             //normal case if all groups have same size
-            for( TubeMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+            for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
                 LocalToGlobal( *tNextGroupIt, tPoint2 );
@@ -2049,7 +2075,7 @@ namespace KGeoBag
         Lines::Group tParallelLinesGroup;
 
         //create lines from shell mesh
-        ShellMesh::SetCIt tSetIt = aMesh.fData.begin();
+        auto tSetIt = aMesh.fData.begin();
         while( ( tSetIt + 1 ) != aMesh.fData.end() )
         {
             tParallelLinesGroup.clear();
@@ -2065,7 +2091,7 @@ namespace KGeoBag
             {
                 KThreeVector tSinglePoint = *(tSetIt->begin());
                 LocalToGlobal( tSinglePoint, tPoint1 );
-                for( ShellMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
+                for( auto tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
                 {
                     LocalToGlobal( *tNextGroupIt, tPoint2 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2075,13 +2101,13 @@ namespace KGeoBag
                 continue;
             }
 
-            ShellMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin();
+            auto tNextGroupIt = ( tSetIt + 1)->begin();
             //get case, when next point is on z axis (no shell mesh, just single point)
             if ( ( tSetIt + 1)->size() == 1 )
             {
                 KThreeVector tSinglePoint = *( (tSetIt + 1)->begin());
                 LocalToGlobal( tSinglePoint, tPoint2 );
-                for( ShellMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+                for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
                 {
                     LocalToGlobal( *tGroupIt, tPoint1 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2093,7 +2119,7 @@ namespace KGeoBag
             }
 
             //normal case if all groups have same size
-            for( ShellMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+            for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
                 LocalToGlobal( *tNextGroupIt, tPoint2 );
@@ -2116,10 +2142,10 @@ namespace KGeoBag
         Lines::Group tCircleLinesGroup;
 
         //create lines from tube mesh
-        for( TubeMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+        for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
         {
             tCircleLinesGroup.clear();
-            TubeMesh::GroupCIt tGroupIt = tSetIt->begin();
+            auto tGroupIt = tSetIt->begin();
             while ( ( tGroupIt + 1 ) != tSetIt->end() )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
@@ -2143,12 +2169,12 @@ namespace KGeoBag
         Lines::Group tParallelLinesGroup;
 
         //create lines from tube mesh
-        TubeMesh::SetCIt tSetIt = aMesh.fData.begin();
+        auto tSetIt = aMesh.fData.begin();
         while( ( tSetIt + 1 ) != aMesh.fData.end() )
         {
             tParallelLinesGroup.clear();
-            TubeMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin();
-            for( TubeMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+            auto tNextGroupIt = ( tSetIt + 1)->begin();
+            for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
                 LocalToGlobal( *tNextGroupIt, tPoint2 );
@@ -2169,10 +2195,10 @@ namespace KGeoBag
        Lines::Group tCircleLinesGroup;
 
        //create lines from port mesh
-       for( PortMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+       for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
        {
         tCircleLinesGroup.clear();
-        PortMesh::GroupCIt tGroupIt = tSetIt->begin();
+        auto tGroupIt = tSetIt->begin();
         //get case, when point is on z axis (no port mesh, just single point)
         if ( tSetIt->size() == 1 )
         {
@@ -2202,7 +2228,7 @@ namespace KGeoBag
         Lines::Group tParallelLinesGroup;
 
         //create lines from port mesh
-        PortMesh::SetCIt tSetIt = aMesh.fData.begin();
+        auto tSetIt = aMesh.fData.begin();
         while( ( tSetIt + 1 ) != aMesh.fData.end() )
         {
             tParallelLinesGroup.clear();
@@ -2218,7 +2244,7 @@ namespace KGeoBag
             {
                 KThreeVector tSinglePoint = *(tSetIt->begin());
                 LocalToGlobal( tSinglePoint, tPoint1 );
-                for( PortMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
+                for( auto tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
                 {
                        LocalToGlobal( *tNextGroupIt, tPoint2 );
                        tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2228,13 +2254,13 @@ namespace KGeoBag
                    continue;
             }
 
-            PortMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin();
+            auto tNextGroupIt = ( tSetIt + 1)->begin();
             //get case, when next point is on z axis (no port mesh, just single point)
             if ( ( tSetIt + 1)->size() == 1 )
             {
                 KThreeVector tSinglePoint = *( (tSetIt + 1)->begin());
                 LocalToGlobal( tSinglePoint, tPoint2 );
-                for( PortMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+                for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
                 {
                     LocalToGlobal( *tGroupIt, tPoint1 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2247,7 +2273,7 @@ namespace KGeoBag
 
             double epsilon = 1e-7;
             //normal case if all groups have same size
-            for( PortMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+            for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
             {
                    LocalToGlobal( *tGroupIt, tPoint1 );
                    LocalToGlobal( *tNextGroupIt, tPoint2 );
@@ -2268,10 +2294,10 @@ namespace KGeoBag
         Lines::Group tCircleLinesGroup;
 
         //create lines from tube mesh
-        for( BeamMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+        for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
         {
             tCircleLinesGroup.clear();
-            BeamMesh::GroupCIt tGroupIt = tSetIt->begin();
+            auto tGroupIt = tSetIt->begin();
             //get case, when point is on z axis (no tube mesh, just single point)
             if ( tSetIt->size() == 1 )
             {
@@ -2301,7 +2327,7 @@ namespace KGeoBag
         Lines::Group tParallelLinesGroup;
 
         //create lines from tube mesh
-        BeamMesh::SetCIt tSetIt = aMesh.fData.begin();
+        auto tSetIt = aMesh.fData.begin();
         while( ( tSetIt + 1 ) != aMesh.fData.end() )
         {
             tParallelLinesGroup.clear();
@@ -2317,7 +2343,7 @@ namespace KGeoBag
             {
                 KThreeVector tSinglePoint = *(tSetIt->begin());
                 LocalToGlobal( tSinglePoint, tPoint1 );
-                for( BeamMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
+                for( auto tNextGroupIt = ( tSetIt + 1)->begin(); tNextGroupIt != ( tSetIt + 1)->end(); tNextGroupIt ++ )
                 {
                     LocalToGlobal( *tNextGroupIt, tPoint2 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2327,13 +2353,13 @@ namespace KGeoBag
                 continue;
             }
 
-            BeamMesh::GroupCIt tNextGroupIt = ( tSetIt + 1)->begin();
+            auto tNextGroupIt = ( tSetIt + 1)->begin();
             //get case, when next point is on z axis (no tube mesh, just single point)
             if ( ( tSetIt + 1)->size() == 1 )
             {
                 KThreeVector tSinglePoint = *( (tSetIt + 1)->begin());
                 LocalToGlobal( tSinglePoint, tPoint2 );
-                for( BeamMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+                for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
                 {
                     LocalToGlobal( *tGroupIt, tPoint1 );
                     tParallelLinesGroup.push_back( Lines::Line( tPoint1, tPoint2 ) );
@@ -2345,7 +2371,7 @@ namespace KGeoBag
             }
 
             //normal case if all groups have same size
-            for( BeamMesh::GroupCIt tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
+            for( auto tGroupIt = tSetIt->begin(); tGroupIt != tSetIt->end(); tGroupIt++ )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
                 LocalToGlobal( *tNextGroupIt, tPoint2 );
@@ -2366,10 +2392,10 @@ namespace KGeoBag
         Lines::Group tCircleLinesGroup;
 
         //create lines from flat mesh
-        for( FlatMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+        for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
         {
             tCircleLinesGroup.clear();
-            FlatMesh::GroupCIt tGroupIt = tSetIt->begin();
+            auto tGroupIt = tSetIt->begin();
             while ( ( tGroupIt + 1 ) != tSetIt->end() )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
@@ -2392,10 +2418,10 @@ namespace KGeoBag
         Lines::Group tCircleLinesGroup;
 
         //create lines from ring mesh
-        for( RingMesh::SetCIt tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
+        for( auto tSetIt = aMesh.fData.begin(); tSetIt != aMesh.fData.end(); tSetIt++ )
         {
             tCircleLinesGroup.clear();
-            RingMesh::GroupCIt tGroupIt = tSetIt->begin();
+            auto tGroupIt = tSetIt->begin();
             while ( ( tGroupIt + 1 ) != tSetIt->end() )
             {
                 LocalToGlobal( *tGroupIt, tPoint1 );
@@ -2426,7 +2452,7 @@ namespace KGeoBag
         bool tIntersection;
         IntersectionPoints::Group tIntersectionPointsGroup;
 
-        for ( Lines::SetCIt tSetIt = aCircleLines.fData.begin(); tSetIt != aCircleLines.fData.end(); tSetIt++ )
+        for ( auto tSetIt = aCircleLines.fData.begin(); tSetIt != aCircleLines.fData.end(); tSetIt++ )
         {
             vismsg_debug( "Next Circle Line: "<<eom);
             tIntersectionPointsGroup.clear();
@@ -2455,7 +2481,7 @@ namespace KGeoBag
         bool tIntersection;
         IntersectionPoints::Group tIntersectionPointsGroup;
 
-        for ( Lines::SetCIt tSetIt = anArcLines.fData.begin(); tSetIt != anArcLines.fData.end(); tSetIt++ )
+        for ( auto tSetIt = anArcLines.fData.begin(); tSetIt != anArcLines.fData.end(); tSetIt++ )
         {
             vismsg_debug( "Next Circle Line: "<<eom);
             tIntersectionPointsGroup.clear();
@@ -2486,7 +2512,7 @@ namespace KGeoBag
         bool tIntersection;
         IntersectionPoints::Group tIntersectionPointsGroup;
 
-        for ( Lines::SetCIt tSetIt = aParallelLines.fData.begin(); tSetIt != aParallelLines.fData.end(); tSetIt++ )
+        for ( auto tSetIt = aParallelLines.fData.begin(); tSetIt != aParallelLines.fData.end(); tSetIt++ )
         {
             vismsg_debug( "Next Parallel Line: "<<eom);
             tIntersectionPointsGroup.clear();
@@ -2676,7 +2702,7 @@ namespace KGeoBag
 
         vismsg_debug("start now"<<eom);
 
-        for ( IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++)
+        for ( auto tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++)
         {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -2785,7 +2811,7 @@ namespace KGeoBag
             KTwoVector aClosestPoint(-1000.,-1000.);
             KTwoVector aNextStartPoint;
             tPoints.fData.push_back(tStartPoint);
-            for(IntersectionPoints::SetCIt tSetIt = aRingIntersection.fData.begin(); tSetIt != aRingIntersection.fData.end(); tSetIt++){
+            for(auto tSetIt = aRingIntersection.fData.begin(); tSetIt != aRingIntersection.fData.end(); tSetIt++){
                 IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
                 IntersectionPoints::Group tGroup = tNamedGroup.first;
                 if(tGroup.size() == 0){
@@ -2845,7 +2871,7 @@ namespace KGeoBag
 
         vismsg_debug ("Trying to order the following intersection points: "<<eom);
 
-        for (IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin();
+        for (auto tSetIt = anIntersectionPoints.fData.begin();
                 tSetIt != anIntersectionPoints.fData.end(); tSetIt++) {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Group tGroup = tNamedGroup.first;
@@ -2859,7 +2885,7 @@ namespace KGeoBag
 
         //Get (easier) case where only a single intersection per group was found (e.g. cut through apex of shell)
         if (IsSingleIntersection) {
-            for (IntersectionPoints::SetCIt tSetIt =
+            for (auto tSetIt =
                     anIntersectionPoints.fData.begin();
                     tSetIt != anIntersectionPoints.fData.end(); tSetIt++) {
                 IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
@@ -2894,7 +2920,7 @@ namespace KGeoBag
                 }
             }
         } else {
-            for (IntersectionPoints::SetCIt tSetIt =
+            for (auto tSetIt =
                     anIntersectionPoints.fData.begin();
                     tSetIt != anIntersectionPoints.fData.end(); tSetIt++) {
                 IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
@@ -2998,11 +3024,11 @@ namespace KGeoBag
         vismsg_debug( "Inserting last parallel intersection group "<<eom);
         KTwoVector tLastOpenPoint = *(tClosedPoints.fData.end() - 1);
         vismsg_debug( tLastOpenPoint<<eom);
-        IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.end() - 1;
+        auto tSetIt = anIntersectionPoints.fData.end() - 1;
         //look for the points in the group that is closest to the first circle points
         IntersectionPoints::GroupCIt tStartGroupIt;
         double tMin = 1e10;
-        for ( IntersectionPoints::GroupCIt tGroupIt = (*tSetIt).first.begin(); tGroupIt != (*tSetIt).first.end(); tGroupIt++ )
+        for ( auto tGroupIt = (*tSetIt).first.begin(); tGroupIt != (*tSetIt).first.end(); tGroupIt++ )
         {
             KTwoVector tPoint = *tGroupIt;
             double tTempMin = ( tPoint - tLastOpenPoint ).MagnitudeSquared();
@@ -3098,13 +3124,13 @@ namespace KGeoBag
         //now we just have to add the last parallel intersection to the points and connect them
         KTwoVector tLastOpenPointHigh = *(tClosedPointsHigh.fData.end() - 1);
         KTwoVector tLastOpenPointLow = *(tClosedPointsLow.fData.end() - 1);
-        IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.end() - 1;
+        auto tSetIt = anIntersectionPoints.fData.end() - 1;
         //look for the points in the group that is closest to the first circle points
         IntersectionPoints::GroupCIt tStartGroupItHigh;
         IntersectionPoints::GroupCIt tStartGroupItLow;
         double tMinHigh = 1e10;
         double tMinLow = 1e10;
-        for (IntersectionPoints::GroupCIt tGroupIt = (*tSetIt).first.begin();
+        for (auto tGroupIt = (*tSetIt).first.begin();
                 tGroupIt != (*tSetIt).first.end(); tGroupIt++) {
             KTwoVector tPoint = *tGroupIt;
             double tTempMinHigh = (tPoint - tLastOpenPointHigh).MagnitudeSquared();
@@ -3174,7 +3200,7 @@ namespace KGeoBag
         KTwoVector tHighPointFirstCircle;
 
         vismsg_debug( "Inserting the circle intersection points "<<eom);
-        for( IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
+        for( auto tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
         {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -3214,12 +3240,12 @@ namespace KGeoBag
 //      }
 
         //now insert the parallel intersection points
-        OpenPoints::It tOpenPointsFrontIt = tOpenPoints.fData.begin();
-        OpenPoints::It tOpenPointsBackIt = tOpenPoints.fData.end() - 1;
+        auto tOpenPointsFrontIt = tOpenPoints.fData.begin();
+        auto tOpenPointsBackIt = tOpenPoints.fData.end() - 1;
 
         vismsg_debug( "Inserting the parallel intersection points "<<eom);
         //loop ignores the first group (that should be a parallel group and connect the two poly line halfes )
-        for( IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin() + 1; tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
+        for( auto tSetIt = anIntersectionPoints.fData.begin() + 1; tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
         {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -3237,7 +3263,7 @@ namespace KGeoBag
                 OpenPoints tTempPoints;
 
                 vismsg_debug( "have points:" <<eom);
-                for( IntersectionPoints::GroupIt tGroupIt = tGroup.begin(); tGroupIt != tGroup.end(); tGroupIt++ )
+                for( auto tGroupIt = tGroup.begin(); tGroupIt != tGroup.end(); tGroupIt++ )
                 {
                     KTwoVector tPoint = *tGroupIt;
                     vismsg_debug( tPoint <<eom);
@@ -3251,7 +3277,7 @@ namespace KGeoBag
                 }
 
                 vismsg_debug( "using:" <<eom);
-                for ( map<double,KTwoVector>::iterator tMapIt = tTempPointsMap.begin(); tMapIt != tTempPointsMap.end(); tMapIt++ )
+                for ( auto tMapIt = tTempPointsMap.begin(); tMapIt != tTempPointsMap.end(); tMapIt++ )
                 {
                     vismsg_debug( (*tMapIt).second <<eom);
                     if ( tCirclePointHigh.X() < tCirclePointLow.X() )
@@ -3277,7 +3303,7 @@ namespace KGeoBag
                 tTempPoints.fData.clear();
 
                 vismsg_debug( "have points:" <<eom);
-                for( IntersectionPoints::GroupIt tGroupIt = tGroup.begin(); tGroupIt != tGroup.end(); tGroupIt++ )
+                for( auto tGroupIt = tGroup.begin(); tGroupIt != tGroup.end(); tGroupIt++ )
                 {
                     KTwoVector tPoint = *tGroupIt;
                     vismsg_debug( tPoint <<eom);
@@ -3291,7 +3317,7 @@ namespace KGeoBag
                 }
 
                 vismsg_debug( "using:" <<eom);
-                for ( map<double,KTwoVector>::iterator tMapIt = tTempPointsMap.begin(); tMapIt != tTempPointsMap.end(); tMapIt++ )
+                for ( auto tMapIt = tTempPointsMap.begin(); tMapIt != tTempPointsMap.end(); tMapIt++ )
                 {
                     vismsg_debug( (*tMapIt).second <<eom);
                     if ( tCirclePointHigh.X() > tCirclePointLow.X() )
@@ -3321,11 +3347,11 @@ namespace KGeoBag
         vismsg_debug( "Inserting first parallel intersection group "<<eom);
         KTwoVector tFirstCirclePoint = tHighPointFirstCircle;
         vismsg_debug( tFirstCirclePoint<<eom);
-        IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin();
+        auto tSetIt = anIntersectionPoints.fData.begin();
         //look for the points in the group that is closest to the first circle points
         IntersectionPoints::GroupCIt tStartGroupIt;
         double tMin = std::numeric_limits<double>::max();
-        for ( IntersectionPoints::GroupCIt tGroupIt = (*tSetIt).first.begin(); tGroupIt != (*tSetIt).first.end(); tGroupIt++ )
+        for ( auto tGroupIt = (*tSetIt).first.begin(); tGroupIt != (*tSetIt).first.end(); tGroupIt++ )
         {
             KTwoVector tPoint = *tGroupIt;
             double tTempMin = ( tPoint - tFirstCirclePoint ).MagnitudeSquared();
@@ -3362,7 +3388,7 @@ namespace KGeoBag
         }
 
         OpenPoints::It tHighPointFirstCircleIt;
-        for( OpenPoints::It tIt = tOpenPoints.fData.begin(); tIt != tOpenPoints.fData.end(); tIt++ )
+        for( auto tIt = tOpenPoints.fData.begin(); tIt != tOpenPoints.fData.end(); tIt++ )
         {
             KTwoVector tPoint = *tIt;
             if ( fabs( tPoint.X() - tHighPointFirstCircle.X()) < fEpsilon && fabs( tPoint.Y() - tHighPointFirstCircle.Y()) < fEpsilon  )
@@ -3392,7 +3418,7 @@ namespace KGeoBag
         KTwoVector tHighPointFirstCircle, tLowPointFirstCircle;
 
         vismsg_debug( "Inserting the circle intersection points "<<eom);
-        for (IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin();
+        for (auto tSetIt = anIntersectionPoints.fData.begin();
                 tSetIt != anIntersectionPoints.fData.end(); tSetIt++) {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -3422,11 +3448,11 @@ namespace KGeoBag
         }
 
         //now insert the parallel intersection points
-        OpenPoints::It tOpenPoints1It = tOpenPoints1.fData.begin();
-        OpenPoints::It tOpenPoints2It = tOpenPoints2.fData.begin();
+        auto tOpenPoints1It = tOpenPoints1.fData.begin();
+        auto tOpenPoints2It = tOpenPoints2.fData.begin();
 
         vismsg_debug( "Inserting the parallel intersection points "<<eom);
-        for (IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin()
+        for (auto tSetIt = anIntersectionPoints.fData.begin()
                 + 1; tSetIt != anIntersectionPoints.fData.end(); tSetIt++) {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -3441,7 +3467,7 @@ namespace KGeoBag
                 OpenPoints tTempPoints;
 
                 vismsg_debug( "have points:" <<eom);
-                for (IntersectionPoints::GroupIt tGroupIt = tGroup.begin();
+                for (auto tGroupIt = tGroup.begin();
                         tGroupIt != tGroup.end(); tGroupIt++) {
                     KTwoVector tPoint = *tGroupIt;
                     vismsg_debug( tPoint <<eom);
@@ -3459,7 +3485,7 @@ namespace KGeoBag
                 }
 
                 vismsg_debug( "using:" <<eom);
-                for (map<double, KTwoVector>::iterator tMapIt =
+                for (auto tMapIt =
                         tTempPointsMap.begin(); tMapIt != tTempPointsMap.end();
                         tMapIt++) {
                     vismsg_debug( (*tMapIt).second <<eom);
@@ -3482,7 +3508,7 @@ namespace KGeoBag
                 tTempPoints.fData.clear();
 
                 vismsg_debug( "have points:" <<eom);
-                for (IntersectionPoints::GroupIt tGroupIt = tGroup.begin();
+                for (auto tGroupIt = tGroup.begin();
                         tGroupIt != tGroup.end(); tGroupIt++) {
                     KTwoVector tPoint = *tGroupIt;
                     vismsg_debug( tPoint <<eom);
@@ -3500,7 +3526,7 @@ namespace KGeoBag
                 }
 
                 vismsg_debug( "using:" <<eom);
-                for (map<double, KTwoVector>::iterator tMapIt =
+                for (auto tMapIt =
                         tTempPointsMap.begin(); tMapIt != tTempPointsMap.end();
                         tMapIt++) {
                     vismsg_debug( (*tMapIt).second <<eom);
@@ -3524,13 +3550,13 @@ namespace KGeoBag
         vismsg_debug( "Inserting first parallel intersection group "<<eom);
         KTwoVector tFirstCirclePoint1 = tHighPointFirstCircle;
         KTwoVector tFirstCirclePoint2 = tLowPointFirstCircle;
-        IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin();
+        auto tSetIt = anIntersectionPoints.fData.begin();
         //look for the points in the group that is closest to the first circle points
         IntersectionPoints::GroupCIt tStartGroupItHigh;
         IntersectionPoints::GroupCIt tStartGroupItLow;
         double tMinHigh = std::numeric_limits<double>::max();
         double tMinLow = std::numeric_limits<double>::max();
-        for (IntersectionPoints::GroupCIt tGroupIt = (*tSetIt).first.begin();
+        for (auto tGroupIt = (*tSetIt).first.begin();
                 tGroupIt != (*tSetIt).first.end(); tGroupIt++) {
             KTwoVector tPoint = *tGroupIt;
             double tTempMinHigh = (tPoint - tFirstCirclePoint1).MagnitudeSquared();
@@ -3579,7 +3605,7 @@ namespace KGeoBag
         }
 
         OpenPoints::It tHighPointFirstCircleIt, tLowPointFirstCircleIt;
-        for (OpenPoints::It tIt = tOpenPoints1.fData.begin();
+        for (auto tIt = tOpenPoints1.fData.begin();
                 tIt != tOpenPoints1.fData.end(); tIt++) {
             KTwoVector tPoint = *tIt;
             if (fabs(tPoint.X() - tHighPointFirstCircle.X()) < fEpsilon
@@ -3588,7 +3614,7 @@ namespace KGeoBag
                 break;
             }
         }
-        for (OpenPoints::It tIt = tOpenPoints2.fData.begin();
+        for (auto tIt = tOpenPoints2.fData.begin();
                 tIt != tOpenPoints2.fData.end(); tIt++) {
             KTwoVector tPoint = *tIt;
             if (fabs(tPoint.X() - tLowPointFirstCircle.X()) < fEpsilon
@@ -3615,7 +3641,7 @@ namespace KGeoBag
     void KGROOTGeometryPainter::CreateDualOrderedPoints( const IntersectionPoints anIntersectionPoints, OrderedPoints& anOrderedPoints )
     {
         OpenPoints tPoints1, tPoints2;
-        for( IntersectionPoints::SetCIt tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
+        for( auto tSetIt = anIntersectionPoints.fData.begin(); tSetIt != anIntersectionPoints.fData.end(); tSetIt++ )
         {
             IntersectionPoints::NamedGroup tNamedGroup = *tSetIt;
             IntersectionPoints::Origin tOrigin = tNamedGroup.second;
@@ -3679,9 +3705,9 @@ namespace KGeoBag
 
     void KGROOTGeometryPainter::OrderedPointsToROOTSurface( const OrderedPoints anOrderedPoints)
     {
-        for ( OrderedPoints::SetCIt tSetIt = anOrderedPoints.fData.begin(); tSetIt != anOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = anOrderedPoints.fData.begin(); tSetIt != anOrderedPoints.fData.end(); tSetIt++ )
         {
-            TPolyLine* tPolyLine = new TPolyLine();
+            auto* tPolyLine = new TPolyLine();
             KTwoVector tLastPoint;
             Points tPoints = *tSetIt;
 
@@ -3924,9 +3950,9 @@ namespace KGeoBag
 
     void KGROOTGeometryPainter::OrderedPointsToROOTSpace( const OrderedPoints anOrderedPoints)
     {
-        for ( OrderedPoints::SetCIt tSetIt = anOrderedPoints.fData.begin(); tSetIt != anOrderedPoints.fData.end(); tSetIt++ )
+        for ( auto tSetIt = anOrderedPoints.fData.begin(); tSetIt != anOrderedPoints.fData.end(); tSetIt++ )
         {
-            TPolyLine* tPolyLine = new TPolyLine();
+            auto* tPolyLine = new TPolyLine();
             KTwoVector tLastPoint;
             Points tPoints = *tSetIt;
 

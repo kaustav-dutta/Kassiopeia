@@ -647,7 +647,7 @@ public:
     ///
     /// \return ---
     //--------------------------------------------------------------------------
-    Gnuplot& replot(void)
+    Gnuplot& replot()
     {
         if (nplots > 0) cmd("replot");
         return *this;

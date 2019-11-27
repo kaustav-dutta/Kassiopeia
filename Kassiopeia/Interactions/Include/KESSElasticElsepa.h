@@ -13,19 +13,19 @@ namespace Kassiopeia
         public:
             KESSElasticElsepa();
             KESSElasticElsepa( const KESSElasticElsepa& aCopy );
-            virtual KESSElasticElsepa* Clone() const;
-            virtual ~KESSElasticElsepa();
+            KESSElasticElsepa* Clone() const override;
+            ~KESSElasticElsepa() override;
 
             //***********
             //calculator
             //***********
 
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle,
+            void ExecuteInteraction( const KSParticle& anInitialParticle,
                                              KSParticle& aFinalParticle,
-                                             KSParticleQueue& aQueue);
+                                             KSParticleQueue& aQueue) override;
 
-            virtual void CalculateCrossSection( const KSParticle& aParticle,
-                                                double& aCrossSection );
+            void CalculateCrossSection( const KSParticle& aParticle,
+                                                double& aCrossSection ) override;
 
 
         private:

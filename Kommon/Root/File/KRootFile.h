@@ -18,14 +18,14 @@ namespace katrin
 
         public:
             KRootFile();
-            virtual ~KRootFile();
+            ~KRootFile() override;
 
         public:
             TFile* File();
 
         protected:
-            virtual bool OpenFileSubclass( const std::string& aName, const Mode& aMode );
-            virtual bool CloseFileSubclass();
+            bool OpenFileSubclass( const std::string& aName, const Mode& aMode ) override;
+            bool CloseFileSubclass() override;
 
         private:
             TFile* fFile;
@@ -33,7 +33,7 @@ namespace katrin
 
     inline KRootFile* KRootFile::CreateScratchRootFile( const std::string& aBase )
     {
-        KRootFile* tFile = new KRootFile();
+        auto* tFile = new KRootFile();
         tFile->SetDefaultPath( SCRATCH_DEFAULT_DIR );
         tFile->SetDefaultBase( aBase );
         return tFile;
@@ -41,7 +41,7 @@ namespace katrin
 
 	inline KRootFile* KRootFile::CreateDataRootFile( const std::string& aBase )
 	{
-		KRootFile* tFile = new KRootFile();
+		auto* tFile = new KRootFile();
 		tFile->SetDefaultPath( DATA_DEFAULT_DIR );
 		tFile->SetDefaultBase( aBase );
 		return tFile;
@@ -49,7 +49,7 @@ namespace katrin
 
 	inline KRootFile* KRootFile::CreateOutputRootFile( const std::string& aBase )
 	{
-		KRootFile* tFile = new KRootFile();
+		auto* tFile = new KRootFile();
 		tFile->SetDefaultPath( OUTPUT_DEFAULT_DIR );
 		tFile->SetDefaultBase( aBase );
 		return tFile;
@@ -57,7 +57,7 @@ namespace katrin
 
   inline KRootFile* KRootFile::CreateOutputRootFile( const std::string& aPath, const std::string& aBase )
 	{
-		KRootFile* tFile = new KRootFile();
+		auto* tFile = new KRootFile();
 		tFile->SetDefaultPath( aPath );
 		tFile->SetDefaultBase( aBase );
 		return tFile;

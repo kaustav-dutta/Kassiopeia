@@ -29,9 +29,9 @@ class KFMNode: public KFMObjectCollection<ObjectTypeList>
 {
     public:
 
-        KFMNode():fParent(NULL),fStorageIndex(0),fID(-1){};
+        KFMNode():fParent(nullptr),fStorageIndex(0),fID(-1){};
 
-        virtual ~KFMNode()
+        ~KFMNode() override
         {
             DeleteChildren();
         };
@@ -40,7 +40,7 @@ class KFMNode: public KFMObjectCollection<ObjectTypeList>
         //the level from the root node
         virtual unsigned int GetLevel() const
         {
-            if(fParent != NULL)
+            if(fParent != nullptr)
             {
                 return fParent->GetLevel() + 1;
             }
@@ -80,7 +80,7 @@ class KFMNode: public KFMObjectCollection<ObjectTypeList>
 
         virtual void AddChild(KFMNode<ObjectTypeList>* child)
         {
-            if(child != NULL && child != this) //avoid disaster
+            if(child != nullptr && child != this) //avoid disaster
             {
                 child->SetIndex(fChildren.size());
                 child->SetParent(this);
@@ -107,7 +107,7 @@ class KFMNode: public KFMObjectCollection<ObjectTypeList>
             }
             else
             {
-                return NULL;
+                return nullptr;
             }
         }
 
@@ -121,7 +121,7 @@ class KFMNode: public KFMObjectCollection<ObjectTypeList>
             }
             else
             {
-                fChildren.resize(storage_index + 1, NULL);
+                fChildren.resize(storage_index + 1, nullptr);
                 fChildren[storage_index] = child;
                 fChildren[storage_index]->SetIndex(storage_index);
                 fChildren[storage_index]->SetParent(this);

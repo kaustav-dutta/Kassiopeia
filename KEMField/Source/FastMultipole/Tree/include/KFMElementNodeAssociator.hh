@@ -32,7 +32,7 @@ class KFMElementNodeAssociator: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMElementNodeAssociator(){;};
-        virtual ~KFMElementNodeAssociator(){;};
+        ~KFMElementNodeAssociator() override{;};
 
         void Clear()
         {
@@ -50,15 +50,15 @@ class KFMElementNodeAssociator: public KFMNodeActor< KFMNode<ObjectTypeList> >
 
         unsigned int GetMaximumIdentitySetSize() const {return fMaxIDSetSize;};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 unsigned int node_id = node->GetID();
                 KFMIdentitySet* id_set = KFMObjectRetriever<ObjectTypeList , KFMIdentitySet >::GetNodeObject(node);
                 KFMCube<NDIM>* cube = KFMObjectRetriever<ObjectTypeList, KFMCube<NDIM> >::GetNodeObject(node);
 
-                if( cube != NULL && id_set != NULL)
+                if( cube != nullptr && id_set != nullptr)
                 {
                     if(fMaxIDSetSize < id_set->GetSize()){fMaxIDSetSize = id_set->GetSize();};
 

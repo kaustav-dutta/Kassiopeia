@@ -48,7 +48,7 @@ class KFMElectrostaticParametersConfiguration: public KSAInputOutputObject
             fBiasDegree = 1;
         }
 
-        virtual ~KFMElectrostaticParametersConfiguration(){;};
+        ~KFMElectrostaticParametersConfiguration() override{;};
 
         int GetVerbosity() const {return fVerbosity;};
         void SetVerbosity(const int& n){fVerbosity = n;};
@@ -164,7 +164,7 @@ class KFMElectrostaticParametersConfiguration: public KSAInputOutputObject
             return params;
         }
 
-        void DefineOutputNode(KSAOutputNode* node) const
+        void DefineOutputNode(KSAOutputNode* node) const override
         {
             AddKSAOutputFor(KFMElectrostaticParametersConfiguration,Verbosity,int);
             AddKSAOutputFor(KFMElectrostaticParametersConfiguration,Strategy,int);
@@ -186,7 +186,7 @@ class KFMElectrostaticParametersConfiguration: public KSAInputOutputObject
             AddKSAOutputFor(KFMElectrostaticParametersConfiguration,BiasDegree,double);
         }
 
-        void DefineInputNode(KSAInputNode* node)
+        void DefineInputNode(KSAInputNode* node) override
         {
             AddKSAInputFor(KFMElectrostaticParametersConfiguration,Strategy,int);
             AddKSAInputFor(KFMElectrostaticParametersConfiguration,Verbosity,int);

@@ -32,22 +32,22 @@ namespace Kassiopeia
 
         public:
             KSReadObjectROOT( TTree* aStructureTree, TTree* aPresenceTree, TTree* aDataTree );
-            virtual ~KSReadObjectROOT();
+            ~KSReadObjectROOT() override;
 
         public:
-            void operator++( int );
-            void operator--( int );
-            void operator<<( const unsigned int& aValue );
+            void operator++( int ) override;
+            void operator--( int ) override;
+            void operator<<( const unsigned int& aValue ) override;
 
         public:
-            bool Valid() const;
-            unsigned int Index() const;
-            bool operator<( const unsigned int& aValue ) const;
-            bool operator<=( const unsigned int& aValue ) const;
-            bool operator>( const unsigned int& aValue ) const;
-            bool operator>=( const unsigned int& aValue ) const;
-            bool operator==( const unsigned int& aValue ) const;
-            bool operator!=( const unsigned int& aValue ) const;
+            bool Valid() const override;
+            unsigned int Index() const override;
+            bool operator<( const unsigned int& aValue ) const override;
+            bool operator<=( const unsigned int& aValue ) const override;
+            bool operator>( const unsigned int& aValue ) const override;
+            bool operator>=( const unsigned int& aValue ) const override;
+            bool operator==( const unsigned int& aValue ) const override;
+            bool operator!=( const unsigned int& aValue ) const override;
 
         private:
             class Presence

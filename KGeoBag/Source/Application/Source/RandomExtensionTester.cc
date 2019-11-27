@@ -24,7 +24,7 @@ ostream& operator<<(ostream&, KThreeVector&);
 int main( int /*anArgc*/, char** /*anArgv*/ )
 {
 	// Cylinder
-	KGCylinderSpace* cylinderVolume = new KGCylinderSpace();
+	auto* cylinderVolume = new KGCylinderSpace();
 	cylinderVolume->Z1(0);
 	cylinderVolume->Z2(10);
 	cylinderVolume->R(2);
@@ -35,7 +35,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 //	cylinderArea->R(2);
 
 	// Cone
-	KGConeSpace* coneVolume = new KGConeSpace();
+	auto* coneVolume = new KGConeSpace();
 	coneVolume->ZA(0);
 	coneVolume->ZB(10);
 	coneVolume->RB(2);
@@ -46,7 +46,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 //	coneArea->RB(2);
 
 	// CutCone
-	KGCutConeSpace* cutConeVolume = new KGCutConeSpace();
+	auto* cutConeVolume = new KGCutConeSpace();
 	cutConeVolume->Z1(0);
 	cutConeVolume->Z2(10);
 	cutConeVolume->R1(2);
@@ -59,7 +59,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 //	cutConeArea->R2(1);
 
 	// Box
-	KGBoxSpace* boxVolume = new KGBoxSpace();
+	auto* boxVolume = new KGBoxSpace();
 	boxVolume->XA(0);
 	boxVolume->XB(1);
 	boxVolume->YA(0);
@@ -68,19 +68,19 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 	boxVolume->ZB(3);
 
 	// ConicalWireArraySpace
-	KGConicalWireArraySpace* conicalWireArrayVolume = new KGConicalWireArraySpace();
-	KGConicalWireArraySurface* conicalWireArrayArea = new KGConicalWireArraySurface();
+	auto* conicalWireArrayVolume = new KGConicalWireArraySpace();
+	auto* conicalWireArrayArea = new KGConicalWireArraySurface();
 
 	// Extensions etc.
-	KGSpace* cylinderSpace = new KGSpace(cylinderVolume);
+	auto* cylinderSpace = new KGSpace(cylinderVolume);
 //	KGSurface* cylinderSurface = new KGSurface(cylinderArea);
-	KGSpace* coneSpace = new KGSpace(coneVolume);
+	auto* coneSpace = new KGSpace(coneVolume);
 //	KGSurface* coneSurface = new KGSurface(coneArea);
-	KGSpace* cutConeSpace = new KGSpace(cutConeVolume);
+	auto* cutConeSpace = new KGSpace(cutConeVolume);
 //	KGSurface* cutConeSurface = new KGSurface(cutConeArea);
-	KGSpace* boxSpace = new KGSpace(boxVolume);
-	KGSpace* conicalWireArraySpace = new KGSpace(conicalWireArrayVolume);
-	KGSurface* conicalWireArraySurface = new KGSurface(conicalWireArrayArea);
+	auto* boxSpace = new KGSpace(boxVolume);
+	auto* conicalWireArraySpace = new KGSpace(conicalWireArrayVolume);
+	auto* conicalWireArraySurface = new KGSurface(conicalWireArrayArea);
 
 	boxSpace->SetName("box");
 	cylinderSpace->SetName("cylinder");
@@ -89,7 +89,7 @@ int main( int /*anArgc*/, char** /*anArgv*/ )
 
 	// Get points...
 	KThreeVector point;
-	KGRandomPointGenerator* random = new KGRandomPointGenerator();
+	auto* random = new KGRandomPointGenerator();
 
 	cout << "Random points inside the KGConicalWireArray volume:" << endl;
 	cout << "----------------------------" << endl;

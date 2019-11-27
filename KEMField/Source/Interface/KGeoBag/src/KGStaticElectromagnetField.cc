@@ -14,10 +14,10 @@ namespace KEMField {
 
 KGStaticElectromagnetField::KGStaticElectromagnetField() :
         KStaticElectromagnetField(),
-        fSystem(NULL),
+        fSystem(nullptr),
         fSurfaces(),
         fSpaces(),
-        fConverter(NULL)
+        fConverter(nullptr)
 {
 }
 
@@ -75,30 +75,30 @@ KGradient KGStaticElectromagnetField::MagneticGradientCore(
 
 void KGStaticElectromagnetField::ConfigureSurfaceContainer() {
 
-    KElectromagnetContainer* container = new KElectromagnetContainer();
+    auto* container = new KElectromagnetContainer();
 
     fConverter = new KGElectromagnetConverter();
 
     fConverter->SetElectromagnetContainer( container );
 
-    if( fSystem != NULL )
+    if( fSystem != nullptr )
     {
         fConverter->SetSystem( fSystem->GetOrigin(), fSystem->GetXAxis(), fSystem->GetYAxis(), fSystem->GetZAxis() );
     }
 
-    for( vector< KGSurface* >::iterator tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
+    for( auto tSurfaceIt = fSurfaces.begin(); tSurfaceIt != fSurfaces.end(); tSurfaceIt++ )
     {
         (*tSurfaceIt)->AcceptNode( &(*fConverter) );
     }
 
-    for( vector< KGSpace* >::iterator tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
+    for( auto tSpaceIt = fSpaces.begin(); tSpaceIt != fSpaces.end(); tSpaceIt++ )
     {
         (*tSpaceIt)->AcceptNode( &(*fConverter) );
     }
 
     if( container->empty() )
     {
-        cout << "ERROR:" << "electromagnet field solver <" /*<< GetName()*/ << "> has zero surface elements" << endl;
+        cout << "ERROR:" << "electromagnet field solver <" /*<< GetName()*/ << "> has zero surface or space elements" << endl;
         std::exit(-1);
     }
 

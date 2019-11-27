@@ -64,27 +64,27 @@ namespace Kassiopeia
     };
 
     template< class XType >
-    typename KSDictionary< XType >::CommandFactoryMap* KSDictionary< XType >::fCommandFactories = NULL;
+    typename KSDictionary< XType >::CommandFactoryMap* KSDictionary< XType >::fCommandFactories = nullptr;
 
     template< class XType >
     KSCommand* KSDictionary< XType >::GetCommand( KSComponent* aParent, KSComponent* aChild, const std::string& aField )
     {
-        if( fCommandFactories == NULL )
+        if( fCommandFactories == nullptr )
         {
             fCommandFactories = new CommandFactoryMap();
         }
 
-        KSCommand* tCommand = NULL;
-        CommandFactoryIt tLowIt = fCommandFactories->lower_bound( aField );
-        CommandFactoryIt tUpIt = fCommandFactories->upper_bound( aField );
+        KSCommand* tCommand = nullptr;
+        auto tLowIt = fCommandFactories->lower_bound( aField );
+        auto tUpIt = fCommandFactories->upper_bound( aField );
 
         if( tLowIt != tUpIt )
         {
             objctmsg_debug( "  found command <" << aField << "> for parent <" << aParent->GetName() << ">" << eom );
-            for( CommandFactoryIt tIt = tLowIt; tIt != tUpIt; tIt++ )
+            for( auto tIt = tLowIt; tIt != tUpIt; tIt++ )
             {
                 tCommand = tIt->second->CreateCommand( aParent, aChild );
-                if( tCommand != NULL )
+                if( tCommand != nullptr )
                 {
                     tCommand->SetName( aParent->GetName() + std::string( "/" ) + aField + std::string( "/" ) + aChild->GetName() );
                     return tCommand;
@@ -97,27 +97,27 @@ namespace Kassiopeia
     }
 
     template< class XType >
-    typename KSDictionary< XType >::ComponentFactoryMap* KSDictionary< XType >::fComponentFactories = NULL;
+    typename KSDictionary< XType >::ComponentFactoryMap* KSDictionary< XType >::fComponentFactories = nullptr;
 
     template< class XType >
     KSComponent* KSDictionary< XType >::GetComponent( KSComponent* aParent, const std::string& aField )
     {
-        if( fComponentFactories == NULL )
+        if( fComponentFactories == nullptr )
         {
             fComponentFactories = new ComponentFactoryMap();
         }
 
-        KSComponent* tComponent = NULL;
-        ComponentFactoryIt tLowIt = fComponentFactories->lower_bound( aField );
-        ComponentFactoryIt tUpIt = fComponentFactories->upper_bound( aField );
+        KSComponent* tComponent = nullptr;
+        auto tLowIt = fComponentFactories->lower_bound( aField );
+        auto tUpIt = fComponentFactories->upper_bound( aField );
 
         if( tLowIt != tUpIt )
         {
             objctmsg_debug( "  found output <" << aField << "> for parent <" << aParent->GetName() << ">" << eom );
-            for( ComponentFactoryIt tIt = tLowIt; tIt != tUpIt; tIt++ )
+            for( auto tIt = tLowIt; tIt != tUpIt; tIt++ )
             {
                 tComponent = tIt->second->CreateComponent( aParent );
-                if( tComponent != NULL )
+                if( tComponent != nullptr )
                 {
                     tComponent->SetName( aParent->GetName() + std::string( "/" ) + aField );
                     return tComponent;

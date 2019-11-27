@@ -22,9 +22,9 @@ namespace KGeoBag
         public:
             KGPlanarPolyLoop();
             KGPlanarPolyLoop( const KGPlanarPolyLoop& aCopy );
-            virtual ~KGPlanarPolyLoop();
+            ~KGPlanarPolyLoop() override;
 
-            KGPlanarPolyLoop* Clone() const;
+            KGPlanarPolyLoop* Clone() const override;
             void CopyFrom( const KGPlanarPolyLoop& aCopy );
 
         public:
@@ -38,15 +38,15 @@ namespace KGeoBag
 
             const Set& Elements() const;
 
-            const double& Length() const;
-            const KTwoVector& Centroid() const;
-            const KTwoVector& Anchor() const;
+            const double& Length() const override;
+            const KTwoVector& Centroid() const override;
+            const KTwoVector& Anchor() const override;
 
         public:
-            KTwoVector At( const double& aLength ) const;
-            KTwoVector Point( const KTwoVector& aQuery ) const;
-            KTwoVector Normal( const KTwoVector& aQuery ) const;
-            bool Above( const KTwoVector& aQuery ) const;
+            KTwoVector At( const double& aLength ) const override;
+            KTwoVector Point( const KTwoVector& aQuery ) const override;
+            KTwoVector Normal( const KTwoVector& aQuery ) const override;
+            bool Above( const KTwoVector& aQuery ) const override;
 
         private:
             Set fElements;

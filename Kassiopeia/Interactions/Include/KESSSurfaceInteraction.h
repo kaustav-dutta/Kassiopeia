@@ -14,14 +14,14 @@ namespace Kassiopeia
         public:
             KESSSurfaceInteraction();
             KESSSurfaceInteraction( const KESSSurfaceInteraction& aCopy );
-            virtual KESSSurfaceInteraction* Clone() const;
-            virtual ~KESSSurfaceInteraction();
+            KESSSurfaceInteraction* Clone() const override;
+            ~KESSSurfaceInteraction() override;
 
 
 
-            virtual void ExecuteInteraction( const KSParticle& anInitialParticle,
+            void ExecuteInteraction( const KSParticle& anInitialParticle,
                                                    KSParticle& aFinalParticle,
-                                                   KSParticleQueue& aQueue);
+                                                   KSParticleQueue& aQueue) override;
 
 
 

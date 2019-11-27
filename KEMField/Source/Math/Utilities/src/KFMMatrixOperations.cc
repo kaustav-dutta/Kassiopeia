@@ -635,7 +635,7 @@ kfm_matrix_svd_solve(const kfm_matrix* U, const kfm_vector* S, const kfm_matrix*
 kfm_sparse_matrix*
 kfm_sparse_matrix_alloc(unsigned int nrows, unsigned int ncolumns, unsigned int n_elements)
 {
-    kfm_sparse_matrix* m = new kfm_sparse_matrix();
+    auto* m = new kfm_sparse_matrix();
     m->size1 = nrows;
     m->size2 = ncolumns;
     m->data = new double[n_elements];

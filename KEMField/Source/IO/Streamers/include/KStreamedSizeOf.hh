@@ -58,7 +58,7 @@ namespace KEMField
   {
   public:
     KStreamedSizeOf() {}
-    virtual ~KStreamedSizeOf() {}
+    ~KStreamedSizeOf() override {}
 
     template <class Sized>
     size_t operator()(const Sized&);
@@ -74,8 +74,8 @@ namespace KEMField
 
   protected:
 
-    KStreamedSizeOf& Self() { return *this; }
-    void Add(size_t aSize) { fSize += aSize; }
+    KStreamedSizeOf& Self() override { return *this; }
+    void Add(size_t aSize) override { fSize += aSize; }
 
   private:
     size_t fSize;

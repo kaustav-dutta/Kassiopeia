@@ -14,9 +14,6 @@ project( KEMField )
 
 include( KasperDefaults )
 
-# require c++11
-kasper_require_cpp11()
-
 # module options
 
 #option (${PROJECT_NAME}_USE_VTK "Enables the use of VTK for visualization" OFF)

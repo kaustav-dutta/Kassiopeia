@@ -9,14 +9,14 @@ namespace Kassiopeia
 {
 
     KSRootSpaceNavigator::KSRootSpaceNavigator() :
-            fSpaceNavigator( NULL ),
-            fStep( NULL ),
-            fTerminatorParticle( NULL ),
-            fTrajectoryParticle( NULL ),
-            fNavigationParticle( NULL ),
-            fFinalParticle( NULL ),
-            fParticleQueue( NULL ),
-            fTrajectory( NULL )
+            fSpaceNavigator( nullptr ),
+            fStep( nullptr ),
+            fTerminatorParticle( nullptr ),
+            fTrajectoryParticle( nullptr ),
+            fNavigationParticle( nullptr ),
+            fFinalParticle( nullptr ),
+            fParticleQueue( nullptr ),
+            fTrajectory( nullptr )
     {
     }
     KSRootSpaceNavigator::KSRootSpaceNavigator( const KSRootSpaceNavigator& aCopy ) :
@@ -41,7 +41,7 @@ namespace Kassiopeia
 
     void KSRootSpaceNavigator::CalculateNavigation( const KSTrajectory& aTrajectory, const KSParticle& aTrajectoryInitialParticle, const KSParticle& aTrajectoryFinalParticle, const KThreeVector& aTrajectoryCenter, const double& aTrajectoryRadius, const double& aTrajectoryStep, KSParticle& aNavigationParticle, double& aNavigationStep, bool& aNavigationFlag )
     {
-        if( fSpaceNavigator == NULL )
+        if( fSpaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot calculate navigation with no space navigator set" << eom;
         }
@@ -50,7 +50,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceNavigator::ExecuteNavigation( const KSParticle& aNavigationParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const
     {
-        if( fSpaceNavigator == NULL )
+        if( fSpaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot execute navigation with no space navigator set" << eom;
         }
@@ -59,7 +59,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceNavigator::FinalizeNavigation( KSParticle& aFinalParticle ) const
     {
-        if( fSpaceNavigator == NULL )
+        if( fSpaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot finalize navigation with no space navigator set" << eom;
         }
@@ -68,7 +68,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceNavigator::StartNavigation( KSParticle& aParticle, KSSpace* aRoot )
     {
-        if( fSpaceNavigator == NULL )
+        if( fSpaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot start navigation with no space navigator set" << eom;
         }
@@ -77,7 +77,7 @@ namespace Kassiopeia
     }
     void KSRootSpaceNavigator::StopNavigation( KSParticle& aParticle, KSSpace* aRoot )
     {
-        if( fSpaceNavigator == NULL )
+        if( fSpaceNavigator == nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> cannot stop navigation with no space navigator set" << eom;
         }
@@ -87,7 +87,7 @@ namespace Kassiopeia
 
     void KSRootSpaceNavigator::SetSpaceNavigator( KSSpaceNavigator* aSpaceNavigator )
     {
-        if( fSpaceNavigator != NULL )
+        if( fSpaceNavigator != nullptr )
         {
             navmsg( eError ) << "<" << GetName() << "> tried to set space navigator <" << aSpaceNavigator->GetName() << "> with space navigator <" << fSpaceNavigator->GetName() << "> already set" << eom;
             return;
@@ -104,7 +104,7 @@ namespace Kassiopeia
             return;
         }
         navmsg_debug( "<" << GetName() << "> clearing space navigator <" << aSpaceNavigator->GetName() << ">" << eom )
-        fSpaceNavigator = NULL;
+        fSpaceNavigator = nullptr;
         return;
     }
 

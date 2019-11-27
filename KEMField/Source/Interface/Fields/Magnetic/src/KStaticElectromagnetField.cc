@@ -12,8 +12,8 @@
 namespace KEMField {
 
 KStaticElectromagnetField::KStaticElectromagnetField() :
-            fContainer( NULL ),
-            fFieldSolver( NULL ),
+            fContainer( nullptr ),
+            fFieldSolver( nullptr ),
             fFile(),
             fDirectory (KEMFileInterface::GetInstance()->ActiveDirectory() )
 {

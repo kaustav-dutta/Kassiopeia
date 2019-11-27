@@ -43,7 +43,7 @@ namespace KGeoBag
                     fRotatedMeshCount( 64 )
             {
             }
-            virtual ~KGRotatedClosedPathSpace()
+            ~KGRotatedClosedPathSpace() override
             {
             }
 
@@ -72,7 +72,7 @@ namespace KGeoBag
             mutable unsigned int fRotatedMeshCount;
 
         public:
-            virtual void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const
+            void VolumeInitialize( BoundaryContainer& aBoundaryContainer ) const override
             {
                 auto tJacket = std::make_shared<KGRotatedPathSurface< XPathType >>( fPath );
                 tJacket->RotatedMeshCount( fRotatedMeshCount );
@@ -81,11 +81,11 @@ namespace KGeoBag
 
                 return;
             }
-            virtual void VolumeAccept( KGVisitor* aVisitor )
+            void VolumeAccept( KGVisitor* aVisitor ) override
             {
                 shapemsg_debug( "rotated closed path volume named <" << GetName() << "> is receiving a visitor" << eom );
-                typename KGRotatedClosedPathSpace::Visitor* tRotatedClosedPathSpaceVisitor = dynamic_cast< typename KGRotatedClosedPathSpace::Visitor* >( aVisitor );
-                if( tRotatedClosedPathSpaceVisitor != NULL )
+                auto* tRotatedClosedPathSpaceVisitor = dynamic_cast< typename KGRotatedClosedPathSpace::Visitor* >( aVisitor );
+                if( tRotatedClosedPathSpaceVisitor != nullptr )
                 {
                     shapemsg_debug( "rotated closed path volume named <" << GetName() << "> is accepting a visitor" << eom );
                     tRotatedClosedPathSpaceVisitor->VisitRotatedClosedPathSpace( this );
@@ -94,19 +94,19 @@ namespace KGeoBag
                 KGVolume::VolumeAccept( aVisitor );
                 return;
             }
-            bool VolumeOutside( const KThreeVector& aPoint ) const
+            bool VolumeOutside( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 return fPath->Above( tZRPoint );
             }
-            KThreeVector VolumePoint( const KThreeVector& aPoint ) const
+            KThreeVector VolumePoint( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 KTwoVector tZRNearest = fPath->Point( tZRPoint );
                 double tAngle = aPoint.AzimuthalAngle();
                 return KThreeVector( cos( tAngle ) * tZRNearest.R(), sin( tAngle ) * tZRNearest.R(), tZRNearest.Z() );
             }
-            KThreeVector VolumeNormal( const KThreeVector& aPoint ) const
+            KThreeVector VolumeNormal( const KThreeVector& aPoint ) const override
             {
                 KTwoVector tZRPoint = aPoint.ProjectZR();
                 KTwoVector tZRNormal = fPath->Normal( tZRPoint );
@@ -117,7 +117,7 @@ namespace KGeoBag
         private:
             static KGPlanarClosedPath* CompilerCheck()
             {
-                XPathType* tPath = NULL;
+                XPathType* tPath = nullptr;
                 return tPath;
             }
     };

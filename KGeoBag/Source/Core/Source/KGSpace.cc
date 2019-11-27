@@ -16,7 +16,7 @@ namespace KGeoBag
 
     KGSpace::KGSpace() :
             fExtensions(),
-            fParent( NULL ),
+            fParent( nullptr ),
             fBoundaries(),
             fChildSurfaces(),
             fChildSpaces(),
@@ -29,7 +29,7 @@ namespace KGeoBag
     }
     KGSpace::KGSpace( KGVolume* aVolume ) :
             fExtensions(),
-            fParent( NULL ),
+            fParent( nullptr ),
             fBoundaries(),
             fChildSurfaces(),
             fChildSpaces(),
@@ -86,7 +86,7 @@ namespace KGeoBag
 
     void KGSpace::Orphan()
     {
-        if( fParent != NULL )
+        if( fParent != nullptr )
         {
             vector< KGSpace* >::iterator tIt;
             for( tIt = fParent->fChildSpaces.begin(); tIt != fParent->fChildSpaces.end(); tIt++ )
@@ -94,7 +94,7 @@ namespace KGeoBag
                 if( (*tIt) == this )
                 {
                     fParent->fChildSpaces.erase( tIt );
-                    fParent = NULL;
+                    fParent = nullptr;
                     return;
                 }
             }
@@ -229,7 +229,7 @@ namespace KGeoBag
 
     KGSpace* KGSpace::CloneNode() const
     {
-        KGSpace* tClone = new KGSpace();
+        auto* tClone = new KGSpace();
 
         //copy name
         tClone->SetName(this->GetName());
@@ -269,7 +269,7 @@ namespace KGeoBag
 
     KGSpace* KGSpace::CloneTree() const
     {
-        KGSpace* tClone = new KGSpace();
+        auto* tClone = new KGSpace();
 
         //copy name
         tClone->SetName(this->GetName());
@@ -334,8 +334,8 @@ namespace KGeoBag
         coremsg_debug( "space named <" << GetName() << "> is receiving a visitor" << eom )
 
         //try to visit the space
-        KGSpace::Visitor* tSpaceVisitor = dynamic_cast< KGSpace::Visitor* >( aVisitor );
-        if( tSpaceVisitor != NULL )
+        auto* tSpaceVisitor = dynamic_cast< KGSpace::Visitor* >( aVisitor );
+        if( tSpaceVisitor != nullptr )
         {
             coremsg_debug( "space named <" << GetName() << "> is accepting a visitor" << eom )
             tSpaceVisitor->VisitSpace( this );
@@ -365,8 +365,8 @@ namespace KGeoBag
         coremsg_debug( "space named <" << GetName() << "> is receiving a visitor" << eom )
 
         //try to visit the space
-        KGSpace::Visitor* tSpaceVisitor = dynamic_cast< KGSpace::Visitor* >( aVisitor );
-        if( tSpaceVisitor != NULL )
+        auto* tSpaceVisitor = dynamic_cast< KGSpace::Visitor* >( aVisitor );
+        if( tSpaceVisitor != nullptr )
         {
             coremsg_debug( "space named <" << GetName() << "> is accepting a visitor" << eom )
             tSpaceVisitor->VisitSpace( this );

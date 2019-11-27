@@ -34,7 +34,7 @@ public:
         //create a default restart condition
         fRestartCondition = new KIterativeKrylovRestartCondition();
 	}
-	virtual ~KIterativeKrylovSolver() {}
+	~KIterativeKrylovSolver() override {}
 
 	typedef KSquareMatrix<ValueType> Matrix;
     typedef KVector<ValueType> Vector;

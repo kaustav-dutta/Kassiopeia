@@ -3,7 +3,7 @@
 namespace KGeoBag
 {
   KGIntersectableSurface::KGIntersectableSurface()
-    : fIntersector(NULL)
+    : fIntersector(nullptr)
   {
 
   }

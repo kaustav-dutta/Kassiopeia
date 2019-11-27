@@ -15,7 +15,7 @@ namespace KEMField
     KLineSegment() : fP0(0.,0.,0.),
 		     fP1(0.,0.,0.),
 		     fDiameter(0.) {}
-    ~KLineSegment() {}
+    ~KLineSegment() override {}
 
   public:
 
@@ -25,12 +25,12 @@ namespace KEMField
 		   const KPosition& p1,
 		   const double&  diameter);
 
-    double Area() const { return M_PI*fDiameter*(fP0-fP1).Magnitude(); }
-    const KPosition Centroid() const { return (fP0 + fP1)*.5; }
+    double Area() const override { return M_PI*fDiameter*(fP0-fP1).Magnitude(); }
+    const KPosition Centroid() const override { return (fP0 + fP1)*.5; }
 
-    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint);
+    double DistanceTo(const KPosition& aPoint, KPosition& nearestPoint) override;
 
-    const KDirection Normal() const;
+    const KDirection Normal() const override;
 
     void             SetP0(const KPosition& p)    { fP0 = p; }
     void             SetP1(const KPosition& p)    { fP1 = p; }

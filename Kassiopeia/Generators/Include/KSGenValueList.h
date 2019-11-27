@@ -14,11 +14,11 @@ namespace Kassiopeia
         public:
     		KSGenValueList();
     		KSGenValueList( const KSGenValueList& aCopy );
-    		KSGenValueList* Clone() const;
-            virtual ~KSGenValueList();
+    		KSGenValueList* Clone() const override;
+            ~KSGenValueList() override;
 
         public:
-            void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
             void AddValue( double aValue );
 
         public:

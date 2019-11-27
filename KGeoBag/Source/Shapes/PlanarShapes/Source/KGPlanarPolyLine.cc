@@ -24,19 +24,19 @@ namespace KGeoBag
         const KGPlanarOpenPath* tElement;
         const KGPlanarLineSegment* tLineSegment;
         const KGPlanarArcSegment* tArcSegment;
-        for( CIt tIt = aCopy.fElements.begin(); tIt != aCopy.fElements.end(); tIt++ )
+        for( auto tIt = aCopy.fElements.begin(); tIt != aCopy.fElements.end(); tIt++ )
         {
             tElement = *tIt;
 
             tLineSegment = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegment != NULL )
+            if( tLineSegment != nullptr )
             {
                 fElements.push_back( new KGPlanarLineSegment( *tLineSegment ) );
                 continue;
             }
 
             tArcSegment = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegment != NULL )
+            if( tArcSegment != nullptr )
             {
                 fElements.push_back( new KGPlanarArcSegment( *tArcSegment ) );
                 continue;
@@ -48,7 +48,7 @@ namespace KGeoBag
         shapemsg_debug( "destroying a planar poly line" << eom );
 
         const KGPlanarOpenPath* tElement;
-        for( It tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
+        for( auto tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
         {
             tElement = *tIt;
             delete tElement;
@@ -68,7 +68,7 @@ namespace KGeoBag
         fInitialized = aCopy.fInitialized;
 
         const KGPlanarOpenPath* tElement;
-        for( It tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
+        for( auto tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
         {
             tElement = *tIt;
             delete tElement;
@@ -77,19 +77,19 @@ namespace KGeoBag
 
         const KGPlanarLineSegment* tLineSegment;
         const KGPlanarArcSegment* tArcSegment;
-        for( CIt tIt = aCopy.fElements.begin(); tIt != aCopy.fElements.end(); tIt++ )
+        for( auto tIt = aCopy.fElements.begin(); tIt != aCopy.fElements.end(); tIt++ )
         {
             tElement = *tIt;
 
             tLineSegment = dynamic_cast< const KGPlanarLineSegment* >( tElement );
-            if( tLineSegment != NULL )
+            if( tLineSegment != nullptr )
             {
                 fElements.push_back( new KGPlanarLineSegment( *tLineSegment ) );
                 continue;
             }
 
             tArcSegment = dynamic_cast< const KGPlanarArcSegment* >( tElement );
-            if( tArcSegment != NULL )
+            if( tArcSegment != nullptr )
             {
                 fElements.push_back( new KGPlanarArcSegment( *tArcSegment ) );
                 continue;
@@ -105,7 +105,7 @@ namespace KGeoBag
         fInitialized = false;
 
         const KGPlanarOpenPath* tElement;
-        for( It tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
+        for( auto tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
         {
             tElement = *tIt;
             delete tElement;
@@ -222,7 +222,7 @@ namespace KGeoBag
             return fEnd;
         }
 
-        for( CIt tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
+        for( auto tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
         {
             if( (*tIt)->Length() > tLength )
             {
@@ -246,7 +246,7 @@ namespace KGeoBag
         KTwoVector tNearestPoint;
         double tNearestDistance;
 
-        CIt tIt = fElements.begin();
+        auto tIt = fElements.begin();
 
         tNearestPoint = (*tIt)->Point( aQuery );
         tNearestDistance = (tNearestPoint - aQuery).Magnitude();
@@ -291,7 +291,7 @@ namespace KGeoBag
         KTwoVector tNearestNormal;
         double tNearestDistance;
 
-        CIt tIt = fElements.begin();
+        auto tIt = fElements.begin();
 
         tFirstPoint = (*tIt)->Point( aQuery );
         tFirstNormal = (*tIt)->Normal( aQuery );
@@ -399,7 +399,7 @@ namespace KGeoBag
         fCentroid.X() = 0;
         fCentroid.Y() = 0;
 
-        for( CIt tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
+        for( auto tIt = fElements.begin(); tIt != fElements.end(); tIt++ )
         {
             fLength += (*tIt)->Length();
             fCentroid += (*tIt)->Length() * (*tIt)->Centroid();

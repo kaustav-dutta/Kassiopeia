@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGRotatedArcSegmentSpaceAxialMesher();
-            virtual ~KGRotatedArcSegmentSpaceAxialMesher();
+            ~KGRotatedArcSegmentSpaceAxialMesher() override;
 
         protected:
-            void VisitRotatedOpenPathSpace( KGRotatedArcSegmentSpace* aRotatedArcSegmentSpace );
+            void VisitRotatedOpenPathSpace( KGRotatedArcSegmentSpace* aRotatedArcSegmentSpace ) override;
     };
 
 }

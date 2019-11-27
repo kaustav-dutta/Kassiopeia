@@ -27,12 +27,12 @@ template< typename NodeType>
 class KGCorecursiveActor: public KGNodeActor<NodeType>
 {
     public:
-        KGCorecursiveActor():fOperationalActor(NULL){};
-        virtual ~KGCorecursiveActor(){};
+        KGCorecursiveActor():fOperationalActor(nullptr){};
+        ~KGCorecursiveActor() override{};
 
         void SetOperationalActor(KGNodeActor<NodeType>* opActor)
         {
-            if(opActor != this && opActor != NULL)//avoid a disaster
+            if(opActor != this && opActor != nullptr)//avoid a disaster
             {
                 fOperationalActor = opActor;
             }
@@ -40,9 +40,9 @@ class KGCorecursiveActor: public KGNodeActor<NodeType>
 
         //corecursively apply the operational visitor to every node
         //below this one
-        void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 fNodeQueue = std::queue< NodeType* >();
                 fNodeQueue.push(node);

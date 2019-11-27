@@ -28,19 +28,19 @@ class KFMPointwiseArrayReversedConjugateMultiplier: public KFMBinaryArrayOperato
 
         KFMPointwiseArrayReversedConjugateMultiplier()
         {
-            fReversedIndexArray = NULL;
+            fReversedIndexArray = nullptr;
             fInitialized = false;
             for(unsigned int i=0; i<NDIM; i++){fDim[i] = 0;};
         };
 
-        virtual ~KFMPointwiseArrayReversedConjugateMultiplier()
+        ~KFMPointwiseArrayReversedConjugateMultiplier() override
         {
             delete[] fReversedIndexArray;
         };
 
-        virtual void Initialize()
+        void Initialize() override
         {
-            if(this->fFirstInput != NULL)
+            if(this->fFirstInput != nullptr)
             {
                 for(unsigned int i=0; i<NDIM; i++)
                 {
@@ -48,7 +48,7 @@ class KFMPointwiseArrayReversedConjugateMultiplier: public KFMBinaryArrayOperato
                 };
             }
 
-            if(!fInitialized && this->fFirstInput != NULL)
+            if(!fInitialized && this->fFirstInput != nullptr)
             {
                 unsigned int n_elem  = this->fFirstInput->GetArraySize();
                 this->fFirstInput->GetArrayDimensions(fDim);
@@ -78,7 +78,7 @@ class KFMPointwiseArrayReversedConjugateMultiplier: public KFMBinaryArrayOperato
         }
 
 
-        virtual void ExecuteOperation()
+        void ExecuteOperation() override
         {
             if(IsInputOutputValid())
             {

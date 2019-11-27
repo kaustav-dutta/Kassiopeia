@@ -3,7 +3,7 @@
 
 #include "KComplexElement.hh"
 #include "KSROOTTrackPainter.h"
-#include <stdlib.h>
+#include <cstdlib>
 #include "TColor.h"
 #include "TROOT.h"
 #include "KSVisualizationMessage.h"
@@ -122,7 +122,7 @@ namespace katrin
         	else
         	{
         		std::string tFractionString = aContainer->AsReference< std::string >().substr(tPos + 1, std::string::npos);
-        		tFraction = std::strtod( tFractionString.c_str(), 0 );
+        		tFraction = std::strtod( tFractionString.c_str(), nullptr );
         	}
 
 			if( tColor == std::string( "kWhite" ) )
@@ -229,7 +229,7 @@ namespace katrin
             //if color is a digit
             if( isdigit(tColor[0]) )
             {
-				int tColorNumber = std::strtol( aContainer->AsReference< std::string >().c_str(), 0 , 0 );
+				int tColorNumber = std::strtol( aContainer->AsReference< std::string >().c_str(), nullptr , 0 );
 				TColor tColor = *(gROOT->GetColor( tColorNumber ));
 				fObject->AddBaseColor( tColor, tFraction );
 				return true;

@@ -73,12 +73,12 @@ class KFMScalarMomentLocalToLocalConverter: public KFMNodeActor< KFMNode<ObjectT
 
             fAllocated = false;
 
-            fCBSI = NULL;
-            fRBSI = NULL;
+            fCBSI = nullptr;
+            fRBSI = nullptr;
         };
 
 
-        virtual ~KFMScalarMomentLocalToLocalConverter()
+        ~KFMScalarMomentLocalToLocalConverter() override
         {
             DeallocateArrays();
             delete fKernelResponse;
@@ -225,13 +225,13 @@ class KFMScalarMomentLocalToLocalConverter: public KFMNodeActor< KFMNode<ObjectT
 
 
         ////////////////////////////////////////////////////////////////////////
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if( node != NULL && node->HasChildren() && node->GetLevel() != 0 )
+            if( node != nullptr && node->HasChildren() && node->GetLevel() != 0 )
             {
 
                 ScalarMomentType* mom = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node);
-                if(mom != NULL)
+                if(mom != nullptr)
                 {
                     //collect the local coefficients of this node
                     mom->GetMoments(&fParentsLocalCoeff);
@@ -395,19 +395,19 @@ class KFMScalarMomentLocalToLocalConverter: public KFMNodeActor< KFMNode<ObjectT
 
             if(fAllocated)
             {
-                delete[] fPtrL2LCoeff; fPtrL2LCoeff = NULL;
-                delete[] fPtrLocalCoeffOrig; fPtrLocalCoeffOrig = NULL;
-                delete[] fPtrLocalCoeffContrib; fPtrLocalCoeffContrib = NULL;
-                delete[] fPtrLocalCoeffParentArray; fPtrLocalCoeffParentArray = NULL;
-                delete[] fPtrLocalCoeffSource; fPtrLocalCoeffSource = NULL;
-                delete[] fPtrTempOut; fPtrTempOut = NULL;
+                delete[] fPtrL2LCoeff; fPtrL2LCoeff = nullptr;
+                delete[] fPtrLocalCoeffOrig; fPtrLocalCoeffOrig = nullptr;
+                delete[] fPtrLocalCoeffContrib; fPtrLocalCoeffContrib = nullptr;
+                delete[] fPtrLocalCoeffParentArray; fPtrLocalCoeffParentArray = nullptr;
+                delete[] fPtrLocalCoeffSource; fPtrLocalCoeffSource = nullptr;
+                delete[] fPtrTempOut; fPtrTempOut = nullptr;
 
                 //array wrappers to access and manipulate data all together
-                delete fL2LCoeff; fL2LCoeff = NULL;
-                delete fLocalCoeffOrig; fLocalCoeffOrig = NULL;
-                delete fLocalCoeffContrib; fLocalCoeffContrib = NULL;
-                delete fLocalCoeffParentArray; fLocalCoeffParentArray = NULL;
-                delete fTempOut; fTempOut = NULL;
+                delete fL2LCoeff; fL2LCoeff = nullptr;
+                delete fLocalCoeffOrig; fLocalCoeffOrig = nullptr;
+                delete fLocalCoeffContrib; fLocalCoeffContrib = nullptr;
+                delete fLocalCoeffParentArray; fLocalCoeffParentArray = nullptr;
+                delete fTempOut; fTempOut = nullptr;
 
                 for(unsigned int tsi=0; tsi<fNTerms; tsi++)
                 {
@@ -457,11 +457,11 @@ class KFMScalarMomentLocalToLocalConverter: public KFMNodeActor< KFMNode<ObjectT
             {
                 child = parent->GetChild(n);
 
-                if(child != NULL)
+                if(child != nullptr)
                 {
                     //retrieve moments
                     ScalarMomentType* set = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(child);
-                    if(set != NULL)
+                    if(set != nullptr)
                     {
                         //we use raw ptr for speed
                         double* rmoments = &( (*(set->GetRealMoments()))[0] );

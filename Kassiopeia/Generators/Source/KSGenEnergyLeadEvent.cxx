@@ -21,8 +21,8 @@ namespace Kassiopeia
         fFermiMax17( 0. ),
         fFermiMax63( 0. ),
         fnmax( 1000 ),
-        fBismuthRelaxation( NULL ),
-        fBismuthConversion( NULL )
+        fBismuthRelaxation( nullptr ),
+        fBismuthConversion( nullptr )
     {
     }
     KSGenEnergyLeadEvent::KSGenEnergyLeadEvent( const KSGenEnergyLeadEvent& aCopy ) :
@@ -152,15 +152,15 @@ namespace Kassiopeia
         //   E: electron kinetic energy in eV
         //  mnu: neutrino mass
         double beta,E1,p1,p2,E2,FC,x,Fermiret;
-        E2=KConst::M_el_eV()+E;  // electron total energy
-        p2=sqrt(E2*E2-KConst::M_el_eV()*KConst::M_el_eV());  // electron momentum
+        E2=katrin::KConst::M_el_eV()+E;  // electron total energy
+        p2=sqrt(E2*E2 - katrin::KConst::M_el_eV()*katrin::KConst::M_el_eV());  // electron momentum
         beta=p2/E2;
         E1=E0-E;  // neutrino total energy
         if(E1>=mnu)
             p1=sqrt(fabs(E1*E1-mnu*mnu));  // neutrino momentum
         else
             p1=0.;
-        x=2.*KConst::Pi()*Z*KConst::Alpha()/beta;
+        x=2.*katrin::KConst::Pi()*Z*katrin::KConst::Alpha()/beta;
         FC=x/(1.-exp(-x));  // Coulomb correction factor
         Fermiret=p2*E2*p1*E1*FC;
         return Fermiret;

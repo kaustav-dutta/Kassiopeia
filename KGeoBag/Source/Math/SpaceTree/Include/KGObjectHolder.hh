@@ -25,7 +25,7 @@ class KGObjectHolder
 {
     public:
 
-        KGObjectHolder():fObject(NULL){;};
+        KGObjectHolder():fObject(nullptr){;};
 
         virtual ~KGObjectHolder()
         {

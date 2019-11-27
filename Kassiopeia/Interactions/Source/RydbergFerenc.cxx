@@ -2,9 +2,9 @@
 // Created by trost on 26.05.15.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 #include <limits>
 
 #include "KSInteractionsMessage.h"
@@ -13,7 +13,6 @@
 #include "RydbergFerenc.h"
 #include "QuadGaussLegendre.h"
 using katrin::KRandom;
-using katrin::KConst;
 
 #include <numeric>
 
@@ -36,8 +35,8 @@ namespace Kassiopeia {
         Chigh = exp(Ehigh);
         Clow = exp(-Ehigh);
         logpi = log(M_PI);
-        fC = 4.*M_PI*M_PI*KConst::Alpha()/3.;
-        fAtomic_C = 1. / KConst::Alpha();
+        fC = 4.*M_PI*M_PI*katrin::KConst::Alpha()/3.;
+        fAtomic_C = 1. / katrin::KConst::Alpha();
         fAtomic_kB = 3.1668e-6;
     }
 
@@ -294,9 +293,9 @@ namespace Kassiopeia {
         Chigh = exp(Ehigh);
         Clow = exp(-Ehigh);
 
-        fAtomic_C = 1. / KConst::Alpha();
+        fAtomic_C = 1. / katrin::KConst::Alpha();
         fAtomicTimeUnit =
-                KConst::Hbar() / (KConst::Alpha() * KConst::Alpha() * KConst::M_el_kg() * KConst::C() * KConst::C());
+                katrin::KConst::Hbar() / (katrin::KConst::Alpha() * katrin::KConst::Alpha() * katrin::KConst::M_el_kg() * katrin::KConst::C() * katrin::KConst::C());
         fAtomic_kB = 3.1668e-6;
 
         fFBBRIon = new FBBRionization(300.,1,0);

@@ -1,6 +1,5 @@
 #include "KSIntDensityConstant.h"
 #include "KConst.h"
-using katrin::KConst;
 
 namespace Kassiopeia
 {
@@ -30,7 +29,7 @@ namespace Kassiopeia
     {
         if( fDensity == -1. )
         {
-            aDensity = fPressure / (KConst::kB() * fTemperature );
+            aDensity = fPressure / (katrin::KConst::kB() * fTemperature );
             return;
         }
         else

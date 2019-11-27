@@ -30,7 +30,7 @@ namespace KEMField
     typedef ElectromagnetSingleThread Kind;
 
     KElectromagnetIntegrator() {}
-    virtual ~KElectromagnetIntegrator() {}
+    ~KElectromagnetIntegrator() override {}
   };
 
 }

@@ -105,7 +105,7 @@ double Round(double x, unsigned int masked)
     if (maskedBits)
     {
       index = endian_min + endian_dir*maskedBytes;
-      significantBit = (~(0xff << 1)) << (maskedBits - 1);
+      significantBit = (unsigned short)(~(0xff << 1)) << (maskedBits - 1);
     }
     else
     {

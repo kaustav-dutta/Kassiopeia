@@ -23,7 +23,7 @@ KFMIdentitySetList::GetTotalSize() const
 void
 KFMIdentitySetList::AddIDSet(const KFMIdentitySet* set)
 {
-    if(set != NULL)
+    if(set != nullptr)
     {
         if(set->GetSize() != 0 )
         {
@@ -35,7 +35,7 @@ KFMIdentitySetList::AddIDSet(const KFMIdentitySet* set)
 void
 KFMIdentitySetList::AddIDSetList(const KFMIdentitySetList* set_list)
 {
-    if(set_list != NULL)
+    if(set_list != nullptr)
     {
         const std::vector< const std::vector<unsigned int>* >* raw_list = set_list->GetRawSetList();
         for(unsigned int i=0; i<raw_list->size(); i++)

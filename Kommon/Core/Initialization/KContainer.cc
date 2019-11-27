@@ -5,21 +5,21 @@ namespace katrin
 
     KContainer::KContainer() :
         KNamed(),
-        fHolder( NULL )
+        fHolder( nullptr )
     {
     }
     KContainer::~KContainer()
     {
-        if( fHolder != NULL )
+        if( fHolder != nullptr )
         {
             delete fHolder;
-            fHolder = NULL;
+            fHolder = nullptr;
         }
     }
 
     bool KContainer::Empty() const
     {
-        if( fHolder != NULL )
+        if( fHolder != nullptr )
         {
             return false;
         }

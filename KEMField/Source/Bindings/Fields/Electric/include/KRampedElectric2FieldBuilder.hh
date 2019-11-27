@@ -30,7 +30,7 @@ inline bool KRampedElectric2FieldBuilder::AddAttribute( KContainer* aContainer )
     if( aContainer->GetName() == "root_field_1" )
     {
         std::string fieldName = aContainer->AsReference< std::string >();
-        KEMField::KElectricField* field = katrin::KToolbox::GetInstance().
+        auto* field = katrin::KToolbox::GetInstance().
                 Get<KEMField::KElectricField>(fieldName);
         fObject->SetRootElectricField1( field );
         return true;
@@ -38,7 +38,7 @@ inline bool KRampedElectric2FieldBuilder::AddAttribute( KContainer* aContainer )
     if( aContainer->GetName() == "root_field_2" )
     {
         std::string fieldName = aContainer->AsReference< std::string >();
-        KEMField::KElectricField* field = katrin::KToolbox::GetInstance().
+        auto* field = katrin::KToolbox::GetInstance().
                 Get<KEMField::KElectricField>(fieldName);
         fObject->SetRootElectricField2( field );
         return true;
@@ -54,6 +54,10 @@ inline bool KRampedElectric2FieldBuilder::AddAttribute( KContainer* aContainer )
             fObject->SetRampingType( KEMField::KRampedElectric2Field::rtSinus );
         else if ( tFlag == std::string("square") )
             fObject->SetRampingType( KEMField::KRampedElectric2Field::rtSquare );
+        else if ( tFlag == std::string("focus") )
+            fObject->SetRampingType( KEMField::KRampedElectric2Field::rtFocus );
+        else if ( tFlag == std::string("focus_experimental") )
+            fObject->SetRampingType( KEMField::KRampedElectric2Field::rtFocusExperimental );
         return true;
     }
     if( aContainer->GetName() == "num_cycles" )
@@ -89,6 +93,21 @@ inline bool KRampedElectric2FieldBuilder::AddAttribute( KContainer* aContainer )
     if( aContainer->GetName() == "time_scaling" )
     {
         aContainer->CopyTo( fObject, &KEMField::KRampedElectric2Field::SetTimeScalingFactor );
+        return true;
+    }
+    if( aContainer->GetName() == "focus_time" )
+    {
+        aContainer->CopyTo( fObject, &KEMField::KRampedElectric2Field::SetFocusTime );
+        return true;
+    }
+    if( aContainer->GetName() == "focus_exponent" )
+    {
+        aContainer->CopyTo( fObject, &KEMField::KRampedElectric2Field::SetFocusExponent );
+        return true;
+    }
+    if( aContainer->GetName() == "small_spectrometer" )
+    {
+        aContainer->CopyTo( fObject, &KEMField::KRampedElectric2Field::SetSmall );
         return true;
     }
     return false;

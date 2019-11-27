@@ -46,7 +46,7 @@ class KGSpaceTree: public KGTree<ObjectTypeList>
 
         }
 
-        virtual ~KGSpaceTree()
+        ~KGSpaceTree() override
         {
             delete fTreeProperties;
             //reset the space tree properties pointer to null for all nodes

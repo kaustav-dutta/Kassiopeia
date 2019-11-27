@@ -48,11 +48,11 @@ class KFMDenseBoundaryIntegralMatrix: public KSquareMatrix< typename FastMultipo
         	fZero = 0.0;
         }
 
-        virtual ~KFMDenseBoundaryIntegralMatrix(){}
+        ~KFMDenseBoundaryIntegralMatrix() override{}
 
-        virtual unsigned int Dimension() const {return fDimension;};
+        unsigned int Dimension() const override {return fDimension;};
 
-        virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
             #ifdef KEMFIELD_USE_MPI
             if(KMPIInterface::GetInstance()->SplitMode())
@@ -94,7 +94,7 @@ class KFMDenseBoundaryIntegralMatrix: public KSquareMatrix< typename FastMultipo
         }
 
         //following function must be defined but it is not implemented
-        virtual const ValueType& operator()(unsigned int sourceIndex, unsigned int targetIndex) const
+        const ValueType& operator()(unsigned int sourceIndex, unsigned int targetIndex) const override
         {
             fTemp = fIntegrator->BoundaryIntegral(sourceIndex, targetIndex);
             return fTemp;

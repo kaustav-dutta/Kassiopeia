@@ -17,7 +17,7 @@ class KMagnetostaticField : public KMagneticField
 {
 public:
 	KMagnetostaticField() {}
-	virtual ~KMagnetostaticField() {}
+	~KMagnetostaticField() override {}
 
 	static std::string Name() {return "MagnetostaticField";}
 
@@ -37,22 +37,22 @@ public:
 
 private:
 
-	virtual KThreeVector MagneticPotentialCore(const KPosition& P, const double& /*time*/) const
+	KThreeVector MagneticPotentialCore(const KPosition& P, const double& /*time*/) const override
 	{
 		return MagneticPotentialCore(P);
 	}
 
-	virtual KThreeVector MagneticFieldCore(const KPosition& P, const double& /*time*/) const
+	KThreeVector MagneticFieldCore(const KPosition& P, const double& /*time*/) const override
 	{
 		return MagneticFieldCore(P);
 	}
 
-	virtual KGradient MagneticGradientCore(const KPosition& P, const double& /*time*/) const
+	KGradient MagneticGradientCore(const KPosition& P, const double& /*time*/) const override
 	{
 		return MagneticGradientCore(P);
 	}
 
-    virtual std::pair<KThreeVector, KGradient> MagneticFieldAndGradientCore(const KPosition& P, const double& /*time*/) const
+    std::pair<KThreeVector, KGradient> MagneticFieldAndGradientCore(const KPosition& P, const double& /*time*/) const override
     {
         return MagneticFieldAndGradientCore(P);
     }

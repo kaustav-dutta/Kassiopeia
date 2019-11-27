@@ -36,7 +36,7 @@ class KFMSubdivisionCondition: public KFMInspectingActor< KFMNode<ObjectTypeList
 {
     public:
         KFMSubdivisionCondition(){};
-        virtual ~KFMSubdivisionCondition(){};
+        ~KFMSubdivisionCondition() override{};
 
         void SetInsertionCondition(const KFMInsertionCondition<NDIM>* cond){fCondition = cond;};
         const KFMInsertionCondition<NDIM>* GetInsertionCondition(){return fCondition;};
@@ -46,7 +46,7 @@ class KFMSubdivisionCondition: public KFMInspectingActor< KFMNode<ObjectTypeList
             fBallContainer = ball_container;
         };
 
-        virtual bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) = 0;
+        bool ConditionIsSatisfied(KFMNode<ObjectTypeList>* node) override = 0;
 
         virtual std::string Name() = 0;
 

@@ -26,17 +26,17 @@ namespace Kassiopeia
         public:
             KSTrajTermPropagation();
             KSTrajTermPropagation( const KSTrajTermPropagation& aCopy );
-            KSTrajTermPropagation* Clone() const;
-            virtual ~KSTrajTermPropagation();
+            KSTrajTermPropagation* Clone() const override;
+            ~KSTrajTermPropagation() override;
 
         public:
-            virtual void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajExactSpinParticle& aValue, KSTrajExactSpinDerivative& aDerivative ) const;
-            virtual void Differentiate(double aTime, const KSTrajExactTrappedParticle& aValue, KSTrajExactTrappedDerivative& aDerivative) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajAdiabaticSpinParticle& aValue, KSTrajAdiabaticSpinDerivative& aDerivative ) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const;
-            virtual void Differentiate(double /*aTime*/, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const;
+            void Differentiate(double /*aTime*/, const KSTrajExactParticle& aValue, KSTrajExactDerivative& aDerivative ) const override;
+            void Differentiate(double /*aTime*/, const KSTrajExactSpinParticle& aValue, KSTrajExactSpinDerivative& aDerivative ) const override;
+            void Differentiate(double aTime, const KSTrajExactTrappedParticle& aValue, KSTrajExactTrappedDerivative& aDerivative) const override;
+            void Differentiate(double /*aTime*/, const KSTrajAdiabaticParticle& aValue, KSTrajAdiabaticDerivative& aDerivative ) const override;
+            void Differentiate(double /*aTime*/, const KSTrajAdiabaticSpinParticle& aValue, KSTrajAdiabaticSpinDerivative& aDerivative ) const override;
+            void Differentiate(double /*aTime*/, const KSTrajMagneticParticle& aValue, KSTrajMagneticDerivative& aDerivative ) const override;
+            void Differentiate(double /*aTime*/, const KSTrajElectricParticle& aValue, KSTrajElectricDerivative& aDerivative ) const override;
 
         public:
             typedef enum

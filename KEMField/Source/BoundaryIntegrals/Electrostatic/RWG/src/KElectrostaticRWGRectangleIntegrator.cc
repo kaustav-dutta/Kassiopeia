@@ -1539,7 +1539,7 @@ double KElectrostaticRWGRectangleIntegrator::Potential(const KSymmetryGroup<KRec
 {
     double potential = 0.;
 
-    for (KSymmetryGroup<KRectangle>::ShapeCIt it=source->begin();it!=source->end();++it)
+    for (auto it=source->begin();it!=source->end();++it)
         potential += Potential(*it,P);
 
     return potential;
@@ -1549,7 +1549,7 @@ KThreeVector KElectrostaticRWGRectangleIntegrator::ElectricField(const KSymmetry
 {
     KThreeVector electricField(0.,0.,0.);
 
-    for (KSymmetryGroup<KRectangle>::ShapeCIt it=source->begin();it!=source->end();++it)
+    for (auto it=source->begin();it!=source->end();++it)
         electricField += ElectricField(*it,P);
 
     return electricField;
@@ -1561,7 +1561,7 @@ std::pair<KThreeVector, double> KElectrostaticRWGRectangleIntegrator::ElectricFi
     double potential( 0. );
     KThreeVector electricField( 0., 0., 0. );
 
-    for( KSymmetryGroup<KRectangle>::ShapeCIt it=source->begin(); it!=source->end(); ++it ) {
+    for( auto it=source->begin(); it!=source->end(); ++it ) {
     	fieldAndPotential = ElectricFieldAndPotential( *it, P );
         electricField += fieldAndPotential.first;
     	potential += fieldAndPotential.second;

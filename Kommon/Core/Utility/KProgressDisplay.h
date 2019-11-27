@@ -56,7 +56,7 @@ protected:
         // work correctly.  static_cast<>() is also used several places
         // to suppress spurious compiler warnings.
         double progress = static_cast<double>(fCount) / fExpectedCount;
-        unsigned int tics_needed = static_cast<unsigned int>( progress * 50. );
+        auto tics_needed = static_cast<unsigned int>( progress * 50. );
 
         fStream << '[';
         for ( unsigned int tic = 0; tic < 50; ++tic )

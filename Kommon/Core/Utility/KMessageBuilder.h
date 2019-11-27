@@ -211,7 +211,7 @@ namespace katrin
     {
         if( anElement->GetName() == "file" )
         {
-            KTextFile* tFile = NULL;
+            KTextFile* tFile = nullptr;
             anElement->ReleaseTo(tFile);
 
             tFile->SetDefaultPath( LOG_DEFAULT_DIR );
@@ -230,7 +230,7 @@ namespace katrin
         }
         if( anElement->GetName() == "message" )
         {
-            KMessageData* tMessageData = anElement->AsPointer< KMessageData >();
+            auto* tMessageData = anElement->AsPointer< KMessageData >();
             if ( tMessageData->fKey == std::string("all"))
             {
                 KMessageTable::GetInstance().SetTerminalVerbosity( tMessageData->fTerminalVerbosity );
@@ -240,7 +240,7 @@ namespace katrin
                 return true;
             }
             KMessage* tMessage = KMessageTable::GetInstance().Get( tMessageData->fKey );
-            if( tMessage != NULL )
+            if( tMessage != nullptr )
             {
                 tMessage->SetTerminalVerbosity( tMessageData->fTerminalVerbosity );
                 tMessage->SetLogVerbosity( tMessageData->fLogVerbosity );
@@ -260,7 +260,7 @@ namespace katrin
     template< >
     inline bool KMessageTableBuilder::End()
     {
-        fObject = NULL;
+        fObject = nullptr;
         return true;
     }
 

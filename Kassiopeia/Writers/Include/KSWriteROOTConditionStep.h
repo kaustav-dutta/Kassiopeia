@@ -16,8 +16,8 @@ namespace Kassiopeia
         public:
             KSWriteROOTConditionStep() :
                 fNthStepValue( 1 ),
-                fComponent( 0 ),
-                fValue( 0 )
+                fComponent( nullptr ),
+                fValue( nullptr )
             {
 			}
             KSWriteROOTConditionStep( const KSWriteROOTConditionStep& aCopy ) :
@@ -27,15 +27,15 @@ namespace Kassiopeia
     				fValue( aCopy.fValue )
             {
     	    }
-            KSWriteROOTConditionStep* Clone() const
+            KSWriteROOTConditionStep* Clone() const override
     	    {
     	        return new KSWriteROOTConditionStep( *this );
     	    }
-    		virtual ~KSWriteROOTConditionStep()
+    		~KSWriteROOTConditionStep() override
     		{
     		}
 
-            void CalculateWriteCondition( bool& aFlag )
+            void CalculateWriteCondition( bool& aFlag ) override
             {
         		if ( *fValue % fNthStepValue == 0 )
         		{

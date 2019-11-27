@@ -31,13 +31,13 @@ class KFMNodeObjectNullifier: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMNodeObjectNullifier(){};
-        virtual ~KFMNodeObjectNullifier(){};
+        ~KFMNodeObjectNullifier() override{};
 
-        virtual void ApplyAction( KFMNode<ObjectTypeList>* node)
+        void ApplyAction( KFMNode<ObjectTypeList>* node) override
         {
             //does not delete the object, just sets the pointer to null, this is useful
             //when many nodes point to the same object, which has just been deleted
-            KFMObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(NULL, node);
+            KFMObjectRetriever<ObjectTypeList, TypeToRemove >::SetNodeObject(nullptr, node);
         }
 
     private:

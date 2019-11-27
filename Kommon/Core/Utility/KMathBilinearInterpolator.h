@@ -10,7 +10,7 @@
 
 #include <map>
 #include <vector>
-#include <assert.h>
+#include <cassert>
 using namespace std;
 
 namespace katrin {
@@ -96,7 +96,7 @@ namespace katrin {
 
 template<class T>
 void katrin::KMathBilinearInterpolator<T>::AddPoint(const T x, const T y, const T value) {
-	typename PointMap::iterator xIt = fPoints.find(x);
+	auto xIt = fPoints.find(x);
 
 	if(xIt == fPoints.end()) {
 		// x does not exists
@@ -104,7 +104,7 @@ void katrin::KMathBilinearInterpolator<T>::AddPoint(const T x, const T y, const 
 	}
 
 	// Looking for the y...
-	typename std::map<T, T>::iterator yIt = xIt->second.find(y);
+	auto yIt = xIt->second.find(y);
 
 	if(yIt != xIt->second.end()) {
 		// if this point does exists...
@@ -118,12 +118,12 @@ template<class T>
 T katrin::KMathBilinearInterpolator<T>::GetValue(const T &x, const T &y) const {
 	T x1, x2, y1, y2, value;
 
-	typename PointMap::const_iterator xUpper = fPoints.lower_bound(x);
+	auto xUpper = fPoints.lower_bound(x);
 
 	assert(fPoints.begin()->first <= x);
 	assert(xUpper != fPoints.end());
 
-	typename std::map<T, T>::const_iterator yUpper = xUpper->second.lower_bound(y);
+	auto yUpper = xUpper->second.lower_bound(y);
 	typename std::map<T, T>::const_iterator yLower;
 
     T assert_ymin = xUpper->second.begin()->first;
@@ -154,7 +154,7 @@ T katrin::KMathBilinearInterpolator<T>::GetValue(const T &x, const T &y) const {
 		}
 	}
 
-	typename PointMap::const_iterator xLower = xUpper;
+	auto xLower = xUpper;
 	--xLower;
 
 	x1 = xLower->first;

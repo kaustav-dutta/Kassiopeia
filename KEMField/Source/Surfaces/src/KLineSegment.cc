@@ -1,6 +1,6 @@
 #include "../../../Surfaces/include/KLineSegment.hh"
 
-#include <math.h>
+#include <cmath>
 
 namespace KEMField
 {

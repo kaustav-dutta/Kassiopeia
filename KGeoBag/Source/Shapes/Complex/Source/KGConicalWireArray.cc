@@ -7,7 +7,7 @@ namespace KGeoBag
 
   KGConicalWireArray* KGConicalWireArray::Clone() const
   {
-    KGConicalWireArray* w = new KGConicalWireArray();
+    auto* w = new KGConicalWireArray();
 
     w->fR1 = fR1;
     w->fZ1 = fZ1;

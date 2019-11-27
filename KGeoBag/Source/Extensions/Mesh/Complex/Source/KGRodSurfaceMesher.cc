@@ -30,7 +30,7 @@ namespace KGeoBag
         for( int j = 0; j < rod->GetNDiscRad(); j++ )
         {
             Normalize( rod->GetCoordinate( 0 ), rod->GetCoordinate( 1 ), norm1 );
-            GetNormal( rod->GetCoordinate( 0 ), rod->GetCoordinate( 1 ), NULL, normal );
+            GetNormal( rod->GetCoordinate( 0 ), rod->GetCoordinate( 1 ), nullptr, normal );
 
             KThreeVector axis( rod->GetCoordinate( 1, 0 ) - rod->GetCoordinate( 0, 0 ), rod->GetCoordinate( 1, 1 ) - rod->GetCoordinate( 0, 1 ), rod->GetCoordinate( 1, 2 ) - rod->GetCoordinate( 0, 2 ) );
 
@@ -139,7 +139,7 @@ namespace KGeoBag
         for( unsigned int i = 0; i < 3; i++ )
             n[ i ] /= len;
 
-        if( oldNormal == NULL )
+        if( oldNormal == nullptr )
         {
             // we then start with a normal vector whose sole component lies in the
             // direction of the smallest magnitude of n
@@ -330,7 +330,7 @@ namespace KGeoBag
         {
             // the end is not rectangular
 
-            KGMeshTriangle* t = 0;
+            KGMeshTriangle* t = nullptr;
             KThreeVector tmp;
 
             if( theta341 - M_PI / 2. > 0. )
@@ -424,7 +424,7 @@ namespace KGeoBag
             n2[ j ] /= d2;
         }
 
-        KGMeshRectangle* r = new KGMeshRectangle( d1, d2, p1, n1, n2 );
+        auto* r = new KGMeshRectangle( d1, d2, p1, n1, n2 );
         RefineAndAddElement( r, nDisc, 2, 1, 1 );
     }
 }

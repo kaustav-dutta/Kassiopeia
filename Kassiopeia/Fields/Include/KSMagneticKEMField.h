@@ -21,18 +21,18 @@ public:
     KSMagneticKEMField();
     KSMagneticKEMField(const KSMagneticKEMField& aCopy);
     KSMagneticKEMField(KEMField::KMagneticField* field);
-    KSMagneticKEMField* Clone() const;
-    virtual ~KSMagneticKEMField();
+    KSMagneticKEMField* Clone() const override;
+    ~KSMagneticKEMField() override;
 
     void SetMagneticField(KEMField::KMagneticField* field);
     const KEMField::KMagneticField* getMagneticField();
-    virtual void CalculatePotential( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aPotential);
-    virtual void CalculateField( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField);
-    virtual void CalculateGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeMatrix& aGradient);
-    virtual void CalculateFieldAndGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField, KThreeMatrix& aGradient);
+    void CalculatePotential( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aPotential) override;
+    void CalculateField( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField) override;
+    void CalculateGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeMatrix& aGradient) override;
+    void CalculateFieldAndGradient( const KThreeVector& aSamplePoint, const double& aSampleTime, KThreeVector& aField, KThreeMatrix& aGradient) override;
 private:
-    void InitializeComponent();
-    void DeinitializeComponent();
+    void InitializeComponent() override;
+    void DeinitializeComponent() override;
 
     KEMField::KMagneticField* fField;
 };

@@ -71,10 +71,10 @@ namespace katrin
     template< >
     inline bool KSWriteROOTConditionOutputBuilder::End()
     {
-        KSComponent* tComponent = NULL;
+        KSComponent* tComponent = nullptr;
         if( fObject->fGroupName.empty() == false )
         {
-            KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+            auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
             for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
             {
                 KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -84,7 +84,7 @@ namespace katrin
                     break;
                 }
             }
-            if( tComponent == NULL )
+            if( tComponent == nullptr )
             {
                 objctmsg( eError ) << "write ROOT condition output builder could not find component <" << fObject->fComponentName << "> in group <" << fObject->fGroupName << ">" << eom;
                 return false;
@@ -96,11 +96,11 @@ namespace katrin
         }
 
 
-        KSWriteROOTCondition* tCondition = NULL;
+        KSWriteROOTCondition* tCondition = nullptr;
 
         if( tComponent->Is< unsigned short >() == true )
         {
-        	KSWriteROOTConditionOutput< unsigned short >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned short >();
+        	auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned short >();
         	tWriteROOTConditionOutput->SetName( fObject->fName );
         	tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
         	tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -113,7 +113,7 @@ namespace katrin
 
         if( tComponent->Is< short >() == true )
         {
-            KSWriteROOTConditionOutput< short >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< short >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< short >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -126,7 +126,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned int >() == true )
         {
-            KSWriteROOTConditionOutput< unsigned int >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned int >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned int >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -139,7 +139,7 @@ namespace katrin
 
         if( tComponent->Is< int >() == true )
         {
-            KSWriteROOTConditionOutput< int >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< int >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< int >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -152,7 +152,7 @@ namespace katrin
 
         if( tComponent->Is< unsigned long >() == true )
         {
-            KSWriteROOTConditionOutput< unsigned long >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned long >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< unsigned long >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -165,7 +165,7 @@ namespace katrin
 
         if( tComponent->Is< long >() == true )
         {
-            KSWriteROOTConditionOutput< long >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< long >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< long >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -178,7 +178,7 @@ namespace katrin
 
         if( tComponent->Is< float >() == true )
         {
-            KSWriteROOTConditionOutput< float >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< float >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< float >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );
@@ -191,7 +191,7 @@ namespace katrin
 
         if( tComponent->Is< double >() == true )
         {
-            KSWriteROOTConditionOutput< double >* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< double >();
+            auto* tWriteROOTConditionOutput = new KSWriteROOTConditionOutput< double >();
             tWriteROOTConditionOutput->SetName( fObject->fName );
             tWriteROOTConditionOutput->SetMinValue( fObject->fMinValue );
             tWriteROOTConditionOutput->SetMaxValue( fObject->fMaxValue );

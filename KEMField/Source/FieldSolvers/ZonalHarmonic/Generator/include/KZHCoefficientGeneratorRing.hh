@@ -13,25 +13,25 @@ namespace KEMField
     typedef KRing ElementType;
 
     KZHCoefficientGenerator() : KZHCoefficientGeneratorElement(), fNullDistance(0.) {}
-    virtual ~KZHCoefficientGenerator() {}
+    ~KZHCoefficientGenerator() override {}
 
     void SetElement(const KRing* r) { fRing = r; }
 
-    const KEMCoordinateSystem& GetCoordinateSystem() const
+    const KEMCoordinateSystem& GetCoordinateSystem() const override
     { return gGlobalCoordinateSystem; }
 
-    double Prefactor() const;
+    double Prefactor() const override;
 
     void ComputeCentralCoefficients(double,
     				    double,
-    				    std::vector<double>&) const;
+    				    std::vector<double>&) const override;
     void ComputeRemoteCoefficients(double,
     				   double,
-    				   std::vector<double>&) const;
+    				   std::vector<double>&) const override;
 
-    double ComputeRho(double,bool) const;
+    double ComputeRho(double,bool) const override;
 
-    void GetExtrema(double&,double&) const;
+    void GetExtrema(double&,double&) const override;
 
     void SetNullDistance(double d) { fNullDistance = d; }
 

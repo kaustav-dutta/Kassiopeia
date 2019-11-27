@@ -14,12 +14,12 @@ namespace KGeoBag
     KGAffineDeformation();
     KGAffineDeformation(const KGAffineDeformation& affine);
 
-    virtual ~KGAffineDeformation() {}
+    ~KGAffineDeformation() override {}
 
     void SetLinearMap(const KThreeMatrix& map) { fLinearMap = map; }
     void SetTranslation(const KThreeVector& t) { fTranslation = t; }
 
-    virtual void Apply(KThreeVector& point) const;
+    void Apply(KThreeVector& point) const override;
 
   private:
     KThreeMatrix fLinearMap;

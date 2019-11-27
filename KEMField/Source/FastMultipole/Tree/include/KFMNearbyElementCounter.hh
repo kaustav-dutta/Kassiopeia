@@ -47,7 +47,7 @@ class KFMNearbyElementCounter: public KFMNodeActor< KFMNode<ObjectTypeList> >
                 for(unsigned int i=0; i<fNeighbors.size(); i++)
                 {
                     KFMIdentitySet* id_set = KFMObjectRetriever<ObjectTypeList , KFMIdentitySet >::GetNodeObject(fNeighbors[i]);
-                    if(id_set != NULL)
+                    if(id_set != nullptr)
                     {
                         fNumberOfNearbyElements += id_set->GetSize();
                     }

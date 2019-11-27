@@ -21,7 +21,7 @@ namespace KEMField
 		     fP0(0.,0.,0.),
 		     fP1(0.,0.,0.),
 		     fCurrent(0.) {}
-    virtual ~KLineCurrent() {}
+    ~KLineCurrent() override {}
 
     void SetValues(const KPosition& p0,
 		   const KPosition& p1,
@@ -37,7 +37,7 @@ namespace KEMField
     const KPosition& GetP1()      const { return fP1; }
     double           GetCurrent() const { return fCurrent; }
 
-    void Accept(KElectromagnetVisitor& visitor);
+    void Accept(KElectromagnetVisitor& visitor) override;
 
   protected:
     KPosition fP0;

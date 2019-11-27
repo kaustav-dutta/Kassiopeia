@@ -22,13 +22,13 @@ namespace KGeoBag
         ComputeEnclosingBoxLengths( theta, phi, mid, width );
 
         // the ports are complicated, so they compute themselves.
-        KGPortHousingSurfaceMesher::RectangularPortDiscretizer* rectangularPortDiscretizer = new KGPortHousingSurfaceMesher::RectangularPortDiscretizer( this );
-        KGPortHousingSurfaceMesher::CircularPortDiscretizer* circularPortDiscretizer = new KGPortHousingSurfaceMesher::CircularPortDiscretizer( this );
+        auto* rectangularPortDiscretizer = new KGPortHousingSurfaceMesher::RectangularPortDiscretizer( this );
+        auto* circularPortDiscretizer = new KGPortHousingSurfaceMesher::CircularPortDiscretizer( this );
         for( unsigned int i = 0; i < fPortHousing->GetNPorts(); i++ )
         {
-            if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+            if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                 rectangularPortDiscretizer->DiscretizePort( r );
-            else if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+            else if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                 circularPortDiscretizer->DiscretizePort( c );
         }
         delete rectangularPortDiscretizer;
@@ -45,7 +45,7 @@ namespace KGeoBag
         double x_min;
         double x_max;
 
-        KGCoordinateTransform* coordTransform = 0;
+        KGCoordinateTransform* coordTransform = nullptr;
 
         for( unsigned int i = 0; i < fPortHousing->GetNPorts(); i++ )
         {
@@ -197,7 +197,7 @@ namespace KGeoBag
         double x_max = 0;
 
         // First we compute theta for each of the ports
-        KGCoordinateTransform* coordTransform = 0;
+        KGCoordinateTransform* coordTransform = nullptr;
 
         for( unsigned int i = 0; i < fPortHousing->GetNPorts(); i++ )
         {
@@ -331,9 +331,9 @@ namespace KGeoBag
         for( unsigned int i = 0; i < fPortHousing->GetNPorts(); i++ )
         {
 
-            if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+            if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                 dist_target[ i ] = 4. * c->GetRSub();
-            else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+            else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                 dist_target[ i ] = 1.5 * r->GetLength();
         }
 
@@ -351,7 +351,7 @@ namespace KGeoBag
                 double dist_min = 0; // an absolute min for the bounding box length
                 double dist_max = 1.e30; // an absolute max for the bounding box length
 
-                if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+                if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                 {
                     // the box must enclose the port, so its side must be at least larger
                     // than the diameter of the subordinate cylinder
@@ -386,7 +386,7 @@ namespace KGeoBag
                     if( dist_max > 1.8 * fPortHousing->GetRMain() )
                         dist_max = 1.8 * fPortHousing->GetRMain();
                 }
-                else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+                else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                 {
                     // the box must enclose the port, so its side must be at least larger
                     // than the diameter of the subordinate cylinder
@@ -422,13 +422,13 @@ namespace KGeoBag
                 {
                     if( nSides > tmpPoly / 2 )
                     {
-                        if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+                        if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                         {
                             dist_target[ i ] -= c->GetRSub();
                             dist_target[ i ] *= .9;
                             dist_target[ i ] += c->GetRSub();
                         }
-                        else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+                        else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                         {
                             dist_target[ i ] -= r->GetLength();
                             dist_target[ i ] *= .9;
@@ -466,13 +466,13 @@ namespace KGeoBag
                 if( dist_act > dist_max )
                 {
                     //... we reduce our target length.
-                    if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+                    if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                     {
                         dist_target[ i ] -= c->GetRSub();
                         dist_target[ i ] *= .9;
                         dist_target[ i ] += c->GetRSub();
                     }
-                    else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+                    else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                     {
                         dist_target[ i ] -= r->GetLength();
                         dist_target[ i ] *= .9;
@@ -484,14 +484,14 @@ namespace KGeoBag
 
                 // if the calculated bounding box is ok, we set the parameters of the
                 // port to this length
-                if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+                if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                 {
                     c->SetPolySub( nSides * 4 );
                     c->SetXDisc( (nSides / 3 > 3 ? nSides / 3 : 3) );
                     c->SetBoxLength( dist_act );
                     width[ i ] = c->GetBoxWidth();
                 }
-                else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+                else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                 {
                     r->SetLengthDisc( nSides );
                     r->SetBoxLength( dist_act );
@@ -537,13 +537,13 @@ namespace KGeoBag
 
                         if( ChordsIntersect( theta_i_min, theta_i_max, theta_j_min, theta_j_max ) && LengthsIntersect( x_i_min, x_i_max, x_j_min, x_j_max ) )
                         {
-                            if( const KGPortHousing::CircularPort* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
+                            if( const auto* c = dynamic_cast< const KGPortHousing::CircularPort* >( fPortHousing->GetPort( i ) ) )
                             {
                                 dist_target[ i ] -= c->GetRSub();
                                 dist_target[ i ] *= .9;
                                 dist_target[ i ] += c->GetRSub();
                             }
-                            else if( const KGPortHousing::RectangularPort* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
+                            else if( const auto* r = dynamic_cast< const KGPortHousing::RectangularPort* >( fPortHousing->GetPort( i ) ) )
                             {
                                 dist_target[ i ] -= r->GetLength();
                                 dist_target[ i ] *= .9;

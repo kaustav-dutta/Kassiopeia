@@ -13,7 +13,7 @@ namespace Kassiopeia
     {
         public:
             KSSpaceNavigator();
-            virtual ~KSSpaceNavigator();
+            ~KSSpaceNavigator() override;
 
         public:
             virtual void CalculateNavigation(

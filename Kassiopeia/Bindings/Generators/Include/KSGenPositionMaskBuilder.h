@@ -35,7 +35,7 @@ namespace katrin
                 return true;
             }
 
-            for(vector< KGeoBag::KGSpace* >::iterator tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++)
+            for(auto tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++)
             {
                 fObject->AddAllowedSpace((*tSpaceIt));
             }
@@ -50,7 +50,7 @@ namespace katrin
                 return true;
             }
 
-            for(vector< KGeoBag::KGSpace* >::iterator tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++)
+            for(auto tSpaceIt = tSpaces.begin(); tSpaceIt != tSpaces.end(); tSpaceIt++)
             {
                 fObject->AddForbiddenSpace((*tSpaceIt));
             }

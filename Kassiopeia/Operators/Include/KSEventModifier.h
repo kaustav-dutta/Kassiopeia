@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSEventModifier();
-            virtual ~KSEventModifier();
+            ~KSEventModifier() override;
 
         public:
 

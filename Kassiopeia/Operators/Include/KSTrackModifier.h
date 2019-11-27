@@ -12,7 +12,7 @@ namespace Kassiopeia
     {
         public:
             KSTrackModifier();
-            virtual ~KSTrackModifier();
+            ~KSTrackModifier() override;
 
         public:
 

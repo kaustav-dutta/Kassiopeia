@@ -21,8 +21,8 @@ namespace katrin
         fEndValue( 0 ),
         fStepValue( 0 ),
         fTokens(),
-        fNewParent( NULL ),
-        fOldParent( NULL )
+        fNewParent( nullptr ),
+        fOldParent( nullptr )
     {
 
     }
@@ -279,8 +279,8 @@ namespace katrin
                     fEndValue = 0;
                     fStepValue = 0;
                     fTokens.clear();
-                    fNewParent = NULL;
-                    fOldParent = NULL;
+                    fNewParent = nullptr;
+                    fOldParent = nullptr;
 
                     //utilities
                     int tIndex;
@@ -295,7 +295,7 @@ namespace katrin
                         tConverter.str( "" );
                         tConverter << tIndex;
 
-                        for( TokenIt It = tTokens.begin(); It != tTokens.end(); It++ )
+                        for( auto It = tTokens.begin(); It != tTokens.end(); It++ )
                         {
                             tToken = (*It)->Clone();
                             Evaluate( tToken, tVariable, tConverter.str() );
@@ -317,7 +317,7 @@ namespace katrin
                     }
 
                     //delete the old tokens (made with new during collection)
-                    for( TokenIt It = tTokens.begin(); It != tTokens.end(); It++ )
+                    for( auto It = tTokens.begin(); It != tTokens.end(); It++ )
                     {
                         delete *It;
                     }
@@ -402,105 +402,105 @@ namespace katrin
     }
     void KLoopProcessor::Dispatch( KToken* aToken )
     {
-        KBeginParsingToken* tBeginParsingToken = NULL;
+        KBeginParsingToken* tBeginParsingToken = nullptr;
         tBeginParsingToken = dynamic_cast< KBeginParsingToken* >( aToken );
-        if( tBeginParsingToken != NULL )
+        if( tBeginParsingToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tBeginParsingToken );
             return;
         }
 
-        KBeginFileToken* tBeginFileToken = NULL;
+        KBeginFileToken* tBeginFileToken = nullptr;
         tBeginFileToken = dynamic_cast< KBeginFileToken* >( aToken );
-        if( tBeginFileToken != NULL )
+        if( tBeginFileToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tBeginFileToken );
             return;
         }
 
-        KBeginElementToken* tBeginElementToken = NULL;
+        KBeginElementToken* tBeginElementToken = nullptr;
         tBeginElementToken = dynamic_cast< KBeginElementToken* >( aToken );
-        if( tBeginElementToken != NULL )
+        if( tBeginElementToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tBeginElementToken );
             return;
         }
 
-        KBeginAttributeToken* tBeginAttributeToken = NULL;
+        KBeginAttributeToken* tBeginAttributeToken = nullptr;
         tBeginAttributeToken = dynamic_cast< KBeginAttributeToken* >( aToken );
-        if( tBeginAttributeToken != NULL )
+        if( tBeginAttributeToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tBeginAttributeToken );
             return;
         }
 
-        KAttributeDataToken* tAttributeDataToken = NULL;
+        KAttributeDataToken* tAttributeDataToken = nullptr;
         tAttributeDataToken = dynamic_cast< KAttributeDataToken* >( aToken );
-        if( tAttributeDataToken != NULL )
+        if( tAttributeDataToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tAttributeDataToken );
             return;
         }
 
-        KEndAttributeToken* tEndAttributeToken = NULL;
+        KEndAttributeToken* tEndAttributeToken = nullptr;
         tEndAttributeToken = dynamic_cast< KEndAttributeToken* >( aToken );
-        if( tEndAttributeToken != NULL )
+        if( tEndAttributeToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tEndAttributeToken );
             return;
         }
 
-        KMidElementToken* tMidElementToken = NULL;
+        KMidElementToken* tMidElementToken = nullptr;
         tMidElementToken = dynamic_cast< KMidElementToken* >( aToken );
-        if( tMidElementToken != NULL )
+        if( tMidElementToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tMidElementToken );
             return;
         }
 
-        KElementDataToken* tElementDataToken = NULL;
+        KElementDataToken* tElementDataToken = nullptr;
         tElementDataToken = dynamic_cast< KElementDataToken* >( aToken );
-        if( tElementDataToken != NULL )
+        if( tElementDataToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tElementDataToken );
             return;
         }
 
-        KEndElementToken* tEndElementToken = NULL;
+        KEndElementToken* tEndElementToken = nullptr;
         tEndElementToken = dynamic_cast< KEndElementToken* >( aToken );
-        if( tEndElementToken != NULL )
+        if( tEndElementToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tEndElementToken );
             return;
         }
 
-        KEndFileToken* tEndFileToken = NULL;
+        KEndFileToken* tEndFileToken = nullptr;
         tEndFileToken = dynamic_cast< KEndFileToken* >( aToken );
-        if( tEndFileToken != NULL )
+        if( tEndFileToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tEndFileToken );
             return;
         }
 
-        KEndParsingToken* tEndParsingToken = NULL;
+        KEndParsingToken* tEndParsingToken = nullptr;
         tEndParsingToken = dynamic_cast< KEndParsingToken* >( aToken );
-        if( tEndParsingToken != NULL )
+        if( tEndParsingToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tEndParsingToken );
             return;
         }
 
-        KCommentToken* tCommentToken = NULL;
+        KCommentToken* tCommentToken = nullptr;
         tCommentToken = dynamic_cast< KCommentToken* >( aToken );
-        if( tCommentToken != NULL )
+        if( tCommentToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tCommentToken );
             return;
         }
 
-        KErrorToken* tErrorToken = NULL;
+        KErrorToken* tErrorToken = nullptr;
         tErrorToken = dynamic_cast< KErrorToken* >( aToken );
-        if( tErrorToken != NULL )
+        if( tErrorToken != nullptr )
         {
             GetFirstParent()->ProcessToken( tErrorToken );
             return;

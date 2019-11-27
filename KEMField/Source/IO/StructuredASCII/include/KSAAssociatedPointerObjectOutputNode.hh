@@ -31,7 +31,7 @@ class KSAAssociatedPointerObjectOutputNode: public KSAObjectOutputNode< ReturnTy
             KSAObjectOutputNode< ReturnType, KSAIsDerivedFrom< ReturnType, KSAFixedSizeInputOutputObject >::Is  >::AttachObjectToNode(callback(call_ptr));
         }
 
-        virtual ~KSAAssociatedPointerObjectOutputNode(){;};
+        ~KSAAssociatedPointerObjectOutputNode() override{;};
 
 
     protected:

@@ -18,18 +18,18 @@ namespace KEMField
     typedef KVector<ValueType> Vector;
 
     KRobinHood();
-    ~KRobinHood();
+    ~KRobinHood() override;
 
     void Solve(const Matrix& A,Vector& x, const Vector& b);
 
     void SetResidualCheckInterval(unsigned int i) { fResidualCheckInterval = i; }
 
-    void CoalesceData() { if (fTrait) fTrait->CoalesceData(); }
+    void CoalesceData() override { if (fTrait) fTrait->CoalesceData(); }
 
   private:
-    unsigned int Dimension() const { return (fTrait ? fTrait->Dimension() : 0); }
-    void SetResidualVector(const Vector& v) { if (fTrait) fTrait->SetResidualVector(v); }
-    void GetResidualVector(Vector& v) { if (fTrait) fTrait->GetResidualVector(v); }
+    unsigned int Dimension() const override { return (fTrait ? fTrait->Dimension() : 0); }
+    void SetResidualVector(const Vector& v) override { if (fTrait) fTrait->SetResidualVector(v); }
+    void GetResidualVector(Vector& v) override { if (fTrait) fTrait->GetResidualVector(v); }
 
     unsigned int fResidualCheckInterval;
     ParallelTrait<ValueType>* fTrait;
@@ -37,7 +37,7 @@ namespace KEMField
 
   template <typename ValueType,template <typename> class ParallelTrait>
   KRobinHood<ValueType,ParallelTrait>::KRobinHood()
-    : fResidualCheckInterval(0), fTrait(NULL)
+    : fResidualCheckInterval(0), fTrait(nullptr)
   {
   }
 
@@ -85,7 +85,7 @@ namespace KEMField
 
     this->FinalizeVisitors();
 
-    fTrait = NULL;
+    fTrait = nullptr;
   }
 
 }

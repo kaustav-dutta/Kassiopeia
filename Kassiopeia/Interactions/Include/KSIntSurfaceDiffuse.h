@@ -16,11 +16,11 @@ namespace Kassiopeia
         public:
             KSIntSurfaceDiffuse();
             KSIntSurfaceDiffuse( const KSIntSurfaceDiffuse& aCopy );
-            KSIntSurfaceDiffuse* Clone() const;
-            virtual ~KSIntSurfaceDiffuse();
+            KSIntSurfaceDiffuse* Clone() const override;
+            ~KSIntSurfaceDiffuse() override;
 
         public:
-            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
+            void ExecuteInteraction( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) override;
             void ExecuteReflection( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
             void ExecuteTransmission( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries );
 

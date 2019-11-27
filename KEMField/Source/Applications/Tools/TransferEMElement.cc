@@ -123,13 +123,13 @@ int main(int argc, char* argv[])
   }
 
   static struct option longOptions[] = {
-    {"help", no_argument, 0, 'h'},
-    {"in_file", required_argument, 0, 'i'},
-    {"out_file", required_argument, 0, 'o'},
-    {"type", required_argument, 0, 't'},
-    {"in_name", required_argument, 0, 'n'},
-    {"out_name", required_argument, 0, 'm'},
-    {"label", required_argument, 0, 'l'},
+    {"help", no_argument, nullptr, 'h'},
+    {"in_file", required_argument, nullptr, 'i'},
+    {"out_file", required_argument, nullptr, 'o'},
+    {"type", required_argument, nullptr, 't'},
+    {"in_name", required_argument, nullptr, 'n'},
+    {"out_name", required_argument, nullptr, 'm'},
+    {"label", required_argument, nullptr, 'l'},
   };
 
   static const char *optString = "hi:o:t:n:m:l:";
@@ -141,8 +141,8 @@ int main(int argc, char* argv[])
   std::string outName;
   std::vector<std::string> labels;
 
-  while(1) {
-    char optId = getopt_long(argc, argv,optString, longOptions, NULL);
+  while(true) {
+    char optId = getopt_long(argc, argv,optString, longOptions, nullptr);
     if(optId == -1) break;
     switch(optId) {
     case('h'): // help

@@ -49,7 +49,7 @@ class KFMInsertionCondition
 
         virtual bool CanInsertBallInCube(const KFMBall<NDIM>* ball, const KFMCube<NDIM>* cube) const
         {
-            if(ball != NULL && cube !=NULL)
+            if(ball != nullptr && cube !=nullptr)
             {
                 //compute the bounding sphere of this cube
                 double length_over_two = (cube->GetLength())/2.0;

@@ -27,7 +27,7 @@ namespace KEMField
         fZHCoeffSingleton = KZHLegendreCoefficients::GetInstance();
       }
 
-    virtual ~KZonalHarmonicFieldSolver() {}
+    ~KZonalHarmonicFieldSolver() override {}
 
     double Potential(const KPosition& P) const;
     KThreeVector ElectricField(const KPosition& P) const;

@@ -38,7 +38,7 @@ class KFMSparseBoundaryIntegralMatrix_BlockCompressedRow: public KBoundaryIntegr
         KFMSparseBoundaryIntegralMatrix_BlockCompressedRow(const KSurfaceContainer& c, KSmartPointer<FastMultipoleIntegrator> integrator):
             KBoundaryIntegralMatrix<FastMultipoleIntegrator>(c, *integrator),
             fFastMultipoleIntegrator(integrator),
-            fTrait(NULL),
+            fTrait(nullptr),
             fDimension(c.size()),
             fUniqueID(integrator->GetUniqueIDString()),
             fElementBufferSize(0),
@@ -52,7 +52,7 @@ class KFMSparseBoundaryIntegralMatrix_BlockCompressedRow: public KBoundaryIntegr
         KFMSparseBoundaryIntegralMatrix_BlockCompressedRow(const KSurfaceContainer& c, FastMultipoleIntegrator& integrator):
             KBoundaryIntegralMatrix<FastMultipoleIntegrator>(c, integrator),
             fFastMultipoleIntegrator(&integrator,true),
-            fTrait(NULL),
+            fTrait(nullptr),
             fDimension(c.size()),
             fUniqueID(integrator.GetUniqueIDString()),
             fElementBufferSize(0),
@@ -83,7 +83,7 @@ class KFMSparseBoundaryIntegralMatrix_BlockCompressedRow: public KBoundaryIntegr
 #endif
         }
 
-        virtual ~KFMSparseBoundaryIntegralMatrix_BlockCompressedRow()
+        ~KFMSparseBoundaryIntegralMatrix_BlockCompressedRow() override
         {
             delete fTrait;
         }
@@ -108,7 +108,7 @@ class KFMSparseBoundaryIntegralMatrix_BlockCompressedRow: public KBoundaryIntegr
 #endif
         }
 
-        virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
             if(ActiveProcess())
                 fTrait->Multiply(x,y);

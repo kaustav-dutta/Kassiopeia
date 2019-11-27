@@ -12,7 +12,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajMagneticParticle();
-            ~KSTrajMagneticParticle();
+            KSTrajMagneticParticle( const KSTrajMagneticParticle& other) = default;
+            ~KSTrajMagneticParticle() override;
 
             //**********
             //assignment

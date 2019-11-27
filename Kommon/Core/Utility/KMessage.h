@@ -156,7 +156,7 @@ namespace katrin
     {
         int StatusFlag;
         std::string TypeName = typeid( XDataType ).name();
-        char *DemangledName = abi::__cxa_demangle( TypeName.c_str(), NULL, NULL, &StatusFlag );
+        char *DemangledName = abi::__cxa_demangle( TypeName.c_str(), nullptr, nullptr, &StatusFlag );
         if ( StatusFlag == 0 )
         {
             TypeName = std::string( DemangledName );
@@ -222,7 +222,7 @@ namespace katrin
 
         private:
             KMessageTable();
-            ~KMessageTable();
+            ~KMessageTable() override;
 
         public:
             void Add( KMessage* aMessage );

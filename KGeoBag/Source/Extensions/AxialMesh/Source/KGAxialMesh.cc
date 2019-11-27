@@ -9,7 +9,7 @@ namespace KGeoBag
 
     void KGAxialMeshData::Clear()
     {
-        KGAxialMeshElementIt it = fAxialMeshElements.begin();
+        auto it = fAxialMeshElements.begin();
         while( it != fAxialMeshElements.end() )
         {
             if( *it )

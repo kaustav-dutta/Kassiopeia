@@ -148,16 +148,16 @@ namespace KEMField
       ShapeVisitor(KElectrostaticBoundaryIntegrator& integrator)
       : fIntegrator(integrator) {}
 
-      void Visit(KTriangle& t) { fIntegrator.ComputeBoundaryIntegral(t); }
-      void Visit(KRectangle& r) { fIntegrator.ComputeBoundaryIntegral(r); }
-      void Visit(KLineSegment& l) { fIntegrator.ComputeBoundaryIntegral(l); }
-      void Visit(KConicSection& c) { fIntegrator.ComputeBoundaryIntegral(c); }
-      void Visit(KRing& r) { fIntegrator.ComputeBoundaryIntegral(r); }
-      void Visit(KTriangleGroup& t) { fIntegrator.ComputeBoundaryIntegral(t); }
-      void Visit(KRectangleGroup& r) { fIntegrator.ComputeBoundaryIntegral(r); }
-      void Visit(KLineSegmentGroup& l) { fIntegrator.ComputeBoundaryIntegral(l);}
-      void Visit(KConicSectionGroup& c) { fIntegrator.ComputeBoundaryIntegral(c); }
-      void Visit(KRingGroup& r) { fIntegrator.ComputeBoundaryIntegral(r); }
+      void Visit(KTriangle& t) override { fIntegrator.ComputeBoundaryIntegral(t); }
+      void Visit(KRectangle& r) override { fIntegrator.ComputeBoundaryIntegral(r); }
+      void Visit(KLineSegment& l) override { fIntegrator.ComputeBoundaryIntegral(l); }
+      void Visit(KConicSection& c) override { fIntegrator.ComputeBoundaryIntegral(c); }
+      void Visit(KRing& r) override { fIntegrator.ComputeBoundaryIntegral(r); }
+      void Visit(KTriangleGroup& t) override { fIntegrator.ComputeBoundaryIntegral(t); }
+      void Visit(KRectangleGroup& r) override { fIntegrator.ComputeBoundaryIntegral(r); }
+      void Visit(KLineSegmentGroup& l) override { fIntegrator.ComputeBoundaryIntegral(l);}
+      void Visit(KConicSectionGroup& c) override { fIntegrator.ComputeBoundaryIntegral(c); }
+      void Visit(KRingGroup& r) override { fIntegrator.ComputeBoundaryIntegral(r); }
 
     protected:
       KElectrostaticBoundaryIntegrator& fIntegrator;
@@ -171,8 +171,8 @@ namespace KEMField
 
       BoundaryVisitor() {}
 
-      void Visit(KDirichletBoundary&);
-      void Visit(KNeumannBoundary&);
+      void Visit(KDirichletBoundary&) override;
+      void Visit(KNeumannBoundary&) override;
 
       bool IsDirichlet() const { return fIsDirichlet; }
       ValueType Prefactor() const { return fPrefactor; }
@@ -191,9 +191,9 @@ namespace KEMField
     public:
       using KSelectiveVisitor<KBasisVisitor,AcceptedBasis>::Visit;
 
-      BasisVisitor() : fBasisValue(NULL) {}
+      BasisVisitor() : fBasisValue(nullptr) {}
 
-      void Visit(KElectrostaticBasis&);
+      void Visit(KElectrostaticBasis&) override;
 
       ValueType& GetBasisValue() const { return *fBasisValue; }
 

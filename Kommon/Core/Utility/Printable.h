@@ -1,3 +1,10 @@
+/**
+ * @file Printable.h
+ * @brief Inherit from this class to define operator<< using your virtual Print(stream)
+ * @date 17.11.2018
+ * @author Valerian Sibille <vsibille@mit.edu>
+ */
+
 #ifndef KOMMON_PRINTABLE_COMPONENT_H
 #define KOMMON_PRINTABLE_COMPONENT_H
 

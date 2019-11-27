@@ -25,14 +25,14 @@ class KGConditionalActor: public KGNodeActor<NodeType>
 {
     public:
         KGConditionalActor(){;};
-        virtual ~KGConditionalActor(){;};
+        ~KGConditionalActor() override{;};
 
 
         //this visitor should not modify the state of the node
         //just determine if it satisfies a certain condition
         void SetInspectingActor(KGInspectingActor<NodeType>* inspectActor)
         {
-            if(inspectActor != NULL)//avoid a disaster
+            if(inspectActor != nullptr)//avoid a disaster
             {
                 fInspectingActor = inspectActor;
             }
@@ -43,14 +43,14 @@ class KGConditionalActor: public KGNodeActor<NodeType>
         //if the inspecting visitor is satisfied
         void SetOperationalActor(KGNodeActor<NodeType>* opActor)
         {
-            if(opActor != this && opActor != NULL)//avoid a disaster
+            if(opActor != this && opActor != nullptr)//avoid a disaster
             {
                 fOperationalActor = opActor;
             }
         }
 
 
-        virtual void ApplyAction(NodeType* node)
+        void ApplyAction(NodeType* node) override
         {
             if( fInspectingActor->ConditionIsSatisfied(node) )
             {

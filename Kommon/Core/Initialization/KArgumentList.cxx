@@ -73,7 +73,7 @@ KArgumentList::KArgumentList(int argc, char** argv)
 	}
     }
 
-    fArgvBuffer = 0;
+    fArgvBuffer = nullptr;
     fArgvBufferSize = 0;
 }
 
@@ -99,7 +99,7 @@ KVariant KArgumentList::GetParameter(unsigned int Index) const
 
 KVariant KArgumentList::GetOption(const std::string& Name) const
 {
-    map<string, string>::const_iterator Option = fOptionTable.find(Name);
+    auto Option = fOptionTable.find(Name);
     if (Option == fOptionTable.end()) {
         return KVariant();
     }
@@ -221,7 +221,7 @@ void KArgumentSchema::KElement::Validate(const std::string& Value, std::string N
     }
 }
 
-KVariant KArgumentSchema::KElement::DefaultValue(void) const
+KVariant KArgumentSchema::KElement::DefaultValue() const
 {
     if (fIsDefaultValueEnabled) {
         return fPrototype;
@@ -233,7 +233,7 @@ KVariant KArgumentSchema::KElement::DefaultValue(void) const
 
 
 
-KArgumentSchema::KArgumentSchema(void)
+KArgumentSchema::KArgumentSchema()
 {
     fNameLength = 0;
 
@@ -291,7 +291,7 @@ KArgumentSchema::KElement& KArgumentSchema::AddOption(std::string Names)
     
     fNameLength = max(fNameLength, (unsigned int) Names.size());
 
-    while (1) {
+    while (true) {
         string::size_type Start = Names.find_first_not_of(' ');
         if (Start == string::npos) {
             break;
@@ -315,13 +315,13 @@ KArgumentSchema::KElement& KArgumentSchema::AddOption(std::string Names)
     return fOptionList.back();
 }
 
-KArgumentSchema& KArgumentSchema::AllowExcess(void)
+KArgumentSchema& KArgumentSchema::AllowExcess()
 {
     fIsExcessAllowed = true;
     return *this;
 }
 
-KArgumentSchema& KArgumentSchema::AllowUnknown(void)
+KArgumentSchema& KArgumentSchema::AllowUnknown()
 {
     fIsUnknownAllowed = true;
     return *this;

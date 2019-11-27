@@ -14,12 +14,12 @@ namespace Kassiopeia
         public:
             KSTermMaxTime();
             KSTermMaxTime( const KSTermMaxTime& aCopy );
-            KSTermMaxTime* Clone() const;
-            virtual ~KSTermMaxTime();
+            KSTermMaxTime* Clone() const override;
+            ~KSTermMaxTime() override;
 
         public:
-            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag );
-            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const;
+            void CalculateTermination( const KSParticle& anInitialParticle, bool& aFlag ) override;
+            void ExecuteTermination( const KSParticle& anInitialParticle, KSParticle& aFinalParticle, KSParticleQueue& aParticleQueue ) const override;
 
         public:
             void SetTime( const double& aValue );

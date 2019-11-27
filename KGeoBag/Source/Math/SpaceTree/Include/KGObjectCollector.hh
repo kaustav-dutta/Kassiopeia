@@ -23,21 +23,21 @@ class KGObjectCollector: public KGNodeActor< KGNode<ObjectTypeList> >
 {
     public:
         KGObjectCollector(){};
-        virtual ~KGObjectCollector(){};
+        ~KGObjectCollector() override{};
 
         void Clear(){fCollectedObjects.clear(); fNodeIDs.clear();};
 
         const std::vector< CollectedObjectType* >* GetCollectedObjects() const {return &fCollectedObjects;};
         const std::vector< int >* GetCollectedObjectAssociatedNodeIDs() const {return &fNodeIDs;};
 
-        virtual void ApplyAction( KGNode<ObjectTypeList>* node)
+        void ApplyAction( KGNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
                 int id = node->GetID();
                 CollectedObjectType* obj = KGObjectRetriever<ObjectTypeList, CollectedObjectType>::GetNodeObject(node);
 
-                if(obj != NULL)
+                if(obj != nullptr)
                 {
                     fCollectedObjects.push_back(obj);
                     fNodeIDs.push_back(id);

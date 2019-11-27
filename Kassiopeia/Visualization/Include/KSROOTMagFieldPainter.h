@@ -18,21 +18,21 @@ namespace Kassiopeia
     {
         public:
         KSROOTMagFieldPainter();
-            ~KSROOTMagFieldPainter();
+            ~KSROOTMagFieldPainter() override;
 
-            virtual void Render();
-            virtual void Display();
-            virtual void Write();
+            void Render() override;
+            void Display() override;
+            void Write() override;
             virtual void FieldMapX(KSMagneticField* tMagField, double tDeltaZ, double tDeltaR);
             virtual void FieldMapZ(KSMagneticField* tMagField, double tDeltaZ, double tDeltaR);
 
-            virtual double GetXMin();
-            virtual double GetXMax();
-            virtual double GetYMin();
-            virtual double GetYMax();
+            double GetXMin() override;
+            double GetXMax() override;
+            double GetYMin() override;
+            double GetYMax() override;
 
-            virtual std::string GetXAxisLabel();
-            virtual std::string GetYAxisLabel();
+            std::string GetXAxisLabel() override;
+            std::string GetYAxisLabel() override;
 
         private:
             ;K_SET( std::string, XAxis );

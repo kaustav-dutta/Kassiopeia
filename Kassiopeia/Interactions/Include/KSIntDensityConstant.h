@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSIntDensityConstant();
             KSIntDensityConstant( const KSIntDensityConstant& aCopy );
-            KSIntDensityConstant* Clone() const;
-            virtual ~KSIntDensityConstant();
+            KSIntDensityConstant* Clone() const override;
+            ~KSIntDensityConstant() override;
 
         public:
-            void CalculateDensity( const KSParticle& aParticle, double& aDensity );
+            void CalculateDensity( const KSParticle& aParticle, double& aDensity ) override;
 
         public:
             K_SET_GET( double, Temperature ) // kelvin

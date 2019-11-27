@@ -56,7 +56,7 @@ namespace Kassiopeia
 
     void KSGenPositionMeshSurfaceRandom::Dice(KSParticleQueue* aPrimaries)
     {
-        for(KSParticleIt tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
+        for(auto tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
         {
             double tDecision = KRandom::GetInstance().Uniform() * fTotalArea;
             std::vector< KSGenMeshElementSystem >::iterator tSysIt;
@@ -77,7 +77,7 @@ namespace Kassiopeia
                     break;
             }
 
-            if( KGeoBag::KGMeshRectangle* tMeshRectangle = dynamic_cast< KGeoBag::KGMeshRectangle* >( *tElementIt ) )
+            if( auto* tMeshRectangle = dynamic_cast< KGeoBag::KGMeshRectangle* >( *tElementIt ) )
             {
                 KThreeVector tInternalRandomPosition = tMeshRectangle->GetP0() + KRandom::GetInstance().Uniform() * tMeshRectangle->GetA() * tMeshRectangle->GetN1()
                                                                                + KRandom::GetInstance().Uniform() * tMeshRectangle->GetB() * tMeshRectangle->GetN2();
@@ -91,7 +91,7 @@ namespace Kassiopeia
                 continue;
             }
 
-            if( KGeoBag::KGMeshTriangle* tMeshTriangle = dynamic_cast< KGeoBag::KGMeshTriangle* >( *tElementIt ) )
+            if( auto* tMeshTriangle = dynamic_cast< KGeoBag::KGMeshTriangle* >( *tElementIt ) )
             {
                 //P = (1 - sqrt(r1)) * A + (sqrt(r1) * (1 - r2)) * B + (sqrt(r1) * r2) * C
                 double r1 = KRandom::GetInstance().Uniform();
@@ -111,7 +111,7 @@ namespace Kassiopeia
 
             }
 
-            if( KGeoBag::KGMeshWire* tMeshWire = dynamic_cast< KGeoBag::KGMeshWire* >( *tElementIt ) )
+            if( auto* tMeshWire = dynamic_cast< KGeoBag::KGMeshWire* >( *tElementIt ) )
             {
                 KThreeVector tStart = tMeshWire->GetP1();
                 KThreeVector tEnd = tMeshWire->GetP0();
@@ -141,7 +141,7 @@ namespace Kassiopeia
     void KSGenPositionMeshSurfaceRandom::InitializeComponent()
     {
 
-        for( std::vector< KSGenMeshElementSystem >::iterator tSysIt = fElementsystems.begin();
+        for( auto tSysIt = fElementsystems.begin();
                                                               tSysIt != fElementsystems.end();
                                                               ++tSysIt )
         {

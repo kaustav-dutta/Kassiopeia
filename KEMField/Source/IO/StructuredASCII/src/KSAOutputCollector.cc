@@ -22,13 +22,13 @@ void KSAOutputCollector::CollectOutput(KSAOutputNode* node)
     do
     {
         CollectNodeOutput( fNodeStack.top() );
-        fTempNode = NULL;
+        fTempNode = nullptr;
         //now figure out whether we needed to decend the tree, stay, or ascend
         fStatus = fNodeStack.top()->GetNextNode(fTempNode);
 
         ForwardNodeOutput();
 
-        if(fStatus == KSANODE_MOVE_DOWNWARD && fTempNode != NULL)
+        if(fStatus == KSANODE_MOVE_DOWNWARD && fTempNode != nullptr)
         {
             fNodeStack.push( fTempNode ); //descend to child
         }

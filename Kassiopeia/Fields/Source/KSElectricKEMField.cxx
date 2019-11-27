@@ -11,7 +11,7 @@ using namespace KEMField;
 
 namespace Kassiopeia {
 
-KSElectricKEMField::KSElectricKEMField() : fField(NULL){
+KSElectricKEMField::KSElectricKEMField() : fField(nullptr){
 }
 
 KSElectricKEMField::~KSElectricKEMField() {

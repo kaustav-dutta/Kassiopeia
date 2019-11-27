@@ -12,10 +12,6 @@ project( Kommon )
 #set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${PROJECT_SOURCE_DIR}/GoogleTest/cmake )
 include( KasperDefaults )
 
-# compiler requirements
-kasper_require_cpp11()
-kasper_require_gcc_version(4.6)
-kasper_require_clang_version(3.0)
 
 # paths
 kasper_module_paths( Kommon )

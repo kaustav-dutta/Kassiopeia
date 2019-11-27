@@ -14,7 +14,8 @@ namespace Kassiopeia
     {
         public:
             KSTrajElectricDerivative();
-            virtual ~KSTrajElectricDerivative();
+            KSTrajElectricDerivative( const KSTrajElectricDerivative& other) = default;
+            ~KSTrajElectricDerivative() override;
 
             //**********
             //assignment

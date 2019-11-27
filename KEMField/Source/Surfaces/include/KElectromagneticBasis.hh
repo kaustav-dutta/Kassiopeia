@@ -24,7 +24,7 @@ namespace KEMField
   {
   public:
     KElectromagneticBasis() : KBasisType<std::complex<double>,4>() {}
-    virtual ~KElectromagneticBasis() {}
+    ~KElectromagneticBasis() override {}
 
     static std::string Name() { return "ElectromagneticBasis"; }
   };

@@ -43,11 +43,11 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
             fLocalCoeffFlagCondition.SetFlagValue(1);
         };
 
-        virtual ~KFMElectrostaticTreeInformationExtractor(){};
+        ~KFMElectrostaticTreeInformationExtractor() override{};
 
         void SetDegree(unsigned int degree){fDegree = degree;};
 
-        virtual void ApplyAction(KFMElectrostaticNode* node)
+        void ApplyAction(KFMElectrostaticNode* node) override
         {
             if(!fInitialized)
             {
@@ -85,7 +85,7 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
 
             }
 
-            if(node != NULL)
+            if(node != nullptr)
             {
                 fNNodes++;
 
@@ -120,7 +120,7 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
                 }
 
                 KFMIdentitySet* id_set = KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySet>::GetNodeObject(node);
-                if( id_set != NULL )
+                if( id_set != nullptr )
                 {
                     fIDSetMem += (id_set->GetSize())*sizeof(unsigned int);
                     fNLevelElements[level] += id_set->GetSize();
@@ -128,15 +128,15 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
                 }
 
                 KFMCollocationPointIdentitySet* coll_id_set = KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMCollocationPointIdentitySet>::GetNodeObject(node);
-                if( coll_id_set != NULL )
+                if( coll_id_set != nullptr )
                 {
                     fIDSetMem += (coll_id_set->GetSize())*sizeof(unsigned int);
                 }
 
                 KFMIdentitySetList* id_set_list = KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySetList>::GetNodeObject(node);
-                if( id_set_list != NULL )
+                if( id_set_list != nullptr )
                 {
-                    if(node->GetParent() != NULL)
+                    if(node->GetParent() != nullptr)
                     {
                         KFMIdentitySetList* parent_id_set_list = KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySetList>::GetNodeObject(node->GetParent() );
                         if(id_set_list != parent_id_set_list)
@@ -250,7 +250,7 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
                 fNodeNeighborList.clear();
                 fNodeList.push_back(temp_node);
                 //collect all of the parents in the node list
-                while(temp_node->GetParent() != NULL)
+                while(temp_node->GetParent() != nullptr)
                 {
                     fNodeList.push_back(temp_node->GetParent());
                     temp_node = temp_node->GetParent();
@@ -263,9 +263,9 @@ class KFMElectrostaticTreeInformationExtractor: public KFMNodeActor<KFMElectrost
                     KFMCubicSpaceNodeNeighborFinder<3, KFMElectrostaticNodeObjects>::GetAllNeighbors(fNodeList[i], fZeroMaskSize, &fNodeNeighborList);
                     for(unsigned int j=0; j<fNodeNeighborList.size(); j++)
                     {
-                        if(fNodeNeighborList[j] != NULL)
+                        if(fNodeNeighborList[j] != nullptr)
                         {
-                            if( KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySet>::GetNodeObject(fNodeNeighborList[j]) != NULL )
+                            if( KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySet>::GetNodeObject(fNodeNeighborList[j]) != nullptr )
                             {
                                 level_count += KFMObjectRetriever< KFMElectrostaticNodeObjects, KFMIdentitySet>::GetNodeObject(fNodeNeighborList[j])->GetSize();
                             }

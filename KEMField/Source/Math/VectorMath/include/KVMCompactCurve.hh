@@ -28,20 +28,20 @@ class KVMCompactCurve: public KVMMap<KVMCurveDDim,KVMCurveRDim>
     public:
 
         KVMCompactCurve(){;};
-        virtual ~KVMCompactCurve(){;};
+        ~KVMCompactCurve() override{;};
 
         ///returns false if (u) outside of domain
-        virtual bool PointInDomain(const KVMFixedArray<double, KVMCurveDDim >* in) const;
+        bool PointInDomain(const KVMFixedArray<double, KVMCurveDDim >* in) const override;
 
         ///evaluates the function which defines the curve
-        virtual bool Evaluate(const KVMFixedArray<double, KVMCurveDDim >* in,
-                                KVMFixedArray<double, KVMCurveRDim >* out) const;
+        bool Evaluate(const KVMFixedArray<double, KVMCurveDDim >* in,
+                                KVMFixedArray<double, KVMCurveRDim >* out) const override;
 
         ///returns the derivative of the variable (specified by outputvarindex)
         ///with respect to the input (u), outputvarindex must be either 0,1, or 2
         ///otherwise it will return NaN.
-        virtual bool Jacobian(const KVMFixedArray<double, KVMCurveDDim >* in,
-                                KVMFixedArray< KVMFixedArray<double, KVMCurveRDim>, KVMCurveDDim>* jacobian) const;
+        bool Jacobian(const KVMFixedArray<double, KVMCurveDDim >* in,
+                                KVMFixedArray< KVMFixedArray<double, KVMCurveRDim>, KVMCurveDDim>* jacobian) const override;
 
 
 

@@ -54,10 +54,10 @@ class KFMCubicSpaceTreeNavigator: public KFMNodeActor< KFMNode< ObjectTypeList >
 
             fDefaultStackSize = 512;
             fStackReallocateLimit = 384;
-            fPreallocatedStack.resize(fDefaultStackSize, NULL);
+            fPreallocatedStack.resize(fDefaultStackSize, nullptr);
         }
 
-        virtual ~KFMCubicSpaceTreeNavigator()
+        ~KFMCubicSpaceTreeNavigator() override
         {
 
         }
@@ -76,14 +76,14 @@ class KFMCubicSpaceTreeNavigator: public KFMNodeActor< KFMNode< ObjectTypeList >
 
         KFMNode<ObjectTypeList>* GetLeafNode(){return fNodeList[0];};
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
             //may want to implement some sort of optional caching mechanism
             //(might also be implemented externally) if calling point locator on
             //closely related points
             fFound = false;
             fNodeList.clear();
-            fCube = NULL;
+            fCube = nullptr;
 
             //init stack
             {
@@ -92,7 +92,7 @@ class KFMCubicSpaceTreeNavigator: public KFMNodeActor< KFMNode< ObjectTypeList >
                 fStackSize = 0;
             }
 
-            if(node != NULL)
+            if(node != nullptr)
             {
                 fCube = KFMObjectRetriever<ObjectTypeList, KFMCube<SpatialNDIM> >::GetNodeObject(node);
                 if(fCube)
@@ -112,7 +112,7 @@ class KFMCubicSpaceTreeNavigator: public KFMNodeActor< KFMNode< ObjectTypeList >
 
                             //retrieve the divisions of this node
                             //first get the tree properties associated with this node
-                            KFMCubicSpaceTreeProperties<SpatialNDIM>* tree_prop = NULL;
+                            KFMCubicSpaceTreeProperties<SpatialNDIM>* tree_prop = nullptr;
                             tree_prop = KFMObjectRetriever<ObjectTypeList, KFMCubicSpaceTreeProperties<SpatialNDIM> >::GetNodeObject(fTempNode);
                             if(fTempNode->GetLevel() == 0)
                             {
@@ -149,7 +149,7 @@ class KFMCubicSpaceTreeNavigator: public KFMNodeActor< KFMNode< ObjectTypeList >
                             unsigned int child_index = KFMArrayMath::OffsetFromRowMajorIndex<SpatialNDIM>(fDimSize, fDelIndex);
                             KFMNode<ObjectTypeList>* node_to_add = fTempNode->GetChild(child_index);
 
-                            if(node_to_add != NULL )
+                            if(node_to_add != nullptr )
                             {
                                 //push child node
                                 {

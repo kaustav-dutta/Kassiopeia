@@ -14,8 +14,8 @@ namespace Kassiopeia
     {
         public:
     		KSIntDensity();
-            virtual ~KSIntDensity();
-            virtual KSIntDensity* Clone() const = 0;
+            ~KSIntDensity() override;
+            KSIntDensity* Clone() const override = 0;
 
         public:
             virtual void CalculateDensity( const KSParticle& aParticle, double& aDensity ) = 0;

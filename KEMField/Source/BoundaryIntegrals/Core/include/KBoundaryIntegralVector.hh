@@ -15,15 +15,15 @@ namespace KEMField
 
     KBoundaryIntegralVector(const KSurfaceContainer& c,Integrator& integrator);
 
-    virtual ~KBoundaryIntegralVector() {}
+    ~KBoundaryIntegralVector() override {}
 
-    unsigned int Dimension() const { return fDimension; }
+    unsigned int Dimension() const override { return fDimension; }
 
-    virtual const ValueType& operator()(unsigned int i) const;
+    const ValueType& operator()(unsigned int i) const override;
 
   private:
     // We disable this method by making it private.
-    virtual ValueType& operator[](unsigned int )
+    ValueType& operator[](unsigned int ) override
     { static ValueType dummy; return dummy; }
 
   private:

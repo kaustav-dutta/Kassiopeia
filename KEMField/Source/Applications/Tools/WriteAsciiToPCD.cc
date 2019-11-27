@@ -13,8 +13,8 @@
 #include <fstream>
 #include <sstream>
 #include <sys/stat.h>
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <typeinfo>
 
 int main(int argc, char* argv[])
@@ -32,17 +32,17 @@ int main(int argc, char* argv[])
     "\n";
 
     static struct option longOptions[] = {
-        {"help", no_argument, 0, 'h'},
-        {"file", required_argument, 0, 'f'}
+        {"help", no_argument, nullptr, 'h'},
+        {"file", required_argument, nullptr, 'f'}
     };
 
     static const char *optString = "ha:b:n:m:s:";
 
     std::string inFile = "";
 
-    while(1)
+    while(true)
     {
-        char optId = getopt_long(argc, argv, optString, longOptions, NULL);
+        char optId = getopt_long(argc, argv, optString, longOptions, nullptr);
         if(optId == -1){
             break;
         }
@@ -97,33 +97,33 @@ int main(int argc, char* argv[])
       //Input format is L1 | L2 | P0.x | P0.y | P0.z | N1.x | N1.y | N1.z | N2.x | N2.y | N2.z | (charge density value)
       std::string temp = line;
       char* token = strtok (&temp[0], "\t");
-      if(token!=NULL && token[0]!='p'){
+      if(token!=nullptr && token[0]!='p'){
         //Skip lengths
-        token = strtok (NULL, "\t");
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
+        token = strtok (nullptr, "\t");
 
         // Get coordinates
         xlist.push_back(std::stod(token));
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         ylist.push_back(std::stod(token));
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         zlist.push_back(std::stod(token));
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
 
         //Get edge vectors
         double xn1 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         double yn1 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         double zn1 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
 
         double xn2 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         double yn2 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
         double zn2 = std::stod(token);
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
 
         // Calculate normal vector
         double xn = yn1*zn2 - yn2*zn1;
@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
         znlist.push_back(zn);
 
         //Skip charge
-        token = strtok (NULL, "\t");
+        token = strtok (nullptr, "\t");
 
       }
       // while (token != NULL)

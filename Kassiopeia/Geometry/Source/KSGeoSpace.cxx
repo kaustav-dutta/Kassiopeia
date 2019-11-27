@@ -95,7 +95,7 @@ namespace Kassiopeia
         vector< KGSpace* >::const_iterator tSpace;
 
         double tNearestDistance = std::numeric_limits< double >::max();
-        const KGSpace* tNearestSpace = NULL;
+        const KGSpace* tNearestSpace = nullptr;
 
         for( tSpace = fContents.begin(); tSpace != fContents.end(); tSpace++ )
         {
@@ -108,7 +108,7 @@ namespace Kassiopeia
             }
         }
 
-        if (tNearestSpace != NULL)
+        if (tNearestSpace != nullptr)
             return tNearestSpace->Normal( aPoint );
 
         geomsg( eWarning ) << "geo space <" << GetName() << "> could not find a nearest space to position " << aPoint << eom;
@@ -202,8 +202,8 @@ namespace Kassiopeia
             (*tKSSideIt)->Initialize();
 
             //check if navigation sides are really geometric boundaries of volumes
-            KSGeoSide* tGeoSide = dynamic_cast<KSGeoSide* >( (*tKSSideIt) );
-            if ( tGeoSide != NULL )
+            auto* tGeoSide = dynamic_cast<KSGeoSide* >( (*tKSSideIt) );
+            if ( tGeoSide != nullptr )
             {
                 vector< KGSurface* > tSideSurfaces = tGeoSide->GetContent();
 
@@ -216,7 +216,7 @@ namespace Kassiopeia
 
                         const vector< KGSurface* >* tSurfaces = (*tSpace)->GetBoundaries();
 
-                        for( vector< KGSurface* >::const_iterator tSurface = tSurfaces->begin(); tSurface != tSurfaces->end(); tSurface++ )
+                        for( auto tSurface = tSurfaces->begin(); tSurface != tSurfaces->end(); tSurface++ )
                         {
                             if ( *(tSideSurface) == *(tSurface) )
                             {

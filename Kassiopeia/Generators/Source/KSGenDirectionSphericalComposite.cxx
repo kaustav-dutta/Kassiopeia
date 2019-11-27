@@ -5,8 +5,8 @@ namespace Kassiopeia
 {
 
     KSGenDirectionSphericalComposite::KSGenDirectionSphericalComposite() :
-            fThetaValue( NULL ),
-            fPhiValue( NULL ),
+            fThetaValue( nullptr ),
+            fPhiValue( nullptr ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
             fZAxis( KThreeVector::sZUnit )
@@ -53,10 +53,10 @@ namespace Kassiopeia
 
         for( tThetaValueIt = tThetaValues.begin(); tThetaValueIt != tThetaValues.end(); tThetaValueIt++ )
         {
-            tThetaValue = (KConst::Pi() / 180.) * (*tThetaValueIt);
+            tThetaValue = (katrin::KConst::Pi() / 180.) * (*tThetaValueIt);
             for( tPhiValueIt = tPhiValues.begin(); tPhiValueIt != tPhiValues.end(); tPhiValueIt++ )
             {
-                tPhiValue = (KConst::Pi() / 180.) * (*tPhiValueIt);
+                tPhiValue = (katrin::KConst::Pi() / 180.) * (*tPhiValueIt);
                 for( tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); tParticleIt++ )
                 {
                     tParticle = new KSParticle( **tParticleIt );
@@ -80,7 +80,7 @@ namespace Kassiopeia
 
     void KSGenDirectionSphericalComposite::SetThetaValue( KSGenValue* anThetaValue )
     {
-        if( fThetaValue == NULL )
+        if( fThetaValue == nullptr )
         {
             fThetaValue = anThetaValue;
             return;
@@ -92,7 +92,7 @@ namespace Kassiopeia
     {
         if( fThetaValue == anThetaValue )
         {
-            fThetaValue = NULL;
+            fThetaValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear theta value <" << anThetaValue->GetName() << "> from composite direction creator <" << this->GetName() << ">" << eom;
@@ -101,7 +101,7 @@ namespace Kassiopeia
 
     void KSGenDirectionSphericalComposite::SetPhiValue( KSGenValue* aPhiValue )
     {
-        if( fPhiValue == NULL )
+        if( fPhiValue == nullptr )
         {
             fPhiValue = aPhiValue;
             return;
@@ -113,7 +113,7 @@ namespace Kassiopeia
     {
         if( fPhiValue == anPhiValue )
         {
-            fPhiValue = NULL;
+            fPhiValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear phi value <" << anPhiValue->GetName() << "> from composite direction creator <" << this->GetName() << ">" << eom;
@@ -138,11 +138,11 @@ namespace Kassiopeia
 
     void KSGenDirectionSphericalComposite::InitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Initialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Initialize();
         }
@@ -150,11 +150,11 @@ namespace Kassiopeia
     }
     void KSGenDirectionSphericalComposite::DeinitializeComponent()
     {
-        if( fThetaValue != NULL )
+        if( fThetaValue != nullptr )
         {
             fThetaValue->Deinitialize();
         }
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Deinitialize();
         }

@@ -51,6 +51,9 @@ namespace Kassiopeia
             void AddLabel( const std::string& aLabel );
             void ReleaseLabel( std::string& aLabel );
 
+            void SetIndexNumber( const int& anId );
+            const int& GetIndexNumber() const;
+
             void SetParentRunId( const int& anId );
             const int& GetParentRunId() const;
 
@@ -65,6 +68,7 @@ namespace Kassiopeia
 
         private:
             std::string fLabel;
+            int fIndexNumber;
             int fParentRunId;
             int fParentEventId;
             int fParentTrackId;

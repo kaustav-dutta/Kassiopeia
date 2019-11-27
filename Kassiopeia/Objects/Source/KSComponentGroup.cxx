@@ -15,7 +15,7 @@ namespace Kassiopeia
             KSComponent( aCopy ),
             fComponents( aCopy.fComponents )
     {
-        for( ComponentIt tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
+        for( auto tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
         {
             (*tIt) = (*tIt)->Clone();
         }
@@ -23,7 +23,7 @@ namespace Kassiopeia
     }
     KSComponentGroup::~KSComponentGroup()
     {
-        for( ComponentIt tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
+        for( auto tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
         {
             delete (*tIt);
         }
@@ -35,11 +35,11 @@ namespace Kassiopeia
     }
     KSComponent* KSComponentGroup::Component( const string& /*aField*/ )
     {
-        return NULL;
+        return nullptr;
     }
     KSCommand* KSComponentGroup::Command( const string& /*aField*/, KSComponent* /*aChild*/ )
     {
-        return NULL;
+        return nullptr;
     }
 
     KSComponent* KSComponentGroup::ComponentAt( unsigned int anIndex )
@@ -67,7 +67,7 @@ namespace Kassiopeia
     }
     void KSComponentGroup::RemoveComponent( KSComponent* anComponent )
     {
-        for( ComponentIt tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
+        for( auto tIt = fComponents.begin(); tIt != fComponents.end(); tIt++ )
         {
             if( (*tIt) == anComponent )
             {

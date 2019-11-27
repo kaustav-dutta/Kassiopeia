@@ -15,9 +15,9 @@ namespace KGeoBag
             KGPlanarLineSegment( const KGPlanarLineSegment& aCopy );
             KGPlanarLineSegment( const KTwoVector& aStart, const KTwoVector& anEnd, const unsigned int aCount = 2, const double aPower = 1. );
             KGPlanarLineSegment( const double& anX1, const double& aY1, const double& anX2, const double& aY2, const unsigned int aCount = 2, const double aPower = 1. );
-            virtual ~KGPlanarLineSegment();
+            ~KGPlanarLineSegment() override;
 
-            KGPlanarLineSegment* Clone() const;
+            KGPlanarLineSegment* Clone() const override;
             void CopyFrom( const KGPlanarLineSegment& aCopy );
 
         public:
@@ -30,25 +30,25 @@ namespace KGeoBag
             void MeshCount( const unsigned int& aCount );
             void MeshPower( const double& aPower );
 
-            const KTwoVector& Start() const;
+            const KTwoVector& Start() const override;
             const double& X1() const;
             const double& Y1() const;
-            const KTwoVector& End() const;
+            const KTwoVector& End() const override;
             const double& X2() const;
             const double& Y2() const;
             const unsigned int& MeshCount() const;
             const double& MeshPower() const;
 
-            const double& Length() const;
-            const KTwoVector& Centroid() const;
+            const double& Length() const override;
+            const KTwoVector& Centroid() const override;
             const KTwoVector& XUnit() const;
             const KTwoVector& YUnit() const;
 
         public:
-            KTwoVector At( const double& aLength ) const;
-            KTwoVector Point( const KTwoVector& aQuery ) const;
-            KTwoVector Normal( const KTwoVector& aQuery ) const;
-            bool Above( const KTwoVector& aQuery ) const;
+            KTwoVector At( const double& aLength ) const override;
+            KTwoVector Point( const KTwoVector& aQuery ) const override;
+            KTwoVector Normal( const KTwoVector& aQuery ) const override;
+            bool Above( const KTwoVector& aQuery ) const override;
 
         private:
             KTwoVector fStart;

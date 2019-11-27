@@ -554,7 +554,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveGMRES(KSurfaceContainer& 
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KSimpleIterativeKrylovSolver<FastMultipoleEBI::ValueType, KGeneralizedMinimalResidual> gmres;
@@ -651,7 +651,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveGMRES_Jacobi(KSurfaceCont
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedGeneralizedMinimalResidual> pgmres;
@@ -758,7 +758,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveGMRES_ImplicitKrylov(KSur
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedGeneralizedMinimalResidual> pgmres;
@@ -874,7 +874,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveGMRES_IndependentImplicit
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedGeneralizedMinimalResidual> pgmres;
@@ -981,7 +981,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveBICGSTAB(KSurfaceContaine
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KSimpleIterativeKrylovSolver<FastMultipoleEBI::ValueType, KBiconjugateGradientStabilized> bicgstab;
@@ -1079,7 +1079,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveBICGSTAB_Jacobi(KSurfaceC
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedBiconjugateGradientStabilized> pbicgstab;
@@ -1187,7 +1187,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveBICGSTAB_ImplicitKrylov(K
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedBiconjugateGradientStabilized> pbicgstab;
@@ -1304,7 +1304,7 @@ KFMElectrostaticFastMultipoleBoundaryValueSolver::SolveBICGSTAB_IndependentImpli
     KBoundaryIntegralSolutionVector< FastMultipoleEBI > fmx(surfaceContainer, *fm_integrator);
     KBoundaryIntegralVector< FastMultipoleEBI > fmb(surfaceContainer, *fm_integrator);
 
-    KIterativeKrylovRestartCondition* restart_cond = new KIterativeKrylovRestartCondition();
+    auto* restart_cond = new KIterativeKrylovRestartCondition();
     restart_cond->SetNumberOfIterationsBetweenRestart(fIterationsBetweenRestart);
 
     KPreconditionedIterativeKrylovSolver<FastMultipoleEBI::ValueType, KPreconditionedBiconjugateGradientStabilized> pbicgstab;

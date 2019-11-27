@@ -19,7 +19,7 @@
 #include "KGCutConeSurface.hh"
 #include "KGCutConeTubeSpace.hh"
 #include "KGBoxSpace.hh"
-#include <assert.h>
+#include <cassert>
 
 namespace KGeoBag {
 	/**
@@ -46,7 +46,7 @@ namespace KGeoBag {
     	KGMetricsVolumeData(const KGMetricsVolumeData& aCopy): fVolume(aCopy.fVolume), fSpace(aCopy.fSpace) {}
     	KGMetricsVolumeData(KGSpace* aSpace): fVolume(-1), fSpace(aSpace) {}
     	KGMetricsVolumeData(KGSpace* aSpace, const KGMetricsVolumeData&): fVolume(-1), fSpace(aSpace) {}
-    	~KGMetricsVolumeData() {}
+    	~KGMetricsVolumeData() override {}
 
     public:
     	/**
@@ -71,7 +71,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitVolume(KGVolume* aVolume);
+    	void VisitVolume(KGVolume* aVolume) override;
 
     	/**
 		 * \brief Specialized visitor function for calculation of
@@ -79,7 +79,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitCylinderSpace(KGCylinderSpace* aVolume);
+    	void VisitCylinderSpace(KGCylinderSpace* aVolume) override;
 
     	/**
 		 * \brief Specialized visitor function for calculation of
@@ -87,7 +87,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitConeSpace(KGConeSpace* aVolume);
+    	void VisitConeSpace(KGConeSpace* aVolume) override;
 
     	/**
 		 * \brief Specialized visitor function for calculation of
@@ -95,7 +95,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitCutConeSpace(KGCutConeSpace* aVolume);
+    	void VisitCutConeSpace(KGCutConeSpace* aVolume) override;
 
     	/**
 		 * \brief Specialized visitor function for calculation of
@@ -103,7 +103,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitCutConeTubeSpace(KGCutConeTubeSpace* aVolume);
+    	void VisitCutConeTubeSpace(KGCutConeTubeSpace* aVolume) override;
 
     	/**
 		 * \brief Specialized visitor function for calculation of
@@ -111,7 +111,7 @@ namespace KGeoBag {
 		 *
 		 * \param aVolume
 		 */
-    	void VisitBoxSpace(const KGBoxSpace* aVolume);
+    	void VisitBoxSpace(const KGBoxSpace* aVolume) override;
 
     private:
     	void CalculateVolume() const;
@@ -139,7 +139,7 @@ namespace KGeoBag {
 		KGMetricsAreaData(const KGMetricsAreaData& aCopy): fArea(aCopy.fArea), fSurface(aCopy.fSurface) {}
 		KGMetricsAreaData(KGSurface* aSurface): fArea(-1), fSurface(aSurface) {}
 		KGMetricsAreaData(KGSurface* aSurface, const KGMetricsAreaData&): fArea(-1), fSurface(aSurface) {}
-		~KGMetricsAreaData() {}
+		~KGMetricsAreaData() override {}
 
 	public:
 		/**
@@ -164,7 +164,7 @@ namespace KGeoBag {
 		 *
 		 * \param aArea
 		 */
-		void VisitArea(KGArea* aArea);
+		void VisitArea(KGArea* aArea) override;
 
 		/**
 		 * \brief Specialized visitor function for calculation of
@@ -172,7 +172,7 @@ namespace KGeoBag {
 		 *
 		 * \param aArea
 		 */
-		void VisitCylinderSurface(KGCylinderSurface* aArea);
+		void VisitCylinderSurface(KGCylinderSurface* aArea) override;
 
 		/**
 		 * \brief Specialized visitor function for calculation of
@@ -180,7 +180,7 @@ namespace KGeoBag {
 		 *
 		 * \param aArea
 		 */
-		void VisitConeSurface(KGConeSurface* aArea);
+		void VisitConeSurface(KGConeSurface* aArea) override;
 
 		/**
 		 * \brief Specialized visitor function for calculation of
@@ -188,7 +188,7 @@ namespace KGeoBag {
 		 *
 		 * \param aArea
 		 */
-		void VisitCutConeSurface(KGCutConeSurface* aArea);
+		void VisitCutConeSurface(KGCutConeSurface* aArea) override;
 
 	private:
 		void CalculateArea() const;

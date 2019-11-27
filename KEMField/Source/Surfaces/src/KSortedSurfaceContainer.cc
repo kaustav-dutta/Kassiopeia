@@ -20,7 +20,7 @@ namespace KEMField
         if(fSortedSurfaces.size()!=0)
         {
             int indexLevel = 0;
-            for (KSurfaceContainer::KSurfaceDataIt dataIt = fSortedSurfaces.begin(); dataIt != fSortedSurfaces.end();++dataIt)
+            for (auto dataIt = fSortedSurfaces.begin(); dataIt != fSortedSurfaces.end();++dataIt)
             {
                 KSurfacePrimitive* sP = (*dataIt)->at(0);
                 if (*((*it)->GetBoundary()) == *(sP->GetBoundary()))
@@ -75,7 +75,7 @@ namespace KEMField
 
   KSortedSurfaceContainer::~KSortedSurfaceContainer()
   {
-    for (KSurfaceContainer::KSurfaceDataIt it = fSortedSurfaces.begin();
+    for (auto it = fSortedSurfaces.begin();
 	 it != fSortedSurfaces.end();++it)
     {
       delete *it;

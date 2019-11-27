@@ -14,8 +14,8 @@ namespace Kassiopeia
 
     KSIntScattering::KSIntScattering() :
             fSplit( false ),
-            fDensity( NULL ),
-            fCalculator( NULL ),
+            fDensity( nullptr ),
+            fCalculator( nullptr ),
             fCalculators(),
             fCrossSections(),
             fEnhancement( 1. )
@@ -143,7 +143,7 @@ namespace Kassiopeia
 
         if( tTime > aTrajectoryTimeStep )
         {
-            fCalculator = NULL;
+            fCalculator = nullptr;
 
             anInteractionParticle = aTrajectoryFinalParticle;
             aTimeStep = aTrajectoryTimeStep;
@@ -168,11 +168,11 @@ namespace Kassiopeia
 
     void KSIntScattering::ExecuteInteraction( const KSParticle& anInteractionParticle, KSParticle& aFinalParticle, KSParticleQueue& aSecondaries ) const
     {
-        if( fCalculator != NULL )
+        if( fCalculator != nullptr )
         {
             if( fSplit == true )
             {
-                KSParticle* tSplitParticle = new KSParticle();
+                auto* tSplitParticle = new KSParticle();
                 *tSplitParticle = aFinalParticle;
 
                 fCalculator->ExecuteInteraction( anInteractionParticle, *tSplitParticle, aSecondaries );
@@ -205,7 +205,7 @@ namespace Kassiopeia
 
     void KSIntScattering::SetDensity( KSIntDensity* aDensityCalculator )
     {
-        if( fDensity == NULL )
+        if( fDensity == nullptr )
         {
             fDensity = aDensityCalculator;
             return;
@@ -217,7 +217,7 @@ namespace Kassiopeia
     {
         if( fDensity == aDensityCalculator )
         {
-            fDensity = NULL;
+            fDensity = nullptr;
             return;
         }
         intmsg( eError ) << "cannot clear density calculator <" << aDensityCalculator->GetName() << "> from scattering module <" << GetName() << ">" << eom;
@@ -273,12 +273,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Initialize();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->Initialize();
         }
@@ -292,12 +292,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Deinitialize();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->Deinitialize();
         }
@@ -311,12 +311,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Activate();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->Activate();
         }
@@ -330,12 +330,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->Deactivate();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->Deactivate();
         }
@@ -349,12 +349,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->PushUpdate();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->PushUpdate();
         }
@@ -368,12 +368,12 @@ namespace Kassiopeia
         for( tIt = fCalculators.begin(); tIt != fCalculators.end(); tIt++ )
         {
             tCalculator = (*tIt);
-            if( tCalculator != NULL )
+            if( tCalculator != nullptr )
             {
                 tCalculator->PushDeupdate();
             }
         }
-        if( fDensity != NULL )
+        if( fDensity != nullptr )
         {
             fDensity->PushDeupdate();
         }

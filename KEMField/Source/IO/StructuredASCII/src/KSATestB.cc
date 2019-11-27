@@ -16,7 +16,7 @@ void KSATestB::SetY(const double& y){fY = y;}
 
 void KSATestB::DefineOutputNode(KSAOutputNode* node) const
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedValuePODOutputNode< KSATestB, double, &KSATestB::GetX >( std::string("X"), this) );
         node->AddChild(new KSAAssociatedValuePODOutputNode< KSATestB, double, &KSATestB::GetY >( std::string("Y"), this) );
@@ -27,7 +27,7 @@ void KSATestB::DefineOutputNode(KSAOutputNode* node) const
 
 void KSATestB::DefineInputNode(KSAInputNode* node)
 {
-    if(node != NULL)
+    if(node != nullptr)
     {
         node->AddChild(new KSAAssociatedReferencePODInputNode< KSATestB, double, &KSATestB::SetX >( std::string("X"), this) );
         node->AddChild(new KSAAssociatedReferencePODInputNode< KSATestB, double, &KSATestB::SetY >( std::string("Y"), this) );

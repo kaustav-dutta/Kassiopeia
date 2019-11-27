@@ -13,11 +13,11 @@ namespace Kassiopeia
         public:
             KSGenValueRadiusSpherical();
             KSGenValueRadiusSpherical( const KSGenValueRadiusSpherical& aCopy );
-            KSGenValueRadiusSpherical* Clone() const;
-            virtual ~KSGenValueRadiusSpherical();
+            KSGenValueRadiusSpherical* Clone() const override;
+            ~KSGenValueRadiusSpherical() override;
 
         public:
-            virtual void DiceValue( std::vector< double >& aDicedValues );
+            void DiceValue( std::vector< double >& aDicedValues ) override;
 
         public:
             K_SET_GET( double, RadiusMin )

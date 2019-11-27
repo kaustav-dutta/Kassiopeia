@@ -2,7 +2,6 @@
 #include "KSInteractionsMessage.h"
 
 #include "KConst.h"
-using katrin::KConst;
 
 #include "KRandom.h"
 using katrin::KRandom;
@@ -45,7 +44,7 @@ namespace Kassiopeia
         {
             intmsg_debug( "kess surface interaction forbids transmission [chi =  " << tChi
                           << ", energy = " << aKineticEnergy
-                          << ", angle = " << std::acos(aCosIncidentAngle) * 180. / KConst::Pi() << "]" << eom );
+                          << ", angle = " << std::acos(aCosIncidentAngle) * 180. / katrin::KConst::Pi() << "]" << eom );
 
             return 0.;
         }
@@ -59,7 +58,7 @@ namespace Kassiopeia
             intmsg_debug( "kess surface interaction transmission probability of " << tProbability
                           << " [chi =  " << tChi
                           << ", energy = " << aKineticEnergy
-                          << ", angle = " << std::acos(aCosIncidentAngle) * 180. / KConst::Pi() << "]" << eom );
+                          << ", angle = " << std::acos(aCosIncidentAngle) * 180. / katrin::KConst::Pi() << "]" << eom );
 
             return tProbability;
         }
@@ -74,14 +73,14 @@ namespace Kassiopeia
 
         KThreeVector tNormal;
         KSSurface* tSurface = anInitialParticle.GetCurrentSurface();
-        if ( tSurface != NULL )
+        if ( tSurface != nullptr )
         {
             tNormal = tSurface->Normal( anInitialParticle.GetPosition() );
         }
         else
         {
             KSSide* tSide = anInitialParticle.GetCurrentSide();
-            if ( tSide != NULL )
+            if ( tSide != nullptr )
             {
                 tNormal = tSide->Normal( anInitialParticle.GetPosition() );
             }
@@ -96,7 +95,7 @@ namespace Kassiopeia
         double tChi = tEnergy * tCosAngle * tCosAngle;
 
         double tTheta = acos( sqrt( (tChi - fElectronAffinity) / (tEnergy - fElectronAffinity) ) );
-        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * KConst::Pi() );
+        double tPhi = KRandom::GetInstance().Uniform( 0., 2. * katrin::KConst::Pi() );
 
 
         KThreeVector tInitialDirection = tMomentum.Unit();
@@ -120,14 +119,14 @@ namespace Kassiopeia
     {
         KThreeVector tNormal;
         KSSurface* tSurface = anInitialParticle.GetCurrentSurface();
-        if ( tSurface != NULL )
+        if ( tSurface != nullptr )
         {
             tNormal = tSurface->Normal( anInitialParticle.GetPosition() );
         }
         else
         {
             KSSide* tSide = anInitialParticle.GetCurrentSide();
-            if ( tSide != NULL )
+            if ( tSide != nullptr )
             {
                 tNormal = tSide->Normal( anInitialParticle.GetPosition() );
             }
@@ -156,14 +155,14 @@ namespace Kassiopeia
 
         KThreeVector tNormal;
         KSSurface* tSurface = anInitialParticle.GetCurrentSurface();
-        if ( tSurface != NULL )
+        if ( tSurface != nullptr )
         {
             tNormal = tSurface->Normal( anInitialParticle.GetPosition() );
         }
         else
         {
             KSSide* tSide = anInitialParticle.GetCurrentSide();
-            if ( tSide != NULL )
+            if ( tSide != nullptr )
             {
                 tNormal = tSide->Normal( anInitialParticle.GetPosition() );
             }

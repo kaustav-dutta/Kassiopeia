@@ -63,11 +63,11 @@ class KFMBoundaryIntegralMatrix: public KSquareMatrix< typename DenseMatrixType:
             fTempSparse.resize(fDimension);
         };
 
-        virtual ~KFMBoundaryIntegralMatrix(){};
+        ~KFMBoundaryIntegralMatrix() override{};
 
-        virtual unsigned int Dimension() const {return  fDimension;};
+        unsigned int Dimension() const override {return  fDimension;};
 
-        virtual void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const
+        void Multiply(const KVector<ValueType>& x, KVector<ValueType>& y) const override
         {
 
             for(unsigned int i=0; i<fDimension; i++)
@@ -157,7 +157,7 @@ class KFMBoundaryIntegralMatrix: public KSquareMatrix< typename DenseMatrixType:
             }
         }
 
-        virtual const ValueType& operator()(unsigned int i, unsigned int j) const
+        const ValueType& operator()(unsigned int i, unsigned int j) const override
         {
             return (*fDenseMatrix)(i,j);
         }

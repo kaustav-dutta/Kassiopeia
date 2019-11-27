@@ -5,9 +5,9 @@ namespace Kassiopeia
 {
 
     KSGenMomentumRectangularComposite::KSGenMomentumRectangularComposite() :
-            fXValue( NULL ),
-            fYValue( NULL ),
-            fZValue( NULL ),
+            fXValue( nullptr ),
+            fYValue( nullptr ),
+            fZValue( nullptr ),
             fXAxis( KThreeVector::sXUnit ),
             fYAxis( KThreeVector::sYUnit ),
             fZAxis( KThreeVector::sZUnit )
@@ -89,7 +89,7 @@ namespace Kassiopeia
 
     void KSGenMomentumRectangularComposite::SetXValue( KSGenValue* anXValue )
     {
-        if( fXValue == NULL )
+        if( fXValue == nullptr )
         {
             fXValue = anXValue;
             return;
@@ -101,7 +101,7 @@ namespace Kassiopeia
     {
         if( fXValue == anXValue )
         {
-            fXValue = NULL;
+            fXValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear x value <" << anXValue->GetName() << "> from composite direction creator <" << this->GetName() << ">" << eom;
@@ -110,7 +110,7 @@ namespace Kassiopeia
 
     void KSGenMomentumRectangularComposite::SetYValue( KSGenValue* aYValue )
     {
-        if( fYValue == NULL )
+        if( fYValue == nullptr )
         {
             fYValue = aYValue;
             return;
@@ -122,7 +122,7 @@ namespace Kassiopeia
     {
         if( fYValue == aYValue )
         {
-            fYValue = NULL;
+            fYValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear y value <" << aYValue->GetName() << "> from composite direction creator <" << this->GetName() << ">" << eom;
@@ -131,7 +131,7 @@ namespace Kassiopeia
 
     void KSGenMomentumRectangularComposite::SetZValue( KSGenValue* aZValue )
     {
-        if( fZValue == NULL )
+        if( fZValue == nullptr )
         {
             fZValue = aZValue;
             return;
@@ -143,7 +143,7 @@ namespace Kassiopeia
     {
         if( fYValue == aZValue )
         {
-            fZValue = NULL;
+            fZValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear z value <" << aZValue->GetName() << "> from composite direction creator <" << this->GetName() << ">" << eom;
@@ -171,15 +171,15 @@ namespace Kassiopeia
 
     void KSGenMomentumRectangularComposite::InitializeComponent()
     {
-        if( fXValue != NULL )
+        if( fXValue != nullptr )
         {
             fXValue->Initialize();
         }
-        if( fYValue != NULL )
+        if( fYValue != nullptr )
         {
             fYValue->Initialize();
         }
-        if( fZValue != NULL )
+        if( fZValue != nullptr )
         {
             fZValue->Initialize();
         }
@@ -187,15 +187,15 @@ namespace Kassiopeia
     }
     void KSGenMomentumRectangularComposite::DeinitializeComponent()
     {
-        if( fXValue != NULL )
+        if( fXValue != nullptr )
         {
             fXValue->Deinitialize();
         }
-        if( fYValue != NULL )
+        if( fYValue != nullptr )
         {
             fYValue->Deinitialize();
         }
-        if( fZValue != NULL )
+        if( fZValue != nullptr )
         {
             fZValue->Deinitialize();
         }

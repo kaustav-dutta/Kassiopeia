@@ -17,15 +17,15 @@ namespace KEMField
     typedef KElectrostaticBasis::ValueType ValueType;
 
     KElectrostatic256NodeQuadratureLineSegmentIntegrator() {}
-    ~KElectrostatic256NodeQuadratureLineSegmentIntegrator() {}
+    ~KElectrostatic256NodeQuadratureLineSegmentIntegrator() override {}
 
-    double Potential(const KLineSegment* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KLineSegment* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KLineSegment* source, const KPosition& P ) const;
+    double Potential(const KLineSegment* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KLineSegment* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KLineSegment* source, const KPosition& P ) const override;
 
-    double Potential(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const;
-    KThreeVector ElectricField(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const;
-    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KLineSegment>* source, const KPosition& P ) const;
+    double Potential(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const override;
+    KThreeVector ElectricField(const KSymmetryGroup<KLineSegment>* source, const KPosition& P) const override;
+    std::pair<KThreeVector, double> ElectricFieldAndPotential( const KSymmetryGroup<KLineSegment>* source, const KPosition& P ) const override;
   };
 
 

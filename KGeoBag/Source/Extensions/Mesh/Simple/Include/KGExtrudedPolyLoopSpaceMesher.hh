@@ -17,10 +17,10 @@ namespace KGeoBag
 
         public:
             KGExtrudedPolyLoopSpaceMesher();
-            virtual ~KGExtrudedPolyLoopSpaceMesher();
+            ~KGExtrudedPolyLoopSpaceMesher() override;
 
         protected:
-            void VisitExtrudedClosedPathSpace( KGExtrudedPolyLoopSpace* aExtrudedPolyLoopSpace );
+            void VisitExtrudedClosedPathSpace( KGExtrudedPolyLoopSpace* aExtrudedPolyLoopSpace ) override;
     };
 
 }

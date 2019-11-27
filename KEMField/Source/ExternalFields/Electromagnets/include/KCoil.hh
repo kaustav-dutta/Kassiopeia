@@ -21,7 +21,7 @@ namespace KEMField{
 	      fP1(0.,0.,0.),
 	      fCurrent(0.),
 	      fIntegrationScale(30) {}
-    virtual ~KCoil() {}
+    ~KCoil() override {}
 
     static std::string Name() { return "Coil"; }
 
@@ -56,7 +56,7 @@ namespace KEMField{
     const KPosition&  GetP1()      const { return fP1; }
     unsigned int            GetIntegrationScale() const { return fIntegrationScale; }
 
-    void Accept(KElectromagnetVisitor& visitor);
+    void Accept(KElectromagnetVisitor& visitor) override;
 
   protected:
 

@@ -11,7 +11,7 @@
 namespace Kassiopeia
 {
     KSGenPositionMask::KSGenPositionMask() :
-        fGenerator(NULL),
+        fGenerator(nullptr),
         fMaxRetries(10000)
     {}
     KSGenPositionMask::KSGenPositionMask(const KSGenPositionMask& aCopy):
@@ -29,10 +29,10 @@ namespace Kassiopeia
 
     void KSGenPositionMask::Dice(KSParticleQueue* aPrimaries)
     {
-        KSParticleQueue *tTempQueue = new KSParticleQueue();
+        auto *tTempQueue = new KSParticleQueue();
         tTempQueue->push_back(new KSParticle());
 
-        for(KSParticleIt tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
+        for(auto tParticleIt = aPrimaries->begin(); tParticleIt != aPrimaries->end(); ++tParticleIt)
         {
             KThreeVector tPosition;
             bool tPositionValid = false;
@@ -147,7 +147,7 @@ namespace Kassiopeia
 
     void KSGenPositionMask::InitializeComponent()
     {
-        if( fGenerator == NULL )
+        if( fGenerator == nullptr )
             genmsg(eWarning) << "no generator defined to apply position mask" << eom;
         else
             fGenerator->Initialize();

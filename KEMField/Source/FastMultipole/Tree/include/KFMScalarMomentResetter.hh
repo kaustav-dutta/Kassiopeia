@@ -31,18 +31,18 @@ class KFMScalarMomentResetter: public KFMNodeActor< KFMNode<ObjectTypeList> >
 {
     public:
         KFMScalarMomentResetter(){;};
-        virtual ~KFMScalarMomentResetter(){;};
+        ~KFMScalarMomentResetter() override{;};
 
         virtual void SetNumberOfTermsInSeries(unsigned int n_terms)
         {
             fNTerms = n_terms;
         }
 
-        virtual void ApplyAction(KFMNode<ObjectTypeList>* node)
+        void ApplyAction(KFMNode<ObjectTypeList>* node) override
         {
-            if(node != NULL)
+            if(node != nullptr)
             {
-                if(KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) != NULL)
+                if(KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node) != nullptr)
                 {
                     ScalarMomentType* set = KFMObjectRetriever<ObjectTypeList, ScalarMomentType>::GetNodeObject(node);
                     set->SetNumberOfTermsInSeries(fNTerms);

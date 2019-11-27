@@ -65,10 +65,10 @@ inline bool KSWriteROOTConditionTerminatorBuilder::AddAttribute( KContainer* aCo
 template< >
 inline bool KSWriteROOTConditionTerminatorBuilder::End()
 {
-    KSComponent* tComponent = NULL;
+    KSComponent* tComponent = nullptr;
     if( fObject->fGroupName.empty() == false )
     {
-        KSComponentGroup* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
+        auto* tComponentGroup = KToolbox::GetInstance().Get< KSComponentGroup >( fObject->fGroupName );
         for( unsigned int tIndex = 0; tIndex < tComponentGroup->ComponentCount(); tIndex++ )
         {
             KSComponent* tGroupComponent = tComponentGroup->ComponentAt( tIndex );
@@ -78,7 +78,7 @@ inline bool KSWriteROOTConditionTerminatorBuilder::End()
                 break;
             }
         }
-        if( tComponent == NULL )
+        if( tComponent == nullptr )
         {
             objctmsg( eError ) << "write ROOT condition terminator builder could not find component <" << fObject->fComponentName << "> in group <" << fObject->fGroupName << ">" << eom;
             return false;
@@ -89,9 +89,9 @@ inline bool KSWriteROOTConditionTerminatorBuilder::End()
         tComponent = KToolbox::GetInstance().Get< KSComponent >( fObject->fComponentName );
     }
 
-    KSWriteROOTCondition* tCondition = NULL;
+    KSWriteROOTCondition* tCondition = nullptr;
 
-    KSWriteROOTConditionTerminator* tWriteROOTConditionTerminator = new KSWriteROOTConditionTerminator();
+    auto* tWriteROOTConditionTerminator = new KSWriteROOTConditionTerminator();
     tWriteROOTConditionTerminator->SetName( fObject->fName );
     tWriteROOTConditionTerminator->SetValue( tComponent->As< std::string >() );
     tWriteROOTConditionTerminator->SetMatchTerminator( fObject->fMatchTerminator );

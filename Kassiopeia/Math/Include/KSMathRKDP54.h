@@ -36,7 +36,7 @@ namespace Kassiopeia
     {
         public:
             KSMathRKDP54();
-            virtual ~KSMathRKDP54();
+            ~KSMathRKDP54() override;
 
         public:
             typedef XSystemType SystemType;
@@ -49,22 +49,22 @@ namespace Kassiopeia
 
 
         public:
-            virtual void Integrate( double aTime,
+            void Integrate( double aTime,
                                     const DifferentiatorType& aTerm,
                                     const ValueType& anInitialValue,
                                     const double& aStep,
                                     ValueType& aFinalValue,
-                                    ErrorType& anError ) const;
+                                    ErrorType& anError ) const override;
 
 
             /*******************************************************************/
-            virtual void ClearState()
+            void ClearState() override
             {
                 fHaveCachedDerivative = false;
             };
 
             //returns true if information valid
-            virtual bool GetInitialDerivative(DerivativeType& derv) const
+            bool GetInitialDerivative(DerivativeType& derv) const override
             {
                 if(fHaveCachedDerivative)
                 {
@@ -74,7 +74,7 @@ namespace Kassiopeia
             };
 
             //returns true if information valid
-            virtual bool GetFinalDerivative(DerivativeType& derv) const
+            bool GetFinalDerivative(DerivativeType& derv) const override
             {
                 if(fHaveCachedDerivative)
                 {
@@ -86,8 +86,8 @@ namespace Kassiopeia
             //these functions are provided if the integrator implements
             //a method to interpolate the solution between initial and final step values
             //only valid for interpolating values on the last integration step
-            virtual bool HasDenseOutput() const {return true;};
-            virtual void Interpolate(double aStepFraction, ValueType& aValue) const;
+            bool HasDenseOutput() const override {return true;};
+            void Interpolate(double aStepFraction, ValueType& aValue) const override;
 
             /******************************************************************/
 

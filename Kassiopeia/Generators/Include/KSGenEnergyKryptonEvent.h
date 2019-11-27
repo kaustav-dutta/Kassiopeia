@@ -14,11 +14,11 @@ namespace Kassiopeia
         public:
             KSGenEnergyKryptonEvent();
             KSGenEnergyKryptonEvent( const KSGenEnergyKryptonEvent& aCopy );
-            KSGenEnergyKryptonEvent* Clone() const;
-            virtual ~KSGenEnergyKryptonEvent();
+            KSGenEnergyKryptonEvent* Clone() const override;
+            ~KSGenEnergyKryptonEvent() override;
 
         public:
-            void Dice( KSParticleQueue* aPrimaries );
+            void Dice( KSParticleQueue* aPrimaries ) override;
 
             //*************
             //configuration
@@ -40,8 +40,8 @@ namespace Kassiopeia
             //**************
 
         public:
-            void InitializeComponent();
-            void DeinitializeComponent();
+            void InitializeComponent() override;
+            void DeinitializeComponent() override;
 
         private:
             KSGenRelaxation* fMyRelaxation;

@@ -2,7 +2,6 @@
 #include "KSGeneratorsMessage.h"
 #include "KSParticle.h"
 #include "KConst.h"
-using katrin::KConst;
 #include "KRandom.h"
 using katrin::KRandom;
 
@@ -10,8 +9,8 @@ namespace Kassiopeia
 {
 
 	KSGenPositionFluxTube::KSGenPositionFluxTube() :
-            fPhiValue( NULL ),
-            fZValue( NULL ),
+            fPhiValue( nullptr ),
+            fZValue( nullptr ),
             fMagneticFields(),
             fFlux( 0.0191 ),
             fNIntegrationSteps( 1000 ),
@@ -72,7 +71,7 @@ namespace Kassiopeia
 
 			for( tPhiValueIt = tPhiValues.begin(); tPhiValueIt != tPhiValues.end(); tPhiValueIt++ )
 			{
-				tPhiValue = (KConst::Pi() / 180.) * (*tPhiValueIt);
+				tPhiValue = (katrin::KConst::Pi() / 180.) * (*tPhiValueIt);
 
 				tRValue = 0.0;
 				tFlux = 0.0;
@@ -81,7 +80,7 @@ namespace Kassiopeia
 				KThreeVector tField;
 				//calculate position at z=0 to get approximation for radius
 				CalculateField( KThreeVector( 0, 0, tZValue ), 0.0, tField );
-				double tRApproximation = sqrt( fFlux / (KConst::Pi() * tField.Magnitude() ) );
+				double tRApproximation = sqrt( fFlux / (katrin::KConst::Pi() * tField.Magnitude() ) );
 				genmsg_debug( "r approximation is <"<<tRApproximation<<">"<<eom);
 
 				//calculate stepsize from 0 to rApproximation
@@ -93,7 +92,7 @@ namespace Kassiopeia
 					tY = tRValue * sin( tPhiValue );
 					CalculateField( KThreeVector(tX,tY,tZValue), 0.0, tField );
 
-					tArea = KConst::Pi()*tRValue*tRValue;
+					tArea = katrin::KConst::Pi()*tRValue*tRValue;
 					tFlux += tField.Magnitude() * ( tArea - tLastArea);
 
 					genmsg_debug( "r <"<<tRValue<<">"<<eom);
@@ -106,7 +105,7 @@ namespace Kassiopeia
 				}
 
 				//correct the last step, to get a tFlux = fFlux
-				tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*KConst::Pi() ) );
+				tRValue = sqrt( tRValue * tRValue - ( tFlux - fFlux ) / ( tField.Magnitude()*katrin::KConst::Pi() ) );
 
 				//dice r value if volume option is choosen
 				if ( !fOnlySurface )
@@ -142,7 +141,7 @@ namespace Kassiopeia
 
     void KSGenPositionFluxTube::SetPhiValue( KSGenValue* aPhiValue )
     {
-        if( fPhiValue == NULL )
+        if( fPhiValue == nullptr )
         {
             fPhiValue = aPhiValue;
             return;
@@ -154,7 +153,7 @@ namespace Kassiopeia
     {
         if( fPhiValue == anPhiValue )
         {
-            fPhiValue = NULL;
+            fPhiValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear phi value <" << anPhiValue->GetName() << "> from composite position cylindrical creator <" << this->GetName() << ">" << eom;
@@ -163,7 +162,7 @@ namespace Kassiopeia
 
     void KSGenPositionFluxTube::SetZValue( KSGenValue* anZValue )
     {
-        if( fZValue == NULL )
+        if( fZValue == nullptr )
         {
             fZValue = anZValue;
             return;
@@ -175,7 +174,7 @@ namespace Kassiopeia
     {
         if( fZValue == anZValue )
         {
-            fZValue = NULL;
+            fZValue = nullptr;
             return;
         }
         genmsg( eError ) << "cannot clear z value <" << anZValue->GetName() << "> from composite position cylindrical creator <" << this->GetName() << ">" << eom;
@@ -201,11 +200,11 @@ namespace Kassiopeia
 
     void KSGenPositionFluxTube::InitializeComponent()
     {
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Initialize();
         }
-        if( fZValue != NULL )
+        if( fZValue != nullptr )
         {
             fZValue->Initialize();
         }
@@ -217,11 +216,11 @@ namespace Kassiopeia
     }
     void KSGenPositionFluxTube::DeinitializeComponent()
     {
-        if( fPhiValue != NULL )
+        if( fPhiValue != nullptr )
         {
             fPhiValue->Deinitialize();
         }
-        if( fZValue != NULL )
+        if( fZValue != nullptr )
         {
             fZValue->Deinitialize();
         }

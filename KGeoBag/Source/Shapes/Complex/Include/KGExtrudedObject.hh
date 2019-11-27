@@ -1,7 +1,7 @@
 #ifndef KGEXTRUDEDOBJECT_DEF
 #define KGEXTRUDEDOBJECT_DEF
 
-#include <stddef.h>
+#include <cstddef>
 #include <vector>
 #include <cmath>
 #include <string>
@@ -33,18 +33,19 @@ namespace KGeoBag
 					   fClosedLoops(closedLoops),
 					   fBackwards(false) {}
 
-    virtual ~KGExtrudedObject();
+    ~KGExtrudedObject() override;
 
     static std::string Name() { return "extruded_object"; }
 
     virtual void Initialize() const {}
+    virtual void AreaInitialize() const override { Initialize(); }
 
     virtual KGExtrudedObject* Clone() const;
 
     bool   ContainsPoint(const double* P) const;
     double DistanceTo(const double* P,
-		      double* P_in=NULL,
-		      double* P_norm=NULL) const;
+		      double* P_in=nullptr,
+		      double* P_norm=nullptr) const;
 
     void SetZMin(double zmin)             { fZMin = zmin; }
     void SetZMax(double zmax)             { fZMax = zmax; }
@@ -90,8 +91,8 @@ namespace KGeoBag
       virtual void Initialize() const;
 
       virtual double DistanceTo(const double* P,
-				double* P_in=NULL,
-				double* P_norm=NULL) const;
+				double* P_in=nullptr,
+				double* P_norm=nullptr) const;
 
       void SetOrder(int i)  { fOrder = i; }
       int  GetOrder() const { return fOrder; }
@@ -150,15 +151,15 @@ namespace KGeoBag
 	  double radius,
 	  bool   positiveOrientation=true);
 
-      virtual ~Arc() {}
+      ~Arc() override {}
 
-      virtual void Initialize() const;
+      void Initialize() const override;
 
-      virtual Arc* Clone(KGExtrudedObject* eO) const;
+      Arc* Clone(KGExtrudedObject* eO) const override;
 
       double DistanceTo(const double* P,
-			double* P_in=NULL,
-			double* P_norm=NULL) const;
+			double* P_in=nullptr,
+			double* P_norm=nullptr) const override;
 
       void FindCenter() const;
 
@@ -169,7 +170,7 @@ namespace KGeoBag
       double GetPhiStart()             const { return fPhiStart; }
       double GetPhiEnd()               const { return fPhiEnd; }
 
-      double GetLength() const;
+      double GetLength() const override;
 
       double NormalizeAngle(double angle) const;
 
@@ -178,7 +179,7 @@ namespace KGeoBag
       void IsPositivelyOriented(bool b) { fPositiveOrientation = b; }
       bool IsPositivelyOriented() const { return fPositiveOrientation; }
 
-      virtual bool IsArc() { return true; }
+      bool IsArc() override { return true; }
 
       static bool AngleIsWithinRange(double phi_test,
 				     double phi_min,

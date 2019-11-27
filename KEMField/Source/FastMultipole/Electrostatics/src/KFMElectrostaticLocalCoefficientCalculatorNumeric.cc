@@ -21,7 +21,7 @@ KFMElectrostaticLocalCoefficientCalculatorNumeric::KFMElectrostaticLocalCoeffici
 
     fNumInt2D->SetField(fSolidHarmonicWrapper);
 
-    fSolidHarmonics = NULL;
+    fSolidHarmonics = nullptr;
 }
 
 KFMElectrostaticLocalCoefficientCalculatorNumeric::~KFMElectrostaticLocalCoefficientCalculatorNumeric()
@@ -61,7 +61,7 @@ KFMElectrostaticLocalCoefficientCalculatorNumeric::ConstructExpansion(double* ta
     fOrigin[2] = target_origin[2];
 
     //construct the wire/triangle/rectangle, and then compute its moments
-    if(vertices != NULL && moments != NULL)
+    if(vertices != nullptr && moments != nullptr)
     {
         moments->Clear();
         int n_vertices = vertices->GetNPoints();

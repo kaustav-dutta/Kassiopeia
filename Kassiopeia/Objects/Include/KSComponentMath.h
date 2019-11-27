@@ -71,7 +71,7 @@ namespace Kassiopeia
                     aCopy.fParentComponents.at( tIndex )->AddChild( this );
                 }
             }
-            virtual ~KSComponentMath()
+            ~KSComponentMath() override
             {
             }
 
@@ -80,15 +80,15 @@ namespace Kassiopeia
             //***********
 
         public:
-            KSComponent* Clone() const
+            KSComponent* Clone() const override
             {
                 return new KSComponentMath< XValueType >( *this );
             }
-            KSComponent* Component( const std::string& aField )
+            KSComponent* Component( const std::string& aField ) override
             {
                 objctmsg_debug( "component math <" << this->GetName() << "> building component named <" << aField << ">" << eom )
                 KSComponent* tComponent = KSDictionary< XValueType >::GetComponent( this, aField );
-                if( tComponent == NULL )
+                if( tComponent == nullptr )
                 {
                     objctmsg( eError ) << "component math <" << this->GetName() << "> has no output named <" << aField << ">" << eom;
                 }
@@ -98,13 +98,13 @@ namespace Kassiopeia
                 }
                 return tComponent;
             }
-            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/)
+            KSCommand* Command( const std::string& /*aField*/, KSComponent* /*aChild*/) override
             {
-                return NULL;
+                return nullptr;
             }
 
         public:
-            void PushUpdateComponent()
+            void PushUpdateComponent() override
             {
                 objctmsg_debug( "component math <" << this->GetName() << "> pushing update" << eom );
 

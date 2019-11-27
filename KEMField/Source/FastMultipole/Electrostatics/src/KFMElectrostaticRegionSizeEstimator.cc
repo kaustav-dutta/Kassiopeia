@@ -4,7 +4,7 @@ namespace KEMField
 {
 
 
-KFMElectrostaticRegionSizeEstimator::KFMElectrostaticRegionSizeEstimator():fElementContainer(NULL)
+KFMElectrostaticRegionSizeEstimator::KFMElectrostaticRegionSizeEstimator():fElementContainer(nullptr)
 {
     fEstimator = new KFMBoundaryCalculator<3>();
 }

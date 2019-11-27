@@ -50,7 +50,7 @@ namespace Kassiopeia
     template< class XType >
     KSReadValue< XType >& KSReadSet< KSReadValue< XType > >::Add( const std::string& aLabel )
     {
-        ValueIt tIt = fValueMap.find( aLabel );
+        auto tIt = fValueMap.find( aLabel );
         if( tIt == fValueMap.end() )
         {
             return fValueMap[ aLabel ];
@@ -61,7 +61,7 @@ namespace Kassiopeia
     template< class XType >
     KSReadValue< XType >& KSReadSet< KSReadValue< XType > >::Get( const std::string& aLabel ) const
     {
-        ValueIt tIt = fValueMap.find( aLabel );
+        auto tIt = fValueMap.find( aLabel );
         if( tIt != fValueMap.end() )
         {
             return tIt->second;
@@ -72,7 +72,7 @@ namespace Kassiopeia
     template< class XType >
     bool KSReadSet< KSReadValue< XType > >::Exists( const std::string& aLabel ) const
     {
-        ValueIt tIt = fValueMap.find( aLabel );
+        auto tIt = fValueMap.find( aLabel );
         if( tIt != fValueMap.end() )
         {
             return true;
