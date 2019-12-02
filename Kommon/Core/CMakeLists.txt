@@ -171,5 +171,5 @@ endif()
 kasper_append_paths( KOMMON_HEADER_FILES ${KOMMON_CORE_HEADER_FILES} )
 kasper_append_paths( KOMMON_SOURCE_FILES ${KOMMON_CORE_SOURCE_FILES} )
 
-add_subdirectory(Binning)
-add_subdirectory(Maths)
+#add_subdirectory(Binning)
+#add_subdirectory(Maths)
